@@ -1,0 +1,144 @@
+\begin{enunciado}
+ Sea $\omega: \mathbb{R}^3 \to \mathbb{R}$ la forma cuadr\'atica que, en la base can\'onica de $\mathbb{R}^3$, tiene asociada la matriz sim\'etrica:
+ \begin{equation*}
+  A = 
+  \begin{bmatrix}
+   \phantom{-}1 & -3 & -1 \\
+   -3 & \phantom{-}1 & \phantom{-}1 \\
+   -1 & \phantom{-}1 & \phantom{-}5
+  \end{bmatrix}
+ \end{equation*}
+ Hallar una base ortonormal de $\mathbb{R}^3$ (con el producto escalar can\'onico) en la que la matriz $D$ de $\omega$, que tambi\'en se pide, sea diagonal.
+\end{enunciado}
+
+\begin{solucion}
+ Para diagonalizar ortogonalmente $\omega$, se buscar\'an los valor propios de la matriz de $\omega$ buscando las ra\'{\i}ces de su polinomio caracter\'{\i}stico $p(\lambda) = \det(A-\lambda I)$. Esto es:
+ \begin{eqnarray*}
+  \det(A - \lambda I) & = & 
+  \begin{vmatrix}
+   1-\lambda & -3 & -1 \\
+   -3 & 1-\lambda &  1 \\
+   -1 & 1 & 5 - \lambda
+  \end{vmatrix}
+  \\
+  & = & 
+  (1-\lambda)
+  \begin{vmatrix}
+   1-\lambda & 1 \\
+   1 & 5-\lambda
+  \end{vmatrix}
+  +3
+  \begin{vmatrix}
+   -3 & -1 \\
+   1 & 5-\lambda
+  \end{vmatrix}
+  -
+  \begin{vmatrix}
+   -3 & -1 \\
+   1-\lambda & 1
+  \end{vmatrix}
+  \\
+  & = & (1-\lambda)(\lambda^2 -6\lambda +5 -1) +3(3\lambda -15 +1) -(-3+1-\lambda) \\
+  & = & (-\lambda^3 + 7\lambda^2 -10\lambda + 4) + (9\lambda-42)+(\lambda+2) \\ 
+  & = & -\lambda^3 + 7\lambda^2 - 36  = -\lambda^3 + 6\lambda^2 + \lambda^2 - 36 = -\lambda^2(\lambda-6) + (\lambda-6)(\lambda+6) \\
+  & = & -(\lambda-6)(\lambda^2 - \lambda - 6) = -(\lambda-6)(\lambda-3)(\lambda+2) \\ 
+  & = & -(\lambda+2)(\lambda-3)(\lambda-6)
+ \end{eqnarray*}
+ Por lo tanto, los autovalores de la matriz de $\omega$ son $\lambda_1 = -2$, $\lambda_2 = 3$ y $\lambda_3 = 6$. Entonces, se procede a calcular los subespacios propios de $A$ y hallar la base de cada uno de estos, lo cual se har\'a a trav\'es de los vectores coordenadas, $X = [x,y,z]^t$, en la base can\'onica, tales que $(A-\lambda_i I)X = O$, para $i\in\{1,2,3\}$.
+ \par 
+ Para  el caso  $\lambda_1 = -2$, se tiene la ecuaci\'on $(A+2I)X = O$, dada por
+ \begin{equation*}
+  \begin{bmatrix}
+   \phantom{-}3 & -3 & -1 \\
+   -3 & \phantom{-}3 & \phantom{-}1 \\
+   -1 & \phantom{-}1 & \phantom{-}7
+  \end{bmatrix}
+  \begin{bmatrix}
+   x \\ y \\ z 
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+   \phantom{-}3x & - & 3y & - & \phantom{7}z \\
+   -3x & + & 3y & + & \phantom{7}z \\
+   -\phantom{3}x & + & \phantom{3}y & + & 7z
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+   0 \\ 0 \\ 0
+  \end{bmatrix}
+ \end{equation*}
+ lo cual, al igualar las entradas, da un sistema de tres ecuaciones. Sumando tres veces la tercera ecuaci\'on a la primera, se tiene que $20z = 0$, por lo que $z = 0$, y, sustituyendo este valor en la primera ecuaci\'on, se tiene que $3x-3y = 0$, por lo que $x=y$. Por lo tanto:
+ \begin{equation*}
+  E_{\lambda_1 = -2} = \left< (1,1,0) \right>
+ \end{equation*}
+ Para  el caso  $\lambda_2 = 3$, se tiene la ecuaci\'on $(A-3I)X = O$, dada por
+ \begin{equation*}
+  \begin{bmatrix}
+   -2 & -3 & -1 \\
+   -3 & -2 & \phantom{-}1 \\
+   -1 & \phantom{-}1 & \phantom{-}2
+  \end{bmatrix}
+  \begin{bmatrix}
+   x \\ y \\ z 
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+   -\phantom{3}x & - & 3y & - & \phantom{7}z \\
+   -3x & - & 2y & + & \phantom{7}z \\
+   -\phantom{3}x & + & \phantom{3}y & + & 2z
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+   0 \\ 0 \\ 0
+  \end{bmatrix}
+ \end{equation*}
+ lo cual, al igualar las entradas, da un sistema de tres ecuaciones. Sumando las dos primeras ecuaciones, se tiene que $-5x-5y = 0$, por lo que $x=-y$, y, sustituyendo este valor en la tercera ecuaci\'on, se tiene que $-2x+2z = 0$, por lo que $x=z$. Por lo tanto:
+ \begin{equation*}
+  E_{\lambda_2 = 3} = \left< (1,-1,1) \right>
+ \end{equation*}
+ Y, para  el caso  $\lambda_3 = 6$, se tiene la ecuaci\'on $(A-6I)X = O$, dada por
+ \begin{equation*}
+  \begin{bmatrix}
+   -5 & -3 & -1 \\
+   -3 & -5 & \phantom{-}1 \\
+   -1 & \phantom{-}1 & -1
+  \end{bmatrix}
+  \begin{bmatrix}
+   x \\ y \\ z 
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+   -5x & - & 3y & - & z \\
+   -3x & - & 5y & + & z \\
+   -\phantom{3}x & + & \phantom{3}y & - & z
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+   0 \\ 0 \\ 0
+  \end{bmatrix}
+ \end{equation*}
+ lo cual, al igualar las entradas, da un sistema de tres ecuaciones. Sumando las dos \'ultimas ecuaciones, se tiene que $-4x-4y = 0$, por lo que $x=-y$, y, sustituyendo este valor en la tercera ecuaci\'on, se tiene que $2y-z = 0$, por lo que $z=2y$. Por lo tanto:
+ \begin{equation*}
+  E_{\lambda_2 = 3} = \left< (1,-1,-2) \right>
+ \end{equation*}
+ Entonces, normalizando estos vectores generadores, se obtienen los siguientes:
+ \begin{eqnarray*}
+  \bar{u}_1 & = & \frac{(1,1,0)}{\lVert (1,1,0) \rVert} = \frac{(1,1,0)}{\sqrt{2}} \\
+  & = & \frac{\sqrt{2}}{2}(1,1,0)\\
+  \bar{u}_2 & = & \frac{(1,-1,1)}{\lVert (1,-1,1) \rVert} = \frac{(1,-1,1)}{\sqrt{3}} \\ 
+  & = & \frac{\sqrt{3}}{3}(1,-1,1) \\
+  \bar{u}_3 & = & \frac{(1,-1,-2)}{\lVert (1,-1,-2) \rVert} = \frac{(1,-1,-2)}{\sqrt{6}} \\
+  & = & \frac{\sqrt{6}}{6}(1,-1,-2)
+ \end{eqnarray*}
+ As\'{\i} que, por teorema, se tiene que en la base ortonormal $\beta = \left( \bar{u}_1, \bar{u}_2, \bar{u}_3 \right)$ se diagonaliza ortogonalmente a $\omega$. Tambi\'en se sabe que la matriz diagonal $D$ de $\omega$, en esta base, est\'a dada por los autovalores correspondientes a los autovectores de $\beta$, en el mismo orden. Esto es:
+ \begin{equation*}
+  D = 
+  \begin{bmatrix}
+   -2 & 0 & 0 \\
+    0 & 3 & 0 \\
+    0 & 0 & 6
+  \end{bmatrix}
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+
+\end{solucion}

@@ -1,0 +1,31 @@
+\begin{enunciado}
+ Sea $V$ un espacio vectorial real de dimensi\'on finita y sea $f: V \to V$ un endomorfismo. Obtener una condici\'on necesaria y suficiente para que exista un producto escalar en $V$ con el que $f$ sea un endomorfismo sim\'etrico.
+\end{enunciado}
+
+\begin{solucion}
+ Se ha probado ya que si $f$ es un endomorfismo sim\'etrico, entonces existe una base ortonormal de $V$ formado por vectores propios de $f$, para cierto producto escalar. Se va a querer probar ahora que el regreso tambi\'en es cierto, es decir, que, para cierto producto escalar, si existe una base ortonormal de $V$ formado por vectores propios de $f$, entonces $f$ es un endomorfismo sim\'etrico.
+ \par 
+ Si existe tal base, entonces cualesquiera dos vectores $\bar{x}$ y $\bar{y}$ tienen una representaci\'on \'unica como combianci\'on lineal de dichos vectores. Es decir, sea $\beta = \{ \bar{e}_1, \bar{e}_2, \ldots, \bar{e}_n \}$ dicha base (se est\'a suponiendo que la dimensi\'on de $V$ es $n$), entonces existen conjuntos de escalares, $\{\alpha_1, \alpha_2, \ldots, \alpha_n \}$ y $\{ \beta_1, \beta_2, \ldots, \beta_n \}$, tales que
+ \begin{equation*}
+  \bar{x} = \sum_{i=1}^n \alpha_i \bar{e}_i
+  \qquad \text{ y } \qquad 
+  \bar{y} = \sum_{j=1}^n \beta_j \bar{e}_j
+ \end{equation*}
+ Luego, como $\beta$ es base ortonormal, se cumple que $\bar{e}_i\cdot\bar{e}_i = 1$ y $\bar{e}_i\cdot \bar{e}_j = 0$ para cualesquiera $i,j\in\mathbb{N}\cap[1,n]$ con $i\neq j$, y, como son vectores propios tambi\'en, se cumple tambi\'en que existen un conjunto de escalares. $\{ \lambda_1, \lambda_2, \ldots, \lambda_n \}$, tales que $f(\bar{e}_i) = \lambda_i \bar{e}_i$, para toda $i\in\mathbb{N}\cap[1,n]$. Por lo tanto:
+ \begin{eqnarray*}
+  \bar{x}\cdot f(\bar{y}) & = & \left( \sum_{i=1}^n \alpha_i \bar{e}_i \right) \cdot f\left( \sum_{j=1}^n \beta_j \bar{e}_j \right) = \left( \sum_{i=1}^n \alpha_i \bar{e}_i \right) \cdot \left[ \sum_{j=1}^n \beta_j f(\bar{e}_j) \right] \\
+  & = & \left( \sum_{i=1}^n \alpha_i \bar{e}_i \right) \cdot \left[ \sum_{j=1}^n \beta_j (\lambda_j \bar{e}_j) \right] = \sum_{i,j=1}^n (\alpha_i \bar{e}_i) \cdot (\lambda_j \beta_j \bar{e}_j) = \sum_{i,j=1}^n \lambda_j \alpha_i \beta_j (\bar{e}_i \cdot \bar{e}_j) \\
+  & = & \sum_{i=1}^n \lambda_i \alpha_i \beta_i
+ \end{eqnarray*}
+ y. por otro lado,
+ \begin{eqnarray*}
+  f(\bar{x})\cdot \bar{y} & = & f\left( \sum_{i=1}^n \alpha_i \bar{e}_i \right) \cdot \left( \sum_{j=1}^n \beta_j \bar{e}_j \right) = \left[ \sum_{i=1}^n \alpha_i f(\bar{e}_i) \right] \cdot \left( \sum_{j=1}^n \beta_j \bar{e}_j \right) \\
+  & = & \left[ \sum_{i=1}^n \alpha_i (\lambda_i \bar{e}_i) \right] \cdot \left( \sum_{j=1}^n \beta_j \bar{e}_j \right) = \sum_{i,j=1}^n (\lambda_i \alpha_i \bar{e}_i) \cdot (\beta_j \bar{e}_j) = \sum_{i,j=1}^n \lambda_i \alpha_i \beta_j (\bar{e}_i \cdot \bar{e}_j) \\
+  & = & \sum_{i=1}^n \lambda_i \alpha_i \beta_i
+ \end{eqnarray*}
+ Por lo que $\bar{x}\cdot f(\bar{y}) = f(\bar{x})\cdot \bar{y}$. Por lo tanto, bajo la supuesta existencia de un producto escalar apropiado, $f$ es sim\'etrica si y s\'olo si existe una base ortonormal de vectores propios de $f$. Desglozando el hecho de que existe una base ortonormal de vectores propios $f$, se tiene que que $f$ tiene $n$ autovectores linealmente independientes y, de ello, al separarlos en tantos conjuntos como valores propios distintos haya, estos conjuntos generan los subespacios propios de $f$, llamando $d_i$ a la multiplicidad geom\'etricas del $i-$\'esimo autovalor, es decir la dimensiones del subespacio propio $i-$\'esimo, y $m_i$ a la multiplicidad algebraica del $i-$\'esimo autovalor, se tiene que $d_1+d_2+\cdots +d_p = n$, donde $p$ representa la cantidad de autovalores propios distintos, entonces, al ser $d_i\leq m_i$ y $n=d_1 + d_2 + \cdot + d_n \leq m_1 + m_2 + \cdots + m_p \leq n$, se sigue que $m_1 + m_2 + \cdots m_p = n$ y $d_i = m_i$ para toda $i\in \mathbb{N}\cap[1,p]$, por lo tanto $f$ es diagonalizable; por otro lado, sea $D$ la matriz diagonal de $f$ en cierta base compuesta por los autovalores de $f$, se debe cumplir que en la base formada por autovectores propios sea ortonormal, es decir, el producto escalar debe de hacer que los autovectores sean ortonormales.
+ \par 
+ N\'otese que estas dos resultados a partir de que existe una base ortonormal de vectores propios de $f$, es decir, que esto implica que $f$ es diagonalizable y que el producto escalar hace que una base en la que la matriz de $f$ es diagonal es base ortonormal, es una equivalencia. Esto es, si $f$ es diagonalizable y el producto escalar hace que una base en la que la matriz de $f$ es diagonal, compuesta por los autovalores de $f$, sea base ortonormal, implica que existe una base ortonormal de vectores propios de $f$.
+ \par 
+ Resumiendo, existe un producto escalar en $V$ con el que $f$ es un endomorfismo sim\'etrico si y s\'olo si aquel producto escalar hace que $V$ tenga una base ortonormal de vectores propios de $f$ si y s\'olo si $f$ es diagonalizable y el producto escalar hace que una base en la que la matriz de $f$ es diagonal, compuesta por los autovalores de $f$, sea base ortonormal. Por lo tanto, la condici\'on necesaria y suficiente para que exista un producto escalar en $V$ con el que $f$ es un endomorfismo sim\'etrico es que $f$ sea diagonalizable y que el producto escalar haga ortonormal una base en la que se obtiene la matriz $D$ de la diagonalizaci\'on de $f$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

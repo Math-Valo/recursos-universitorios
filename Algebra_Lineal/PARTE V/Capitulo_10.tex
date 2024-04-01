@@ -1,0 +1,86 @@
+\documentclass[a4paper,11pt]{article}
+%%\documentclass[a4paper,12pt]{amsart}
+\usepackage[cp1252]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{enumerate}
+
+\setlength{\textheight}{23.5cm} \setlength{\evensidemargin}{0cm}
+\setlength{\oddsidemargin}{-0.8cm} \setlength{\topmargin}{-2.5cm}
+\setlength{\textwidth}{17.5cm} \setlength{\parskip}{0.25cm}
+
+\hyphenation{pro-ba-bi-li-dad}
+\spanishdecimal{.}
+
+\newtheoremstyle{teoremas}{\topsep}{\topsep}%
+     {}% Body font
+     {}% Indent amount (empty = no indent, \parindent = para indent)
+     {}% Thm head font
+     {}% Punctuation after thm head
+     {0.5em}% Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}.}\thmnote{ {\itshape#3}.}}% Thm head spec
+\theoremstyle{teoremas}
+
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{corolario}[teorema]{Corolario}
+
+
+\newtheoremstyle{ejemplos}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{ejemplos}
+
+\newtheoremstyle{definiciones}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{definiciones}
+
+\newtheoremstyle{lemas}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{lemas}
+
+
+\newtheorem*{enunciado}{Enunciado}
+\newtheorem*{solucion}{Soluci\'on}
+\newtheorem*{demostracion}{Demostraci\'on}
+\newtheorem*{lema}{Lema}
+\newtheorem*{hipotesis}{Hip\'otesis}
+
+\title{PARTE V: GEOMETR\'IA CARTESIANA\\Los espacios geom\'etricos $E_2$ y $E_3$}
+\author{\'Alvaro J. Carde\~na Mej\'{\i}a}
+
+\begin{document}
+
+\maketitle
+
+\section{Problemas y Soluciones}
+
+\begin{enumerate}
+ \item \input{Problema_01} % Si escribo \include{Problema_1}, se escribirá el contenido en una hoja a parte.
+ \item \input{Problema_02}
+ \newpage
+ \item \input{Problema_03}
+ \item \input{Problema_04} 
+\end{enumerate}
+\end{document}

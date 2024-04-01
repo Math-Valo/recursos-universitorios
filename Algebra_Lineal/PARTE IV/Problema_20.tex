@@ -1,0 +1,157 @@
+\begin{enunciado}
+ En el espacio vectorial eucl\'{\i}deo can\'onico $\mathbb{R}^3$ y respecto de una base ortonormal $(\bar{e}_1, \bar{e}_2, \bar{e}_3)$, se considera un endomorfismo del que se sabe que:
+ \begin{itemize}
+  \item $f(\bar{e}_1) = 3\bar{e}_1 + 2\bar{e}_2 + 2\bar{e}_3$, $f(\bar{e}_2) = 2\bar{e}_1 + 2\bar{e}_2$.
+  
+  \item La matriz $A$ de $f$ es sim\'etrica.
+  
+  \item $\bar{a} = 2\bar{e}_1 - 2\bar{e}_2 - \bar{e}_3$ es autovector de $f$.
+ \end{itemize}
+ \begin{enumerate}[$a$)]
+  \item Hallar $A$ y los autovalores y los autovectores de $f$.
+  
+  \item Diagonalizar ortogonalmente $f$, determinando una base en la que se obtenga dicha ortogonalizaci\'on.
+ \end{enumerate}
+\end{enunciado}
+ 
+\begin{solucion}
+ Antes de comenzar, se analizar\'an uno a uno los puntos del enunciado.
+ \par 
+ Del primer punto y dado que la $i-$\'esima columna de $A=[a_{ij}]_{3\times 3}$ est\'a conformada por el vector de coordenadas de $f(e_i)$, en la base $\beta = (\bar{e}_1, \bar{e}_2, \bar{e}_3)$, se tiene que:
+ \begin{equation*}
+  A =
+  \begin{bmatrix}
+   3 & 2 & a_{13} \\
+   2 & 2 & a_{23} \\
+   2 & 0 & a_{33}
+  \end{bmatrix}
+ \end{equation*}
+ Luego, por el segundo punto, $A$ es sim\'etrica y, por lo tanto $a_{13} = a_{31} = 2$ y $a_{23} = a_{32} = 0$.
+ \par 
+ Y, del tercer punto, llamando $X$ el vector de coordenadas de $\bar{a}$ en la base $\beta$, se tiene que, como $\bar{a}$ es autovector, existe $\lambda$ tal que:
+ \begin{equation*}
+  \begin{bmatrix}
+   3 & 2 & 2 \\
+   2 & 2 & 0 \\
+   2 & 0 & a_{33}
+  \end{bmatrix}
+  \begin{bmatrix}
+   2 \\ -2 \\ -1
+  \end{bmatrix}
+  = 
+  \begin{bmatrix}
+   0 \\ 0 \\ 4 - a_{33}
+  \end{bmatrix}
+  = 
+  \begin{bmatrix}
+   2\lambda \\ -2\lambda \\ -\lambda
+  \end{bmatrix}
+ \end{equation*}
+ luego entonces $\bar{a}$ es autovector de $f$ correspondiente al autovalor $\lambda_1 = 0$, y, como $4-a_{33} = 0$, se tiene que $a_{33} = 4$.
+ \begin{enumerate}[$a$)]
+  \item De todo lo anterior se tiene por resultado inmediato que la matriz $A$ de $f$ en la base $\beta$ es:
+  \begin{equation*}
+   \begin{bmatrix}
+    3 & 2 & 2 \\
+    2 & 2 & 0 \\
+    2 & 0 & 4
+   \end{bmatrix}
+  \end{equation*}
+  Luego, como $0$ es un autovalor de $A$, se tiene que $A$ es singular y por lo tanto $\det(A) = 0$, adem\'as, $\text{tr} A = 9$, y calculando la suma de los 3 menores diagonales de orden $2$ de $A$, esto es:
+  \begin{equation*}
+   \begin{vmatrix}
+    3 & 2 \\
+    2 & 2 
+   \end{vmatrix}
+   +
+   \begin{vmatrix}
+    3 & 2 \\
+    2 & 4 
+   \end{vmatrix}
+   + 
+   \begin{vmatrix}
+    2 & 0 \\
+    0 & 4
+   \end{vmatrix}
+   = (6-4) + (12 - 4) + (8) = 2+8+8 = 18
+  \end{equation*}
+  se tiene entonces que el polinomio caracter\'{\i}stico de $f$ es: $-\lambda^3 + 9\lambda - 18\lambda = -\lambda(\lambda^2 - 9\lambda +18) = -\lambda(\lambda -3)(\lambda - 6)$. Por lo tanto, los autovalores de $f$, que son las ra\'{\i}ces de dicho polinomio, son: $\lambda_1 = 0$, $\lambda_2 = 3$ y $\lambda_3 = 6$.
+  \par 
+  Para calcular los autovectores de $f$, se procede a calcular sus vectores de coordenadas en la base $\beta$, los cuales son aquellos que cumplen que $(A-\lambda_i I) X = O$, para cada $i\in \{ 1, 2, 3\}$. N\'otese que como las multiplicidades geom\'etricas, $d_i$, y las multiplicidades algebraicas, $m_i$, cumplen que $1\leq d_i \leq m_i = 1$, entonces $\dim E_{\lambda_i} = 1$, para cada $i\in\{1,2,3\}$, o lo que es equivalente, cada $E_{\lambda_i}$ est\'a generado por un \'unico vector de $\mathbb{R}^3$.
+  \par 
+  Para el caso $\lambda_1 = 0$, ya se sabe que $\bar{a}$ es autovector de $f$. Por lo tanto:
+  \begin{equation*}
+   E_{\lambda_1 = 0} = \left< 2\bar{e}_1 - 2\bar{e}_2 - \bar{e}_3 \right>
+  \end{equation*}
+  Para el caso $\lambda_2 = 3$, se resuelve la ecuaci\'on $\det(A-3I)X = O$, para el vector de coordenadas $X=[x,y,z]^t$, como sigue:
+  \begin{equation*}
+   \begin{bmatrix}
+    0 &  2 & 2 \\
+    2 & -1 & 0 \\
+    2 &  0 & 1
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+       &   & 2y & + & 2z \\
+    2x & - &  y          \\
+    2x &   &    & + & z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  Por lo tanto, como $2x-y=0$ y $y+z = 0$, se tiene que $y = 2x = -z$, por lo que $X=[1, 2,-2]$ es el vector de coordenadas de un autovector de $E_{\lambda_2 = 3}$. Por lo tanto:
+  \begin{equation*}
+   E_{\lambda_2 = 3} = \left< \bar{e}_1 + 2\bar{e}_2 - 2\bar{e}_3 \right>
+  \end{equation*}
+  Y, para el caso $\lambda_3 = 6$, se resuelve la ecuaci\'on $\det(A - 6I)X = O$, para el vector de coordenadas $X = [x,y,z]^t$, como sigue:
+  \begin{equation*}
+   \begin{bmatrix}
+    -3 &  2 &  2 \\
+     2 & -4 &  0 \\
+     2 &  0 & -2
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   = 
+   \begin{bmatrix}
+    -3x & + & 2y & + & 2z \\
+     2x & - & 4y          \\
+     2x &   &    & - & 2z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ '
+   \end{bmatrix}
+  \end{equation*}
+  Por lo tanto, como $2x - 4y = 0$ y $2x - 2z = 0$, se tiene que $x = 2y = z$, por lo que $X = [2, 1, 2]$ es el vector de coordenadas de un autovector de $E_{\lambda_3 = 6}$. Por lo tanto:
+  \begin{equation*}
+   E_{\lambda_3 = 6} = \left< 2\bar{e}_1 + \bar{e}_2 + 2\bar{e}_3 \right>
+  \end{equation*}
+  
+  \item Finalmente, usando todo lo mencionado anteriormente, se tiene que los vectores que se dieron que generan los subespacios propios de $f$ son ortogonales, puesto que $\left( 2\bar{e}_1 - 2\bar{e}_2 - \bar{e}_3 \right) \cdot \left( \bar{e}_1 + 2\bar{e}_2 - 2\bar{e}_3 \right) = 2-4+2 = 0$, $\left( 2\bar{e}_1 - 2\bar{e}_2 - \bar{e}_3 \right) \cdot \left( 2\bar{e}_1 + \bar{e}_2 +2\bar{e}_3 \right) = 4 - 2 - 2 = 0$ y $\left( \bar{e}_1 + 2\bar{e}_2 - 2\bar{e}_3 \right) \cdot \left( 2\bar{e}_1 + \bar{e}_2 +2\bar{e}_3 \right) = 2 + 2 - 4 = 0$, entonces al normalizar estos vectores, esto es, tomando $\bar{u}_1 = \frac{2\bar{e}_1 - 2\bar{e}_2 - \bar{e}_3}{\left\lVert 2\bar{e}_1 - 2\bar{e}_2 - \bar{e}_3 \right\rVert} = \frac{2\bar{e}_1 - 2\bar{e}_2 - \bar{e}_3}{\sqrt{4+4+1}} = \frac{1}{3}\left(2\bar{e}_1 - 2\bar{e}_2 - \bar{e}_3 \right)$,
+  $\bar{u}_2 = \frac{\bar{e}_1 + 2\bar{e}_2 - 2\bar{e}_3}{\left\lVert \bar{e}_1 + 2\bar{e}_2 - 2\bar{e}_3 \right\rVert} = \frac{\bar{e}_1 + 2\bar{e}_2 - 2\bar{e}_3}{\sqrt{1+4+4}} = \frac{1}{3}\left(\bar{e}_1 + 2\bar{e}_2 - 2\bar{e}_3 \right)$
+  y $\bar{u}_3 = \frac{2\bar{e}_1 + \bar{e}_2 +2\bar{e}_3}{\left\lVert 2\bar{e}_1 + \bar{e}_2 +2\bar{e}_3 \right\rVert} = \frac{2\bar{e}_1 + \bar{e}_2 +2\bar{e}_3}{\sqrt{4 + 1+ 4}} = \frac{1}{3} \left( 2\bar{e}_1 + \bar{e}_2 +2\bar{e}_3 \right)$, se tiene una base ortonormal $\beta' = \left( \bar{u}_1, \bar{u}_2, \bar{u}_3 \right)$ en donde $f$ es diagonal. La matriz diagonal, $D$, de $f$ en esta base y la matriz de cambio de coordenadas, $P$, son las siguientes y adem\'as cumplen que $D = P^tAP$.
+  \begin{equation*}
+   D = 
+   \begin{bmatrix}
+    0 & 0 & 0 \\
+    0 & 3 & 0 \\
+    0 & 0 & 6
+   \end{bmatrix}
+   \qquad \text{ y } \qquad
+   P = \frac{1}{3}
+   \begin{bmatrix}
+     2 &  1 & 2 \\
+    -2 &  2 & 1 \\
+    -1 & -2 & 2
+   \end{bmatrix}
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

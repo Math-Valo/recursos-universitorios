@@ -1,0 +1,55 @@
+\begin{enunciado}
+ Sean $A$ y $B$ dos matrices cuadradas sim\'etricas, ambas de igual tama\~no.
+ Si los autovalores de $A$ est\'an en el intervalo $[a_1, a_2]$ y los autovalores de $B$ est\'an en el intervalo $[b_1, b_2]$, pru\'ebese que los autovalores de $A+B$ est\'an en el intervalo $[a_1 + b_1, a_2 + b_2]$.
+\end{enunciado}
+
+\begin{solucion}
+ N\'otese que, al ser sim\'etricas las matrices, \'estas siempre son diagonalizables por semejanza y, de ello, se tiene que estas matrices tienen $n$ autovalores, contando multiplicidades, (se est\'a suponiendo que el tama\~no de las matrices $A$ y $B$ es de $n\times n$) y, adem\'as, existe una base ortonormal de $\mathbb{R}^n$, con el producto escalar usual, formada por vectores propios para cada una de estas matrices. Entonces, para hallar la soluci\'on a este problema, primero se probar\'a el siguiente lema:
+ \begin{lema}
+  Sea $C$ una matriz cuadrada sim\'etrica, llamando $\lambda_m$ y $\lambda_M$ al menor y al mayor de los autovalores de de $C$, entonces para cualquiera que sea el vector $X\in \mathbb{R}^n$, se verifica que:
+  \begin{equation*}
+   \lambda_m X^tX \leq X^tCX \leq \lambda_M X^tX
+  \end{equation*}
+ \end{lema}
+ \begin{demostracion}
+  Dado que existe una base ortonormal de $\mathbb{R}^n$, entonces todo vector $X$ se escribe de forma \'unica como combinaci\'on lineal de estos vectores de la base. Esto es, sea $\beta = (X_1, X_2, \ldots, X_n)$ la base ortonormal de $\mathbb{R}^n$ formada por vectores propios de $C$, entonces existen escalares $a_i \in \mathbb{R}$, para $i \in \mathbb{N}\cap[1,n]$, tales que
+  \begin{equation*}
+   X = \sum_{i=1}^n a_i X_i
+  \end{equation*}
+  y esta expresi\'on es \'unica. Luego entonces, sea $\lambda_i$ el valor propio correspondiente al autovector $X_i$, para $i \in \mathbb{N}\cap[1,n]$, se tiene que
+  \begin{eqnarray*}
+   X^tCX & = & X^t \left[ C \left( \sum_{i=1}^n a_i X_i^t \right) \right] = X^t \left[ \sum_{i=1}^n a_i (CX_i) \right] = \left( \sum_{i=1}^n a_i X_i^t \right) \left[ \sum_{i=1}^n a_i (\lambda_i X_i) \right] \\
+   & = & \sum_{i,j = 1}^n \lambda_i a_j a_i (X_j^tX_i)
+  \end{eqnarray*}
+  donde, al ser ortonormal la base, se tiene que $X_i^tX_i = 1$ y $X_j^tX_i = 0$ cuando $i\neq j$, por lo que
+  \begin{equation*}
+   X^tCX = \sum_{i = 1}^n \lambda_i a_i a_i (X_i^tX_i) = \sum_{i=1}^n \lambda_i a_i^2
+  \end{equation*}
+  Por lo tanto, como $\lambda_m \leq \lambda_i \leq \lambda_M$, para toda $i\in\mathbb{N}\cap[1,n]$, entonces se tiene que:
+  \begin{equation*}
+   \lambda_m \sum_{i=1}^n a_i^2 =
+   \sum_{i=1}^n \lambda_m a_i^2 \leq \sum_{i=1}^n \lambda_i a_i^2 \leq \sum_{i=1}^n \lambda_M a_i^2 = \lambda_M \sum_{i=1}^n a_i^2
+  \end{equation*}
+  donde $X^tX = \sum_{i=1}^n  a_i^2$. Por lo tanto,
+  \begin{equation*}
+   \lambda_m X^tX \leq X^tCX \leq \lambda_M X^tX
+  \end{equation*}
+  para todo vector $X \in \mathbb{R}^n$. Q.E.D.${}_{\square}$
+ \end{demostracion}
+ Luego, como todo autovalor de $A$ est\'a en el intervalo $[a_1, a_2]$ y todo autovalor de $B$ est\'a en el intervalo $[b_1, b_2]$, en particular es cierto que se encuentran los autovalores m\'{\i}nimo y m\'aximo de estas matrices en sus respectivos intervalos, se tiene por resultado directo del lema anterior que, para todo vector $X\in \mathbb{R}^n$, se cumple que
+ \begin{equation*}
+  a_1X^tX \leq X^tAX \leq a_2 X^tX \qquad \text{y} \qquad b_1X^tX \leq X^tBX \leq b_2 X^tX
+ \end{equation*}
+ Por lo tanto, sean $\lambda_m$ y $\lambda_M$ los autovalores m\'{\i}nimo y m\'aximo de $A+B$, y sean $X_m$ y $X_M$ autovectores correspondendientes a estos valores propios, respectivamente, entonces $X_m^t(A+B)X_m = X_m^t\left( \lambda_m X_m \right) = \lambda_m X_m^tX_m$ y, an\'alogamente, $X_M^t(A+B)X_M = \lambda_M X_M^tX_M$. Por otro lado, $X^t(A + B)X = X^tAX + X^tBX$ y del resultado anterior se tiene, para toda $X\in\mathbb{R}^n$, que
+ \begin{equation*}
+  (a_1+b_1)X^tX = a_1X^tX + b_1X^tX \leq X^tAX + X^tBX \leq a_2 X^tX + b_2X^TX = (a_2 + b_2) X^tX
+ \end{equation*}
+ por lo que $(a_1+b_1)X^tX \leq X^t(A+B)X \leq (a_2+b_2)X^tX$, para todo $X\in\mathbb{R}^n$.
+ En particular esto es cierto cuando $X = X_m$ o $X = X_M$ y, como $X_m^t(A+B)X_m = \lambda_m(X_m^tX_m)$ y $X_M^t(A+B)X_M = \lambda_M(X_M^tX_M)$, se cumple que 
+ \begin{equation*}
+  (a_1 + b_1)X_m^tX_m \leq \lambda_m(X_m^t X_m)
+  \qquad \text{ y } \qquad 
+  \lambda_M(X_M^tX_M) \leq (a_2+b_2)X_M^tX_M
+ \end{equation*}
+ Finalmente, como $X^tX \neq 0$ cuando $X\neq O$, en particular cuando $X$ es un vector propio, se puede dividir ambos lados de la primera desigualdad entre $X_m^tX_m$ y ambos lados de la \'ultima desigualdad entre $X_M^tX_M$, con lo que se obtiene que $a_1 + b_1 \leq \lambda_m$ y $\lambda_M \leq a_2 + b_2$ pero, por la forma en que se escogieron $\lambda_m$ y $\lambda_M$, se tiene que todo autovalor de $A+B$ vive en el intervalo $[\lambda_m, \lambda_M]$, el cual est\'a contenido en $[a_1 + b_1, a_2 + b_2]$. Por lo tanto, todo autovalor de $A+B$ est\'a en el intervalo $[a_1 + b_1, a_2 + b_2]$, que es lo que se quer\'{\i}a comprobar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,139 @@
+\begin{enunciado}
+ Sea $f: \mathbb{R}^3 \to \mathbb{R}^3$ el endomorfismo que, respecto de una base dada $(\bar{e}_1, \bar{e}_2, \bar{e}_3)$, tiene asociada la matriz $A$:
+ \begin{equation*}
+  A =
+  \begin{bmatrix}
+   1+\alpha & -\alpha & \alpha   \\
+   2+\alpha & -\alpha & \alpha-1 \\
+   2        & -1      & 0
+  \end{bmatrix}
+  \quad (\alpha \in \mathbb{R})
+ \end{equation*}
+ \begin{enumerate}[$a$)]
+  \item Obtener los autovalores de $A$, comprobando que no dependen de $\alpha$.
+  
+  \item Obtener los subespacios propios de $f$, en funci\'on de $\alpha$, y estudiar si $f$ es diagonalizable.
+  
+  \item Cuando $f$ sea diagonalizable, hallar su forma diagonal y la base correspondiente.
+ \end{enumerate}
+\end{enunciado}
+ 
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}[$a$)]
+  \item Para obtener los autovalores, se proceder\'a primero a calcular el polinomio caracter\'{\i}stico de $A$, $\det(A - \lambda I)$. Esto es:
+  \begin{eqnarray*}
+   \det(A - \lambda I) & = &
+   \begin{vmatrix}
+    1 + \alpha - \lambda & -\alpha & \alpha \\
+    2 + \alpha & -\alpha - \lambda & \alpha - 1 \\
+    2 & -1 & -\lambda 
+   \end{vmatrix}
+   \\
+   & = &
+   (1 + \alpha - \lambda)
+   \begin{vmatrix}
+    -\alpha-\lambda & \alpha - 1 \\
+    -1 & - \lambda
+   \end{vmatrix}
+   -(2+\alpha)
+   \begin{vmatrix}
+    -\alpha & \alpha \\ 
+    -1 & -\lambda 
+   \end{vmatrix}
+   + 2
+   \begin{vmatrix}
+    -\alpha & \alpha \\
+    -\alpha - \lambda & \alpha - 1
+   \end{vmatrix}
+   \\
+   & = & 
+   (1+\alpha - \lambda)( \alpha\lambda + \lambda^2 +\alpha - 1 )
+   -(2+\alpha)( \alpha\lambda + \alpha )
+   +2(-\cancel{\alpha^2} + \alpha + \cancel{\alpha^2} + \alpha\lambda ) \\
+   & = & 
+   (\cancel{\alpha\lambda} + \lambda^2 + \cancel{\alpha} - 1 + \alpha^2\lambda + \cancel{\alpha\lambda^2} + \alpha^2 - \cancel{\alpha} - \cancel{\alpha\lambda^2} - \lambda^3 - \cancel{\alpha\lambda} + \lambda) \\ 
+   & & + (- 2\alpha\lambda - 2\alpha - \alpha^2\lambda - \alpha^2) + (2\alpha + 2\alpha\lambda) \\
+   & = & -\lambda^3 + \lambda^2 + \cancel{\alpha^2\lambda} + \lambda + \cancel{\alpha^2} - 1 - \cancel{2\alpha\lambda} - \cancel{\alpha^2\lambda} - \cancel{2\alpha} - \cancel{\alpha^2} + \cancel{2\alpha} + \cancel{2\alpha\lambda} \\
+   & = & -\lambda^3 + \lambda^2 + \lambda - 1 = -(\lambda^3 - \lambda^2 - \lambda + 1) \\
+   & = & -\left[ \lambda^2(\lambda-1) - (\lambda- 1) \right] = -(\lambda - 1)(\lambda^2 - 1) \\
+   & = & -(\lambda-1)^2(\lambda + 1)
+  \end{eqnarray*}
+  Por lo tanto, como la ecuaci\'on caracter\'{\i}stica $\det(A - \lambda I) = 0$ no depende de $\alpha$, entonces los autovalores no dependen de $\alpha$, los cuales cumplen la ecuaci\'on, esto es: $\lambda_1 = 1$, con multiplicidad algebraica $m_1 = 2$, y $\lambda_2 = -1$, con multiplicidad algebraica $m_2 = 1$, son los autovalores de $A$.
+  
+  \item Como todo subespacio propio tiene dimensi\'on de al menos $1$, entonces $f$ es diagonalizable si y s\'olo si el subespacio propio correspondiente al autovalor $\lambda = 1$ tiene dimensi\'on $2$. Sin embargo, se procede a calcular cada subespacio propio como se pide.
+  \par 
+  Para el caso $\lambda = -1$, si $X = [x,y,z]^t$ es el vector de coordenadas de un vector en el subespacio propio $E_{\lambda=-1}$, en la base $(\bar{e}_1, \bar{e}_2, \bar{e}_3)$, entonces \'este debe de cumplir que $(A + I)X = O$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    2+\alpha&  -\alpha & \alpha  \\
+    2+\alpha& 1-\alpha & \alpha-1\\
+    2       &  -1      & 1
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   = 
+   \begin{bmatrix}
+    (\alpha+2)x & - & \alpha y & + & \alpha z \\
+    (\alpha+2)x & + & (1-\alpha)y&+ & (\alpha-1)z \\
+    2x & - & y & + & z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  Entonces, al restar la primera ecuaci\'on a la segunda, se obtiene que $y - z = 0$, entonces $y = z$, y en la \'ultima ecuaci\'on se tiene que $2x - y + z = 0$, que sustituyendo se obtiene que $2x -y+y= 0$, entonces $x=0$ y $z = y$, por lo que el sistema tiene una variable libre y
+  \begin{equation*}
+   E_{\lambda=-1} = \left\{ \left. \bar{u} \in \mathbb{R}^3 \right| \, \bar{u} = a(\bar{e}_2 + \bar{e}_3), \text{ con } a\in\mathbb{R} \right\} = \left< \bar{e}_2 + \bar{e}_3 \right>
+  \end{equation*}
+  \par 
+  Para el caso $\lambda = 1$, si $X = [x,y,z]^t$ es el vector de coordenadas de un vector en el subespacio $E_{\lambda = 1}$, en la base $(\bar{e}_1, \bar{e}_2, \bar{e}_3)$, entonces \'este debe de cumplir que $(A-I)X = O$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    \alpha     &   -  \alpha & \alpha     \\
+    2 + \alpha & -1 - \alpha & \alpha - 1 \\
+    2 & -1 & -1 
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   = 
+   \begin{bmatrix}
+    \alpha x & - &\alpha y & + & \alpha z \\
+    (2+\alpha)x & - & (1+\alpha)y & + & (\alpha-1)z \\
+    2x & - & y & - & z
+   \end{bmatrix}
+   = 
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  N\'otese que si $\alpha = 0$, entonces la primera ecuaci\'on queda de la forma $0 = 0$, mientras que la segunda y tercera ecuaci\'on resultan iguales, por lo que el sistema depende de una ecuaci\'on, lo cual implica que hay dos variables libres, en ese caso, si $\alpha = 0$, entonces $2x = y + z$, con $y = a$ y $z=b$, es decir:
+  \begin{equation*}
+   E_{\lambda=1} = \left\{ \left. \bar{u} \in \mathbb{R}^3 \right| \, \bar{u} = (a+b)\bar{e}_1 + 2a\bar{e}_2 + 2b\bar{e}_3, \text{ con } a,b\in\mathbb{R} \right\} = \left< \bar{e}_1 + 2\bar{e}_2, \bar{e}_1 + 2\bar{e}_3\right>
+  \end{equation*}
+  Por otro lado, si $\alpha \neq 0$, entonces se puede dividir en la primera ecuaci\'on y resulta que $x - y + z = 0$.
+  Entonces, al restar la tercera ecuaci\'on a la primera, se tiene que $-x + 2z = 0$, entonces $x = 2z$; por otro lado, si se suma la tercera ecuaci\'on a la primera, se tiene que $3x - 2y = 0$, entonces $3x = 2y$. En resumen: $3x = 2y = 6z$, por lo que el sistema \'unicamente depende de una variable libre. Por lo tanto, si $\alpha \neq 0$:
+  \begin{equation*}
+   E_{\lambda = 1} = \left\{ \left. \bar{u} \in \mathbb{R}^3 \right| \, \bar{u} = a(2\bar{e}_1 + 3\bar{e}_2 + \bar{e}_3), \text{ con } a\in\mathbb{R} \right\} = \left< 2\bar{e}_1 + 3\bar{e}_2 + \bar{e}_3 \right>
+  \end{equation*}
+  Y, como se mencion\'o al principio del inciso, como $E_{\lambda=1}$ tiene dimensi\'on $2$ \'unicamente cuando $\alpha \neq 0$, entonces la multiplicidad geom\'etrica \'unicamente se da cuando $\alpha \neq 0$, es decir, $f$ es diagonalizable si y s\'olo si $\alpha \neq 0$.
+  
+  \item Finalmente, $f$ es diagonalizable cuando $\alpha \neq 0$, en tal caso, se sabe que la matriz diagonal de $f$ est\'a conformada por los autovalores, repitiendo tantas veces como indiquen sus multiplicidades algebraicas, que son $\lambda_1 = -1$, $\lambda_2 = 1$ y $\lambda_3 = 1$, y como $E_{\lambda=-1} = \left< \bar{e}_2 + \bar{e}_3 \right>$ y $E_{\lambda=1} = \left< \bar{e}_1 + 2\bar{e}_2, \bar{e}_1 + 2\bar{e}_3 \right>$, entonce se pueden tomar estos generadores para formar la base en la que $f$ es diagonal. En conclusi\'on, en la base
+  \begin{equation*}
+   \beta = \left( \bar{e}_2 + \bar{e}_3, \bar{e}_1 + 2\bar{e}_2, \bar{e}_1 + 2\bar{e}_3 \right)
+  \end{equation*}
+  la matriz de $f$ es la matriz diagonal
+  \begin{equation*}
+   D =
+   \begin{bmatrix}
+    -1 & 0 & 0 \\
+     0 & 1 & 0 \\
+     0 & 0 & 1
+   \end{bmatrix}
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

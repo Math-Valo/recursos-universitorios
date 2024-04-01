@@ -1,0 +1,304 @@
+\documentclass[a4paper,11pt]{article}
+%%\documentclass[a4paper,12pt]{amsart}
+\usepackage[cp1252]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+\setlength{\textheight}{23.5cm} \setlength{\evensidemargin}{0cm}
+\setlength{\oddsidemargin}{-0.8cm} \setlength{\topmargin}{-2.5cm}
+\setlength{\textwidth}{17.5cm} \setlength{\parskip}{0.25cm}
+
+\hyphenation{pro-ba-bi-li-dad}
+\spanishdecimal{.}
+
+\newtheoremstyle{teoremas}{\topsep}{\topsep}%
+     {}% Body font
+     {}% Indent amount (empty = no indent, \parindent = para indent)
+     {}% Thm head font
+     {}% Punctuation after thm head
+     {0.5em}% Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}.}\thmnote{ {\itshape#3}.}}% Thm head spec
+\theoremstyle{teoremas}
+
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{corolario}[teorema]{Corolario}
+
+
+\newtheoremstyle{ejemplos}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{ejemplos}
+
+\newtheoremstyle{definiciones}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{definiciones}
+
+\newtheoremstyle{lemas}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{lemas}
+
+
+\newtheorem*{definicion}{Definici\'on}
+\newtheorem*{enunciado}{Enunciado}
+\newtheorem*{solucion}{Soluci\'on}
+\newtheorem*{demostracion}{Demostraci\'on}
+\newtheorem*{lema}{Lema}
+\newtheorem*{hipotesis}{Hip\'otesis}
+\newtheorem*{estadistico}{Estad\'{\i}stico de Prueba}
+\newtheorem*{region}{Regi\'on de Rechazo}
+\newtheorem*{conclusion}{Conclusi\'on}
+\newtheorem*{hallar}{Por hallar}
+\newtheorem*{observaciones}{Observaciones}
+\newtheorem*{propiedades}{Propiedades}
+
+
+\title{\'Algebra Lineal\\Parte III: Ejercicio 37}
+\author{\'Alvaro J. Carde\~na Mej\'{\i}a}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Usando resultados conocidos}
+
+\begin{enumerate}
+ \item $\int 1 \,dx$
+ \begin{solucion}
+  \begin{equation}
+   \int 1 \, dx = x + C
+  \end{equation}
+ \end{solucion}
+
+ \item $\int \sin(hx) \, dx$
+ \begin{solucion}
+  \begin{equation}
+   \int \sin(hx) \, dx = -\frac{\cos(hx)}{h} + C
+  \end{equation}
+ \end{solucion}
+
+ \item $\int \cos(hx) \, dx$
+ \begin{solucion}
+  \begin{equation}
+   \int \cos(hx) \, dx = \frac{\sin(hx)}{h} + C
+  \end{equation}
+ \end{solucion}
+ 
+\end{enumerate}
+
+
+\section{Usando el m\'etodo de cambios de variables 'u' y 'v'}
+
+\subsection{Para $h\neq k$ cualesquiera}
+
+\begin{enumerate}
+ 
+ \item $\int \sin(hx)\sin(kx) \, dx$ y $\int \cos(hx)\cos(kx) \, dx$
+ \begin{solucion}
+  Sean
+  \begin{equation*}
+   \left\{ \begin{matrix} u & = &\sin(hx) \\ v & = & \cos(kx) \end{matrix} \right.
+   \Rightarrow
+   \left\{ \begin{matrix} u' & = & h\cos(hx)\,dx \\ v' & = & -k\sin(kx)\,dx \end{matrix} \right.
+  \end{equation*}
+  con lo que se tiene que
+  \begin{eqnarray*}
+    & &\int uv' = uv - \int u'v  \\
+   \Leftrightarrow & &\int \left( \sin(hx) \right) \left( -k\sin(kx) \, dx \right) = \left( \sin(hx) \right) \left( \cos(kx) \right) - \int \left( \cos(kx) \right) \left( h\cos(hx) \, dx \right) \\
+   \Leftrightarrow & & -k\int \sin(hx)\sin(kx) \, dx = \sin(hx)\cos(kx) - h \int \cos(hx)\cos(kx) \, dx \\
+   \Leftrightarrow & & \int \sin(hx)\sin(kx) \, dx = \frac{h \int \cos(hx)\cos(kx) \, dx - \sin(hx)\cos(kx)}{k} \\
+  \end{eqnarray*}
+  Por otro lado, si 
+  \begin{equation*}
+   \left\{ \begin{matrix} u & = & \cos(hx) \\ v & = & \sin(kx) \end{matrix} \right.
+   \Rightarrow
+   \left\{ \begin{matrix} u' & = & -h\sin(hx)\,dx \\ v' & = & k\cos(kx)\,dx \end{matrix} \right.
+  \end{equation*}
+  con lo que se sigue que
+  \begin{eqnarray*}
+    & &\int u'v = uv - \int uv'  \\
+   \Leftrightarrow & &\int \left( \sin(kx) \right) \left( -h\sin(hx) \, dx \right) = \left( \cos(hx) \right) \left( \sin(kx) \right) - \int \left( \cos(hx) \right) \left( k\cos(kx) \, dx \right) \\
+   \Leftrightarrow & & -h\int \sin(hx)\sin(kx) \, dx = \cos(hx)\sin(kx) - k \int \cos(hx)\cos(kx) \, dx \\
+   \Leftrightarrow & & \int \sin(hx)\sin(kx) \, dx = \frac{k \int \cos(hx)\cos(kx) \, dx - \cos(hx)\sin(kx)}{h} \\
+  \end{eqnarray*}
+  Por lo que, igualando las \'ultimas expresiones de las \'ultimas dos equivalencias, se tiene que
+  \begin{eqnarray*}
+   & & \frac{h \int \cos(hx)\cos(kx) \, dx - \sin(hx)\cos(kx)}{k} = \frac{k \int \cos(hx)\cos(kx) \, dx - \cos(hx)\sin(kx)}{h} \\ 
+   \Leftrightarrow & & h^2 \int \cos(hx)\cos(kx) \, dx - h\sin(hx)\cos(kx) = k^2 \int \cos(hx)\cos(kx) \, dx - k\cos(hx)\sin(kx) \\ 
+   \Leftrightarrow & & k^2 \int \cos(hx)\cos(kx) \, dx - h^2 \int \cos(hx)\cos(kx) \, dx = k\cos(hx)\sin(kx) - h\sin(hx)\cos(kx) \\ 
+   \Leftrightarrow & & \left( k^2 - h^2 \right) \int \cos(hx)\cos(kx) \, dx = k\cos(hx)\sin(kx) - h\sin(hx)\cos(kx) \\ 
+   \Leftrightarrow & & \int \cos(hx)\cos(kx) \, dx = \frac{ k\cos(hx)\sin(kx) - h\sin(hx)\cos(kx) }{k^2 - h^2}   
+  \end{eqnarray*}
+  Luego entonces
+  \begin{eqnarray*}
+   \int \sin(hx)\sin(kx) \, dx & = & \frac{k \int \cos(hx)\cos(kx) \, dx - \cos(hx)\sin(kx)}{h} \\
+   & = & \frac{\displaystyle{  k \left[ \frac{ k\cos(hx)\sin(kx) - h\sin(hx)\cos(kx) }{k^2 - h^2} \right] - \cos(hx)\sin(kx)  }}{h} \\ 
+   & = & \frac{\displaystyle{ \frac{ k^2\cos(hx)\sin(kx) - hk\sin(hx)\cos(kx) }{k^2 - h^2} - \frac{\left(k^2-h^2 \right)\cos(hx)\sin(kx)}{k^2-h^2}  }}{h} \\ 
+   & = & \frac{\cancel{k^2\cos(hx)\sin(kx)} - hk\sin(hx)\cos(kx)}{h\left( k^2 - h^2 \right)} + \\ 
+   &   & + \frac{ -\cancel{k^2\cos(hx)\sin(kx)} + h^2\cos(hx)\sin(kx)}{h\left( k^2 - h^2 \right)} \\
+   & = & \frac{h^{\cancel{2}}\cos(hx)\sin(kx) - \cancel{h}k\sin(hx)\cos(kx)}{\cancel{h}\left( k^2 - h^2 \right)} \\ 
+   & = & \frac{h\cos(hx)\sin(kx) - k\sin(hx)\cos(kx)}{ k^2 - h^2 }
+  \end{eqnarray*}
+  Por lo tanto:
+  \begin{equation}
+   \int \sin(hx)\sin(kx) \, dx = \frac{h\cos(hx)\sin(kx) - k\sin(hx)\cos(kx)}{ k^2 - h^2 } + C
+  \end{equation}
+  y 
+  \begin{equation}
+   \int \cos(hx)\cos(kx) \, dx = \frac{ k\cos(hx)\sin(kx) - h\sin(hx)\cos(kx) }{k^2 - h^2} + C
+  \end{equation}
+ \end{solucion}
+ 
+ \item $\int \sin(hx)\cos(kx) \, dx$
+ \begin{solucion}
+  Sean
+  \begin{equation*}
+   \left\{ \begin{matrix} u & = & \sin(hx) \\ v & = & \sin(kx) \end{matrix} \right. \Rightarrow \left\{ \begin{matrix} u' & = & h\cos(hx) \\ v' & = & k\cos(kx) \end{matrix} \right.
+  \end{equation*}
+  con lo que sigue que
+  \begin{eqnarray*}
+    & &\int uv' = uv - \int u'v  \\
+   \Leftrightarrow & & \int \left( \sin(hx) \right) \left( k\cos(kx) \, dx \right) = \left( \sin(hx) \right) \left( \sin(kx) \right) - \int \left( \sin(kx) \right) \left( h\cos(hx) \, dx \right) \\
+   \Leftrightarrow & & k\int \sin(hx)\cos(kx) \, dx = \sin(hx) \sin(kx) - h \int \cos(hx)\sin(kx) \, dx \\
+   \Leftrightarrow & & \int \sin(hx)\cos(kx) \, dx =  \frac{ \sin(hx) \sin(kx) - h \int \cos(hx)\sin(kx) \, dx }{k}
+  \end{eqnarray*}
+  Luego, haciendo los siguientes cambios de variables:
+  \begin{equation*}
+   \left\{ \begin{matrix} u & = & \cos(hx) \\ v & = & \cos(kx) \end{matrix} \right. \Rightarrow \left\{ \begin{matrix} u' & = & -h\sin(hx) \\ v' & = & -k\sin(kx) \end{matrix} \right.
+  \end{equation*}
+  se sigue que:
+  \begin{eqnarray*}
+    & &\int uv' = uv - \int u'v  \\
+   \Leftrightarrow & & \int \left( \cos(hx) \right) \left( -k\sin(kx) \, dx \right) = \left( \cos(hx) \right) \left( \cos(kx) \right) - \int \left( \cos(kx) \right) \left( -h\sin(hx) \, dx \right) \\
+   \Leftrightarrow & & -k\int \cos(hx)\sin(kx) \, dx = \cos(hx) \cos(kx) + h \int \sin(hx)\cos(kx) \, dx \\
+   \Leftrightarrow & & \int \cos(hx)\sin(kx) \, dx =  -\frac{ \cos(hx) \cos(kx) + h \int \sin(hx)\cos(kx) \, dx }{k}
+  \end{eqnarray*}
+  Por lo tanto, sustituyendo esta igualdad en la \'ultima igualdad de la serie de equivalencias anteriores, se obtiene que:
+  \begin{eqnarray*}
+   \int \sin(hx)\cos(kx) \, dx & = &  \frac{ \displaystyle{ \sin(hx) \sin(kx) - h \left( -\frac{ \cos(hx) \cos(kx) + h \int \sin(hx)\cos(kx) \, dx }{k} \right) } }{k} \\ 
+   & = & \frac{ \displaystyle{ \frac{k\sin(hx) \sin(kx)}{k} + \frac{ h\cos(hx) \cos(kx) + h^2 \int \sin(hx)\cos(kx) \, dx }{k} } }{k} \\ 
+   & = & \frac{ k\sin(hx) \sin(kx) + h\cos(hx) \cos(kx) + h^2 \int \sin(hx)\cos(kx) \, dx }{k^2} \\
+  \end{eqnarray*}
+  Por lo que, despejando, se realizan los c\'alculos siguientes:
+  \begin{eqnarray*}
+   & & \int \sin(hx)\cos(kx) \, dx = \frac{ k\sin(hx) \sin(kx) + h\cos(hx) \cos(kx) + h^2 \int \sin(hx)\cos(kx) \, dx }{k^2} \\
+   \Leftrightarrow & & k^2\int \sin(hx)\cos(kx) \, dx = k\sin(hx) \sin(kx) + h\cos(hx) \cos(kx) + h^2 \int \sin(hx)\cos(kx) \, dx \\
+   \Leftrightarrow & & k^2\int \sin(hx)\cos(kx) \, dx - h^2 \int \sin(hx)\cos(kx) \, dx = k\sin(hx) \sin(kx) + h\cos(hx) \cos(kx) \\ 
+   \Leftrightarrow & & \left( k^2 - h^2 \right)\int \sin(hx)\cos(kx) \, dx = k\sin(hx) \sin(kx) + h\cos(hx) \cos(kx) \\ 
+   \Leftrightarrow & & \int \sin(hx)\cos(kx) \, dx = \frac{k\sin(hx) \sin(kx) + h\cos(hx) \cos(kx)}{k^2 - h^2}
+  \end{eqnarray*}
+  Por lo tanto
+  \begin{equation}
+   \int \sin(hx)\cos(kx) \, dx = \frac{k\sin(hx) \sin(kx) + h\cos(hx) \cos(kx)}{k^2 - h^2} + C
+  \end{equation}
+  
+ \end{solucion}
+\end{enumerate}
+
+\subsection{Para $h = k$ cualesquiera}
+
+\begin{enumerate}
+ \item $\int \sin^2(hx) \, dx$
+ 
+ \begin{solucion}
+  Sean
+  \begin{equation*}
+   \left\{ \begin{matrix} u & = &\sin(hx) \\ v & = & \cos(hx) \end{matrix} \right.
+   \Rightarrow
+   \left\{ \begin{matrix} u' & = & h\cos(hx)\,dx \\ v' & = & -h\sin(hx)\,dx \end{matrix} \right.
+  \end{equation*}
+  con lo que se tiene que
+  \begin{eqnarray*}
+    & &\int uv' = uv - \int u'v  \\
+   \Leftrightarrow & &\int \left( \sin(hx) \right) \left( -h\sin(hx) \, dx \right) = \left( \sin(hx) \right) \left( \cos(hx) \right) - \int \left( \cos(hx) \right) \left( h\cos(hx) \, dx \right) \\
+   \Leftrightarrow & & -h\int \sin^2 \, dx = \sin(hx)\cos(hx) - h \int \cos^2(hx) \, dx \\
+   \Leftrightarrow & & \int \sin^2(hx) \, dx = \int \cos^2(hx) \, dx - \frac{\sin(hx)\cos(hx)}{h} \\
+   \Leftrightarrow & & \int \sin^2(hx) \, dx + \int \sin^2(hx) \, dx = \int \cos^2(hx) \, dx + \int \sin^2(hx) \, dx - \frac{\sin(hx)\cos(hx)}{h} \\
+   \Leftrightarrow & & 2\int \sin^2(hx) \, dx = \int \left[ \cos^2(hx) + \sin^2(hx) \right] \, dx - \frac{\sin(hx)\cos(hx)}{h} \\
+   \Leftrightarrow & & 2\int \sin^2(hx) \, dx = \int \, dx - \frac{\sin(hx)\cos(hx)}{h} \\
+   \Leftrightarrow & & 2\int \sin^2(hx) \, dx = x - \frac{\sin(hx)\cos(hx)}{h} \\
+   \Leftrightarrow & & \int \sin^2(hx) \, dx = \frac{ \displaystyle{ \frac{hx}{h} - \frac{\sin(hx)\cos(hx)}{h} } }{2} \\ 
+   \Leftrightarrow & & \int \sin^2(hx) \, dx = \frac{ hx - \sin(hx)\cos(hx) }{2h} \\ 
+  \end{eqnarray*}
+  Por lo tanto:
+  \begin{equation}
+   \int \sin^2(hx) \, dx = \frac{ hx - \sin(hx)\cos(hx) }{2h} + C
+  \end{equation}
+ \end{solucion}
+ 
+ \item $\int \cos^2(hx) \, dx$
+ \begin{solucion}
+  Usando de la soluci\'on anterior la relaci\'on
+  \begin{equation*}
+   \int \sin^2(hx) \, dx = \int \cos^2(hx) \, dx - \frac{\sin(hx)\cos(hx)}{h}
+  \end{equation*}
+  se siguen las siguientes equivalencias:
+  \begin{eqnarray*}
+   & & \int \sin^2(hx) \, dx = \int \cos^2(hx) \, dx - \frac{\sin(hx)\cos(hx)}{h} \\ 
+   \Leftrightarrow & & \int \cos^2(hx) \, dx = \int \sin^2(hx) \, dx + \frac{\sin(hx)\cos(hx)}{h} \\ 
+   \Leftrightarrow & & \int \cos^2(hx) \, dx + \int \cos^2(hx) \, dx = \int \sin^2(hx) \, dx + \int \cos^2(hx) \, dx + \frac{\sin(hx)\cos(hx)}{h} \\ 
+   \Leftrightarrow & & 2 \int \cos^2(hx) \, dx = \int \left[ \sin^2(hx) + \cos^2(hx) \right] \, dx + \frac{\sin(hx)\cos(hx)}{h} \\ 
+   \Leftrightarrow & & 2 \int \cos^2(hx) \, dx = \int \, dx + \frac{\sin(hx)\cos(hx)}{h} \\ 
+   \Leftrightarrow & & 2 \int \cos^2(hx) \, dx = x + \frac{\sin(hx)\cos(hx)}{h} \\ 
+   \Leftrightarrow & & \int \cos^2(hx) \, dx = \frac{ \displaystyle{ \frac{hx}{h} + \frac{\sin(hx)\cos(hx)}{h} }}{2} \\ 
+   \Leftrightarrow & & \int \cos^2(hx) \, dx = \frac{ hx + \sin(hx)\cos(hx) }{2h} \\   
+  \end{eqnarray*}
+  Por lo tanto
+  \begin{equation}
+   \int \cos^2(hx) \, dx = \frac{ hx + \sin(hx)\cos(hx) }{2h} + C
+  \end{equation}
+ \end{solucion}
+
+
+ \item $\int \sin(hx) \cos (hx) \, dx$
+ \begin{solucion}
+    Sean
+  \begin{equation*}
+   u = v = \sin(hx) \qquad \Rightarrow \qquad u' = v' = h\cos(hx)
+  \end{equation*}
+  con lo que sigue que
+  \begin{eqnarray*}
+    & &\int uv' = uv - \int u'v  \\
+   \Leftrightarrow & & \int \left( \sin(hx) \right) \left( h\cos(hx) \, dx \right) = \left( \sin(hx) \right) \left( \sin(hx) \right) - \int \left( \sin(hx) \right) \left( h\cos(hx) \, dx \right) \\
+   \Leftrightarrow & & h\int \sin(hx)\cos(hx) \, dx = \sin^2(hx) - h \int \sin(hx)\cos(hx) \, dx \\
+   \Leftrightarrow & & 2h \int \sin(hx)\cos(hx) \, dx =  \sin^2(hx) \\
+   \Leftrightarrow & & \int \sin(hx)\cos(hx) \, dx = \frac{ \sin^2(hx) }{2h}
+  \end{eqnarray*}
+  Por lo tanto:
+  \begin{equation}
+   \int \sin(hx)\cos(hx) \, dx = \frac{ \sin^2(hx) }{2h} + C
+  \end{equation}
+ \end{solucion}
+
+\end{enumerate}
+
+\subsection{Otros}
+
+\begin{enumerate}
+ \item $$
+\end{enumerate}
+
+
+\end{document}

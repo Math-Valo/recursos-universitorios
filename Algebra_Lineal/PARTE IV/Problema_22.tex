@@ -1,0 +1,157 @@
+\begin{enunciado}
+ Sea $V$ un espacio vectorial eucl\'{\i}deo de dimensi\'on $3$ y sea $(\bar{e}_1, \bar{e}_2, \bar{e}_3)$ una base ortonormal de $V$.
+ Consid\'erese el endomorfismo $f: V\to V$ que en la base dada tiene asociada la matriz:
+ \begin{equation*}
+  A = 
+  \begin{bmatrix}
+   \alpha & \beta  & 0      \\
+   \gamma & \alpha & \beta  \\
+   0      & \gamma & \alpha
+  \end{bmatrix}, \qquad 
+  \left( \alpha, \beta, \gamma \in \mathbb{R} \right)
+ \end{equation*}
+ \begin{enumerate}[$a$)]
+  \item Hallar la relaci\'on que debe haber entre los par\'ametros $\alpha$, $\beta$ y $\gamma$ para que $f$ admita un autovalor triple.
+  
+  \item Suponiendo que $\beta\gamma > 0$, hallar los autovalores y subespacios propios de $f$ (rec\'urrase al par\'ametro $h$, siendo $h^2 = 2\beta\gamma$).
+  
+  \item Raz\'onese si para algunos $\beta$ y $\gamma$, la matriz $A$ es ortogonalmente diagonalizable.
+ \end{enumerate}
+\end{enunciado}
+ 
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}[$a$)]
+  \item Para hallar los autovalores de $f$, se proceder\'a a calcular su polinomio caracter\'{\i}stico a trav\'es del c\'alculo de $\det(A-\lambda I)$. Esto es:
+  \begin{eqnarray*}
+   \det(A - \lambda I) 
+   & = & 
+   \begin{vmatrix}
+    \alpha - \lambda & \beta & 0  \\
+    \gamma & \alpha - \lambda & \beta \\
+    0 & \gamma & \alpha - \lambda \\
+   \end{vmatrix}
+   \\ 
+   & = & 
+   (\alpha -\lambda)
+   \begin{vmatrix}
+    \alpha - \lambda & \beta \\
+    \gamma & \alpha - \lambda 
+   \end{vmatrix}
+   - \gamma 
+   \begin{vmatrix}
+    \beta & 0 \\
+    \gamma & \alpha - \lambda 
+   \end{vmatrix}
+   \\
+   & = & 
+   (\alpha - \lambda)\left[ (\alpha - \lambda)^2 - \beta\gamma \right] 
+   - \gamma (\alpha\beta - \beta\lambda) \\
+   & = & 
+   (\alpha - \lambda)(\alpha^2 -2\alpha\lambda + \lambda^2 - \beta\gamma) - \alpha\beta\gamma +\beta\gamma\lambda \\
+   & = & 
+   \alpha^3 - 2\alpha^2\lambda + \alpha\lambda^2 - \alpha\beta\gamma - \alpha^2\lambda + 2\alpha\lambda^2 - \lambda^3 + \beta\gamma\lambda - \alpha\beta\gamma + \beta\gamma\lambda \\
+   & = & 
+   -\lambda^3 + 3\alpha\lambda^2 - (3\alpha^2 - 2\beta\gamma)\lambda + (\alpha^3 - 2\alpha\beta\gamma)
+  \end{eqnarray*}
+  Luego entonces, si $f$ admite un \'unico autovalor con multiplicidad algebraica de 3, entonces el polinomio caracter\'{\i}stico de $f$ debe ser de la forma $(a - \lambda)^3 = -\lambda^3 + 3a\lambda - 3a^2\lambda + a^3$, para cierto valor $a\in \mathbb{R}$. Entonces, si estos dos polinomios son iguales, los coeficientes son iguales, en particular, como el coeficiente del t\'ermino cuadr\'atico son iguales, entonces $3\alpha = 3a$, entonces $a=\alpha$. Entonces el t\'ermino lineal y el t\'ermino constante deben de ser $-3\alpha^2$ y $\alpha^3$, pero se tiene que estos son $-(3\alpha^2-2\beta\gamma)$ y $\alpha^3 - 2\alpha\beta\gamma$, luego entonces $-3\alpha^2 = -3\alpha^2  + 2\beta\gamma$, entonces $\beta\gamma = 0$, n\'otese que esta condici\'on tambi\'en implicida que el t\'ermino constante sea, en efecto, $\alpha^3$. Por lo tanto, la condici\'on suficiente y necesaria es que $\beta\gamma = 0$.
+  
+  \item Usando el polinomio caracter\'{\i}stico obtenido en el inciso anterior, se proceder\'a a factorizarlo como sigue:
+  \begin{eqnarray*}
+   p(\lambda) & = & 
+   -\lambda^3 + 3\alpha\lambda^2 - (3\alpha^2 - 2\beta\gamma)\lambda + (\alpha^3 - 2\alpha\beta\gamma) \\ 
+   & = & 
+   \left( -\lambda^3 + 3\alpha\lambda^2 -3\alpha^2\lambda + \alpha^3 \right) + \left( 2\beta\gamma\lambda - 2\alpha\beta\gamma \right) \\
+   & = & 
+   (\alpha - \lambda)^3 - 2\beta\gamma(\alpha-\lambda) \\
+   & = & 
+   (\alpha - \lambda)\left[ (\alpha - \lambda)^2 - 2\beta\gamma \right]
+  \end{eqnarray*}
+  N\'oteseque por la factorizaci\'on de diferencia de cuadrados, se puede factorizar $(\alpha - \lambda)^2 - 2\beta\gamma$ si $2\beta\gamma$ fuese un t\'ermino cuadrado, pero como $\beta\gamma > 0$, entonces $2\beta\gamma$ tiene raiz cuadrada real y, por lo tanto $(\alpha - \lambda)^2 - 2\beta\gamma = (\alpha - \lambda)^2 - \left( \sqrt{2\beta\gamma} \right)^2 = \left( \alpha - \lambda + \sqrt{2\beta\gamma} \right) \left( \alpha - \lambda - \sqrt{2\beta\gamma} \right)$. Por lo tanto
+  \begin{equation*}
+   p(\lambda) = -(\lambda - \alpha)\left(\lambda - \alpha - \sqrt{2\beta\gamma }\right)\left( \lambda - \alpha + \sqrt{2\beta\gamma} \right)
+  \end{equation*}
+  Por lo tanto, los autovalores de $f$ son $\lambda_1 = \alpha$, $\lambda_2 = \alpha + \sqrt{2\beta\gamma}$ y $\lambda_3 = \alpha - \sqrt{2\beta\gamma}$.
+  \par 
+  Para hallar los subespacios propios de $f$, se usar\'an los vectores coordenadas en la base $(\bar{e}_1, \bar{e}_2, \bar{e}_3)$ de estos vectores propios definiendo de forma gen\'erica a un vector de coordenadas como $X = [x,y,z]^t$, con $x,y,z \in \mathbb{R}$. N\'otese adem\'as que, como $\beta\gamma > 0$, se tiene que $\beta \neq 0$ y $\gamma \neq 0$. Se divide entonces los casos para cada autovalor.
+  \par 
+  Para el caso $\lambda_1 = \alpha$, se proceder\'a a calcular los vectores $X$ tales que se cumpla la ecuaci\'on $(A - \alpha I)X = O$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    0 & \beta & 0 \\
+    \gamma & 0 & \beta \\
+    0 & \gamma & 0
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z 
+   \end{bmatrix}
+   = 
+   \begin{bmatrix}
+    \beta y \\
+    \gamma x + \beta z \\
+    \gamma y
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  Por lo que $\beta y = 0$ y, por ello, $y = 0$, y $\gamma x + \beta z = 0$, entonces $\gamma x = - \beta z$. Por lo tanto:
+  \begin{equation*}
+   E_{\lambda_1} = \left< \beta\bar{e}_1 - \gamma\bar{e}_3 \right>
+  \end{equation*}
+  Para el caso $\lambda_2 = \alpha+ \sqrt{2\beta\gamma}$, se proceder\'a a calcular los vectores $X$ tales que se cumpla la ecuaci\'on $\left[ A - \left(\alpha + \sqrt{2\beta\gamma}\right) I \right]X = O$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    -\sqrt{2\beta\gamma} & \beta & 0 \\
+    \gamma & -\sqrt{2\beta\gamma} & \beta \\
+    0 & \gamma & -\sqrt{2\beta\gamma}
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z 
+   \end{bmatrix}
+   = 
+   \begin{bmatrix}
+    -\sqrt{2\beta\gamma}x + \beta y \\
+    \gamma x -\sqrt{2\beta\gamma}y + \beta z \\
+    \gamma y - \sqrt{\beta\gamma}z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  Entonces, multiplicando la tercera ecuaci\'on por $\beta$ y rest\'andole $\gamma$ veces la primera ecuaci\'on, se tiene que $\gamma\sqrt{2\beta\gamma}x - \beta\sqrt{2\beta\gamma}z = 0$, por lo que, al pasar un t\'ermino del otro lado y dividiendo entre $\sqrt{2\beta\gamma}$, se tiene que $\gamma x = \beta z$. Usando esto en la segunda ecuaci\'on, se tiene que $2\gamma x - \sqrt{2\beta\gamma} y = 0$, entonces, al pasar un t\'ermino del otro, se tiene que $2\gamma x = \sqrt{2\beta\gamma} y$. Por lo tanto:
+  \begin{equation*}
+   E_{\lambda_2} = \left< \beta\bar{e}_1 + \sqrt{2\beta\gamma}\bar{e}_2 + \gamma\bar{e}_3 \right>
+  \end{equation*}
+  Para el caso $\lambda_3 = \alpha - \sqrt{2\beta\gamma}$, se proceder\'a a calcular los vectores $X$ tales que se cumpla la ecuaci\'on $\left[ A - \left(\alpha - \sqrt{2\beta\gamma}\right) I \right]X = O$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    \sqrt{2\beta\gamma} & \beta & 0 \\
+    \gamma & \sqrt{2\beta\gamma} & \beta \\
+    0 & \gamma & \sqrt{2\beta\gamma}
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z 
+   \end{bmatrix}
+   = 
+   \begin{bmatrix}
+    \sqrt{2\beta\gamma}x + \beta y \\
+    \gamma x + \sqrt{2\beta\gamma}y + \beta z \\
+    \gamma y + \sqrt{\beta\gamma}z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  Entonces, procediendo de forma similar al sistema de ecuaciones anterior, al multiplicar la tercera ecuaci\'on por $\beta$ y restar $\gamma$ veces la primera ecuaci\'on, se tiene que $\gamma\sqrt{2\beta\gamma}x - \beta\sqrt{2\beta\gamma}z = 0$, por lo que, al pasar un t\'ermino del otro lado y dividiendo entre $\sqrt{2\beta\gamma}$, se tiene que $\gamma x = \beta z$. Usando esto en la segunda ecuaci\'on, se tiene que $2\gamma x + \sqrt{2\beta\gamma} y = 0$, entonces, al pasar un t\'ermino del otro, se tiene que $2\gamma x = - \sqrt{2\beta\gamma} y$. Por lo tanto:
+  \begin{equation*}
+   E_{\lambda_3} = \left< \beta\bar{e}_1 - \sqrt{2\beta\gamma}\bar{e}_2 + \gamma\bar{e}_3 \right>
+  \end{equation*}
+  
+  \item Finalmente, como se comprob\'o en el ejercicio 18, $f$ es ortogonalmente diagonalizable si y s\'olo si la matriz de $f$ en una base ortonormal, como en el caso de $(\bar{e}_1, \bar{e}_2, \bar{e}_3)$, es sim\'etrica si y s\'olo si $A = [a_{ij}]_{3\times 3}$ es sim\'etrica si y s\'olo si $a_{12} = a_{21}$, $a_{13} = a_{31}$ y $a_{23} = a_{32}$ si y s\'olo si $\beta = \gamma$. Para hacer notar, tambi\'en se podr\'{\i}a llegar a esto viendo que sus bases deben de ser ortogonales, en particular, la base de $E_{\lambda_2}$ y $E_{\lambda_3}$ deben cumplir que su producto punto es $0$, esto es: $\beta^2 - 2\beta\gamma + \gamma^2 = 0$ si y s\'olo si $(\beta - \gamma)^2 = 0$ si y s\'olo si $\beta = \gamma$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+
+\end{solucion}

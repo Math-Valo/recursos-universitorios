@@ -1,0 +1,153 @@
+\begin{enunciado}
+ Sea $V$ un espacio vectorial real de dimensi\'on $3$, en el que se considera una base $B = (\overline{u}_1, \overline{u}_2, \overline{u}_3)$; en dicha base, las coordenadas se denotan por $x_1, x_2, x_3$.
+ De un endomorfismo $f:V \to V$ se sabe que:
+ \begin{itemize}
+  \item El vector $6\overline{u}_1 + 2\overline{u}_2 + 5\overline{u}_3$ se transforma, por $f$, en s\'{\i} mismo.
+  
+  \item $U = \left\{ \overline{u}\in V | \, 2x_1 + 11x_2 - 7x_3 = 0 \right\}$ es un subespacio propio de $f$.
+  
+  \item La traza de la matriz $A$ de $f$, en $B$, es igual a $5$.
+ \end{itemize}
+ \begin{enumerate}[a)]
+  \item Hallar los autovalores de $f$.
+  \item Hallar la matriz $A$ de $f$ en la base $B$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Se considera desde el principio la notaci\'on del tercer punto: $A$ es matriz de $f$ en la base $B$. Entonces:
+ \begin{enumerate}[$a$)]
+  \item Analizando uno a uno los punto relacionado al endomorfismo, se tiene lo siguiente:
+  \begin{itemize}
+   \item Como el vector $6\overline{u}_1 + 2\overline{u}_2 + 5\overline{u}_3$ se tranforma en s\'{\i} mismo por $f$, entonces el vector de coordenadas $X_1 = [6,2,5]^t$ es un autovector de $A$ para el autovalor $\lambda_1 = 1$, que son, a su vez, autovector y autovalor de $f$, respectivamente.
+   
+   \item En el subespacio $U$ no se encuentra el autovector anterior, ya que $2(6)+11(2)-7(5)=-1 \neq 0$, luego entonces $U$ corresponde al subespacio propio de otro autovalor de $f$, $\lambda_2$; adem\'as, como $U$ tiene dimensi\'on $2$, entonces la multiplicidad geom\'etrica de $\lambda_2$ es $d_2 = 2$. Por otro lado, como la multiplicidad geom\'etrica de cada autovalor es de al menos $1$ y la suma de las multiplicidades algebraicas es, a lo sumo, $n$, y adem\'as la multiplicidad algebraica es mayor o igual a la geom\'etrica, se tiene que $d_1 + d_2 = d_1 + 2 \leq m_1 + m_2 \leq 3$, entonces $1 \leq d_1 \leq 1$, entonces $d_1 = 1$, y $m_1 \geq d_1 = 1$ y $m_2 \geq m_2 = 2$, entonces $3 \leq m_1+m_2 \leq 3$, entonces $m_1 + m_2 = 3$, $m_1 = d_1 = 1$ y $m_2 = d_2 = 2$. Con lo que, adem\'as, se tiene que $f$ y $A$ son diagonalizables.
+
+   \item Finalmente, como la traza de la matriz $A$ es igual a la traza de cualquier otra matriz semejante a $A$, entonces, en particular, es igual a la traza de la matriz diagonal, $D$, a la que se puede diagonalizar $A$, el cual contiene en su diagonal los autovalores de $A$, entonces $\text{tr} A = \lambda_1 + \lambda_2 + \lambda_2 = \lambda_1 + 2\lambda_2 = 1 + 2\lambda_2$, y, a su vez $\text{tr} A = 5$, entonces $1 + 2\lambda_2 = 5$ y, por lo tanto, $\lambda_2 = 2$.
+  \end{itemize}
+  Por lo tanto, $f$ tiene dos autovalores: $\lambda_1 = 1$ con multiplicidad algebraica $1$ y $\lambda_2 = 2$ con multiplicidad algebraica $2$.
+  
+  \item Considerando el vector $\overline{v}_1 = 6\overline{u}_1 + 2\overline{u}_2 + 5\overline{u}_3$, y tomando $\overline{v}_2 = 11\overline{u}_1 - 2\overline{u}_2$ y $\overline{v}_3 = 7\overline{u}_1 + 2\overline{u}_3$, es claro que $\overline{v}_2$ y $\overline{v}_3$ son linealmente independientes, adem\'as, ambos perteneces a $U$, ya que $2(11) + 11(-2) - 7(0) = 0$ y $2(7) + 11(0) - 7(2) = 0$, entonces $B' = (\overline{v}_1, \overline{v}_2, \overline{v}_3)$ es una base de $f$ formada por autovectores de $f$. Entonces la matriz de cambio de coordenadas, $P$, de $f$, de la base $B$ a la base $B'$ es:
+  \begin{equation*}
+   P =
+   \begin{bmatrix}
+    6 & 11 & 7 \\
+    2 & -2 & 0 \\
+    5 &  0 & 2
+   \end{bmatrix}
+  \end{equation*}
+  y su inversa se calcula como:
+  \begin{equation*}
+   [P|I] = 
+   \left[
+   \begin{array}{ccc|ccc}
+    6 & 11 & 7 & 1 & 0 & 0 \\
+    2 & -2 & 0 & 0 & 1 & 0 \\
+    5 &  0 & 2 & 0 & 0 & 1 
+   \end{array}
+   \right]
+   \begin{matrix}
+    \sim \\
+    C_1 + C_2 \rightarrow C_1
+   \end{matrix}
+   \left[
+   \begin{array}{ccc|ccc}
+    17 & 11 & 7 & 1 & 0 & 0 \\
+     0 & -2 & 0 & 1 & 1 & 0 \\
+     5 &  0 & 2 & 0 & 0 & 1 
+   \end{array}
+   \right]
+   \begin{matrix}
+    \sim \\
+    2C_1 \rightarrow C_1 
+   \end{matrix}
+  \end{equation*}
+  \begin{equation*}
+   \left[
+   \begin{array}{ccc|ccc}
+    34 & 11 & 7 & 2 & 0 & 0 \\
+     0 & -2 & 0 & 2 & 1 & 0 \\
+    10 &  0 & 2 & 0 & 0 & 1 
+   \end{array}
+   \right]
+   \begin{matrix}
+    \sim \\
+    C_1 - 5C_2 \rightarrow C_1
+   \end{matrix}
+   \left[
+   \begin{array}{ccc|ccc}
+    -1 & 11 & 7 &  2 & 0 & 0 \\
+     0 & -2 & 0 &  2 & 1 & 0 \\
+     0 &  0 & 2 & -5 & 0 & 1 
+   \end{array}
+   \right]
+   \begin{matrix}
+    \sim \\
+    11C_1 + C_2 \rightarrow C_2 \\
+    7C_1 + C_3 \rightarrow C_3 
+   \end{matrix}
+  \end{equation*}
+  \begin{equation*}
+   \left[
+   \begin{array}{ccc|ccc}
+    -1 &  0 & 0 &  2 &  22 &  14 \\
+     0 & -2 & 0 &  2 &  23 &  14 \\
+     0 &  0 & 2 & -5 & -55 & -34 
+   \end{array}
+   \right]
+   \begin{matrix}
+    \sim \\
+    (-1)C_1 \rightarrow C_1 \\
+    \left(-\frac{1}{2}\right)C_2 \rightarrow C_2 \\
+    \left(\frac{1}{2} \right) C_3 \rightarrow C_3 
+   \end{matrix}
+   \left[
+   \begin{array}{ccc|ccc}
+    1 & 0 & 0 & -2 & -11 & 7 \\
+    0 & 1 & 0 & -2 & -\frac{23}{2} &  7 \\
+    0 & 0 & 1 &  5 & \frac{55}{2} & -17 
+   \end{array}
+   \right]
+   = \left[I|P^{-1}\right]
+  \end{equation*}
+  Por lo tanto, como se sabe que $D = P^{-1}AP$, donde $D$ es la matriz resultante de la diagonalizaci\'on por semejanza de $A$ el cual se conoce puesto que se conocen los autovalores, resulta que $A = PDP^{-1}$, el cual se puede calcular como:
+  \begin{eqnarray*}
+   A & = & PDP^{-1} =
+   \begin{bmatrix}
+    6 & 11 & 7 \\
+    2 & -2 & 0 \\
+    5 &  0 & 2
+   \end{bmatrix}
+   \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 2 & 0 \\
+    0 & 0 & 2
+   \end{bmatrix}
+   \begin{bmatrix}
+    -2 & -11 & 7 \\
+    -2 & -\frac{23}{2} & 7 \\
+    5 & \frac{55}{2} & -17
+   \end{bmatrix} \\
+   & = &
+   \begin{bmatrix}
+    6 & 11 & 7 \\
+    2 & -2 & 0 \\
+    5 &  0 & 2
+   \end{bmatrix}
+   \begin{bmatrix}
+    -2 & -11 &   7 \\
+    -4 & -23 &  14 \\
+    10 &  55 & -34
+   \end{bmatrix} \\
+   & = & 
+   \begin{bmatrix}
+    14 & 66 & -42 \\
+     4 & 24 & -14 \\
+    10 & 55 & -33
+   \end{bmatrix}
+  \end{eqnarray*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+
+\end{solucion}
+

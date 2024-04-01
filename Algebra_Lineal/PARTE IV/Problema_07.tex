@@ -1,0 +1,163 @@
+\begin{enunciado}
+ Hallar los autovalores y los subespacios propios del endomorfismo $f:V \rightarrow V$ (donde $V$ es un espacio vectorial real de dimensi\'on $4$) que, en cierta base dada $(\overline{e}_1, \overline{e}_2, \overline{e}_3, \overline{e}_4)$ de $V$, tiene asociada la siguiente matriz $A$:
+ \begin{equation*}
+  A = 
+  \begin{bmatrix}
+    3 &  3 & 0 &  1 \\
+   -1 & -1 & 0 & -1 \\
+    1 &  2 & 1 &  1 \\
+    2 &  4 & 0 &  3
+  \end{bmatrix}
+ \end{equation*}
+ Anal\'{\i}cese si $f$ es diagonalizable.
+\end{enunciado}
+
+\begin{solucion}
+ Se proceder\'a a calcular el polinomio caracter\'{\i}stico de $f$ a trav\'es de la matriz asociada a $f$ en la base $\beta = (\overline{e}_1, \overline{e}_2, \overline{e}_3, \overline{e}_4)$, $A$, como sigue:
+ \begin{eqnarray*}
+  \det(A-\lambda I) & = &
+  \begin{vmatrix}
+    3 - \lambda &  3           & 0     &          1           \\
+   -1           & -1 - \lambda & 0     &          -1           \\
+    1           &  2           & 1 - \lambda &  1           \\
+    2           &  4           & 0     &          3 - \lambda 
+  \end{vmatrix} \\
+  & = & (1-\lambda)
+  \begin{vmatrix}
+    3 - \lambda &  3           &  1 \\
+   -1           & -1 - \lambda & -1 \\
+    2           &  4           &  3 - \lambda
+  \end{vmatrix} \\ 
+  & = & (1-\lambda)\left[ (3-\lambda)
+  \begin{vmatrix}
+   -1 - \lambda & -1           \\
+    4           &  3 - \lambda
+  \end{vmatrix}
+  +
+  \begin{vmatrix}
+   3 & 1           \\
+   4 & 3 - \lambda
+  \end{vmatrix}
+  + 2
+  \begin{vmatrix}
+    3           &  1 \\
+   -1 - \lambda & -1
+  \end{vmatrix}
+  \right] \\
+  & = & (1-\lambda)\left[ (3-\lambda)(\lambda^2 - 2 \lambda - 3 + 4) + (-3\lambda + 9 - 4) + 2(-3 + 1+\lambda) \right] \\ 
+  & = & (1-\lambda)\left[ (3-\lambda)(\lambda^2 - 2\lambda +1 ) + (-3\lambda + 5) + 2(\lambda - 2) \right] \\
+  & = & (1 - \lambda)\left[ (-\lambda^3 + 5\lambda^2 - 7\lambda + 3) + (-3\lambda + 5) + (2\lambda - 4) \right] \\
+  & = & (1 - \lambda)(-\lambda^3 + 5\lambda^2 - 8\lambda + 4) \\
+  & = & (\lambda - 1)(\lambda^3 - 5\lambda^2 + 8\lambda - 4) \\
+  & = & (\lambda - 1)^2(\lambda^2 - 4\lambda + 4) \\ 
+  & = & (\lambda - 1)^2(\lambda - 2)^2
+ \end{eqnarray*}
+ Por lo tanto, $\det (A - \lambda I) = 0$ para los autovalores, de $A$ que tambi\'en son de $f$: $\lambda_1 = 1$, con multiplicidad algebraica $m_1 = 2$, y $\lambda_2 = 2$, con multiplicidad algebraica $m_2 = 2$.
+ \par 
+ Para hallar los subespacios propios de $f$ se usar\'a nuevamente la matriz asociada a $f$ en la base $\beta$, calculando los vectores coordenadas $X = (x_1, x_2, x_3, x_4)^t$ de un vector gen\'erico $\overline{x}$ en la base $\beta$ que cumplan que $AX = \lambda_iX$ para cada $i \in \{ 1, 2 \}$. 
+ \par 
+ Para el caso $\lambda_1 = 1$, se tiene que $(A - I)X = 0$ es equivalente al sistema de ecuaciones:
+ \begin{equation*}
+  \begin{matrix}
+   2x_1 & +3x_2 & + x_4 & = 0 \\
+   -x_1 & -2x_2 & - x_4 & = 0 \\
+    x_1 & +2x_2 & + x_4 & = 0 \\
+   2x_1 & +4x_2 & +2x_4 & = 0
+  \end{matrix}
+ \end{equation*}
+ en el cual la segunda, tercera y cuarta ecuaci\'on son equivalentes, por lo que se reduce a un sistema de dos ecuaciones el cual se resuelve como sigue:
+ \begin{equation*}
+  \left.
+  \begin{matrix}
+   2x_1 & +3x_2 & + x_4 & = 0 \\
+   -x_1 & -2x_2 & - x_4 & = 0
+  \end{matrix}
+  \right\}
+  \Leftrightarrow 
+  \left. 
+  \begin{matrix}
+   2x_1 & +3x_2 & + x_4 & = 0 \\
+   -x_1 & -2x_2 & - x_4 & = 0 \\
+   x_1  & + x_2 &       & = 0
+  \end{matrix}
+  \right\}
+  \Leftrightarrow 
+  \left. 
+  \begin{matrix}
+   x_1 &       & = - x_2 \\
+   x_2 & + x_4 & = 0 
+  \end{matrix}
+  \right\}
+  \Leftrightarrow
+  \left. 
+  \begin{matrix}
+   x_1 = \alpha \\
+   x_2 = -\alpha \\
+   x_3 = \beta \\
+   x_4 = \alpha
+  \end{matrix}
+  \right\}
+ \end{equation*}
+ Por lo tanto, $V_{\lambda_1} = \left\{ \overline{x} \in V |\, \overline{x} = \alpha\overline{e}_1 - \alpha\overline{e}_2 + \beta\overline{e}_3 + \alpha\overline{e}_4, \text{ con } \alpha, \beta \in \mathbb{R} \right\}$.
+ \par
+ Para el caso $\lambda_2 = 2$, se tiene que $(A-2I)X = 0$ es equivalente al sistema de ecuaciones:
+ \begin{equation*}
+  \begin{matrix}
+    x_1 & +3x_2 &      & +x_4 & = 0 \\
+   -x_1 & -3x_2 &      & -x_4 & = 0 \\
+    x_1 & +2x_2 & -x_3 & +x_4 & = 0 \\
+   2x_1 & +4x_2 &      & +x_4 & = 0
+  \end{matrix}
+ \end{equation*}
+ en el cual la segunda y tercera ecuaci\'on son equivalentes, por lo que se reduce al sistema de tres ecuaciones el cual se resuelve como sigue:
+ \begin{equation*}
+  \left.
+  \begin{matrix}
+    x_1 & +3x_2 &      & +x_4 & = 0 \\
+    x_1 & +2x_2 & -x_3 & +x_4 & = 0 \\
+   2x_1 & +4x_2 &      & +x_4 & = 0
+  \end{matrix}
+  \right\}
+  \Leftrightarrow 
+  \left. 
+  \begin{matrix}
+    x_1 & +3x_2 &      & +x_4 & = 0 \\
+    x_1 & +2x_2 & -x_3 & +x_4 & = 0 \\
+   2x_1 & +4x_2 &      & +x_4 & = 0 \\
+    x_1 & + x_2 &      &      & = 0
+  \end{matrix}
+  \right\}
+  \Leftrightarrow 
+  \left. 
+  \begin{matrix}
+    x_1 &      &      & = -x_2 \\
+   2x_2 &      & +x_4 & = 0 \\
+    x_2 & -x_3 & +x_4 & = 0
+  \end{matrix}
+  \right\}
+ \end{equation*}
+ \begin{equation*}
+  \Leftrightarrow 
+  \left. 
+  \begin{matrix}
+    x_1 &      & = - x_2 \\
+    x_4 &      & = -2x_2 \\
+   -x_2 & -x_3 & = 0     
+  \end{matrix}
+  \right\}
+  \Leftrightarrow 
+  \left. 
+  \begin{matrix}
+   x_1 & = & - \alpha \\ 
+   x_2 & = &   \alpha \\
+   x_3 & = & - \alpha \\
+   x_4 & = & -2\alpha 
+  \end{matrix}
+  \right\}
+ \end{equation*}
+ Por lo tanto, $V_{\lambda_2} = \left\{ \overline{x} \in V | \, \overline{x} = -\alpha\overline{e}_1 + \alpha\overline{e}_2 - \alpha\overline{e}_3 - 2\alpha\overline{e}_4, \text{ con } \alpha\in\mathbb{R} \right\}$.
+ \par 
+ Finalmente, aunque las multiplicidades algebraicas sumen la dimensi\'on del espacio, es decir $m_1 + m_2 = 2 + 2 = 4 = \dim V$, no ocurre que las dimensiones geom\'etricas sean iguales a sus correspondientes multiplicidades algebraicas, esto es $d_1 = 2 = m_1$, pero $d_2 = 1 \neq 2 = m_1$. 
+ Por lo tanto, por teorema, se sigue que $f$ no es diagonalizable, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
+

@@ -1,0 +1,116 @@
+\begin{enunciado}
+ Hallar los autovalores y los subespacios propios de la matriz $A$, de tama\~no $n\times n$ con $n \geq 2$:
+ \begin{equation*}
+  A = 
+  \begin{matrix}
+%    \begin{matrix}
+%     \phantom{1+a} & \phantom{1+a} & \phantom{1+a} & \cdots & \phantom{1+a}
+%    \end{matrix}
+   \begin{bmatrix}
+    \begin{matrix}
+     1 + a & 1     & 1     & \cdots & \phantom{+} 1\phantom{a} \\
+     1     & 1 + a & 1     & \cdots & \phantom{+} 1\phantom{a} \\
+     1     & 1     & 1 + a & \cdots & \phantom{+} 1\phantom{a}
+    \end{matrix} \\
+    \dotfill\hspace{-2pt}\dotfill\hspace{-2pt}\dotfill\hspace{-2pt}\dotfill\hspace{-2pt}\dotfill \\
+    \dotfill\hspace{-2pt}\dotfill\hspace{-2pt}\dotfill\hspace{-2pt}\dotfill\hspace{-2pt}\dotfill \\
+    \begin{matrix}
+     \phantom{+1} 1\phantom{1a} & \phantom{+} 1\;\phantom{a} & \phantom{+} 1\;\phantom{a} & \cdots & 1 + a 
+    \end{matrix}
+   \end{bmatrix}
+  \end{matrix}
+ \end{equation*}
+ Anal\'{\i}cese si $A$ es diagonalizable por semejanza.
+\end{enunciado}
+
+\begin{solucion}
+ Para hallar los autovalores de A, primero se proceder\'a a calcular el polinomio caracter\'{\i}stico, esto es, se proceder\'a a calcular $\det (A - \lambda I)$, el cual se puede escribir como:
+ \begin{equation*}
+  \begin{vmatrix}
+   1+a-\lambda & 1               &    1           & \cdots & 1 \\ 
+   1           & 1 + a - \lambda &    1           & \cdots & 1 \\
+   1           & 1               & 1 + a - \lambda & \cdots & 1 \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   1           & 1               &    1           & \cdots & 1 + a - \lambda 
+  \end{vmatrix}
+ \end{equation*}
+ Usando la propiedad del determinante que dice que si a un rengl\'on, o una columna, se le suma una combinaci\'on lineal de los dem\'as renglones, o columnas, respectivamente, entonces el valor del determinante no cambia. Entonces, al sumar al primer rengl\'on cada uno de los otros $n-1$ renglones, el valor del determinante no cambia y el nuevo determinante se puede escribir como:
+ \begin{equation*}
+  \begin{vmatrix}
+   n + a - \lambda & n + a - \lambda & n + a - \lambda & \cdots & n + a - \lambda \\ 
+   1               & 1 + a - \lambda & 1               & \cdots & 1 \\
+   1               & 1               & 1 + a - \lambda & \cdots & 1 \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   1               & 1               & 1               & \cdots & 1 + a - \lambda
+  \end{vmatrix}
+ \end{equation*}
+ Luego, como el primer rengl\'on es m\'ultiplo de $n + a - \lambda$, usando la propiedad de determinantes que dice que si un rengl\'on o columna es m\'ultiplo de cierto factor, entonces el determinantes es igual al producto de \'este por el determinante de la matriz que se obtiene al dividir en el rengl\'on o columna correspondiente el factor donde todos los valores eran m\'ultiplos. Entonces el determinante es igual a:
+ \begin{equation*}
+  (n+a-\lambda)\cdot 
+  \begin{vmatrix}
+   1 & 1               & 1            &         \cdots & 1 \\ 
+   1 & 1 + a - \lambda & 1               &         \cdots & 1 \\
+   1 & 1               & 1 + a - \lambda & \cdots & 1 \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   1 & 1               & 1               & \cdots & 1 + a - \lambda
+  \end{vmatrix}
+ \end{equation*}
+ Entonces, volviendo a aplicar la propiedad en donde el determinante queda invariante ante la suma de un rengl\'on o columna con una combinaci\'on lineal del resto de renglones o columnas, respectivamente, entonces al restar a cada rengl\'on $i$, con $2 \leq i \leq n$, el primer rengl\'on, se obtiene que el valor del determinante buscado es igual a
+ \begin{equation*}
+  (n+a-\lambda)\cdot 
+  \begin{vmatrix}
+   1 & 1           & 1           &         \cdots & 1 \\ 
+   0 & a - \lambda & 0           &         \cdots & 0 \\
+   0 & 0           & a - \lambda & \cdots & 0 \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   0 & 0           & 0           & \cdots & a - \lambda
+  \end{vmatrix}
+ \end{equation*}
+ Finalmente, usando la propiedad de determinantes que dice que en una matriz triangular, el determinante de dicha matriz es el producto de sus elementos en la diagonal, se obtiene que el valor buscado es $\det(A - \lambda I) = (n + a - \lambda)(a - \lambda)^n$. Por lo tanto, la ecuaci\'on caracter\'{\i}stica $\det(A - \lambda I) = 0$ se resuelve para los autovalores de $A$: $\lambda_1 = n+a$, con multiplicidad algebraica $m_1 = 1$, y $\lambda_2 = a$ con multiplicidad algebraica $m_2 = n - 1$.
+ \par 
+ Para hallar los subespacios propios, se procede a buscar los valores $X = (x_1, x_2, \ldots, x_n)^t$ tales que $AX = \lambda_i X$, o lo que es equivalente, $(A-\lambda_i I)X = O$, para cada $i \in \{ 1, 2 \}$.
+ \par 
+ Para el caso $\lambda_1 = n+a$, se tiene que en la ecuaci\'on caracter\'{\i}stica, $[A - (n+a)I]X = O$, la $i-$\'esima ecuaci\'on corresponde a
+ \begin{equation*}
+  (1-n)x_i + \sum_{\substack{k=1\\k\neq i}}^n x_k = 0, \qquad \text{para } i \in \mathbb{N}\cap[1, n]
+ \end{equation*}
+ o lo que es equivalente:
+ \begin{equation*}
+  \sum_{k=1}^n x_k - nx_i = 0
+  \Leftrightarrow 
+  \sum_{k=1}^n x_k = nx_i
+  , \qquad \text{para } i \in \mathbb{N}\cap [1,n]
+ \end{equation*}
+ Luego entonces, cada $nx_i$ es igual a la suma de todas las coordenadas, para $1\leq i \leq n$, entonces $nx_1 = nx_2 = \cdots = nx_n$, o lo que es lo mismo $x_1 = x_2 = \cdots = x_n$. Por lo tanto $V_{\lambda_1} = \left\{ (\alpha, \alpha, \cdots, \alpha) \in \mathbb{R}^n | \, \alpha \in \mathbb{R} \right\} = \left< (1, 1, \cdots , 1) \right>$.
+ \par 
+ Para el caso $\lambda_2 = a$, se tiene que en la ecuaci\'on caracter\'{\i}stica $(A - aI)X = O$, cada ecuaci\'on es id\'entica e igual a
+ \begin{equation*}
+  \sum_{i=1}^n x_i = 0
+ \end{equation*}
+ Por lo tanto, $V_{\lambda_2} = \left\{ (x_1, x_2, \cdots, x_n) \in \mathbb{R}^n | \, x_1 + x_2 + \cdots + x_n = 0 \right\}$.
+ \par 
+ Finalmente, como las multiplicidades algebraicas de las ra\'{\i}ces del polinomio caracter\'{\i}stico suman la dimensi\'on del espacio, esto es $m_1 + m_2 = 1 + (n-1) = n = \dim \mathbb{R}^n$, y, adem\'as, las multiplicidades geom\'etricas coinciden con las multiplicidades algebraicas, esto es $d_1 = 1 = m_1$ y $d_2 = n-1 = m_2$, entonces, por teorema, se concluye que $A$ s\'{\i} es diagonalizable por semejanza; a saber, la matriz diagonal $D = P^{-1}AP$ se obtiene respecto de la nueva base $\beta' = \left\{ (1, 1, \cdots, 1), (1, -1, 0, \cdots, 0), (1, 0, -1, 0, \cdots, 0), \ldots, (1, 0, 0, \cdots, 0, -1) \right\}$ donde $D$ y $P$ son:
+ \begin{equation*}
+  D = 
+  \begin{bmatrix}
+   n+a & 0 & 0 & \cdots & 0 \\
+   0   & a & 0 & \cdots & 0 \\
+   0   & 0 & a & \cdots & 0 \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   0   & 0 & 0 & \cdots & a
+  \end{bmatrix}
+  \qquad \text{y} \qquad 
+  P = 
+  \begin{bmatrix}
+   1 &  1 &  1 & \cdots &  1 \\
+   1 & -1 &  0 & \cdots &  0 \\
+   1 &  0 & -1 & \cdots &  0 \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   1 &  0 &  0 & \cdots & -1
+  \end{bmatrix}
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ 
+ 
+\end{solucion}
+

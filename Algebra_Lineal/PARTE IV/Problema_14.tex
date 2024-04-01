@@ -1,0 +1,31 @@
+\begin{enunciado}
+ Se dice que una matriz cuadrada $A$ es nilpotente si existe $k \in \mathbb{N}$ tal que $A^k= O$.
+ Pru\'ebese que una matriz cuadrada $A$, de tama\~no $n\times n$, es nilpotente si y s\'olo si $\lambda = 0$ es el \'unico autovalor de $A$, con multiplicidad $n$.
+\end{enunciado}
+
+\begin{solucion}
+ Para comenzar, n\'otese que se puede factorizar $A^n - \lambda^n I$ como sigue: $A^n - \lambda^n I = (A - \lambda I)\left( A^{n-1} + \lambda A^{n-2} + \lambda^2 A^{n-3} + \cdots + \lambda^{n-2} A + \lambda^{n-1} I \right) = (A-\lambda I)B$, entonces, como el determinante separa productos, se tiene que $\det(A^n - \lambda^n I) = \det\left[ (A-\lambda I)B \right] = \det(A - \lambda I)\det(B)$. Por lo tanto, si $\lambda_0$ es autovalor de $A$, entonces es raiz de su polinomio carater\'{\i}stico, esto es $\det(A-\lambda_0 I) = 0$, entonces $\det(A^n - \lambda_0^n I) = 0\cdot \det(B) = 0$, es decir $\lambda_0^n$ es raiz del polinomio caracter\'{\i}stico de $A^n$ y, por lo tanto, es autovalor de $A^n$.
+ \par 
+ Con este resultado, se tiene que si $\lambda$ es raiz del polinomio caracter\'{\i}stico de $A$, incluyendo ra\'{\i}ces complejas, entonces $\lambda^k$ es raiz del polinomio caracter\'{\i}stico de $A^k = O$, pero como $\det(O - \lambda I) = \det (-\lambda I) = (-\lambda)^n\det(I) = (-\lambda)^n$, entonces $\lambda^k = 0$, luego $\lambda = 0$ es el \'unico autovalor de $A$. Como el polinomio caracter\'{\i}stico de $A$ tiene exactamente $n$ ra\'{\i}ces, incluyendo ra\'{\i}ces complejas y repetidas, las cuales son todas $\lambda = 0$, se concluye que $\lambda = 0$ es un autovalor de $A$ con multiplicidad algebraica $n$.
+ \par 
+ Por otro lado, si $\lambda = 0$ es el \'unico autovalor de $A$ con multiplicidad $n$, entonces, al tener $n$ autovalores y de acuerdo con el anexo 3, $A$ es triangularizable, esto es, existe una matriz regular $P$ tal que $P^{-1}AP = T$ donde $T$ es una matriz triangular, que se puede suponer superior, con los autovalores en la diagonal.
+ \par 
+ Se probar\'a ahora que $T^n$ es una matriz nula (aunque no necesariamente sea la primera potencia que logra hacer nula la matriz resultante).
+ Para hacer esto, se proceder\'a por inducci\'on sobre la potencia, $k$, de $T$, esto es: se probar\'a que los elementos $t_{i\,i+j}$ son nulos para cada $j<k$ en las matrices $T^k$, para cada $k\in \mathbb{N}$.
+ \par 
+ El resultado es cierto en $T^1 = T$. Se supondr\'a ahora que es cierto  para $T^k$, para alg\'un $k$ arbitrario, entonces se desea probar que los elementos $t''_{i\,i+j}$, de $T^{k+1}$, son nulos para cada $j<k+1$.
+ \par
+ Llamando $t_{ij}$ a los elementos de $T$; $t'_{ij}$ a los elementos de $T^k$; y, $t''_{ij}$ a los elementos de $T^{k+1}$.
+ Entonces, $T^{k+1}=T^kT$, y como $t_{ij}=0$ cuando $j<i+1$ y $t'_{ij}=0$ cuando $j<i+k$, entonces si $j\leq i+k$, se tiene que:
+ \begin{eqnarray*}
+  t''_{ij} & = & \sum_{m=1}^n t'_{im}t_{mj} \\ 
+  & = & \sum_{m=1}^{i+k-1} \cancelto{0}{t'_{im}} t_{mj}  + \sum_{m=i+k}^n t'_{im}\cancelto{0}{t_{mj}} \\
+  & = & 0
+ \end{eqnarray*}
+ Por lo tanto se cumple la prueba por inducci\'on, y, para $T^n$, se tiene que todo elemento $t_{ij} = 0$ cuando $j<i+n$, para toda $i$. Entonces, para cada $i$, $t_{ij} = 0$ cuando $j\leq n$, en otras palabras: $t_{ij} = 0$ para todo elemento de $T^n$.
+ Por lo tanto $T^n = O$.
+ \par 
+ N\'otese que \'esta no necesariamente es la primera potencia que logra esto, es decir, es posible que para alg\'un $k\leq n$, se cumpla que $T^n = O$. Aqu\'{\i} nada m\'as se encontr\'o a partir de cu\'al potencia siempre ocurre.
+ \par 
+ Finalmente, como $T^n = \left( P^{-1}AP \right)^{n} = P^{-1}A^nP$, entonces $P^{-1}A^n P = O$ y, por lo tanto $A^n = POP^{-1} = O$. Por lo tanto, existe alg\'un $k\in\mathbb{N}$, posiblemente $k\leq n$ aunque por lo menos ocurre siempre con $k=n$, tal que $A^k = O$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

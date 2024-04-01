@@ -1,0 +1,38 @@
+\begin{enunciado}
+ Sea $f:V\to V$ un endomorfismo diagonalizable ($\dim V = n$) \textit{con}
+ $n$ \textit{autovalores distintos} y sea $(\overline{u}_1, \overline{u}_2, \ldots, \overline{u}_n)$ una base de $V$ formada por vectores propios de $f$. Si es $\overline{u} = \overline{u}_1 + \overline{u}_2 + \ldots + \overline{u}_n$, compru\'ebese que los vectores
+ \begin{equation*}
+  \overline{e}_1 = \overline{u}, \quad \overline{e}_2 = f\left( \overline{u} \right), \quad \overline{e}_3 = (f\circ f)\left( \overline{u} \right) = f^{(2)}\left( \overline{u} \right), \quad \ldots, \quad \overline{e}_n = f^{(n-1)}\left( \overline{u} \right)
+ \end{equation*}
+ forman una base de $V$.
+\end{enunciado}
+
+\begin{solucion}
+ N\'otese que, como $\bar{u}_i$ es vector propio de $f$, para cada $i \in \mathbb{N}\cap[1,n]$, entonces existe escalares $\lambda_i$, correspondientes para cada $\bar{u}_i$, tales que $f\left( \bar{u}_i \right) = \lambda_i \bar{u}_i$, entonces $f^{(k)}\left(\bar{u}_i \right) = \lambda^k \bar{u}_i$, lo cual se comprueba con f\'acilmente por inducci\'on, ya que se sabe que para el caso $k=1$ es cierto y, suponiendo la veracidad para alg\'un $k$ arbitrario, entonces $f^{(k+1)}\left( \bar{u}_i \right) = f\left( f^{(k)}\left( \bar{u}_i \right) \right) = f\left( \lambda^{k}\bar{u}_i \right) = \lambda^{k}f\left( \bar{u}_i \right) \lambda^{k}\left( \lambda \bar{u}_i \right) = \lambda^{k+1}\bar{u}_i$. Por lo tanto es cierto para toda $k \in \mathbb{N}$. Luego entonces, 
+ \begin{equation*}
+  f^{(k)}\left( \bar{u} \right) = f^{(k)}\left( \sum_{i=1}^n \bar{u}_i \right) = \sum_{i=1}^n f^{(k)}\left( \bar{u}_i \right) = \sum_{i=1}^n \lambda_i^{k}\bar{u}_i
+ \end{equation*}
+ Luego, sean $X_i$ los vectores de coordenadas de $\bar{e}_i$, para cada $i\in \mathbb{N}\cap[1,n]$, en la base $\beta = \left( \bar{u}_1, \bar{u}_2, \ldots, \bar{u}_n \right)$, entonces, por el resultado anterior, se tiene que
+ \begin{eqnarray*}
+  X_1 & = & [1, 1, \ldots, 1]^t \\
+  X_2 & = & [\lambda_1, \lambda_2, \ldots, \lambda_n]^t \\
+  X_3 & = & [\lambda_1^2, \lambda_2^2, \ldots, \lambda_n^2]^t \\
+  \vdots & \vdots & \vdots \\
+  X_n & = & [\lambda_1^{n-1}, \lambda_2^{n-1}, \ldots, \lambda_n^{n-1}]^t
+ \end{eqnarray*}
+ Entonces, los $n$ vectores $\bar{e}_i$ forman una base si y s\'olo si $\beta' = \left( \bar{e}_1, \bar{e}_2, \ldots, \bar{e}_n \right)$ es un sistema linealmente independiente si y s\'olo si $X_1, X_2, \ldots X_n$ son vectores linealmente independientes si y s\'olo si la matriz $V = [X_1|X_2|\cdots |X_n]$ es de rango $n$ si y s\'olo el determinante de esta matriz es distinto de cero, es decir $\det V \neq 0$, luego como
+ \begin{equation*}
+  \det V = 
+  \begin{vmatrix}
+   1 & \lambda_1 & \lambda_1^2 & \cdots & \lambda_1^{n-1} \\
+   1 & \lambda_2 & \lambda_2^2 & \cdots & \lambda_2^{n-1} \\
+   1 & \lambda_3 & \lambda_3^2 & \cdots & \lambda_3^{n-1} \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   1 & \lambda_n & \lambda_n^2 & \cdots & \lambda_n^{n-1}
+  \end{vmatrix}
+ \end{equation*}
+ es un determinante de Vandermonde, el cual se sabe es distinto de cero si y s\'olo si $\lambda_i \neq \lambda_j$ para cada $i,j \in \mathbb{N}\cap[1,n]$ tal que $i\neq j$.
+ Por lo tanto $\beta'$ es base si y s\'olo si $f$ tiene $n$ autovalores distintos.
+ \par 
+ El hecho de que los autovalores sean distintos dos a dos no lo dice el enunciado original, pero se ha modificado para que tenga sentido el problema. Lo cual concluye a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

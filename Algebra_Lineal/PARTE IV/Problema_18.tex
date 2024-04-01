@@ -1,0 +1,264 @@
+\begin{enunciado}
+ Sea $f: \mathbb{R}^3 \to \mathbb{R}^3$ un endomorfismo del que se sabe lo siguiente:
+ \begin{itemize}
+  \item $f$ es diagonalizable y s\'olo tiene dos autovalores distintos.
+  
+  \item $f(U) = V$, siendo
+  \begin{equation*}
+   U = \left\{ \left. (x,y,z) \in \mathbb{R}^3 \right| x-2y-z = 0 \right\}
+  \end{equation*}
+  y
+  \begin{equation*}
+   V = \left< (1,0,1), (-1,1,1) \right>
+  \end{equation*}
+  
+  \item $\lambda_1 = -1$ es un autovalor de $f$ y uno de sus vectores propios pertenece a $U$.
+  
+  \item $(1, 0, -1)$ es un vector propio de $f$ y est\'a asociado a un autovalor simple.
+ \end{itemize}
+ 
+ \begin{enumerate}[$a$)]
+  \item Hallar la matriz $A$ de $f$ en la base can\'onica, en funci\'on de cuantos par\'ametros sea preciso.
+  
+  \item Si en $\mathbb{R}^3$ se considera el producto escalar can\'onico, determinar $f$ para que sea ortogonalmente diagonalizable.
+ \end{enumerate}
+\end{enunciado}
+ 
+\begin{solucion}
+ Antes de comenzar, se precisar\'an algunos resultados a partir de los puntos que se dan en el enunciado:
+ \par 
+ Si $f$ es diagonalizable, entonces existe una base $\beta$ tal que la matriz de $f$ en dicha base es una matriz diagonal; adem\'as, si s\'olo se tiene dos autovalores, entonces dicha matriz diagonal tiene, sobre su diagonal, dos valores id\'enticos y uno distinto, que son estos autovalores, y estos autovalores tienen sus respectivas multiplicidades algebraicas iguales a sus multiplicidades geom\'etricas, donde uno tiene multiplicidad 2 y el otro tiene multiplicidad 1.
+ \par 
+ N\'otese que dos elementos en $U$ son $(1,0,1)$ y $(1,1,-1)$; adem\'as, estos vectores son ortogonales, por lo que son independientes, luego entonces $U = <(1,0,1), (1,1,-1)>$. Adem\'as, los dos vectores que se dan que generan a $V$, es decir $(1.0,1)$ y $(-1,1,1)$, tambi\'en son ortogonales. Luego, $f\left(\left< (1,0,1), (1,1,-1) \right>\right) = \left< (1,0,1), (-1,1,1) \right>$.
+ \par 
+ Como $\lambda_1 = -1$ es un autovalor de $f$ y uno de sus vectores propios pertenece a $U$, entonces, por lo que se mencion\'o en el p\'arrafo anterior y llamando $\bar{x}$ a dicho vector propio, $\bar{x}$ se escribe de forma \'unica como $\bar{x} = a(1,0,1) + b(1,1,-1)$, para ciertos escalares $a,b\in\mathbb{R}$, y $f\left(\bar{x}\right)\in V$ se escribe de forma \'unica  como $f\left(\bar{x} \right) = m(1,0,1) + n(1,1,-1)$, para ciertos escalares $m,n\in\mathbb{R}$. Luego, como $f\left( \bar{x} \right) = -\bar{x}$, entonces 
+ \begin{equation*}
+  f\left( a(1,0,1) + b(1,1,-1)\right) = -a(1,0,1) -b(1,1,-1) = m(1,0,1) + n(-1,1,1)
+ \end{equation*}
+ Por otro lado, $(1,0,1) \in V$ y $-a(1,0,1)-b(1,1,-1) \in V$, por lo que
+ \begin{equation*}
+  b(1,1,-1) = \left[ -a(1,0,1) \right] - \left[ -a(1,0,1) - b(1,1,-1) \right] \in V
+ \end{equation*}
+ Sin embargo, si $b\neq 0$, entonces $(1,1,-1)\in V$ y debe escribirse como combinaci\'on lineal de $(1,0,1)$ y $(-1,1,1)$, entonces existen escalares $r,q\in\mathbb{R}$ tal que $(1,1,-1) = r(1,0,1)+q(-1,1,1) = (r-q, q, r+q)$, entonces se sigue que por la segunda entrada que $q = 1$ y por la primera y tercera entrada se tiene que $r=2$ y $r=-2$, respectivamente, lo cual es una contradicci\'on. Por lo tanto $b=0$ y, de ello, $\bar{x}=a(1,0,1)$, y como $\bar{x}\neq \bar{o}$, se sigue que $(1,0,1)$ es un autovector de $f$ correspondiente al autovalor $\lambda_1 = -1$.
+ \par 
+ Finalmente, si $(1,0,-1)$ es un autovector propio a $f$ que est\'a asociado a un autovalor simple, entonces, suponiendo que este autovalor fuese el anterior $\lambda_1=-1$, se seguir\'{\i}a que la multiplicidad geom\'etrica de $\lambda_1 = -1$, que coincide con la algebraica, ser\'{\i}a 1, entonces la dimensi\'on del subespacio propio correspondiente a este autovalor ser\'{\i}a de 1, por lo que, al saber que $(1,0,1)$ pertenece a este subespacio, entonces $E_{\lambda_1=-1}= \left< (1,0,1)\right>$, pero $(1,0,-1) \in E_{\lambda_1=-1}$ no se puede escribir como m\'ultiplo de $(1,0,1)$, por lo que $(1,0,-1)\not\in E_{\lambda_1 = -1}$, lo cual es una contradicci\'on. Por lo tanto, el autovalor al que est\'a asociado $(1,0,-1)$ es $\lambda_2 \neq \lambda_1$, y como $\lambda_2$ tiene multiplicidad 1, se concluye adem\'as que $\lambda_1$ tiene multiplicidad 2.
+ \par 
+ Sabiendo esto, la soluci\'on se obtiene como sigue:
+ \begin{enumerate}[$a$)]
+  \item Resumiendo lo anterior, se tiene que $f$ tiene dos autovalores. El primer es $\lambda_1 = -1$, cuya multiplicidad algebraica, $m_1$, y multiplicidad geom\'etrica, $d_1$, cumplen que $d_1 = m_1 = 2$, adem\'as
+  \begin{equation*}
+   E_{\lambda_1 = -1} = \left< (1,0,1), (a,b,c) \right>
+  \end{equation*}
+  El segundo autovalor es $\lambda_2$, cuya multiplicidad algebraica, $m_2$, y multiplicidad geom\'etrica, $d_2$, cumplen que $d_2 = m_2 = 1$, adem\'as
+  \begin{equation*}
+   E_{\lambda_2} = \left< (1,0,-1) \right>
+  \end{equation*}
+  Adem\'as, se tiene que las bases de los subespacios propios de $f$ forman, en conjunto, una base de $\mathbb{R}^3$, es decir $\beta = \left( (1,0,1), (a, b, c), (1,0,-1) \right)$ es base de $\mathbb{R}^3$. Cabe notar que como $\beta$ es base de $\mathbb{R}^3$, entonces existen escalares tales que $(0,1,0)$ se puede expresar de forma \'unica como elementos de $\beta$, esto es, existen $\lambda, \mu, \nu \in \mathbb{R}$, \'unicos, tales que 
+  \begin{eqnarray*}
+   (0,1,0) & = & \lambda (1,0,1) + \mu (a,b,c) + \nu (1,0,-1) \\ 
+   & = & (\lambda + \mu a + \nu, \mu b, \lambda + \mu c - \nu )
+  \end{eqnarray*}
+  por lo que $\mu b = 1$, lo cual implica que $b \neq 0$. Por lo tanto, si $(a,b,c)$ es un autovalor, independiente de $(1,0,1)$, respecto de $\lambda_1 = -1$, entonces $f\left( \frac{a}{b}, 1, \frac{c}{b} \right) = \frac{1}{b}f(a,b,c) = -\frac{1}{b}(a,b,c) = -\left(\frac{a}{b}, 1, \frac{c}{b} \right)$, por lo que $(a', 1, c')$ es autovector de $f$ respecto al autovalor $\lambda_1 = -1$, tomando $a'= a/b$ y $c'=c/b$. El cual se considerar\'a de ahora en adelante como parte del nuevo generador de $E_{\lambda_1 = -1}$.
+  \par 
+  Finalmente, se sabe que $P$, la matriz formada por los vectores de $\beta$ en su forma columna, es la matriz de cambio de coordenadas tal que $P^{-1}AP$ es la matriz diagonal formada por los autovalores de $f$, $D$, cuyos autovalores en la diagonal aparecen en el mismo orden en que se toman los vectores correspondientes a estos que forman a $P$, en este caso:
+  \begin{equation*}
+   P =
+   \begin{bmatrix}
+    1 & a &  1 \\
+    0 & 1 &  0 \\
+    1 & c & -1
+   \end{bmatrix}
+   \qquad \text{ y } \qquad 
+   D = 
+   \begin{bmatrix}
+    -1 &  0 & 0 \\
+     0 & -1 & 0 \\
+     0 &  0 & \lambda_2
+   \end{bmatrix}
+  \end{equation*}
+  Adem\'as, se puede calcular $P^{-1}$ como sigue:
+  \begin{equation*}
+   [P|I] = 
+   \left[
+   \begin{tabular}{ccc|ccc}
+    $1$ & $a$ &  $1$ & $1$ & $0$ & $0$ \\
+    $0$ & $1$ &  $0$ & $0$ & $1$ & $0$ \\
+    $1$ & $c$ & $-1$ & $0$ & $0$ & $1$
+   \end{tabular}
+   \right]
+   \begin{matrix}
+    \sim \\
+    R_3 - R_1 \to R_3
+   \end{matrix}
+   \left[
+   \begin{tabular}{ccc|ccc}
+    $1$ &  $a$  &  $1$ &  $1$ & $0$ & $0$ \\
+    $0$ &  $1$  &  $0$ &  $0$ & $1$ & $0$ \\
+    $0$ & $c-a$ & $-2$ & $-1$ & $0$ & $1$
+   \end{tabular}
+   \right]
+  \end{equation*}
+  \begin{equation*}
+   \begin{matrix}
+    \sim \\
+    R_1 - aR_2 \to R_1 \\
+    R_3 + (a-c)R_2 \to R_3
+   \end{matrix}
+   \left[
+   \begin{tabular}{ccc|ccc}
+    $1$ & $0$ &  $1$ &  $1$ & $-a$   & $0$ \\
+    $0$ & $1$ &  $0$ &  $0$ & $1$   & $0$ \\
+    $0$ & $0$ & $-2$ & $-1$ & $a-c$ & $1$
+   \end{tabular}
+   \right]
+   \begin{matrix}
+    \sim \\
+    -\frac{1}{2}R_3 \to R_3
+   \end{matrix}
+  \end{equation*}
+  \begin{equation*}
+   \left[
+   \begin{tabular}{ccc|ccc}
+    $1$ & $0$ & $1$ &      $1$     &  $-a$  & $0$ \\
+    $0$ & $1$ & $0$ &      $0$     &  $1$   & $0$ \\
+    $0$ & $0$ & $1$ & $\frac{1}{2}$ & $\frac{c-a}{2}$ & -$\frac{1}{2}$
+   \end{tabular}
+   \right]
+   \begin{matrix}
+    \sim \\ 
+    R_1 - R_3 \to R_1
+   \end{matrix}
+   \left[ 
+   \begin{tabular}{ccc|ccc}
+    $1$ & $0$ & $0$ & $\frac{1}{2}$ & $\frac{-a-c}{2}$ & $\frac{1}{2}$ \\
+    $0$ & $1$ & $0$ & $0$ & $1$ & $0$ \\
+    $0$ & $0$ & $1$ & $\frac{1}{2}$ & $\frac{c-a}{2}$ & $-\frac{1}{2}$
+   \end{tabular}
+   \right] = \left[ I|P^{-1} \right]
+  \end{equation*}
+  Entonces, como $D = P^{-1}AP$, se sigue que $A = PDP^{-1}$. Esto es:
+  \begin{eqnarray*}
+   A & = &
+   \begin{bmatrix}
+    1 & a &  1 \\
+    0 & 1 &  0 \\
+    1 & c & -1
+   \end{bmatrix}
+   \begin{bmatrix}
+    -1 &  0 & 0 \\
+     0 & -1 & 0 \\
+     0 &  0 & \lambda_2
+   \end{bmatrix}
+   \begin{bmatrix}
+    \frac{1}{2} & \frac{-a-c}{2} & \frac{1}{2} \\ 
+    0 & 1 & 0 \\
+    \frac{1}{2} & \frac{c-a}{2} & -\frac{1}{2}
+   \end{bmatrix} \\
+   & = &
+   \begin{bmatrix}
+    1 & a &  1 \\
+    0 & 1 &  0 \\
+    1 & c & -1
+   \end{bmatrix}
+   \begin{bmatrix}
+    -\frac{1}{2} & \frac{a+c}{2} & -\frac{1}{2} \\
+    0 & -1 & 0 \\
+    \frac{\lambda_2}{2} & \frac{\lambda_2(c-a)}{2} & -\frac{\lambda_2}{2}
+   \end{bmatrix} \\
+   & = & 
+   \begin{bmatrix}
+    \frac{\lambda_2 - 1}{2} & \frac{(\lambda_2+1)(c-a)}{2} & \frac{-\lambda_2-1}{2} \\
+    0 & -1 & 0 \\
+    \frac{-\lambda_2-1}{2} & \frac{(\lambda_2+1)(a-c)}{2} & \frac{\lambda_2 - 1}{2}
+   \end{bmatrix}
+  \end{eqnarray*}
+  Luego, como $(1,1,-1) \in U$, se sigue que $f(1,1,-1) \in V$, por lo que existen escalares \'unicos, $\lambda, \mu \in \mathbb{R}$, tales que
+  \begin{equation*} 
+   \begin{bmatrix}
+    \frac{\lambda_2 - 1}{2} & \frac{(\lambda_2+1)(c-a)}{2} & \frac{-\lambda_2-1}{2} \\
+    0 & -1 & 0 \\
+    \frac{-\lambda_2-1}{2} & \frac{(\lambda_2+1)(a-c)}{2} & \frac{\lambda_2 - 1}{2}
+   \end{bmatrix}
+   \begin{bmatrix}
+    1 \\ 1 \\ -1
+   \end{bmatrix}
+   = 
+   \lambda
+   \begin{bmatrix}
+    1 \\ 0 \\ 1
+   \end{bmatrix}
+   +
+   \mu
+   \begin{bmatrix}
+    -1 \\ 1 \\ 1
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    \lambda - \mu \\
+    \mu \\ 
+    \lambda + \mu
+   \end{bmatrix}
+  \end{equation*}
+  pero como 
+  \begin{equation*}
+   \begin{bmatrix}
+    \frac{\lambda_2 - 1}{2} & \frac{(\lambda_2+1)(c-a)}{2} & \frac{-\lambda_2-1}{2} \\
+    0 & -1 & 0 \\
+    \frac{-\lambda_2-1}{2} & \frac{(\lambda_2+1)(a-c)}{2} & \frac{\lambda_2 - 1}{2}
+   \end{bmatrix}
+   \begin{bmatrix}
+    1 \\ 1 \\ -1
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    \lambda_2 + \frac{(\lambda_2+1)(c-a)}{2} \\
+    -1 \\
+    -\lambda_2 - \frac{(\lambda_2+1)(c-a)}{2}
+   \end{bmatrix}
+  \end{equation*}
+  entonces se tiene el sistema de ecuaciones siguiente:
+  \begin{equation*}
+   \left\{
+   \begin{matrix}
+    \lambda_2 + \frac{(\lambda_2+1)(c-a)}{2} & = & \lambda - \mu \\
+    -1 & = & \mu \\
+    -\lambda_2 - \frac{(\lambda_2+1)(c-a)}{2} & = & \lambda + \mu
+   \end{matrix}
+   \right.
+  \end{equation*}
+  entonces, sumando la primera y tercera ecuaci\'on, se tiene que $2\lambda = 0$, por lo que $\lambda = 0$ y, directamente de la segunda ecuaci\'on, $\mu = -1$, por lo que $f(1,1,-1) = (1,-1,-1)$. Adem\'as, como $(1,-1,-1) = f(1,1,-1) = f(1,0,-1) + f(0,1,0) = \lambda_2(1, 0, -1) + f(0,1,0)$, entonces:
+  \begin{equation*}
+   f(0,1,0) = (1,-1,-1) - \lambda_2(1,0,-1) = (1-\lambda_2, -1, -1+\lambda_2)
+  \end{equation*}
+  Pero como se tiene que 
+  \begin{equation*}
+   \begin{bmatrix}
+    \frac{\lambda_2 - 1}{2} & \frac{(\lambda_2+1)(c-a)}{2} & \frac{-\lambda_2-1}{2} \\
+    0 & -1 & 0 \\
+    \frac{-\lambda_2-1}{2} & \frac{(\lambda_2+1)(a-c)}{2} & \frac{\lambda_2 - 1}{2}
+   \end{bmatrix}
+   \begin{bmatrix}
+    0 \\ 1 \\ 0
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    \frac{(\lambda_2 + 1)(c-a)}{2} \\
+    -1 \\
+    -\frac{(\lambda_2+1)(c-a)}{2}
+   \end{bmatrix}
+  \end{equation*}
+  se sigue que $1-\lambda_2 = \frac{(\lambda_2 + 1)(c-a)}{2}$. 
+  Por lo tanto, la matriz $A$ de $f$ se puede reducir a una de un \'unico par\'ametro. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    \frac{\lambda_2 - 1}{2} & -( \lambda_2 - 1) & -\frac{\lambda_2+1}{2} \\
+    0 & -1 & 0 \\
+    -\frac{\lambda_2 + 1}{2} & \lambda_2 - 1 & \frac{\lambda_2 -1}{2}
+   \end{bmatrix}
+  \end{equation*}
+  
+  \item Se sabe por teorema que si $f$ es sim\'etrica, entonces es ortogonalmente diagonalizable. N\'otese que si el espacio vectorial tiene dimensi\'on finita, entonces el regreso tambi\'en es cierto, es decir que si es ortogonalmente diagonalizable, entonces $f$, y las matrices en diferentes bases de $f$, son sim\'etricas. Para ver esto, hay que revisar la definici\'on: se dice que una matriz es ortogonalmente diagonalizable si existe una base ortonormal del espacio, cuya matriz de cambio de coordenadas se representa con $P$ y cuya inversa es $P^{-1}=P^t$, tal que la matriz de $f$ en dicha base sea una matriz diagonal $D$, que representando matricial el proceso, si $A$ es la matriz de $f$ en alguna base, entonces $D=P^tAP$ es una matriz diagonal. Como $D$ es diagonal, entonces es sim\'etrica, es decir $D^t=D$, entonces $A = PDP^t$ y $A^t = (PDP^t)^t = (P^t)^tD^tP^t = PDP^t$, por lo tanto $A=A^t$ y $f$ es, por lo tanto, sim\'etrica. De aqu\'{\i} que se tienen las siguientes equivalencias:
+  \par 
+  $f$ es ortogonalmente diagonalizable si y s\'olo si $f$ es sim\'etrica si y s\'olo si la matriz de $f$ en una base ortonormal es sim\'etrica si y s\'olo si la matriz $A$ de $f$, que est\'a en la base can\'onica, es sim\'etrica si y s\'olo, llamando $a_{ij}$ al elemento de $A$ en la posici\'on $(i,j)$, se tiene que $a_{12} = a_{21}$, $a_{13} = a_{31}$ y $a_{23} = a_{32}$, que, por la matriz ya encontrada $A$, de $f$, en el inciso anterior, esto es equivalente a que $-(\lambda_2 - 1) = 0$, $-\frac{\lambda_2 + 1}{2} = -\frac{\lambda_2 + 1}{2}$ y $\lambda_2 -1 = 0$. Por lo tanto, $f$ es diagonalizable si y s\'olo si $\lambda_2 = 1$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

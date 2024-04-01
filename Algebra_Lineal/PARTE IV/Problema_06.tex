@@ -1,0 +1,104 @@
+\begin{enunciado}
+ Hallar los autovalores y los subespacios propios del endomorfismo $f:\mathbb{R}^3 \rightarrow \mathbb{R}^3$ que, respecto de la base can\'onica, tiene asociada la siguiente matriz $A$:
+ \begin{equation*}
+  A = 
+  \begin{bmatrix}
+    1 & 1 & -1 \\
+    1 & 1 &  1 \\
+   -1 & 1 &  1
+  \end{bmatrix}
+ \end{equation*}
+ Anal\'{\i}cese si $f$ es diagonalizable.
+\end{enunciado}
+
+\begin{solucion}
+ Se proceder\'a a calcular el polinomio caracter\'{\i}stico de $f$ a trav\'es de $A$:
+ \begin{eqnarray*}
+  \det(A - \lambda I) & = & 
+  \begin{vmatrix}
+   1-\lambda & 1         & -1        \\
+   1         & 1-\lambda &  1        \\
+   -1        & 1         & 1-\lambda
+  \end{vmatrix} \\
+  & = & (1-\lambda)
+  \begin{vmatrix}
+   1 - \lambda & 1           \\
+   1           & 1 - \lambda
+  \end{vmatrix}
+  -
+  \begin{vmatrix}
+   1 & -1          \\
+   1 & 1 - \lambda
+  \end{vmatrix}
+  -
+  \begin{vmatrix}
+   1           & -1 \\
+   1 - \lambda &  1
+  \end{vmatrix} \\ 
+  & = & (1-\lambda)\left[ (1-\lambda)^2 - 1 \right] - \left[ (1-\lambda) + 1 \right] - \left[ 1 + (1-\lambda) \right] \\
+  & = & (1-\lambda)(\lambda^2 - 2\lambda) + (\lambda - 2) + (\lambda-2) \\ 
+  & = & (-\lambda^3 + 3\lambda^2 -2\lambda) + 2\lambda - 4 \\ 
+  & = & -\lambda^3 + 3\lambda^2 - 4 
+  = -(\lambda^3 - 3\lambda^2 + 4) \\
+  & = & -(\lambda+1)(\lambda^2 - 4\lambda +  4) \\ 
+  & = & -(\lambda + 1)(\lambda - 2)^2
+ \end{eqnarray*}
+ Por lo tanto, $\det (A - \lambda I) = 0$ para los autovalores de $f$: $\lambda_1 = -1$, con multiplicidad algebraica $m_1 = 1$, y $\lambda_2 = 2$, con multiplicidad algebraica $m_2 = 2$.
+ \par 
+ Para hallar los subespacios propios de $f$, basta con encontrar los vectores $\overline{x}$ cuyo vector de coordenadas en la base can\'onica $X = (x, y, z)^t$, cumpla que $AX = \lambda_i X$ para cada $i \in \{ 1, 2\}$.
+ \par 
+ Para el caso $\lambda_1 = -1$, se tiene que $(A + I)X = 0$ es equivalente a:
+ \begin{equation*}
+  \left. 
+  \begin{matrix}
+   2x & +  y & - z & = 0 \\
+    x & + 2y & + z & = 0
+  \end{matrix}
+  \right\}
+  \Leftrightarrow 
+  \left. 
+  \begin{matrix}
+   2x & +  y & - z & = 0 \\
+    x & + 2y & + z & = 0 \\
+   x & + y & = 0 \\
+  \end{matrix}
+  \right\}
+  \Leftrightarrow 
+  \left. 
+  \begin{matrix}
+   x & - z & = 0 \\
+   y & + z & = 0 \\
+  \end{matrix}
+  \right\}
+  \Leftrightarrow 
+  \left. 
+  \begin{matrix}
+   x = \alpha \\
+   y = - \alpha \\
+   z = \alpha
+  \end{matrix}
+  \right\}
+ \end{equation*}
+ Por lo tanto $V_{\lambda_1} = \left\{ (\alpha, -\alpha, \alpha) \in \mathbb{R}^3 | \, \alpha \in \mathbb{R} \right\}$.
+ \par 
+ Para el caso $\lambda_2 = 2$, se tiene que $(A - 2I)X = 0$ es equivalente al sistema de tres ecuaciones: $-x + y -z = 0$, $x-y+z = 0$ y $-x+y-z = 0$, los cuales son todos equivalentes entre s\'{\i}. Por lo tanto, $V_{\lambda_2} = \left\{ (x,y,z) \in \mathbb{R}^3 | x-y+z = 0 \right\} = \left\{ (\alpha - \beta, \alpha, \beta ) \in \mathbb{R}^3 | \, \alpha, \beta \in \mathbb{R} \right\}$.
+ \par 
+ Finalmente, como se tiene que las multiplicidades algebraica suman $m_1 + m_2 = 1 + 2 = 3 = \dim \mathbb{R}^3$ y las multiplicidades geom\'etricas cumplen que $d_1 = 1 = m_1$ y $d_2 = 2 = m_2$, entonces se concluye que $f$ s\'{\i} es diagonalizable; a saber, la matriz diagonal $D = P^{-1}AP$ de $f$ se obtiene respecto de la nueva base $\left( (1, -1, 1), (1, 1, 0), (-1, 0, 1) \right)$ donde $D$ y $P$ son:
+ \begin{equation*}
+  D = 
+  \begin{pmatrix}
+   -1 & 0 & 0 \\
+    0 & 2 & 0 \\
+    0 & 0 & 2 
+  \end{pmatrix}
+  \qquad \text{y} \qquad 
+  P = 
+  \begin{pmatrix}
+    1 & 1 & -1 \\
+   -1 & 1 &  0 \\
+    1 & 0 &  1
+  \end{pmatrix}
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
+

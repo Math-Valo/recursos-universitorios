@@ -1,0 +1,131 @@
+\begin{enunciado}
+ Dados tres puntos alineados $P$, $Q$ y $R$ (de $E_1$, de $E_2$ o de $E_3$), se llama <<raz\'on simple>> $(PQR)$ al n\'umero real $\rho$ que permite poner $\overrightarrow{PR} = \rho\overrightarrow{PQ}$. \\
+ Sean $A_1$, $A_2$ y $A_3$ tres puntos no alineados del plano af\'{\i}n $E_2$ y sea $r$ una recta que no pasa por ninguno de dichos puntos. Se llaman $B_1$, $B_2$ y $B_3$ a los puntos de intersecci\'on de $r$ con las rectas $A_2A_3$, $A_3A_1$ y $A_1A_2$, respectivamente. Pru\'ebese que (teorema de Menelao):
+ \begin{equation*}
+  \left( B_1A_2A_3 \right)\left( B_2A_3A_1 \right)\left( B_3A_1A_2 \right) = 1
+ \end{equation*}
+\end{enunciado}
+
+\begin{solucion}
+ Para resolver el problema, consid\'erense coordenadas rectangulares 
+ y se nombrar\'an de la siguiente forma a las rectas que
+ se obtienen de 3 puntos alineados conocidos por el enunciado.
+ \begin{eqnarray*}
+  \ell   & = & \overline{B_1B_2B_3} \\
+  \ell_1 & = & \overline{B_1A_2A_3} \\
+  \ell_2 & = & \overline{A_1B_2A_3} \\
+  \ell_3 & = & \overline{A_1A_2B_3}
+ \end{eqnarray*}
+ Sean $p$, $q$ y $r$ las alturas sobre $r$ de $A_1$, $A_2$ y $A_3$,
+ respectivamente, entonces se cumplen las siguientes igualdades:
+ \begin{eqnarray*}
+  p & = &
+  \left\lVert \overrightarrow{B_2A_1} \right\rVert
+  \cos\left( \ell, \ell_2 \right)
+  = \left\lVert \overrightarrow{B_3A_1} \right\rVert
+  \cos\left( \ell, \ell_3 \right)
+  \\
+  q & = & 
+  \left\lVert \overrightarrow{B_1A_2} \right\rVert
+  \cos\left( \ell, \ell_1 \right)
+  = \left\lVert \overrightarrow{B_3A_2} \right\rVert
+  \cos\left( \ell, \ell_3 \right)
+  \\
+  r & = & 
+  \left\lVert \overrightarrow{B_1A_3} \right\rVert
+  \cos\left( \ell, \ell_1 \right)
+  = \left\lVert \overrightarrow{B_2A_3} \right\rVert
+  \cos\left( \ell, \ell_2 \right)
+  \\
+ \end{eqnarray*}
+ Y, nombrando de la siguiente forma a las razones simples que aparecen
+ en el teorema, $\left( B_1A_2A_3 \right) = \rho_1$,
+ $\left( B_2A_3A_1 \right) = \rho_2$
+ y $\left( B_3A_1A_2 \right) = \rho_3$,
+ se tienen las siguiente igualdades:
+ \begin{equation*}
+  \lvert \rho_1 \rvert =
+  \frac{
+  \left\lVert \overrightarrow{B_1A_3} \right\rVert
+  }{
+  \left\lVert \overrightarrow{B_1A_2} \right\rVert
+  } 
+  \hspace{2cm}
+  \lvert \rho_2 \rvert =
+  \frac{
+  \left\lVert \overrightarrow{B_2A_1} \right\rVert
+  }{
+  \left\lVert \overrightarrow{B_2A_3} \right\rVert
+  }
+  \hspace{2cm}
+  \lvert \rho_3 \rvert =
+  \frac{
+  \left\lVert \overrightarrow{B_3A_2} \right\rVert
+  }{
+  \left\lVert \overrightarrow{B_3A_1} \right\rVert
+  }
+ \end{equation*}
+ Por lo tanto:
+ \begin{eqnarray*}
+  \frac{r}{q} & = &
+  \frac{
+  \left\lVert \overrightarrow{B_1A_3} \right\rVert
+  \cancel{ \cos\left( \ell, \ell_1 \right) }
+  }{
+  \left\lVert \overrightarrow{B_1A_2} \right\rVert
+  \cancel{ \cos\left( \ell, \ell_1 \right) }
+  }
+  =
+  \frac{
+  \left\lVert \overrightarrow{B_1A_3} \right\rVert
+  }{
+  \left\lVert \overrightarrow{B_1A_2} \right\rVert
+  }
+  = \lvert \rho_1 \rvert
+  \\
+  \frac{p}{r} & = &
+  \frac{
+  \left\lVert \overrightarrow{B_2A_1} \right\rVert
+  \cancel{ \cos\left( \ell, \ell_2 \right) }
+  }{
+  \left\lVert \overrightarrow{B_2A_3} \right\rVert
+  \cancel{ \cos\left( \ell, \ell_2 \right) }
+  }
+  =
+  \frac{
+  \left\lVert \overrightarrow{B_2A_1} \right\rVert
+  }{
+  \left\lVert \overrightarrow{B_2A_3} \right\rVert
+  }
+  = \lvert \rho_2 \rvert
+  \\
+  \frac{q}{p} & = &
+  \frac{
+  \left\lVert \overrightarrow{B_3A_2} \right\rVert
+  \cancel{ \cos\left( \ell, \ell_3 \right) }
+  }{
+  \left\lVert \overrightarrow{B_3A_1} \right\rVert
+  \cancel{ \cos\left( \ell, \ell_3 \right) }
+  }
+  =
+  \frac{
+  \left\lVert \overrightarrow{B_3A_2} \right\rVert
+  }{
+  \left\lVert \overrightarrow{B_3A_1} \right\rVert
+  }
+  = \lvert \rho_3 \rvert
+ \end{eqnarray*}
+ Por lo tanto:
+ \begin{equation*}
+  \left\lvert \rho_1 \rho_2 \rho_3 \right\rvert
+  = 
+  \left\lvert \rho_1 \right\rvert
+  \left\lvert \rho_2 \right\rvert
+  \left\lvert \rho_3 \right\rvert
+  = \frac{\cancel{r}}{\cancel{q}} \cdot
+  \frac{p}{\cancel{\cancel{r}}} \cdot \frac{\cancel{q}}{\cancel{p}}
+  = 1
+ \end{equation*}
+ Por lo tanto,
+ $\left( B_1A_2A_3 \right)\left( B_2A_3A_1 \right)\left( B_3A_1A_2 \right) = \pm 1$
+\end{solucion}

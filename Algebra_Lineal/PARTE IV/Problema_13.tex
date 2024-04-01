@@ -1,0 +1,68 @@
+\begin{enunciado}
+ Comprobar que la siguiente matriz cuadrada $A$ es diagonalizable en $\mathbb{C}$ y obtener su forma diagonal:
+ \begin{equation*}
+  A =
+  \left[
+  \begin{matrix}
+   \begin{matrix}
+    0 & 1 & 0 & \cdots & 0 & 0 \\
+    0 & 0 & 1 & \cdots & 0 & 0
+   \end{matrix} \\
+   \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \\
+   \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \hspace{-2pt} \dotfill \\
+   \begin{matrix}
+    0 & 0 & 0 & \cdots & 0 & 1 \\
+    1 & 0 & 0 & \cdots & 0 & 0
+   \end{matrix}
+  \end{matrix}
+  \right]
+ \end{equation*}
+\end{enunciado}
+
+\begin{solucion}
+ Al querer calcular el polinomio caracter\'{\i}stico, $\det(A-\lambda I)$, a trav\'es del c\'alculo de la determinante por desarrollo de los elementos de la primera columna, como la primera columna \'unicamente tiene dos elementos: el del elemento  $(1,1)$ y el del elemento $(n,1)$, se tiene que:
+ \begin{eqnarray*}
+ \det(A-\lambda I) & = & 
+  \begin{vmatrix}
+   -\lambda & 1 & 0 & \cdots & 0 & 0 \\
+   0 & -\lambda & 1 & \cdots & 0 & 0 \\
+   0 & 0 & -\lambda & \cdots & 0 & 0 \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \vdots \\
+   0 & 0 & 0 & \cdots & -\lambda & 1 \\
+   1 & 0 & 0 & \cdots & 0 & -\lambda
+  \end{vmatrix} \\
+  & = & 
+  (-1)^{1+1}(-\lambda)
+  \begin{vmatrix}
+   -\lambda & 1 & \cdots & 0 & 0 \\
+   0 & -\lambda & \cdots & 0 & 0 \\
+   \vdots & \vdots & \ddots & \vdots & \vdots \\
+   0 & 0 & \cdots & -\lambda & 1 \\
+   0 & 0 & \cdots & 0 & -\lambda 
+  \end{vmatrix}
+  +(-1)^{n+1}(1)
+  \begin{vmatrix}
+   1 & 0 & \cdots & 0 & 0 \\
+   -\lambda & 1 & \cdots & 0 & 0 \\
+   0 & -\lambda & \cdots & 0 & 0 \\
+   \vdots & \vdots & \ddots & \vdots & \vdots \\
+   0 & 0 & \cdots & -\lambda & 1 \\
+  \end{vmatrix}
+ \end{eqnarray*}
+ donde las dos matrices de tama\~nos $(n-1)\times (n-1)$ que aparecen son triangulares y, como se sabe, el determinante de las matrices triangulares es igual al producto de sus elementos en la diagonal. Por lo tanto:
+ \begin{equation*}
+  \det(A - \lambda I) = (-\lambda)(-\lambda)^{n-1} + (-1)^{n+1}(1)^{n-1} = (-\lambda)^{n} - (-1)^{n} = (-1)^{n}(\lambda^n - 1)
+ \end{equation*}
+ Luego entonces, los autovalores son las ra\'{\i}ces del polinomio caracter\'{\i}stico, es decir, los valores $\lambda$ tales que $\det(A - \lambda I) = 0$ o, equivalentemente, cuando $\lambda^n - 1 = 0$. Luego, el polinomio $\lambda^n - 1$ tiene $n$ ra\'{\i}ces complejas distintas, a saber: $\lambda_{k} = \cos\left(\frac{2\pi k}{n} \right) + i\sin\left(\frac{2\pi k}{n} \right)$ para $k \in \mathbb{N}\cap[1,n]$. Entonces, por teorema, si una matriz de $n\times n$ tiene $n$ autovalores distintos, se sigue dicha matriz es diagonalizable. Por lo tanto $A$ es dianalizable y su diagonal es la matriz:
+ \begin{equation*}
+  D = 
+  \begin{bmatrix}
+   1 & 0 & \cdots & 0 & 0 \\
+   0 & \cos\left( \frac{2\pi(n-1)}{n} \right) + i\sin\left( \frac{2\pi(n-1)}{n} \right) & \cdots & 0 & 0 \\
+   \vdots & \vdots & \ddots & \vdots & \vdots \\
+   0 & 0 & \cdots & \cos\left( \frac{4\pi}{n} \right) + i\sin\left( \frac{4\pi}{n} \right) & 0 \\
+   0 & 0 & \cdots & 0 & \cos\left( \frac{2\pi}{n} \right) + i\sin\left( \frac{2\pi}{n} \right)
+  \end{bmatrix}
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

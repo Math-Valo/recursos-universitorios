@@ -1,0 +1,8 @@
+\begin{enunciado}
+ Sea $A$ una matriz cuadrada real de tama\~no $n \times n$. Si $n$ es par y $\det A < 0$, pru\'ebese que $A$ tiene, al menos, dos autovalores reales.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $p$ el polinomio caracter\'{\i}stico de $A$, como $n$ es par, es decir $n = 2k$ para alg\'un $k$ entero, entonces el t\'ermino con el grado m\'as grande de $p$ es, seg\'un se sabe, $(-1)^n\lambda^n = (-1)^{2k} \lambda^{2k} = [(-1)^{2}]^{k} (\lambda^k)^2 = 1^k (\lambda^k)^2 = (\lambda^k)^2$, el cual es positivo para todo $\lambda \neq 0$, entonces, como el signo del polinomio se rige para n\'umeros $\lambda$ lo suficientemente grandes por el signo del t\'ermino m\'as grande, se tiene que $\lim_{\lambda \to \pm \infty} = +\infty$, es decir $p(\lambda) > 0$ para un n\'umero lo suficientemente grande en valor absoluto, entonces existen $\lambda = M_1 > 0$ y $\lambda = M_2 < 0$ tal que $p(M_1) > 0$ y $p(M_2) > 0$. Por otro lado, el t\'ermino constante de $p$ es $\det A$, por lo que $p(0) = \det A < 0$. Por lo que, si $M = \max \{ |M_1|, |M_2| \}$, se tiene que $p(-M) > 0$, $p(0) < 0$ y $p(M) > 0$, y, como todo polinomio real es continuo en $\mathbb{R}$, $p$ es continuo en todo $\mathbb{R}$, por lo que, por el teorema de Bolzano el cual dice que si una funci\'on real $f$ es continua en un intervalo $[a,b]$ y $f(a)f(b) < 0$, entonces $f$ tiene (al menos) una ra\'{\i}z (real) en el intervalo $[a,b]$, se concluye que $p$, el polinomio caracter\'{\i}stico de $A$, tiene al menos dos ra\'{\i}ces reales, uno en el intervalo $[-M,0]$ y otro en $[0,M]$. Por lo tanto, $A$ tiene al menos dos autovalores reales, que es lo que se quer\'{\i}a probar.${}_{\blacksquare}$
+\end{solucion}
+

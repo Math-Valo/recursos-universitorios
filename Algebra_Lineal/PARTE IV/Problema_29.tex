@@ -1,0 +1,156 @@
+\begin{enunciado}
+ Diagonalizar ortogonalmente la siguiente matriz sim\'etrica $A$, hallando la correspondiente matriz diagonal $D$ y una matriz de paso ortogonal $P$, esto es, tal que $P^{-1} = P^t$ y $D=P^{-1}AP$:
+ \begin{equation*}
+  A = 
+  \begin{bmatrix}
+   2 & 1 & 1 & 1 \\
+   1 & 2 & 1 & 1 \\
+   1 & 1 & 2 & 1 \\
+   1 & 1 & 1 & 2
+  \end{bmatrix}
+ \end{equation*}
+ Analizar si $A$ es definida positiva.
+\end{enunciado}
+
+\begin{solucion}
+ Por teorema, se sabe que la matriz $D$ siempre existe y est\'a conformada por los autovalores de $A$ en el mismo orden en que se escogen autovectores ortonormales, correspondientes a estos valores propios, para formar con las columnas de $P$.
+ \par 
+ Entonces, se procede primero a hallar los autovalores de $A$ a trav\'es del an\'alisis de las ra\'{\i}ces de su polinomio caracter\'{\i}stico $p(\lambda) = \det(A-\lambda I)$, el cual se calcula usando las propiedades de determinantes, como se hizo en el ejercicio 25.
+ \begin{eqnarray*}
+  \det(A - \lambda I) & = & 
+  \begin{vmatrix}
+   2 - \lambda & 1 & 1 & 1 \\
+   1 & 2 - \lambda & 1 & 1 \\
+   1 & 1 & 2 - \lambda & 1 \\
+   1 & 1 & 1 & 2 - \lambda
+  \end{vmatrix}
+  \qquad
+  \begin{matrix}
+   R_1 + R_2 + R_3 + R_4 \to R_1 
+  \end{matrix}
+  \\
+  & = & 
+  \begin{vmatrix}
+   5 - \lambda & 5 - \lambda & 5 - \lambda & 5 - \lambda \\
+   1 & 2 - \lambda & 1 & 1 \\
+   1 & 1 & 2 - \lambda & 1 \\
+   1 & 1 & 1 & 2 - \lambda
+  \end{vmatrix}
+  \\
+  &  = & 
+  (5-\lambda )
+  \begin{vmatrix}
+   1 & 1 & 1 & 1 \\
+   1 & 2 - \lambda & 1 & 1 \\
+   1 & 1 & 2 - \lambda & 1 \\
+   1 & 1 & 1 & 2 - \lambda
+  \end{vmatrix}
+  \qquad 
+  \begin{matrix}
+   R_2 - R_1 \to R_2 \\
+   R_3 - R_1 \to R_3 \\
+   R_4 - R_1 \to R_4
+  \end{matrix}
+  \\
+  & = & 
+  (5-\lambda)
+  \begin{vmatrix}
+   1 & 1 & 1 & 1 \\
+   0 & 1 - \lambda & 0 & 0 \\
+   0 & 0 & 1 - \lambda & 0 \\
+   0 & 0 & 0 & 1 - \lambda
+  \end{vmatrix} = (5-\lambda)(1-\lambda)^3
+  \\
+  & = & (\lambda-1)^3(\lambda-5)
+ \end{eqnarray*}
+ Por lo tanto, los autovalores de $A$ son $\lambda_1 = 1$, con multiplicidad $3$, $\lambda_2 = 5$, con multiplicidad 1. N\'otese que, como $A$ es siempre diagonalizable, se tiene que las multiplicidades geom\'etricas, $d_i$, son iguales a las multiplicidades algebraicas, $m_i$, es decir $d_1 = m_1 = 3$ y $d_2 = m_2 = 1$.
+ \par 
+ Se procede ahora a calcular los subespacios propios de $A$, lo cual se har\'a, en ambos casos, usando un vector gen\'erico $X = [w,x,y,z]^t$ para buscar las condiciones que debe tener un vector para pertener a los subespacios propios, lo cual se hace a trav\'es de la ecuaci\'on $(A-\lambda_i I)X = O$, con $i\in\{1,2\}$.
+ \par 
+ Para el caso $\lambda_1 = 1$, se tiene que la ecuaci\'on $(A-I)X = O$ est\'a dada por
+ \begin{equation*}
+  \begin{bmatrix}
+   1 & 1 & 1 & 1 \\
+   1 & 1 & 1 & 1 \\
+   1 & 1 & 1 & 1 \\
+   1 & 1 & 1 & 1
+  \end{bmatrix}
+  \begin{matrix}
+   w \\ x \\ y \\ z 
+  \end{matrix}
+  =
+  \begin{bmatrix}
+   w + x + y + z \\
+   w + x + y + z \\
+   w + x + y + z \\
+   w + x + y + z 
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+   0 \\ 0 \\ 0 \\ 0
+  \end{bmatrix}
+ \end{equation*}
+ Por lo tanto, $X=[w,x,y,z]^t$ est\'a en $E_{\lambda_1=!}$ si y s\'olo si $w+x+y+z=0$. N\'otese que tres vectores ortogonales que cumplen esto son: $[1,-1,0,0]^t$, $[0,0,1,-1]^t$ y $[1,1,-1,-1]$. Por lo tanto:
+ \begin{equation*}
+  E_{\lambda_1  = 1} = \left\{ \left. X = [w,x,y,z]^t \in \mathbb{R}^4 \right| w+x+y+z=0 \right\} = \left< [1,-1,0,0]^t, [0,0,1,-1]^t, [1,1,-1,-1]^t \right>
+ \end{equation*}
+ Para el caso $\lambda_2 = 5$, se tiene que la ecuaci\'on $(A-5I)X = O$ est\'a dada por
+ \begin{equation*}
+  \begin{bmatrix}
+   -3 &  \phantom{-}1 &  \phantom{-}1 &  \phantom{-}1 \\
+    \phantom{-}1 & -3 &  \phantom{-}1 &  \phantom{-}1 \\
+    \phantom{-}1 &  \phantom{-}1 & -3 &  \phantom{-}1 \\
+    \phantom{-}1 &  \phantom{-}1 &  \phantom{-}1 & -3
+  \end{bmatrix}
+  \begin{bmatrix}
+   w \\ x \\ y \\ z
+  \end{bmatrix}
+  = 
+  \begin{bmatrix}
+   -3w & + & \phantom{3}x & + & \phantom{3}y & + & \phantom{3}z \\
+   \phantom{-3}w & - & 3x & + & \phantom{3}y & + & \phantom{3}z \\
+   \phantom{-3}w & + & \phantom{3}x & - & 3y & + & \phantom{3}z \\
+   \phantom{-3}w & + & \phantom{3}x & + & \phantom{3}y & - & 3z
+  \end{bmatrix}
+  = 
+  \begin{bmatrix}
+   0 \\ 0 \\ 0 \\ 0
+  \end{bmatrix}
+ \end{equation*}
+ lo cual, al igualar las entradas, da un sistema de cuatro ecuaciones. Restando la segunda ecuaci\'on a la primera, se tiene que $-4w + 4x = 0$, entonces $w = x$; restando la tercera ecuaci\'on a la segunda se tiene que $-4x + 4y = 0$, entonces $x = y$; y, restando la cuarta ecuaci\'on a la tercera, se tiene que $-4y + 4z = 0$, por lo que $y=z$. Por lo tanto:
+ \begin{equation*}
+  E_{\lambda_2 = 5} = \left< [1,1,1,1]^t \right>
+ \end{equation*}
+ Entonces, normalizando estos vectores generadores de los subespacios propios, que son ya ortogonales, se obtienen los siguientes vectores:
+ \begin{eqnarray*}
+  U_1 & = & \frac{[1,-1,0,0]^t}{\lVert [1,-1,0,0]^t \rVert} = \frac{[1,-1,0,0]^t}{\sqrt{2}}
+  \\
+  & = & \frac{\sqrt{2}}{2}[1,-1,0,0]^t \\
+  U_2 & = & \frac{[0,0,1,-1]^t}{\lVert [0,0,1,-1]^t \rVert} = \frac{[0,0,1,-1]^t}{\sqrt{2}}
+  \\
+  & = & \frac{\sqrt{2}}{2}[0,0,1,-1]^t \\
+  U_3 & = & \frac{[1,1,-1,-1]^t}{\lVert [1,1,-1,-1]^t \rVert} = \frac{[1,1,-1,-1]^t}{2} \\
+  & = & \frac{1}{2}[1,1,-1,-1]^t \\
+  U_4 & = & \frac{[1,1,1,1]^t}{\lVert [1,1,1,1]^t \rVert} = \frac{[1,1,1,1]^t}{2} \\
+  & = & \frac{1}{2}[1,1,1,1]^t
+ \end{eqnarray*}
+ Por lo tanto, se tiene que la matriz diagonal $D$, congruente a $A$, y la matriz de paso $P$, son:
+ \begin{equation*}
+  D = 
+  \begin{bmatrix}
+   1 & 0 & 0 & 0 \\
+   0 & 1 & 0 & 0 \\
+   0 & 0 & 1 & 0 \\
+   0 & 0 & 0 & 5
+  \end{bmatrix}
+  \qquad \text{ y } \qquad 
+  P = 
+  \begin{bmatrix}
+   \phantom{-}\frac{\sqrt{2}}{2} & 0 & \phantom{-}\frac{1}{2} & \frac{1}{2} \\
+   -\frac{\sqrt{2}}{2} & 0 & \phantom{-}\frac{1}{2} & \frac{1}{2} \\
+   0 & \phantom{-}\frac{\sqrt{2}}{2} & -\frac{1}{2} & \frac{1}{2} \\
+   0 & -\frac{\sqrt{2}}{2} & - \frac{1}{2} & \frac{1}{2}
+  \end{bmatrix}
+ \end{equation*}
+ Finalmente, $A$ es positiva si y s\'olo si sus autovalores, que son los elementos que conforman la matriz diagonal congruente a $A$, $D$, son positivos. Como este es el caso, se concluye entonces que $A$ es, en efecto, definida positiva, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,76 @@
+\begin{enunciado}
+ Sean $A$ y $B$ dos matrices reales, ambas cuadradas y de igual tama\~no. Compru\'ebese que:
+ \begin{enumerate}[$a$)]
+  \item Si una, al menos, de las matrices $A$ o $B$ es regular, entonces $AB$ y $BA$ tienen el mismo polinomio caracter\'{\i}stico.
+  \item Si $A$ y $B$, ambas, singulares, entonces $AB$ y $BA$ tienen, tambi\'en, el mismo polinomio caracter\'{\i}stico (indicaci\'on: recurrir al resultado anterior aplicando a $A$ y $B' = B + \varepsilon I$ y h\'allase luego que $\varepsilon$ tiende a cero).
+ \end{enumerate}
+
+\end{enunciado}
+
+\begin{solucion}
+ Sea $C$ una matriz regular, entonces existe $C^{-1}$, $\det C \neq 0$ y $\det (C^{-1}) = \left( \det C \right)^{-1}$, entonces:
+ \begin{enumerate}[a)]
+  \item Si $C$ es matriz regular, entonces
+  \begin{eqnarray*}
+   \det (AB - \lambda I) & = & 1\cdot \det (AB - \lambda I) = \det C \det (C^{-1}) \det (AB - \lambda I) = \\
+   & = &\det (C^{-1}) \det (AB - \lambda I) \det C = \det \left[ C^{-1}(AB - \lambda I) C \right] \\
+   & = & \det (C^{-1}ABC - \lambda C^{-1}I C) \\
+   & = & \det (C^{-1}ABC - \lambda I) \\ 
+  \end{eqnarray*}
+  Entonces, si $A$ es regular, se toma $C = A$ y $\det(AB-\lambda I) = \det(A^{-1}ABA - \lambda I) = \det(IBA - \lambda I) = \det (BA - \lambda I)$; por otro lado, si $B$ es regular, se toma $C = B^{-1}$, entonces $C^{-1} = B$ y $\det(AB-\lambda I) = \det (BABB^{-1} - \lambda I) = \det (BAI - \lambda I) = \det(BA - \lambda I)$. \\
+  Por lo tanto, en cualquier caso si $A$ o $B$ es regular, entonces el polinomio caracter\'{\i}stico de $AB$, que se obtiene como $\det(AB - \lambda I) = 0$ es equivalente a $\det(BA - \lambda I) = 0$ que es el polinomio caracter\'{\i}stico de $BA$, es decir: los polinomios caracter\'{\i}sticos de AB y BA son iguales.
+  
+  \item Sean $C$ y $D$ matrices cuadradas de tama\~no $2n\times 2n$, suponiendo que el tama\~no de las matrices A y B es de $n\times n$, que se pueden expresar por bloques como:
+  \begin{equation*}
+   C = 
+   \begin{pmatrix}
+    \lambda I & A \\
+    B         & I
+   \end{pmatrix}
+   \qquad \text{y} \qquad 
+   D = 
+   \begin{pmatrix}
+    -I & 0 \\ 
+     B & -\lambda I
+   \end{pmatrix}
+  \end{equation*}
+  entonces
+  \begin{equation*}
+   CD = 
+   \begin{pmatrix}
+    AB-\lambda I & \lambda -A \\
+    0            & -\lambda I
+   \end{pmatrix}
+   \qquad \text{y} \qquad 
+   DC = 
+   \begin{pmatrix}
+    -\lambda I & -A \\
+    0          & BA - \lambda I
+   \end{pmatrix}
+  \end{equation*}
+  Por lo tanto, usando el c\'alculo de determinantes por bloques, se tiene que:
+  \begin{equation*}
+   \det (CD) = \det
+   \begin{pmatrix}
+    AB-\lambda I & \lambda -A \\
+    0                    & -\lambda I
+   \end{pmatrix}
+   = \det(AB-\lambda I)\det(-\lambda I) = (-\lambda)^n \det (AB - \lambda)
+  \end{equation*}
+  y 
+  \begin{equation*}
+   \det(DC) = \det
+   \begin{pmatrix}
+    -\lambda I & -A \\
+    0          & BA - \lambda I
+   \end{pmatrix}
+   = \det(- \lambda I) \det(BA - \lambda I) = (-\lambda)^n \det(BA - \lambda I)
+  \end{equation*}
+  y como $\det (CD) = \det (DC)$, se concluye que $\det(AB - \lambda I) = \det (BA - \lambda I)$, que es lo que se quer\'{\i}a comprobar.${}_{\blacksquare}$
+
+
+
+
+ \end{enumerate}
+\end{solucion}
+

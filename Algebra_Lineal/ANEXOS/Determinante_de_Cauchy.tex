@@ -1,0 +1,156 @@
+\documentclass[a4paper,11pt]{article}
+%%\documentclass[a4paper,12pt]{amsart}
+\usepackage[cp1252]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+\setlength{\textheight}{23.5cm} \setlength{\evensidemargin}{0cm}
+\setlength{\oddsidemargin}{-0.8cm} \setlength{\topmargin}{-2.5cm}
+\setlength{\textwidth}{17.5cm} \setlength{\parskip}{0.25cm}
+
+\hyphenation{pro-ba-bi-li-dad}
+\spanishdecimal{.}
+
+\newtheoremstyle{teoremas}{\topsep}{\topsep}%
+     {}% Body font
+     {}% Indent amount (empty = no indent, \parindent = para indent)
+     {}% Thm head font
+     {}% Punctuation after thm head
+     {0.5em}% Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}.}\thmnote{ {\itshape#3}.}}% Thm head spec
+\theoremstyle{teoremas}
+
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{corolario}[teorema]{Corolario}
+
+
+\newtheoremstyle{ejemplos}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{ejemplos}
+
+\newtheoremstyle{definiciones}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{definiciones}
+
+\newtheoremstyle{lemas}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{lemas}
+
+
+\newtheorem*{definicion}{Definici\'on}
+\newtheorem*{enunciado}{Enunciado}
+\newtheorem*{solucion}{Soluci\'on}
+\newtheorem*{demostracion}{Demostraci\'on}
+\newtheorem*{lema}{Lema}
+\newtheorem*{hipotesis}{Hip\'otesis}
+\newtheorem*{estadistico}{Estad\'{\i}stico de Prueba}
+\newtheorem*{region}{Regi\'on de Rechazo}
+\newtheorem*{conclusion}{Conclusi\'on}
+\newtheorem*{hallar}{Por hallar}
+\newtheorem*{observaciones}{Observaciones}
+\newtheorem*{propiedades}{Propiedades}
+
+
+\title{Valor del determinante de Cauchy}
+\author{\'Alvaro J. Carde\~na Mej\'{\i}a}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Definici\'on de la matriz de Cauchy}
+
+S\'upongase que se tienen $2n$ elementos $a_1, a_2, \ldots, a_n, b_1, b_2, \ldots, b_n$ con $a_i \neq b_j$ para todo $i$ y $j$. Entonces la matriz de $n\times n$
+\begin{equation}
+ \begin{pmatrix}
+  \displaystyle{ \frac{1}{a_1 - b_1} } & \displaystyle{ \frac{1}{a_1 - b_2} } & \cdots & \displaystyle{ \frac{1}{a_1 - b_n} } \\
+  \displaystyle{ \frac{1}{a_2 - b_1} } & \displaystyle{ \frac{1}{a_2 - b_2} } & \cdots & \displaystyle{ \frac{1}{a_2 - b_2} } \\
+  \vdots & \vdots & \ddots & \vdots \\
+  \displaystyle{ \frac{1}{a_n - b_1} } & \displaystyle{ \frac{1}{a_n - b_2} } & \cdots & \displaystyle{ \frac{1}{a_n - b_n} }
+ \end{pmatrix}
+\end{equation}
+es llamada una matriz de Cauchy.
+
+\section{Teorema sobre el determinante de una matriz de Cauchy}
+
+\begin{teorema}
+ El determinante de una matriz de Cauchy, $C$, es:
+ \begin{equation*}
+  \det C = \frac{\displaystyle{ \prod_{1 \leq i < j \leq n} (a_j - a_i)(b_i - b_j) }}{\displaystyle{ \prod_{1 \leq i,j \leq n} (a_i - b_j) }} 
+ \end{equation*}
+\end{teorema}
+
+\section{Demostraci\'on del teorema}
+
+\begin{demostracion}
+ Dado que el determinante de una matriz es invariante si a una columna (o rengl\'on) se le suma o resta un m\'ultiplo de otra, entonces, el determinante de la matriz de Cauchy de orden $n$ (al que se le denotar\'a en lo sucesivo como $D_n$) permanecer\'a igual si se le resta la primera columna a cada columna $j$, con $j$ desde 2 hasta $n$. Al hacer esta operaci\'on, los valores de las sentradas en cada columna desde la segunda hasta la $n$-\'esima ser\'an:
+ \begin{equation*}
+  a_{ij} = \frac{1}{a_i-b_j} - \frac{1}{a_i - b_1} = \frac{(a_i - b_1) - (a_i - b_j)}{(a_i - b_j)(a_i - b_1)} = \left( \frac{b_j - b_1}{a_i - b_1} \right) \left( \frac{1}{a_i - b_j} \right)
+ \end{equation*}
+ Ahora, extrayendo el factor $\frac{1}{a_i - b_1}$ para cada rengl\'on $1\leq i \leq n$ y luego extrayendo el factor $b_j - b_1$ de cada columna $2 \leq j \leq n$, por la propiedad de que un determinante es igual al producto del determinante entre el factor constante de un rengl\'on o columna por el factor constante, se tiene que el determinante de la matriz de orden $n$ es:
+ \begin{equation*}
+  D_n = \left( \prod_{i=1}^{n} \frac{1}{a_i - b_1} \right) \left( \prod_{j=2}^n b_j - b_1 \right)
+  \begin{vmatrix}
+   1 & \displaystyle{\frac{1}{a_1 - b_2}} & \displaystyle{\frac{1}{a_1 - b_3}} & \cdots & \displaystyle{\frac{1}{a_1 - b_n}} \\ 
+   1 & \displaystyle{\frac{1}{a_2 - b_2}} & \displaystyle{\frac{1}{a_2 - b_3}} & \cdots & \displaystyle{\frac{1}{a_2 - b_2}} \\ 
+   1 & \displaystyle{\frac{1}{a_3 - b_2}} & \displaystyle{\frac{1}{a_3 - b_3}} & \cdots & \displaystyle{\frac{1}{a_3 - b_n}} \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   1 & \displaystyle{\frac{1}{a_n - b_2}} & \displaystyle{\frac{1}{a_n - b_3}} & \cdots & \displaystyle{\frac{1}{a_n - b_n}}
+  \end{vmatrix}
+ \end{equation*}
+ Ahora, restando el rengl\'on 1 a cada uno de los renglones desde $2$ hasta $n$, la columna 1 se vuelve $0$ para todos excepto el primer rengl\'on y de la columna $2$ hasta la $n$, se vuelven los elementos:
+ \begin{equation*}
+  a_{ij} = \frac{1}{a_i - b_j} - \frac{1}{a_1 - b_j} = \frac{(a_1 - b_j) - (a_i - b_j)}{(a_i - b_j)(a_1 - b_j)} = \left( \frac{a_1 - a_i}{a_1 - b_j} \right) \left( \frac{1}{a_i - b_j} \right)
+ \end{equation*}
+ Esta operaci\'on fue la resta de cada rengl\'on menos un rengl\'on, por lo que, por lo antes mencionado, el determinante no cambia.
+ Luego, extrayendo el factor $a_1 - a_i$ de cada uno de los renglones $2 \leq i \leq n$ y, luego, extrayendo el factor $\frac{1}{a_1 - b_j}$ de cada una de las columnas $2 \leq j \leq n$, usando nuevamente la propiedad de determinantes de extracci\'on de valores constantes en filas y columnas, se tiene lo siguiente:
+ \begin{equation*}
+  D_n = \left( \prod_{i=1}^n \frac{1}{a_i - b_1} \right) \left( \prod_{j=2}^n \frac{1}{a_1 - b_j} \right) \left( \prod_{i=2}^n a_1 - a_i \right) \left( \prod_{j=2}^n b_j - b_1 \right)
+  \begin{vmatrix}
+   1 & 1 & 1 & \cdots & 1 \\ 
+   0 & \displaystyle{\frac{1}{a_2 - b_2}} & \displaystyle{\frac{1}{a_2 - b_3}} & \cdots & \displaystyle{\frac{1}{a_2 - b_n}} \\ 
+   0 & \displaystyle{\frac{1}{a_3 - b_2}} & \displaystyle{\frac{1}{a_3 - b_3}} & \cdots & \displaystyle{\frac{1}{a_3 - b_n}} \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   0 & \displaystyle{\frac{1}{a_n - b_2}} & \displaystyle{\frac{1}{a_n - b_3}} & \cdots & \displaystyle{\frac{1}{a_n - b_n}}
+  \end{vmatrix}
+ \end{equation*}
+ Entonces, de las propiedades de determinantes, esto se reduce al bloque de $(n-1) \times (n-1)$ y se tiene que:
+ \begin{equation}
+  D_n = \frac{\displaystyle{ \prod_{i=2}^n (a_i - a_1)(b_1 - b_i) }}{\displaystyle{ (a_1 - b_1) \prod_{2 \leq i,j \leq n} (a_i - b_1)(a_1 - b_j) }}
+  \begin{vmatrix}
+   \displaystyle{\frac{1}{a_2 - b_2}} & \displaystyle{\frac{1}{a_2 - b_3}} & \cdots & \displaystyle{\frac{1}{a_2 - b_n}} \\ 
+   \displaystyle{\frac{1}{a_3 - b_2}} & \displaystyle{\frac{1}{a_3 - b_3}} & \cdots & \displaystyle{\frac{1}{a_3 - b_n}} \\
+   \vdots & \vdots & \ddots & \vdots \\
+   \displaystyle{\frac{1}{a_n - b_2}} & \displaystyle{\frac{1}{a_n - b_3}} & \cdots & \displaystyle{\frac{1}{a_n - b_n}}
+  \end{vmatrix}
+ \end{equation}
+ Repitiendo el proceso para el resto de los renglones y columnas de $2$ a $n$, se llega al resultado deseado.${}_{\blacksquare}$
+ 
+\end{demostracion}
+
+
+\end{document}

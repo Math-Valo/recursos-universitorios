@@ -1,0 +1,30 @@
+\begin{enunciado}
+ Hallar todas las matrices cuadradas, de un cierto tama\~no $n\times n$, tales que $A = P^{-1}AP$ para toda matriz regular $P$, de tama\~no $n\times n$.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $P = [p_{ij}]_{n\times n}$ la matriz diagonal que en el $i-$\'esimo elemento de la diagonal tiene un valor $\lambda_i \neq 0$. y $\lambda_i \neq \lambda_j$ cuando $i\neq j$, si $P' = [p'_{ij}]_{n\times n}$ es una cierta matriz, entonces el elemento $p''_{ij}$ de $P'' = P'P$ es igual a $p''_{ij} = \sum_{k=1}^n p'_{ik}p_{kj}  = p'_{ij}p_{jj} = \lambda_{j}p'_{ij}$, entonces, si $p'_{ii} = \frac{1}{\lambda_{i}}$ y $p_{ij} = 0$ cuando $i\neq j$, se sigue que $P'P$ es la identidad y, por lo tanto, $P'$ es el inverso de $P$.
+ Entonces $P$ es una matriz regular de tama\~no $n\times n$. Por lo tanto $A = P^{-1}AP$ para la matriz $P$ construida.
+ \par 
+ Sea $a_{ij}$ el elemento $(i,j)$ de $A$, entonces, como $A = P^{-1}AP$, se tiene que
+ \begin{eqnarray*}
+  a_{ij} & = & \sum_{k=1}^{n} p'_{ik}\left( \sum_{l = 1}^{n} a_{kl}p_{lj} \right) \\
+  & = & \frac{1}{\lambda_{ii}} \left( a_{ij}\lambda_{j} \right) \\
+  & = & \frac{\lambda_j}{\lambda_i} a_{ij}
+ \end{eqnarray*}
+ entonces, como $\lambda_i \neq \lambda_j$ cuando $i \neq j$, se sigue que $a_{ij} = 0$ cuando $i\neq j$, por lo tanto $A$ es una matriz diagonal.
+ \par 
+ Por otro lado, si $\sigma$ es una permutaci\'on, y $Q_{\sigma} = [q^{\sigma}_{ij}]_{n\times n}$ es la matriz de permutaci\'on inducida por $\sigma$, es decir $q^{\sigma}_{i\sigma(i)} = 1$ y $q^{\sigma}_{ij} = 0$ cuando $j\neq \sigma(i)$, se sabe que $Q_{\sigma^{-1}} = [qq^{\sigma}_{ij}]$ es la inversa de $Q$
+ ya que el elemento $q''_{ij}$ de su producto es igual a $q''_{ij} = \sum_{k=1}^n qq^{\sigma}_{ik} q^\sigma_{kj} = qq^{\sigma}_{i\sigma^{-1}(j)} q^{\sigma}_{\sigma^{-1}(j) j} = qq^{\sigma}_{i\sigma^{-1}(j)}$, entonces, $q''_{ij} = 0$ cuando $j \neq i$ y $q''_{ii} = qq^{\sigma}_{i\sigma^{-1}(i)} = 1$, es decir la identidad. Entonces $Q_{\sigma}$ es una matriz regular de tama\~no $n\times n$. Por lo tanto $A = Q^{-1}_{\sigma}AQ_{\sigma}$ para la matriz $Q_{\sigma}$ construida, para cada posible permutaci\'on $\sigma$.
+ \par 
+ Como ya se dedujo que $a_{ij} = 0$ si $i\neq j$, se ver\'a qu\'e ocurre cuando con $a_{ii}$. Como $A = Q^{-1}_{\sigma}AQ_{\sigma}$, se tiene que 
+ \begin{eqnarray*}
+  a_{ii} & = & \sum_{k=1}^n qq^{\sigma}_{ik} \left( \sum_{l=1}^n a_{kl}q^{\sigma}_{li} \right) \\
+  & = & \sum_{k=1}^n qq^{\sigma}_{ik} \left( a_{kk}q^{\sigma}_{ki} \right) \\ 
+  & = & a_{\sigma^{-1}(i)\, \sigma^{-1}(i)} q_{\sigma^{-1}(i)\, i} \\
+  & = & a_{\sigma^{-1}(i)\, {\sigma^{-1}(i)}}
+ \end{eqnarray*}
+ Donde, para cada posible $j \in \mathbb{N}\cap[1,n]$, existe una permutaci\'on, $\sigma$, tal que $\sigma^{-1}(i) = j$, por ejemplo, si $\sigma$ es la permutaci\'on tal que $\sigma(i) = j$, $\sigma(j)=i$ y $\sigma(k) = k$ para cualquier $k\not\in \{i,j\}$, se tiene que $\sigma^{-1}=\sigma$. Por lo tanto, para cada matriz regular $Q_{\sigma}$, se tiene que $A = Q^{-1}_{\sigma}AQ_{\sigma}$ y esto, a su vez, implica que $a_{11} = a_{ii}$ para cualquier $i \in \mathbb{N}\cap[1,n]$. \par 
+ Por lo tanto, $A = P^{-1}AP$ para toda matriz regular $P$, tama\~no $n\times n$, si y s\'olo si $A = \lambda I$ para cualquier escalar $\lambda \in \mathbb{R}$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
+

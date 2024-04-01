@@ -1,0 +1,126 @@
+\documentclass[a4paper,11pt]{article}
+%%\documentclass[a4paper,12pt]{amsart}
+\usepackage[cp1252]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+\setlength{\textheight}{23.5cm} \setlength{\evensidemargin}{0cm}
+\setlength{\oddsidemargin}{-0.8cm} \setlength{\topmargin}{-2.5cm}
+\setlength{\textwidth}{17.5cm} \setlength{\parskip}{0.25cm}
+
+\hyphenation{pro-ba-bi-li-dad}
+\spanishdecimal{.}
+
+\newtheoremstyle{teoremas}{\topsep}{\topsep}%
+     {}% Body font
+     {}% Indent amount (empty = no indent, \parindent = para indent)
+     {}% Thm head font
+     {}% Punctuation after thm head
+     {0.5em}% Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}.}\thmnote{ {\itshape#3}.}}% Thm head spec
+\theoremstyle{teoremas}
+
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{corolario}[teorema]{Corolario}
+
+
+\newtheoremstyle{ejemplos}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{ejemplos}
+
+\newtheoremstyle{definiciones}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{definiciones}
+
+\newtheoremstyle{lemas}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{lemas}
+
+
+\newtheorem*{definicion}{Definici\'on}
+\newtheorem*{enunciado}{Enunciado}
+\newtheorem*{solucion}{Soluci\'on}
+\newtheorem*{demostracion}{Demostraci\'on}
+\newtheorem*{lema}{Lema}
+\newtheorem*{hipotesis}{Hip\'otesis}
+\newtheorem*{estadistico}{Estad\'{\i}stico de Prueba}
+\newtheorem*{region}{Regi\'on de Rechazo}
+\newtheorem*{conclusion}{Conclusi\'on}
+\newtheorem*{hallar}{Por hallar}
+\newtheorem*{observaciones}{Observaciones}
+\newtheorem*{propiedades}{Propiedades}
+
+
+\title{\'Algebra Lineal\\Parte III: Ejercicio 36}
+\author{\'Alvaro J. Carde\~na Mej\'{\i}a}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicio 36}
+
+Sea $V$ el espacio vectorial eucl\'{\i}deo de las funciones polin\'omicas, definidas en $[0,1]$, con el siguiente producto escalar:
+\begin{equation}
+ (p|q) = \int_{0}^{1} p(x)q(x)\, dx
+\end{equation}
+Sea $U$ el subespacio, de $V$, que forman las funciones polin\'omicas que tienen nulo el t\'ermino independiente.
+No cuesta demasiado trabajo comprobar que no existe ninguna funci\'on polin\'omica no nula que sea ortogonal a todas las de $U$; dicho de otro modo, se verifica que $U^{\perp} = O$.
+
+\subsection{El ``No cuesta demasiado trabajo comprobar''}
+
+Dado $p(x) = a_0 + a_1x + \cdots + a_nx^n$, compru\'ebese que $\int_{0}^{1} x^i p(x)\, dx = 0$ para $i = 1, 2, \ldots , n+2$ es un sistema lineal, de $n + 1$ ecuaciones lineales en las $n + 1$ inc\'ognitas $a_0, a_1, \ldots, a_n$, que tiene determinante no nulo y, por ello, su \'unica soluci\'on es $a_0 = a_1 = \cdots = a_n = 0$.
+
+\subsubsection{El ``comrpu\'ebese''}
+
+Dado un polinomio $p \in U^{\perp}$, \'este debe de cumplir que $<p | q> = 0$ para todo $q \in U$. Una obvia base de $U$ es $\beta = \{ x, x^2, x^3, \ldots \}$, por lo que $p$ es ortogonal con todos los elemento de $U$ si y s\'olo si $p$ es ortogonal con todos los elementos de la base $\beta$, de $U$.
+Suponiendo que $p(x) = a_0 + a_1x + \cdots + a_nx^n$, entonces el producto interno de $p$ con los primeros $n+1$ elementos de la base da por resultado:
+\begin{eqnarray*}
+ \int_{0}^{1} x^i p(x) \, dx 
+ & = & \int_{0}^{1} x^i \left( \sum_{j=0}^{n} a_jx^j \right) \, dx = \int_{0}^{1} \left( \sum_{j=0}^{n} a_j x^{j+i}  \right) \, dx \\
+ & = & \left. \left[ \sum_{j=0}^n a_i\left( \frac{x^{j+i+1}}{i+j+1} \right)  \right] \right|_{0}^{1} = \sum_{j=0}^{n} \frac{a_i}{j+i+1} \\
+ & = & \sum_{j=1}^{n+1} \frac{a_{i-1}}{j+i}, \qquad \forall i \in \mathbb{N}\cap[1,n+1]
+\end{eqnarray*}
+Por lo tanto, para encontrar los valores $a_i$ tales que $p$ es ortogornal con los primeros $n+1$ elementos de la base, se debe de cumplir el siguiente sistema de ecuaciones:
+\begin{center}
+ \begin{tabular}{ccccccccccc}
+  $\frac{a_0}{2}$ & $+$ & $\frac{a_1}{3}$ & $+$ & $\frac{a_2}{4}$ &  $+$ & $\cdots$ & $+$ & $\frac{a_n}{n+2}$ & $=$ & $0$ \\
+  $\frac{a_0}{3}$ & $+$ & $\frac{a_1}{4}$ & $+$ & $\frac{a_2}{5}$ & $+$ & $\cdots$ & $+$ & $\frac{a_n}{n+3}$ & $=$ & $0$ \\
+  $\frac{a_0}{4}$ & $+$ & $\frac{a_1}{5}$ & $+$ & $\frac{a_2}{6}$ & $+$ & $\cdots$ & $+$ & $\frac{a_n}{n+4}$ & $=$ & $0$ \\
+  $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+  $\frac{a_0}{n+2}$ & $+$ & $\frac{a_1}{n+3}$ & $+$ & $\frac{a_2}{n+4}$ & $+$ & $\cdots$ & $+$ & $\frac{a_n}{2n+2}$ & $=$ & $0$ \\
+ \end{tabular}
+\end{center}
+el cual se puede representar matricialmente como $AX = O$, donde $X = (a_0, a_1, a_2, \cdots, a_n)^t$, $O$ es el vector columna nulo de tama\~no $n+1$ y $A = [a_{ij}]$ es la matriz de orden $n+1$ cuyos elementos son $a_{ij} = \frac{1}{i+j}$. Esta matriz $A$ es una matriz de Cauchy, cuyos elementos son $\frac{1}{\alpha_i - \beta_j}$ con $\alpha_i = i$ y $\beta_j = -j$, el cual se sabe, su determinante es distinto de cero siempre que no haya dos elementos entre los valores de alpha o lo valores de beta que sean iguales. Por lo tanto, su determinante es distinto de cero, lo cual implica que la \'unica soluci\'on del sistema es el trivial. Por lo tanto, el \'unico polinomio $p \in U^{\perp}$ es el nulo.
+
+\section{A continuar con el contraejemplo...}
+
+Entonces, sea $U_1 = U$, y $U_2$ el subespacio, de $V$, que forman las funciones polin\'omicas de grado menor a 2, entonces se tiene que ning\'un polinomio de grado menor a 2 pertenece a $U_2^{\perp}$, ya que si as\'{\i} fuese, tendr\'{\i}a que cumplir que, si $p(x) = a_0 + a_1x$ fuese dicho polinomio, $\int_0^1 a_0 + a_1x \, dx = \left. a_0 + \frac{a_1 x^2}{2} \right|_0^1 = a_0 + \frac{a_1}{2} = 0$ y, simult\'aneamente, que $\int_0^1 a_0x + a_1x^2 \, dx = \left. \frac{a_0 x^2}{2} + \frac{a_1x^3}{3} \right|0^1 = \frac{a_0}{2} + \frac{a_1}{3} = 0$, cuyo sistema de ecuaciones da por resultado que la \'unica soluci\'on es la trivial (usando el mismo m\'etodo usado antes), por lo que $a_0 = a_1 = 0$, entonces $U_1^{\perp} + U_2^{\perp} = O + W = W$, con $W$ un subespacio con polinomios de al menos grado 2, sin embargo, $U_1 \cap U_2$ son los polinomios de grado 1 sin constantes, generado por el polinomio $x$, y $p(x) = 2 - 3x$ ortogonal a todos estos polinomios, por lo que $2 - 3x \in \left( U_1 \cap U_2 \right)^{\perp}$ pero $2 - 3x \not\in U_1^{\perp} + U_2^{\perp}$, por lo que $\left( U_1 \cap U_2 \right)^{\perp} \not\subset U_1^{\perp} + U_2^{\perp}$ para casos en general.
+
+
+
+\end{document}

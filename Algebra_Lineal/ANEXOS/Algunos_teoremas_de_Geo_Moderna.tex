@@ -1,0 +1,269 @@
+\documentclass[a4paper,11pt]{article}
+%%\documentclass[a4paper,12pt]{amsart}
+\usepackage[cp1252]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+\setlength{\textheight}{23.5cm} \setlength{\evensidemargin}{0cm}
+\setlength{\oddsidemargin}{-0.8cm} \setlength{\topmargin}{-2.5cm}
+\setlength{\textwidth}{17.5cm} \setlength{\parskip}{0.25cm}
+
+\hyphenation{pro-ba-bi-li-dad}
+\spanishdecimal{.}
+
+\newtheoremstyle{teoremas}{\topsep}{\topsep}%
+     {}% Body font
+     {}% Indent amount (empty = no indent, \parindent = para indent)
+     {}% Thm head font
+     {}% Punctuation after thm head
+     {0.5em}% Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}.}\thmnote{ {\itshape#3}.}}% Thm head spec
+\theoremstyle{teoremas}
+
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{corolario}[teorema]{Corolario}
+
+
+\newtheoremstyle{ejemplos}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{ejemplos}
+
+\newtheoremstyle{definiciones}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{definiciones}
+
+\newtheoremstyle{lemas}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{lemas}
+
+
+\newtheorem*{definicion}{Definici\'on}
+\newtheorem*{enunciado}{Enunciado}
+\newtheorem*{solucion}{Soluci\'on}
+\newtheorem*{demostracion}{Demostraci\'on}
+\newtheorem*{lema}{Lema}
+\newtheorem*{hipotesis}{Hip\'otesis}
+\newtheorem*{estadistico}{Estad\'{\i}stico de Prueba}
+\newtheorem*{region}{Regi\'on de Rechazo}
+\newtheorem*{conclusion}{Conclusi\'on}
+\newtheorem*{hallar}{Por hallar}
+\newtheorem*{observaciones}{Observaciones}
+\newtheorem*{propiedades}{Propiedades}
+
+
+\title{Teoremas bonitos de geometr\'{\i}a moderna}
+\author{\'Alvaro J. Carde\~na Mej\'{\i}a}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Magnitudes con sentido}
+
+\begin{definicion}
+ A veces elegiremos alg\'un sentido sobre una recta dada como el positivo, y el otro, como el negativo. Un segmento $AB$ sobre una recta se considerar\'a entonces \textit{positivo} o \textit{negativo} seg\'un que el sentido de $A$ a $B$ sea el positivo o el negativo de la recta, y el s\'{\i}mbolo $\overline{AB}$ (en contraste con $AB$) se utilizar\'a para representar la distancia dirigida resultante, con su signo o sentido del punto $A$ al punto $B$. Dicho segmento $\overline{AB}$ se llama \textit{con sentido} o \textit{dirigido}; el punto $A$ se llama \textit{punto inicial}, u origen, del segmento y el $B$, su \textit{punto final}. El hecho de que $\overline{AB}$ y $\overline{BA}$ sean iguales en magnitud pero de sentido contrario se indica por la ecuaci\'on
+ \begin{equation*}
+  \overline{AB} = - \overline{BA},
+ \end{equation*}
+ o por la ecuaci\'on equivalente
+ \begin{equation*}
+  \overline{AB} + \overline{BA} = 0.
+ \end{equation*}
+ Por supuesto, $\overline{AA} = 0$.
+\end{definicion}
+
+\begin{definicion}
+ Los puntos que est\'an en la misma recta se dice que son \textit{colineales}. Un conjunto de puntos colineales se dice qeu constituye una \textit{alineaci\'on} o una \textit{serie de puntos}, y la recta sobre la que est\'an colocados se llama \textit{base} de la alineaci\'on. Una alineaci\'on que comprende todos los puntos de su base se llama \textit{alineaci\'on completa}.
+\end{definicion}
+
+Podemos ahora establecer algunos teoremas b\'asicos respecto a los segmentos rectil\'{\i}neos con sentido.
+
+\begin{teorema}
+ Si $A, B, C$ son tres puntos colineles, entonces
+ \begin{equation*}
+  \overline{AB} + \overline{BC} + \overline{CA} = 0
+ \end{equation*}
+\end{teorema}
+
+\begin{demostracion}
+ Si los puntos $A, B, C$ son distintos, entonces $C$ tiene que estar entre $A$ y $B$, o en la prolongaci\'on de $\overline{AB}$, o en la prolongaci\'on de $\overline{BA}$. Consideramos estos tres casos por turno.
+ \par 
+ Si $C$ est\'a entre $A$ y $B$, entonces $\overline{AB} = \overline{AC} + \overline{CB}$, o $\overline{AB} - \overline{CB} - \overline{AC} = 0$, o $\overline{AB} + \overline{BC} + \overline{CA} = 0$.
+ \par 
+ Si $C$ est\'a en la prolongaci\'on de $\overline{AB}$, entonces $\overline{AB} + \overline{BC} = \overline{AC}$, o $\overline{AB} + \overline{BC} - \overline{AC} = 0$, o $\overline{AB} + \overline{BC} + \overline{CA} = 0$.
+ \par 
+ Si $C$ est\'a en la prolongaci\'on de $\overline{BA}$, entonces $\overline{CA} + \overline{AB} = \overline{CB}$, o $\overline{AB} - \overline{CB} + \overline{CA} = 0$, o $\overline{AB} + \overline{BC} + \overline{CA} = 0$.
+ \par 
+ Las situaciones en que uno o m\'as de los puntos $A$, $B$, $C$ coincidan, se pueden considerar f\'acilmente.${}_{\blacksquare}$
+\end{demostracion}
+
+Este teorema ilustra una de las caracter\'{\i}sticas de econom\'{\i}a de las magnitudes con sentido. Sin el concepto de segmentos rectil\'{\i}neos dirigidos tendr\'{\i}an que darse tres ecuaciones diferentes para describir las posibles f\'ormulas que relacionan las tres distancias sin signo $AB$, $BC$, $CA$ entre los pares de tres puntos colineales distintos $A$, $B$, $C$.
+
+\begin{teorema}
+ Sea $O$ un punto cualquiera del semgneto $AB$. Entonces $\overline{AB} = \overline{OB} - \overline{OA}$.
+\end{teorema}
+
+\begin{demostracion}
+ Esta es una consecuencia inmediata del teorema anterior, pues que por dicho teorema tenemos $\overline{AB} + \overline{BO} + \overline{OA} = 0$, en consecuencia, $\overline{AB} = -\overline{BO} - \overline{OA} = \overline{OB} - \overline{OA}$.${}_{\blacksquare}$
+\end{demostracion}
+
+\begin{teorema}[Teorema de Euler. (1747.)]
+ Si $A,B,C,D$ son cuatro puntos colineales cualesquiera, entonces
+ \begin{equation*}
+  \overline{AD}\cdot \overline{BC} + \overline{BD}\cdot \overline{CA} + \overline{CD}\cdot \overline{AB} = 0.
+ \end{equation*}
+\end{teorema}
+
+\begin{demostracion}
+ El teorema se deduce observando que, por el teorema anterior, el primer miembro de la ecuaci\'on anterior puede ponerse en la forma
+ \begin{equation*}
+  \overline{AD}\cdot\left( \overline{DC} - \overline{DB} \right) + \overline{BD}\cdot\left( \overline{DA} - \overline{DC} \right) + \overline{CD}\cdot \left( \overline{DB}  - \overline{DA} \right),
+ \end{equation*}
+ que, despu\'es de su desarrollo y reducci\'on, se ve que se anula id\'enticamente.${}_{\blacksquare}$
+\end{demostracion}
+
+La noci\'on de segmento dirigido nos conduce a la siguiente definici\'on muy \'util de la raz\'on en la que un punto sobre una recta divide a un segmento de esa recta.
+
+\begin{definicion}
+ Si $A, B, P$ son puntos colineales distintos, definimos \textit{la relaci\'on en la que} $P$ \textit{divide al segmento} $AB$ por la raz\'on $\overline{AP}/\overline{PB}$. Debe observarse que el valor de esta relaci\'on es independiente del sentido que se asigne a la recta $AB$. Si $P$ est\'a entre $A$ y $B$, se dice que la divisi\'on es \textit{interna}; en caso contrario, se dice que la divisi\'on es \textit{externa}. Representando la raz\'on por $\overline{AP}/\overline{PB}$ por $r$, observaremos que si $P$ est\'a en la prolongaci\'on de $\overline{BA}$, entonces $-1 < r < 0$; si $P$ est\'a entre $A$ y $B$, entonces $0 < r < \infty$; si $P$ est\'a en la prolongaci\\'on de $\overline{AB}$, entonces $-\infty < r < -1$.
+ \par 
+ Si $A$ y $B$ son distintos y $P$ coincide con $A$, entonces pondremos que $\overline{AP}/\overline{PB} = 0$. Si $A$ y $B$ son distintos y $P$ coincide con $B$, la raz\'on $\overline{AP}/\overline{PB}$ no est\'a definida y esto lo indicamos escribiendo $\overline{AP}/\overline{PB} = \infty$.
+\end{definicion}
+
+Los investigadores de geometr\'{\i}a elemental moderna han ideado varias maneras de asignar un sentido a los \'angulo que est\'an en un plano com\'un y cada una tiene sus propios usos. La manera que vamos a describir ahora es particularmente \'util en relaciones en que intervienen funciones trigonom\'etricas.
+
+\begin{definicion}
+ Podemos considerar que un \'angulo $AOB$ es generado por la rotaci\'ion de la recta $OA$ alrededor del punto $O$ hasta que coincida con la $OB$, sin que la rotaci\'on exceda de $180^{\circ}$; si la rotaci\'on es en el sentido contrario al reloj se dice que el \'angulo es \textit{positivo}; si la rotaci\'on es en el sentido del reloj se dice que el \'angulo es \textit{negativo}, y el s\'imbolo $\sphericalangle\overline{AOB}$ (en contraste con $\sphericalangle AOB$) se utilizar\'a para representar la rotaci\'on resultante con un signo o sentido. Dicho $\sphericalangle\overline{AOB}$ se denomina \textit{\'angulo con sentido} o \textit{dirigido}; el punto $O$ se llama \textit{v\'ertice del \'angulo}; el lado $OA$ se llama \textit{lado inicial} del \'angulo; el lado $OB$ se llama su \textit{lado final}. Si el $\sphericalangle AOB$ no es un \'angulo recto, entonces el hecho de que $\sphericalangle \overline{AOB}$ y $\sphericalangle\overline{BOA}$ sean iguales en magnitud, pero de sentido contrario, se indica por la ecuaci\'on
+ \begin{equation*}
+  \sphericalangle\overline{AOB} = - \sphericalangle\overline{BOA},
+ \end{equation*}
+ o por la equivalente
+ \begin{equation*}
+  \sphericalangle\overline{AOB} + \sphericalangle\overline{BOA} = 0
+ \end{equation*}
+\end{definicion}
+
+A veces conviene asignar un sentido a las \'areas de tri\'angulos que est\'an en un plano com\'un.
+
+\begin{definicion}
+ Un tri\'angulo $ABC$ se considerar\'a \textit{positivo} o \textit{negativo} seg\'un que el per\'{\i}metro descrito de $A$ a $B$ a $C$ a $A$ sea en el sentido contrario al reloj o en el sentido del reloj. Dicha \'area triangular con su signo se llama \textit{\'area con sentido} o \textit{\'area dirigida}, y se representar\'a por $\triangle\overline{ABC}$ (en contraste con $\triangle ABC$).
+\end{definicion} 
+
+Algunos desarrollos subsiguientes utilizar\'an los dos siguientes teoremas importantes.
+
+\begin{teorema}
+ Si el v\'ertice $A$ del tri\'angulo $ABC$ se une a un punto $L$ de la recta $BC$, entonces
+ \begin{equation*}
+  \frac{\overline{BL}}{\overline{LC}} =
+  \frac{AB \sin{ \overline{BAL}}}{ AC\sin{\overline{LAC}}}
+ \end{equation*}
+\end{teorema}
+
+\begin{demostracion}
+ Sea $h$ la longitud de la perpendicular que va desde $A$ hasta la reta $BC$. El lector puede verificar que para todas las figuras posibles,
+ \begin{equation*}
+  \frac{\overline{BL}}{\overline{LC}} =
+  \frac{h\overline{BL}}{h\overline{LC}} =
+  \frac{2\triangle\overline{ABL}}{2\triangle\overline{ALC}} =
+  \frac{(AB)(AL)\sin{\overline{BAL}}}{(AL)(AC)\sin{\overline{LAC}}} = 
+  \frac{AB \sin{\overline{BAL}}}{AC \sin{\overline{LAC}}}.{}_{\blacksquare}
+ \end{equation*}
+\end{demostracion}
+
+\begin{teorema}
+ Si $a,b,c,d$ son cuatro rectas distintas que pasan por un punto $V$, entonces
+ \begin{equation*}
+  \frac{\sin{\overline{AVC}}/\sin{\overline{CVB}} }{\sin{\overline{AVD}}/\sin{\overline{DVB}}}
+ \end{equation*}
+ es independiente de las posiciones de $A,B,C,D$ sobre las rectas $a,b,c,d$, respectivamente, mientras todos los citados puntos sean distintos de $V$.
+\end{teorema}
+
+\begin{demostracion}
+ A
+\end{demostracion}
+
+Finalmente, unas definiciones convenientes.
+
+\begin{definicion}
+ Las rectas que est\'an en un plano y pasan por un mismo punto se dice que son \textit{concurrentes}. Un conjunto de rectas coplanares concurrentes se dice que constituyen un \textit{haz} de rectas, y el punto por el que pasan todas ellas se llama \textit{v\'ertice} del haz. Un haz que comprenda todas las rectas que pasan por su v\'ertice se llama \textit{haz completo}. Una recta del plano de un haz y que no pase por el \'vertice de \'este, se llama \textit{transversal} del haz.
+\end{definicion}
+
+
+\section{Elementos infinitos}
+
+A
+
+\section{Demostraci\'on del teorema}
+
+\begin{demostracion}
+ Dado que el determinante de una matriz es invariante si a una columna (o rengl\'on) se le suma o resta un m\'ultiplo de otra, entonces, el determinante de la matriz de Cauchy de orden $n$ (al que se le denotar\'a en lo sucesivo como $D_n$) permanecer\'a igual si se le resta la primera columna a cada columna $j$, con $j$ desde 2 hasta $n$. Al hacer esta operaci\'on, los valores de las sentradas en cada columna desde la segunda hasta la $n$-\'esima ser\'an:
+ \begin{equation*}
+  a_{ij} = \frac{1}{a_i-b_j} - \frac{1}{a_i - b_1} = \frac{(a_i - b_1) - (a_i - b_j)}{(a_i - b_j)(a_i - b_1)} = \left( \frac{b_j - b_1}{a_i - b_1} \right) \left( \frac{1}{a_i - b_j} \right)
+ \end{equation*}
+ Ahora, extrayendo el factor $\frac{1}{a_i - b_1}$ para cada rengl\'on $1\leq i \leq n$ y luego extrayendo el factor $b_j - b_1$ de cada columna $2 \leq j \leq n$, por la propiedad de que un determinante es igual al producto del determinante entre el factor constante de un rengl\'on o columna por el factor constante, se tiene que el determinante de la matriz de orden $n$ es:
+ \begin{equation*}
+  D_n = \left( \prod_{i=1}^{n} \frac{1}{a_i - b_1} \right) \left( \prod_{j=2}^n b_j - b_1 \right)
+  \begin{vmatrix}
+   1 & \displaystyle{\frac{1}{a_1 - b_2}} & \displaystyle{\frac{1}{a_1 - b_3}} & \cdots & \displaystyle{\frac{1}{a_1 - b_n}} \\ 
+   1 & \displaystyle{\frac{1}{a_2 - b_2}} & \displaystyle{\frac{1}{a_2 - b_3}} & \cdots & \displaystyle{\frac{1}{a_2 - b_2}} \\ 
+   1 & \displaystyle{\frac{1}{a_3 - b_2}} & \displaystyle{\frac{1}{a_3 - b_3}} & \cdots & \displaystyle{\frac{1}{a_3 - b_n}} \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   1 & \displaystyle{\frac{1}{a_n - b_2}} & \displaystyle{\frac{1}{a_n - b_3}} & \cdots & \displaystyle{\frac{1}{a_n - b_n}}
+  \end{vmatrix}
+ \end{equation*}
+ Ahora, restando el rengl\'on 1 a cada uno de los renglones desde $2$ hasta $n$, la columna 1 se vuelve $0$ para todos excepto el primer rengl\'on y de la columna $2$ hasta la $n$, se vuelven los elementos:
+ \begin{equation*}
+  a_{ij} = \frac{1}{a_i - b_j} - \frac{1}{a_1 - b_j} = \frac{(a_1 - b_j) - (a_i - b_j)}{(a_i - b_j)(a_1 - b_j)} = \left( \frac{a_1 - a_i}{a_1 - b_j} \right) \left( \frac{1}{a_i - b_j} \right)
+ \end{equation*}
+ Esta operaci\'on fue la resta de cada rengl\'on menos un rengl\'on, por lo que, por lo antes mencionado, el determinante no cambia.
+ Luego, extrayendo el factor $a_1 - a_i$ de cada uno de los renglones $2 \leq i \leq n$ y, luego, extrayendo el factor $\frac{1}{a_1 - b_j}$ de cada una de las columnas $2 \leq j \leq n$, usando nuevamente la propiedad de determinantes de extracci\'on de valores constantes en filas y columnas, se tiene lo siguiente:
+ \begin{equation*}
+  D_n = \left( \prod_{i=1}^n \frac{1}{a_i - b_1} \right) \left( \prod_{j=2}^n \frac{1}{a_1 - b_j} \right) \left( \prod_{i=2}^n a_1 - a_i \right) \left( \prod_{j=2}^n b_j - b_1 \right)
+  \begin{vmatrix}
+   1 & 1 & 1 & \cdots & 1 \\ 
+   0 & \displaystyle{\frac{1}{a_2 - b_2}} & \displaystyle{\frac{1}{a_2 - b_3}} & \cdots & \displaystyle{\frac{1}{a_2 - b_n}} \\ 
+   0 & \displaystyle{\frac{1}{a_3 - b_2}} & \displaystyle{\frac{1}{a_3 - b_3}} & \cdots & \displaystyle{\frac{1}{a_3 - b_n}} \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   0 & \displaystyle{\frac{1}{a_n - b_2}} & \displaystyle{\frac{1}{a_n - b_3}} & \cdots & \displaystyle{\frac{1}{a_n - b_n}}
+  \end{vmatrix}
+ \end{equation*}
+ Entonces, de las propiedades de determinantes, esto se reduce al bloque de $(n-1) \times (n-1)$ y se tiene que:
+ \begin{equation}
+  D_n = \frac{\displaystyle{ \prod_{i=2}^n (a_i - a_1)(b_1 - b_i) }}{\displaystyle{ (a_1 - b_1) \prod_{2 \leq i,j \leq n} (a_i - b_1)(a_1 - b_j) }}
+  \begin{vmatrix}
+   \displaystyle{\frac{1}{a_2 - b_2}} & \displaystyle{\frac{1}{a_2 - b_3}} & \cdots & \displaystyle{\frac{1}{a_2 - b_n}} \\ 
+   \displaystyle{\frac{1}{a_3 - b_2}} & \displaystyle{\frac{1}{a_3 - b_3}} & \cdots & \displaystyle{\frac{1}{a_3 - b_n}} \\
+   \vdots & \vdots & \ddots & \vdots \\
+   \displaystyle{\frac{1}{a_n - b_2}} & \displaystyle{\frac{1}{a_n - b_3}} & \cdots & \displaystyle{\frac{1}{a_n - b_n}}
+  \end{vmatrix}
+ \end{equation}
+ Repitiendo el proceso para el resto de los renglones y columnas de $2$ a $n$, se llega al resultado deseado.${}_{\blacksquare}$
+ 
+\end{demostracion}
+
+
+\end{document}

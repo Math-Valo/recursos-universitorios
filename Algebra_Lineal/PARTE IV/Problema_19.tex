@@ -1,0 +1,57 @@
+\begin{enunciado}
+ Sea $A$ una matriz cuadrada de tama\~no $n\times n$.
+ Si $A$ es antisim\'etrica, pru\'ebese que sus autovalores son n\'umeros complejos imaginarios puros o, bien, son nulos.
+\end{enunciado}
+ 
+\begin{solucion}
+ N\'otese que no lo dice el enunciado, pero $A$ es una matriz con entradas reales, ya que si se admitieran entradas complejas, entonces puede ocurrir lo siguiente:
+ \begin{equation*}
+  \begin{bmatrix}
+   0 & -i \\
+   i &  0
+  \end{bmatrix}
+  \begin{bmatrix}
+   i \\ 1
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+   -i \\ -1
+  \end{bmatrix}
+  =
+  (-1)
+  \begin{bmatrix}
+   i \\ 1
+  \end{bmatrix}
+ \end{equation*}
+ Lo cual ser\'{\i}a una contradicci\'on.
+ \par 
+ Sin embargo, sean cuales sean las entradas de $A$, se cumple que, para todo vector $X$, $X^tAX$ es un n\'umero escalar y, por ello $X^tAX = \left( X^tAX \right)^t$ adem\'as de que, al ser $A$ antisim\'etrica, es decir $A^t = -A$, se cumplen las siguientes igualdades:
+ \begin{equation*}
+  X^tAX = \left( X^tAX \right)^t = X^tA^t(X^t)^t = X^t (-A)X = -X^tAX
+ \end{equation*}
+ Entonces $2X^tAX = 0$ y, por lo tanto, $X^tAX = 0$.
+ \par 
+ Si $X = X_1 + iX_2$, donde $X_1$ y $X_2$ son vectores con entradas reales, se tiene que:
+ \begin{eqnarray*}
+  (X_1 - iX_2)^tA(X_1 + iX_2) 
+  & = & (X_1^t-iX_2^t)A(X_1+iX_2)\\
+  & = & \cancelto{0}{X_1^tAX_1} + iX_1^tAX_2 - iX_2^tAX_1 + \cancelto{0}{X_2^tAX_2} \\
+  & = & i\left[ X_1^tAX_2 - \left( X_2^tAX_1 \right)^t \right] \\
+  & = & i\left[ X_1^tAX_2 - X_1^tA^t\left( X_2^t \right)^t \right] \\
+  & = & i\left[ X_1^tAX_2 - X_1^t(-A)X_2 \right] \\
+  & = & i\left( X_1^tAX_2 + X_1^tAX_2 \right) \\
+  & = & i\left(2X_1^tAX_2\right)
+ \end{eqnarray*}
+ donde $2X_1^tAX_2$ es un n\'umero real, puesto que $X_1$, $A$ y $X_2$ tiene entradas reales y, por ello, $(X_1 - iX_2)^tA(X_1 + iX_2)$ tiene la parte real igual a cero.
+ \par 
+ Por otro lado, si $X_1 + iX_2$ es un vector propio de $A$ correspondiente a $\lambda$, entonces
+ \begin{eqnarray*}
+  (X_1-iX_2)^tA(X_1+iX_2) 
+  & = & (X_1-iX_2)^t\left[ \lambda(X_1+iX_2) \right] \\
+  & = & \lambda(X_1-iX_2)^t(X_1+iX_2) \\
+  & = & \lambda(X_1^tX_1 + X_2^tX_2)
+ \end{eqnarray*}
+ donde $X_1$ y $X_2$ tiene entradas reales y, por lo tanto, $X_i^tX_i$, para $i\in\{1,2\}$, es un n\'umero real, de hecho es la suma de los cuadrados de las entradas de $X_i$ y, por lo tanto, es un n\'umero no negativo. Adem\'as, como $X$ es un autovector, entonces no es nulo y, por ello, $X_1$ o $X_2$ es no nulo. Por lo tanto $X_1^tX_1 + X_2^tX_2$ es un n\'umero real positivo.
+ \par
+ Luego entonces, si $\lambda = a + ib$, con $a$ y $b$ n\'umero reales, se tiene que $(a+ib)(X_1^tX_1 + X_2^tX_2) = a(x_1^tX_1 + X_2^tX_2) + i\left[b(x_1^tX_1+X_2^tX_2) \right]$, que a su vez es igual a $i(2X_1^tAX_2)$, puesto que ambos valores son iguales a $(X_1-ix_2)^tA(X_1+iX_2)$. Por lo tanto, igualando las partes reales, se tiene que $a(X_1^tX_1 + X_2^tX_2) = 0$, entonces, como  $X_1^tX_1 + X_2^tX_2 \neq 0$, se concluye que $a = 0$. Por lo tanto, los autovalores de $A$ son n\'umeros complejos imaginarios puros o, bien, son nulos, que es lo que se quer\'{\i}a probar.${}_{\blacksquare}$
+\end{solucion}

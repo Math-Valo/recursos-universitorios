@@ -1,0 +1,113 @@
+\begin{enunciado}
+ Dada una matriz cuadrada $A$, sea $A'$ la matriz que resulta de permutar, en $A$, las filas $i-$\'esima y $j-$\'esima y tambi\'en las columnas $i-$\'esima y $j-$\'esima. Analizar si $A$ y $A'$ son semejantes y, si lo son, hallar una matriz regular $P$ tal que $A' = P^{-1}AP$.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $P = [p_{kl}]_{n\times n}$ la matriz inducida por la permutaci\'on $\sigma$ tal que $\sigma(i)=j$, $\sigma(j)=i$ y $\sigma(k)=k$ par toda $k\not\in\{ i,j\}$, entonces $P$ es identica a la matriz identidad salvo que $p_{ii} = p_{jj} = 0$ y $p_{ij} = p_{ji} = 1$. N\'otese que el elemento (arbitrario) $p'_{kl}$ de $P^2$, donde $k\not\in\{i,j\}$ se calcula como $p'_{kl} = \sum_{m=1}^n p_{km}p_{mk} = p_{kk}p_{kl}$ el cual vale cero si $k\neq l$ y uno si $k=l$; si $k = i$, entonces $p'_{il} = \sum_{m=1}^n p_{im}p_{ml} = p_{ij}p_{jl}$, el cual vale cero si $l\neq i$ y uno si $l= i$; y, si $k=j$, entonces $p'_{jl} = \sum_{m=1}^n p_{jm}p_{ml} = p_{ji}p_{il}$, el cual vale cero si $l\neq j$ y uno $l=i$. En resumen $p'_{kk} = 1$ y $p'_{kl} = 0$ si $k\neq l$, es decir $P^2 = I$, por lo que $P = P^{-1}$.
+ \par 
+ Se va ahora a comprobar que dicha matriz $P$ es la matriz buscada.
+ Sea $A=[a_{kl}]_{n\times n}$ y $b_{kl}$ un elemento arbitrario en el producto $P^{-1}AP$, el cual es $PAP$, entonces
+ \begin{eqnarray*}
+  b_{kl} & = & \sum_{r=1}^n p_{kr}\left( \sum_{m=1}^n a_{rm}p_{ml} \right) \\ 
+  & = & \sum_{r=1}^n p_{kr} \left( a_{rl}p_{ll} + a_{rj}p_{jl} + a_{ri}p_{il} \right) \\
+  & = & p_{kk}\left( a_{kl}p_{ll} + a_{kj}p_{jl} + a_{ki}p_{il} \right) + p_{kj}\left( a_{jl}p_{ll} + a_{jj}p_{jl} + a_{ji}p_{il} \right) + p_{ji}\left( a_{il}p_{ll} + a_{ij}p_{jl} + a_{ii}p_{il} \right)
+ \end{eqnarray*}
+ donde entre los tres valores: $p_{ll}, p_{jl}$ y $p_{il}$, \'unicamente uno no vale cero, el cual depende del valor de $l$; y, del mismo modo, entre los tres valores: $p_{kk}, p_{kj}$ y $p_{ki}$, \'unicamente uno no vale cero, cual depende del valor de $k$. En concreto:
+ \begin{equation*}
+  p_{ll} =
+  \left\{
+  \begin{matrix}
+  1 & \text{si } l\not\in\{ i,j \} \\
+  0 & \text{si } l\in \{ i,j \}
+  \end{matrix}
+  \right.
+  \qquad 
+  p_{jl} =
+  \left\{
+  \begin{matrix}
+  1 & \text{si } l = i \\
+  0 & \text{si } l\neq i
+  \end{matrix}
+  \right.
+  \qquad 
+  p_{il} =
+  \left\{
+  \begin{matrix}
+  1 & \text{si } l = j \\
+  0 & \text{si } l\neq j
+  \end{matrix}
+  \right.
+ \end{equation*}
+ \begin{equation*}
+  p_{kk} =
+  \left\{
+  \begin{matrix}
+  1 & \text{si } k\not\in\{ i,j \} \\
+  0 & \text{si } k\in \{ i,j \}
+  \end{matrix}
+  \right.
+  \qquad 
+  p_{kj} =
+  \left\{
+  \begin{matrix}
+  1 & \text{si } k = i \\
+  0 & \text{si } k\neq i
+  \end{matrix}
+  \right.
+  \qquad 
+  p_{ki} =
+  \left\{
+  \begin{matrix}
+  1 & \text{si } k = j \\
+  0 & \text{si } k\neq j
+  \end{matrix}
+  \right.
+ \end{equation*}
+ Por lo tanto:
+ \begin{equation*}
+  \begin{matrix}
+   b_{ii} & = & p_{ij}a_{jj}p_{ji} & = & a_{jj} \\
+   b_{jj} & = & p_{ji}a_{ii}p_{ij} & = & a_{ii} \\
+   b_{ij} & = & p_{ij}a_{ji}p_{ij} & = & a_{ji} \\
+   b_{ji} & = & p_{ji}a_{ij}p_{ji} & = & a_{ij} \\
+   b_{kj} & = & p_{kk}a_{ki}p_{ij} & = & a_{ki}, & k \not\in\{ i,j\} \\
+   b_{ki} & = & p_{kk}a_{kj}p_{ji} & = & a_{kj}, & k \not\in\{ i,j\} \\
+   b_{il} & = & p_{ij}a_{jl}p_{ll} & = & a_{jl}, & l \not\in\{ i,j\} \\
+   b_{jl} & = & p_{ji}a_{il}p_{ll} & = & a_{il}, & l \not\in\{ i,j\} \\
+   b_{kl} & = & p_{kk}a_{kl}p_{ll} & = & a_{kl}, & k,l \not\in \{ i,j\}
+  \end{matrix}  
+ \end{equation*}
+ Ahora, bien, si $A'' = [a''_{kl}]_{n\times n}$ la matriz que resulta de permutar, en $A$, las filas $i-$\'esima y $j-$\'esima y $A' = [a'_{kl}]_{n\times n}$ la matriz que resulta de permutar, en $A''$, las columnas $i-$\'esima y $j-$\'esima, entonces, $A'$ es la misma matriz $A'$ descrita en el enunciado, y los elementos $a''_{kl}$, de $A''$ y $a'_{kl}$, de $A'$ se obtienen como sigue:
+ \par 
+ \begin{equation*}
+  \begin{matrix}
+   \begin{matrix}
+    a''_{il} & = & a_{jl} \\
+    a''_{jl} & = & a_{il} \\
+    a''_{kl} & = & a_{kl}, & k\not\in\{i,j \}
+   \end{matrix}
+   & 
+   \begin{matrix}
+    a'_{ki} & = & a''_{kj} \\
+    a'_{kj} & = & a''_{ki} \\
+    a'_{kl} & = & a''_{kl}, & l\not\in\{ i, j\}
+   \end{matrix}
+  \end{matrix}
+ \end{equation*}
+ Por lo tanto:
+ \begin{equation*}
+  \begin{matrix}
+   a'_{ii} & = & a''_{ij} & = & a_{jj} \\
+   a'_{jj} & = & a''_{ji} & = & a_{ii} \\
+   a'_{ij} & = & a''_{ii} & = & a_{ji} \\
+   a'_{ji} & = & a''_{jj} & = & a_{ij} \\
+   a'_{kj} & = & a''_{ki} & = & a_{ki}, & k \not\in\{ i,j \} \\
+   a'_{ki} & = & a''_{kj} & = & a_{kj}, & k \not\in\{ i,j \} \\
+   a'_{il} & = & a''_{il} & = & a_{jl}, & l \not\in\{ i,j \} \\
+   a'_{jl} & = & a''_{jl} & = & a_{il}, & l \not\in\{ i,j \} \\
+   a'_{kl} & = & a''_{kl} & = & a_{kl}, & k,l \not\in\{ i,j\}
+  \end{matrix}
+ \end{equation*}
+ Por lo tanto $a'_{kl} = b_{kl}$, para toda $k,l\in\mathbb{N}\cap[1,n]$, es decir $A$ y $A'$ son semejantes y $A' = P^{-1}AP$, donde $P$ es la matriz resultante de permutar las filas $i-$\'esima y $j-$\'esima de la matriz identidad, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
+

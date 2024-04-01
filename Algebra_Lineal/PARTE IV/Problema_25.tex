@@ -1,0 +1,217 @@
+\begin{enunciado}
+ Sea dada la siguiente matriz $A(\alpha)$:
+ \begin{equation*}
+  A(\alpha) = 
+  \begin{bmatrix}
+   1 &  1 &  1 &  1 \\
+   1 &  1 & -1 & -1 \\
+   1 & -1 &  1+\alpha & -1-\alpha \\
+   1 & -1 & -1+\alpha &  1-\alpha
+  \end{bmatrix}
+ \end{equation*}
+ ($\alpha \in \mathbb{R}$ dado).
+ \begin{enumerate}[$a$)]
+  \item Hallar los autovalores de $A(\alpha)$.
+  
+  \item Hallar los valores de $\alpha$ para los que $A(\alpha)$ es diagonalizable por semejanza.
+  
+  \item Analizar si $A(\alpha)$ es ortogonalmente diagonalizable (con el producto escalar can\'onico) para alg\'un valor $\alpha_0$ de $\alpha$ y, si lo es, obtener la correspondiente diagonalizaci\'on (esto es, la forma diagonal $D$ y una matriz ortogonal de cambio, $D=P^{-1}A(\alpha_0)P$).
+  
+  \item Describir geom\'etricamente la transformaci\'on $f:\mathbb{R}^4 \to \mathbb{R}^4$ que, en la base can\'onica, tiene asociada la matriz $(1/2)A(\alpha_0)$.
+  
+  \item Hallar el menor valor natural de $h$ para el que la matriz $G = A(0) + hI$ es matriz m\'etrica de producto escalar.
+ \end{enumerate}
+\end{enunciado}
+ 
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}[$a$)]
+  \item Se procede a buscar los autovalores de $A(\alpha)$ analizando las ra\'{\i}ces de su polinomio caracter\'{\i}stico, que se calcula a trav\'es del c\'alculo de $\det\left( A(\alpha) - \lambda I \right)$.
+  \par 
+  Para ello, se har\'a uso reiterado de la propiedad de determinantes el cual dice que la suma de un m\'ultiplo de un rengl\'on o columna a otro renglo o columna, respectivamente, no afecta el valor del determinante. Esto se expresar\'a del mismo modo en que se escriben las operaciones elementales al buscar matrices semejantes.
+  \par 
+  Tambi\'en se usar\'a que si en un determinante un rengl\'on o columna contiene \'unicamente un elemento distinto de cero, en la posici\'on $(i,j)$, entonces el determinante es igual a este valo multiplicado por el determinante de la matriz que se obtiene al prescindir del rengl\'on y la columna en donde se encontraba dicho elemento, y todo esto multiplicado por $(-1)^{i+j}$.
+  \par 
+  As\'{\i} pues, se procede al c\'alculo del polinomio caracter\'{\i}stico como sigue:
+  \begin{eqnarray*}
+   \det(A(\alpha)-\lambda I) & = & 
+   \begin{vmatrix}
+    1 - \lambda & 1 & 1 & 1 \\
+    1 & 1 - \lambda & -1 & -1 \\
+    1 & -1 & 1 + \alpha - \lambda & -1 - \alpha \\
+    1 & -1 & -1 + \alpha & 1 - \alpha - \lambda 
+   \end{vmatrix}
+   \qquad
+   \begin{matrix}
+    R_1 - R_2 \to R_1 \\
+    R_4 - R_3 \to R_4
+   \end{matrix}
+   \\ 
+   & = & 
+   \begin{vmatrix}
+    -\lambda & \lambda & 2 & 2 \\
+    1 & 1-\lambda & -1 & -1 \\
+    1 & -1 & 1+\alpha-\lambda & -1-\alpha \\
+    0 & 0 & -2 + \lambda & 2 - \lambda
+   \end{vmatrix}
+   \qquad 
+   \begin{matrix}
+    C_1 + C_2 \to C_1 \\ 
+    C_3 + C_4 \to C_3
+   \end{matrix}
+   \\
+   & = & 
+   \begin{vmatrix}
+    0 & \lambda & 4 & 2 \\
+    2 - \lambda & 1 - \lambda & -2 & -1 \\
+    0 & -1 & -\lambda & -1-\alpha \\
+    0 & 0 & 0 & 2-\lambda
+   \end{vmatrix}
+   =
+   (2-\lambda)[-(2-\lambda)]
+   \begin{bmatrix}
+    \lambda & 4 \\
+    -1 & -\lambda
+   \end{bmatrix}
+   \\
+   & = & 
+   (\lambda-2)(2-\lambda)( -\lambda^2 + 4 ) = (\lambda-2)^2(\lambda^2 - 4) 
+   = (\lambda-2)^2(\lambda-2)(\lambda+2)
+   \\
+   & = & (\lambda-2)^3(\lambda+2)
+  \end{eqnarray*}
+  Por lo tanto, los autovalores de $A(\alpha)$ no dependen de $\alpha$ y son $\lambda_1 = 2$, con multiplicidad algebraica $m_1 = 3$, y $\lambda_2 = -2$, con multiplicidad algebraica $m_2 = 1$.
+  
+  \item Dado que las multiplicidades algebraicas de los autovalores suman el orden de la matriz $A(\alpha)$, entonces basta con que las multiplicidades geom\'etricas de los autovalores $\lambda_1$ y $\lambda_2$, $d_1$ y $d_2$ respectivamente, cumplan que $d_1 = m_1$ y $d_2 = m_2$. Como $1 \leq d_2 \leq m_2 = 1$, entonces $d_2 = m_1 = 1$. Por lo que $A(\alpha)$ es diagonalizable por semejanza si y s\'olo si $d_1 = 3$. Luego entonces, se procede a analizar la dimensi\'on del subespacio propio correspondiente a $\lambda_1 = 2$, a trav\'es de la cantidad de variables libres en los vectores $X = [w,x,y,z]$ que cumplen que $(A-2\lambda)X = O$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    -1 &  1 &  1 &  1 \\
+     1 & -1 & -1 & -1 \\
+     1 & -1 & -1 + \alpha & -1 - \alpha \\
+     1 & -1 & -1 + \alpha & -1 - \alpha 
+   \end{bmatrix}
+   \begin{bmatrix}
+    w \\ x \\ y \\ z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    -w & + & x & + & y & + & z \\
+     w & - & x & - & y & - & z \\
+     w & - & x & - & (1 - \alpha)y & - & (1 + \alpha)z \\
+     w & - & x & - & (1 - \alpha)y & - & (1 + \alpha)z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  el cual da un sistema de cuatro ecuaciones al igualar cada coordenada, pero como las dos primeras y las dos \'ultimas ecuaciones son iguales entre s\'{\i}, esto es equivalente al sistema de dos ecuaciones dado por
+  \begin{equation*}
+   \left\{
+   \begin{matrix}
+    -w & + x & + y & + z & = 0\\
+    \phantom{-}w  & - x & - (1 - \alpha)y & - (1 + \alpha)z & = 0
+   \end{matrix}
+   \right. 
+   \Leftrightarrow
+   \left\{
+   \begin{matrix}
+    w & - x & - y & - z & = 0\\
+    w & - x & - (1 - \alpha)y & - (1 + \alpha)z & = 0
+   \end{matrix}
+   \right.    
+  \end{equation*}
+  Por lo tanto, $A(\alpha)$ es diagonalizable por semejanza si y s\'olo si $d_1 = 3$ si y s\'olo si la cantidad de variables libres en estas $2$ ecuaciones de $4$ variables es de tres si y s\'olo si las dos ecuaciones son equivalentes si y s\'olo si $-y = -(1-\alpha)y$ y $-z = -(1+\alpha)z$ si y s\'olo si $1-\alpha = 1+\alpha = 1$ si y s\'olo si $\alpha = 0$.
+  
+  \item $A(\alpha)$ es ortogonalmente diagonalizable (con el producto escalar can\'onico) si y s\'{\i} $A(\alpha)$ es sim\'etrica si y s\'olo si $-1+\alpha = -1-\alpha$ si y s\'olo si $\alpha_0 = 0$.
+  \par 
+  La matriz diagonal $D$ no es otra que la matriz cuyos elementos en la diagonal son los autovalores. Por otro lado, para hallar $P$, se proceder\'a a buscar 4 vectores ortonormales y que generen los subespacios propios de $A(0)$, ya que las columnas de $P$ estar\'an formadas por estos cuatro vectores. Adem\'as, el orden en que aparecer\'an los valores propios en $D$ es igual al orden de los autovalores que corresponden a los vectores ortonormales antes mencionados en las columnas de $P$. Dicho esto, se procede entonces a calcular estos cuatro vectores.
+  \par 
+  Usando el resultado del inciso anterior de que los vectores $X = [w,x,y,z]$ en $E_{\lambda_1 = 2}$ cumplen que $w-x-y-z=0$, se tiene con facilidad que tres vectores linealmente independientes en $E_{\lambda_1 = 2}$ son $X_1 = [1,1,0,0]^t$, $X_2 = [1,0,1,0]^t$ y $X_3 = [1,0,0,1]^t$. Luego entonces, por el proceso de Gram-Schmidt, y recordando que el producto escalar can\'onico de dos vectores, $V_1$ y $v_2$, es $(V_1, V_2) = V_1^tV_2$, se tienen los vectores ortogonales:
+  \begin{eqnarray*}
+   Y_1 & = & X_1 = [1,1,0,0]^t \\
+   Y_2 & = & X_2 - \frac{X_2^tY_1}{Y_1^tY_1} Y_1 = [1,0,1,0]^t - \frac{1}{2}[1,1,0,0]^t = \frac{1}{2}[1, -1, 2, 0]^t \\
+   Y_3 & = & X_3 - \frac{X_3^tY_1}{Y_1^tY_1}Y_1 - \frac{X_3^tY_2}{Y_2^tY_2}Y_2 = [1,0,0,1]^t - \frac{1}{2}[1,1,0,0]^t - \frac{1/\cancel{2}}{3/\cancel{2}}\left( \frac{1}{2}[1,-1,2,0]^t \right) \\ 
+   & = & \frac{1}{6}[6,0,0,6]^t - \frac{1}{6}[3,3,0,0]^t - \frac{1}{6}[1,-1,2,0]^t = \frac{1}{6}[2,-2,-2,6]^t = \frac{1}{3}[1,-1,-1,3]^t
+  \end{eqnarray*}
+  Luego entonces, normalizando cada uno de estos vectores, como sigue, se obtienen los tres vectores ortonormales buscados de $E_{\lambda_1 = 2}$.
+  \begin{eqnarray*}
+   U_1 & = & \frac{Y_1}{\sqrt{Y_1^tY_1}} = \frac{[1,1,0,0]^t}{\sqrt{2}} = \frac{\sqrt{2}}{2}[1,1,0,0]^t \\
+   U_2 & = & \frac{Y_2}{\sqrt{Y_2^tY_2}} = \frac{1/2[1,-1,2,0]^t}{\sqrt{3/2}} = \frac{\sqrt{6}}{6}[1,-1,2,0]^t \\
+   U_3 & = & \frac{Y_3}{\sqrt{Y_3^tY_3}} = \frac{1/3[1,-1,-1,3]^t}{\sqrt{4/3}} = \frac{\sqrt{3}}{6}[1,-1,-1,3]^t
+  \end{eqnarray*}
+  Queda ahora por hallar una base ortonormal de $E_{\lambda_2 = -2}$, el cual, como tiene dimensi\'on 1, la base lo conforma un \'unico vector, el cual bastar\'a con encontrar y normalizar. Se proceder\'a de la misma forma que con los vectores propios correspondientes $\lambda_1 = 2$, sabiendo ahora que $\alpha_0 = 0$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    3 &  1 &  1 &  1 \\
+    1 &  3 & -1 & -1 \\
+    1 & -1 &  3 & -1 \\
+    1 & -1 & -1 &  3
+   \end{bmatrix}
+   \begin{bmatrix}
+    w \\ x \\ y \\ z 
+   \end{bmatrix}
+   = 
+   \begin{bmatrix}
+    3w & + & x & + & y & + & z \\
+    w & + & 3x & - & y & - & z \\
+    w & - & x & + & 3y & - & z \\
+    w & - & x & - & y & + & 3z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  El cual da un sistema de cuatro ecuaciones. Sumando la primera y la cuarta ecuaci\'on se tiene que $4w + 4z = 0$, entonces $w = - z$, adem\'as, restando la tercera ecuaci\'on a la segunda, se tiene que $4x - 4y = 0$, entonces $x=y$ y, sustituyendo estas igualdades en la primera ecuaci\'on, se tiene que $2w + 2x = 0$, por lo que $w = -x$. Por lo tanto $w = -x = -y = -z$ y
+  \begin{equation*}
+   E_{\lambda_2 = -2} = \left< [1,-1,-1, -1]^t \right>
+  \end{equation*}
+  Por lo tanto, normalizando este vector, como sigue, se tiene que el vector faltante para formar a $P$.
+  \begin{equation*}
+   U_4 = \frac{[1,-1,-1,-1]^t}{\sqrt{[1,-1,-1,-1][1,-1,-1,-1]^t}} = \frac{1}{2}[1,-1,-1,-1]^t
+  \end{equation*}
+  Por lo tanto, las matrices buscadas son
+  \begin{equation*}
+   P = 
+   \begin{bmatrix}
+    \frac{\sqrt{2}}{2} & \frac{\sqrt{6}}{6} & \frac{\sqrt{3}}{6} & \frac{1}{2} \\
+    \frac{\sqrt{2}}{2} & - \frac{\sqrt{6}}{6} & - \frac{\sqrt{3}}{6} & - \frac{1}{2} \\
+    0 & \frac{\sqrt{6}}{3} & - \frac{\sqrt{3}}{6} & - \frac{1}{2} \\
+    0 & 0 &\frac{\sqrt{3}}{2} & - \frac{1}{2}
+   \end{bmatrix}
+   \qquad \text{ y } \qquad 
+   D = 
+   \begin{bmatrix}
+    2 & 0 & 0 & 0 \\
+    0 & 2 & 0 & 0 \\
+    0 & 0 & 2 & 0 \\
+    0 & 0 & 0 & -2
+   \end{bmatrix}
+  \end{equation*}
+  
+  \item Usando los resultados del inciso anterior, si se considera la nueva base $\beta = \left( U_1, U_2, U_3, U_4 \right)$, entonces la matriz de cambio de coordenadas de la base can\'onica a la base $\beta$ est\'a dada por la anterior matriz $P$ y $f$ en esta base est\'a dado por $P^t[(1/2)A(\alpha_0)]P = \frac{1}{2}\left[ P^tA(\alpha_0)P \right] = \frac{1}{2}D$, el cual, llam\'andolo $D'$, est\'a dado como:
+  \begin{equation*}
+   D' = 
+   \begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & -1
+   \end{bmatrix}
+  \end{equation*}
+  el cual se verifica trivialmente que es una matriz ortogonal, luego entonces $f$ es una transformaci\'on ortogonal, el cual es invariante en el subespacio generado por los vectores generados por los primeros 3 elementos de $\beta$, $\{U_1, U_2, U_3\}$, es decir $E_{\lambda_1 = 2}$, y que invierte la posici\'on de los elementos ortogonales a este respecto de este plano, el cual est\'a dado por la recta generada por el vector del cuarto elemento de $\beta$, $U_4$, es decir $E_{\lambda_2 = -2}$. Por lo tanto, $f$ es la simetr\'{\i}a ortogonal respecto al hiperplano $E_{\lambda_1 = 2}$, ortogonal al eje $E_{\lambda_2 = -2}$.
+  
+  \item $G = A(0) + hI$ es matriz m\'etrica si  y s\'olo si en cualquier base se cumple que la matriz es matriz m\'etrica. En particular, tomando la base $\beta$, la matriz $G'$ en dicha base est\'a dado por $G' = P^t\left[A(0)+hI\right]P = P^tA(0)P + hP^tP = D + hI$, el cual cumple que es sim\'etrica siempre y queda por verificar que sea definida positiva. Como 
+  \begin{equation*}
+   G' = D + hI = 
+   \begin{bmatrix}
+    2 + h & 0 & 0 & 0 \\
+    0 & 2 + h & 0 & 0 \\
+    0 & 0 & 2 + h & 0 \\
+    0 & 0 & 0 & -2 + h
+   \end{bmatrix}
+  \end{equation*}
+  entonces, para terminar de verificar, $G'$ es matriz m\'etrica si y s\'olo si es definida positiva si y s\'olo si todos los elementos en su diagonal son positivos si y s\'olo si $2+h > 0$ y $-2+h > 0$ si y s\'olo si $h > 2$. Por lo tanto, el primer valor natural, $h$, para el que se cumple que $A(0)+ hI$ es matriz m\'etrica de un producto escalar es $h = 3$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

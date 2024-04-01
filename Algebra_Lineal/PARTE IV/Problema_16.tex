@@ -1,0 +1,201 @@
+\begin{enunciado}
+ Sea $A$ la matriz real, dependiente del par\'ametro $\alpha$:
+ \begin{equation*}
+  A = 
+  \begin{bmatrix}
+   2\alpha+4 & 1-\alpha & -2\alpha-\alpha^2 \\
+   0 & 4 - \alpha & 0 \\
+   0 & 0 & 4 - \alpha^2
+  \end{bmatrix}
+ \end{equation*}
+ \begin{enumerate}[$a$)]
+  \item Obtener los valores de $\alpha$ para los que $A$ es diagonalizable por semejanza.
+  \item Diagonalizar $A$ para $\alpha = 1$ y para $\alpha = 2$.
+ \end{enumerate}
+
+\end{enunciado}
+ 
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}[$a$)]
+  \item Dado que el determinante de una matriz triangular es igual al producto de sus elementos en la diagonal, se tiene que 
+  \begin{equation*}
+   \det (A - \lambda I) = 
+   \begin{vmatrix}
+    2\alpha+4-\lambda & 1-\alpha & -2\alpha-\alpha^2 \\
+    0 & 4 - \alpha - \lambda & 0 \\
+    0 & 0 & 4 - \alpha^2 - \lambda 
+   \end{vmatrix}
+   = (2\alpha+4-\lambda)(4-\alpha-\lambda)(4-\alpha^2-\lambda)
+  \end{equation*}
+  entonces los autovalores de $\lambda$, que son obtenidos por las ra\'{\i}ces de la ecuaci\'on caracter\'{\i}stica $\det (A - \lambda I) = 0$, son $\lambda_1 = 2\alpha + 4$, $\lambda_2 =  4 - \alpha$ y $\lambda_3 = 4 - \alpha^2$.
+  \par 
+  Luego, se sabe que $A$ es diagonalible por semejanza si y s\'olo si las multiplicidades algebraicas de los autovalores distintos suman $n=3$, el orden de la matriz, y la multiplicidad geom\'etrica, que se sabe siempre es al menos 1, es igual a la multiplicidad algebraica, para cada autovalor distinto.
+  \par 
+  En particular, si los tres valores de $\lambda$ antes mencionados son distintos, entonces $A$ es diagonalizable por semejanza. Se va a buscar ahora, por lo tanto, cu\'ando es $A$ diagonalizable por semejanza si los autovalores no son todos distintos, esto es: $\lambda_1 = \lambda_2$, $\lambda_1 = \lambda_3$ o $\lambda_2 = \lambda_3$. En cada caso, se tiene que $2\alpha + 4 = 4-\alpha$, $2\alpha + 4 = 4-\alpha^2$ y $4-\alpha = 4-\alpha^2$, respectivamente. El primero caso se resuelve como: $3\alpha= 0$, entonces $\alpha = 0$; el segundo caso se resuelve como $\alpha^2 + 2\alpha = 0$, entonces $\alpha = 0$ o $\alpha = -2$; y, el tercer caso se resuelve como: $\alpha^2 - \alpha = 0$, entonces $\alpha = 0$ o $\alpha = 1$
+  \par 
+  Para el caso $\alpha = 0$, entonces $\lambda_1 = \lambda_2 = \lambda_3 = 4$ y se tiene que el subespacio propio relacionado $\lambda=4$ est\'a formado por los vectores $X=[x,y,z]^t\in\mathbb{R}^3$ tales que $(A- 4I)X = O$, esto es, tales que:
+  \begin{equation*}
+   \begin{bmatrix}
+    0 & 1 & 0 \\
+    0 & 0 & 0 \\
+    0 & 0 & 0 
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  Entonces, cuando $\alpha=0$,
+  \begin{equation*}
+   E_{\lambda=4} = \left\{ [x,y,z]^t\in\mathbb{R}^3 |\, [x,y,z]^t = [a, 0, b]^t, \text{ con } a,b\in\mathbb{R} \right\} = \left< (1,0,0), (0,0,1) \right>
+  \end{equation*}
+  el cual tiene dimensi\'on 2, mientras que la multiplicidad algebraica de $\lambda=4$ es 3. Por lo que si $\alpha = 0$, entonces $A$ no es diagonalizable por semejanza.
+  \par 
+  Para el caso $\alpha =  -2$, entonces $\lambda_1 = \lambda_3 = 0$ y $\lambda_2 = 6$ y se tiene que el subespacio propio relacionado con $\lambda = -2$ est\'a formado por los vectores $X = [x,y,z]^t \in \mathbb{R}^3$ tales que $AX = O$, esto es, tales que:
+  \begin{equation*}
+   \begin{bmatrix}
+    0 & 3 & 0 \\
+    0 & 6 & 0 \\
+    0 & 0 & 0 
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  Entonces, cuando $\alpha=-2$,
+  \begin{equation*}
+   E_{\lambda= 0} = \left\{ [x,y,z]^t \in \mathbb{R}^3 |\, [x,y,z]^t = [a,0,b]^t, \text{ con } a,b\in\mathbb{R} \right\} = \left<(1,0,0), (0,0,1)\right>
+  \end{equation*}
+  el cual tiene dimensi\'on 2. Por lo tanto, como la multiplicidad geom\'etrica es igual a la multiplicidad algebraica tanto para $\lambda = -2$ como para $\lambda = 3$, entonces $A$ s\'{\i} es diagonalizable por semejanza.
+  \par
+  Finalmente, para el caso $\alpha=1$, en tal caso $\lambda_2 = \lambda_3 = 3$ y $\lambda_1 = 6$ y se tiene que el subespacio propio relacionado a $\lambda = 3$ est\'a formado por los vectores $X = [x,y,z]^t \in\mathbb{R}^3$ tales que $(A-3I)X = 0$, esto es, tales que:
+  \begin{equation*}
+   \begin{bmatrix}
+    3 & 0 & -3 \\
+    0 & 0 &  0 \\
+    0 & 0 &  0
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  entonces $x = z$ e $y$ es variable libre, es decir, cuando $\alpha = 1$,
+  \begin{equation*}
+   E_{\lambda= 3} = \left\{ [x,y,z]^t \in\mathbb{R}^3 |\, [x,y,z]^t = [a,b,a]^t, \text{ con } a,b\in\mathbb{R} \right\} = \left< (1,0,1), (0,1,0) \right>
+  \end{equation*}
+  el cual tiene dimensi\'on 2. Por lo tanto, como la multiplicidad geom\'etrica es igual a la multiplicidad algebraica tanto para $\lambda = 3$ como para $\lambda = 6$, entonces $A$ s\'{\i} es diagonalizable por semejanza.
+  \par 
+  Por lo tanto $A$ es diagonalizable por semejanza si y s\'olo si $\alpha \neq 0$.
+  
+  \item Dado que ya se conocen los autovalores en cada caso, lo \'unico que queda por calcular es la matriz de cambio de coordenadas para obtener la matriz diagonal.
+  \par 
+  Para el caso $\alpha = 1$, ya se encontr\'o que los autovalores son: $\lambda_1 = 3$ y $\lambda_2 = 6$; adem\'as, se sabe que $E_{\lambda=3} = \left< (1,0,1), (0,1,0) \right>$. Nada m\'as queda encontrar un vector en $E_{\lambda=6}$ y entonces se tendr\'an tres vectores cuyas columnas formar\'an la matriz $P$ con el que se obtiene la matriz diagonal. 
+  Para hallar un vector en $E_{\lambda=6}$, basta con encontrar un vector $[x,y,z]^t$ tal que $(A-6I)X = O$, esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    0 &  0 & -3 \\ 
+    0 & -3 &  0 \\
+    0 &  0 & -3 
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  luego entonces, $z = 0$, $y= 0$ y $x$ es un par\'ametro libre, por lo que $E_{\lambda=6} = \left< (1,0,0)\right>$ y, por lo tanto, la diagonalizaci\'on de $A$ cuando $\alpha=1$ est\'a dado por $D = P^{-1}AP$ donde
+  \begin{equation*}
+   D =
+   \begin{bmatrix}
+    3 & 0 & 0 \\
+    0 & 3 & 0 \\
+    0 & 0 & 6
+   \end{bmatrix}
+   \qquad \text{ y } \qquad 
+   P = 
+   \begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 0
+   \end{bmatrix}
+  \end{equation*}
+  Para el caso $\alpha = 2$, los autovalores son: $\lambda_1 = 8$, $\lambda_2 = 2$ y $\lambda_3 = 0$.
+  Bastar\'a encontrar un elemento en cada espacio $E_{\lambda}$, para $\lambda \in \{0,2,8\}$ para que, us\'andolo como columnas, se construya la matriz $P$ con la que se obtiene la forma diagonal. 
+  Si $X=[x,y,z]^t \in E_{\lambda=8}$, entonces debe cumplirse que $(A-8I)X = O$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    0 & -1 & -8 \\
+    0 & -6 &  0 \\
+    0 &  0 & -8 
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  por lo que $y = z = 0$ y $x$ es un par\'ametro libre, es decir $E_{\lambda=8} = \left< (1, 0, 0) \right>$. Si $X=[x,y,z]^t \in E_{\lambda=2}$, entonces se debe de cumplir que $(A-2I)X = O$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    6 & -1 & -8 \\
+    0 &  0 &  0 \\
+    0 &  0 & -2
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  Por lo tanto $z = 0$ y $y = 6x$, entonces $E_{\lambda=2} = \left< (1, 6, 0) \right>$. Y, si $X = [x, y, z]^t \in E_{\lambda=0}$, entonces se debe de cumplir que $(A - 0I)X = AX = 0$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    8 & -1 & -8 \\
+    0 &  2 &  0 \\
+    0 &  0 &  0
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  Por lo tanto $y = 0$ y $x=z$, entonces $E_{\lambda= 0} = \left< (1, 0, 1) \right>$, entonces la diagonalizaci\'on de $A$ est\'a dada por $D = P^{-1}AP$ donde
+  \begin{equation*}
+   D =
+   \begin{bmatrix}
+    8 & 0 & 0 \\
+    0 & 2 & 0 \\
+    0 & 0 & 0
+   \end{bmatrix}
+   \qquad \text{ y } \qquad 
+   P = 
+   \begin{bmatrix}
+    1 & 1 & 1 \\
+    0 & 6 & 0 \\
+    0 & 0 & 1
+   \end{bmatrix}
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

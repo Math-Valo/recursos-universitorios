@@ -1,0 +1,151 @@
+\begin{enunciado}
+ De la siguiente matriz $A$ se sabe que $\lambda_1 = 1$ es uno de sus autovalores y que $(1,1,1)$ es un vector prpopio de $A$ asociado al autovalor $\lambda_1$:
+ \begin{equation*}
+  A = 
+  \begin{bmatrix}
+   1 & 2 & \alpha \\
+   2 & 1 & \beta  \\
+   2 & 2 & \gamma
+  \end{bmatrix}
+ \end{equation*}
+ \begin{enumerate}[$a$)]
+  \item Hallar $\alpha$, $\beta$ y $\gamma$.
+  
+  \item Hallar los autovalores y los subespacios propios de $A$.
+  
+  \item Comprobar que $A$ es diagonalizable y hallar su matriz diagonal $D$.
+  
+  \item Analizar si $A$ es ortogonalmente diagonalizable y, en caso afirmativo, hallar una matriz ortogonal $P$ tal que $D = P^{-1}AP$
+ \end{enumerate}
+\end{enunciado}
+ 
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}[$a$)]
+  \item Sea $X_1 = (1,1,1)^t$, como $AX=X$, entonces se procede a multiplicar como sigue:
+  \begin{equation*}
+   \begin{bmatrix}
+    1 & 2 & \alpha \\
+    2 & 1 & \beta  \\
+    2 & 2 & \gamma 
+   \end{bmatrix}
+   \begin{bmatrix}
+    1 \\ 1 \\ 1
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    1 + 2 + \alpha \\
+    2 + 1 + \beta  \\
+    2 + 2 + \gamma
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    1 \\ 1 \\ 1
+   \end{bmatrix}
+  \end{equation*}
+  Entonces $1+2 + \alpha = 1$, $2+1+\beta = 1$ y $2 + 2 + \gamma = 1$, por lo que $\alpha = \beta = -2$ y $\gamma = -3$.
+  
+  \item Se procede a calcular el polinomio caracter\'{\i}stico de $A$ calculando $\det(A - \lambda I)$. Esto es:
+  \begin{eqnarray*}
+   \det(A - \lambda I) & = &
+   \begin{vmatrix}
+    1-\lambda & 2 & -2 \\
+    2 & 1-\lambda & -2 \\
+    2 & 2 & -3-\lambda
+   \end{vmatrix} \\
+   & = & 
+   (1-\lambda)
+   \begin{vmatrix}
+    1-\lambda & -2 \\
+    2 & -3-\lambda 
+   \end{vmatrix}
+   -2
+   \begin{vmatrix}
+    2 & -2 \\
+    2 & -3-\lambda
+   \end{vmatrix}
+   +2
+   \begin{vmatrix}
+    2 & -2 \\
+    1-\lambda & -2
+   \end{vmatrix} \\
+   & = & (1-\lambda)\left[ (1-\lambda)(-3-\lambda) + 4 \right] -2(-6-2\lambda + 4) +2(-4 + 2 -2\lambda) \\
+   & = & (1-\lambda)(-3 + 2\lambda + \lambda^2 + 4) - \cancel{2(-2\lambda - 2)} + \cancel{2(-2\lambda - 2)} \\ 
+   & = & -(\lambda-1)(\lambda^2 + 2\lambda + 1) \\ 
+   & = & -(\lambda-1)(\lambda+1)^2
+  \end{eqnarray*}
+  Por lo tanto, los valores propios de $A$, que son las ra\'{\i}ces de su polinomio caracter\'{\i}stico, son $\lambda_1 = 1$, con multiplicidad algebraica $m_1 = 1$, y $\lambda_2 = -1$, con multiplicidad algebraica $m_2 = 2$.
+  \par 
+  Para el c\'alculo de los subespacios propios de $A$, se calcular\'a, caso por caso, el sistema de ecuaciones que generan $(A-\lambda_i I)X = O$, para $i \in \{ 1,2 \}$, usando el vector gen\'ericos $X = [x,y,z]^t$, como se muestra a continuaci\'on.
+  \par 
+  Para el caso $\lambda_1 = 1$, se tiene que 
+  \begin{equation*}
+   \begin{bmatrix}
+    0 & 2 & -2 \\
+    2 & 0 & -2 \\
+    2 & 2 & -4
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    & & 2y & - & 2z \\
+    2x & & & - & 2z \\
+    2x & + & 2y & - & 4z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  Con lo que resulta que $2y - 2z = 0$ y $2x - 2z = 0$, entonces $x = y = z$. Por lo tanto:
+  \begin{equation*}
+   E_{\lambda_1 = 1} = \left< (1,1,1) \right>
+  \end{equation*}
+  Para el caso $\lambda_2 = -1$, se tiene que
+  \begin{equation*}
+   \begin{bmatrix}
+    2 & 2 & -2 \\ 
+    2 & 2 & -2 \\
+    2 & 2 & -2
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   = 
+   \begin{bmatrix}
+    2x + 2y - 2z \\
+    2x + 2y - 2z \\
+    2x + 2y - 2z    
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  Por lo que $2x + 2y - 2z = 0$ y $E_{\lambda_2}$ lo conforma todo vector $(x,y,z)$ tal que $x+y-z=0$, es decir:
+  \begin{equation*}
+   E_{\lambda_2 = -1} = \left\{ \left. (x,y,z) \in \mathbb{R}^3 \right| x+y+z = 0 \right\} = \left< (1,0,1), (1,-2,-1) \right>
+  \end{equation*}
+  
+  \item Dado que $m_1+m_2 = 3 = \dim A$ y las multiplicidades geom\'etricas, $d_i$, cumplen que $d_1 = m_1 = 1$ y $d_2 = m_2 = 2$, entonces, por teorema $A$ es diagonalizable a una matriz diagonal $D$, y una matriz $P$ tal que $D = P^{-1}AP$ se conforma por los vectores que generan los subespacios propios de $A$, esto es, $D$ y $P$ son:
+  \begin{equation*}
+   D = 
+   \begin{bmatrix}
+    1 &  0 &  0 \\
+    0 & -1 &  0 \\
+    0 &  0 & -1
+   \end{bmatrix}
+   \qquad \text{ y } \qquad 
+   P = 
+   \begin{bmatrix}
+    1 & 1 &  1 \\
+    1 & 0 & -2 \\
+    1 & 1 & -1
+   \end{bmatrix}
+  \end{equation*}
+  
+  \item Finalmente, como se vio anteriormente, $A = [a_{ij}]_{3\times 3}$ es ortogonalmente diagonalizable si y s\'olo si es sim\'etrica pero $a_{13}\neq a_{31}$ ya que $a_{13} = -2$ y $a_{31} = 2$. Por lo tanto $A$ no es ortogonalmente diagonalizable, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

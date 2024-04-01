@@ -1,0 +1,157 @@
+\begin{enunciado}
+ Hallar los autovalores y los subespacios propios del endomorfismo $f:\mathbb{R}^3 \rightarrow \mathbb{R}^3$ que, en la base can\'onica, tiene asociada la matriz $A$:
+ \begin{equation*}
+  A = 
+  \begin{bmatrix}
+   1 &  1 & 0 \\
+   3 & -1 & 6 \\
+   1 & -1 & 3
+  \end{bmatrix}
+ \end{equation*}
+ Anal\'{\i}cese si $f$ es diagonalizable.
+\end{enunciado}
+
+\begin{solucion}
+ Calculando $\det (A - \lambda I)$, se tiene que:
+ \begin{eqnarray*}
+  \det (A - \lambda I) & = & 
+  \begin{vmatrix}
+   1-\lambda &  1         & 0 \\
+   3         & -1-\lambda & 6 \\
+   1         & -1         & 3-\lambda
+  \end{vmatrix} \\ 
+  & = & (1-\lambda)
+  \begin{vmatrix}
+   -1-\lambda & 6         \\
+   -1         & 3-\lambda
+  \end{vmatrix}
+  - 3
+  \begin{vmatrix}
+    1 & 0         \\
+   -1 & 3-\lambda
+  \end{vmatrix}
+  + 
+  \begin{vmatrix}
+    1         & 0 \\
+   -1-\lambda & 6
+  \end{vmatrix} \\ 
+  & = & (1-\lambda)\left[ (-1-\lambda)(3-\lambda) + 6 \right] - 3(3-\lambda) + (6) \\ 
+  & = & (1-\lambda)(-3-2\lambda + \lambda^2 + 6) - 9 + 3\lambda + 6 = (1-\lambda)(\lambda^2 - 2\lambda + 3) + 3\lambda - 3 \\
+  & = & (-\lambda^3 + 3\lambda^2 -5\lambda + 3) + 3\lambda - 3 = -\lambda^3 +3\lambda^2 -2\lambda \\
+  & = & -\lambda(\lambda^2 - 3\lambda + 2) = -\lambda(\lambda - 2)(\lambda - 1) 
+ \end{eqnarray*}
+ Por lo tanto, $\det(A-\lambda I) = 0$ si y s\'olo si $\lambda \in \{ 0, 1, 2 \}$. Luego, como los autovalores de $A$ son los mismo que los de $f$, sin importar la base, se tiene que $\lambda_0 = 0$, $\lambda_1 = 1$ y $\lambda_2 = 2$ son los autovalores de $f$.
+ \par 
+ Para hallar los subespacios propios de $f$, basta con encontrar los vectores $\overline{x}$ que cuyo vector de coordenadas en la base can\'onica, $X = (x, y, z)^t$, cumplan que $AX = \lambda_iX$ para cada $i \in \{ 0, 1, 2\}$.
+ \par 
+ Para el caso $\lambda = 0$, se tiene que
+ \begin{equation*}
+  AX = O \Leftrightarrow 
+  \left.
+  \begin{matrix}
+    x & +y &     & = 0 \\
+   3x & -y & +6z & = 0 \\
+  \end{matrix}
+  \right\} \Leftrightarrow
+  \left.
+  \begin{matrix}
+   x  & = -y \\
+   4x & +6z = 0
+  \end{matrix}
+  \right\} \Leftrightarrow
+  \left.
+  \begin{matrix}
+   x  & = -y \\
+   x & = -\frac{3}{2}z
+  \end{matrix}
+  \right\} \Leftrightarrow
+  \left.
+  \begin{matrix}
+   x & = -3\alpha \\
+   y & =  3\alpha \\
+   z & =  2\alpha
+  \end{matrix}
+  \right\}
+ \end{equation*}
+ Por lo tanto $V_{\lambda_0} = \{ (-3\alpha, 3\alpha, 2\alpha) \in \mathbb{R}^3| \alpha \in \mathbb{R} \}$. \par 
+ Para el caso $\lambda = 1$, se tiene que:
+ \begin{equation*}
+  AX = X \Leftrightarrow 
+  \left.
+  \begin{matrix}
+    x & +y &     & = x \\
+   3x & -y & +6z & = y \\
+  \end{matrix}
+  \right\} \Leftrightarrow
+  \left.
+  \begin{matrix}
+   y  & = 0 \\
+   3x & +6z = 0
+  \end{matrix}
+  \right\} \Leftrightarrow
+  \left.
+  \begin{matrix}
+   y & = 0 \\
+   x & = -2z
+  \end{matrix}
+  \right\} \Leftrightarrow
+  \left.
+  \begin{matrix}
+   x & = -2\alpha \\
+   y & = 0 \\
+   z & = \alpha
+  \end{matrix}
+  \right\}
+ \end{equation*}
+ Por lo tanto $V_{\lambda_1} = \{ (-2\alpha, 0, \alpha) \in \mathbb{R}^3 | \alpha \in \mathbb{R} \}$.
+ \par 
+ Y, para el caso $\lambda = 2$, se tiene que: 
+ \begin{equation*}
+  AX = 2X \Leftrightarrow 
+  \left.
+  \begin{matrix}
+    x & +y &     & = 2x \\
+   3x & -y & +6z & = 2y \\
+  \end{matrix}
+  \right\} \Leftrightarrow
+  \left.
+  \begin{matrix}
+   y  & = x \\
+   2x & +6z = 2x
+  \end{matrix}
+  \right\} \Leftrightarrow
+  \left.
+  \begin{matrix}
+   x & = y \\
+   z & = 0
+  \end{matrix}
+  \right\} \Leftrightarrow
+  \left.
+  \begin{matrix}
+   x & = \alpha \\
+   y & = \alpha \\
+   z & = 0
+  \end{matrix}
+  \right\}
+ \end{equation*}
+ Por lo tanto, $V_{\lambda_2} = \{(\alpha, \alpha, 0) \in \mathbb{R} | \alpha \in \mathbb{R} \}$.
+ \par 
+ Finalmente, como se tiene que la dimensi\'on del espacio es $3$ y $f$ tiene $3$ autovalores reales distintos, se concluye que $f$ es diagonalizable; a saber, la matriz diagonal $D = P^{-1}AP$ de $f$ se obtiene respecto a la nueva base $\left( (-3, 3, 2), (2, 0, -1), (1, 1, 0) \right)$ donde $D$ y $P$ son:
+ \begin{equation*}
+  D = 
+  \begin{pmatrix}
+   0 & 0 & 0 \\
+   0 & 1 & 0 \\
+   0 & 0 & 2
+  \end{pmatrix}
+  \qquad \text{y} \qquad 
+  P = 
+  \begin{pmatrix}
+   -3 &  2 & 1 \\
+    3 &  0 & 1 \\
+    2 & -1 & 0
+  \end{pmatrix}
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$ 
+\end{solucion}
+

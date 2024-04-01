@@ -1,0 +1,8 @@
+\begin{enunciado}
+ Sea $\lambda$ un autovalor de un endomorfismo $f:V \rightarrow V$. Compru\'ebese que $\lambda^2$ es un autovalor del endomorfismo $f\circ f$. Si $f$ es un automorfismo, pru\'ebese que $1/\lambda$ es un autovalor de $f^{-1}$.
+\end{enunciado}
+
+\begin{solucion}
+ Si $\overline{x} \in V_{\lambda}$, entonces $f(\overline{x}) = \lambda\overline{x}$, entonces $(f\circ f)(\overline{x}) = f\left( f(\overline{x}) \right) = f\left( \lambda \overline{x} \right) = \lambda f(\overline{x}) = \lambda(\lambda \overline{x}) = \lambda^2 \overline{x}$, luego entonces, $\lambda^2$ es un autovalor de $f\circ f$. Por otro lado $f^{-1}\circ f = i$, entonces $\left(f^{-1} \circ f\right) (\overline{u}) = \overline{u}$ para toda $\overline{u} \in V$, en particular, para el vector propio antes mencionado, $\overline{x}$, se tiene que $\overline{x} = \left( f^{-1}\circ f \right)(\overline{x}) = f^{-1}\left[f(\overline{x})\right] = f^{-1}(\lambda \overline{x}) = \lambda f^{-1}(\overline{x})$, luego entonces, como $\lambda f^{-1}(\overline{x}) = \overline{x}$, se sigue que $f^{-1}(\overline{x}) = \frac{1}{\lambda}\overline{x}$, por lo que $\frac{1}{\lambda}$ es un valor propio de $f^{-1}$, que es lo que se quer\'{\i}a probar.${}_{\blacksquare}$
+\end{solucion}
+

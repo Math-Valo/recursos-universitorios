@@ -1,0 +1,153 @@
+\begin{enunciado}
+ Sea $\omega: \mathbb{R}^3 \to \mathbb{R}$ la forma cuadr\'atica dada por
+ \begin{equation*}
+  \omega(x,y,z) = y^2 - 2xy - 2xz - 2yz
+ \end{equation*}
+ Diagonalizar ortogonalmente la for forma cuadr\'atica $\omega$ (en $\mathbb{R}^3$ se considera el producto escalar can\'onico).
+\end{enunciado}
+ 
+\begin{solucion}
+ N\'otese que la matriz de $\omega$ en la base can\'onica de $\mathbb{R}^3$ es
+ \begin{equation*}
+  A =
+  \begin{bmatrix}
+    0 & -1 & -1 \\
+   -1 &  1 & -1 \\
+   -1 & -1 &  0
+  \end{bmatrix}
+ \end{equation*}
+ Luego entonces, se procede a diagonalizar esta matriz. Para ello se hallar\'an sus valores propios analizando las ra\'{\i}ces de su polinomio caracter\'{\i}stico $p(\lambda) = \det(A - \lambda I)$, el cual se calcula como sigue:
+ \begin{eqnarray*}
+  \det(A - \lambda I) & = & 
+  \begin{vmatrix}
+   -\lambda & -1 & -1 \\
+   -1 & 1-\lambda & -1 \\
+   -1 & -1 & - \lambda 
+  \end{vmatrix}
+  \\
+  & = &
+  -\lambda 
+  \begin{vmatrix}
+   1-\lambda & -1 \\
+   -1 & -\lambda
+  \end{vmatrix}
+  +
+  \begin{vmatrix}
+   -1 & -1 \\
+   -1 & -\lambda 
+  \end{vmatrix}
+  -
+  \begin{vmatrix}
+   -1 & -1 \\
+   1-\lambda & -1
+  \end{vmatrix} 
+  \\
+  & = & -\lambda(\lambda^2-\lambda -1) + (\lambda  - 1) - (1 + 1 - \lambda) \\ 
+  & = & -\lambda^3 + \lambda^2 +\lambda + \lambda - 1 - 2 + \lambda  = -\lambda^3 + \lambda^2 + 3\lambda - 3 \\
+  & = & -(\lambda^3 - \lambda^2 - 3\lambda + 3) \\
+  & = & -(\lambda-1)(\lambda^2-3) \\ 
+  & = & -(\lambda - 1)(\lambda - \sqrt{3})(\lambda + \sqrt{3})
+ \end{eqnarray*}
+ Luego entonces, los autovalores de $A$ son $\lambda_1 = 1$, $\lambda_2 = \sqrt{3}$ y $\lambda_3 = -\sqrt{3}$. Entonces, se procede a calcular los subespacios propios de $A$ y hallar la base de cada uno de estos, lo cual se har\'a a trav\'es de los vectores de coordenadas, $X=[x,y,z]^t$, en la base can\'onica, tales que $(A-\lambda_i I)X = O$, para $i \in \{ 1,2,3 \}$.
+ \par 
+ Para el caso $\lambda_1 = 1$, se tiene la ecuaci\'on $(A-I)X = O$, dada por
+ \begin{equation*}
+  \begin{bmatrix}
+   -1 & -1 & -1 \\
+   -1 &  0 & -1 \\
+   -1 & -1 & -1
+  \end{bmatrix}
+  \begin{bmatrix}
+   x \\ y \\ z
+  \end{bmatrix}
+  = 
+  \begin{bmatrix}
+   -x & -y & -z \\
+   -x &    & -z \\
+   -x & -y & -z
+  \end{bmatrix}
+  = 
+  \begin{bmatrix}
+   0 \\ 0 \\ 0
+  \end{bmatrix}
+ \end{equation*}
+ lo cual, al igualar las entradas, da un sistema de tres ecuaciones. De la segunda ecuaci\'on, se tiene que $-x-z =0$, por lo que $x=-z$ y, restando la primera ecuaci\'on a la segunda ecuaci\'on, se tiene que $y=0$. Por lo tanto:
+ \begin{equation*}
+  E_{\lambda_1 = 1} = \left< (1,0,-1) \right>
+ \end{equation*}
+ Para el caso $\lambda_2 = \sqrt{3}$, se tiene la ecuaci\'on $(A-\sqrt{3}I)X = O$, dada por
+ \begin{equation*}
+  \begin{bmatrix}
+   -\sqrt{3} & -1 & -1 \\
+   -1 &  1-\sqrt{3} & -1 \\
+   -1 & -1 & -\sqrt{3}
+  \end{bmatrix}
+  \begin{bmatrix}
+   x \\ y \\ z
+  \end{bmatrix}
+  = 
+  \begin{bmatrix}
+   -\sqrt{3}x & -y & -z \\
+   -x & (1-\sqrt{3})y & -z \\
+   -x & -y & -\sqrt{3}z
+  \end{bmatrix}
+  = 
+  \begin{bmatrix}
+   0 \\ 0 \\ 0
+  \end{bmatrix}
+ \end{equation*}
+ lo cual, al igualar las entradas, da un sistema de tres ecuaciones.
+ Entonces, al restar la tercera ecuaci\'on a la primera, se tiene que $(1-\sqrt{3})x - (1-\sqrt{3})z = 0$, por lo que $x=z$ y, sustituyendo esto en la segunda ecuaci\'on, se tiene que $-2x + (1-\sqrt{3})y = 0$, por lo que $x = \frac{1-\sqrt{3}}{2}y$. Por lo tanto:
+ \begin{equation*}
+  E_{\lambda_2 = \sqrt{3}} = \left< (1,-1-\sqrt{3},1) \right>
+ \end{equation*}
+ Para el caso $\lambda_3 = -\sqrt{3}$, se tiene la ecuaci\'on $(A+\sqrt{3}I)X = O$, dada por
+ \begin{equation*}
+  \begin{bmatrix}
+   \sqrt{3} & -1 & -1 \\
+   -1 &  1+\sqrt{3} & -1 \\
+   -1 & -1 & \sqrt{3}
+  \end{bmatrix}
+  \begin{bmatrix}
+   x \\ y \\ z
+  \end{bmatrix}
+  = 
+  \begin{bmatrix}
+   \sqrt{3}x & -y & -z \\
+   -x & (1+\sqrt{3})y & -z \\
+   -x & -y & +\sqrt{3}z
+  \end{bmatrix}
+  = 
+  \begin{bmatrix}
+   0 \\ 0 \\ 0
+  \end{bmatrix}
+ \end{equation*}
+ lo cual, al igualar las entradas, da un sistema de tres ecuaciones.
+ Entonces, al restar la tercera ecuaci\'on a la primera, se tiene que $(1+\sqrt{3})x - (1+\sqrt{3})z = 0$, por lo que $x=z$ y, sustituyendo esto en la segunda ecuaci\'on, se tiene que $-2x + (1+\sqrt{3})y = 0$, por lo que $x = \frac{1+\sqrt{3}}{2}y$. Por lo tanto:
+ \begin{equation*}
+  E_{\lambda_3 = -\sqrt{3}} = \left< (1,\sqrt{3}-1,1) \right>
+ \end{equation*}
+ Por lo tanto, normalizando estos vectores generadores, se obtienen los siguientes: 
+ \begin{eqnarray*}
+  \bar{u}_1 & = & \frac{(1,0,-1)}{\lVert (1,0,-1) \rVert} = \frac{(1,0,-1)}{\sqrt{2}} \\
+  & = & \frac{\sqrt{2}}{2}(1,0,-1) \\
+  \bar{u}_2 & = & \frac{(1,-1-\sqrt{3},1)}{\lVert (1,-1-\sqrt{3},1) \rVert} = \frac{(1,-1-\sqrt{3},1)}{\sqrt{6 + 2\sqrt{3}}} \\
+  & = & \frac{1}{\sqrt{6 + 2\sqrt{3}}}(1,-1-\sqrt{3},1) \\
+  \bar{u}_3 & = & \frac{(1,\sqrt{3}-1,1)}{\lVert (1,\sqrt{3}-1,1) \rVert} = \frac{(1,\sqrt{3}-1,1)}{\sqrt{6 - 2\sqrt{3}}} \\
+  & = & \frac{1}{\sqrt{6 - 2\sqrt{3}}}(1,\sqrt{3}-1,1)
+ \end{eqnarray*}
+ As\'{\i} que, por teorema, se tiene que en la base $\beta = \left( \bar{u}_1, \bar{u}_2, \bar{u}_3 \right)$ se diagonaliza ortogonalmente a $\omega$ y su matriz diagonal, $D$, en esta base est\'a dado por los autovalores correspondientes a los autovectores de $\beta$, en el mismo orden. De este modo, si $(x_1, x_2, x_3)$ representa las coordeandas de un vector gen\'erico en la base $\beta$, entonces
+ \begin{equation*}
+  \omega(x_1, x_2, x_3) = x_1^2 + \sqrt{3}x_2^2 - \sqrt{3}x_3^2
+ \end{equation*}
+ y la matriz de $\omega$ en esta base es:
+ \begin{equation*}
+  D = 
+  \begin{bmatrix}
+   1 & 0 & 0 \\
+   0 & \sqrt{3} & 0 \\
+   0 & 0 & -\sqrt{3}
+  \end{bmatrix}
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

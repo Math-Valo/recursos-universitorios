@@ -1,0 +1,7 @@
+\begin{enunciado}
+ Sean $A$ y $A'$ dos matrices semejantes y sea $P$ una matriz de paso, $A' = P^{-1}AP$. Caracterizar, en funci\'on de $P$ a todas las matrices $Q$ de paso, esto es, tales que $A' = Q^{-1}AQ$.
+\end{enunciado}
+
+\begin{solucion}
+ Si $Q$ es una matriz de paso, entonces $A' = Q^{-1}AQ$, luego entonces $Q^{-1}AQ = A' = P^{-1}AP$, por lo tanto se tienen las siguientes equivalencias: $Q^{-1}AQ = P^{-1}AP \Leftrightarrow AQ = QP^{-1}AP \Leftrightarrow AQP^{-1} = QP^{-1}A$, entonces, sea $R = QP^{-1}$, se tiene que $R$ es una matriz que conmuta con $A$, por lo tanto, $Q$ debe vivir en la familia de matrices de la forma $RP$ donde $R$ conmuta con $A$. Luego, toda esta la familia de matrices cumple que son matrices de paso, ya que, para cualquier $R$ que conmuta con $A$, $(RP)^{-1}A(RP) = P^{-1}R^{-1}ARP = P^{-1}R^{-1}RAP = P^{-1}IAP = P^{-1}AP = A'$. Por lo tanto $Q$ es una matriz de paso si y s\'olo si $Q = RP$ para alguna matriz $R$ que conmuta con $A$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

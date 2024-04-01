@@ -1,0 +1,152 @@
+\begin{enunciado}
+ En el espacio vectorial euclideo can\'onico $\mathbb{R}^3$ y respecto de la base can\'onica se considera el endomorfismo $f: \mathbb{R}^3 \to \mathbb{R}^3$ definido mediante
+ \begin{equation*}
+  (x,y,z) \mapsto (x', y', z'), \quad \text{siendo} \left\{
+  \begin{matrix}
+   3x' & = & -x + 2y + 2z \\
+   3y' & = & 2x -  y + 2z \\
+   3z' & = & 2x + 2y -  z
+  \end{matrix}
+  \right.
+ \end{equation*}
+ \begin{enumerate}[$a$)]
+  \item Razonar si $f$ es ortonalmente diagonalizable.
+  \item Razonar si $f$ es una transformaci\'on ortogonal.
+  \item Hallar los autovalores y los subespacios propios de $f$.
+  \item Hallar la forma diagonal de $f$ y una base ortonormal correspondiente.
+  \item Describir geom\'etricamente la transformaci\'on $f$.
+ \end{enumerate}
+\end{enunciado}
+ 
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}
+  \item Dado que la matriz $A$ de $f$ en la base can\'onica es sim\'etrica, a saber
+  \begin{equation*}
+   A = \frac{1}{3}
+   \begin{bmatrix}
+    -1 &  2 &  2 \\
+     2 & -1 &  2 \\
+     2 &  2 & -1
+   \end{bmatrix}
+  \end{equation*}
+  entonces $f$ es sim\'etrico y, por lo tanto, $f$ es diagonalizable ortonormalmente.
+  
+  \item Dado que el producto punto de las filas de la matriz $A$ de $f$, incluyendo el producto entre ellas mismas, dan los siguientes resultados:
+  \begin{eqnarray*}
+   \left[ \frac{1}{3}(-1, 2, 2)\right] \cdot \left[ \frac{1}{3}(-1, 2, 2)\right] = & \frac{1}{9}(1 + 4 + 4) & = 1 \\
+   \left[ \frac{1}{3}(2, -1, 2)\right] \cdot \left[ \frac{1}{3}(2, -1, 2)\right] = & \frac{1}{9}(4 + 1 + 4) & = 1 \\
+   \left[ \frac{1}{3}(2, 2, -1)\right] \cdot \left[ \frac{1}{3}(2, 2, -1)\right] = & \frac{1}{9}(4 + 4 + 1) & = 1 \\
+   \left[ \frac{1}{3}(-1, 2, 2)\right] \cdot \left[ \frac{1}{3}(2, -1, 2)\right] = & \frac{1}{9}(-2 - 2 + 4) & = 0 \\
+   \left[ \frac{1}{3}(-1, 2, 2)\right] \cdot \left[ \frac{1}{3}(2, 2, -1)\right] = & \frac{1}{9}(-2 + 4 - 2) & = 0 \\
+   \left[ \frac{1}{3}(2, -1, 2)\right] \cdot \left[ \frac{1}{3}(2, 2, -1)\right] = & \frac{1}{9}(4 -2 - 2) & = 0
+  \end{eqnarray*}
+  se tiene que los vectores fila de $A$ forman una base ortonormal del espacio vectorial eucl\'{\i}deo can\'onico y, por lo tanto, $A$ es una matriz ortogonal, lo cual implica a su vez que $f$ es una transformaci\'on ortogonal.
+  
+  \item Se proceder\'a a calcular el polinomio caracter\'{\i}stico de $f$ a trav\'es del c\'alculo de $\det(A - \lambda I) = \det\left[ \frac{1}{3}(3A - 3\lambda I) \right] = \frac{1}{27}\det(3A - 3\lambda I)$. Esto es:
+  \begin{eqnarray*}
+   \frac{1}{27}\det(3A-3\lambda I) & = &
+   \frac{1}{27}
+   \begin{vmatrix}
+    -1 - 3\lambda & 2 & 2 \\
+    2 & -1 - 3\lambda & 2 \\
+    2 & 2 & -1 - 3\lambda
+   \end{vmatrix} \\
+   & = & \frac{1}{27}
+   \left[
+   (-1 - 3\lambda)
+   \begin{vmatrix}
+    -1 - 3\lambda & 2 \\
+    2 & - 1 - 3\lambda 
+   \end{vmatrix}
+   + 4
+   \begin{vmatrix}
+    2 & 2 \\
+    -1-3\lambda & 2 
+   \end{vmatrix}
+   \right] \\
+   & = & 
+   \frac{1}{27}\left[ (-1-3\lambda)[(-1-3\lambda)^2 - 4]+ 4[4 + 2+6\lambda] \right] \\
+   & = & \frac{1}{27}\left[ (-1-3\lambda)(-3-3\lambda)(1-3\lambda) + 4(6+6\lambda) \right] \\
+   & = & \frac{1}{27}\left[ -(3+3\lambda)(9\lambda^2 - 1) + 8(3+3\lambda) \right] \\
+   & = & \frac{1}{27}\left[ -(3+3\lambda)(9\lambda^2 - 9) \right] \\
+   & = & \frac{1}{27}\left[-27(\lambda+1)(\lambda^2-1)\right] \\ 
+   & = & -(\lambda + 1)^2(\lambda-1)
+  \end{eqnarray*}
+  Luego entonces, los valor propios de $f$, que son las ra\'{\i}ces de su polinomio caracter\'{\i}stico, son $\lambda_1 = -1$ y $\lambda_2 = 1$, cuyas multiplicidades, tanto geom\'etricas y algebraicas, son $d_1 = m_1 = 2$ y $d_2 = m_2 = 1$, respectivamente.
+  \par
+  Para el c\'alculo de $E_{\lambda_1 = -1}$, se usar\'a el vector de coordenadas $X = [x,y,z]^t$, de un vector $\bar{x}$, para resolver la ecuaci\'on $(A + I)X = (3A+3I)X = O$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    2 & 2 & 2 \\
+    2 & 2 & 2 \\
+    2 & 2 & 2
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    2x + 2y + 2z \\
+    2x + 2y + 2z \\
+    2x + 2y + 2z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  entonces, $x+y+z = 0$, lo cual lo cumplen $X_1=[1,-1,0]$ y $X_2 = [1,1,-2]$ que son ortonormales. Luego entonces
+  \begin{equation*}
+   E_{\lambda_1 = -1} = 
+   \left\{ \left. \bar{x} = (x,y,z) \in \mathbb{R}^3 \right| \, x + y + z = 0 \right\} = \left< (1,-1, 0), (1, 1, -2) \right>
+  \end{equation*}
+  Para el c\'alculo de $E_{\lambda_2 = 1}$, se usar\'a el vector de coordenadas $X = [x,y,z]^t$, de un vector $\bar{x}$, para resolver la ecuaci\'on $(A - I)X = (3A-3I)X = O$. Esto es:
+  \begin{equation*}
+   \begin{bmatrix}
+    -4 &  2 &  2 \\
+     2 & -4 &  2 \\
+     2 &  2 & -4
+   \end{bmatrix}
+   \begin{bmatrix}
+    x \\ y \\ z
+   \end{bmatrix}
+   = 
+   \begin{bmatrix}
+    -4x + 2y + 2z \\ 
+    \phantom{-}2x - 4y + 2x \\ \phantom{-}2x + 2y - 4z
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+    0 \\ 0 \\ 0
+   \end{bmatrix}
+  \end{equation*}
+  entonces, sumando a la segunda ecuaci\'on la mitad del primero, queda que $-3y+3z = 0$, entonces $y=z$ y, sustituyendo esto en la tercera ecuaci\'on, se tiene que $2x-2y = 0$, entonces $x=y$. Por lo tanto
+  \begin{equation*}
+   E_{\lambda_2 = 1} = \left\{ \left. \bar{x}=\in \mathbb{R}^3 \right| \bar{x} = (a,a,a), \text{ con } a\in\mathbb{R} \right\} = \left< (1,1,1) \right>
+  \end{equation*}
+  
+  \item Dado que los vectores generadores de los subespacios que se dieron ya ortogonales, entonces una base ortonormal para obtener la forma diagonal de $f$ se consigue normalizando estos vectores, esto es:
+  \begin{equation*}
+   \beta = \left( \bar{u}_1 = \frac{\sqrt{2}}{2}(1,-1,0), \bar{u}_2 = \frac{\sqrt{6}}{6}(1,1,-2), \bar{u}_3 = \frac{\sqrt{3}}{3}(1,1,1) \right)
+  \end{equation*}
+  es la base ortonormal buscada para la cual se obtiene la matriz diagonal, $D$, de $f$ formada por los valores propios de $f$. Tambi\'en se da la matriz de cambio de coordenada $P$ cuyas columnas son los vectores de la nueva base y que cumplen que $D=P^tAP$. Estos son:
+  \begin{equation*}
+   D = 
+   \begin{bmatrix}
+    -1 &  0 & 0 \\
+     0 & -1 & 0 \\
+     0 &  0 & 1
+   \end{bmatrix}
+   \qquad \text{y} \qquad
+   P = 
+   \begin{bmatrix}
+     1 &  1 & 1 \\
+    -1 &  1 & 1 \\
+     0 & -2 & 1
+   \end{bmatrix}
+  \end{equation*}
+
+  \item Finalmente, seg\'un se vio en [153], en la p\'agina 300, como la matriz diagonal $D$ de $f$ es de la forma de $A_1(\pi)$, entonces $f$ representa la simetr\'{\i}a ortogonal respecto de una recta (o lo que es lo mismo, un giro de $180^{\circ}$ sobre el eje de dicha recta). Falta indicar sobre cu\'al recta se habla. Esta recta mencionada debe ser aquella en donde queda invariante $f$, el cual est\'a dado por el subespacio de $\mathbb{R}^3$ (de dimensi\'on 1) en donde los vectores $\bar{x}$ cumplen que $f(\bar{x}) = \bar{x}$, es decir aquellos vectores $\bar{x}$ tales que $\bar{x}\in E_{\lambda_2=1} = \left< (1,1,1) \right>$. Por lo tanto, la representaci\'on geom\'etrica de $f$ est\'a dado como la simetr\'{\i}a ortogonal con respecto de la recta generada por el vector $(1,1,1)$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}
