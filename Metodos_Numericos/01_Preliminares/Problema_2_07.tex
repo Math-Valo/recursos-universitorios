@@ -1,0 +1,81 @@
+\begin{enunciado}
+ Siga el Ejemplo 1.12 para convertir los siguientes n\'umeros en fracciones binarias de la forma $0.d_1d_2\cdots d_n{}_{\text{dos}}$.
+ \begin{multicols}{4}
+  \begin{enumerate}[(a)]
+   \item $7/16$
+   \item $13/16$
+   \item $23/32$
+   \item $75/128$
+  \end{enumerate}
+ \end{multicols}
+\end{enunciado}
+
+\begin{solucion}
+ Para seguir el ejemplo mencionado, se hallar\'a primeramente una expresi\'on decimal de las fracciones, y, seguidamente, se realizar\'an las multiplicaciones por 2 iteradamente para obtener el resultado, como se muestra a continuaci\'on.
+ \begin{enumerate}[(a)]
+  \item Dado que $R = 7/16 = 0.4375$, entonces
+  \begin{center}
+   \begin{tabular}{rclrclrcl}
+    & & & \hspace{1.5cm} & & \hspace{1.5cm} \\
+    $2R$ & $=$ & $0.875$ & $d_1 =$ & $\text{ent}(0.875)$ & $=0$ & $F_1 =$ & $\text{frac}(0.875)$ & $=0.875$ \\
+    $2F_1$ & $=$ & $1.75$ & $d_2 =$ & $\text{ent}(1.75)$ & $=1$ & $F_2 =$ & $\text{frac}(1.75)$ & $=0.75$ \\
+    $2F_2$ & $=$ & $1.5$ & $d_3 =$ & $\text{ent}(1.5)$ & $=1$ & $F_3 =$ & $\text{frac}(1.5)$ & $=0.5$ \\
+    $2F_3$ & $=$ & $1$ & $d_4 =$ & $\text{ent}(1)$ & $=1$ & $F_4 =$ & $\text{frac}(1)$ & $=0$ \\
+   \end{tabular}
+  \end{center}
+  Por lo tanto
+  \begin{equation*}
+   \frac{7}{16} = 0.d_1d_2d_3d_4{}_{\text{dos}} = 0.0111_{\text{dos}}
+  \end{equation*}
+
+  \item Dado que $R = 13/16 = 0.8125$, entonces
+  \begin{center}
+   \begin{tabular}{rclrclrcl}
+    & & & \hspace{1.5cm} & & \hspace{1.5cm} \\
+    $2R$ & $=$ & $1.625$ & $d_1 =$ & $\text{ent}(1.625)$ & $=1$ & $F_1 =$ & $\text{frac}(1.625)$ & $=0.625$ \\
+    $2F_1$ & $=$ & $1.25$ & $d_2 =$ & $\text{ent}(1.25)$ & $=1$ & $F_2 =$ & $\text{frac}(1.25)$ & $=0.25$ \\
+    $2F_2$ & $=$ & $0.5$ & $d_3 =$ & $\text{ent}(0.5)$ & $=0$ & $F_3 =$ & $\text{frac}(0.5)$ & $=0.5$ \\
+    $2F_3$ & $=$ & $1$ & $d_4 =$ & $\text{ent}(1)$ & $=1$ & $F_4 =$ & $\text{frac}(1)$ & $=0$ \\
+   \end{tabular}
+  \end{center}
+  Por lo tanto
+  \begin{equation*}
+   \frac{13}{16} = 0.d_1d_2d_3d_4{}_{\text{dos}} = 0.1101_{\text{dos}}
+  \end{equation*}
+
+  \item Dado que $R = \frac{23}{32} = 0.71875$, entonces
+  \begin{center}
+   \begin{tabular}{rclrclrcl}
+    & & & \hspace{1.5cm} & & \hspace{1.5cm} \\
+    $2R$ & $=$ & $1.4375$ & $d_1 =$ & $\text{ent}(1.4375)$ & $=1$ & $F_1 =$ & $\text{frac}(1.4375)$ & $=0.4375$ \\
+    $2F_1$ & $=$ & $0.875$ & $d_2 =$ & $\text{ent}(0.875)$ & $=0$ & $F_2 =$ & $\text{frac}(0.875)$ & $=0.875$ \\
+    $2F_2$ & $=$ & $1.75$ & $d_3 =$ & $\text{ent}(1.75)$ & $=1$ & $F_3 =$ & $\text{frac}(1.75)$ & $=0.75$ \\
+    $2F_3$ & $=$ & $1.5$ & $d_4 =$ & $\text{ent}(1.5)$ & $=1$ & $F_4 =$ & $\text{frac}(1.5)$ & $=0.5$ \\
+    $2F_4$ & $=$ & $1$ & $d_5 =$ & $\text{ent}(1)$ & $=1$ & $F_5 =$ & $\text{frac}(1)$ & $=0$ \\
+   \end{tabular}
+  \end{center}
+  Por lo tanto
+  \begin{equation*}
+   \frac{23}{32} = 0.d_1d_2d_3d_4d_5{}_{\text{dos}} = 0.10111_{\text{dos}}
+  \end{equation*}
+
+  \item Dado que $R = \frac{75}{128} = 0.5859375$, entonces
+  \begin{center}
+   \begin{tabular}{rclrclrcl}
+    & & & \hspace{1.1cm} & & \hspace{1.1cm} \\
+    $2R$ & $=$ & $1.171875$ & $d_1 =$ & $\text{ent}(1.171875)$ & $=1$ & $F_1 =$ & $\text{frac}(1.171875)$ & $=0.171875$ \\
+    $2F_1$ & $=$ & $0.34375$ & $d_2 =$ & $\text{ent}(0.34375)$ & $=0$ & $F_2 =$ & $\text{frac}(0.34375)$ & $=0.34375$ \\
+    $2F_2$ & $=$ & $0.6875$ & $d_3 =$ & $\text{ent}(0.6875)$ & $=0$ & $F_3 =$ & $\text{frac}(0.6875)$ & $=0.6875$ \\
+    $2F_3$ & $=$ & $1.375$ & $d_4 =$ & $\text{ent}(1.375)$ & $=1$ & $F_4 =$ & $\text{frac}(1.375)$ & $=0.375$ \\
+    $2F_4$ & $=$ & $0.75$ & $d_5 =$ & $\text{ent}(0.75)$ & $=0$ & $F_5 =$ & $\text{frac}(0.75)$ & $=0.75$ \\
+    $2F_5$ & $=$ & $1.5$ & $d_6 =$ & $\text{ent}(1.5)$ & $=1$ & $F_6 =$ & $\text{frac}(1.5)$ & $=0.5$ \\
+    $2F_6$ & $=$ & $1$ & $d_7 =$ & $\text{ent}(1)$ & $=1$ & $F_7 =$ & $\text{frac}(1)$ & $=0$ \\
+   \end{tabular}
+  \end{center}
+  Por lo tanto
+  \begin{equation*}
+   \frac{75}{128} = 0.d_1d_2\ldots d_6d_7{}_{\text{dos}} = 0.1001011_{\text{dos}}
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

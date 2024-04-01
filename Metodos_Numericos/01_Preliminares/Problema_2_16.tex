@@ -1,0 +1,72 @@
+\begin{enunciado}
+ Pruebe que si sustituimos $2$ por $5$ en todas las f\'ormulas de (8), el resultado es un m\'etodo para hallar la expresi\'on en base $5$ de un n\'umero natural. Utilice esto para expresar los siguientes n\'umeros en base $5$.
+ \begin{multicols}{4}
+  \begin{enumerate}
+   \item $10$
+   \item $35$
+   \item $721$
+   \item $734$
+  \end{enumerate}
+ \end{multicols}
+\end{enunciado}
+
+\begin{solucion}
+ La demostraci\'on ya se hizo en el enunciado 14 de esta secci\'on de ejercicios para el caso general $n\in\mathbb{N}\backslash\{ 1 \}$. Por lo que se procede hacer los c\'alculos cuando $n = 5$.
+ \begin{enumerate}
+  \item Dividiendo iteradamente $N=10$ entre $n=5$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $10$ & $=$ & $5\times$ & $2 + 0$, & $b_0 = 0$ \\
+    $2$ & $=$ & $5\times$ & $0 + 2$, & $b_1 = 2$
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on en base $5$ de $10$ es
+  \begin{equation*}
+   10 = b_1b_0{}_{\text{cinco}} = 20_{\text{cinco}}
+  \end{equation*}
+
+  \item Dividiendo iteradamente $N=35$ entre $n=5$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $35$ & $=$ & $5\times$ & $7 + 0$, & $b_0 = 0$ \\
+    $7$ & $=$ & $5\times$ & $1 + 2$, & $b_1 = 2$ \\
+    $1$  & $=$ & $5\times$ & $0 + 1$, & $b_2 = 1$
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on en base $5$ de $35$ es
+  \begin{equation*}
+   35 = b_2b_1b_0{}_{\text{cinco}} = 120_{\text{cinco}}
+  \end{equation*}
+
+  \item Dividiendo iteradamente $N=721$ entre $n=5$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $721$ & $=$ & $5\times$ & $144 + 1$, & $b_0 = 1$ \\
+    $144$ & $=$ & $5\times$ & $28 + 4$, & $b_1 = 4$ \\
+    $28$  & $=$ & $5\times$ & $5 + 3$, & $b_2 = 3$ \\
+    $5$  & $=$ & $5\times$ & $1 + 0$, & $b_3 = 0$ \\
+    $1$  & $=$ & $5\times$ & $0 + 1$, & $b_4 = 1$ 
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on en la base $5$ de $721$ es
+  \begin{equation*}
+   721 = b_4b_3b_2b_1b_0{}_{\text{cinco}} = 10341_{\text{cinco}}
+  \end{equation*}
+
+  \item Dividiendo iteradamente $N=734$ entre $n=5$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $734$ & $=$ & $5\times$ & $146 + 4$, & $b_0 = 4$ \\
+    $146$ & $=$ & $5\times$ & $29 + 1$, & $b_1 = 1$ \\
+    $29$  & $=$ & $5\times$ & $5 + 4$, & $b_2 = 4$ \\
+    $5$  & $=$ & $5\times$ & $1 + 0$, & $b_3 = 0$ \\
+    $1$  & $=$ & $5\times$ & $0 + 1$, & $b_4 = 1$ 
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on en la base $5$ de $734$ es
+  \begin{equation*}
+   734 = b_4b_3b_2b_1b_0{}_{\text{cinco}} = 10414_{\text{cinco}}
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

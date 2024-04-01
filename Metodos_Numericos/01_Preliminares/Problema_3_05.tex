@@ -1,0 +1,47 @@
+\begin{enunciado}
+ La p\'erdida de cifras significativas se puede evitar a veces reordenando los t\'erminos de la funci\'on usando una identidad conocida del \'algebra o la trigonometr\'{\i}a. Encuentre, en cada uno de los siguientes casos, una f\'ormula equivalente a la dada que evite la p\'erdida de cifras significativas.
+ \begin{enumerate}
+  \item $\ln(x+1) - \ln(x)$ para $x$ grande.
+  
+  \item $\sqrt{x^2+1} - x$ para $x$ grande.
+  
+  \item $\cos^2(x) - \sin^2(x)$ para $x \approx \pi/4$.
+  
+  \item $\displaystyle{\sqrt{\frac{1+\cos(x)}{2}}}$ para $x \approx \pi$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}
+  \item Por propiedades de logaritmos:
+  \begin{equation*}
+   \ln(x+1) - \ln(x) = \ln\left( \frac{x+1}{x} \right) = \ln\left(1 + \frac{1}{x} \right)._{\square}
+  \end{equation*}
+  
+  \item Multiplicando y dividiendo por el conjugado, se tiene que:
+  \begin{equation*}
+   \sqrt{x^2 + 1} - x = \frac{x^2 + 1 - x^2}{\sqrt{x^2 + 1} + x} = \frac{1}{\sqrt{x^2 + 1} + x}._{\square}
+  \end{equation*}
+
+  \item Usando la propiedad de la suma de \'angulos en un coseno, $\cos(\alpha+\beta) = \cos(\alpha)\cos(\beta) - \sin(\alpha)\sin(\beta)$, en el que en este caso $\alpha=\beta=x$, se tiene que:
+  \begin{equation*}
+   \cos^2(x) - \sin^2(x) = \cos\left(2x\right)._{\square}
+  \end{equation*}
+
+  \item Usando de nuevo la propiedad de la suma de \'angulos en un coseno, pero en este caso haciendo $\alpha = \beta = \frac{x}{2}$, y la identidad $\sin^2(x) + \cos^2(x) = 1$, se tiene que:
+  \begin{equation*}
+   \cos(x) = \cos^2\left( \frac{x}{2} \right) - \sin^2 \left( \frac{x}{2} \right) = \cos^2\left( \frac{x}{2} \right) - \left[ 1 - \cos^2\left( \frac{x}{2} \right) \right] = 2\cos^2\left( \frac{x}{2} \right) - 1
+  \end{equation*}
+  por lo que, despejando $\cos^2\left( \frac{x}{2} \right)$, se tiene que
+  \begin{equation*}
+   \cos^2\left( \frac{x}{2} \right) = \frac{1+\cos(x)}{2}
+  \end{equation*}
+  Por lo tanto
+  \begin{equation*}
+   \sqrt{\frac{1+\cos(x)}{2}} = \cos\left( \frac{x}{2} \right)
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+
+\end{solucion}

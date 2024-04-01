@@ -1,0 +1,90 @@
+\begin{enunciado}
+ Siga el Ejemplo 1.10 para convertir los siguientes n\'umeros en su forma binaria
+ \begin{multicols}{4}
+  \begin{enumerate}[(a)]
+   \item $23$
+   \item $87$
+   \item $378$
+   \item $2388$
+  \end{enumerate}
+ \end{multicols}
+\end{enunciado}
+
+\begin{solucion}
+ Usando el algoritmo presentado, a trav\'es de divisiones iteradas entre dos y tomando los restos, se tienen las represetanciones como siguen.
+ \begin{enumerate}[(a)]
+  \item Empezando con $N=23$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $23$ & $=$ & $2\times$ & $11+1$, & $b_0 = 1$ \\
+    $11$ & $=$ & $2\times$ & $5 +1$, & $b_1 = 1$ \\
+    $5$  & $=$ & $2\times$ & $2 +1$, & $b_2 = 1$ \\
+    $2$  & $=$ & $2\times$ & $1 +0$, & $b_3 = 0$ \\
+    $1$  & $=$ & $2\times$ & $0 +1$, & $b_4 = 1$
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on binaria de $23$ es
+  \begin{equation*}
+   23 = b_4 b_3 \ldots b_1b_{0}{}_{\text{dos}} = 10111_{\text{dos}}.
+  \end{equation*}
+
+  \item Empezando con $N=87$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $87$ & $=$ & $2\times$ & $43+1$, & $b_0 = 1$ \\
+    $43$ & $=$ & $2\times$ & $21 +1$, & $b_1 = 1$ \\
+    $21$ & $=$ & $2\times$ & $10+1$, & $b_2 = 1$ \\
+    $10$ & $=$ & $2\times$ & $5 +0$, & $b_3 = 0$ \\
+    $5$  & $=$ & $2\times$ & $2 +1$, & $b_4 = 1$ \\
+    $2$  & $=$ & $2\times$ & $1 +0$, & $b_5 = 0$ \\
+    $1$  & $=$ & $2\times$ & $0 +1$, & $b_6 = 1$
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on binaria de $87$ es
+  \begin{equation*}
+   87 = b_6 b_5 b_4 \ldots b_1b_{0}{}_{\text{dos}} = 1010111_{\text{dos}}.
+  \end{equation*}
+
+  \item Empezando con $N=378$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $378$ & $=$ & $2\times$ & $189+0$, & $b_0 = 0$ \\
+    $189$ & $=$ & $2\times$ & $94 +1$, & $b_1 = 1$ \\
+    $94$  & $=$ & $2\times$ & $47 +0$, & $b_2 = 0$ \\
+    $47$  & $=$ & $2\times$ & $23 +1$, & $b_3 = 1$ \\
+    $23$  & $=$ & $2\times$ & $11 +1$, & $b_4 = 1$ \\
+    $11$  & $=$ & $2\times$ & $5  +1$, & $b_5 = 1$ \\
+    $5$   & $=$ & $2\times$ & $2  +1$, & $b_6 = 1$ \\
+    $2$   & $=$ & $2\times$ & $1  +0$, & $b_7 = 0$ \\
+    $1$   & $=$ & $2\times$ & $0  +1$, & $b_8 = 1$
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on binaria de $378$ es
+  \begin{equation*}
+   378 = b_8 b_7 b_6 \ldots b_2b_1b_{0}{}_{\text{dos}} = 101111010_{\text{dos}}.
+  \end{equation*}
+
+  \item Empezando con $N=2388$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $2388$ & $=$ & $2\times$ & $1194+0$, & $b_0    = 0$ \\
+    $1194$ & $=$ & $2\times$ & $597 +0$, & $b_1    = 0$ \\
+    $597$  & $=$ & $2\times$ & $298 +1$, & $b_2    = 1$ \\
+    $298$  & $=$ & $2\times$ & $149 +0$, & $b_3    = 0$ \\
+    $149$  & $=$ & $2\times$ & $74  +1$, & $b_4    = 1$ \\
+    $74$   & $=$ & $2\times$ & $37  +0$, & $b_5    = 0$ \\
+    $37$   & $=$ & $2\times$ & $18  +1$, & $b_6    = 1$ \\
+    $18$   & $=$ & $2\times$ & $9   +0$, & $b_7    = 0$ \\
+    $9$    & $=$ & $2\times$ & $4   +1$, & $b_8    = 1$ \\
+    $4$    & $=$ & $2\times$ & $2   +0$, & $b_9    = 0$ \\
+    $2$    & $=$ & $2\times$ & $1   +0$, & $b_{10} = 0$ \\
+    $1$    & $=$ & $2\times$ & $0   +1$, & $b_{11} = 1$
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on binaria de $2388$ es
+  \begin{equation*}
+   2388 = b_{11} b_{10} b_9 \ldots b_2b_1b_0{}_{\text{dos}} = 100101010100_{\text{dos}}.
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

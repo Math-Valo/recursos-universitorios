@@ -1,0 +1,283 @@
+\begin{enunciado}
+ Use la Tabla 1.3 para determinar qu\'e ocurre cuando un computador con una mantisa de cuatro cifras lleva a cabo los siguiente c\'alculos.
+ \begin{multicols}{2}
+  \begin{enumerate}[(a)]
+   \item $\left( \frac{1}{3} + \frac{1}{5} \right) + \frac{1}{6}$
+   \item $\left( \frac{1}{10} + \frac{1}{3} \right) + \frac{1}{5}$
+  \end{enumerate}
+ \end{multicols}
+ \begin{multicols}{2}
+  \begin{enumerate}[(a)]
+   \setcounter{enumii}{2}
+   \item $\left( \frac{3}{17} + \frac{1}{9} \right) + \frac{1}{7}$
+   \item $\left( \frac{7}{10} + \frac{1}{9} \right) + \frac{1}{7}$
+  \end{enumerate}
+ \end{multicols}
+\end{enunciado}
+
+\begin{solucion}
+ Para mayor comodidad, la tabla se anexa a continuaci\'on:
+ \begin{center}
+  \begin{tabular}{l|l|l|l|l|l|l|l|l}
+   \hline 
+    & \multicolumn{8}{c}{Exponente:} \\
+   \cline{2-9}
+   Mantisa & $n=-3$ & $n=-2$ & $n=-1$ & $n=0$ & $n=1$ & $n=2$ & $n=3$ & $n=4$ \\
+   \hline 
+   $0.1000_{\text{dos}}$ & $0.0625$ & $0.125$ & $0.25$ & $0.5$ & $1$ & $2$ & $4$ & $\phantom{1}8$ \\
+   $0.1001_{\text{dos}}$ & $0.0703125$ & $0.140625$ & $0.28125$ & $0.5625$ & $1.125$ & $2.25$ & $4.5$ & $\phantom{1}9$ \\ 
+   $0.1010_{\text{dos}}$ & $0.078125$ & $0.15625$ & $0.3125$ & $0.625$ & $1.25$ & $2.5$ & $5$ & $10$ \\
+   $0.1011_{\text{dos}}$ & $0.0859375$ & $0.171875$ & $0.34375$ & $0.6875$ & $1.375$ & $2.75$ & $5.5$ & $11$ \\
+   $0.1100_{\text{dos}}$ & $0.09375$ & $0.1875$ & $0.375$ & $0.75$ & $1.5$ & $3$ & $6$ & $12$ \\
+   $0.1101_{\text{dos}}$ & $0.1015625$ & $0.203125$ & $0.40625$ & $0.8125$ & $1.625$ & $3.25$ & $6.5$ & $13$ \\
+   $0.1110_{\text{dos}}$ & $0.109375$ & $0.21875$ & $0.4375$ & $0.875$ & $1.75$ & $3.5$ & $7$ & $14$ \\ 
+   $0.1111_{\text{dos}}$ & $0.1171875$ & $0.234375$ & $0.46875$ & $0.9375$ & $1.875$ & $3.75$ & $7.5$ & $15$ \\
+   \hline 
+  \end{tabular}
+ \end{center}
+ Y las aproximaciones se har\'an redondeando al valor mayor o igual m\'as pr\'oximo en la tabla.
+ \begin{enumerate}
+  \item Dado que $1/3 = 0.\overline{3}$, $1/5 = 0.2$ y $1/6 = 0.1\overline{6}$, entonces los n\'umeros que m\'as se aproximan a estos en la tabla son $0.34375$, $0.203125$ y $0.171875$, que corresponden a los n\'umeros binarios $0.1011_{\text{dos}}\times 2^{-1}$, $0.1101_{\text{dos}}\times 2^{-2}$ y $0.1011_{\text{dos}}\times 2^{-2}$, respectivamente, por lo que se tiene lo siguiente
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{1}{3}$ & $\approx$ & $0.1011_{\text{dos}}\times 2^{-1}$ & $=$ & $0.1011_{\text{dos}}\phantom{0} \times 2^{-1}$ \\ 
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{5}$ & $\approx$ & $0.1101_{\text{dos}} \times 2^{-2}$ & $=$ & $0.01101_{\text{dos}} \times 2^{-1}$ \\
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{8}{15}$ & & & & $1.00011_{\text{dos}} \times 2^{-1}$
+   \end{tabular}
+  \end{center}
+  Entonces, suponiendo que el computador almacena el n\'umero $1.00011_{\text{dos}}\times 2^{-1}$ redondenado a $0.1001_{\text{dos}} \times 2^{0}$, el paso siguiente es
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{8}{15}$ & $\approx$ & $0.1001_{\text{dos}}\times 2^{0}$ & $=$ & $0.1001_{\text{dos}}\phantom{10} \times 2^{0}$ \\ 
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{6}$ & $\approx$ & $0.1011_{\text{dos}} \times 2^{-2}$ & $=$ & $0.001011_{\text{dos}} \times 2^{0}$ \\
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{7}{10}$ & & & & $0.101111_{\text{dos}} \times 2^{0}$
+   \end{tabular}
+  \end{center}
+  Entonces, volviendo a suponer que el n\'umero $0.110111_{\text{dos}} \times 2^{0}$ se almacena en el computador redondeando, en este caso a $0.1100_{\text{dos}} \times 2^{0}$, se obtiene que la soluci\'on del computador al problema de la suma es
+  \begin{equation*}
+   \frac{7}{10} \approx 0.1100_{\text{dos}} \times 2^{0} = 0.75
+  \end{equation*}
+  cuando en realidad $\frac{7}{10} = 0.7$. Por lo tanto, el error en el c\'alculo efectuado por el computador es
+  \begin{equation*}
+   0.7 - 0.75 = -0.05
+  \end{equation*}
+  que expresado como un porcentaje de $0.7$ es del $7.14\%$.
+
+  \item Dado que $1/10 = 0.5$, $1/3 = 0.\overline{3}$ y $1/5 = 0.2$, entonces los n\'umeros que m\'as se aproximan a estos en la tabla son $0.1015625$, $0.34375$ y $0.203125$, que corresponden a los n\'umeros binarios $0.1101_{\text{dos}}\times 2^{-3}$, $0.1011_{\text{dos}}\times 2^{-1}$ y $0.1101_{\text{dos}}\times 2^{-2}$, respectivamente, por lo que se tiene lo siguiente
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{1}{10}$ & $\approx$ & $0.1101_{\text{dos}} \times 2^{-3}$ & $=$ & $0.001101_{\text{dos}} \times 2^{-1}$ \\
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{3}$ & $\approx$ & $0.1011_{\text{dos}}\times 2^{-1}$ & $=$ & $0.1011_{\text{dos}}\phantom{00} \times 2^{-1}$ \\ 
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{13}{30}$ & & & & $0.111001_{\text{dos}} \times 2^{-1}$
+   \end{tabular}
+  \end{center}
+  Entonces, suponiendo que el computador almacena el n\'umero $0.111001_{\text{dos}}\times 2^{-1}$ truncando a $0.1110_{\text{dos}} \times 2^{-1}$, el paso siguiente es
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{13}{30}$ & $\approx$ & $0.1110_{\text{dos}}\times 2^{-1}$ & $=$ & $0.1110_{\text{dos}}\phantom{0} \times 2^{-1}$ \\ 
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{5}$ & $\approx$ & $0.1101_{\text{dos}} \times 2^{-2}$ & $=$ & $0.01101_{\text{dos}} \times 2^{-1}$ \\
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{19}{30}$ & & & & $1.01001_{\text{dos}} \times 2^{-1}$
+   \end{tabular}
+  \end{center}
+  Entonces, volviendo a suponer que el n\'umero $1.01001_{\text{dos}} \times 2^{0}$ se almacena en el computador truncando, en este caso a $0.1010_{\text{dos}} \times 2^{0}$, se obtiene que la soluci\'on del computador al problema de la suma es
+  \begin{equation*}
+   \frac{19}{30} \approx 0.1010_{\text{dos}} \times 2^{0} = 0.625
+  \end{equation*}
+  cuando en realidad $\frac{19}{30} = 0.6\overline{3}$. Por lo tanto, el error en el c\'alculo efectuado por el computador es
+  \begin{equation*}
+   0.6\overline{3} - 0.625 = -0.008\overline{3}
+  \end{equation*}
+  que expresado como un porcentaje de $\frac{19}{30}$ es del $1.32\%$.
+
+  \item Dado que $3/17 = 0.\overline{1764705882352941}$, $1/9 = 0.\overline{1}$ y $1/7 = 0.\overline{142857}$, entonces los n\'umeros que m\'as se aproximan a estos en la tabla, redondeando, son $0.1875$, $0.1171875$ y $0.15625$, que corresponden a los n\'umeros binarios $0.1100_{\text{dos}}\times 2^{-2}$, $0.1111_{\text{dos}}\times 2^{-3}$ y $0.1010_{\text{dos}}\times 2^{-2}$, respectivamente, por lo que se tiene lo siguiente
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{3}{17}$ & $\approx$ & $0.1100_{\text{dos}} \times 2^{-2}$ & $=$ & $0.1100_{\text{dos}}\phantom{1} \times 2^{-2}$ \\
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{9}$ & $\approx$ & $0.1111_{\text{dos}}\times 2^{-3}$ & $=$ & $0.01111_{\text{dos}} \times 2^{-2}$ \\ 
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{44}{153}$ & & & & $1.00111_{\text{dos}} \times 2^{-2}$
+   \end{tabular}
+  \end{center}
+  Entonces, suponiendo que el computador almacena el n\'umero $1.00111_{\text{dos}}\times 2^{-2}$ redondeando a $0.1010_{\text{dos}} \times 2^{-1}$, el paso siguiente es
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{44}{153}$ & $\approx$ & $0.1010_{\text{dos}}\times 2^{-1}$ & $=$ & $0.1010_{\text{dos}} \times 2^{-1}$ \\ 
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{7}$ & $\approx$ & $0.1010_{\text{dos}} \times 2^{-2}$ & $=$ & $0.0101_{\text{dos}} \times 2^{-1}$ \\
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{461}{1071}$ & & & & $0.1111_{\text{dos}} \times 2^{-1}$
+   \end{tabular}
+  \end{center}
+  El cual es un n\'umero que se puede almacenar en el computador, as\'{\i} que no hace falta redondear o truncar \'este. Por lo tanto se obtiene que la soluci\'on del computador al problema de la suma es
+  \begin{equation*}
+   \frac{461}{1071} \approx 0.1111_{\text{dos}} \times 2^{-1} = 0.46875
+  \end{equation*}
+  cuando en realidad $\frac{461}{1071}$ es un n\'umero con 48 d\'{\i}gitos en su periodo decimal y cuyos primeros d\'{\i}gitos son $0.4304388422\ldots$. Por lo tanto, el error en el c\'alculo efectuado por el computador es aproximadamente
+  \begin{equation*}
+   \frac{461}{1071} - 0.01111_{\text{dos}} \approx 0.4304388422 - 0.46875 = -0.0383111578.
+  \end{equation*}
+  que expresado como un porcentaje de $\frac{461}{1071}$ es del $8.9\%$.
+  \par 
+  N\'otese que las aproximaciones iniciales son mejores si se hacen aproximando por truncamiento al n\'umero m\'as pr\'oximo en la tabla, los cuales son, respectivamente para $3/17$, $1/9$ y $1/7$, $0.171875$, $0.109375$ y $0.140625$, que corresponden a los n\'umeros binarios $0.1011_{\text{dos}}\times 2^{-2}$, $0.1110_{\text{dos}}\times 2^{-3}$ y $0.1001_{\text{dos}} \times 2^{-2}$, respectivamente, por lo que ahora las cuentas cambian teniendo lo siguiente:
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{3}{17}$ & $\approx$ & $0.1011_{\text{dos}} \times 2^{-2}$ & $=$ & $0.1011_{\text{dos}} \times 2^{-2}$ \\
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{9}$ & $\approx$ & $0.1110_{\text{dos}}\times 2^{-3}$ & $=$ & $0.0111_{\text{dos}} \times 2^{-2}$ \\ 
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{44}{153}$ & & & & $1.0010_{\text{dos}} \times 2^{-2}$
+   \end{tabular}
+  \end{center}
+  el cual puede almacenar el computador como $0.1001_{\text{dos}} \times 2^{-1}$, y luego se tiene que
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{44}{153}$ & $\approx$ & $0.1001_{\text{dos}}\times 2^{-1}$ & $=$ & $0.1001_{\text{dos}} \phantom{0} \times 2^{-1}$ \\ 
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{7}$ & $\approx$ & $0.1001_{\text{dos}} \times 2^{-2}$ & $=$ & $0.01001_{\text{dos}} \times 2^{-1}$ \\
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{461}{1071}$ & & & & $0.11011_{\text{dos}} \times 2^{-1}$
+   \end{tabular}
+  \end{center}
+  el cual se puede suponer que la computadora lo almacena al n\'umero m\'as pr\'oximo que es redondeando para obtener $0.1110_{\text{dos}} \times 2^{-1}$. Por lo tanto, se obtiene que la soluci\'on del computador al problema de la suma es
+  \begin{equation*}
+   \frac{461}{1071} \approx 0.1110_{\text{dos}} \times 2^{-1} = 0.4375
+  \end{equation*}
+  Por lo tanto, en este caso, el error en el c\'alculo efectuador por el computador es aproximadamente
+  \begin{equation*}
+   \frac{461}{1071} - 0.0111_{\text{dos}} \approx 0.4304388422 - 0.4375 = -0.0070611578
+  \end{equation*}
+  que expresado como un porcentaje de $\frac{461}{1071}$ es del $1.64\%$, que es claramente menor a lo que se ten\'{\i}a previamente.
+
+  \item Dado que $7/10 = 0.7$, $1/9 = 0.\overline{1}$ y $1/7 = 0.\overline{142857}$, entonces los n\'umeros que m\'as se aproximan a estos en la tabla, redondeando, son $0.75$, $0.1171875$ y $0.15625$, que corresponden a los n\'umeros binarios $0.1100_{\text{dos}}\times 2^{0}$, $0.1111_{\text{dos}}\times 2^{-3}$ y $0.1010_{\text{dos}}\times 2^{-2}$, respectivamente, por lo que se tiene lo siguiente
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{7}{10}$ & $\approx$ & $0.1100_{\text{dos}} \times 2^{0}\phantom{0}$ & $=$ & $0.1100_{\text{dos}}\phantom{011} \times 2^{0}$ \\ 
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{9}$ & $\approx$ & $0.1111_{\text{dos}} \times 2^{-3}$ & $=$ & $0.0001111_{\text{dos}} \times 2^{0}$ \\
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{73}{90}$ & & & & $0.1101111_{\text{dos}} \times 2^{0}$
+   \end{tabular}
+  \end{center}
+  Entonces, suponiendo que el computador almacena el n\'umero $0.1101111_{\text{dos}}\times 2^{0}$ redondenado a $0.1110_{\text{dos}} \times 2^{0}$, el paso siguiente es
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{73}{90}$ & $\approx$ & $0.1110_{\text{dos}}\times 2^{0}\phantom{1}$ & $=$ & $0.1110_{\text{dos}}\phantom{0} \times 2^{0}$ \\ 
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{7}$ & $\approx$ & $0.1010_{\text{dos}} \times 2^{-2}$ & $=$ & $0.00101_{\text{dos}} \times 2^{0}$ \\
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{601}{630}$ & & & & $1.00001_{\text{dos}} \times 2^{0}$
+   \end{tabular}
+  \end{center}
+  Entonces, volviendo a suponer que el n\'umero $1.00001_{\text{dos}} \times 2^{0}$ se almacena en el computador redondeando, en este caso a $1.0001_{\text{dos}} \times 2^{0}$, se obtiene que la soluci\'on del computador al problema de la suma es
+  \begin{equation*}
+   \frac{601}{630} \approx 1.0001_{\text{dos}} \times 2^{0} = 1.0625
+  \end{equation*}
+  cuando en realidad $\frac{601}{630} = 0.9\overline{539682}$. Por lo tanto, el error en el c\'alculo efectuado por el computador es
+  \begin{equation*}
+   0.9\overline{539682} - 1.0625 = -0.1085\overline{317460}
+  \end{equation*}
+  que expresado como un porcentaje de $\frac{601}{630}$ es del $10.85\%$.
+  \par 
+  N\'otese que las aproximaciones iniciales son mejores si se hacen aproximando por truncamiento al n\'umero m\'as pr\'oximo en la tabla, los cuales son, respectivamente para $7/10$, $1/9$ y $1/7$, $0.6875$, $0.109375$ y $0.140625$, que corresponden a los n\'umeros binarios $0.1011_{\text{dos}}\times 2^{0}$, $0.1110_{\text{dos}}\times 2^{-3}$ y $0.1001_{\text{dos}} \times 2^{-2}$, respectivamente, por lo que ahora las cuentas cambian teniendo lo siguiente:
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{7}{10}$ & $\approx$ & $0.1011_{\text{dos}} \times 2^{0}\phantom{1}$ & $=$ & $0.1011_{\text{dos}}\phantom{11} \times 2^{0}$ \\
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{9}$ & $\approx$ & $0.1110_{\text{dos}}\times 2^{-3}$ & $=$ & $0.000111_{\text{dos}} \times 2^{0}$ \\ 
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{73}{90}$ & & & & $0.110011_{\text{dos}} \times 2^{0}$
+   \end{tabular}
+  \end{center}
+  el cual se va suponer que el computador lo almacena redondeando como $0.1101_{\text{dos}} \times 2^{0}$, y luego se tiene que
+  \begin{center}
+   \begin{tabular}{ccccc}
+    $\frac{73}{90}$ & $\approx$ & $0.1101_{\text{dos}}\times 2^{0}\phantom{1}$ & $=$ & $0.1101_{\text{dos}}\phantom{00} \times 2^{0}$ \\ 
+    \vspace{-0.3cm} 
+    \\
+    $\frac{1}{7}$ & $\approx$ & $0.1001_{\text{dos}} \times 2^{-2}$ & $=$ & $0.001001_{\text{dos}} \times 2^{0}$ \\
+    \vspace{-0.4cm}
+    \\
+    \hhline{-~~~-}
+    \vspace{-0.4cm}
+    \\
+    $\frac{601}{630}$ & & & & $0.111101_{\text{dos}} \times 2^{0}$
+   \end{tabular}
+  \end{center}
+  el cual se puede suponer que la computadora lo almacena al n\'umero m\'as pr\'oximo que es truncando para obtener $0.1111_{\text{dos}} \times 2^{0}$. Por lo tanto, se obtiene que la soluci\'on del computador al problema de la suma es
+  \begin{equation*}
+   \frac{601}{630} \approx 0.1111_{\text{dos}} \times 2^{0} = 0.9375
+  \end{equation*}
+  Por lo tanto, en este caso, el error en el c\'alculo efectuador por el computador es aproximadamente
+  \begin{equation*}
+   0.9\overline{539682} - 0.9375 = 0.0164\overline{682539}
+  \end{equation*}
+  que expresado como un porcentaje de $\frac{601}{630}$ es del $1.73\%$, que es claramente menor a lo que se ten\'{\i}a previamente.
+  \par 
+  En conclusi\'on, hay que buscar buenas aproximaciones iniciales para no acarrear demasiado error en la soluci\'on final, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+
+ \end{enumerate}
+\end{solucion}

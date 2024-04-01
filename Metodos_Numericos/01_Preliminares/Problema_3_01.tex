@@ -1,0 +1,56 @@
+\begin{enunciado}
+ En cada uno de los casos siguientes, halle el error absoluto $E_x$ y el error relativo $R_x$ y determine el n\'umero de cifras significativas de la aproximaci\'on:
+ \begin{enumerate}
+  \item $x = 2.71828182$, $\widehat{x} = 2.7182$
+  \item $y = 98\,350$, $\widehat{y} = 98\,000$
+  \item $z = 0.000068$, $\widehat{z} = 0.00006$
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}
+  \item El error absoluto se calcula a continuaci\'on
+  \begin{equation*}
+   E_x = \left| x - \widehat{x} \right| = \left| 2.71828182 - 2.7182 \right| = 0.00008182
+  \end{equation*}
+  mientras que el error relativo se calcula como sigue
+  \begin{equation*}
+   R_x = \frac{\left| x - \widehat{x} \right|}{|x|} = \frac{\left| 2.71828182 - 2.7182 \right|}{|2.71828182|} = \frac{0.00008182}{2.71828182} \approx 0.00003009989597
+  \end{equation*}
+  Por lo tanto, como $\frac{10^{-5}}{2} = 0.000005$ y $\frac{10^{-4}}{2} = 0.00005$, entonces
+  \begin{equation*}
+   \frac{10^{-5}}{2} < R_x < \frac{10^{-4}}{2}
+  \end{equation*}
+  y, por tanto, $\widehat{x}$ es una aproximaci\'on a $x$ con cuatro cifras significativas.${}_{\square}$
+  
+  \item El error absoluto se calcula a continuaci\'on
+  \begin{equation*}
+   E_y = \left| y - \widehat{y} \right| = \left| 98\,350 - 98\,000 \right| = 350
+  \end{equation*}
+  mientras que el error relativo se calcula como sigue
+  \begin{equation*}
+   R_y = \frac{\left| y - \widehat{y} \right|}{|y|} = \frac{\left| 98\,350 - 98\,000 \right|}{|98\,350|} = \frac{350}{98\,350} \approx 0.0035587188612
+  \end{equation*}
+  Por lo tanto, como
+  \begin{equation*}
+   \frac{10^{-3}}{2} < R_y < \frac{10^{-2}}{2}
+  \end{equation*}
+  entonces $\widehat{y}$ es una aproximaci\'on a $y$ con dos cifras significativas.${}_{\square}$
+  
+  \item El error absoluto se calcula a continuaci\'on
+  \begin{equation*}
+   E_z = \left| z - \widehat{z} \right| = \left| 0.000068 - 0.00006 \right| = 0.000008
+  \end{equation*}
+  mientras que el error relativo se calcula como sigue
+  \begin{equation*}
+   R_z = \frac{\left| z - \widehat{z} \right|}{|z|} = \frac{\left| 0.000068 - 0.00006 \right|}{|0.000068|} = \frac{0.000008}{0.000068} \approx 0.117647
+  \end{equation*}
+  Por lo tanto, como
+  \begin{equation*}
+   R_z < \frac{10^{0}}{2}
+  \end{equation*}
+  entonces $\widehat{z}$ es una aproximaci\'on a $z$ sin cifras significativas, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+
+\end{solucion}

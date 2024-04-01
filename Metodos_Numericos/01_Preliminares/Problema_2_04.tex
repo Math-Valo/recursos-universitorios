@@ -1,0 +1,36 @@
+\begin{enunciado}
+ Convierta los siguientes n\'umeros binarios en su forma decimal (base 10).
+ \begin{multicols}{2}
+  \begin{enumerate}[(a)]
+   \item $1.0110101_{\text{dos}}$
+   \item $11.0010010001_{\text{dos}}$
+  \end{enumerate}
+ \end{multicols}
+\end{enunciado}
+
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}[(a)]
+  \item Desarrollando, se obtiene que:
+  \begin{eqnarray*}
+   1.0110101_{\text{dos}} & = & 1 \times 2^{0} + 0 \times 2^{-1} + 1 \times 2^{-2} + 1 \times 2^{-3} + 0 \times 2^{-4} + 1 \times 2^{-5} \\ 
+   & & + \; 0 \times 2^{-6} + 1 \times 2^{-7} \\
+   & = & 1 \times 1 + 0 \times 0.5 + 1 \times 0.25 + 1 \times 0.125 + 0 \times 0.0625 + 1 \times 0.03125 \\ 
+   & & + \; 0 \times 0.015625 + 1 \times 0.0078125 \\
+   & = & 1 + 0.25 + 0.125 + 0.03125 + 0.0078125 \\ 
+   & = & 1.4140625 
+  \end{eqnarray*}
+
+  \item Desarrollando, se obtiene que:
+  \begin{eqnarray*}
+   11.0010010001_{\text{dos}} & = & 1 \times 2^{1} + 1 \times 2^{0} + 0 \times 2^{-1} + 0 \times 2^{-2} + 1 \times 2^{-3} + 0 \times 2^{-4} + 0 \times 2^{-5} \\ 
+   & & + \; 1 \times 2^{-6} + 0 \times 2^{-7} + 0 \times 2^{-8} + 0 \times 2^{-9} + 1 \times 2^{-10} \\
+   & = & 1 \times 2 + 1 \times 1 + 0 \times 0.5 + 0 \times 0.25 + 1 \times 0.125 + 0 \times 0.0625 \\
+   & & + \; 0 \times 0.03125 + 1 \times 0.015625 + 0 \times 0.0078125 + 0 \times 0.00390625 \\
+   & & + \; 0 \times 0.001953125 + 1 \times 0.0009765625 \\
+   & = & 2 + 1 + 0.125 + 0.015625 + 0.0009765625 \\ 
+   & = & 3.1416015625
+  \end{eqnarray*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

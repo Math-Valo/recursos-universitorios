@@ -1,0 +1,159 @@
+\begin{enunciado}
+ Pruebe que si sustituimos $2$ por $3$ en (22), el resultado es un m\'etodo para hallar la expresi\'on en base $3$ de un n\'umero positivo $R$ tal que $0 < R < 1$. Utilice esto para expresar los siguientes n\'umeros en base $3$.
+ \begin{multicols}{4}
+  \begin{enumerate}
+   \item $1/3$
+   \item $1/2$
+   \item $1/10$
+   \item $11/27$
+  \end{enumerate}
+ \end{multicols}
+\end{enunciado}
+
+\begin{solucion}
+ La demostraci\'on se realizar\'a intercambiando $2$ por cualquier n\'umero natural $n$ mayor a $1$.
+ \par 
+ Primero que nada, se va a demostrar que existe al menos una expansi\'on decimal de un n\'umero en el intervalo $[0,1]$ en base $n$, con $n$ natural y mayor a $1$, es decir que para todo $x\in[0,1]$ y $n$ un entero mayor o igual a $2$, existen enteros $0\leq a_{k} \leq n-1$ tales que $x = \sum_{k=1}^{\infty} \frac{a_k}{n^k}$.
+ Para ello se requeri\'a demostrar previamente el siguiente lema:
+ \begin{lema}
+  Considerando los intervalos $I_n = [c_n, d_n]$, $\forall n \in \mathbb{N}$. Si $I_n \supseteq I_{n+1}$ y $\lim (d_n - c_n) = 0$, entonces la intersecci\'on $\bigcap_{n=1}^{\infty} I_n$ consiste exactamente de un solo punto.
+ \end{lema}
+ \begin{demostracion}
+  Para la demostraci\'on, primero se probar\'a que la intersecci\'on es no vac\'{\i}a y de ah\'{\i} se determinar\'a que consta de un \'unico punto. 
+  \par 
+  Sea $I_{n+1} = [c_{n+1}, d_{n+1}]$ e $I_{n} = [c_{n}, d_{n}]$, entonces $I_{n+1} = \{ x| c_{n+1} \leq x \leq d_{n+1} \}$ e $I_{n} = \{ x| c_n \leq x \leq d_n \}$. Por definici\'on, si $I_{n+1} \subseteq I_n$, entonces $\forall x \in I_{n+1}$ se cumple que $x\in I_n$, en otros t\'erminos esto significa que si $I_{n+1} \subseteq I_n$, entonces $\forall x$ tal que $c_{n+1} \leq x \leq d_{n+1}$ se cumple que $c_{n} \leq x \leq d_{n}$, por lo tanto $c_{n} \leq c_{n+1} \leq d_{n+1} \leq d_{n}$. Dado que $n$ fue elegido arbitrariamente, queda demostrado que
+  \begin{equation} \label{resLema1}
+   \forall n\in \mathbb{N}, \qquad c_{n} \leq c_{n+1} \leq d_{n+1} \leq d_{n}
+  \end{equation}
+  En particular, se cumple que
+  \begin{equation} \label{resLema2}
+   \forall k,n\in \mathbb{N} \text{ tal que } k<n, \qquad c_k \leq c_n \leq d_n \leq d_k
+  \end{equation}
+  Dado que $I_1 = [c_1, d_1]$, se cumple entonces lo siguiente: por \eqref{resLema2}, $c_1 \leq c_n \leq d_1$ y $c_1 \leq d_n \leq d_1$ y, por \eqref{resLema1}, la sucesi\'on $\{ c_k \}_{k\in\mathbb{N}}$ es creciente y la sucesi\'on $\{ d_k \}_{k\in\mathbb{N}}$ es decreciente. Entonces, por teorema de sucesiones, como $\{ c_k \}_{k\in\mathbb{N}}$ es creciente y acotado, se tiene que la sucesi\'on converge; an\'alogamente, como $\{ d_k \}_{k\in\mathbb{N}}$ es decreciente y acotado, entonces la sucesi\'on converge. Sean $a$ y $b$ los valores a los que convergen estas sucesiones, respectivamente, es decir $\lim_{n\to \infty} c_n = a$ y $\lim_{n\to \infty} d_n = b$, entonces se puede calcular $\lim_{n\to \infty} (d_n - c_n)$ como $\lim_{n\to \infty} (d_n - c_n) = \lim_{n\to\infty} d_n - \lim_{n\to\infty} c_n = b - a$. N\'otese que a\'un sin tener la suposici\'on de $\lim_{n\to\infty} (d_n - c_n) = 0$, se puede llegar a que $b \geq a$, ya que, como $d_n - c_n \geq 0$, $\forall n \in \mathbb{N}$, por teorema ocurre que $\lim_{n\to\infty}(d_n - c_n) \geq 0$, es decir $b-a \geq 0$.
+  \par 
+  De lo anterior se sigue que si $A = \{ x | a \leq x \leq b \}$, como $a \leq b$, entonces $A$ es no vac\'{\i}o. Por otro lado, ya que $c_n \leq a \leq b \leq d_n$ y, $\forall x \in A$, $a \leq x \leq b$, entonces $\forall x\in A$ se cumple que $c_n \leq x \leq d_n$, $\forall n\in\mathbb{N}$, es decir $x\in \bigcap_{n\in\mathbb{N}} I_n = \left\{ x | \forall n \in \mathbb{N}, \, c_n \leq x \leq d_n \right\}$. Por lo tanto $A \subseteq \bigcap_{n \in \mathbb{N}} I_n$, lo cual implica que $\bigcap_{n\in\mathbb{N}} I_n$ es no vac\'{\i}o.
+  \par 
+  Luego, a partir de la suposici\'on de que $\lim_{n\to \infty} (d_n - c_n) = 0$, como $\lim_{n\to \infty} (d_n - c_n) = b-a$, entonces $b-a = 0$, es decir $a = b$. Entonces, considerando un valor arbitrario fijo $x_0$, se tiene las siguientes equivalencias $x_0 \in \bigcap_{n\in \mathbb{N}} I_n$ si y s\'olo si $\forall n \in \mathbb{N}$ $ c_n \leq x_0 \leq d_n$ si y s\'olo si $\forall n \in\mathbb{N}$ $c_n \leq x_0$ y $x_0 \leq d_n$, pero como $\{c_k\}_{k\in\mathbb{N}}$ es una sucesi\'on creciente y $\{d_k\}_{k\in\mathbb{N}}$ es una sucesi\'on decreciente, entonces $c_n \leq x_0$, $\forall n\in\mathbb{N}$, es equivalente a que $\lim_{n\to\infty} c_n \leq \lim_{n\to\infty} x_0$; an\'alogamente, $x_0 \leq d_n$, $\forall n \in\mathbb{N}$, es equivalente a que $\lim_{n\to\infty} x_0 \leq \lim_{n\to\infty} b_n$, es decir $c_n \leq x_0 \leq d_n$, $\forall n\in\mathbb{N}$, es equivalente a $\lim_{n\to\infty} c_n \leq \lim_{n\to\infty} x_0 \leq \lim_{n\to\infty} d_n$ si y s\'olo si $a \leq x_0 \leq b$, pero como $a=b$, se concluye que $\forall x \in \bigcap_{n\in\mathbb{N}} I_n$, $x = a= b$, es decir $\bigcap_{n\in\mathbb{N}} I_n$ consta de un \'unico punto.$\square$
+ \end{demostracion}
+ Ahora se probar\'a lo que en principio se dijo, enunciado de la siguiente forma
+ \begin{teorema}
+  si $x\in[0,1]$ y $n$ es un entero mayor o igual a $2$, entonces existen enteros $0\leq a_k \leq n-1$ tales que
+  \begin{equation*}
+   x = \sum_{k=1}^{\infty} \frac{a_k}{n^k}
+  \end{equation*}
+  por lo que tiene sentido expresar cualquier valor como $0.a_1a_2a_3\ldots_{(n)}$, que es la expansi\'on decimal de $x$ en base $n$.
+ \end{teorema}
+ \begin{demostracion}
+  Para realizar la demostraci\'on, se probar\'a por inducci\'on que, para todo $k \in \mathbb{N}$, existen valores fijos $0 \leq a_i \leq n-1$, $\forall i\in\mathbb{N}\cap[1,k]$, tales que
+  \begin{equation*}
+   x \in I_k = \left[ \sum_{i=1}^{k} \frac{a_i}{n^i}, \sum_{i=1}^{k} \frac{a_i + 1}{n^i} \right]
+  \end{equation*}
+  lo cual a su vez es equivalente a decir que $x = \sum_{i=}^{k} \frac{a_i}{k^i} + b_n$, donde $0 \leq b_n \leq \frac{1}{k^i}$.
+  \par 
+  As\'{\i} pues, para el caso base, sea $I_0 = [0,1]$, se parte este intervalo en $n$ subintervalos de longitud $\frac{1}{n}$: $\left[ 0, \frac{1}{n} \right], \left[ \frac{1}{n}, \frac{2}{n} \right], \left[ \frac{2}{n}, \frac{3}{n} \right], \ldots, \left[ \frac{n-1}{n}, 1 \right]$, entonces, como $[0,1] = \bigcup_{k=0}^{n-1} \left[ \frac{k}{n}, \frac{k+1}{n} \right]$, se tiene, a partir de que $x \in [0,1]$, que $x$ pertenece a alguno de estos subintervalos, sea $I_1$ alguno de estos intervalos en el que se encuentra $x$, entonces $I_1 = \left[ \frac{a_1}{n}, \frac{a_1 + 1}{n-1} \right]$, donde $a_1$ es un entero tal que $0 \leq a_1 \leq n-1$, esto significa que $\frac{a_1}{n} \leq x \leq \frac{a_1 + 1}{n}$, lo cual es equivalente a que $x = \frac{a_1}{n} + b_1$, donde $0 \leq b_1 \leq \frac{1}{n}$, lo cual prueba el caso base.
+  \par 
+  Ahora se probar\'a que $x \in I_{k+1} = \left[ \sum_{i=1}^{k+1} \frac{a_i}{n^i}, \sum_{i=1}^{k+1} \frac{a_i + 1}{n^i} \right]$, suponiendo que $x\in I_{k}$. Esto es as\'{\i} pues, si se divide $I_{k}$ en los $n$ subintervalos de longitud $\frac{1}{n^{k+1}}$:
+  \begin{equation*}
+   \left[ \sum_{i=1}^{k} \frac{a_i}{n^i}, \left( \sum_{i=1}^{k} \frac{a_i}{n^i} \right) + \frac{1}{n^{k+1}} \right], \left[ \left( \sum_{i=1}^{k} \frac{a_i}{n^i} \right) + \frac{1}{n^{k+1}}, \left( \sum_{i=1}^{k} \frac{a_i}{n^i} \right) + \frac{2}{n^{k+1}} \right], \ldots \hspace{2cm}
+  \end{equation*}
+  \begin{equation*}
+   \hspace{6cm} \ldots, \left[ \left( \sum_{i=1}^{k} \frac{a_i}{n^i} \right) + \frac{n-1}{n^{k+1}}, \left( \sum_{i=1}^{k} \frac{a_i}{n^i} \right) + \frac{1}{n^{k}} \right]
+  \end{equation*}
+  entonces la uni\'on de estos subintervalos es igual a $I_k$, por lo tanto, como $x\in I_k$, se sigue que $x$ pertenece a alguno de estos intervalos, sea $I_{k+1}$ alguno de estos intervalos al que pertenece $x$, entonces $x\in I_{k+1} = \left[ \left( \sum_{i=1}^{k} \frac{a_i}{n^i} \right) + \frac{a_{k+1}}{n^{k+1}}, \left( \sum_{i=1}^{k} \frac{a_i}{n^i} \right) + \frac{a_{k+1}+1}{n^{k+1}} \right]$, donde $a_{k+1}$ es un emtero que cumple que $0 \leq a_{k+1} \leq n-1$, por lo tanto, existen enteros fijos $0 \leq a_i \leq n-1$, $\forall i \in\mathbb{N}\cap[1,k+1]$, tales que $x \in I_{k+1} = \left[ \sum_{i=1}^{k+1} \frac{a_i}{n^i}, \sum_{i=1}^{k+1} \frac{a_i + 1}{n^i} \right]$, lo cual concluye la demostraci\'on por inducci\'on.
+  \par 
+  N\'otese que $I_k \supseteq I_{k+1}$ y que el l\'{\i}mite de la cota mayor menos la cota menor de $I_{k}$, cuando $k$ tiende a infinito, es cero. Lo primero es claro, ya $I_{k+1}$ se construy\'o de modo que est\'e contenido en $I_k$, mientras que para lo segundo se puede probar como sigue:
+  \begin{eqnarray*}
+   \displaystyle{ \lim_{k\to\infty} \left\{ \left[ \left ( \sum_{i=1}^{k} \frac{a_i}{n^i} \right) + \frac{1}{n^k} \right] - \left( \sum_{i=1}^{k} \frac{a_i}{n^i} \right) \right\} }
+   & = & \displaystyle{ \lim_{k\to\infty} \left[ \cancelto{0}{ \sum_{i=1}^{k} \left(\frac{a_i}{n^i} - \frac{a_i}{n^i}  \right)} + \frac{1}{n^k} \right] } \\
+   \\
+   & = & \lim_{k\to\infty} \frac{1}{n^k}
+  \end{eqnarray*}
+  donde este \'ultimo l\'{\i}mite es igual a $0$, ya que $n \geq 2$.
+  Luego entonces, como $x \in I_{k}$, para todo $k\in \mathbb{N}$, se sigue que $x \in \bigcap_{k\in\mathbb{N}} I_k$, el cual, por el lema anteriormente demostrado, consta de un \'unico elemento y \'este es, por lo tanto, $x$. Finalmente, por la demostraci\'on anterior, este elemento es el l\'{\i}mite de la cota inferior (que es igual al l\'{\i}mite de la cota superior), es decir: 
+  \begin{equation*}
+   x = \lim_{k \to \infty} \sum_{i=1}^{k} \frac{a_i}{n^i} = \sum_{k=1}^{\infty} \frac{a_k}{n^k}
+  \end{equation*}
+  para ciertos enteros $0 \leq a_k \leq n-1$ y $n$ un entero mayor o igual a $2$. Q.E.D.${}_{\square}$
+ \end{demostracion}
+ Finalmente, sea $R$ un n\'umero tal que $0 < R < 1$, para cualquier entero $n \geq 2$ exsiten enteros $0 \leq  d_j \leq n-1$ tales que $R$ se puede expresar como
+ \begin{equation} \label{eqRepresentacionDecimal1}
+  R = \sum_{j=1}^{\infty} \frac{d_j}{n^j}
+ \end{equation}
+ Esto significa que, por definici\'on, los valores $d_j$, $\forall j \in \mathbb{N}$ son los d\'{\i}gitos de la expansi\'on decimal de $R$ en base $n$, es decir $R = 0.d_1d_2d_3\ldots_{(n)}$ donde el sub\'{\i}ndice $(n)$ indica que el n\'umero est\'a escrito en base $n$.
+ \par 
+ As\'{\i} pues, queda por demostrar que el m\'etodo para calcular los valores $d_j$ es v\'alido. Esto es, se proceder\'a por inducci\'on a demostrar que la sucesi\'on $\{ d_k \}_{k\in\mathbb{N}}$, de los d\'{\i}gitos en la representaci\'on en base $n$ de $R$, se pueden calcular como $d_k = \text{ent}(nF_{k-1})$, donde $F_k$ es el $k-$\'esimo elemento de la sucesi\'on $\{F_k\}_{k\in\mathbb{N}} = \left\{ \text{frac}(nF_{k-1}) \right\}_{k\in\mathbb{N}}$ y $F_0 = R$; adem\'as se probar\'a dentro de la inducci\'on que $F_{k} = n^{k} R - \left( d_1n^{k-1} + d_2n^{k-2} + \cdots + d_{k} \right)$, $\forall k \in \mathbb{N}$.
+ \par 
+ Como $R$ se representa seg\'un se indica en \eqref{eqRepresentacionDecimal1}, entonces, multiplicando por $n$ ambos miembros, el resultado es
+ \begin{equation*}
+  nR = \sum_{j=1}^{\infty} \frac{nd_j}{n^j} = d_1 +  \left( \sum_{j=1}^{\infty} \frac{d_{j+1}}{n^j} \right)
+ \end{equation*}
+ donde la cantidad entre par\'entesis de la expresi\'on anterior es un n\'umero positivo y menor que $1$; por lo tanto, $d_1 = \text{ent}(nR) = \text{ent}(nF_0)$ y $F_1 = \text{frac}(nR) = \text{frac}(nF_0) = nR - \text{ent}(nR) = nR - d_1$, lo cual prueba la base de inducci\'on.
+ \par 
+ Suponiendo ahora que los primeros $k$ valores $d_1, d_2, \ldots, d_k$ se pueden calcular como $d_{k} = \text{ent}(nF_{k-1})$ y $F_{k} = \text{frac}(nF_{k-1}) = n^{k}R - \left( d_1n^{k-1} + d_2n^{k-2} + \cdots + d_k \right)$, entonces se desea probar que $d_{k+1}$, el $(k+1)-$\'esimo d\'{\i}gito de la expansi\'on decimal en base $n$ de $R$, puede calcularse como $d_{k+1}=\text{ent}(nF_k)$, adem\'as $F_{k+1} = \text{frac}(nF_k) = n^{k+1} - \left( d_1n^{k} + d_2n^{k-1} + \cdots + d_kn + d_{k+1} \right)$.
+ \par 
+ Usando el resultado \eqref{eqRepresentacionDecimal1} y la base de inducci\'on, se tiene que
+ \begin{equation*}
+  F_k = n^k R - \left(  d_1n^{k-1} + d_2n^{k-2} + \cdots d_{k-1}n + d_k \right) = \sum_{j=1}^{\infty} \frac{d_{k+j}}{n^j}
+ \end{equation*}
+ entonces $nF_{k} = \sum_{j=1}^{\infty} \frac{nd_{k+j}}{n^j} = d_{k+1} + \left( \sum_{j=1}^{\infty} \frac{d_{k+1+j}}{n^j} \right)$, donde la cantidad entre par\'entesis es un n\'umero positivo y menor que $1$; por lo tanto, $d_{k+1} = \text{ent}(nF_k)$ y
+ \begin{eqnarray*}
+  F_{k+1} & = & \text{frac}(nF_k) \\
+  & = & nF_k - \text{ent}(nF_k) \\
+  & = & n\left[ n^kR - \left( d_1n^{k-1} + d_2n^{k-2} + \cdots d_{k-1}n + d_k \right) \right] - d_{k+1} \\
+  & = & n^{k+1}R - \left( d_1n^{k} + d_2n^{k-1} + \cdots d_kn + d_{k+1} \right)
+ \end{eqnarray*}
+ lo cual concluye la demostraci\'on.${}_{\square}$
+ \par 
+ Usando lo ya demostrado, en el caso $n=3$, se procede a expresar los siguientes n\'umeros en base $3$ como sigue:
+ \begin{enumerate}
+  \item Dado que $R = 1/3 = 0.\overline{3}$ entonces 
+  \begin{center}
+   \begin{tabular}{rclcrclcrcl}
+    $3R$ & $=$ & $1$ & \hspace{1.5cm} & $d_1 =$ & ent$(1)$ & $=1$ & \hspace{1.5cm} & $F_1=$ & frac$(1)$ & $=0$ 
+   \end{tabular}
+  \end{center}
+  Como el valor de $F_1$ es cero, el proceso continua haciendo $d_k$ y $F_k$ iguales a $0$, por lo que se considera terminado. En consecuencia
+  \begin{equation*}
+   \frac{1}{3} = 0.1_\text{tres}
+  \end{equation*}
+
+  \item Dado que $R = 1/2 = 0.5$, entonces
+  \begin{center}
+   \begin{tabular}{rclcrclcrcl}
+    $3R$ & $=$ & $1.5$ & \hspace{1.5cm} & $d_1 =$ & ent$(1.5)$ & $=1$ & \hspace{1.5cm} & $F_1=$ & frac$(1.5)$ & $=0.5$
+   \end{tabular}
+  \end{center}
+  N\'otese que $F_0 = R = F_1$, luego los patrones $d_k = d_{k+1}$ y $F_k = F_{k+1}$ se dar\'{\i}an para $k\in\mathbb{N}$. En consecuencia
+  \begin{equation*}
+   \frac{1}{2} = 0.\overline{1}_{\text{tres}}
+  \end{equation*}
+
+  \item Dado que $R = 1/10 = 0.1$, entonces 
+  \begin{center}
+   \begin{tabular}{rclcrclcrcl}
+    $3R$ & $=$ & $0.3$ & \hspace{1.5cm} & $d_1 =$ & ent$(0.3)$ & $=0$ & \hspace{1.5cm} & $F_1=$ & frac$(0.5)$ & $=0.3$ \\
+    $3F_1$ & $=$ & $0.9$ & & $d_2 =$ & ent$(0.9)$ & $=0$ & & $F_2=$ & frac$(0.9)$ & $=0.9$ \\
+    $3F_2$ & $=$ & $2.7$ & & $d_3 =$ & ent$(2.7)$ & $=2$ & & $F_3 =$ & frac$(2.7)$ & $=0.7$ \\
+    $3F_3$ & $=$ & $2.1$ & & $d_4 =$ & ent$(2.1)$ & $=2$ & & $F_4=$ & frac$(2.1)$ & $=0.1$
+   \end{tabular}
+  \end{center}
+  N\'otese que $F_0 = R = F_4$, luego los patrones $d_k = d_{k+4}$ y $F_k = F_{k+4}$ se dar\'{\i}an para $k\in\mathbb{N}$. En consecuencia
+  \begin{equation*}
+   \frac{1}{10} = 0.\overline{0022}_{\text{tres}}
+  \end{equation*}
+
+  \item Dado que $R = 11/27 = 0.\overline{407}$, entonces 
+  \begin{center}
+   \begin{tabular}{rclcrclcrcl}
+    $3R$ & $=$ & $1.\overline{2}$ & \hspace{1.5cm} & $d_1 =$ & ent$\left( 1.\overline{2} \right)$ & $=1$ & \hspace{1.5cm} & $F_1=$ & frac$\left( 1.\overline{2} \right)$ & $=0.\overline{2}$ \\
+    $3F_1$ & $=$ & $0.\overline{6}$ & & $d_2 =$ & ent$\left( 0.\overline{6} \right)$ & $=0$ & & $F_2=$ & frac$\left( 0.\overline{6} \right)$ & $=0.\overline{6}$ \\
+    $3F_2$ & $=$ & $2$ & & $d_3 =$ & ent$(2)$ & $=2$ & & $F_3 =$ & frac$(2)$ & $=0$
+   \end{tabular}
+  \end{center}
+  Como el valor de $F_3$ es cero, el proceso continua haciendo los siguientes valores $d_k$ y $F_k$ iguales a $0$, por lo que se considera terminado. En consecuencia
+  \begin{equation*}
+   \frac{11}{27} = 0.102_{\text{tres}}
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

@@ -1,0 +1,51 @@
+\begin{enunciado}
+ Halle los n\'umeros $c$ cuya existencia garantiza el teorema de Rolle para cada una de las siguientes funciones en el intervalo que se indica.
+ \begin{enumerate}[(a)]
+  \item $f(x) = x^4 - 4x^2$ en $[-2,2]$.
+  \item $f(x) = \sin(x) + \sin(2x)$ en $[0,2\pi]$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Antes de resolver cada inciso, se verificar\'an las condiciones del teorema de Rolle; es decir, en efecto, $f(a) = f(b) = 0$ para cada funci\'on $f$ y su respectivo intervalo $[a,b]$ de los incisos. La continuidad de $f$ y $f'$ se est\'a obviando, puesto que se sabe los polinomios y las funciones $\sin(x)$ y $\cos(x)$ cumplen que son continuas en cualquiera de sus derivadas.
+ \begin{enumerate}[(a)]
+  \item Dado que $f(-2) = (-2)^4 - 4(-2)^2 = 16 - 16 = 0$ y $f(2) = (2)^4 - 4(2)^2 = 16 - 16 = 0$, entonces se cumplen las hip\'otesis para aplicar el teorema de Rolle. Luego, $f'(x) = 4x^3 - 8x$, por lo que, igualando a $f'(c)$ a $0$, se obtiene que:
+  \begin{eqnarray*}
+   & & 4c^3 - 8c = 0 \\
+   \Leftrightarrow & & 4c(c^2 - 2) = 0 \\
+   \Leftrightarrow & & 4c(c-\sqrt{2})(c+\sqrt{2}) = 0
+  \end{eqnarray*}
+  Por lo tanto, los valores $c$ tales $f'(c) = 0$ son $c = -\sqrt{2}$, $c= 0$ y $c = \sqrt{2}$, los cuales se encuentran en el intervalo $[-2,2]$ por lo que son todos estos valores v\'alidos.
+  Es decir, los valores buscados son: $c_1 = -\sqrt{2}$, $c_2 = 0$ y $c_3 = \sqrt{2}$.
+  
+  \item Dado que $f(0) = \sin(0) + \sin[2(0)] = 0 + 0 = 0$ y $f(2\pi) = \sin(2\pi) + \sin[2(2\pi)] = 0 + 0 = 0$, entonces se cumplen las hip\'otesis para aplicar el teorema de Rolle. Luego, $f'(x) = \cos(x) + 2\cos(2x)$, por lo que, igualando $f'(c)$ a $0$, se obtiene que:
+  \begin{eqnarray*}
+   & & \cos(c) + 2\cos(2c) = 0 \\
+   \Leftrightarrow & & \cos(c) + 2\left[ \cos^2(c) - \sin^2(c) \right] = 0 \\
+   \Leftrightarrow & & \cos(c) + 2\cos^2(c) - 2\sin^2(c) = 0 \\ 
+   \Leftrightarrow & & \cos(c) + 2\cos^2(c) - 2\left[ 1 - \cos^2(c) \right] = 0 \\
+   \Leftrightarrow & & \cos(c) + 2\cos^2(c) - 2 + 2\cos^2(c) = 0 \\
+   \Leftrightarrow & & 4\cos^2(c) + \cos(c) - 2 = 0
+  \end{eqnarray*}
+  Luego entonces, sea $u = \cos(c)$, se tiene la ecuaci\'on cuadr\'atica $4u^2 + u - 2 = 0$ cuya soluci\'on es
+  \begin{equation*}
+   u = \frac{-b\pm\sqrt{b^2 - 4ac}}{2a} = \frac{-1 \pm \sqrt{1 + 32}}{8} = \frac{1 \pm \sqrt{33}}{8}
+  \end{equation*}
+  Por lo tanto, $\cos(c) = \frac{1\pm \sqrt{33}}{8}$ y $c = \arccos\left( \frac{1\pm \sqrt{33}}{8} \right)$, adem\'as, tambi\'en hay que considerar que la funci\'on $\arccos(x)$ da las soluciones en el intervalo $[0,\pi]$, pero como $\cos(x)$ es una funci\'on par y peri\'odica con peri\'odo de $2\pi$, se tiene adem\'as otras dos soluciones, tomando en cuenta que:
+  \begin{eqnarray*}
+   \cos\left[ \arccos\left( \frac{1+ \sqrt{33}}{8} \right) \right] & = & \cos \left[ - \arccos\left( \frac{1+ \sqrt{33}}{8} \right)  \right] = \cos\left[ 2\pi - \arccos\left( \frac{1+ \sqrt{33}}{8} \right) \right] \\
+   \cos\left[ \arccos\left( \frac{1- \sqrt{33}}{8} \right) \right] & = & \cos\left[- \arccos\left( \frac{1- \sqrt{33}}{8} \right) \right] = \cos \left[2\pi - \arccos\left( \frac{1- \sqrt{33}}{8} \right) \right]
+  \end{eqnarray*}
+  Por lo tanto, los valores $c$ tales que $f'(c) = 0$ son:
+  \begin{eqnarray*}
+   c_1 & = & \arccos\left( \frac{1+ \sqrt{33}}{8} \right) \approx 0.935929 \\
+   c_2 & = & \arccos\left( \frac{1- \sqrt{33}}{8} \right) \approx 2.573763 \\
+   c_3 & = & 2\pi - \arccos\left( \frac{1- \sqrt{33}}{8} \right) \approx 3.709422 \\
+   c_4 & = & 2\pi - \arccos\left( \frac{1+ \sqrt{33}}{8} \right) \approx 5.3472585 
+  \end{eqnarray*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}
+
+
+

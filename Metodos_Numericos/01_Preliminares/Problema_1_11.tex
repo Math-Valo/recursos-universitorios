@@ -1,0 +1,59 @@
+\begin{enunciado}
+ Halle la suma de cada una de las siguientes sucesiones o series.
+ \begin{multicols}{2}
+  \begin{enumerate}[(a)]
+   \item $\displaystyle{ \left\{ \frac{1}{2^n} \right\}_{n=0}^{\infty} }$.
+   \item $\displaystyle{ \left\{ \frac{2}{3^n} \right\}_{n=1}^{\infty} }$.
+  \end{enumerate}
+ \end{multicols}
+ \begin{multicols}{2}
+  \begin{enumerate}[(a)]
+   \setcounter{enumii}{2}
+   \item $\displaystyle{ \sum_{n=1}^{\infty} \frac{3}{n(n+1)} }$.
+   \item $\displaystyle{ \sum_{k=1}^{\infty} \frac{1}{4k^2 - 1} }$.
+  \end{enumerate}
+ \end{multicols}
+\end{enunciado}
+
+\begin{solucion}
+ Recordar que las series de potencias convergen absolutamente si $\left\lvert \frac{1}{p} \right\rvert < 1$ y $\sum_{n=1}^{\infty} \left( \frac{1}{p} \right)^n = \frac{1}{p-1}$. Entonces se tiene lo siguiente:
+ \begin{enumerate}[(a)]
+  \item Usando directamente el resultado de series de potencia, se tiene que
+  \begin{equation*}
+   \sum_{n=0}^{\infty} \frac{1}{2^n} = 1 + \sum_{n=1}^{\infty} \frac{1}{2^n} = 1 + \frac{1}{2-1} = 1 + 1 = 2.
+  \end{equation*}
+
+  \item Dado que la serie converge, se puede sacar la constante $2$ del numerador y se tiene que
+  \begin{equation*}
+   \sum_{n=1}^{\infty} \frac{2}{3^n} = 2 \sum_{n=1}^{\infty} \frac{1}{3^n} = 2\left( \frac{1}{3-1} \right) = \frac{2}{2} = 1
+  \end{equation*}
+
+  \item Usando el resultado del ejemplo del libro, se tiene que la serie $\sum_{n=1}^{\infty} \frac{1}{n(n+1)}$ converge a $1$, por lo que se tiene que
+  \begin{equation*}
+   \sum_{n=1}^{\infty} \frac{3}{n(n+1)} = 3\sum_{n=1}^{\infty} \frac{1}{n(n+1)} = 3(1) = 3.
+  \end{equation*}
+
+  \item Finalmente, por fracciones parciales, se va a separar un t\'ermino gen\'erico de la serie como sigue:
+  \begin{equation*}
+   \frac{1}{4k^2 - 1} = \frac{1}{(2k-1)(2k+1)} = \frac{A}{2k-1} + \frac{B}{2k+1} = \frac{2k(A+B) + (A-B)}{4k^2 - 1}
+  \end{equation*}
+  Por lo que $A+B = 0$ y $A-B = 1$, de ello entonces que $A = 1/2$ y $B = -1/2$. Por lo tanto
+  \begin{equation*}
+   \frac{1}{4k^2 - 1} = \frac{1}{2(2k-1)} - \frac{1}{2(2k+1)} = \frac{1}{4k-2} - \frac{1}{4k+2}
+  \end{equation*}
+  N\'otese que para el siguiente valor de $k$, se tiene que
+  \begin{equation*}
+   \frac{1}{4(k+1)-2} - \frac{1}{4(k+1)+2} = \frac{1}{4k + 2} - \frac{1}{4(k+1)+2}
+  \end{equation*}
+  por lo que se cancelan t\'erminos y por la propiedad telesc\'opica se tiene que, como 
+  \begin{equation*}
+   \sum_{k=1}^{n} \frac{1}{4k^2-1} = \sum_{k=1}^{n} \left( \frac{1}{4k-2} - \frac{1}{4k+2} \right) = \frac{1}{4(1)-2} - \frac{1}{4(n)+2} = \frac{1}{2} - \frac{1}{4n+2}
+  \end{equation*}
+  entonces
+  \begin{equation*}
+   \sum_{k=1}^{\infty} \frac{1}{4k^2 - 1} = \frac{1}{2} - \lim_{n\to \infty} \frac{1}{4n+2} = \frac{1}{2} - 0 = \frac{1}{2}
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+
+\end{solucion}

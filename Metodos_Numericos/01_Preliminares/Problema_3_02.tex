@@ -1,0 +1,27 @@
+\begin{enunciado}
+ Complete el siguiente c\'alculo
+ \begin{equation*}
+  \int_{0}^{1/4} e^{x^2} \, dx \approx \int_{0}^{1/4} \left( 1 + x^2 + \frac{x^4}{2!} + \frac{x^6}{3!} \right) \, dx = \widehat{p}
+ \end{equation*}
+ Determine qu\'e tipo de error se presenta en esta situaci\'on y compare su resultado con el valor exacto $p = 0.2553074606$.
+\end{enunciado}
+
+\begin{solucion}
+ Integrando t\'ermino a t\'ermino el polinomio, se tiene que
+ \begin{eqnarray*}
+  \int_{0}^{1/4} e^{x^2} \, dx & \approx & \int_{0}^{1/4} \left( 1 + x^2 + \frac{x^4}{2!} + \frac{x^6}{3!} \right) \, dx = \left.\left( x + \frac{x^3}{3} + \frac{x^5}{5\left(2!\right)} + \frac{x^7}{7\left(3!\right)} \right) \right|_{x=0}^{x=1/4} \\
+  & = & \frac{1}{4} + \frac{1}{192} + \frac{1}{10\,240} + \frac{1}{688\,128} = \frac{860\,160 + 17\,920 + 336 + 5}{3\,440\,640} = \frac{878\,421}{3\,440\,640} \\
+  & = & \frac{292\,807}{1\,146\,880} = 0.25530744801339\overline{285714}.
+ \end{eqnarray*}
+ Dado que la expresi\'on matem\'atica original se ``reemplaz\'o'' por una f\'ormula m\'as sencilla, entonces se tiene, por definici\'on, un error de truncamiento.
+ \par 
+ Se tiene adem\'as lo siguiente:
+ \begin{equation*}
+  E_p = \left| p - \widehat{p} \right| = |0.2553074606 - 0.25530744801339\overline{285714}| = 0.000000017708660\overline{714285}
+ \end{equation*}
+ y
+ \begin{equation*}
+  R_p = \frac{\left| p - \widehat{p} \right|}{|p|} = \frac{0.000000017708660\overline{714285}}{0.2553074606} \approx 0.00000006971461
+ \end{equation*}
+ por lo que $\frac{10^{-7}}{2} < R_p < \frac{10^{-6}}{2}$, y, por tanto, $\widehat{p}$ es una aproximaci\'on a $p$ con seis cifras significativas, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

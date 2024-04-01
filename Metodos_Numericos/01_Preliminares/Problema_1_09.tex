@@ -1,0 +1,35 @@
+\begin{enunciado}
+ Aplique el segundo teorema fundamental del c\'alculo a cada una de las siguientes funciones:
+ \par 
+ \begin{multicols}{2}
+  \begin{enumerate}[(a)]
+   \item $\frac{d}{dx} \int_{0}^{x} t^2\cos(t) \, dt$.
+   
+   \item $\frac{d}{dx} \int_{1}^{x^3} e^{t^2}\, dt$.
+  \end{enumerate}
+ \end{multicols}
+\end{enunciado}
+
+\begin{solucion}
+ N\'otese que si $F$ es una funci\'on primitiva de la funci\'on $f$ continua en el rango entre $a(x)$ y $b(x)$ (independientemente de quien sea mayor), entonces, por el primer teorema fundamental del c\'alculo, se tiene que:
+ \begin{equation*}
+  \int_{a(x)}^{b(x)} f(t) \,dt = F\left( b(x) \right) - F\left( a(x) \right)
+ \end{equation*}
+ por lo que, derivando con respecto a $x$ y usando la regla de la cadena, se tiene que
+ \begin{equation*}
+  \frac{d}{dx} \int_{a(x)}^{b(x)} f(t) \,dt = \frac{d}{dx}\left[ F\left( b(x) \right) - F\left( a(x) \right) \right] = f\left( b(x) \right)b'(x) - f\left( a(x) \right) a'(x)
+ \end{equation*}
+ Por lo tanto, la hip\'otesis del segundo teorema fundamental del c\'alculo que dice que $x\in(a,b)$, donde $a$ es el l\'{\i}mite inferior de la integral y $b$ es un punto hasta donde es continua $f$, desde $a$, puede ampliarse para cualquier $x$ en donde es continua $f$, incluyendo si $x<a$. Esto se usar\'a en las soluciones siguientes.
+ \begin{enumerate}[(a)]
+  \item Usando la previa aclaraci\'on y dado que $t^2$ y $\cos(t)$ son continuas en $\mathbb{R}$, entonces $f(t) = t^2\cos(t)$ es continua en $\mathbb{R}$, entonces, para cualquier valor de $x$, se cumple que:
+  \begin{equation*}
+   \frac{d}{dx} \int_0^x t^2 \cos(t)\, dt = x^2\cos(x)
+  \end{equation*}
+  
+  \item Usando la previa aclaraci\'on y dado que $e^t$ es continua para toda $t \in \mathbb{R}$, entonces $f(t) = e^{t^2}$ es continua en $\mathbb{R}$, por lo que, independientemente del valor de $x$ y usando la regla de la cadena, se tiene que
+  \begin{equation*}
+   \frac{d}{dx} \int_{1}^{x^3} e^{t^2} \, dt = e^{\left( x^3 \right)^2}  \left( x^3 \right)' = e^{x^6} (3x^2) = 3x^2 e^{x^6}.
+  \end{equation*}
+  Que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

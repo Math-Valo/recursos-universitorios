@@ -1,0 +1,110 @@
+\begin{enunciado}
+ $\phantom{0}$
+ \begin{enumerate}[(a)]
+  \item Halle $L = \lim_{n\to\infty} (4n+1)/(2n+1)$. Despu\'es determine $\{ \varepsilon_n \} = \{ L - x_n \}$ y halle $\lim_{n\to\infty} \varepsilon_n$.
+  
+  \item Halle $L = \lim_{n\to\infty} (2n^2 + 6n -1)/(4n^2 + 2n + 1)$. Despu\'es determine $\{ \varepsilon_n \} = \{ L - x_n \}$ y halle $\lim_{n\to\infty} \varepsilon_n$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ A partir de los conocimientos de l\'{\i}mites, se sabe que el l\'{\i}mite de un cociente de polinomios converge si y s\'olo si el grado del polinomio del numerados es menor o igual al grado del polinomio del denominador, y que, en caso de converger, el l\'{\i}mite es igual al cociente de los coeficientes en el t\'ermino que corresponde al de mayor grado del denominador, y, en caso de que el numerador tenga menor grado, entonces el l\'{\i}mite es cero. Por lo que $\lim_{x\to \infty} (4x+1)/(2x+1) = 4/2 = 2$ y $\lim_{x\to \infty} (2x^2+6x-1)/(4x^2+2x+1) = 2/4 = 1/2$. Lo que se har\'a a continuaci\'on es comprobar que estos dos resultados son tambi\'en, en efecto, los l\'{\i}mites de las sucesiones, usando la definici\'on formal. Para ello se usar\'a la propiedad arquimediana, la cual dice:
+ \begin{equation*}
+  \text{Sea } \varepsilon \text{ un n\'umero real cualquiera tal que } \varepsilon>0 \; \text{ entonces } \exists N \in \mathbb{N} \text{ tal que } n\varepsilon > 1
+ \end{equation*}
+ \begin{enumerate}[(a)]
+  \item Se tiene que 
+  \begin{eqnarray*}
+   \lim_{n\to\infty} \frac{4n+1}{2n+1} = 2 & \Leftrightarrow & \forall \varepsilon > 0 \; \exists N\in\mathbb{N} \text{ tal que } \forall n > N: \; \left\lvert \frac{4n+1}{2n+1} - 2 \right\rvert < \varepsilon \\
+   & \Leftrightarrow & \forall \varepsilon > 0 \; \exists N\in\mathbb{N} \text{ tal que } \forall n > N: \; \left\lvert \frac{-1}{2n+1} \right\rvert < \varepsilon \\
+   & \Leftrightarrow & \forall \varepsilon > 0 \; \exists N\in\mathbb{N} \text{ tal que } \forall n > N: \; \frac{1}{2n+1} < \varepsilon \\
+   & \Leftrightarrow & \forall \varepsilon > 0 \; \exists N\in\mathbb{N} \text{ tal que } \forall n > N: \; 1 < \varepsilon(2n+1) = 2\varepsilon n + \varepsilon \\
+   & \Leftrightarrow & \forall \varepsilon > 0 \; \exists N\in\mathbb{N} \text{ tal que } \forall n > N: \; \frac{1-\varepsilon}{2\varepsilon} <  n
+  \end{eqnarray*}
+  Luego, como $\varepsilon > 0$, entonces $\frac{1-\varepsilon}{2\varepsilon} \leq 0$ cuando $\varepsilon \geq 1$, en ese caso $\forall n \in \mathbb{N}$ cumple que $\frac{1-\varepsilon}{2\varepsilon} <  n$. Y si $\varepsilon < 1$, entonces 
+  \begin{eqnarray*}
+   \lim_{n\to\infty} \frac{4n+1}{2n+1} = 2 & \Leftrightarrow & \forall \varepsilon > 0 \; \exists N\in\mathbb{N} \text{ tal que } \forall n > N: \; \frac{1-\varepsilon}{2\varepsilon} <  n \\
+   & \Leftrightarrow & \forall \varepsilon > 0 \; \exists N\in\mathbb{N} \text{ tal que } \forall n > N: \; 1 < \left(  \frac{2\varepsilon}{1-\varepsilon} \right) n
+  \end{eqnarray*}
+  Luego entonces por la propiedad arquimediana se garantiza que existe un valor $N \in \mathbb{N}$ tal que $N\varepsilon' > 1$, donde $\varepsilon' = \frac{2\varepsilon}{1-\varepsilon} > 0$. Por lo tanto, sea $n \geq N$, se cumple que $1 < \left( \frac{2\varepsilon}{1-\varepsilon} \right) n$, por lo que $\lim_{n\to\infty} \frac{4n+1}{2n+1} = 2$, que es a lo que se quer\'{\i}a llegar.
+  \par 
+  Hacer notar que aqu\'{\i} s\'{\i} se puede expresar el valor de $N$ m\'{\i}nimo, tal que $N\varepsilon' > 1$, en t\'ermino de $\varepsilon$ como sigue:
+  \begin{equation*}
+   N = \left\{
+   \begin{tabular}{ll}
+    $1$ & si $\varepsilon \geq 1$ \\
+    $\phantom{0}$
+    \\
+    $\left\lceil \frac{2\varepsilon}{1-\varepsilon} \right\rceil$ & si $\varepsilon < 1$ y $\frac{2\varepsilon}{1-\varepsilon} \neq \left\lceil \frac{2\varepsilon}{1-\varepsilon} \right\rceil$ \\
+    $\phantom{0}$
+    \\
+    $\left\lceil \frac{2\varepsilon}{1-\varepsilon} \right\rceil + 1$ & si $\varepsilon < 1$ y $\frac{2\varepsilon}{1-\varepsilon} = \left\lceil \frac{2\varepsilon}{1-\varepsilon} \right\rceil$
+   \end{tabular}
+   \right.
+  \end{equation*}
+  Luego
+  \begin{equation*}
+   \varepsilon_n = L-x_n = 2 - \frac{4n+1}{2n+1} = \frac{(4n+2)-(4n+1)}{2n+1} = \frac{1}{2n+1}
+  \end{equation*}
+  y, por lo tanto
+  \begin{eqnarray*}
+   \lim_{n\to\infty} \varepsilon_n = \lim_{n\to \infty} \frac{1}{2n+1}
+  \end{eqnarray*}
+  y como ya se vio, $\forall \varepsilon > 0 \; \exists N \in \mathbb{N}$ tal que $\forall n > N$, se cumple que $\varepsilon > \frac{1}{2n+1} = \left\lvert \frac{1}{2n+1} - 0 \right\rvert = \left\lvert \frac{1}{2n+1} - L \right\rvert$, por lo que el l\'{\i}mite buscado, $L$, es $L = 0$, es decir
+  \begin{equation*}
+   \lim_{n\to\infty} \varepsilon_n = 0
+  \end{equation*}
+
+  \item Se tiene que
+  \begin{eqnarray*}
+   \lim_{n \to \infty} \frac{2n^2 + 6n - 1}{4n^2 + 2n + 1} = \frac{1}{2} & \Leftrightarrow & \forall \varepsilon > 0 \; \exists N\in\mathbb{N} \text{ tal que } \forall n > N: \; \left\lvert \frac{2n^2 + 6n - 1}{4n^2 + 2n + 1} - \frac{1}{2} \right\rvert < \varepsilon \\
+   & \Leftrightarrow & \forall \varepsilon > 0 \; \exists N\in\mathbb{N} \text{ tal que } \forall n > N: \; \left\lvert \frac{5n - 3/2}{4n^2 + 2n + 1}\right\rvert < \varepsilon \\
+  \end{eqnarray*}
+  Luego, como $n$ es un entero positivo, se tiene que $5n-3/2 > 0$ y $4n^2 + 2n + 1 > 0$, por lo que $|(5n-3/2)/(4n^2 + 2n + 1)| = (5n-3/2)/(4n^2 + 2n + 1)$; adem\'as, $5n - 3/2 \leq 5n - (3/2) n = (13/2) n  < 7n$ y $4n^2 + 2n + 1 > 4n^2$. Por lo tanto
+  \begin{equation*}
+   \left\lvert \frac{5n - 3/2}{4n^2 + 2n + 1}\right\rvert = \frac{5n - 3/2}{4n^2 + 2n + 1} < \frac{7n}{4n^2} = \frac{7}{4n}
+  \end{equation*}
+  Por lo tanto, si $\forall \varepsilon > 0$ se encuentra un valor $N \in \mathbb{N}$ tal que $\forall n > N$ se cumple que $\frac{7}{4n} < \varepsilon$, entonces, en particular se cumplir\'a que 
+  $\left\lvert \frac{5n - 3/2}{4n^2 + 2n + 1}\right\rvert < \varepsilon$. Luego
+  \begin{equation*}
+   \frac{7}{4n} < \varepsilon \Leftrightarrow 1 < \left(  \frac{4\varepsilon}{7} \right) n
+  \end{equation*}
+  Luego entonces por la propiedad arquimediana se garantiza que existe un valor $N \in \mathbb{N}$ tal que $N\varepsilon' > 1$, donde $\varepsilon' = \frac{4\varepsilon}{7} > 0$. Por lo tanto, sea $n \geq N$, se cumple que $1 < \left( \frac{4\varepsilon}{7} \right) n$ y, por ello $\left\lvert \frac{5n-3/2}{4n^2 + 2n + 1} \right\rvert < \varepsilon$.
+  \par 
+  N\'otese que el m\'{\i}nimo valor de $N$ tal que $N\varepsilon' > 1$ es 
+  \begin{equation*}
+   N = \left\{
+   \begin{tabular}{ll}
+    $\left\lceil \frac{7}{4n} \right\rceil$ & si $\frac{7}{4n} \neq \left\lceil \frac{7}{4n} \right\rceil$ \\
+    $\phantom{0}$
+    \\
+    $\left\lceil \frac{7}{4n} \right\rceil + 1$ & si $\frac{7}{4n} = \left\lceil \frac{7}{4n} \right\rceil$
+   \end{tabular}
+   \right.
+  \end{equation*}
+  aunque no necesariamente \'este ser\'a el m\'{\i}nimo valor de $N$ para el que $\forall n > N$ se cumpla que $\left\lvert \frac{5n-3/2}{4n^2 + 2n + 1} \right\rvert < \varepsilon$.
+  \par 
+  Por lo tanto 
+  \begin{equation*}
+   \forall \varepsilon > 0 \; \exists N = \left\lceil \frac{7}{4\varepsilon} \right\rceil + 1 \in \mathbb{N} \text{ tal que } \forall n > N: \; \left\lvert \frac{2n^2 + 6n -1 }{4n^2 + 2n + 1} - \frac{1}{2} \right\rvert < \varepsilon 
+  \end{equation*}
+  Es decir, como se hab\'{\i}a dicho al principio, en efecto se tiene que 
+  \begin{equation*}
+   \lim_{n\to\infty} \frac{2n^2 + 6n -1 }{4n^2 + 2n + 1} = \frac{1}{2}
+  \end{equation*}
+  Luego
+  \begin{equation*}
+   \varepsilon_n = L - x_n = \frac{1}{2} - \frac{2n^2 + 6n -1 }{4n^2 + 2n + 1} = \frac{(2n^2 + n + 1/2) - (2n^2 + 6n - 1)}{4n^2 + 2n + 1} = \frac{-5n + 3/2}{4n^2 + 2n + 1}
+  \end{equation*}
+  y, por lo tanto
+  \begin{equation*}
+   \lim_{n\to\infty} \varepsilon_n = \lim_{n\to\infty} \frac{-5n + 3/2}{4n^2 + 2n + 1}
+  \end{equation*}
+  y, como ya se vio, $\forall\varepsilon > 0$ $\exists N \in \mathbb{N}$ tal que $\forall n > N$, se cumple que $\varepsilon > \left\lvert \frac{5n - 3/2}{4n^2 + 2n + 1} \right\rvert = \left\lvert \frac{-5n + 3/2}{4n^2 + 2n + 1} \right\rvert = \left\lvert \frac{-5n + 3/2}{4n^2 + 2n + 1} - 0 \right\rvert = \left\lvert \frac{-5n + 3/2}{4n^2 + 2n + 1} - L \right\rvert$, por lo que el l\'{\i}mite buscado, $L$, es $L = 0$, es decir
+  \begin{equation*}
+   \lim_{n\to\infty} \varepsilon_n = 0
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}
+

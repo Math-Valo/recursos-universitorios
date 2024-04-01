@@ -1,0 +1,49 @@
+\begin{enunciado}
+ $\phantom{0}$
+ \begin{enumerate}
+  \item Consideremos los datos $p_1 = 1.414$ y $p_2 = 0.09125$, que viene dados con una precisi\'on de cuatro cifras significativas. Determine el resultado adecuado en esta situaci\'on de la suma $p_1 + p_2$ y el producto $p_1p_2$.
+  
+  \item Consideremos los datos $p_1 = 31.415$ y $p_2 = 0.027182$, que viene dados con una precisi\'on de cinco cifras significatvias. Determine el resultado adecuado en esta situaci\'on de la suma $p_1 + p_2$ y el producto $p_1p_2$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Para resolver los siguientes ejercicios se encontrar\'a primero la suma y el producto real y luego se aplicar\'a la poda o el redondeo seg\'un si despu\'es las primeras cifras significativas (las primeras cifras sin contar los ceros a la izquierda), sigue una cifra menor a 5 o mayor o igual que 5, respectivamente, entonces, el resultado se vuelve f\'acil de ver que es de tantas cifras significativas como se pidi\'o.
+ \begin{enumerate}
+  \item El valor real de $p_1 + p_2$ es:
+  \begin{equation*}
+   p_1 + p_2 = 1.414 + 0.09125 = 1.50525
+  \end{equation*}
+  Entonces, con cuatro cifras significativas, esto vale
+  \begin{equation*}
+   \widehat{p_1 + p_2} = fl_{\text{pod}}(1.50525) = 1.505
+  \end{equation*}
+  Por otro lado, el producto real es:
+  \begin{equation*}
+   p_1p_2 = (1.414)(0.09125) = 0.1290275
+  \end{equation*}
+  Entonces, con cuatro cifras significativas, esto vale
+  \begin{equation*}
+   \widehat{p_1p_2} = fl_{\text{pod}}(0.1290275) = 0.1290
+  \end{equation*}
+  Por lo tanto, con cuatro cifras significativas, la suma es: $p_1 + p_2 = 1.505$ y el producto es: $p_1p_2 = 0.1290$.${}_{\square}$
+  
+  \item El valor real de $p_1 + p_2$ es:
+  \begin{equation*}
+   p_1 + p_2 = 31.415 + 0.027182 = 31.442182
+  \end{equation*}
+  Entonces, con cinco cifras significativas, esto vale
+  \begin{equation*}
+   \widehat{p_1 + p_2} = fl_{\text{pod}}(31.442182) = 31.442
+  \end{equation*}
+  Por otro lado, el producto real es:
+  \begin{equation*}
+   p_1p_2 = (31.415)(0.027182) = 0.85392253
+  \end{equation*}
+  Entonces, con cinco cifras significativas, esto vale
+  \begin{equation*}
+   \widehat{p_1p_2} = fl_{\text{pod}}(0.85392253) = 0.85392
+  \end{equation*}
+  Por lo tanto, con cinco cifras significativas, la suma es: $p_1 + p_2 = 31.442182$ y el producto es: $p_1p_2 = 0.85392$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

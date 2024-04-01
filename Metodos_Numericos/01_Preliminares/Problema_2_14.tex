@@ -1,0 +1,121 @@
+\begin{enunciado}
+ Pruebe que si sustituimos $2$ por $3$ en todas las f\'ormulas de (8), el resultado es un m\'etodo para hallar la expresi\'on en base $3$ de un n\'umero natural. Utilice esto para expresar los siguientes n\'umeros en base $3$.
+ \begin{multicols}{4}
+  \begin{enumerate}[(a)]
+   \item $10$
+   \item $23$
+   \item $421$
+   \item $1784$
+  \end{enumerate}
+ \end{multicols}
+\end{enunciado}
+
+\begin{solucion}
+ La demostraci\'on se realizar\'a intercambiando $2$ por cualquier n\'umero natural $n$ mayor a 1.
+ \par 
+ Primero que nada, se va a comprobar que el proceso es \'unico y que siempre termina. Esto es verdad ya que, por el teorema del algoritmo de la divisi\'on, para cualesquiera n\'umeros naturales $a$, $b$, con $b\neq 0$, se cumple que existen valores \'unico $q$ y $r$ tales que $a = qb + r$ con $0\leq r < b$, entonces se cumple que para cualesquiera $N$ y $n$ naturales, con $n > 1$, existen valores \'unicos $Q_0$ y $b_0$ tales que 
+ \begin{equation*}
+  N = Q_0 n + b_0, \qquad 0 \leq b_0 < n
+ \end{equation*}
+ adem\'as, $Q_0 < N$, pues si ocurriese que $Q_0 \geq N$, entonces, como $n > 1$, se tendr\'{\i}a que $(Q_0)(n) > (N)(1) = N$ y como $b_0 \geq 0$, entonces se tendr\'{\i}a que
+ \begin{equation*}
+  N = Q_0 n + b_0 \geq Q_0 n > N
+ \end{equation*}
+ lo cual es una contradicci\'on, por lo tanto $Q_0 < N$.
+ \par 
+ Ahora se probar\'a, por inducci\'on, que, en el proceso, $Q_k$ y $b_k$ son \'unicos, que $Q_{k-1} > Q_{k}$ y que $b_k \in \{ 0, 1, \ldots, n-1 \}$, para todo $k \in \mathbb{Z}\cap[0,J]$, donde $Q_{-1} = N$. 
+ \par 
+ Esto ya se demostr\'o para el primer caso, que en este contexto es cuando $k=0$. Suponiendo ahora que lo antes mencionado es cierto para un n\'umero natural cualquiera $0 < k < N$, se desea probar probar que es cierto para el caso $k+1$. Entonces, 
+ \par 
+ Entonces, por el teorema del algoritmo de la divisi\'on, dado dos n\'umeros naturales $Q_k$ y $n$, fijos, existen n\'umeros naturales \'unicos $Q_{k+1}$ y $b_{k+1}$ tales que $Q_k = Q_{k+1}n + b_{k+1}$ con $0\leq b_{k+1} < n$. Adem\'as $Q_{k} > Q_{k+1}$, ya que si no fuese as\'{\i}, entonces, como $b_{k+1} \geq 0$ y $n > 1$, se tendr\'{\i}a que
+ \begin{equation*}
+  Q_{k} = Q_{k+1}n + b_{k+1} \geq Q_{k+1}n > Q_{k}(1) = Q_{k}
+ \end{equation*}
+ lo cual es una contradicci\'on, por lo tanto, tambi\'en para el valor $k+1$ se cumple que $Q_{k+1}$ y $b_{k+1}$ son \'unicos, $Q_{k} > Q_{k+1}$ y $b_{k+1} \in \{ 0, 1, \ldots , n-1 \}$. Por lo tanto, queda demostrado por inducci\'on que esto es cierto para todo n\'umero entero no negativo $k$.
+ \par 
+ De el hecho de que $Q_k$ y $b_k$ sean \'unicos, se deduce entonces que el proceso generar\'a valores \'unicos en cada iteraci\'on. Queda por demostrar que el proceso termina, lo cual es cierto, porque en cada iteraci\'on se tiene un nuevo valor natural $Q_{k}$ de tal forma que la sucesi\'on $N = Q_{-1} > Q_{0} > Q_{1} > \cdots > Q_{k} > \cdots$ son todos n\'umeros naturales que decresen en cada iteraci\'on, por lo tanto, por el principio del buen orden, se tiene que este proceso tiene un valor natural m\'{\i}nimo, al que se le nombrar\'a $Q_{J-1}$, el cual debe de ser menor a $n$, ya que si fuese mayor o igual a $n$, por el teorema del algoritmo de la divisi\'on se llegar\'{\i}a a que existen enteros \'unicos $Q_J$ y $b_J$ tales que $Q_{J-1} = Q_J n + b_J$ con $0 \leq b_J < n$, entonces $QJn = Q_{J-1} - b_J \geq n - b_J > 0$, por lo que $Q_Jn > 0$ y, por ello, tanto $n$ como $Q_J$ son n\'umeros enteros positivos, pero como $Q_J$ es un n\'umero entero del que ya se demostr\'o que $Q_{J-1} > Q_J$, entonces el hecho de que $Q_J$ sea un natural contradice que $Q_{J-1}$ era el menor natural en la sucesi\'on $\{Q_{k}\}$, por lo tanto $Q_{J-1}$ debe cumplir que es menor a $n$ y, por lo tanto, los los valores $Q_J = 0$ y $n > b_J = Q_{J-1} > 0$ cumplen que $Q_{J-1} = Q_J n + b_J$, que, por el teorema del algoritmo de la divisi\'on son \'unicos, con lo cual acaba el proceso.
+ \par 
+ En conclusi\'on, las f\'ormulas de (8), al cambiar $2$ por un n\'umero natural $n > 1$ cualquiera, ofrece un algoritmo que genera n\'umeros enteros \'unicos $b_k$ tales que $0 \leq b_k < n$ para todo $k \in \mathbb{Z}\cap[0,J]$, para alg\'un $J$ entero no negativo. Ahora s\'olo queda por demostrar que $N = b_{J} \times n^{J} + b_{J-1}n^{J-1} + \cdots + b_1n + b_0$, el cual implica que la concatenaci\'on $b_J b_{J-1} b_{J-2} \ldots b_1 b_0$ es la representaci\'on en base $n$ de $N$.
+ \par 
+ Se demostrar\'a ahora que, usando la notaci\'on previa, $Q_{k-1} = b_{J}n^{J-k} + b_{J-1}n^{J-k-1} + \cdots + b_{k}$, para toda $k \in \mathbb{Z}\cap[0,J-1]$ a trav\'es de una inducci\'on desde $J-1$ hasta $0$.
+ \par 
+ El primer caso ya se prob\'o al final de la demostraci\'on anterior, esto es, que $Q_{J-1} = b_J > 0$. Suponiendo entonces que esto es cierto un valor entero arbitrario $k$ con $0 < k \leq J-1$, se desea probar que es cierto para el caso $k-1$.
+ Dado que se tiene, por hip\'otesis de inducci\'on, que $Q_{k} = b_{J}n^{J-k-1} + b_{J-1}n^{J-k-2} + \cdots + b_{k+1}$ y que, por el proceso iterativo, $Q_{k-1} = Q_{k}n + b_{k}$, entonces 
+ \begin{eqnarray*}
+  Q_{k-1} & = & Q_{k}n + b_{k} \\
+  & = & \left( b_{J}n^{J-k-1} + b_{J-1}n^{J-k-2} + \cdots + b_{k+1} \right) \times n + b_{k} \\
+  & = & b_{J}n^{J-k} + b_{J-1}n^{J-k-1} + \cdots + b_{k+1}n + b_{k}
+ \end{eqnarray*}
+ que es justo a lo que se quer\'{\i}a llegar. Por lo tanto, esto es cierto para todo $k \in \mathbb{Z}\cap[0,J]$.
+ \par 
+ Por lo tanto, se cumple que
+ \begin{equation*}
+  Q_0 = b_Jn^{J-1} + b_{J-1}n^{J-2} + \cdots b_1
+ \end{equation*}
+ Por lo tanto, se tiene que
+ \begin{equation*}
+  Q_0n + b_0 = \left( b_Jn^{J-1} + b_{J-1}n^{J-2} + \cdots b_1 \right)\times n + b_0 = b_Jn^{J} + b_{J-1}n^{J-1} + \cdots b_1n + b_0 = N
+ \end{equation*}
+ que es la representaci\'on de $N$ a la que se quer\'{\i}a llegar. Es decir, al sustituir $2$ por $n$ en todas las f\'ormulas de (8), el resultado es un m\'etodo para hallar la expresi\'on en base $n$ de un n\'umero natural. Q.E.D.
+ \begin{enumerate}[(a)]
+  \item Dividiendo iteradamente $N=10$ entre $n=3$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $10$ & $=$ & $3\times$ & $3+1$, & $b_0 = 1$ \\
+    $3$ & $=$ & $3\times$ & $1 +0$, & $b_1 = 0$ \\
+    $1$  & $=$ & $3\times$ & $0 +1$, & $b_2 = 1$
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on en base $3$ de $10$ es
+  \begin{equation*}
+   10 = b_2 b_1 b_{0}{}_{\text{tres}} = 101_{\text{tres}}.
+  \end{equation*}
+
+  \item Dividiendo iteradamente $N=23$ entre $n=3$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $23$ & $=$ & $3\times$ & $7+2$, & $b_0 = 2$ \\
+    $7$ & $=$ & $3\times$ & $2 +1$, & $b_1 = 1$ \\
+    $2$  & $=$ & $3\times$ & $0 +2$, & $b_2 = 2$
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on en base $3$ de $23$ es
+  \begin{equation*}
+   23 = b_2 b_1 b_{0}{}_{\text{tres}} = 212_{\text{tres}}.
+  \end{equation*}
+
+  \item Dividiendo iteradamente $N=421$ entre $n=3$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $421$ & $=$ & $3\times$ & $140 + 1$, & $b_0 = 1$ \\
+    $140$ & $=$ & $3\times$ & $46 + 2$, & $b_1 = 2$ \\
+    $46$  & $=$ & $3\times$ & $15 + 1$, & $b_2 = 1$ \\
+    $15$ & $=$ & $3\times$ & $5 + 0$, & $b_3 = 0$ \\
+    $5$  & $=$ & $3\times$ & $1 + 2$, & $b_4 = 2$ \\
+    $1$  & $=$ & $3\times$ & $0 + 1$, & $b_5 = 1$
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on en base $3$ de $421$ es
+  \begin{equation*}
+   23 = b_5 b_4 \ldots  b_1 b_{0}{}_{\text{tres}} = 120121_{\text{tres}}.
+  \end{equation*}
+
+  \item Dividiendo iteradamente $N=1784$ entre $n=3$, se tiene que
+  \begin{center}
+   \begin{tabular}{rclrr}
+    $1784$ & $=$ & $3\times$ & $594 + 2$, & $b_0 = 2$ \\
+    $594$ & $=$ & $3\times$ & $198 + 0$, & $b_1 = 0$ \\
+    $198$  & $=$ & $3\times$ & $66 + 0$, & $b_2 = 0$ \\
+    $66$ & $=$ & $3\times$ & $22 + 0$, & $b_3 = 0$ \\
+    $22$  & $=$ & $3\times$ & $7 + 1$, & $b_4 = 1$ \\
+    $7$  & $=$ & $3\times$ & $2 + 1$, & $b_5 = 1$ \\
+    $2$  & $=$ & $3\times$ & $0 + 2$, & $b_6 = 2$
+   \end{tabular}
+  \end{center}
+  As\'{\i} que la representaci\'on en base $3$ de $1784$ es
+  \begin{equation*}
+   1784 = b_6 b_5 \ldots  b_1 b_{0}{}_{\text{tres}} = 2110002_{\text{tres}}.
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

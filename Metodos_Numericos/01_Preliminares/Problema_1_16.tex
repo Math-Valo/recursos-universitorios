@@ -1,0 +1,7 @@
+\begin{enunciado}
+ Supongamos que un polinomio $P(x)$ tiene $n$ ra\'{\i}ces reales en el intervalo $[a,b]$. Pruebe que $P^{(n-1)}(x)$ tiene al menos una ra\'{\i}z real en dicho intervalo.
+\end{enunciado}
+
+\begin{solucion}
+ Dado que $P(x)$ es un polinomio, entonces existen sus primeras $n-1$ derivadas en todos los reales, en particular en $[a,b]$. N\'otese adem\'as que, como tiene $n$ ra\'{\i}ces reales (tambi\'en v\'alido si fuesen complejos), entonces $P(x)$ es de al menos grado $n$, por lo que la $(n-1)-$\'esima derivada es distinto la polinomio nulo. Luego, sean $x_0, x_1, \ldots, x_{n-1} \in [a,b]$ las $n$ ra\'{\i}ces reales, como $f(x_i) = 0$ para toda $j \in \mathbb{Z}\cap[0,n-1]$, entonces se puede aplicar el teorema de Rolle generalizado el cual asegura que existe alg\'un valor $c\in (a,b)$ tal que $P^{(n-1)}(c) = 0$, es decir, se garantiza que existe al menos una ra\'{\i}z, $c$, en el intervalo dado para el polinomio $P^{(n-1)}(x)$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

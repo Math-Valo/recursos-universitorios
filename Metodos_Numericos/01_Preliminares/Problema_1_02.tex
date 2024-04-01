@@ -1,0 +1,33 @@
+\begin{enunciado}
+ Sea $\{ x_n \}_{n=1}^\infty$ una sucesi\'on tal que $\lim_{n \to \infty} x_n = 2$.
+ \begin{multicols}{2}
+  \begin{enumerate}[(a)]
+   \item Halle $\lim_{n\to\infty} \sin(x_n)$.
+   
+   \item Halle $\lim_{n\to\infty} \ln(x_n^2)$
+  \end{enumerate}
+ \end{multicols}
+\end{enunciado}
+
+\begin{solucion}
+ Para resolver esto se usar\'a la propiedad de continuidad que dice que si $f$ es continua en $S$ y si $\{ x_n \}_{n=1}^{\infty} \subset S$ y $\lim_{n\to\infty} x_n = x_0$, entonces $\lim_{n\to\infty} f(x_n) = f(x_0)$.
+ \begin{enumerate}[(a)]
+  \item Como $\sin(x)$ es continuo en $S = \mathbb{R}$, entonces es claro que $\{ x_n \}_{n=1}^{\infty} \subset S$, y como $\lim_{n\to\infty} x_n = 2$, entonces 
+  \begin{equation*}
+   \lim_{n\to\infty} \sin(x_n) = \sin(2) \approx 0.909297
+  \end{equation*}
+
+  \item Como $x^2$ es continuo en $S = \mathbb{R}$, entonces es claro que $\{ x_{n} \}_{n=1}^{\infty} \subset S$, y como $\lim_{n\to\infty} x_n = 2$, entonces
+  \begin{equation*}
+   \lim_{n\to\infty} x_n^2 = (2)^2 = 4
+  \end{equation*}
+  Luego, se tiene que $\ln(x)$ es continuo en $S = \{ x\in \mathbb{R} | \, x > 0 \}$ y $x_n^2 \geq 0$ para todo $n \in \mathbb{N}$, por lo que queda por revisar los casos cuando $x_n^2 = 0$. Dado que el $\lim_{n\to\infty} x_n^2 = 4$, entonces se tiene que para todo $\varepsilon > 0$, existe un n\'umero natural $N(\varepsilon)$ tal que para todo $n>N$ se cumple que $|x_n^2 - 4| < \varepsilon$. Para el caso en particular que $\varepsilon = 4$, entonces $x_n^2$ es mayor a $0$ para todo $n > N$; luego entonces, sea $\{ x_n' \}_{n=1}^{\infty}$ la sucesi\'on id\'entica a $\{ x_n \}_{n=1}^{\infty}$, salvo que para todo $n \leq N$,  $x_n' = 1$, entonces $(x_n')^2$ es positivo para todo $n$ y, como \'unicamente se cambiaron una cantidad finita de valores, se tiene por teorema que $\lim_{n\to\infty} f(x_n) = \lim_{n\to\infty} f(x_n')$, para cualquiera que sea la funci\'on $f$.
+  \par 
+  Finalmente, como $\lim_{n\to\infty} \left( x_n' \right)^2 = 4$, $\ln(x)$ es continua en $S=\{ x\in\mathbb{R}| \, x> 0\}$ y $\{ (x_n')^2 \}_{n=1}^{\infty} \subset S$, entonces:
+  \begin{equation*}
+   \lim_{n\to\infty} \ln\left( x_n^2 \right) = \lim_{n\to\infty} \ln\left[ \left( x_n' \right)^2 \right] = \ln(4) \approx 1.386294
+  \end{equation*}
+ \end{enumerate}
+
+\end{solucion}
+

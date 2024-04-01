@@ -1,0 +1,35 @@
+\begin{enunciado}
+ Sean $f(x) = \sin(x)$ y $P(x) = x - x^3/3! + x^5/5! - x^7/7! + x^9/9!$. Pruebe que $P^{(k)}(0) = f^{(k)}(0)$ para $k=1,2,\ldots, 9$.
+\end{enunciado}
+
+\begin{solucion}
+ Dado que
+ \begin{center}
+  \begin{tabular}{rclcrcl}
+   $P'(x)$ & $=$ & $1 - x^2/2! + x^4/4! - x^6/6! + x^8/8!$ & \hspace{1cm} $\Rightarrow$ \hspace{1cm} & $P'(0)$ & $=$ & $1$ \\
+   $P''(x)$ & $=$ & $-x + x^3/3! - x^5/5! + x^7/7!$ & $\Rightarrow$ & $P''(0)$ & $=$ & $0$ \\
+   $P^{(3)}(x)$ & $=$ & $-1 + x^2/2! - x^4/4! + x^6/6!$ & $\Rightarrow$ & $P^{(3)}(0)$ & $=$ & $-1$ \\
+   $P^{(4)}(x)$ & $=$ & $x - x^3/3! + x^5/5!$ & $\Rightarrow$ & $P^{(4)}(0)$ & $=$ & $0$ \\
+   $P^{(5)}(x)$ & $=$ & $1 - x^2/2! + x^4/4!$ & $\Rightarrow$ & $P^{(5)}(0)$ & $=$ & $1$ \\
+   $P^{(6)}(x)$ & $=$ & $-x + x^3/3!$ & $\Rightarrow$ & $P^{(6)}(0)$ & $=$ & $0$ \\
+   $P^{(7)}(x)$ & $=$ & $-1 + x^2/2!$ & $\Rightarrow$ & $P^{(7)}(0)$ & $=$ & $-1$ \\
+   $P^{(8)}(x)$ & $=$ & $x$ & $\Rightarrow$ & $P^{(8)}(0)$ & $=$ & $0$ \\ 
+   $P^{(9)}(x)$ & $=$ & $1$ & $\Rightarrow$ & $P^{(9)}(0)$ & $=$ & $1$
+  \end{tabular}
+ \end{center}
+ Mientras que, por otro lado, se tiene que
+ \begin{center}
+  \begin{tabular}{rclcrcl}
+   $f'(x)$ & $=$ & $\cos(x)$ & \hspace{1cm} $\Rightarrow$ \hspace{1cm} & $f'(0)$ & $=$ & $1$ \\
+   $f''(x)$ & $=$ & $-\sin(x)$ & $\Rightarrow$ & $f''(0)$ & $=$ & $0$ \\
+   $f^{(3)}(x)$ & $=$ & $-\cos(x)$ & $\Rightarrow$ & $f^{(3)}(0)$ & $=$ & $-1$ \\
+   $f^{(4)}(x)$ & $=$ & $\sin(x)$ & $\Rightarrow$ & $f^{(4)}(0)$ & $=$ & $0$ \\
+   $f^{(5)}(x)$ & $=$ & $\cos(x)$ & $\Rightarrow$ & $f^{(5)}(0)$ & $=$ & $1$ \\
+   $f^{(6)}(x)$ & $=$ & $-\sin(x)$ & $\Rightarrow$ & $f^{(6)}(0)$ & $=$ & $0$ \\
+   $f^{(7)}(x)$ & $=$ & $-\cos(x)$ & $\Rightarrow$ & $f^{(7)}(0)$ & $=$ & $-1$ \\
+   $f^{(8)}(x)$ & $=$ & $\sin(x)$ & $\Rightarrow$ & $f^{(8)}(0)$ & $=$ & $0$ \\
+   $f^{(9)}(x)$ & $=$ & $\cos(x)$ & \hspace{1cm} $\Rightarrow$ \hspace{1cm} & $f^{(9)}(0)$ & $=$ & $1$
+  \end{tabular}
+ \end{center}
+ Por lo tanto, se tiene que $P^{(k)}(0) = f^{(k)}(0)$ para $k=1,2,\ldots, 9$, que es lo que se quer\'{\i}a probar.${}_{\blacksquare}$
+\end{solucion}

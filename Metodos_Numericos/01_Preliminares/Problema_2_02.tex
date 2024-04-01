@@ -1,0 +1,60 @@
+\begin{enunciado}
+ Use las relaciones (4) y (5) para convertir los siguientes n\'umeros binarios en su forma decimal (base 10).
+ \begin{multicols}{2}
+  \begin{enumerate}[(a)]
+   \item $10101_{\text{dos}}$
+   \item $111000_{\text{dos}}$
+  \end{enumerate}
+ \end{multicols}
+ \begin{multicols}{2}
+  \begin{enumerate}[(a)]
+   \setcounter{enumii}{2}
+   \item $11111110_{\text{dos}}$
+   \item $1000000111_{\text{dos}}$
+  \end{enumerate}
+ \end{multicols}
+\end{enunciado}
+
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}
+  \item Desarrollando el n\'umero en base 2, se tiene que:
+  \begin{eqnarray*}
+   10101_{\text{dos}} 
+   & = & 1 \times 2^{4} + 0 \times 2^{3} + 1 \times 2^{2} + 0\times 2^{1} + 1\times 2^{0} \\
+   & = & 1\times 16 + 0\times 8 + 1\times 4 + 0 \times 2 + 1\times 1 \\
+   & = & 16 + 4 + 1 \\
+   & = & 21
+  \end{eqnarray*}
+
+  \item Desarrollando el n\'umero en base 2, se tiene que:
+  \begin{eqnarray*}
+   111000_{\text{dos}} 
+   & = & 1\times 2^{5} + 1 \times 2^{4} + 1 \times 2^{3} + 0 \times 2^{2} + 0\times 2^{1} + 0 \times 2^{0} \\
+   & = & 1\times 32 + 1\times 16 + 1\times 8 + 0 \times 4  + 0 \times 2 + 0\times 1 \\
+   & = & 32 + 16 + 4 \\
+   & = & 52
+  \end{eqnarray*}
+
+  \item Desarrollando el n\'umero en base 2, se tiene que:
+  \begin{eqnarray*}
+   11111110_{\text{dos}} 
+   & = & 1\times 2^{7} + 1 \times 2^{6} + 1\times 2^{5} + 1 \times 2^{4} + 1 \times 2^{3} + 1 \times 2^{2} + 1 \times 2^{1} + 0 \times 2^{0} \\
+   & = & 1 \times 128 + 1 \times 64 + 1\times 32 + 1\times 16 + 1\times 8 + 1 \times 4  + 1 \times 2 + 0\times 1 \\
+   & = & 128 + 64 + 32 + 16 + 8 + 4 + 2 \\
+   & = & 254
+  \end{eqnarray*}
+
+  \item Desarrollando el n\'umero en base 2, se tiene que:
+  \begin{eqnarray*}
+   1000000111_{\text{dos}} 
+   & = & 1 \times 2^{9} + 0 \times 2^{8} + 0 \times 2^{7} + 0 \times 2^{6} + 0 \times 2^{5} + 0 \times 2^{4} \\ 
+   & & + \; 0 \times 2^{3} + 1 \times 2^{2} + 1 \times 2^{1} + 0 \times 2^{0} \\
+   & = & 1 \times 512 + 0 \times 256 + 0 \times 128 + 0 \times 64 + 0 \times 32 + 0 \times 16 \\
+   & & + \; 0 \times 8 + 1 \times 4  + 1 \times 2 + 1 \times 1 \\
+   & = & 512 + 4 + 2 + 1 \\
+   & = & 519
+  \end{eqnarray*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

@@ -1,0 +1,23 @@
+\begin{enunciado}
+ Pruebe que el desarrollo binario $1/7 = 0.\overline{001}_{\text{dos}}$ es equivalente a $\frac{1}{7} = \frac{1}{8} + \frac{1}{64} + \frac{1}{512} + \cdots$ y use el Teorema 1.14 para justificar dicho desarrollo.
+\end{enunciado}
+
+\begin{solucion}
+ Desarrollando la expresi\'on $0.\overline{001}_{\text{dos}}$, se tiene lo siguiente
+ \begin{eqnarray*}
+  0.\overline{001}_{\text{dos}} & = & \left( 0\times 2^{-1} \right) + \left( 0\times 2^{-2} \right) + \left( 1\times 2^{-3} \right) + \left( 0\times 2^{-4} \right) + \left( 0\times 2^{-5} \right) + \left( 1\times 2^{-6} \right)  \cdots \\
+  & = & 2^{-3} + 2^{-6} + 2^{-9} + \cdots \\
+  & = & \displaystyle{ \sum_{k=1}^{\infty} \left( 2^{-3} \right)^k } \\
+  \\
+  & = & \displaystyle{ -1 + \sum_{k=0}^{\infty} \left( 2^{-3} \right)^k }
+ \end{eqnarray*}
+ Entonces, por el teorema 1.14, se sigue que $\displaystyle{ \sum_{k=0}^{\infty} \left( 2^{-3} \right)^k = \frac{1}{1 - 2^{-3}} }$, por lo que
+ \begin{equation*}
+  0.\overline{001}_{\text{dos}} = -1 + \frac{1}{1 - \frac{1}{8}} = -\frac{7}{7} + \frac{1}{\frac{7}{8}} = \frac{-7}{7} + \frac{8}{7} = \frac{1}{7}
+ \end{equation*}
+ Por lo tanto, como se vio que $0.\overline{001}_{\text{dos}} = 2^{-3} + 2^{-6} + 2^{-9} + \cdots = \frac{1}{8} + \frac{1}{64} + \frac{1}{512} + \cdots$, se concluye que es equivalente 
+ \begin{equation*}
+  \frac{1}{7} = \frac{1}{8} + \frac{1}{64} + \frac{1}{512} + \cdots
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

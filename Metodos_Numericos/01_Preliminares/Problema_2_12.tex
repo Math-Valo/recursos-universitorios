@@ -1,0 +1,11 @@
+\begin{enunciado}
+ Pruebe que cualquier n\'umero $2^{-N}$, siendo $N$ un n\'umero natural, puede representarse como un n\'umero decimal con $N$ cifras significativas, es decir, $2^{-N} = 0.d_1d_2d_3\cdots d_N$. \textit{Indicaci\'on.} $1/2 = 0.5$, $1/4 = 0.25$, $\ldots$
+\end{enunciado}
+
+\begin{solucion}
+ N\'otese que $2^{-N} = \left(  5^{N} \times 5^{-N} \right) \left( 2^{-N} \right) = 5^{N} \times \left( 2\times5 \right)^{-N} = 5^{N} \times 10^{-N}$. En el sistema decimal, $10^{-N}$ se representa como la unidad movido $N$ posiciones decimales, mientras que $5^N$ representa un n\'umero natural terminado en $5$, el cual, como es menor a $10^N$ que representa a la unidad movido $N$ posiciones a la izquierda, entonces $5^N$ tiene a lo sumo $N$ d\'{\i}gitos significativas, entonces se puede suponer que $5^N = d_1d_2d_3\cdots d_N$, posiblemente teniendo los primeros $k$ d\'{\i}gitos nulos, con $k\in \mathbb{N}\cap[1,N-1]$. Luego entonces el producto de $5^N$ por $10^{-N}$ representa el valor del n\'umero natural $5^N$ movido $N$ posiciones decimales, es decir
+ \begin{equation*}
+  2^{-N} = 5^N \times 10^{-N} = 0.d_1d_2d_3\cdots d_N
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

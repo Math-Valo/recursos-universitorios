@@ -1,0 +1,27 @@
+\begin{enunciado}
+ Complete los siguientes c\'alculos y diga qu\'e tipo de error se presenta en cada situaci\'on.
+ \begin{enumerate}
+  \item $\displaystyle{ \frac{\sin\left( \frac{\pi}{4} + 0.00001 \right) - \sin\left( \frac{\pi}{4} \right)}{0.00001} = \frac{0.70711385222 - 0.70710678119}{0.00001} = \cdots }$
+  
+  \item $\displaystyle{ \frac{\ln(2 + 0.00005) - \ln(2)}{0.00005} = \frac{0.69317218025 - 0.69314718056}{0.00005} = \cdots }$
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}
+  \item Siguiendo con los c\'alculos, se tiene que
+  \begin{eqnarray*}
+   \frac{\sin\left( \frac{\pi}{4} + 0.00001 \right) - \sin\left( \frac{\pi}{4} \right)}{0.00001} & = & \frac{0.70711385222 - 0.70710678119}{0.00001} \\
+   & = & \frac{0.00000707103}{0.00001} = 0.707103
+  \end{eqnarray*}
+  El cual contiene un error por p\'erdida de cifras significativas al estar restando valores muy cercanos.
+  
+  \item Siguiendo con los c\'alculos, se tiene que
+  \begin{eqnarray*}
+   \frac{\ln(2 + 0.00005) - \ln(2)}{0.00005} & = & \frac{0.69317218025 - 0.69314718056}{0.00005} \\
+   & = & \frac{0.00002499969}{0.00005} = 0.4999938
+  \end{eqnarray*}
+  Nuevamente, el error es por p\'erdida de cifras significativas debido a la resta de valores muy cercanos, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

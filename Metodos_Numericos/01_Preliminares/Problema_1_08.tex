@@ -1,0 +1,32 @@
+\begin{enunciado}
+ Aplique el primer teorema fundamental del c\'alculo a cada una de las siguientes funciones en el intervalo que se indica.
+ \begin{enumerate}[(a)]
+  \item $f(x) = xe^x$ en $[0,2]$.
+  
+  \item $f(x) = \displaystyle{ \frac{3x}{x^2 + 1} }$ en $[-1,1]$
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}[(a)]
+  \item Dado que $x$ y $e^x$ son funciones continuas en $\mathbb{R}$, entonces $xe^x$ es continua en $\mathbb{R}$, en particular, la funci\'on es continua en $[0,2]$. Luego entonces, se buscar\'a una de sus primitivas, para lo cual se usar\'a el m\'etodo de la antidervaci\'on por partes, haciendo $u = x$ y $v = e^x$, con lo que $du = dx$ y $dv = e^x dx$. Entonces:
+  \begin{equation*}
+   \int xe^x \, dx = \int u\,dv = uv - \int v\,du = xe^x - \int e^x \, dx = xe^x - e^x + C
+  \end{equation*}
+  Por lo tanto, $xe^x - e^x$ es una primitiva de $xe^x$ y por lo tanto, usando el primer teorema fundamental del c\'alculo, se tiene que:
+  \begin{equation*}
+   \int_{0}^{2} xe^x \, dx = \left[ (2)e^{(2)} - e^{(2)} \right] - \left[ (0)e^{(0)} - e^{(0)} \right] = 2e^2 - e^2 - 0 + 1 = 2e^2 + 1 \approx 15.778112.
+  \end{equation*}
+
+  \item Dado que $\frac{3x}{x^2 + 1}$ es un cociente de polinomios donde $x^2 + 1 \neq 0$ para todo $x$, entonces la funci\'on es continua en $\mathbb{R}$, particularmente en $[-1,1]$. Luego entonces, se buscar\'a una de sus primitivas, para lo cual se usar\'a el m\'etodo de sustituci\'on, haciendo $u = x^2 + 1$, con lo que $du = 2x \, dx$. Entonces:
+  \begin{equation*}
+   \int \frac{3x}{x^2 + 1} dx = \frac{3}{2} \int \frac{2x}{x^2} dx = \frac{3}{2} \int \frac{du}{u} = \frac{3}{2} \ln(u) + C = \frac{3}{2} \ln(x^2 + 1) + C
+  \end{equation*}
+  Por lo tanto, $\frac{3}{2} \ln\left(x^2 + 1\right)$ es una primitiva de $\frac{3x}{x^2 + 1}$ y por lo tanto, usando el primer teorema fundamental del c\'alculo, se tiene que:
+  \begin{equation*}
+   \int_{-1}^{1} \frac{3x}{x^2+1}\, dx = \frac{3}{2}\ln\left[ (1)^2 + 1 \right] - \frac{3}{2}\ln\left[ (-1)^2 + 1 \right] = \frac{3}{2}\ln(2) - \frac{3}{2}\ln(2) = 0
+  \end{equation*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

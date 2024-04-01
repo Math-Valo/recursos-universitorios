@@ -1,0 +1,43 @@
+\begin{enunciado}
+ Use divisi\'on sint\'etica (el m\'etodo de Horner) para hallar $P(c)$ en los siguientes casos.
+ \begin{enumerate}[(a)]
+  \item $P(x) = x^4 + x^3 - 13x^2 - x - 12$, $c=3$.
+  
+  \item $P(x) = 2x^7 + x^6 + x^5 - 2x^4 - x + 23$, $c = -1$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}[(a)]
+  \item Usando la tabla de Horner para el proceso de divisi\'on sint\'etica, resulta lo siguiente:
+  \begin{center}
+   \begin{tabular}{ccccccc}
+    & $a_4$ & $a_3$ & $a_2$ & $a_1$ & $a_0$ \\
+    \cline{1-1} 
+    \multicolumn{1}{c|}{Dato} & $1$ & $1$ & $-13$ & $-1$ & $-12$ \\
+    \multicolumn{1}{c|}{$c=3$} & & $3$ & $12$ & $-3$ & $-12$ \\
+    \hline 
+    & $1$ & $4$ & $-1$ & $-4$ & \multicolumn{2}{|l}{$-24 = P(3) = b_0$} \\
+    & $b_4$ & $b_3$ & $b_2$ & $b_1$ & \multicolumn{2}{|c}{Resultado} \\
+    \cline{6-7}
+   \end{tabular}
+  \end{center}
+  Por lo tanto $P(3) = -24$.
+  
+  \item Usando la tabla de Horner para el proceso de divisi\'on sint\'etica, resulta lo siguiente:
+  \begin{center}
+   \begin{tabular}{cccccccccc}
+    & $a_7$ & $a_6$ & $a_5$ & $a_4$ & $a_3$ & $a_2$ & $a_1$ & $a_0$ \\
+    \cline{1-1} 
+    \multicolumn{1}{c|}{Dato} & $2$ & $1$ & $1$ & $-2$ & $0$ & $0$ & $-1$ & $23$ \\
+    \multicolumn{1}{c|}{$c=-1$} & & $-2$ & $1$ & $-2$ & $4$ & $-4$ & $4$ & $-3$ \\
+    \hline 
+    & $2$ & $-1$ & $2$ & $-4$ & $4$ & $-4$ & $3$ & \multicolumn{2}{|l}{$20 = P(-1) = b_0$} \\
+    & $b_7$ & $b_6$ & $b_5$  & $b_4$ & $b_3$ & $b_2$ & $b_1$ & \multicolumn{2}{|c}{Resultado} \\
+    \cline{9-10}
+   \end{tabular}
+  \end{center}
+  Por lo tanto $P(-1) = 20$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

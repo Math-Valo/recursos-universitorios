@@ -1,0 +1,23 @@
+\begin{enunciado}
+ Supongamos que $f$, $f'$ y $f''$ est\'an definidas en un intervalo $[a,b]$, que $f(a) = f(b) = 0$ y que $f(c) > 0$ para todo $c \in (a,b)$. Pruebe que existe un n\'umero $d \in (a,b)$ tal que $f''(d) < 0$.
+\end{enunciado}
+
+\begin{solucion}
+ Por teorema se sabe que si una funci\'on es derivable en un punto, entonces esta funci\'on es continua en dicho punto. Entonces, dado que $f$ es derivable en todo punto del intervalo $[a,b]$, entonces $f$ es continua en todo el intervalo $[a,b]$, an\'alogamente, por ser $f'$ derivable en $[a,b]$ se tiene que tambi\'en es continua $[a,b]$.
+ \par 
+ Por otro lado, sea $\displaystyle{m = \frac{a+b}{2}}$, entonces $m \in (a,b)$ y, por la suposiciones del enunciado, se deduce de ello que $f(m) > 0$. N\'otese que $m - a = \frac{a+b}{2} - \frac{2a}{2} = \frac{b-a}{2}$ y $m-b = \frac{a+b}{2} - \frac{2b}{2} = \frac{a-b}{2}$, es decir $m-a = -(m-b)$; adem\'as, como $b>a$, entonces $m-a = \frac{b-a}{2} > 0$ y $m-b = -\frac{b-a}{2} < 0$.
+ \par 
+ Entonces, como $f$ es continua en $[a,b]=[a,m]\cup[m,b]$ y $f'(x)$ existe para todo $x\in(a,m)$ y para todo $x\in(m,b)$, se puede usar el teorema del valor medio que garantiza la existencia de valores $c_1\in(a,m)$ y $c_2 \in (m,b)$ tales que $f'(c_1) = \frac{f(m)-f(a)}{m-a}$ y $f'(c_2) = \frac{f(b) - f(m)}{b-m}$, cuyas expresiones al simplificar resultan en que
+ \begin{equation*}
+  f'(c_1) = \frac{f(m) - f(a)}{m-a} = \frac{f(m)- 0}{m-a} = \frac{f(m)}{m-a} > 0
+ \end{equation*}
+ y
+ \begin{equation*}
+  f'(c_2) = \frac{f(b) - f(m)}{b-m} = \frac{0-f(m)}{-(m-b)} = -\frac{f(m)}{m-a} = - f'(c_1) < 0
+ \end{equation*}
+ Finalmente, como $f'$ es continua en $[a,b]$, en particular en $[c_1,c_2]$, y $f''(x)$ existe para todo $x\in(c_1,c_2)$, se puede aplicar una vez m\'as el teorema del valor medio y se tiene que existe un valor $d \in (c_1, c_2) \subset (a,b)$ tal que
+ \begin{equation*}
+  f''(d) = \frac{f(c_2) - f(c_1)}{c_2 - c_1} = \frac{2f(c_1)}{c_2 - c_1}
+ \end{equation*}
+ Como $f(c_1) < 0$ y $c_2 - c_1 > 0$, ya que $c_2 > c_1$, se tiene que $\displaystyle{ f''(d) = \frac{2f(c_1)}{c_2 - c_1} < 0 }$ y, por ello, el valor $d$ de este resultado cumple con todo lo pedido en el enunciado, es decir, se ha probado que existe un n\'umero $d \in (a,b)$ tal que $f''(d) < 0$. Q.E.D.${}_{\blacksquare}$
+\end{solucion}
