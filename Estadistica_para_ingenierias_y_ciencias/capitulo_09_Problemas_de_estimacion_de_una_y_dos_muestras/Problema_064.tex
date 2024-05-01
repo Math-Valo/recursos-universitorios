@@ -1,0 +1,37 @@
+\begin{enunciado}
+ Se lleva a cabo un estudio para estimar la proporci\'on de residentes de cierta ciudad y sus suburbios que est\'an a favor de la construcci\'on de una planta de energ\'{\i}a nuclear. ¿Qu\'e tan grande se requiere que sea la muestra, si se desea tener al menos $95\%$ de confianza de que la estimaci\'on est\'a dentro del $0.04$ de la proporci\'on real de residentes de esta ciudad y sus suburbios, que est\'an a favor de la construcci\'on de la planta de energ\'{\i}a nuclear?
+\end{enunciado}
+
+\begin{solucion}
+ Del enunciado se tienen los siguientes datos:
+ \begin{itemize}
+  \item $\alpha = 0.05$.
+  \item $e = 0.04$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a el tama\~no para que el error al estimar la proporci\'on est\'e dentro de un margen de error, entonces se requiere el valor $z_{\alpha/2} = z_{0.025}$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, puede considerarse con mayor precisi\'on como $1.95996398454$.
+ \par 
+ Entonces, como no hay una muestra previa para estimar el tama\~no de muestra, se usa el siguiente resultado:
+ \begin{equation*}
+  n = \left\lceil \frac{z_{\alpha/2}^2}{4e^2} \right\rceil = \left\lceil \left( \frac{z_{\alpha/2}}{2e} \right)^2 \right\rceil
+ \end{equation*}
+ por lo tanto, el valor pedido se puede calcular, usando la primera aproximaci\'on de $z_{\alpha/2}$, como
+ \begin{equation*}
+  n = \left\lceil \left( \frac{1.96}{2(0.04)} \right)^2 \right\rceil = \left\lceil ( 24.5 )^2 \right\rceil = \lceil 600.25 \rceil
+ \end{equation*}
+ Por lo tanto, el tama\~no de la muestra buscada es de $n=601$.
+ \par 
+ Finalmente, usando R, se puede calcular el tama\~no de la muestra usando la rutina del archivo anexo \texttt{P19\_Tamanyo\_de\_muestra\_2.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> error<-0.04
+> alfa<-0.05
+> inter<-'D'
+> previo<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+[1] 601
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que coincide con el valor ya calculado. Por lo tanto $n = 601$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

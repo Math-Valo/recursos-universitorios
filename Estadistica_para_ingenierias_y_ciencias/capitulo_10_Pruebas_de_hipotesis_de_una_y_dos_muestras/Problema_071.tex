@@ -1,0 +1,76 @@
+\begin{enunciado}
+ Se dice que una m\'aquina despachadora de bebida gaseosa est\'a fuera de control
+ si la varianza de los contenidos excede $1.15$ decilitros.
+ Si una muestra aleatoria de $25$ bebidas de esta m\'aquina tiene una varianza
+ de $2.03$ decilitros, ¿esto significa con un nivel de significancia de $0.05$
+ que la m\'aquina est\'a fuera de control?
+ Suponga que los contenidos se distribuyen de forma aproximadamente normal.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X \sim n\left( \mu, \sigma \right)$.
+   \item $n = 25$.
+   \item $s^2 = 2.03$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \sigma^2 & = & 1.15 \\
+   H_1: \sigma^2 & > & 1.15
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{\alpha,n-1}=\chi^2_{0.05,24} \approx 36.415$,
+  por lo que la regi\'on de rechazo est\'a dado para $\chi^2 > 36.415$,
+  donde $\chi^2 = \frac{(n-1)s^2}{\sigma_0^2}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{equation*}
+   \chi^2 = \frac{(n-1)s^2}{\sigma_0^2}
+   = \frac{24(2.03)}{1.15}
+   = \frac{24\left(\frac{203}{100} \right)}{\frac{23}{20}}
+   = \frac{24(203)}{23(5)}
+   = \frac{4\,872}{115} \approx 42.3\overline{6521739130434782608695}
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  Se concluye que, en efecto, m\'aquina tienen una varianza mayor
+  a $1.15$ y, por lo tanto, est\'a fuera de control.
+ \end{conclusion}
+ 
+ Finalmente, usando el archivo anexo \texttt{P11\_Prueba\_de\_una\_varianza\_02.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n<-25
+> sigma2<-1.15
+> s2<-2.03
+> alfa<-0.05
+> cola<-'S'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+   n   H0 var.muestral grados error.est alpha    PValor Estadistico
+1 25 1.15         2.03     24 0.0479167  0.05 0.0117412    42.36522
+  RegionRechazoJi RegionRechazoX     Resultado
+1    > 36.4150285    > 1.7448868 Se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

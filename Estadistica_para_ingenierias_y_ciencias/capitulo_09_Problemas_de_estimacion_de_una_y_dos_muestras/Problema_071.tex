@@ -1,0 +1,101 @@
+\begin{enunciado}
+ Un fabricante de bater\'{\i}as para autom\'ovil afirma que sus bater\'{\i}as durar\'an, en promedio, $3$ a\~nos con una varianza de $1$ a\~no. Si $5$ de estas bater\'{\i}as tienen duraciones de $1.9$, $2.4$, $3.0$, $3.5$ y $4.2$ a\~nos, construya un intervalo de confianza de $95\%$ para $\sigma^2$ y decida si es v\'alida la afirmaci\'on del fabricante de que $\sigma^2 = 1$. Suponga que la poblaci\'on de duraciones de las bater\'{\i}as se distribuye de forma aproximadamente normal.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de los a\~nos de duraci\'on de las bater\'{\i}as de autom\'ovil del fabricante del enundiado, entonces se tiene lo siguiente:
+ \begin{itemize}
+  \item $X \sim n( \mu, \sigma )$.
+  \item $\sigma$ es desconocida (aunque se afirma que es 1).
+  \item $n = 5$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ adem\'as de los datos obtenidos en la muestra, de donde se calcula la media y varianza muestral como se muestra a continuaci\'on. La media muestra se calcula como sigue:
+ \begin{equation*}
+  \bar{x} = \frac{1}{n}\sum_{i=1}^n X_i = \frac{1.9+2.4+3+3.5+4.2}{5} = \frac{15}{5} = 3
+ \end{equation*}
+ por lo que la varianza muestral se obtiene, usando el Teorema 8.1, como sigue:
+ \begin{eqnarray*}
+  s^2 & = & \frac{1}{n(n-1)} \left[ n \sum_{i=1}^n X_i^2 - \left( \sum_{i=1}^n X_i \right)^2 \right] = \frac{5\left( 1.9^2 + 2.4^2 + 3^2 + 3.5^2 + 4.2^2 \right) - (15)^2}{5(4)} \\
+  & = & \frac{5(3.61+5.76+9+12.25+17.64) - 225}{5(4)} = \frac{\cancel{5}(48.26 - 45)}{\cancel{5}(4)} = \frac{3.26}{4} = 0.815
+ \end{eqnarray*}
+ Por otro lado, como se  desea encontrar el intervalo de confianza bilateral para la varianza de una poblaci\'on aproximadamente normal, entonces se requerir\'a de los valores $\chi^2_{\alpha/2,n-1} = \chi^2_{0.025,4}$ y $\chi^2_{1-\alpha/2,n-1} = \chi^2_{0.975,4}$. De la Tabla A.5: \textit{Valores cr\'{\i}ticos de la distribuci\'on chi cuadrada}, en el ap\'endice A del libro, estas valores son: $\chi^2_{0.025,4}=11.143$ y $\chi^2_{0.975,4}=0.484$. Por otro lado, usando R, con los siguientes comandos, se obtiene mayor precisi\'on.
+ \begin{verbatim}
+> options(digits=22)
+> qchisq(0.025,4,lower.tail=F)
+[1] 11.14328678187779786413
+> qchisq(0.975,4,lower.tail=F)
+[1] 0.4844185570879299684854
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar, con mayor precisi\'on que: $\chi^2_{0.025,4} = 11.143286781877797864$ y $\chi^2_{0.975,4} = 0.484418557087929968485$.
+ \par 
+ Ya que se busca un intervalo de confianza para la varianza de una poblaci\'on que se distribuye normalmente usando la varianza muestral como estimador, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}} < \sigma^2 < \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}
+ \end{equation*}
+ Por lo tanto, usandos los datos obtenidos y considerando los valores $\chi^2_{\alpha/2,n-1}$ y $\chi^2_{1-\alpha/2,n-1}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}} = \frac{(5-1)0.815}{11.143} = \frac{4(815)}{11\,143} = \frac{3\,260}{11\,143} \approx 0.29256035
+ \end{equation*}
+ y
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}} = \frac{3\,260}{1\,000(0.484)} = \frac{3\,260}{484} = \frac{815}{121} \approx 6.73553719
+ \end{equation*}
+ Por lo tanto, el intervalo de confianza de $95\%$ para la varianza de los a\~nos de duraci\'on de las bater\'{\i}as para autom\'oviles del fabricante es aproximadamente
+ \begin{equation*}
+  0.29256035 < \sigma^2 < 6.73553719
+ \end{equation*}
+ Por otro lado, usando R, se puede calcular el intervalo de confianza directamente con las siguientes l\'{\i}neas de c\'odigo, registradas en el archivo anexo \texttt{P21\_Intervalo\_de\_confianza\_10.r}, el cual ha sido creado para leer un archivo externo con extensi\'on .csv. En este caso, el archivo anexo que contiene los datos del problema se llama \texttt{DB09\_Problema\_71.csv}, que contiene dos columnas: \texttt{Bater\'{\i}a}, conformado por el enlistado de bater\'{\i}as a trav\'es de la numeraci\'on del $1$ al $5$; y \texttt{Tiempo.a\~nos}, conformadopor los valores medidos.
+ \par 
+ El archivo permite modificar el nombre del fichero que se va a leer; la variable \texttt{varInteres}, que corresponde al nombre de la columna de datos; \texttt{alfa}, para el nivel de confianza; y, \texttt{tipoInterv}, que indica si se va calcular el intervalo de confianza de la varianza, con el valor \texttt{var}, o el intervalo de confianza de la desviaci\'on est\'andar, con el valor \texttt{desv.est}.
+ \par 
+ A continuaci\'on se muestra el c\'odigo completo, incluyendo el resultado final, que contiene cuatro columnas: la unidad de medida de la variable, con el nombre \texttt{variable}, el l\'{\i}mite inferior del intervalo de confianza, con el nombre \texttt{LimInf}, el estimador muestral, con el nombre de \texttt{varianza} o \texttt{DesviacionEstandar} seg\'un lo que se mide, y, finalmente, el l\'{\i}mite superior del intervalo de confianza, con el nombre \texttt{LimSup}.
+ \begin{verbatim}
+> datos<-read.csv("DB09_Problema_71.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Tiempo.años")
+> alfa<-0.05
+> tipoInterv<-"var"
+> valores<-unlist(datos[,varInteres])
+> variable<-factor(rep(varInteres,each=dim(datos)[1]))
+> ic.var.ds<-function(x,alfa=0.05,tipo="desv.est",sup=TRUE){
++   x<-x[!is.na(x)]
++   if (length(x)>=2){
++       n<-length(x)
++       var1<-var(x)
++       v<-ifelse(sup,(n-1)*var1/(qchisq(alfa/2,n-1)),
++                 (n-1)*var1/(qchisq(1-alfa/2,n-1)))
++       v<-ifelse(toupper(tipo)=="DESV.EST",sqrt(v),v)
++       return(v)
++   }else return(NA)
++ }
+> if(toupper(tipoInterv)=="DESV.EST"){
++    var1<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),
++                                     sd,na.rm=TRUE),
++                              responseName="DesviacionEstandar")
++ }else{
++    var1<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),
++                                     var,na.rm=TRUE),
++                              responseName="Varianza") 
++ }
+> ICs1<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),
++                                  ic.var.ds,alfa=alfa,tipo=tipoInterv),
++                           responseName="LimSup")
+> ICs2<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),
++                                  ic.var.ds,sup=FALSE,alfa=alfa,
++                                  tipo=tipoInterv),
++                           responseName="LimInf")
+> if(toupper(tipoInterv)=="DESV.EST"){
++    ICs<-na.omit(data.frame(ICs2,DesviacionEstandar=var1[,"DesviacionEstandar"],
++                            LimSup=ICs1[,"LimSup"]))
++ }else{
++    ICs<-na.omit(data.frame(ICs2,Varianza=var1[,"Varianza"],
++                            LimSup=ICs1[,"LimSup"]))
++ }
+> ICs
+     variable    LimInf Varianza   LimSup
+1 Tiempo.años 0.2925528    0.815 6.729717
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $0.29 < \sigma^2 < 6.73$, por lo tanto, el intervalo, al ser grande, no ofrece mucha certidumbre; sin embargo, contiene al valor $1$, por lo que no hay nada que indique que que la afirmaci\'on del fabricante sea falso. Por lo tanto, se considera como v\'alida la afirmaci\'on del fabricante, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

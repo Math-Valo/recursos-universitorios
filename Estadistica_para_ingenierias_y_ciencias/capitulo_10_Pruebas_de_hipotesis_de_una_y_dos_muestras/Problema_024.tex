@@ -1,0 +1,65 @@
+\begin{enunciado}
+ En el bolet\'{\i}n de la Asociaci\'on Estadounidense del Coraz\'on, \textit{Hypertension}, investigadores reportan que los individuos que practican la meditaci\'on trascendental (\texttt{MT}) bajan su presi\'on sangu\'{\i}nea de forma significativa. Si una muestra aleatoria de $225$ hombres practicantes de \texttt{MT} meditan $8.5$ horas a la semana, con una desviaci\'on est\'andar de $2.25$ horas, ¿esto sugiere que, en promedio, los hombres que utilizan la \texttt{MT} meditan m\'as de $8$ horas a la semana? Cite un valor $P$ en su conclusi\'on.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n = 225$.
+   \item $\bar{x} = 8.5$.
+   \item $s = 2.25$.
+  \end{itemize}
+  Adem\'as, por el teorema del l\'{\i}mite central, como $n \geq 30$, se puede aproximar la variable aleatoria de la media muestral a una normal, y usar el estad\'{\i}stico siguiente:
+  \begin{itemize}
+   \item $\overline{X} \sim n\left( \mu , \sigma/\sqrt{n} \right)$.
+   \item $Z = \frac{\overline{X}-\mu}{S/\sqrt{n}} \approx
+   \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \sim n(0,1)$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu & \leq & 8 \\
+   H_1: \mu & > & 8
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   z = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}} \approx \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{8.5-8}{2.25/\sqrt{225}} = \frac{0.5(15)}{2.25} = \frac{150}{45} = \frac{10}{3} = 3.\overline{3}
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.3 se tiene que:
+  \begin{equation*}
+   P(Z > z) \approx P(Z > 3.33) = P(Z < -3.33) \approx 0.0004
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es muy peque\~no, entonces se tiene evidencia suficiente para concluir que los hombres que utilizan la MT meditan m\'as de $8\,$hrs a la semana.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo \texttt{P03\_Prueba\_de\_una\_media\_01.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n<-225
+> mu<-8
+> m<-8.5
+> desv<-2.25
+> pobl<-FALSE
+> alfa<-NULL
+> cola<-'S'
+> val<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba H0   n MediaMuestral desv.est error.est alpha    PValor Estadistico
+1      Z  8 225           8.5     2.25      0.15  0.05 0.0004291    3.333333
+  RegionRechazoZ RegionRechazoX
+1    > 1.6448536     > 8.246728
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

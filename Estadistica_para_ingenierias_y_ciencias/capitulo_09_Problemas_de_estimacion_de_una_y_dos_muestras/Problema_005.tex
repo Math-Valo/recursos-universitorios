@@ -1,0 +1,50 @@
+\begin{enunciado}
+ A muchos pacientes con problemas cardiacos se les implant\'o un marcapasos para controlar su ritmo cardiaco. Se monta un m\'odulo conector de pl\'astico sobre la parte superior del marcapasos. Suponiendo una desviaci\'on est\'andar de $0.0015$ y una distribuci\'on aproximadamente normal, encuentre un intervalo de confianza de $95\%$ para la media de todos los m\'odulos conectores que fabrica cierta compa\~n\'{\i}a de manufactura. Una muestra aleatoria de $75$ m\'odulos tiene un promedio de $0.310$ pulgadas.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del tama\~no de los m\'odulos conectores que fabrica la compa\~n\'{\i}a de manufactura del enunciado, medido en pulgadas, y sea $\overline{X}$ la variable aleatoria de las medias muestrales de $n$ elementos, y llamando $\alpha$ al nivel de confianza, se tienen los siguientes datos:
+ \begin{itemize}
+  \item $X\sim\text{normal}(\mu, \sigma)$.
+  \item $\mu_X$ es desconocida.
+  \item $\sigma_X = 0.0015$.
+  \item $n=75$.
+  \item $\bar{x} = 0.310\,$pulgadas.
+  \item $\alpha=0.05$.
+ \end{itemize}
+ Como la poblaci\'on tiene distribuci\'on normal y se conoce la varianza poblacional, se va a usar $z_{\alpha/2} = z_{0.025}$. De la Tabla A.3, en el ap\'endice A del libro, \'este valor es $1.96$. Por otro lado, usando el software estad\'{\i}stico R, con los siguientes comandos, se obtiene mayor precisi\'on.
+ \begin{verbatim}
+>options(digits=22)
+>qnorm(0.025, mean = 0, sd = 1, lower.tail = F)
+[1] 1.959963984540053827388
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar, con mayor precisi\'on como $1.95996398454$.
+ \par 
+ Ya que se busca un intervalo de confianza para la media de una poblaci\'on que se distribuye normalmente y se conoce la desviaci\'on est\'andar, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \bar{x} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \bar{x} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}
+ \end{equation*}
+ Por lo taanto, usando los datos obtenidos y considerando el valor de $z_{\alpha/2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{equation*}
+  \bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}} = 0.31\pm 1.96\left( \frac{0.0015}{\sqrt{75}} \right) = 0.31\pm\frac{0.00294}{5\sqrt{3}} = \frac{0.31\sqrt{3}\pm0.000588}{\sqrt{3}}
+ \end{equation*}
+ Por lo tanto, el intervalo de confianza de $95\%$ de confianza de la media de los m\'odulos conectores es de
+ \begin{equation*}
+  0.30966 < \mu < 0.31034
+ \end{equation*}
+ El c\'alculo del intervalo de confianza con el valor $z_{\alpha/2}$ obtenido en R se puede realizar con el programa anexo \texttt{P01\_Intervalo\_de\_confianza\_01.r} cambiando los siguientes valores:
+ \begin{verbatim}
+>n<-75
+>m<-0.31
+>desv.tipica<-0.0015
+>alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Con lo que se obtiene por resultado el intervalo
+ \begin{equation*}
+  0.3096605 < \mu < 0.3103395
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
+

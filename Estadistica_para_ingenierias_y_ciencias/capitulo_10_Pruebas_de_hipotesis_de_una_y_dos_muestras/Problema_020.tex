@@ -1,0 +1,72 @@
+\begin{enunciado}
+ Una muestra aleatoria de $64$ bolsas de palomitas (rosetas) de ma\'{\i}z con queso chedar pesan, en promedio, $5.23$ onzas con una desviaci\'on est\'andar de $0.24$ onzas. Pruebe la hip\'otesis de que $\mu = 5.5$ onzas contra la hip\'otesis alternativa, $\mu < 5.5$ onzas con un nivel de significancia de $0.05$.
+\end{enunciado}
+
+\vspace{0.5cm}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n = 64$.
+   \item $\bar{x} = 5.23$
+   \item $s = 0.24$
+  \end{itemize}
+  Adem\'as, por teorema del l\'{\i}mite central, como $n \geq 30$, se puede aproximar la variable aleatoria de la media muestral a una normal, de lo que se sigue que:
+  \begin{itemize}
+   \item $\overline{X} \sim n\left( \mu, \sigma/\sqrt{n} \right)$.
+   \item $\frac{\overline{X}-\mu}{S/\sqrt{n}} \approx \frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim n(0,1)$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu & = & 5.5 \\
+   H_1: \mu & < & 5.5
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.3, se tiene el valor cr\'{\i}tico $z_{\alpha} = z_{0.05} \approx 1.645$, por lo que la regi\'on de rechazo est\'a dado para $z < -1.645$, donde $z = \frac{\bar{x} - \mu}{\sigma/\sqrt{n}}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{equation*}
+   z \approx \frac{\bar{x} -\mu}{s/\sqrt{n}} = \frac{5.23-5.5}{0.24/\sqrt{64}} = -\frac{0.27(8)}{0.24} = -\frac{9(8)}{8} = -9
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  El promedio del peso en las bolsas de palomitas de ma\'{\i}z con queso chedar es menor a $5.5$ onzas.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P03\_Prueba\_de\_una\_media\_01.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n<-64
+> mu<-5.5
+> m<-5.23
+> desv<-0.24
+> pobl<-FALSE
+> alfa<-0.05
+> cola<-'I'
+> val<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba  H0  n MediaMuestral desv.est error.est alpha PValor Estadistico
+1      Z 5.5 64          5.23     0.24      0.03  0.05      0          -9
+  RegionRechazoZ RegionRechazoX     Resultado
+1   < -1.6448536    < 5.4506544 Se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos, ofreciendo incluso m\'as informaci\'on, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,70 @@
+\begin{enunciado}
+ Un experimento publicado en \textit{Popular Science} compara las econom\'{\i}as en combustible para dos tipos de camiones compactos a diesel equipados de forma similar. Supongamos que se utilizaron $12$ camiones Volkswagen y $10$ Toyota en pruebas de velocidad constante de 90 kil\'ometros por hora. Si los $12$ camiones Volkswagen promedian $16$ kil\'ometros por litro con una desviaci\'on est\'andar de $1.0$ kil\'ometros por litro y los $10$ Toyota promedian $11$ kil\'ometros por litro con una desviaci\'on est\'andar de $0.8$ kil\'ometros por litro, construya un intervalo de $90\%$ para la diferencia entre los kil\'ometros promedio por litro de estos dos camiones compactos. Suponga que las distancias por litro para cada modelo de cami\'on est\'an distribuidas de forma aproximadamente normal con varianzas iguales.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de la cantidad de kil\'ometros por litro que se consume en una velocidad constante de 90 kil\'ometros por hora de un cami\'on Volkswagen y un cami\'on Toyota, respectivamente, entonces, del enunciado, se tienen los siguientes datos:
+ \begin{itemize}
+  \item $X_i \sim n(\mu_i,\sigma_i)$, para  cada $i \in \{ 1,2 \}$.
+  \item $\mu_i$ y $\sigma_i$ desconocidas, para cada $i \in \{ 1, 2 \}$.
+  \item $\sigma_1 = \sigma_2$.
+  \item $n_1 = 12$ y $n_2 = 10$.
+  \item $\bar{x}_1 = 16$ y $\bar{x}_2 = 11$.
+  \item $s_1 = 1$ y $s_2 = 0.8$.
+  \item $\alpha = 0.1$.
+ \end{itemize}
+ Como se desea encontrar un intervalo de confianza bilateral para $\mu_1 - \mu_2$, usando como estimador $\bar{x}_1 - \bar{x}_2$, desconociendo las varianzas poblacionales aunque suponi\'endolas iguales, con muestras peque\~nas de poblaciones que se distribuyen aproximadamente normal, entonces se requerir\'a del valor $t_{\alpha/2,n_1+n_2-2} = t_{0.05,20}$. De la Tabla A.4, se tiene que $t_{0.05,20} = 1.725$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.05,20,lower.tail=F)
+[1] 1.724718242920787236727
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $1.72471824292$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales usando como estimador la diferencia de las medias muestrales en muestras peque\~nas, en donde se desconoce las desviaciones est\'andar poblacionales pero suponiendo que son iguales y donde se suponen que las poblaciones se distribuyen aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - t_{\alpha/2,n_1+n_2-2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2 \right) + t_{\alpha/2,n_1+n_2-2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+ \end{equation*}
+ en donde
+ \begin{equation*}
+  s_p = \sqrt{\frac{\left(n_1 - 1 \right)s_1^2 + \left(n_2 - 1\right)s_2^2}{n_1 + n_2 - 2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n_1+n_2-2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  s_p & = & \sqrt{\frac{\left(n_1 - 1 \right)s_1^2 + \left(n_2 - 1\right)s_2^2}{n_1 + n_2 - 2}} = \sqrt{\frac{(12-1)(1)^2 + (10-1)(0.8)^2}{12+10-2}} = \sqrt{\frac{(11)(1) + (9)(0.64)}{20}} \\
+  & = & \sqrt{\frac{11+5.76}{20}} = \sqrt{\frac{16.76}{20}} = \sqrt{\frac{1\,676}{2\,000}} = \sqrt{\frac{419}{500}} = \sqrt{\frac{2\,095}{2\,500}} = \frac{\sqrt{2\,095}}{50}
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) \pm t_{\alpha/2,n_1+n_2-2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} 
+  & = & (16-11) \pm (1.725) \left( \frac{\sqrt{2\,095}}{50} \right) \sqrt{\frac{1}{12} + \frac{1}{10}} \\
+  & = & 5 \pm 0.0345 \sqrt{2\,095} \sqrt{\frac{11}{60}} = 5 \pm 0.0345 \left( \frac{\sqrt{419}\sqrt{11}}{\sqrt{12}} \right) \\
+  & = & 5 \pm 0.0345 \left( \frac{\sqrt{4\,609}\sqrt{3}}{(2)(3)} \right) = 5 \pm 0.00575 \sqrt{13\,827}
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $90\%$ de confianza de la diferencia entre los kil\'ometros promedio por litro de los camiones compactos de la Volkswagen y la Toyota es de:
+ \begin{equation*}
+  4.3238674778565965 < \mu_1 - \mu_2 < 5.6761325221434
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P14\_Intervalo\_de\_confianza\_05.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-12
+> n2<-10
+> m1<-16
+> m2<-11
+> desv.tipica1<-1
+> desv.tipica2<-0.8
+> alfa<-0.1
+> val<-FALSE
+> varia<-TRUE
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  n1 n2 media1 media2   LimInf diferencia   LimSup
+1 12 10     16     11 4.323978          5 5.676022
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $90\%$ es $4.324 < \mu_1 - \mu_2 < 5.676$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

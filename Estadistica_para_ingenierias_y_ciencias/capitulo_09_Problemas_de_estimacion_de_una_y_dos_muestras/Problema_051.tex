@@ -1,0 +1,97 @@
+\begin{enunciado}
+ $\phantom{0}$
+ \begin{enumerate}
+  \item Se selecciona una muestra aleatoria de $200$ votantes y se encuentra que $114$ apoyan un juicio de anexi\'on. Encuentre el intervalo de confianza de $96\%$ para la fracci\'on de la poblaci\'on votante que favorece el juicio.
+  
+  \item ¿Qu\'e podemos asegurar con $96\%$ de confianza acerca de la posible magnitud de nuestro error, si estimamos que la fracci\'on de votantes que favorece el juicio de anexi\'on es $0.57$?
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del n\'umero de votantes que apoyan un juicio de anexi\'on entre $n$ votantes, entonces $\widehat{P}=X/n$ es un estad\'{\i}stico de $p$, la proporci\'on de casos favorables de apoyo entre el total de los $n$ votantes, entonces, del enunciado, se tienen los siguientes datos obtenidos de una muestra:
+ \begin{itemize}
+  \item $n = 200$ votantes.
+  \item $x = 114$ votantes que apoyan un juicio de anexi\'on.
+  \item $\alpha=0.04$.
+ \end{itemize}
+ por lo que $\hat{p}$, la proporci\'on de \'exitos, y $\hat{q}=1-\hat{p}$ est\'an dados por
+ \begin{itemize}
+  \item $\hat{p} = \frac{x}{n} = \frac{114}{200} = \frac{57}{100} = 0.57$; y,
+  \item $\hat{q} = 1-\hat{p} = 1-\frac{57}{100} = \frac{43}{100} = 0.43$.
+ \end{itemize}
+ Adem\'as, como se busacar\'a un intervalo de confianza bilateral y se calcular\'a el error de $\hat{p}$ para estimar $p$, entonces se requiere del valor $z_{\alpha/2} = z_{0.02}$, el cual se calcul\'o en el ejercicio 9.4 y su aproximaci\'on es de $2.05$, aunque, en R, se puede considerar con mayor precisi\'on como $2.05374891$.
+ \begin{enumerate}
+  \item Ya que se busca un intervalo de confianza para la proporci\'on en un experimento binomial en donde el tama\~no de muestra es grande y se espera, por $\hat{p}$, que $p$ no est\'a demasiado cerca de cero o de uno, entonces se usar\'a la f\'ormula de intervalo siguiente:
+  \begin{equation*}
+   \hat{p} - z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} < p < \hat{p} + z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+  \begin{eqnarray*}
+   \hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} & = & 0.57 \pm 2.05\sqrt{\frac{(0.57)(0.43)}{200}} = 0.57 \pm 2.05 \left( \frac{\sqrt{57(43)}\sqrt{2}}{100(20)} \right) \\
+   & = & 0.57 \pm \frac{41\sqrt{4\,902}}{40\,000} = 0.57 \pm 0.001025\sqrt{4\,902} \approx 0.57 \pm 0.07176464
+  \end{eqnarray*}
+  Por lo tanto, el intervalo de confianza de $96\%$ de la proporci\'on de votantes que apoyan un juicio de anexi\'on es aproximadamente:
+  \begin{equation*}
+   0.49823535863672 < p < 0.641764641363
+  \end{equation*}
+  Finalmente, usando R, se puede calcular el intervalo de confianza directamente con las siguientes l\'{\i}neas de c\'odigo, registradas en el archivo anexo \texttt{P17\_Intervalo\_de\_confianza\_08.r}, en el permite la posibilidad de indicar el valor $x$ de casos favorables o, bien, directamente la proporci\'on $\hat{p}$, adem\'as, tambi\'en permite la posibilidad de calcular intervalos de confianza unilaterales. Al final, este script muestra el l\'{\i}mite inferior, la proporci\'on muestral y el l\'{\i}mite superior, nombrados \texttt{LimInf}, \texttt{Proporci\'on} y \texttt{LimSup}, respectivamente, como se muestra al final del c\'odigo que se muestra a continuaci\'on:
+  \begin{verbatim}
+> n<-200
+> x<-114
+> p<-NULL
+> alfa<-0.04
+> inter<-'D'
+> if(is.null(p)){
++    p<-x/n
++ }
+> q<-1-p
+> if(inter=='D'){
++    zalfa<-qnorm(1-alfa/2)
++ }else{
++    zalfa<-qnorm(1-alfa)
++ }
+> LL<-round(p-zalfa*sqrt(p*q/n),7)
+> LU<-round(p+zalfa*sqrt(p*q/n),7)
+> IC<-data.frame(LL,p,LU)
+> names(IC)[names(IC) == "LL"]<-"LimInf"
+> names(IC)[names(IC) == "m"]<-"Media"
+> names(IC)[names(IC) == "LU"]<-"LimSup"
+> IC
+     LimInf Proporción    LimSup
+1 0.4981041       0.57 0.6418959
+  \end{verbatim}
+  \vspace{-0.5cm}
+  por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $96\%$ es $0.498 < p < 0.642$.${}_{\square}$
+  
+  \item Dado $\hat{p} = 0.57$ estima a la fracci\'on de votantes que favorece el juicio de anexi\'on, entonces, se sabe que el error tiene una magnitud de a lo m\'as
+  \begin{equation*}
+   z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}}
+  \end{equation*}
+  entonces, por lo c\'alculos previos, se sabe, con un $96\%$ de confianza, que la magnitud del error en estimaci\'on es de a lo m\'as
+  \begin{equation*}
+   z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} = \frac{41\sqrt{4\,902}}{40\,000} = 0.001025\sqrt{4\,902} \approx 0.07176464
+  \end{equation*}
+  Por otro lado, al utilizar las siguientes l\'{\i}neas de c\'odigo escritas en R, registradas en el archivo anexo \texttt{P18\_Estimacion\_del\_error\_2.r}, se puede obtener un valor m\'as preciso. Nuevamente, como en el script anterior, esta rutina permite aceptar el valor de casos favorables o la proporci\'on directamente adem\'as de tener la posibilidad de dar un valor para un margen de error unilateral.
+  \begin{verbatim}
+> n<-200
+> x<-114
+> p<-NULL
+> alfa<-0.04
+> inter<-'D'
+> if(is.null(p)){
++    p<-x/n
++ }
+> q<-1-p
+> if(inter=='D'){
++    zalfa<-qnorm(1-alfa/2)
++ }else{
++    zalfa<-qnorm(1-alfa)
++ }
+> error<-round(zalfa*sqrt(p*q/n),7)
+> error
+[1] 0.0718959
+  \end{verbatim}
+  As\'{\i}, pues, aproximando al decimal en que ambas soluciones coinciden, se tiene con un $96\%$ de confianza que el margen de error no supera el valor de $0.072$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+
+\end{solucion}

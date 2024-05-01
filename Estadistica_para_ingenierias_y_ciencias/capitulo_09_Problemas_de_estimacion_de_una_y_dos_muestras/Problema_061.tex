@@ -1,0 +1,43 @@
+\begin{enunciado}
+ ¿Qu\'e tan grande se necesita la muestra en el ejercicio 9.54, si deseamos tener una confianza de $98\%$ de que nuestra proporci\'on de la muestra est\'e dentro del $0.05$ de la proporci\'on real de defectuosos?
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en el ejercicio 9.54 y a\~nadiendo el error m\'aximo en el que se debe de encontrar $\hat{p}$ para estimar la proporci\'on, se tiene lo siguiente:
+ \begin{itemize}
+  \item $n = 100$ art\'{\i}culos totales de una muestra previa.
+  \item $x = 8$ art\'{\i}culos defectuosos en la muestra previa.
+  \item $\hat{p} = \frac{2}{25} = 0.08$.
+  \item $\hat{q} = \frac{23}{25} = 0.92$.
+  \item $\alpha = 0.02$
+  \item $z_{\alpha/2} = 2.33$, seg\'un el libro, y $z_{\alpha/2} = 2.326347874$, con la aproximaci\'on realizada en R.
+  \item $e = 0.05$.
+ \end{itemize}
+ Entonces, como $\hat{p}$ estima $p$ y hay una muestra previa, se usa el siguiente resultado:
+ \begin{equation*}
+  n = \left\lceil \frac{z_{\alpha/2}^2\hat{p}\hat{q}}{e^2} \right\rceil
+ \end{equation*}
+ por lo tanto, el valor pedido se puede calcular, usando la primera aproximaci\'on de $z_{\alpha/2}$, como
+ \begin{equation*}
+  n = \left\lceil \frac{2.33^2(0.08)(0.92)}{0.05^2} \right\rceil = \left\lceil \frac{5.4289(0.0736)}{0.0025} \right\rceil = \lceil 159.826816 \rceil
+ \end{equation*}
+ Por lo tanto, el tama\~no de la muestra buscada es de $n = 160$.
+ \par 
+ Finalmente, usando R, se puede calcular el tama\~no de la muestra usando la rutina en el archivo anexo \texttt{P19\_Tamanyo\_de\_muestra\_2.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> error<-0.05
+> alfa<-0.02
+> inter<-'D'
+> previo<-TRUE
+> n<-100
+> x<-8
+> p<-NULL
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+[1] 160
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que coincide con el valor ya calculado. Por lo tanto $n=160$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

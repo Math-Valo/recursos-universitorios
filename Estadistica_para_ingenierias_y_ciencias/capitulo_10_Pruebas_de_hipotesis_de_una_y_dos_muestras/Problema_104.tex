@@ -1,0 +1,50 @@
+\begin{enunciado}
+ Se realiza un estudio para determinar
+ si, en las bodas, m\'as italianos que estadounidenses prefieren
+ la champa\~na blanca en vez de la rosada.
+ De los $300$ italianos que se seleccionaron al azar, $72$ prefieren
+ champa\~na blanca, y de los $400$ estadounidenses seleccionados
+ $70$ prefieren champa\~na blanca en vez de la rosada.
+ ¿Podemos concluir que una proporci\'on mayor
+ de italianos que de estadounidenses prefiere champa\~na blanca
+ en las bodas?
+ Utilice un nivel de significancia de $0.05$
+\end{enunciado}
+
+\begin{solucion}
+ Usando el archivo anexo \texttt{P09\_Prueba\_de\_dos\_proporciones\_01.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n1<-300
+> n2<-400
+> x1<-72
+> x2<-70
+> p1<-NULL
+> p2<-NULL
+> alfa<-0.05
+> alternativa<-'>'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  alternativa  n1  n2 x1 x2   p1    p2 pEstimada DifProp  error.est alpha
+1     p1 > p2 300 400 72 70 0.24 0.175 0.2028571   0.065 0.03071296  0.05
+     PValor Estadistico RegionRechazoZ     Resultado
+1 0.0171566    2.116371   >= 1.6448536 Se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual indica que los datos: $n_1 = 300$ y $n_2 = 400$,
+ con $x_1 = 72$ y $x_2 = 70$; la hip\'otesis nula: $H_0: p_1 \leq p_2$
+ contra la hip\'otesiis alternativa: $H_1: p_1 > p_2$; el nivel
+ de significancia: $\alpha = 0.05$; el valor del estad\'{\i}stico $z \approx
+ \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}\hat{q}(1/n_1+1/n_2)}} \approx
+ 2.116371$; la regi\'on de rechazo $z > 1.6448536$,
+ con todo y la decisi\'on de rechazar $H_0$;
+ e, incluso, el valor $P$ de $P(z > 2.116371) \approx 0.0171566$.
+ \par 
+ Luego entonces se concluye que los datos arrojan evidencia suficiente
+ para rechazar $H_0$; es decir, se puede concluir que la proporci\'on
+ de italianos que prefiere la champa\~na blanca en las bodas
+ es mayor que la proporci\'on de estadounidenses
+ que la as\'{\i} la prefieren,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

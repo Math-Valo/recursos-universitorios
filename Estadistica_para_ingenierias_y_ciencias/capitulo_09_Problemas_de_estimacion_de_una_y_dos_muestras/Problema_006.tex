@@ -1,0 +1,76 @@
+\begin{enunciado}
+ Las estaturas de una muestra aleatoria de $50$ estudiantes de una universidad muestra una media de $174.5$ cent\'{\i}metros y una desviaci\'on est\'andar de $6.9$ cent\'{\i}metros.
+ \begin{enumerate}
+  \item Construya un intervalo de confianza de $98\%$ para la estatura media de todos los estudiantes de la universidad.
+
+  \item ?`Qu\'e podemos afirmar con $98\%$ de confianza sobre el tama\~no posible de nuestro error, si estimamos que la estatura media de todos los estudiantes de la universidad es $174.5$ cent\'{\i}metros?
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de la estatura de los estudiantes de la universidad, medido en cent\'{\i}metros, y sea $\overline{X}$ la variable aleatoria de la media muestral de $n$ elementos, y llamando $\alpha$ al nivel de confianza, se tienen los siguientes datos:
+ \begin{itemize}
+  \item $\mu_X$ es desconocida.
+  \item $\sigma_X$ es desconocida.
+  \item $n = 50$.
+  \item $\bar{x} = 174.5\,$cm.
+  \item $s=6.9\,$cm.
+  \item $\alpha=0.02$.
+ \end{itemize}
+ Dado que la muestra es de tama\~no $n\geq 30$, y suponiendo que la forma de la distribuci\'on no es demasiado sesgada, entonces, por teor\'{\i}a de muestreo, se puede garantizar con buenos resultados que $s$ es aproximadamente igual a $\sigma$, por lo que se usar\'a $z_{\alpha/2} = z_{0.01}$. De la Tabla A.3, en el ap\'endice A de libro, \'este es un valor entre $2.32$ y $2.33$, con mayor aproximidad a $2.33$, que es el que se tomar\'a. Por otro lado, usando el software estad\'{\i}stico R, con los siguiente comandos, se obtiene un valor m\'as preciso.
+ \begin{verbatim}
+>options(digits=22)
+>qnorm(0.01, mean = 0, sd = 1, lower.tail= F)
+[1] 2.326347874040840757459
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar con mayor precisi\'on como $2.326347874$.
+ \begin{enumerate}
+  \item Ya que se busca un intervalo de confianza para la media de una poblaci\'on con una muestra lo suficientemente grande que, por el teorema del l\'{\i}mite central, se tiene que es aproximadamente normal con una desviaci\'on est\'andar muestral aproximado a la desviaci\'on est\'andar poblacional, entonces se usar\'a la f\'ormula de intervalo de confianza siguiente:
+  \begin{equation*}
+   \bar{x} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \bar{x} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos y considerando el valor de $z_{\alpha/2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+  \begin{equation*}
+   \bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}} = 174.5\pm2.33\left(\frac{6.9}{\sqrt{50}}\right) = 174.5\pm\frac{16.077}{5\sqrt{2}} = \frac{174.5\sqrt{2}\pm3.2154}{\sqrt{2}}
+  \end{equation*}
+  Por lo tanto, el intervalo del $98\%$ de confianza de la media de la estatura de los estudiantes de la universidad es de
+  \begin{equation*}
+   172.226368855773775 < \mu < 176.77363114422772
+  \end{equation*}
+  El c\'alculo del intervalo de confianza con el valor $z_{\alpha/2}$ obtenido en R se puede realizar con el programa anexo \texttt{P01\_Intervalo\_de\_confianza\_01.r} cambiando los siguientes valores:
+  \begin{verbatim}
+>n<-50
+>m<-174.5
+>desv.tipica<-6.9
+>alfa<-0.02
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Con lo que se obtiene por resultado el intervalo de confianza
+  \begin{equation*}
+   172.2299326 < \mu < 176.7700674
+  \end{equation*}
+  
+  \item Usando los datos y c\'alculos previos, se sabe con un $98\%$ de confianza que hay un error de
+  \begin{equation*}
+   z_{\alpha/2}\frac{\sigma}{\sqrt{n}}
+  \end{equation*}
+  el cual, usando el valor $z_{\alpha/2}$ del libro, se tiene que esto es
+  \begin{equation*}
+   2.33\left(\frac{6.9}{\sqrt{50}}\right) = \frac{3.2154}{\sqrt{2}} = 1.6077\sqrt{2} \approx 2.273631
+  \end{equation*}
+  Por otro lado, al usarse las siguientes l\'{\i}neas de c\'odigo en el software estad\'{\i}stico R, registradas en el archivo anexo \texttt{P02\_Estimacion\_del\_error\_1.r}, se puede obtener un valor m\'as preciso.
+  \begin{verbatim}
+>n<-50
+>desv.tipica<-6.9
+>alfa<-0.02
+>zalfa<-qnorm(1-alfa/2)
+>error<-round(zalfa*desv.tipica/sqrt(n),7)
+>error
+[1] 2.270067399999999846472
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, con un $98\%$ de seguridad, se puede decir que hay un error de $2.2700674$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}
+

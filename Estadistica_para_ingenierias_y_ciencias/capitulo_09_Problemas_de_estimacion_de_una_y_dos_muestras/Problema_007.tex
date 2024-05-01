@@ -1,0 +1,75 @@
+\begin{enunciado}
+ Una muestra aleatoria de $100$ propietarios de autom\'oviles muestra que, en el estado de Virginia, un autom\'ovil se maneja, en promedio, $23\,500$ kil\'ometros por a\~no con una desviaci\'on est\'andar de $3\,900$ kil\'ometros.
+ Suponga que la distribuci\'on de las mediciones es aproximadamente normal.
+ \begin{enumerate}
+  \item Construya un intervalo de confianza de $99\%$ para el n\'umero promedio de kil\'ometros que se maneja un autom\'ovil anualmente en Virginia.
+  \item ?`Qu\'e puede afirmar con $99\%$ de confianza acerca del tama\~no posible de nuestro error, si estimamos que el n\'umero promedio de kil\'ometros manejados por los propietarios de autom\'oviles en Virginia es $23\,500$ kil\'ometros por a\~no?
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del n\'umero de kil\'ometros que se maneja anualmente en el estado de Virginia, y sea $\overline{X}$ la variable aleatoria de la media muestral de $n$ elementos, y llamando $\alpha$ al nivel de confianza, se tienen los siguientes datos:
+ \begin{itemize}
+  \item $X\sim\text{normal}(\mu,\sigma)$.
+  \item $\mu_X$ es desconocida.
+  \item $\sigma_X$ es desconocida.
+  \item $n=100$
+  \item $\bar{x} = 23\,500$.
+  \item $s=3\,900$.
+  \item $\alpha=0.01$.
+ \end{itemize}
+ Dado que la muestra es lo suficientemente grande, entonces se puede garantizar con buenos resultados que $s$ es aproximadamente igual a $\sigma$ y se usar\'a $z_{\alpha/2} = z_{0.005}$ para un intervalo de confianza de muestra grande. De la Tabla A.3 se tiene que este es un valor entre $2.57$ y $2.58$, con igual aproximidad, por lo que se usar\'a $2.575$. Por otro lado, usando el software estad\'{\i}stico R, con los siguientes comandos, se obtiene un valor m\'as preciso.
+ \begin{verbatim}
+>options(digits=22)
+>qnorm(0.005, mean=0, sd=1, lower.tail=F)
+[1] 2.575829303548899940068
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar con mayor preisi\'on como $2.5758293$.
+ \begin{enumerate}
+  \item Por el tama\~no de la muestra, se har\'a uso del intervalo de confianza de muestra grande, usando a $s$ como un valor pr\'oximo a $\sigma$, formulado como sigue:
+  \begin{equation*}
+   \bar{x}-z_{\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \bar{x}+z_{\alpha/2}\frac{\sigma}{\sqrt{n}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos y considerando el valor de $z_{\alpha/2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+  \begin{equation*}
+   \bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}} = 23\,500\pm 2.575\left( \frac{3\,900}{\sqrt{100}} \right) = 23\,500 \pm \frac{10042.5}{10} = 23\,500\pm 1004.25
+  \end{equation*}
+  Por lo tanto, el intervalo del $99\%$ de confianza de la media de kil\'ometros que se maneja anualmente en el estado de Virginia es de
+  \begin{equation*}
+   22\,495.75 < \mu < 24\,504.25
+  \end{equation*}
+  El c\'alculo del intervalo con el valor $z_{\alpha/2}$ obtenido en R se puede realizar con el programa anexo \texttt{P01\_Intervalo\_de\_confianza\_01.r} cambiando los siguiente valores:
+  \begin{verbatim}
+>n<-100
+>m<-23500
+>desv.tipica<-3900
+>alfa<-0.01
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Con lo que se obtiene un resultado m\'as preciso
+  \begin{equation*}
+   22\,495.4265716 < \mu < 24\,504.5734284
+  \end{equation*}
+
+  \item Se sabe con un $98\%$ de confianza que hay un error de
+  \begin{equation*}
+   z_{\alpha/2}\frac{\sigma}{\sqrt{n}}
+  \end{equation*}
+  por lo que, usando los datos y c\'alculos previos y el valor $z_{\alpha/2}$ del libro, resulta que esto es
+  \begin{equation*}
+   2.575\left( \frac{3\,900}{\sqrt{100}} \right) = 1004.25
+  \end{equation*}
+  Por otro lado, usando el archivo anexo \texttt{P02\_Estimacion\_del\_error\_1.r}, en R, se puede obtener un valor del error m\'as preciso, \'unicamente cambiando los siguiente valores:
+  \begin{verbatim}
+>n<-100
+>desv.tipica<-3900
+>alfa<-0.01
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene, con un $98\%$ de seguridad, que el error no ser\'a mayor a $1004.5734284$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+
+ \end{enumerate}
+
+\end{solucion}
+

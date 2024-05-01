@@ -1,0 +1,83 @@
+\begin{enunciado}
+ Se deben supervisar las aflotoxinas ocasionadas por moho en cosechas de cacahuate
+ en Virgnia.
+ Una muestra de $64$ lotes de cacahuate revela niveles de $24.17$ ppm,
+ en promedio, con una varianza de $4.25$ ppm.
+ Pruebe la hip\'otesis de que $\sigma^2 = 4.2$ ppm
+ con la alternativa de que $\sigma^2 \neq 4.2$ ppm.
+ Utilice un valor $P$ en sus conclusiones.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+%    \item $X \sim n\left( \mu, \sigma \right)$.
+   \item $n = 64$.
+   \item $\bar{x} = 24.17$
+   \item $s^2 = 4.25$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \sigma^2 &  =   & 4.2 \\
+   H_1: \sigma^2 & \neq & 4.2
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   \chi^2 = \frac{(n-1)s^2}{\sigma_0^2}
+   = \frac{63(4.25)}{4.2} = \frac{63(85)}{84} = \frac{3(85)}{4}
+   = \frac{255}{4} = 63.75
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.5 no se puede obtener el valor deseado,
+  ya que la cantidad m\'axima de grados de libertad que contiene es de $60$,
+  entonces se apoyar\'a para el c\'alculo del valor $P$ el software
+  estad\'{\i}stico R con la probabilidad de obtener un valor mayor o igual
+  al estad\'{\i}stico, como se muestra a continuaci\'on:
+  \begin{verbatim}
+> pchisq(63.75,63,lower.tail = F)
+[1] 0.4498938
+  \end{verbatim}
+  Luego entonces, el valor $P$ buscado se calcula como sigue:
+  \begin{equation*}
+   2P\left( X^2 > \chi_{\alpha/2}^2 \right) \approx 2(0.44989) = 0.89978
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Como el valor $P$ es muy alto, se tiene que no hay pruebas para rechazar
+  la hip\'otesis nula y se concluye que los niveles de aflotoxinas ocasionadas
+  por moho en cocsechas de cacahuate en Virginia mantienen una varianza
+  de $4.2$ partes por mill\'on.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P11\_Prueba\_de\_una\_varianza\_02.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n<-64
+> sigma2<-4.2
+> s2<-4.25
+> alfa<-NULL
+> cola<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+   n  H0 var.muestral grados error.est alpha    PValor Estadistico
+1 64 4.2         4.25     63 0.0666667  0.05 0.8997876       63.75
+              RegionRechazoJi            RegionRechazoX
+1 < 42.9502749 y > 86.8295906 < 2.8633517 y > 5.7886394
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.
+ Como nota final, se debe recordar que el m\'etodo usado para la pruebas
+ de hip\'otesis requer\'{\i}a de la suposici\'on de que poblaci\'on se distribuya
+ normalmente, por lo que, a falta de la menci\'on de dicha distribuci\'on,
+ se ha hecho dicha supoci\'on impl\'{\i}citamente.${}_{\blacksquare}$
+\end{solucion}

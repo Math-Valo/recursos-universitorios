@@ -1,0 +1,39 @@
+\begin{enunciado}
+ Considere un experimeto hipot\'etico donde un hombre con un hongo utiliza un medicamento fungicida y se cura. Consid\'erelo, entonces, como una muestra de uno de una distribuci\'on de Bernoulli con funci\'on de probabilidad
+ \begin{equation*}
+  f(x) = p^xq^{1-x}, \qquad x= 0, 1,
+ \end{equation*}
+ donde $p$ es la probabilidad de un \'exito (curaci\'on) y $q = 1-p$. Ahora, por supuesto, la informaci\'on muestral da $x=1$. Escriba un desarrollo que demuestra que $\hat{p} = 1.0$ es el estimador de probabilidad m\'axima de la probabilidad de curaci\'on.
+\end{enunciado}
+
+\begin{solucion}
+ Para encontrar el estimdor de probabilidad m\'axima, se requerir\'a de la funci\'on de probabilidad, que en este caso es:
+ \begin{equation*}
+  L( x; p ) = f(x) = p^{x}q^{1-x} = p^{x}(1-p)^{1-x}
+ \end{equation*}
+ N\'otese que este es un caso particular del Ejercicio 9.81, lo cual ya se analiz\'o. En resumen, se tiene lo siguiente que el logaritmo natural de la funci\'on de probabilidad es
+ \begin{equation*}
+  \ln L(x;p) = x\ln p + (1-x)\ln(1-p)
+ \end{equation*}
+ mientras que de su primera derivada se obtiene que
+ \begin{equation*}
+  \frac{\delta \ln L}{\delta p} (x;p)  = \frac{x}{p} - \frac{1-x}{1-p}
+ \end{equation*}
+ Y la segunda derivada de esta funci\'on es
+ \begin{eqnarray*}
+  \frac{\delta^2 \ln L}{\delta p^2} (x;p) = -\frac{x}{p^2} - \frac{1-x}{(1-p)^2}
+ \end{eqnarray*}
+ en donde, al ser $\hat{p}$ el estimador de m\'axima verosimilitud, cumple que al evaluarse en la primera derivada da cero y en la segunda derivada da negativo, por lo que se obtiene que 
+ \begin{equation*}
+  \hat{p} = \frac{x}{1} = x 
+ \end{equation*}
+ que en este caso, $\hat{p} = 1$. Sin embargo, como se mencion\'o al final de la soluci\'on del ejercicio 9.81, este m\'etodo es posible suponiendo que la primera derivada tiene sentido al evaluarlo en $\hat{p}$, lo cual es cierto siempre que $\hat{p}$ sea distinto de $1$ o $0$, por lo que no se puede dar certeza del estimador con el m\'etodo por la derivada. Por lo que, al revisar directamente en la funci\'on de probabilidad, se tiene que, si hay una \'unica muestra  $x=1$, entonces
+ \begin{equation*}
+  L(x;p) = p
+ \end{equation*}
+ por lo tanto, para que el estimador $\hat{p}$ sea de m\'axima probabilidad, se debe cumplir que al evaluarla en la funci\'on de probabilidad, esto es: 
+ \begin{equation*}
+  L\left(x; \hat{p} \right) = \hat{p}
+ \end{equation*}
+ este valor sea m\'aximo, pero $p$ es un valor entre $0$ y $1$, por lo tanto, el m\'aximo valor posible es $\hat{p} = 1$. Es decir, $\hat{p} = 1$ s\'{\i} es, en efecto, el estimador de m\'axima verosimilitud, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

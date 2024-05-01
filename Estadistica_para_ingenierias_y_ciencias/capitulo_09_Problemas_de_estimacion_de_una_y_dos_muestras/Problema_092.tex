@@ -1,0 +1,108 @@
+\begin{enunciado}
+ El departamento de Ingenier\'{\i}a Civil del Instituto Polit\'ecnico y Universidad Estatal de Virginia compar\'o una t\'ecnica de ensayo modificada (M-5 hr) para recuperar coliformes fecales en residuos l\'{\i}quidos (charcos) de agua de lluvia, en un \'area urbana con la t\'ecnica del n\'umero m\'as probable (\texttt{NMP}). Se colectaron un total de $12$ muestras de tales residuos y se analizan con las dos t\'ecnicas. Los conteos de coliformes fecales por 100 mililitros se registraron en la siguiente tabla:
+ \begin{center}
+  \begin{tabular}{ccc}
+   \textbf{Muestra} & \textbf{Conteo \texttt{NMP}} & \textbf{Conteo con M-5 hr} \\
+   \hline 
+   $1$ & $2300$ & $2010$ \\
+   $2$ & $1200$ & $\phantom{2}930$ \\
+   $3$ & $\phantom{1}450$ & $\phantom{2}400$ \\
+   $4$ & $\phantom{1}210$ & $\phantom{2}436$ \\
+   $5$ & $\phantom{1}270$ & $4100$ \\
+   $6$ & $\phantom{1}450$ & $2090$ \\
+   $7$ & $\phantom{1}154$ & $\phantom{2}219$ \\
+   $8$ & $\phantom{1}179$ & $\phantom{2}169$ \\
+   $9$ & $\phantom{1}192$ & $\phantom{2}194$ \\
+   $10$ & $\phantom{1}230$ & $\phantom{2}174$ \\
+   $11$ & $\phantom{1}340$ & $\phantom{2}274$ \\
+   $12$ & $\phantom{1}194$ & $\phantom{2}183$ \\
+  \end{tabular}
+ \end{center}
+ Construya un intervalo de confianza de $90\%$ para diferencia en los conteos medios de coliformes fecales entre las t\'ecnicas M-5 hr y \texttt{NMP}. Suponga que las diferencias de conteos se distribuyen de forma aproximadamente normal.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de los conteos de coliformes fecales por 100 mililitros realizados con la t\'ecnica del n\'umero m\'as probable, NMP, y la t\'ecnica de ensayo modificada, M-5 hr, respectivamente, entonces, del enunciado, se tiene el siguiente resumen de datos:
+ \begin{itemize}
+  \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1,2 \}$.
+  \item $\mu_i$ y $\sigma_i$ desconocidos, para cada $i \in \{ 1,2 \}$.
+  \item $n_1 = n_2 = 12$.
+  \item $\alpha = 0.1$
+ \end{itemize}
+ Adem\'as de los datos obtenidos en los $12$ residuos l\'{\i}quidos, que representan a cada muestra una misma unidad experimental, y cuyas diferencias, $D_i = X_1 - X_2$, son:
+ \begin{center}
+  \begin{tabular}{cccr}
+   \textbf{Muestra} & \textbf{Conteo \texttt{NMP}} & \textbf{Conteo con M-5 hr} & $d_i\,\,\,$ \\
+   \hline 
+   $1$ & $2300$ & $2010$ & $290$ \\
+   $2$ & $1200$ & $\phantom{2}930$ & $270$ \\
+   $3$ & $\phantom{1}450$ & $400$ & $\phantom{-22}50$ \\
+   $4$ & $\phantom{1}210$ & $\phantom{2}436$ & $-226$ \\
+   $5$ & $\phantom{1}270$ & $4100$ & $-3830$ \\
+   $6$ & $\phantom{1}450$ & $2090$ & $-1640$ \\
+   $7$ & $\phantom{1}154$ & $\phantom{2}219$ & $-65$ \\
+   $8$ & $\phantom{1}179$ & $\phantom{2}169$ & $10$ \\
+   $9$ & $\phantom{1}192$ & $\phantom{2}194$ & $-2$ \\
+   $10$ & $\phantom{1}230$ & $\phantom{2}174$ & $56$ \\
+   $11$ & $\phantom{1}340$ & $\phantom{2}274$ & $66$ \\
+   $12$ & $\phantom{1}194$ & $\phantom{2}183$ & $11$ \\
+  \end{tabular}
+ \end{center}
+ A partir de estos datos, se puede calcular la media y la desviaci\'on est\'andar de las observaciones pareadas, como se muestra a continuaci\'on. La media muestral se calcula como sigue:
+ \begin{eqnarray*}
+  \bar{d} & = & \frac{290 + 270 + 50 -226 -3\,830 -1\,640 -65 + 10 -2 + 56 + 66 + 11}{12} = \frac{-5\,010}{12} \\
+  & = & -\frac{835}{2} = -417.5
+ \end{eqnarray*}
+ por lo que la varianza muestral se obtiene, usando el Teorema 8.1, como sigue:
+ \begin{eqnarray*}
+  s_d^2 & = & \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n d_i^2 - \left( \sum_{i=1}^n d_i \right)^2 \right] \\
+  & = & \frac{1}{12(11)} \left\{ 12\left[ 290^2 + 270^2 + 50^2 + (-226)^2 + (-3\,830)^2 + (-1\,640)^2 + (-65)^2 + 10^2 + \phantom{1} \right. \right. \\
+  & & \left. \left. + (-2)^2 + 56^2 + 66^2 + 11^2 \right] - (-5\,010)^2 \right\} \\
+  & = & \frac{1}{132} \left[ 12( 84\,100 + 72\,900 + 2\,500 + 51\,076 + 14\,668\,900 + 2\,689\,600 + 4\,225 + 100 + \phantom{1} \right. \\
+  & & \left. + 4 + 3\,136 + 4\,356 + 121 ) - 25\,100\,100 \right] \\
+  & = & \frac{12(17\,581\,018) - 25\,100\,100}{132} = \frac{210\,972\,216 - 25\,100\,100}{132} = \frac{185\,872\,116}{132} \\
+  & = & \frac{15\,489\,343}{11} = 1408122.\overline{09}
+ \end{eqnarray*}
+ y, por lo tanto, la desviaci\'on est\'andar muestral es:
+ \begin{equation*}
+  s_d = \sqrt{s_d^2} = \sqrt{\frac{15\,489\,343}{11}} = \frac{\sqrt{170\,382\,773}}{11} \approx 1\,186.6432028664264
+ \end{equation*}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para $\mu_D = \mu_1 - \mu_2$, para observaciones pareadas, entonces se requerir\'a el valor $t_{\alpha/2,n-1} = t_{0.05,11}$. De la Tabla A.4, se tiene que $t_{0.05,11} = 1.796$, mientras que, usando R, se obtiene el valor  con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.05,11,lower.tail=F)
+[1] 1.79588481870404392815
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $1.795884818704$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales pareadas usando como estimador la media muestral de las diferencias de los datos pareados en una muestra peque\~na, en donde se desconoce la desviaci\'on est\'andar poblacional pero suponiendo que la distribuci\'on de las diferencias es aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{d} - t_{\alpha/2,n-1}\frac{s_d}{\sqrt{n}} < \mu_D < \bar{d} + t_{\alpha/2,n-1}\frac{s_d}{\sqrt{n}}
+ \end{equation*}
+ en donde $\mu_D - \mu_1 - \mu_2$. Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n-1}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  \bar{d} \pm t_{\alpha/2,n-1}\frac{s_d}{\sqrt{n}} & = & -417.5 \pm 1.796 \left( \frac{\sqrt{170\,382\,773}/11}{\sqrt{12}} \right) = -417.5 \pm \frac{449}{250} \left( \frac{\sqrt{2\,044\,593\,276}}{11(12)} \right) \\
+  & = & -417.5 \pm \frac{449\sqrt{2\,044\,593\,276}}{33\,000} = -417.5 \pm 0.013\overline{60}\sqrt{2\,044\,593\,276} \\
+  & \approx & -417.5 \pm 615.227677801
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $90\%$ de confianza de la diferencia en los conteos medios de coliformes fecales por 100 mililitros usando la t\'ecnica NMP menos lo obtenido con la t\'ecnica M-5 hr es de:
+ \begin{equation*}
+  -1032.727677801 < \mu_D < 197.727677801
+ \end{equation*}
+ Por otro lado, en R, se puede calcular el intervalo de confianza de las observaciones pareadas cambiando los siguientes comandos en el archivo anexo \texttt{P16\_Intervalo\_de\_confianza.07.r}, y usando la base de datos \texttt{DB13\_Problema\_92.csv}.
+ \begin{verbatim}
+> datos<-read.csv("DB13_Problema_92.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Conteo.cpcml")
+> varSel<-list("TipoDeConteo")
+> alfa<-0.1
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+      variable    LimInf  Media   LimSup
+1 Conteo.cpcml -1032.688 -417.5 197.6882
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de $95\%$ es $-1033 < \mu_1 - \mu_2 < 198$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

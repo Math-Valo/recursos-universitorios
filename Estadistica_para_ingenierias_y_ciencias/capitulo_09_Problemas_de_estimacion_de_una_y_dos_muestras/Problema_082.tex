@@ -1,0 +1,84 @@
+\begin{enunciado}
+ Considere una muestra de $x_1,x_2,\ldots,x_n$ observaciones de una distribuci\'on de Weibull con par\'ametros $\alpha$ y $\beta$ y funci\'on de densidad
+ \begin{equation*}
+  f(x) =
+  \begin{cases}
+   \alpha \beta x^{\beta - 1}e^{-\alpha x^{\beta}}, & x > 0, \\
+   0, & \text{en cualquier otro caso,}
+  \end{cases}
+ \end{equation*}
+ para $\alpha, \beta > 0$.
+ \begin{enumerate}
+  \item Escriba la funci\'on de probabilidad.
+  \item Escriba las ecuaciones que al resolverse dan los estimadores de probabilidad m\'axima de $\alpha$ y $\beta$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ $\phantom{0}$
+ \begin{enumerate}
+  \item Partiendo de la definici\'on de la funci\'on de probabilidad y dado que las muestras son independientes, entonces se tiene lo siguiente. 
+  \begin{equation*}
+   L\left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) = \prod_{i=1}^n L\left( x_i; \alpha , \beta \right)
+  \end{equation*}
+  Entonces, si alguna muestra da un valor menor o igual que $0$, entonces la funci\'on de probabilidad es cero. En otro caso, se tiene que:
+  \begin{eqnarray*}
+   L\left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \prod_{i=1}^{n} \alpha \beta x_i^{\beta - 1} e^{-\alpha x_i^\beta} \\
+   & = & \alpha^n \beta^n \left( \prod_{i=1}^{n} x_i \right)^{\beta - 1} e^{-\alpha \sum_{i=1}^{n} x_i^\beta}._{\square}
+  \end{eqnarray*}
+
+  \item Por otro lado, para obtener las ecuaciones que den los estimadores de probabilidad m\'axima de $\alpha$ y $\beta$, convendr\'a calcular el logaritmo natural de la funci\'on de probabilidad como sigue:
+  \begin{equation*}
+   \ln L\left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) = n\ln \alpha + n\ln \beta + (\beta - 1) \sum_{i=1}^{n} \ln x_i - \alpha \sum_{i=1}^n x_i^\beta
+  \end{equation*}
+  As\'{\i} que sus derivadas parciales son
+  \begin{eqnarray*}
+   \frac{\delta \ln L}{\delta \alpha} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \alpha} \left( n\ln \alpha + \cancel{ n\ln \beta } + \cancel{ (\beta - 1) \sum_{i=1}^{n} \ln x_i } - \alpha \sum_{i=1}^n x_i^\beta \right) \\ 
+   & = & \frac{n}{\alpha} - \sum_{i=1}^n x_i^\beta
+  \end{eqnarray*}
+  y
+  \begin{eqnarray*}
+   \frac{\delta \ln L}{\delta \beta} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \beta} \left( \cancel{n\ln \alpha} + n\ln \beta + (\beta - 1) \sum_{i=1}^{n} \ln x_i - \alpha \sum_{i=1}^n x_i^\beta \right) \\ 
+   & = & \frac{n}{\beta} + \sum_{i=1}^{n} \ln x_i - \alpha \sum_{i=1}^n x_i^\beta \ln x_i 
+  \end{eqnarray*}
+  Por otro lado, las derivadas parciales de segundo orden del logaritmo de la funci\'on de probabilidad son:
+  \begin{eqnarray*}
+   \frac{\delta^2 \ln L}{\delta \alpha^2} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \alpha} \left( \frac{n}{\alpha} - \cancel{ \sum_{i=1}^n x_i^\beta } \right) \\
+   & = & - \frac{n}{\alpha^2} \\
+   \frac{\delta^2 \ln L}{\delta \beta \delta \alpha} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \beta} \left( \cancel{ \frac{n}{\alpha} } - \sum_{i=1}^n x_i^\beta  \right) \\
+   & = & - \sum_{i=1}^n x_i^\beta \ln x_i \\
+   \frac{\delta^2 \ln L}{\delta \alpha \delta \beta} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \alpha} \left( \cancel{ \frac{n}{\beta} } + \cancel{ \sum_{i=1}^{n} \ln x_i } - \alpha \sum_{i=1}^n x_i^\beta \ln x_i \right) \\ 
+   & = & - \sum_{i=1}^n x_i^\beta \ln x_i
+  \end{eqnarray*}
+  y
+  \begin{eqnarray*}
+   \frac{\delta^2 \ln L}{\delta \beta^2} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \beta} \left( \frac{n}{\beta} + \cancel{ \sum_{i=1}^{n} \ln x_i } - \alpha \sum_{i=1}^n x_i^\beta \ln x_i \right) \\ 
+   & = & -\frac{n}{\beta^2} - \alpha \sum_{i=1}^n x_i^\beta \ln^2 x_i
+  \end{eqnarray*}
+  por lo que la matriz Hessiana del logaritmo de la funci\'on de probabilidad es:
+  \begin{equation*}
+   H_{\ln L(x_1,x_2, \ldots ,x_n; \alpha, \beta)} =
+   \begin{bmatrix}
+    \displaystyle{ - \frac{n}{\alpha^2} } & \displaystyle{ - \sum_{i=1}^n x_i^\beta \ln x_i } \\
+    \displaystyle{ - \sum_{i=1}^n x_i^\beta \ln x_i } \quad & \displaystyle{ - \frac{n}{\beta^2} - \alpha \sum_{i=1}^n x_i^\beta \ln^2 x_i }
+   \end{bmatrix}
+  \end{equation*}
+  Entonces, suponiendo que se tienen los estimadores de probabilidad m\'axima, $\hat{\alpha}$ y $\hat{\beta}$, se tiene que cumplir que las derivadas parciales de primer orden evaluados en estos estimadores son iguales a cero simult\'aneamente y, para comprobar que los estimadores son un punto m\'aximo, se debe cumplir que la Hessiana es definida negativamente, lo cual es equivalente a comprobar que el menor $|a_{1,1}| = a_{1,1}$ es negativo y el determinante es positivo. Como $n$ y $\alpha$ son positivos, entonces se cumple que $a_{1,1} = - \frac{n}{\alpha^2} < 0$, independientes de los valores de los estimadores, por lo que se reduce ahora a probar que el determinante de la Hessiana es positivo, el cual vale:
+  \begin{equation*}
+   \begin{vmatrix}
+    \displaystyle{ - \frac{n}{\alpha^2} } & \displaystyle{ - \sum_{i=1}^n x_i^\beta \ln x_i } \\
+    \displaystyle{ - \sum_{i=1}^n x_i^\beta \ln x_i } \quad & \displaystyle{ - \frac{n}{\beta^2} - \alpha \sum_{i=1}^n x_i^\beta \ln^2 x_i }
+   \end{vmatrix}
+   = \left( \frac{n}{\alpha \beta} \right)^2 + \frac{n}{\alpha} \sum_{i=1}^n x_i \ln^2 x_i - \left( \sum_{i=1}^n x_i^{\beta} \ln x_i \right)^2
+  \end{equation*}
+  Por lo tanto, los estimadores de m\'axima probabilidad, $\hat{\alpha}$ y $\hat{ \beta }$ de los par\'ametros $\alpha$ y $\beta$, respectivamente, deben cumplir las siguientes ecuaciones simmult\'aneamente:
+  \begin{center}
+   \begin{tabular}{lcr}
+    $\displaystyle{ \frac{n}{\hat{ \alpha} } - \sum_{i=1}^n x_i^{\hat{\beta}} }$ & $=$ & $0$ \\
+    $\displaystyle{ \frac{n}{\hat{\beta}} + \sum_{i=1}^{n} \ln x_i - \hat{\alpha} \sum_{i=1}^n x_i^{\hat{\beta}} \ln x_i }$ & $=$ & $0$ \\
+    $\displaystyle{ \left( \frac{n}{\hat{\alpha} \hat{\beta}} \right)^2 + \frac{n}{\hat{\alpha}} \sum_{i=1}^n x_i \ln^2 x_i - \left( \sum_{i=1}^n x_i^{\hat{\beta}} \ln x_i \right)^2 }$ & $>$ & $0$
+   \end{tabular}
+  \end{center}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

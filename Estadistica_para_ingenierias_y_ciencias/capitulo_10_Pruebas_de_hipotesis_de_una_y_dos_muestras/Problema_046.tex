@@ -1,0 +1,185 @@
+\begin{enunciado}
+ En un estudio realizado por el Departamento de Nutrici\'on Humana y Alimentos del Instituto Polit\'ecnico y Universidad Estatal de Virginia, se registraron los siguientes datos acerca de la comparaci\'on de residuos de \'acido s\'orbico, en partes por mill\'on, en jam\'on inmediatamente despu\'es de sumergirlo en una soluci\'on de \'acido y despu\'es de 60 d\'{\i}as de almacenamiento:
+ \begin{center}
+  \begin{tabular}{ccc}
+   & \multicolumn{2}{c}{\textbf{Residuos de \'acido s\'orbico en jam\'on}} \\
+   \hline 
+   & \textbf{Antes del} & \textbf{Despu\'es del} \\
+   \textbf{Rebanada} & \textbf{almacenamiento} & \textbf{almacenamiento} \\
+   \hline 
+   $1$ & $\phantom{1}224$ & $116$ \\
+   $2$ & $\phantom{1}270$ & $\phantom{1}96$ \\
+   $3$ & $\phantom{1}400$ & $239$ \\
+   $4$ & $\phantom{1}444$ & $329$ \\
+   $5$ & $\phantom{1}590$ & $437$ \\
+   $6$ & $\phantom{1}660$ & $597$ \\
+   $7$ & $1400$ & $689$ \\
+   $8$ & $\phantom{1}680$ & $576$ \\
+  \end{tabular}
+ \end{center}
+ Si se supone que las poblaciones se distribuyen normalmente, ¿hay suficiente evidencia, al nivel de significancia de $0.05$, para decir que la duraci\'on del almacenamiento influye en las concentraciones residuales de \'acido s\'orbico?
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido, se tiene que
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{ 1, 2 \}$.
+   \item $n_1 = n_2 = 8$.
+  \end{itemize}
+  Como las observaciones fueron sobre las mismas unidades
+  experimentales, entonces se trata de observaciones pareadas,
+  por lo que se usar\'an las diferencias de los datos,
+  que muestra la tabla siguiente:
+  \begin{center}
+   \begin{tabular}{cccc}
+    & \multicolumn{2}{c}{\textbf{Residuos de \'acido
+    s\'orbico en jam\'on}} & \\
+    \hline 
+    & \textbf{Antes del} & \textbf{Despu\'es del} & \\
+    \textbf{Rebanada} & \textbf{almacenamiento} &
+    \textbf{almacenamiento} & \hspace{1cm} $d_i$ \hspace{1cm} \\
+    \hline 
+    $1$ & $\phantom{1}224$ & $116$ & $108$ \\
+    $2$ & $\phantom{1}270$ & $\phantom{1}96$ & $174$\\
+    $3$ & $\phantom{1}400$ & $239$ & $161$ \\
+    $4$ & $\phantom{1}444$ & $329$ & $115$ \\
+    $5$ & $\phantom{1}590$ & $437$ & $153$ \\
+    $6$ & $\phantom{1}660$ & $597$ & $\phantom{1}63$ \\
+    $7$ & $1400$ & $689$ & $711$ \\
+    $8$ & $\phantom{1}680$ & $576$ & $104$ \\
+   \end{tabular}
+  \end{center}
+  Para obtener la media y desviaci\'on est\'andar
+  de las diferencias muestrales, se calcula lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^8 d_i & = &
+   108 + 174 + 161 + 115 + 153 + 63 + 711 + 104 = 1\,589 \\
+   \sum_{i=1}^8 d_i^2 & = & 
+   108^2 + 174^2 + 161^2 + 115^2 + 153^2 + 63^2 + 711^2 + 104^2
+   = 624\,801
+  \end{eqnarray*}
+  por lo que la media de las diferencias muestrales es:
+  \begin{equation*}
+   \bar{d} = \frac{1}{8} \sum_{i=1}^8 d_i = \frac{1\,589}{8}
+   = 198.625
+  \end{equation*}
+  y la varianza de las diferencias muestrales se calcula,
+  usando el teorema 8.1, como sigue:
+  \begin{eqnarray*}
+   s_D^2 & = & \frac{1}{8(7)}
+   \left[ 
+   8 \sum_{i=1}^8 d_i^2 - \left( \sum_{i=1}^8 d_i \right)^2
+   \right]
+   = \frac{8(624\,801) - 1\,589^2}{56}
+   = \frac{4\,998\,408 - 2\,524\,921}{56} \\
+   & = & \frac{2\,473\,487}{56}
+   = 44\,169.410\overline{714285}
+  \end{eqnarray*}
+  por lo que la desviaci\'on est\'andar de las diferencias
+  muestrales es:
+  \begin{equation*}
+   s_D = \sqrt{s_D} = \sqrt{\frac{2\,473\,487}{56}}
+   = \frac{\sqrt{2\,473\,487}\sqrt{14}}{2(14)}
+   = \frac{\sqrt{34\,628\,818}}{28}
+   \approx 210.16519862785492651
+  \end{equation*}
+  Por lo tanto, se resume el resto de los datos como sigue:
+  \begin{itemize}
+   \item $\bar{d} = \frac{1\,589}{8} = 198.625$.
+   \item $s_D = \frac{\sqrt{34\,628\,818}}{28}
+   \approx 210.16519862785492651$.
+  \end{itemize}
+  Adem\'as, por la suposci\'on de normalidad
+  en las diferencias poblacionales, se tiene
+  que la distribuci\'on de las diferencias pareadas es normal,
+  entonces el siguiente estad\'{\i}stico, que se va a requerir,
+  se aproxima a la distribuci\'on mostrada
+  con el respectivo par\'ametro que se indica:
+  \begin{itemize}
+   \item $T = \frac{\overline{D}-d_0}{S_d/\sqrt{n}} \sim t(v)$.
+   \item $v = n_1 - 1 = n_2 - 1 = 7$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_D = \mu_1 - \mu_2 &   =  & 0 \\
+   H_1: \mu_D = \mu_1 - \mu_2 & \neq & 0
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   t & = & \frac{\bar{d} - d_0}{s_D/\sqrt{n}}
+   = \frac{
+   \frac{1\,589}{8}
+   }{
+   \frac{\sqrt{34\,628\,818}}{28}/\sqrt{8}
+   }
+   = \frac{
+   1\,589
+   }{
+   8\left(\frac{\sqrt{34\,628\,818}}{56\sqrt{2}} \right)
+   }
+   = \frac{1\,589(7)}{\sqrt{17\,314\,409}}
+   = \frac{11\,123\sqrt{17\,314\,409}}{17\,314\,409} \\
+   & = & \frac{1\,589\sqrt{17\,314\,409}}{2\,473\,487}
+   \approx 2.67311782
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  Dado que
+  \begin{equation*}
+   P\left( |T| > |t| \right) = 2P(T > t)
+   \approx 2P(T > 2.67311782)
+  \end{equation*}
+  Y ya que $2.517 < 2.67311782 < 2.715$,
+  en donde, de la tabla A.4, se tiene que $P(T > 2.517) = 0.02$
+  y $P(T > 2.715) = 0.015$,
+  entonces, interpolando, se considerar\'a la aproximaci\'on
+  de $P(T > 2.67311782) \approx 0.016$, luego entonces:
+  \begin{equation*}
+   P\left( |T| > |t| \right) \approx 2P(T > 2.67311782) \approx 2(0.016) = 0.032
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, hay evidencia suficiente
+  para confirmar, con un nivel de significancia de $0.05$,
+  que la duraci\'on del almacenamiento influye
+  en las concentraciones residuales de \'acido s\'orbico
+  en el jam\'on.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P06\_Prueba\_de\_dos\_medias\_02.r},
+ que a su vez requiere los datos del archivo
+ \texttt{DB09\_Problema\_046.csv},
+ con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB09_Problema_046.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("ÁcidoSórbico.ppm")
+> varSel<-c("Almacena")
+> mu<-0
+> desv.iguales<-NULL
+> alfa<-NULL
+> cola<-'D'
+> par<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+              Var1 Freq Poblaciones H0 n diferencia desv.par error.est grados
+1 ÁcidoSórbico.ppm    8    Pareadas  0 8    198.625 210.1652  74.30462      7
+  alpha     PValor Estadistico RegionRechazoInfT RegionRechazoSupT
+1  0.05 0.03185539    2.673118         -2.364624          2.364624
+  RegionRechazoInfX RegionRechazoSupX
+1         -175.7025          175.7025
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,161 @@
+\begin{enunciado}
+ Se lleva a cabo un estudio en Indiana, Kentucky y Ohio,
+ para determinar la postura de los votantes con respecto al transporte
+ escolar.
+ Una encuesta de $200$ votantes de cada uno de estos estados
+ da los siguientes resultados:
+ \begin{center}
+  \begin{tabular}{lccc}
+   & \multicolumn{3}{c}{\textbf{Postura del votante}} \\
+   \cline{2-4}
+   & & \textbf{No} & \\
+   \textbf{Estado} & \textbf{Apoya} & \textbf{apoya} & \textbf{Indeciso} \\
+   \hline 
+   Indiana & $82$ & $97$ & $21$ \\
+   Kentucky & $107$ & $66$ & $27$ \\
+   Ohio & $93$ & $74$ & $33$
+  \end{tabular}
+ \end{center}
+ Con un nivel de significancia de $0.025$, pruebe la hip\'otesis nula
+ de que las proporciones de votantes dentro de cada categor\'{\i}a
+ de postura son las mismas para cada uno de los tres estados.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item Tamaño de muestra total: $600$.
+   \item Votantes encuestados de Indiana: $200$.
+   \item Votantes encuestados de Kentucky: $200$.
+   \item Votantes encuestados de Ohio: $200$.
+   \item Votantes a favor del transporte escolar: $82+107+93 = 282$.
+   \item Votantes en contra del transporte escolar: $97+66+74 = 237$.
+   \item Votantes indecisos: $21+27+33 = 81$.
+   \item Frecuencias observadas y esperadas: $o_{i,j}$
+   y $e_{i,j}=\frac{R_i C_j}{n}$, respectivamente,
+   donde $R_i$ y $C_j$ son los marginales del rengl\'on $i$ y la columna $j$,
+   respectivamente, y $n$ es el total de toda la muestra.
+   As\'{\i}, pues, redondeando a un decimal, se muestra el resumen 
+   en la siguiente tabla,
+   en donde aparece entre par\'entesis la frecuencia esperada
+   y a la izquierda el valor observado:
+   \begin{center}
+    \begin{tabular}{lccc|c}
+     & \multicolumn{3}{c}{\textbf{Postura del votante}} \\
+     \cline{2-4}
+     & & \textbf{No} & & \textbf{Marginal} \\
+     \textbf{Estado} & \textbf{Apoya} & \textbf{apoya} & \textbf{Indeciso} &
+     \textbf{por estado} \\
+     \hline 
+     Indiana & $82 (94)$ & $97 (79)$ & $21 (27)$ & $200$ \\
+     Kentucky & $107 (94)$ & $66 (79)$ & $27 (27)$ & $200$ \\
+     Ohio & $93 (94)$ & $74 (79)$ & $33 (27)$ & $200$ \\
+     \hline 
+     \textbf{Marginal} & \multirow{2}{*}{$282$} & \multirow{2}{*}{$237$} &
+     \multirow{2}{*}{$81$} & \textbf{TOTAL} \\
+     \textbf{por postura} & & & & $n=600$
+    \end{tabular}
+   \end{center}
+   \item Tama\~no de la tabla de contingencia: $r\times c = 3\times 3$.
+   \item Grados de libertad de la prueba $\chi^2$: $v = (r-1)(c-1) = 4$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: & & \text{Los votantes por estado son homog\'eneos respecto a las posturas.} \\
+   H_1: & & \text{Los votantes por estado no son homog\'eneos respecto a las posturas.}
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.025$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{\alpha,v} = \chi^2_{0.025,4} \approx 11.143$,
+  por lo que la regi\'on de rechazo est\'a dado
+  para $\chi^2 > 11.143$, donde
+  $\chi^2 = \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   \chi^2 & = & \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i} \\
+   & = & \frac{(82 - 94)^2}{94} + \frac{(107 - 94)^2}{94} +
+   \frac{(93 - 94)^2}{94} + \frac{(97 - 79)^2}{79} + 
+   \frac{(66 - 79)^2}{79} + \\
+   & & \frac{(74 - 79)^2}{79} + \frac{(21 - 27)^2}{27} +
+   \frac{(27 - 27)^2}{27} + \frac{(33 - 27)^2}{27} \\
+   & = & \frac{144 + 169 + 1}{94} + \frac{324 + 169 + 25}{79} + 
+   \frac{36 + 0 + 36}{27}
+   = \frac{314}{94} + \frac{518}{79} + \frac{72}{27} \\
+   & \approx & 3.3404 + 6.557 + 2.6667 = 12.5641
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  A un nivel de significancia de $0.025$, los resultados arrojan
+  evidencia suficiente para decir que no todas
+  las proporciones de votantes dentro de cada categor\'{\i}a
+  de postura son las mismas para cada uno de los tres estados.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeniedad\_01.r},
+ que a su vez requiere los datos del archivo
+ \texttt{BD34\_Problema\_098.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB34_Problema_098.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Estado","Postura")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1,2,3)
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+$tabla
+          Postura
+Estado     Apoya Indeciso No apoya
+  Indiana     82       21       97
+  Kentucky   107       27       66
+  Ohio        93       33       74
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 12.564, df = 4, p-value = 0.01361
+
+
+$listaPruebas[[2]]
+
+	Log likelihood ratio (G-test) test of independence without correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 12.433, X-squared df = 4, p-value =
+0.0144
+
+
+$listaPruebas[[3]]
+
+	Log likelihood ratio (G-test) test of independence with Williams' correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 12.357, X-squared df = 4, p-value =
+0.01488
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos,
+ adem\'as de brindar m\'as informaci\'on como el $P-$valor
+ y las pruebas con otros estad\'{\i}sticos,
+ que es lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

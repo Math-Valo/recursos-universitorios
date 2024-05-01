@@ -1,0 +1,81 @@
+\begin{enunciado}
+ Se considera un nuevo dispositivo de radar
+ para cierto sistema de misiles de defensa.
+ El sistema se verifica experimentando con aeronaves reales,
+ en las cuales se simula una situaci\'on de \textit{muerte} o de \textit{sin muerte}.
+ Si en $300$ pruebas ocurren $250$ muertes, acepte o rechace,
+ con un nivel de significancia de $0.04$, la afirmaci\'on
+ de que la probabilidad de una muerte con el sistema nuevo no excede la probabilidad
+ de $0.8$ del sistema existente.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n = 300$.
+   \item $x = 250$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p & \leq & 0.8 \\
+   H_1: p &  >   & 0.8
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.04$
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.3, se tiene el valor cr\'{\i}tico $z_{\alpha} = z_{0.04} = 1.75$,
+  por lo que la regi\'on de rechazo est\'a dado para $z > 1.75$,
+  donde $z = \frac{x - np}{\sqrt{npq}} 
+  = \frac{\widehat{p} - p}{\sqrt{pq/n}}$.
+ \end{region}
+ 
+ \begin{estadistico}
+  \begin{equation*}
+   z = \frac{x - np}{\sqrt{npq}}
+   = \frac{250 - (300)(0.8)}{\sqrt{(300)(0.8)(0.2)}}
+   = \frac{250 - 240}{\sqrt{48}}
+   = \frac{10}{4\sqrt{3}}
+   = \frac{5 \sqrt{3}}{6}
+   \approx 1.443
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  La muestra no presenta evidencia para rechazar la hip\'otesis nula
+  y, por lo tanto, se acepta que la probabilidad de una muerte con el sistema nuevo
+  no aumenta la probabilidad de $0.8$ del sistema existente.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo \texttt{P08\_Prueba\_de\_una\_proporcion\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n<-300
+> x<-250
+> p0<-NULL
+> p<-0.8
+> alfa<-0.04
+> cola<-'S'
+> distr<-NULL
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+   distr   p   n   x pMuestral media desv.est alpha    PValor Estadistico
+1 Normal 0.8 300 250 0.8333333   240 6.928203  0.04 0.0744573    1.443376
+  RegionRechazoZ RegionRechazoX        Resultado
+1   >= 1.7506861         >= 253 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

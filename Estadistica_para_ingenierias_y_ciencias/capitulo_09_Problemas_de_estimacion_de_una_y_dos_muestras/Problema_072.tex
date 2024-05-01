@@ -1,0 +1,106 @@
+\begin{enunciado}
+ Una muestra aleatoria de $20$ estudiantes obtuvo una media de $\bar{x} = 72$ y una varianza de $s^2 = 16$ en un examen universitario de colocaci\'on en matem\'aticas. Suponga que las calificaciones se distribuyen normalmente y construya un intervalo de confianza de $98\%$ para $\sigma^2$.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de las calificaciones de los estudiantes en el examen universitario de colocaci\'on en matem\'aticas del que se hace referencia en el enunciado, entonces se tiene que:
+ \begin{itemize}
+  \item $X \sim n(\mu, \sigma)$.
+  \item $\sigma$ es desconocida.
+  \item $n = 20$.
+  \item $\bar{x} = 72$.
+  \item $\sigma^2 = 16$.
+  \item $\alpha = 0.02$.
+ \end{itemize}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para la varianza de una poblaci\'on aproximadamente normal, entonces se requerir\'a de los valores $\chi^2_{\alpha/2,n-1} = \chi^2_{0.01,19}$ y $\chi^2_{1-\alpha/2,n-1} = \chi^2_{0.99,19}$. De la Tabla A.5, en el ap\'endice A del libro, se tiene que estos valores son: $\chi^2_{0.01,19} = 36.191$ y $\chi^2_{0.99,19} = 7.633$. Por otro lado, usando R, con los siguientes comandos, se obtiene mayor precisi\'on.
+ \begin{verbatim}
+> options(digits=22)
+> qchisq(0.01,19,lower.tail=F)
+[1] 36.19086912927004107132
+> qchisq(0.99,19,lower.tail=F)
+[1] 7.63272964757147054371
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar con mayor precisi\'on que: $\chi^2_{0.01,19} = 36.1908691$ y $\chi^2_{0.99,19} = 7.6327296$.
+ \par 
+ Ya que se busca un intervalo de confianza para la varianza de una poblaci\'on que se distribuye normalmente usando la varianza muestral como estimador, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}} < \sigma^2 < \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando los valores $\chi^2_{\alpha/2,n-1}$ y $\chi^2_{1-\alpha/2,n-1}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}} = \frac{(20-1)16}{36.191} = \frac{19(16\,000)}{36\,191}= \frac{304\,000}{36\,191} \approx 8.39987842
+ \end{equation*}
+ y
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}} = \frac{(20-1)16}{7.633} = \frac{19(16\,000)}{7\,633} = = \frac{304\,000}{7\,633} \approx 39.827066684
+ \end{equation*}
+ Por lo tanto, el intervalo de confianza de $98\%$ para la varianza de las calificaciones de los estudiantes en el examen universitario de colocaci\'on en matem\'aticas es aproximadamente
+ \begin{equation*}
+  8.39987842 < \sigma^2 < 39.827066684
+ \end{equation*}
+ Finalmente, usando R, se puede calcular el intervalo de confianza directamente con el c\'odigo registrado en el archivo anexo \texttt{P22\_Intervalo\_de\_confianza\_11.r}. En el archivo se puede modificar los valores iniciales que corresponden a: \texttt{n}, para el tama\~no de la muestra; el valor del estimador puntual es una de dos, ya sea \texttt{var} para la varianza o \texttt{desv.est} si se da la desviaci\'on est\'andar; \texttt{alfa}, para el nivel de significacia; \texttt{tipoInterv}, para indicar si calcular\'a el intervalo de confianza para la varianza, con el valor \texttt{var}, o para la desviaci\'on est\'andar, con el valor \texttt{desv.est}; \texttt{inter}, para indicar si el intervalo bilateral, con el valor \texttt{D}, unilateral superior, con el valor \texttt{S}, o unilateral inferior, con el valor \texttt{I}; y, \texttt{val}, para indicar si se sabe si la poblaci\'on se distribuye normalmente, con el valor \text{TRUE}, o no, con el valor \texttt{FALSE}.
+ \par 
+ El resultado final indica en la primera columa lo que se est\'a estimando, si la varianza o la desviaci\'on est\'andar, en la segunda columna se tiene el tama\~no de la muestra, en la tercera columna se escribe el l\'{\i}mite inferior del intervalo, si corresponde al tipo de intervalo buscado, la cuarta columna indica el valor del estimador puntual (el indicado por la primera columna), y la \'ultima columna indica el l\'{\i}mite superior del intervalo, si corresponde al tipo de intervalo buscado.
+ \par 
+ El c\'odigo completo se presenta a continuaci\'on junto con la soluci\'on obtenida al final.
+ \begin{verbatim}
+> n<-20
+> var<-16
+> desv.est<-NULL
+> alfa<-0.02
+> tipoInterv<-"var"
+> inter<-'D'
+> val<-TRUE
+> if(!val & (n < 30)){
++     stop("Se requiere normalidad o una muestra lo suficientemente grande")
++ }
+> if(is.null(var)){
++     var<-desv.est^2
++ }
+> difMedias<-function(n,var,alfa=0.05,colas='D',tipoInter="var"){
++     estimador<-ifelse(tipoInter=="var",round(var,7),round(sqrt(var),7))
++     if(n<2){
++         r<-data.frame(Estimando=tipoInterv,n=n,
++                       LimInf=NA,
++                       estimador=estimador,
++                       LimSup=NA)
++     }else{
++         aux<-(n-1)*var
++         if(colas=='D'){
++             jicuadL<-qchisq(alfa/2,n-1,lower.tail=F)
++             jicuadU<-qchisq(1-alfa/2,n-1,lower.tail=F)
++             LL<-round(ifelse(tipoInter=="var",aux/jicuadL,sqrt(aux/jicuadL)),7)
++             LU<-round(ifelse(tipoInter=="var",aux/jicuadU,sqrt(aux/jicuadU)),7)
++             r<-data.frame(Estimando=tipoInterv,n=n,
++                           LimInf=LL,
++                           estimador=estimador,
++                           LimSup=LU)
++         }else{
++             if(colas=='I'){
++                 jicuadL<-qchisq(alfa,n-1,lower.tail=F)
++                 LL<-round(ifelse(tipoInter=="var",
++                                  aux/jicuadL,sqrt(aux/jicuadL)),7)
++                 r<-data.frame(Estimando=tipoInterv,n=n,
++                               LimInf=LL,
++                               estimador=estimador)
++             }else{
++                 jicuadU<-qchisq(1-alfa,n-1,lower.tail=F)
++                 LU<-round(ifelse(tipoInter=="var",
++                                  aux/jicuadU,sqrt(aux/jicuadU)),7)
++                 r<-data.frame(Estimando=tipoInterv,n=n,
++                               estimador=var,
++                               LimSup=LU)
++             }
++         }
++     }
++     return(r)
++ }
+> ICs<-difMedias(n,var,alfa=alfa,colas=inter,tipoInter=tipoInterv)
+> ICs
+  Estimando  n   LimInf estimador   LimSup
+1       var 20 8.399909        16 39.82848
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $98\%$ es $8.40 < \sigma^2 < 39.83$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,131 @@
+\begin{enunciado}
+ Se pregunta a una muestra aleatoria de $400$ volantes en cierta ciudad si est\'an a favor de un impuesto adicional de $4\%$ sobre la venta de gasolina, para obtener los fondos que se necesitan con urgencia para la reparaci\'on de calles. Si m\'as de $220$ pero menos de $260$ favorecen el impuesto a tales ventas, concluiremos que $60\%$ de los votantes lo apoyan.
+ \begin{enumerate}
+  \item Encuentre la probabilidad de cometer un error tipo I si $60\%$ de los votantes est\'an a favor del aumento de impuestos.
+  
+  \item ¿Cu\'al es la probabilidad de cometer un error tipo II al utilizar este procedimiento de prueba si en realidad tan s\'olo $48\%$ de los votantes est\'a a favor del impuesto adicional a la gasolina?
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del n\'umero de votantes a favor del aumento del impuesto en la muestra, del enunciado se tiene lo siguiente, en donde $x_{\text{inf}}$ y $x_{\text{sup}}$ representan el valor cr\'{\i}tico inferior y superior, respectivamente, en el que se incluye la regi\'on de aceptaci\'on.
+ \begin{itemize}
+  \item $X \sim b(n,p)$.
+  \item $n = 400$.
+  \item $x_{\text{inf}} = 221$ y $x_{\text{sup}} = 259$.
+ \end{itemize}
+ El resultado se calcular\'a a trav\'es de la aproximaci\'on de la binomial a la normal. El valor preciso binomial es poco pr\'actico obtenerlo, por lo que no se precisar\'a. Finalmente, se realizar\'an las comparaciones con los c\'alculos binomiales y normales en R.
+ \begin{enumerate}
+  \item Bajo el primer supuesto, se tiene que
+  \begin{itemize}
+   \item $p = 0.6$.
+   \item $\mu = np = (400)(0.6) = 240$.
+   \item $\sigma^2 = npq = 240(0.4) = 96$.
+  \end{itemize}
+  el error tipo I se aproxima usando la tabla A.3 como sigue:
+  \begin{eqnarray*}
+   \alpha & = & P(X \leq 220) + P(X \geq 260) \approx P\left( Z < \frac{220.5 - 240}{\sqrt{96}} \right) + P\left( Z > \frac{259.5 - 240}{\sqrt{96}} \right) \\
+   & = & P\left( Z < -\frac{19.5\sqrt{6}}{24} \right) + P\left( Z > \frac{19.5\sqrt{6}}{24} \right) = P\left( Z < -\frac{39\sqrt{6}}{48} \right) + P\left( Z < \frac{39\sqrt{6}}{48} \right) \\
+   & = & 2P\left( Z < -\frac{13\sqrt{6}}{16} \right) \approx 2P(Z < -1.99) \approx 2(0.0233) = 0.0466
+  \end{eqnarray*}
+  Finalmente, usando R, se calcula primero esta probabilidad con el script del archivo anexo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-400
+> CriticoInf<-221
+> CriticoSup<-259
+> p0<-0.6
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene
+  \begin{verbatim}
+$`Probabilidad de error tipo I`
+  HipotesisNula   n CríticoInf CriticoSup      alpha
+1           0.6 400        221        259 0.04642084
+  \end{verbatim}
+  \vspace{-0.5cm}
+  mientras que con el script del archivo anexo \texttt{P02\_Probabilidad\_de\_error\_normal\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-400
+> CriticoInf<-221
+> CriticoSup<-259
+> desv<-NULL
+> media0<-NULL
+> media1<-NULL
+> p0<-0.6
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  se obtiene lo siguiente
+  \begin{verbatim}
+$`Probabilidad de error tipo I`
+  HipotesisNula   n media     desv CríticoInf CriticoSup      alpha
+1      p =  0.6 400   240 9.797959      220.5      259.5 0.04656776
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene lo sigueinte:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas normales da $\alpha = 0.0466$.
+   \item El valor binomial con R da $\alpha = 0.04642084$.
+   \item La aproximaci\'on normal con R da $\alpha = 0.04656776$.${}_{\square}$
+  \end{itemize}
+  
+  \item Bajo el nuevo supuesto se tiene que
+  \begin{itemize}
+   \item $p = 0.48$.
+   \item $\mu = np = (400)(0.48) = 192$.
+   \item $\sigma^2 = npq = 192(0.52) = 99.84 = 2\,496/25$.
+  \end{itemize}
+  as\'{\i}, el error tipo II se aproxima usando la tabla A.3 como sigue:
+  \begin{eqnarray*}
+   \beta & = & P(220 < X < 260) = P(X < 260) - P(X \leq 220) \\
+   & \approx & P\left( Z < \frac{259.5 - 192}{\sqrt{2\,496/25}} \right) - P\left( Z < \frac{220.5 - 192}{\sqrt{2\,496/25}} \right) \\
+   & = & P\left( Z < \frac{67.5(5)\sqrt{39}}{312} \right) - P\left( Z < \frac{28.5(5)\sqrt{39}}{312} \right) \\
+   & = & P\left( Z < \frac{675\sqrt{39}}{624} \right) - P\left( Z < \frac{285\sqrt{39}}{624} \right) = P\left( Z < \frac{225\sqrt{39}}{208} \right) - P\left( Z < \frac{95\sqrt{39}}{208} \right) \\
+   & \approx & P(Z < 6.76) - P(Z < 2.85) \\
+   & \approx & 1 - 0.9978 = 0.0022
+  \end{eqnarray*}
+  Finalmente, usando R, se calcula primero esta probabilidad con el script del archivo anexo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-400
+> CriticoInf<-221
+> CriticoSup<-259
+> p0<-NULL
+> p1<-0.48
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa   n CríticoInf CriticoSup        beta
+1                 0.48 400        221        259 0.002173867
+  \end{verbatim}
+  \vspace{-0.5cm}
+  mientras que con el script del archivo anexo \texttt{P02\_Probabilidad\_de\_error\_normal\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-400
+> CriticoInf<-221
+> CriticoSup<-259
+> desv<-NULL
+> media0<-NULL
+> media1<-NULL
+> p0<-NULL
+> p1<-0.48
+  \end{verbatim}
+  \vspace{-0.5cm}
+  se obtiene
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa   n media     desv CríticoInf CriticoSup        beta
+1            p =  0.48 400   192 9.991997      220.5      259.5 0.002170324
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene lo siguiente:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas normales da $\beta = 0.0022$.
+   \item El valor binomial con R da $\beta = 0.002173867$.
+   \item La aproximaci\'on normal con R da $\beta = 0.002170324$
+  \end{itemize}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

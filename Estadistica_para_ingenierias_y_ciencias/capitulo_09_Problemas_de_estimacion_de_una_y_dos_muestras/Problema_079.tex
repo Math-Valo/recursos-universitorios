@@ -1,0 +1,127 @@
+\begin{enunciado}
+ Construya un intervalo de confianza de $90\%$ para $\sigma_1^2/\sigma_2^2$ en el ejercicio 9.46 de la p\'agina 298. ¿Deber\'{\i}amos suponer que $\sigma_1^2 = \sigma_2^2$ al construir nuestro intervalo de confianza para $\mu_I - \mu_{II}$?
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.46, pero cambiando el significado de $\alpha$ al nivel de significancia del intervalo de confianza para $\sigma_1^2/\sigma_2^2$, entonces se tiene los siguientes datos:
+ \begin{itemize}
+  \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1, 2 \}$.
+  \item $\sigma_i$ son desconocidas, para cada $i \in \{ 1, 2 \}$.
+  \item $n_1 = 5$ y $n_2 = 7$.
+  \item $s_1^2 = \frac{763}{10} = 76.3$ y $s_2^2 = \frac{21\,754}{21} = 1\,035.\overline{904761}$.
+  \item $\alpha = 0.1$.
+ \end{itemize}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para la proporci\'on de varianzas poblacionales independientes y normalmente distribuidas, entonces se requerir\'a de los valores $f_{\alpha/2}(n_1-1,n_2-1) = f_{0.05}(4,6)$ y $f_{\alpha/2}(n_2-1,n_1-1) = f_{0.05}(6,4)$. De la Tabla A.6, se tiene que estos valores son: $f_{0.05}(4,6) = 4.53$ y $f_{0.05}(6,4) = 6.16$. Por otro lado, usando R, con los siguientes comandos, se obtiene mayor precisi\'on.
+ \begin{verbatim}
+> options(digits=22)
+> qf(0.05,4,6,lower.tail=F)
+[1] 4.533676950275244976751
+> qf(0.05,6,4,lower.tail=F)
+[1] 6.163132282688633445389
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar con mayor precisi\'on que $f_{0.05}(4,6) = 4.5336769502752$ y $f_{0.05}(6,4) = 6.16313228268863$.
+ \par 
+ Ya que se busca un intervalo de confianza bilateral para la proporci\'on de varianzas de poblaciones normalmente distribuidas usando la proporci\'on de las varianzas muestrales como estimador, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \frac{s_1^2}{s_2^2}\cdot \frac{1}{f_{\alpha/2}(n_1-1,n_2-1)} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2}{s_2^2}\cdot f_{\alpha/2}(n_2-1,n_1-1)
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando los valores $f_{0.05}(4,6)$ y $f_{0.05}(6,4)$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \frac{s_1^2}{s_2^2}\cdot \frac{1}{f_{\alpha/2}(n_1-1,n_2-1)} & = & \frac{763/10}{21\,754/21}\cdot \frac{1}{4.53} = \frac{763(21)}{21\,754(10)} \cdot \frac{100}{453} = \frac{763(7)(5)}{10\,877(151)} \\
+  & = & \frac{26\,705}{1\,642\,427} \approx 0.0162594745459
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \frac{s_1^2}{s_2^2}\cdot f_{\alpha/2}(n_2-1,n_1-1) & = & \frac{763/10}{21\,754/21} \cdot (6.16) = \frac{763(21)}{21\,754(10)} \cdot \frac{154}{25} = \frac{763(21)(77)}{10\,877(10)(25)} \\
+  & = & \frac{1\,233\,771}{2\,719\,250} \approx 0.4537173853084
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $90\%$ para la proporci\'on de las varianzas de los minutos de duraci\'on que producen las compa\~n\'{\i}as cinematogr\'aficas I y II es aproxidamenta
+ \begin{equation*}
+  0.0162594745459 < \frac{\sigma_1^2}{\sigma_2^2} < 0.4537173853084
+ \end{equation*}
+ Por otro lado, usando R, se puede calcular el intervalo de confianza con el c\'odigo registrado en el archivo \texttt{P24\_Intervalo\_de\_confianza\_13.r}, el cual ha sido creado para leer un archivo .csv. En este caso, el archivo anexo que contiene los datos del problema es \texttt{DB06\_Problema\_46.csv}, que ya fue explicado en el ejercicio 9.46.
+ \par 
+ El archivo permite modificar el nombre del fichero que se va a leer; la variable \texttt{varInteres}, que corresponde al nombre de la columna de datos; \texttt{varSel}, para indicar la columna cuyos valores indican a cual muestra corresponde cada dato; y, \texttt{alfa}, para el nivel de confianza.
+ \par 
+ El resultado final siempre da un intervalo bilateral para la raz\'on de varianzas. En la primera columna se indica el tipo de medici\'on que tienen los datos; la segunda columna indica el total de datos; las siguientes dos columnas indican los tama\~nos de la primera y segunda muestra, respectivamente; la siguientes dos columnas indican las desviaciones est\'andar muestrales de la primera y segunda muestra, respectivamente; las siguientes tres columnas indican, en este orden, el l\'{\i}mite inferior del intervalo de confianza, la raz\'on de las varianzas muestrales y el l\'{\i}mite superior del intervalo de confianza; la pen\'ultima columna indica la probabilidad de haber obtenido el estimador creado por la raz\'on de las varianzas muestrales, suponiendo que las varianzas poblacionales son iguales; y, la \'ultima columna, concluye si hay base estad\'{\i}stica para suponer si las varianzas son o no iguales seg\'un si la probabilidad de la columna anterior es menor o mayor al nivel de significancia dado para el intervalo de confianza.
+ \par 
+ El c\'odigo completo se presenta a continuaci\'on junto con la soluci\'on obtenida al final.
+ \begin{verbatim}
+> datos<-read.csv("DB06_Problema_46.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Tiempo.min")
+> varSel<-c("Compañía")
+> alfa<-0.1
+> w<-data.frame(row.names=1:dim(datos)[1])
+> varBin<-as.character()
+> x1<-data.frame(factor(datos[,varSel]))
+> names(x1)<-varSel
+> varBin<-c(varBin,varSel)
+> w<-data.frame(w,x1)
+> datos<-data.frame(datos,w)
+> if (length(varBin)<1){
++  stop("Debe al menos indicar una variable binaria")
++ }else{
++  sonbinarios<-ifelse(length(table(datos[,varBin]))!=2,1,0)
++ }
+> if (sonbinarios!=0)  stop("La variable no es binaria")
+> valores<-unlist(datos[,c(varInteres)])
+> variables<-factor(rep(varInteres,each=dim(datos)[1]))
+> agrupaciones<-data.frame(datos[1:dim(datos)[1],varBin])
+> names(agrupaciones)<-varBin
+> datos2<-data.frame(agrupaciones,variable=variables,valor=valores)
+> razonVar<-function(l,alfa=0.05){
++  if(length(l)>1){
++    x<-l[[1]][!is.na(l[[1]])]
++    y<-l[[2]][!is.na(l[[2]])]
++    n1<-length(x)
++    n2<-length(y)
++    if ( n1< 2 | n2 < 2){
++      r<-data.frame(n1=n1,n2=n2,
++                    desv.Est1=NA,desv.Est2=NA,
++                    limInf=NA,razon=NA,limSup=NA,
++                    valorPVar=NA)
++    }else{ 
++    ds1<-sd(x)
++    ds2<-sd(y)
++    r1<-var.test(x,y,conf.level=1-alfa)
++    r<-data.frame(n1=n1,n2=n2,
++                  desv.Est1=ds1,desv.Est2=ds2,
++                  limInf=r1$conf.int[1],
++                  razon=r1$estimate,
++                  limSup=r1$conf.int[2],
++                  valorPVar=r1$p.value)
++    }
++  }else{
++    r<-data.frame(n1=0,n2=0,
++                  desv.Est1=NA,desv.Est2=NA,
++                  limInf=NA,razon=NA,limSup=NA,
++                  valorP=NA)
++  }
++  return(r)
++ }
+> listaG<-datos2[,c(varBin,"valor")]
+> listaG1<-list(split(listaG$"valor", listaG[,varBin]))
+> names(listaG1)<-varInteres
+> rFin<-t(sapply(listaG1,razonVar,alfa=alfa))
+> t1<-as.data.frame.table(table(datos2[,c("variable")]))
+> identif<-t1[t1$Freq>0,]
+> d<-dim(rFin)
+> n<-colnames(rFin)
+> rFin<-data.frame(matrix(unlist(rFin),d))
+> names(rFin)<-n
+> rFin<-data.frame(identif,rFin)
+> rFin<-rFin[with(rFin,n1!=0 | n2!=0),]
+> rFin$Resultado<-ifelse(rFin$valorPVar>=alfa,
++                        "Var no diferentes",
++                        "Var diferentes")
+> rFin$Resultado[is.na(rFin$Resultado)]<-"Pocos datos"
+> rFin
+        Var1 Freq n1 n2 desv.Est1 desv.Est2     limInf      razon    limSup
+1 Tiempo.min   12  5  7  8.734987  32.18547 0.01624629 0.07365542 0.4539481
+   valorPVar      Resultado
+1 0.02467702 Var diferentes
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $90\%$ es $0.016 < \frac{\sigma_1^2}{\sigma_2^2} < 0.454$. Por lo tanto, como la raz\'on nunca cumple que $\sigma_1^2/\sigma_2^2 = 1$ en todo el intervalo, se tiene, multiplicar ambos lados por $\sigma_2^2$, que no ocurre que $\sigma_1^2 = \sigma_2^2$, por lo que no ser\'{\i}a correcto suponerlas iguales, que es a lo que quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,74 @@
+\begin{enunciado}
+ $\phantom{0}$
+ \begin{enumerate}
+  \item De acuerdo con un reporte del \textit{Roanoke Times \& World-News}, aproximadamente $2/3$ de los $1600$ adultos encuestados v\'{\i}a telef\'onica dijeron que piensan que el programa del trasbordador espacial es una buena inversi\'on para el pa\'{\i}s. Encuentre un intervalo de confianza de $95\%$ para la proporci\'on de adultos estadounidenses que piensan que el programa del trasbordador espacial es una buena inversi\'on para el pa\'{\i}s.
+  \item ¿Qu\'e podemos asegurar con una confianza de $95\%$ acerca de la posible magnitud de nuestro error, si estimamos que la proporci\'on de adultos estadounidenses que piensan que el programa del trasbordador espacial es una buena inversi\'on de $2/3$?
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del n\'umero de adultos de Estados Unidos que piensan que el programa del trasbordador espacial es una buena inversi\'on para el pa\'{\i}s, de entre un total de $n$ de estos adultos, entendiendo que $n$ es peque\~na en comparaci\'on a $N$, la poblaci\'on total estadounidenses adultos, suponiendo que $n/N \leq 0.05$, y sea $k$ la cantidad total de adultos en EE.UU. que piensan que el programa del trasbordador espacial es una buena inversi\'on, entonces $\widehat{P} = X/n$ es un estad\'{\i}stico de una proporci\'on de un experimento binomial que aproxima el valor de $k/N$, la proporci\'on de adultos estadounidenses que piensa que el programa del trasbordador espacial es una buena inversi\'on para el pa\'{\i}s, entonces, del enunciado, se tienen los siguientes datos obtenidos de una muestra:
+ \begin{itemize}
+  \item $n = 1\,600$.
+  \item $\hat{p}=\frac{2}{3}$
+  \item $\hat{q}=1-\hat{p} = \frac{1}{3}$.
+  \item $\alpha=0.05$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral y se calcular\'a el error de $\hat{p}$ para estimar $p$, entonces se requiere del valor $z_{\alpha/2} = z_{0.025}$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+ \begin{enumerate}
+  \item Ya que se busca un intevalo de confianza para la proporci\'on en un experimento binomial en donde el tama\~no de muestra es grande y se tiene que tanto $n\hat{p}$ como $n\hat{q}$ es mayor que o igual a 5, entonces se usar\'a la f\'ormula de intervalo siguiente:
+  \begin{equation*}
+   \hat{p} - z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} < p < \hat{p} + z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tienen los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+  \begin{eqnarray*}
+   \hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} & = & \frac{2}{3} \pm 1.96\sqrt{\frac{(2/3)(1/3)}{1\,600}} = \frac{2}{3} \pm 1.96\left( \frac{\sqrt{2}}{3(40)} \right) \\
+   & = & \frac{2}{3} \pm \frac{49\sqrt{2}}{3\,000} = 0.\overline{6} \pm 0.016\overline{3}\sqrt{2} \approx 0.\overline{6}\pm 0.02309882151876
+  \end{eqnarray*}
+  Por lo tanto, el intervalo de confianza de $95\%$ de la proporci\'on de adultos estadounidenses que piensan que el programa del trasbordador espacial es una buena inversi\'on para el pa\'{\i}s es aproximadamente
+  \begin{equation*}
+   0.6435678451479 < p < 0.6897654881854
+  \end{equation*}
+  Por otro lado, usando R, se puede calcular el intervalo de confianza usando el scripten el archivo anexo \texttt{P17\_Intervalo\_de\_confianza\_08.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+n<-1600
+x<-NULL
+p<-2/3
+alfa<-0.05
+inter<-'D'
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+     LimInf Proporción    LimSup
+1 0.6435683  0.6666667 0.6897651
+  \end{verbatim}
+  \vspace{-0.5cm}
+  por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $0.64357 < p < 0.68976$.${}_{\square}$
+  
+  \item Dado que $\hat{p} = \frac{2}{3}$ estima a la proporci\'on de adultos estadounidenses que piensan que el programa del trasbordador espacial es una buena inversi\'on, entonces se sabe que el error tiene una magnitud de a lo m\'as
+  \begin{equation*}
+   e = z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}}
+  \end{equation*}
+  entonces, por los c\'alculos previos, se sabe, con un $95\%$ de confianza, que la magnitud del error de estimaci\'on es de a lo m\'as
+  \begin{equation*}
+   e = z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} = \frac{49\sqrt{2}}{3\,000} = 0.016\overline{3}\sqrt{2} \approx 0.02309882151876
+  \end{equation*}
+  Finalmente, usando R, se puede calcular la magnitud del error usando el script en el archivo anexo \texttt{P18\_Estimacion\_del\_error\_2r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+n<-1600
+x<-NULL
+p<-2/3
+alfa<-0.05
+inter<-'D'
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+[1] 0.0230984
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene con un $95\%$ de confianza que el margen de error no supera el valor de $e = 0.0231$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+
+\end{solucion}

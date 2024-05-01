@@ -1,0 +1,71 @@
+\begin{enunciado}
+ Repita el ejercicio 10.15 para muestras de tama\~no $n = 25$. Utilice la misma regi\'on cr\'{\i}tica.
+\end{enunciado}
+
+\begin{solucion}
+ Usando los t\'erminos del ejercicio 10.15, se tiene ahora que:
+ \begin{itemize}
+  \item $X \sim n(\mu, \sigma)$.
+  \item $\overline{X} \sim n\left( \mu, \sigma/\sqrt{n} \right)$.
+  \item $n = 25$.
+  \item $\sigma = 15\,$ml.
+  \item $\sigma_{\overline{X}} = 15/\sqrt{25} = 15/5 = 3$.
+  \item $x_{\text{inf}} = 191$ y $x_{\text{sup}} = 209$.
+ \end{itemize}
+ Entonces, bajo el primer supuesto
+ \begin{itemize}
+  \item $\mu = 200\,$ml.
+ \end{itemize}
+ el error tipo I se aproxima usando la tabla A.3 como sigue:
+ \begin{eqnarray*}
+  \alpha & = & P\left( \overline{X} \leq 191 \right) + P\left( \overline{X} \geq 209 \right) = P\left( Z < \frac{191 - 200}{3} \right) + P\left( Z > \frac{209 - 200}{3} \right) \\
+  & = & P\left( Z < -\frac{9}{3} \right) + P\left( Z > \frac{9}{3} \right) = P(Z < -3) + P(Z > 3) = 2P(Z < -3) \\
+  & \approx & 2(0.0013) = 0.0026
+ \end{eqnarray*}
+ Para el siguiente supuesto se tiene que
+ \begin{itemize}
+  \item $\mu = 215\,$ml
+ \end{itemize}
+ as\'{\i}, el error tipo II se aproxima usando la tabla A.3 como sigue:
+ \begin{eqnarray*}
+  \beta & = & P\left( 191 < \overline{X} < 209 \right) = P\left( \frac{191-215}{3} < Z < \frac{209 - 215}{3} \right) = P\left( -\frac{24}{3} < Z < \frac{6}{3} \right) \\
+  & = & P(-8 < Z < -2) = P(Z < -2) - P(Z < -8) \approx 0.0228 - 0 = 0.0228
+ \end{eqnarray*}
+ Finalmente, en R se pueden calcular estas probabilidades usando el script en el archivo anexo \texttt{P02\_Probabilidad\_de\_error\_normal\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n<-25
+> CriticoInf<-191
+> CriticoSup<-209
+> desv<-3
+> media0<-200
+> media1<-215
+> p0<-NULL
+> p1<-NULL
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene lo siguiente:
+ \begin{verbatim}
+$`Probabilidad de error tipo I`
+  HipotesisNula  n media desv CríticoInf CriticoSup       alpha
+1     mu =  200 25   200    3        191        209 0.002699796
+
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa  n media desv CríticoInf CriticoSup       beta
+1            mu =  215 25   215    3        191        209 0.02275013
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo tanto, se tiene el siguiente resumen:
+ \begin{itemize}
+  \item Bajo el supuesto $\mu = 200$:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas da $\alpha = 0.0026$.
+   \item La aproximaci\'on con R da $\alpha = 0.002699796$.
+  \end{itemize}
+  \item Y, bajo el supuesto $\mu = 215$:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas da $\beta = 0.0228$.
+   \item La aproximaci\'on con R da $\beta = 0.02275013$.
+  \end{itemize}
+ \end{itemize}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

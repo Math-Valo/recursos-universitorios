@@ -1,0 +1,15 @@
+\begin{enunciado}
+ Considere el estad\'{\i}stico $S_p^2$, el estimado de uni\'on de $\sigma^2$. El estimador se examin\'o en la secci\'on 9.8 y se utiliza cuando se est\'a dispuesto a suponer que $\sigma_1^2 = \sigma_2^2 = \sigma^2$. Demuestre que el estimador est\'a insesgado para $\sigma^2$ (es decir, demuestre que $E\left( S_p^2 \right) = \sigma^2$). Puede utilizar los resultados de cualquier teorema o ejemplo del cap\'{\i}tulo 9.
+\end{enunciado}
+
+\begin{solucion}
+ Para demostrar esto, se va a utilizar la linealidad de la esperanza, es decir, que separa sumas y saca escalares, se usar\'a el hecho de que la esperanza de la varianza muestral es la varianza poblacional de la poblaci\'on de la que proviene, es decir $E\left(S^2 \right) = \sigma^2$, y que $\sigma_1^2 = \sigma_2^2 = \sigma^2$. As\'{\i}, pues, se tiene que
+ \begin{eqnarray*}
+  E\left( S_p^2 \right) & = & E\left[ \frac{\left( n_1 - 1 \right)S_1^2 + \left( n_2 - 1 \right)S_2^2}{n_1 + n_2 - 2} \right] = E\left[ \left( \frac{n_1-1}{n_1+n_2-2} \right) \left( S_1^2 \right) + \left( \frac{n_2-1}{n_1+n_2-2} \right) \left( S_2^2 \right) \right] \\
+  & = & \frac{n_1 - 1}{n_1+n_2-2}E\left( S_1^2 \right) + \frac{n_2 - 1}{n_1+n_2-2}E\left( S_2^2 \right) \\
+  & = & \left( \frac{n_1 - 1}{n_1+n_2-2} \right) \left(\sigma_1^2\right) + \left( \frac{n_2 - 1}{n_1+n_2-2} \right) \left(\sigma_2^2\right) \\
+  & = & \frac{\left(n_1 - 1\right)\sigma^2 + \left(n_2 - 1\right)\sigma^2}{n_1+n_2-2} = \frac{\left( n_1 + n_2 - 2 \right) \sigma^2}{n_1 + n_2 - 2} \\
+  & = & \sigma^2
+ \end{eqnarray*}
+ Por lo tanto, como $E\left( S_p^2 \right)$, se concluye que $S_p^2$ es insesgado. Q.E.D.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,138 @@
+\begin{enunciado}
+ Se comparan dos tipos de instrumentos para medir la cantidad de mon\'oxidos
+ de azufre en la atm\'osfera, en un experimento sobre la contaminaci\'on del aire.
+ Se desea determinar si los dos tipos de instrumentos dan mediciones que tengan la misma variabilidad.
+ Se registran las siguientes lecturas para los dos instrumentos:
+ \begin{center}
+  \begin{tabular}{cc}
+   \multicolumn{2}{c}{\textbf{Mon\'oxido de azufre}} \\
+   \hline 
+   \textbf{Instrumento A} & \textbf{Instrumento B} \\ 
+   \hline 
+   $0.86$ & $0.87$ \\
+   $0.82$ & $0.74$ \\
+   $0.75$ & $0.63$ \\
+   $0.61$ & $0.55$ \\
+   $0.89$ & $0.76$ \\
+   $0.64$ & $0.70$ \\
+   $0.81$ & $0.69$ \\
+   $0.68$ & $0.57$ \\
+   $0.65$ & $0.53$
+  \end{tabular}
+ \end{center}
+ Suponiendo que las poblaciones de mediciones se distribuyen
+ de forma aproximadamente normal,
+ pruebe la hip\'otesis de que $\sigma_A = \sigma_B$, contra la alternativa
+ $\sigma_A \neq \sigma_B$. Use un valor $P$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido se tiene que:
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{1,2\}$.
+   \item $n_1 = n_2 = 9$.
+  \end{itemize}
+  Para obtener las varianzas se calcula primero lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^{9} x_{A,i} & = &
+   0.86 + 0.82 + 0.75 + 0.61 + 0.89 + 0.64 + 0.81 + 0.68 + 0.65 = 6.71 \\
+   \sum_{i=1}^{9} x_{A,i}^2 & = & 
+   0.86^2 + 0.82^2 + 0.75^2 + 0.61^2 + 0.89^2 + 0.64^2 + 0.81^2 + 0.68^2 +
+   0.65^2 = 5.0893 \\
+   \sum_{i=1}^{9} x_{B,i} & = &
+   0.87 + 0.74 + 0.63 + 0.55 + 0.76 + 0.70 + 0.69 + 0.57 + 0.53 = 6.04 \\
+   \sum_{i=1}^{9} x_{B,i}^2 & = &
+   0.87^2 + 0.74^2 + 0.63^2 + 0.55^2 + 0.76^2 + 0.70^2 + 0.69^2 + 0.57^2 +
+   0.53^2 = 4.1534
+  \end{eqnarray*}
+  por lo que las varianzas muestrales se calculan, usando el teorema 8.1,
+  como sigue:
+  \begin{eqnarray*}
+   s_A^2 & = &
+   \frac{1}{9(8)}
+   \left[ 9\sum_{i=1}^9 x_{A,i}^2 -
+   \left( \sum_{i=1}^9 x_{A,i} \right)^2 \right]
+   = \frac{9(5.0893) - 6.71^2}{72} \\
+   & = & \frac{45.8037 - 45.0241}{72} = \frac{0.7796}{72}
+   = \frac{1\,949}{180\,000} = 0.01082\bar{7} \\
+   s_B^2 & = &
+   \frac{1}{9(8)}
+   \left[ 9\sum_{i=1}^9 x_{B,i}^2 -
+   \left( \sum_{i=1}^9 x_{B,i} \right)^2 \right]
+   = \frac{9(4.1534) - 6.04^2}{72} \\
+   & = & \frac{37.3806 - 36.4816}{72}
+   = \frac{0.899}{72} = \frac{899}{72\,000} = 0.012486\bar{1}
+  \end{eqnarray*}
+  Por lo que el resto de los datos se resume como sigue:
+  \begin{itemize}
+   \item $s_A^2 = \frac{1\,949}{180\,000} = 0.01082\bar{7}$
+   y $s_B^2 = \frac{899}{72\,000} = 0.012486\bar{1}$.
+  \end{itemize}
+  Adem\'as, por la suposici\'on de normalidad en las distribuciones
+  poblacionales, se tiene la distribuci\'on siguiente:
+  \begin{itemize}
+   \item $\frac{s_A^2}{s_B^2} \sim f(v_1,v_2)$.
+   \item $v_1 = n_1 - 1 = 8$ y $v_2 = n_2 - 1 = 8$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \sigma_A &  =   & \sigma_B \\
+   H_1: \sigma_A & \neq & \sigma_B
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   f = \frac{s_A^2}{s_B^2}
+   = \frac{\displaystyle{\frac{1\,949}{\cancelto{5}{180\,000}}}}
+   {\displaystyle{\frac{899}{\cancelto{2}{72\,000}}}}
+   = \frac{1\,949(2)}{899(5)}
+   = \frac{3\,898}{4\,495} \approx 0.86718576
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.6 se observa que el valor $f$
+  est\'a muy alejado de $f_{0.05,8,8}$;
+  sin embargo, como $f_{0.95,8,8} = \frac{1}{f_{0.05,8,8}}$,
+  se tiene que $\frac{1}{f} = \frac{4\,495}{3\,898} \approx 1.153155464$,
+  pero a\'un as\'{\i} el nuevo valor se encuentra lejos de $f_{0.05,8,8}$,
+  por lo que se entiende que $P(F<f) > 0.05$ y, por lo tanto, 
+  se tiene que:
+  \begin{equation*}
+   2\times P\left( F_{v_1,v_2} < f \right)
+   = 2\times P\left( F_{v_2,v_1} > \frac{1}{f} \right) > 2\times(0.05) = 0.1
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es muy grande,
+  entonces no hay evidencia suficiente para rechazar la hip\'otesis nula,
+  y, por lo tanto, se afirma que la varianza en las mediciones
+  de los instrumentos no es significativamente diferente.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P14\_Prueba\_de\_dos\_varianzas\_02.r}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB12_Problema_076.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("MonoxidoAzufre.ppm")
+> varSel<-c("Instrumento")
+> alfa<-NULL
+> cola<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+            variable Freq n1 n2    media1    media2 varianza1 varianza2 v1 v2
+1 MonoxidoAzufre.ppm   18  9  9 0.7455556 0.6711111 0.0108278 0.0124861  8  8
+  alpha    PValor Estadistico             RegionRechazo
+1  0.05 0.8451865   0.8671858 < 0.2255676 y > 4.4332599
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ adem\'as de ofrecer un valor m\'as preciso para el valor $P$,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

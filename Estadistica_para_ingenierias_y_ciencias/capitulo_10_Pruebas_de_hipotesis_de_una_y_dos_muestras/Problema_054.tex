@@ -1,0 +1,155 @@
+\begin{enunciado}
+ Se utilizaron $9$ sujetos en un experimento para determinar si una atm\'osfera que implica la exposici\'on a mon\'oxido de carbono tiene un impacto sobre la capacidad de respiraci\'on. Los datos fueron recolectados por el personal del Departamento de Salud y Educaci\'on F\'{\i}sica del Instituto Polit\'ecnico y Universidad Estatal de Virginia. Los datos se analizaron en el Centro de Consulta Estad\'{\i}stica en Hokie Land. Los sujetos se colocaron en c\'amaras de respiraci\'on, una de las cuales conten\'{\i}a una alta concentraci\'on de CO. Se realizaron varias mediciones de respiraci\'on para cada sujeto en cada c\'amara. Los sujetos se colocaron en las c\'amaras de respiraci\'on en una secuencia aleatoria. Los siguientes datos dan la frecuencia respiratoria en n\'umero de respiraciones por minuto. Realice una prueba unilateral de la hip\'otesis de que la frecuencia respiratoria media es la misma para los dos ambientes. Utilice $\alpha = 0.05$. Suponga que la frecuencia respiratoria es aproximadamente normal
+ \begin{center}
+  \begin{tabular}{ccc}
+   \textbf{Sujeto} & \textbf{Con CO} & \textbf{Sin CO} \\
+   \hline 
+   $1$ & $30$ & $30$ \\
+   $2$ & $45$ & $40$ \\
+   $3$ & $26$ & $25$ \\
+   $4$ & $25$ & $23$ \\
+   $5$ & $34$ & $30$ \\
+   $6$ & $51$ & $49$ \\
+   $7$ & $46$ & $41$ \\
+   $8$ & $32$ & $35$ \\
+   $9$ & $30$ & $28$
+  \end{tabular}
+ \end{center}
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido, se tiene que:
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{ 1,2 \}$.
+   \item $n_1 = n_2 = 9$.
+   \item $\alpha = 0.05$
+  \end{itemize}
+  Como las observaciones fueron sobre las mismas unidades experimentales,
+  entonces se trata de observaciones pareadas,
+  por lo que se usar\'a la diferencia de los datos, que muestra la siguiente tabla:
+  \begin{center}
+   \begin{tabular}{cccc}
+    \textbf{Sujeto} & \textbf{Con CO} & \textbf{Sin CO} & $d_i$ \\
+    \hline 
+    $1$ & $30$ & $30$ & $0$ \\
+    $2$ & $45$ & $40$ & $5$ \\
+    $3$ & $26$ & $25$ & $1$ \\
+    $4$ & $25$ & $23$ & $2$ \\
+    $5$ & $34$ & $30$ & $4$ \\
+    $6$ & $51$ & $49$ & $2$ \\
+    $7$ & $46$ & $41$ & $5$ \\
+    $8$ & $32$ & $35$ & $-3$ \\
+    $9$ & $30$ & $28$ & $2$
+   \end{tabular}
+  \end{center}
+  Para obtener la media y desviaci\'on est\'andar
+  de las diferencias muestrales, se calcula lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^9 d_i & = &
+   0 + 5 + 1 + 2 + 4 + 2+ 5 - 3 + 2 = 18
+   \\
+   \sum_{i=1}^9 d_i^2 & = &
+   0^2 + 5^2 + 1^2 + 2^2 + 4^2 + 2^2 + 5^2 + (-3)^2 + 2^2 = 88
+  \end{eqnarray*}
+  por lo que la media de las diferencias muestrales es:
+  \begin{equation*}
+   \overline{d} = \frac{1}{9} \sum_{i=1}^9 d_i = \frac{18}{9} = 2
+  \end{equation*}
+  y la varianza de las diferencias muestrales se calcula, usando el teorema 8.1,
+  como sigue:
+  \begin{equation*}
+   s_D^2 = \frac{1}{9(8)}
+   \left[ 
+   9 \sum_{i=1}^9 d_i^2 - \left( \sum_{i=1}^9 d_i \right)^2
+   \right]
+   = \frac{9(88) - 18^2}{72}
+   = \frac{792 - 324}{72} = \frac{468}{72}
+   = \frac{13}{2} = 6.5
+  \end{equation*}
+  por lo que la desviaci\'on est\'andar de las diferencias muestrales es:
+  \begin{equation*}
+   s_D = \sqrt{s_D^2} = \sqrt{\frac{13}{2}} = \frac{\sqrt{26}}{2}
+   \approx 2.5495097567963924\ldots
+  \end{equation*}
+  Por lo tanto, se resume el resto de los datos como sigue:
+  \begin{itemize}
+   \item $\bar{d} = 2$.
+   \item $s_D = \frac{\sqrt{26}}{2} \approx 2.5495097567963924\ldots$.
+  \end{itemize}
+  Adem\'as, por la suposci\'on de normalidad
+  en las diferencias poblacionales, se tiene
+  que la distribuci\'on de las diferencias pareadas es normal,
+  entonces el siguiente estad\'{\i}stico, que se va a requerir,
+  se aproxima a la distribuci\'on mostrada
+  con el respectivo par\'ametro que se indica:
+  \begin{itemize}
+   \item $T = \frac{\overline{D}-d_0}{S_d/\sqrt{n}} \sim t(v)$.
+   \item $v = n_1 - 1 = n_2 - 1 = 8$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_D = \mu_1 - \mu_2 &   =  & 0 \\
+   H_1: \mu_D = \mu_1 - \mu_2 & \geq & 0
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.4, se tiene el valor cr\'{\i}tico
+  $t_{\alpha,n-1} = t_{0.05,8} \approx 1.86$,
+  por lo que la regi\'on de rechazo est\'a dado para $t > 1.86$,
+  donde $t = \frac{\bar{d} - d_0}{s_D/\sqrt{n}}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   t = \frac{\bar{d} - d_0}{s_D/\sqrt{n}}
+   = \frac{2}{\frac{\sqrt{26}}{2}/\sqrt{9}}
+   = \frac{12}{\sqrt{26}} = \frac{12\sqrt{26}}{26}
+   = \frac{6\sqrt{26}}{13}
+   \approx 2.35339362\ldots
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  Se concluye que una atm\'osfera que implica la exposici\'on a mon\'oxido de carbono
+  s\'{\i} tiene un impacto sobre la capacidad de respiraci\'on media,
+  evidenciado por la respiraci\'on por minuto en los sujetos del experimento.  
+ \end{conclusion}
+ Finalmente, usando el archivo anexo \texttt{P06\_Prueba\_de\_dos\_medias\_02.r},
+ que a su vez requiere del archivo \texttt{DB11\_Problema\_054.csv},
+ con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB11_Problema_054.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("FrecRespiratoria.rpmin")
+> varSel<-c("CO")
+> mu<-0
+> desv.iguales<-NULL
+> alfa<-0.05
+> cola<-'S'
+> par<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+                    Var1 Freq Poblaciones H0 n diferencia desv.par
+1 FrecRespiratoria.rpmin    9    Pareadas  0 9          2  2.54951
+  error.est grados alpha     PValor Estadistico RegionRechazoSupT
+1 0.8498366      8  0.05 0.02321731    2.353394          1.859548
+  RegionRechazoSupX     Resultado
+1          1.580312 Se rechaza H0
+ \end{verbatim}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

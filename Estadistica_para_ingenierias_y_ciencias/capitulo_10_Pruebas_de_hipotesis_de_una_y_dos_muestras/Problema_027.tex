@@ -1,0 +1,503 @@
+\begin{enunciado}
+ Un estudio de la Universidad de Colorado en Boulder muestra que correr aumenta el porcentaje de la tasa metab\'olica de descanso (\texttt{TMD}) en mujeres ancianas. La \texttt{TMD} promedio de $30$ ancianas corredoras fue $34.0\%$ m\'as alta que la \texttt{TMD} promedio de $30$ ancianas sedentarias, en tanto que las desviaciones est\'andar reportadas fueron de $10.5$ y $10.2\%$, respectivamente. ¿Hay un aumento significativo en la \texttt{TMD} de las corredoras con respecto a las sedentarias? Suponga que las poblaciones se distribuyen de forma aproximadamente normal con varianzas iguales. Utilice un valor $P$ en sus conclusiones.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1, 2 \}$.
+   \item $n_1 = 30$ y $n_2 = 30$.
+   \item $\bar{x}_1 - \bar{x}_2 = 34$.
+   \item $s_1 = 10.5$ y $s_2 = 10.2$.
+   \item $\sigma_1^2 = \sigma_2^2$.
+  \end{itemize}
+  Ya que $n_1, n_2 \geq 30$,
+  como resultado del teorema del teorema del l\'{\i}mite central
+  se obtiene adem\'as que los siguientes estadísticos se aproximan
+  a las distribuciones indicadas:
+  \begin{itemize}
+   \item $\overline{X}_i \sim n\left( \mu_i, \sigma_i/n \right)$,
+   para cada $i \in \{ 1, 2 \}$.
+   \item $Z = \frac{\left( \overline{X}_1 - \overline{X}_2 \right) - d_0}{\sqrt{S_1^2/n_1 + S_2^2/n_2}} \approx
+   \frac{\left( \overline{X}_1 - \overline{X}_2 \right) - d_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}}
+   \sim n\left( 0, 1 \right)$.
+  \end{itemize}
+  A\'un as\'{\i}, si no se contara con dichos resultados,
+  por las suposiciones de normalidad en la distribuciones
+  poblacionales y que las varianzas son iguales, se sabe
+  que el siguiente estad\'{\i}stico,
+  que se aproxima a la distribuci\'on mostrada
+  con el respectivo par\'ametro que se indica,
+  se puede usar en vez del anterior.
+  \begin{itemize}
+   \item $T = 
+   \frac{\left( \overline{X}_1 - \overline{X}_2 \right) - d_0}{S_p\sqrt{1/n_1 + 1/n_2}} \sim t(v)$.
+   \item $v = n_1 + n_2 - 2 = 58$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_1 - \mu_2 & = & 0 \\
+   H_1: \mu_1 - \mu_2 & > & 0
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  Usando el estad\'{\i}stico obtenido con el teorema
+  del l\'{\i}mite central, se calcula que:
+  \begin{eqnarray*}
+   z & = & \frac{\left( \bar{x}_1 - \bar{x}_2 \right) - \left( \mu_1 - \mu_2 \right)}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}
+   \approx \frac{34-0}{\sqrt{10.5^2/30 + 10.2^2/30}}
+   = \frac{34\sqrt{30}}{\sqrt{110.25+104.04}}
+   = \frac{34(10)\sqrt{30}}{\sqrt{21\,429}} \\
+   & = & \frac{340\sqrt{10}}{\sqrt{7\,143}}
+   = \frac{340\sqrt{71\,430}}{7143} \approx 12.7215079
+  \end{eqnarray*}
+  A\'un as\'{\i}, el valor con el otro estad\'{\i}stico
+  se obtiene calculando primero lo siguiente:
+  \begin{eqnarray*}
+   s_p^2 & = &
+   \frac{
+   s_1^2 \left( n_1 - 1 \right) + s_2^2\left( n_2 - 1 \right)
+   }{
+   n_1 + n_2 - 2
+   }
+   = \frac{10.5^2(30-1) + 10.2(30-1)}{30+30-2}
+   = \frac{\cancel{29}(110.25 + 104.04)}{\cancelto{2}{58}} \\
+   & = & \frac{21\,429}{200}
+   = 107.145
+  \end{eqnarray*}
+  entonces
+  \begin{equation*}
+   s_p = \sqrt{s_p^2} = \sqrt{\frac{21\,429}{200}}
+   = \frac{3\sqrt{2\,381}\sqrt{2}}{20}
+   = \frac{3\sqrt{4\,762}}{20}
+   \approx 10.351086899451670625994809052
+  \end{equation*}
+  y, por lo tanto,
+  \begin{eqnarray*}
+   t & = & 
+   \frac{
+   \left( \bar{x}_1 - \bar{x}_2 \right) - d_0
+   }{
+   s_p\sqrt{1/n_1 + 1/n_2}
+   }
+   = \frac{34-0}{\frac{3\sqrt{4\,762}}{20}\sqrt{\frac{1}{30}+\frac{1}{30}}}
+   = \frac{34(20)}{3\sqrt{\frac{4\,762}{15}}}
+   = \frac{680\sqrt{15}\sqrt{4\,762}}{3(4\,762)} \\
+   & = & \frac{340\sqrt{71\,430}}{7\,143}
+   \approx 12.7215079
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.3 se tiene que:
+  \begin{equation*}
+   P(Z > z) \approx P(Z > 12.72) \approx 0 
+  \end{equation*}
+  Por otro lado, usando el estad\'{\i}stico $T$, se tiene que:
+  \begin{equation*}
+   P(T > t) \approx P(T > 12.721507900588463860701)
+  \end{equation*}
+  Pero usando la tabla A.4 con 58 grados de libertad,
+  se buscar\'{\i}a interpolar con los valores m\'as cercanos;
+  sin embargo, estos est\'an muy por afuera del rango de la tabla,
+  a saber, con $60$ grados de libertad,
+  el valor m\'as grande es $3.460$
+  y $P(T > 3.460) = 0.0005$,
+  mientras que con $40$ grados de libertad,
+  el valor m\'as grande es $3.551$
+  y $P(T > 3.551) = 0.0005$, por lo que se puede asegurar que
+  \begin{equation*}
+   P(T > t) \approx P(T > 12.721507900588463860701) < 0.0005
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es muy peque\~no, entonces se tiene evidencia suficiente para concluir que las mujeres ancianas corredoras tienen un porcentaje en la tasa metab\'olica de descanso mayor que las mujeres ancianas sedentarias.
+ \end{conclusion}
+
+ En el c\'odigo registrado en el archivo anexo
+ \texttt{P05\_Prueba\_de\_dos\_medias\_01.r}, en R,
+ se realiza este procedimiento.
+ El c\'odigo permite modificar los valores iniciales
+ que corresponden a:
+ \texttt{n1} y \texttt{n2} para el tama\~no de las muestras;
+ \texttt{mu} para el valor de la diferencia de las medias
+ poblacionales supuesta en la hip\'otesis nula;
+ \texttt{m1} y \texttt{m2} para las medias muestrales o,
+ en su defecto, \texttt{m} para la diferencia de estas
+ si se da el dato directamente;
+ \texttt{sigma1} y \texttt{sigma2} para las desviaciones est\'andar
+ poblacionales, si se indican,
+ o, en su defecto, \texttt{s1} y \texttt{s2}
+ para las desviaciones est\'andar muestrales;
+ \texttt{desv.iguales} indica,
+ en caso de que se desconozcan las desviaciones est\'andar
+ o varianzas poblacionales, si se est\'an suponiendo iguales,
+ con el valor \texttt{TRUE}, o diferentes, con \texttt{FALSE};
+ \texttt{alfa} para el nivel de significancia;
+ \texttt{cola} para indicar si la prueba es de dos colas,
+ con \texttt{'D'}, de cola inferior, con \texttt{'I'},
+ o de cola superior, con \texttt{'S'};
+ adicionalmente, la rutina puede realizar pruebas pareadas
+ con \texttt{par} al darle el valor \texttt{TRUE},
+ que por defecto aparece como \texttt{FALSE}.
+ Esta \'ultima prueba puede necesitar del valor de la desviaci\'on
+ est\'andar de la diferencia de los datos pareados,
+ para lo que se usa el valor de \texttt{sD}.
+ \par 
+ El programa espera al menos los datos correspondientes
+ a la muestra:
+ el tama\~no de ambas muestras;
+ la diferencia de las medias muestrales,
+ que en caso de dar los valores individuales,
+ la rutina calcula la diferencia previo a la funci\'on principal;
+ las desviaciones est\'andar, ya sean poblacionales
+ o muestrales, o en caso de ser muestras pareadas,
+ la desviaci\'on estandar muestral de la diferencia;
+ y el tipo de prueba (cola izquierda o derecha, o dos colas);
+ y, en caso de ser muestras peque\~nas,
+ la suposici\'on sobre si son o no iguales
+ las desviaciones est\'andar poblacionales.
+ Por lo tanto, el valor $P$ siempre se obtiene,
+ independientemente de si se desea una prueba de hip\'otesis
+ fijando la probabilidad del error tipo I
+ o si se realiza una prueba de significancia
+ (aproximaci\'on al valor $P$).
+ Los valores no dados, ya sea por redundancia o por ser opcionales,
+ se indican con el valor \texttt{NULL},
+ excepto \texttt{par} que por defecto tiene el valor \texttt{FALSE}.
+ \par 
+ La prueba de hip\'otesis usar\'a alg\'un estad\'{\i}stico,
+ seg\'un corresponda, que tiene distribuci\'on $Z$ o $t$.
+ Se considerar\'a la de distribuci\'on $Z$ si se dan
+ las desviaciones est\'andar poblacionales o,
+ como estimadores de \'estas,
+ las desviaciones est\'andar muestrales.
+ Esto \'ultimo ocurrir\'a \'unicamente
+ si los tama\~nos de cada muestra son mayores o iguales que $30$.
+ Si no se dan las desviaciones est\'andar poblacionales
+ y las muestras son peque\~nas,
+ se usar\'a el estad\'{\i}stico con distribuci\'on $t$
+ y, en dado caso, una condici\'on necesaria y que se va a suponer
+ es que las distribuciones poblacionales son aproximadamente
+ normales.
+ Adem\'as, como ya se mencion\'o, se considerar\'a la prueba
+ de muestras pareadas.
+ \par
+ Independientemente del tipo de prueba,
+ el resultado muestra lo siguiente:
+ \texttt{Prueba} para saber si se us\'o un estad\'{\i}stico
+ con distribuci\'on $Z$ o con distribuci\'on $t$;
+ \texttt{H0} para el valor propuesto de la diferencia
+ de las medias poblacionales;
+ \texttt{n1} y \texttt{n2} para el tama\~no de cada muestra;
+ \texttt{DifMedias} o \texttt{MediaPareada}
+ para la diferencia de las medias muestrales,
+ seg\'un son muestras independientes o pareadas;
+ \texttt{desv.est1} y \texttt{desv.est2} para las desviaciones
+ est\'andar, ya sea poblacional o muestral seg\'un sea el caso,
+ que, en el caso de las muestras pareadas, se sustituye
+ por \texttt{desv.par};
+ \texttt{error.est} para el error est\'andar,
+ cuya f\'ormula var\'{\i}a entre un estad\'{\i}stico y otro,
+ pero, independientemente,
+ cuando este error divide a
+ $\left(\bar{x}_1 - \bar{x}_2\right) - d_0$
+ se obtiene el estad\'{\i}stico,
+ y representa la estimaci\'on de la desviaci\'on est\'andar
+ de $\overline{X}_1 - \overline{X}_2$;
+ \texttt{alpha} para el nivel de significancia dado,
+ el cual muestra por defecto $0.05$
+ en caso de asignar \texttt{NULL} a \texttt{alfa};
+ \texttt{PValor} para el valor $P$,
+ la probabilidad de haber obtenido una muestra como se obtuvo,
+ suponiendo que la hip\'otesis nula sea cierta;
+ \texttt{Estadistico} para el valor resultante
+ del estad\'{\i}stico de prueba;
+ \texttt{RegionRechazoZ} o \texttt{RegionRechazoT},
+ seg\'un el tipo de prueba realizada,
+ que indica en d\'onde se encuentra la regi\'on de rechazo para
+ los valores obtenidos por el estad\'{\i}stico de prueba,
+ seg\'un el valor de $\alpha$ (posiblemente el dado por defecto);
+ \texttt{RegionRechazoX} para indicar la regi\'on de rechazo,
+ en t\'erminudos de las unidades originales del problema,
+ para el valor de \texttt{m},
+ la diferencia de las medias muestrales.
+ \par 
+ Adem\'as, seg\'un el tipo de prueba,
+ pueden darse los siguientes valores:
+ \texttt{Resultado} para indicar si se rechaza o no la hip\'otesis
+ nula, que aparece cuando se asigna un valor a \texttt{alfa}, y se encuentra siempre al final de los resultados;
+ \texttt{var.pobl} aparece cuando se realiza una prueba $t$, 
+ no se conocen las desviaciones est\'andar poblacionales,
+ y este valor indica si se est\'an suponiendo iguales o distintos,
+ aparece despu\'es de \texttt{Prueba};
+ \texttt{est.sp} aparece cuando se realiza una prueba $t$
+ y se est\'a suponiendo varianzas iguales,
+ este valor indica el resultado
+ de calcular $s_p$, el estimador de la desviaci\'on est\'andar
+ poblacional com\'un $\sigma$ de las distribuciones poblacionales
+ de las que se est\'an obteniendo las muestras,
+ aparece despu\'es de las desviaciones est\'andar muestrales;
+ \texttt{grados.libertad} aparece cuando se realiza una prueba $t$,
+ indica los grados de libertad
+ que es el par\'ametro de la distribuci\'on $t$
+ del estad\'{\i}stico,
+ entre el valor del error est\'andar y $\alpha$;
+ \texttt{Tipo} aparece \'unicamente cuando se trata de una prueba
+ con muestras dependientes, es decir muestras pareadas,
+ indicando el texto: \textit{Muestras pareadas}.
+ \par 
+ El c\'odigo junto con el resultado se muestra a continuaci\'on:
+ \begin{verbatim}
+> n1<-30
+> n2<-30
+> mu<-0
+> m1<-NULL
+> m2<-NULL
+> m<-34
+> sigma1<-NULL
+> sigma2<-NULL
+> s1<-10.5
+> s2<-10.2
+> sD<-NULL
+> desv.iguales<-TRUE
+> alfa<-NULL
+> cola<-'S'
+> par<-FALSE
+> if(is.null(m)) m<-m1-m2
+> if(n1>=30 & n2>=30){
++    if(is.null(sigma1)) sigma1<-s1
++    if(is.null(sigma2)) sigma2<-s2
++ }
+> if(par & n1 != n2){
++    stop("Las muestras pareadas deben tener el mismo tamaño.")
++ }
+> TestMedia<-function(n1,n2,mu,m,desv1,desv2,sD=NULL,alfa=0.05,colas='D',
++                     conocidas=FALSE,iguales=FALSE,pareadas=FALSE){
++   if(n1 < 2 | n2 < 2 | par & is.null(sD)){
++     if(is.null(sD)){
++        error<-ifelse(is.na(desv1)|is.na(desv2),
++                      NA,sqrt(desv1^2/n1+desv2^2/n2))
++     }else{
++        error<-sD
++     }
++     r<-data.frame(Prueba=NA, H0=mu,
++                   n1=n1, n2=n2,
++                   DifMedias=m,
++                   desv.est1=ifelse(is.na(desv1),NA,desv1),
++                   desv.est2=ifelse(is.na(desv2),NA,desv2),
++                   error.est=error,
++                   alpha=alfa,
++                   PValor=NA,
++                   Estadistico=NA,
++                   RegionRechazoZ=NA,
++                   RegionRechazoX=NA)
++   }
++   estadistico<-m-mu
++   if(!pareadas){
++     if(conocidas){
++       desv<-sqrt(desv1^2/n1+desv2^2/n2)
++       estadistico<-estadistico/desv
++       r<-data.frame(Prueba="Z",H0=mu,
++                     n1=n1, n2=n2,
++                     DifMedias=m,
++                     desv.est1=desv1, desv.est2=desv2,
++                     error.est=desv,
++                     alpha=alfa)
++       if(colas=='D'){
++         pvalor<-round(2*pnorm(abs(estadistico),lower.tail=F),7)
++         criticoz<-round(qnorm(1-alfa/2),7)
++         criticox<-round(criticoz*desv,7)
++         r$PValor<-pvalor
++         r$Estadistico<-estadistico
++         r$RegionRechazoZ<-paste("<",-criticoz," y >",criticoz)
++         r$RegionRechazoX<-paste("<",mu-criticox," y >",mu+criticox)
++       }else{
++         criticoz<-round(qnorm(1-alfa),7)
++         criticox<-round(criticoz*desv,7)
++         if(colas=='I'){
++           pvalor<-round(pnorm(estadistico),7)
++           r$PValor<-pvalor
++           r$Estadistico<-estadistico
++           r$RegionRechazoZ<-paste("<",-criticoz)
++           r$RegionRechazoX<-paste("<",mu-criticox)
++         }else{
++           pvalor<-round(pnorm(estadistico,lower.tail=F),7)
++           r$PValor<-pvalor
++           r$Estadistico<-estadistico
++           r$RegionRechazoZ<-paste(">",criticoz)
++           r$RegionRechazoX<-paste(">",mu+criticox)
++         }
++       }
++     }else{
++       if(iguales){
++         grados<-n1+n2-2
++         sp<-sqrt((desv1^2*(n1-1)+desv2^2*(n2-1))/grados)
++         desv<-sp*sqrt(1/n1+1/n2)
++         estadistico<-estadistico/desv
++         r<-data.frame(Prueba="t",
++                       var.pobl="Iguales",
++                       H0=mu,
++                       n1=n1,n2=n2,
++                       DifMedias=m,
++                       desv.est1=desv1,
++                       desv.est2=desv2,
++                       est.sp=sp,
++                       error.est=desv,
++                       grados.libertad=grados,
++                       alpha=alfa)
++       }else{
++         numerador<-(desv1^2/n1 + desv2^2/n2)^2
++         denominador<-(desv1^2/n1)^2/(n1-1) + (desv2^2/n2)^2/(n2-1)
++         grados<-round(numerador/denominador,0)
++         desv<-sqrt(desv1^2/n1 + desv2^2/n2)
++         estadistico<-estadistico/desv
++         r<-data.frame(Prueba="t",
++                       var.pobl="Diferentes",
++                       H0=mu,
++                       n1=n1,n2=n2,
++                       DifMedias=m,
++                       desv.est1=desv1,
++                       desv.est2=desv2,
++                       error.est=desv,
++                       grados.libertad=grados,
++                       alpha=alfa)
++       }
++       if(colas=='D'){
++         pvalor<-round(2*pt(abs(estadistico),grados,lower.tail=F),7)
++         criticot<-round(qt(1-alfa/2,grados),7)
++         criticox<-round(criticot*desv,7)
++         r$PValor<-pvalor
++         r$Estadistico<-estadistico
++         r$RegionRechazoT<-paste("<",-criticot," y >",criticot)
++         r$RegionRechazoX<-paste("<",mu-criticox," y >",mu+criticox)
++       }else{
++         criticot<-round(qt(1-alfa,grados),7)
++         criticox<-round(criticot*desv,7)
++         if(colas=='I'){
++           pvalor<-round(pt(estadistico,grados),7)
++           r$PValor<-pvalor
++           r$Estadistico<-estadistico
++           r$RegionRechazoT<-paste("<",-criticot)
++           r$RegionRechazoX<-paste("<",mu-criticox)
++         }else{
++           pvalor<-round(pt(estadistico,grados,lower.tail=F),7)
++           r$PValor<-pvalor
++           r$Estadistico<-estadistico
++           r$RegionRechazoT<-paste(">",criticot)
++           r$RegionRechazoX<-paste(">",mu+criticox)
++         }
++       }
++     }
++   }
++   else{
++     desv<-sD/sqrt(n1)
++     estadistico<-estadistico/desv
++     grados<-n1-1
++     r<-data.frame(Prueba="t",
++                   Tipo="Muestras pareadas",
++                   H0=mu,
++                   n=n1,
++                   MediaPareada=m,
++                   desv.par=sD,
++                   error.est=desv,
++                   grados.libertad=grados,
++                   alpha=alfa)
++     if(colas=='D'){
++       pvalor<-round(2*pt(abs(estadistico),grados,lower.tail=F),7)
++       criticot<-round(qt(1-alfa/2,grados),7)
++       criticox<-round(criticot*desv,7)
++       r$PValor<-pvalor
++       r$Estadistico<-estadistico
++       r$RegionRechazoT<-paste("<",-criticot," y >",criticot)
++       r$RegionRechazoX<-paste("<",mu-criticox," y >",mu+criticox)
++     }else{
++       criticot<-round(qt(1-alfa,grados),7)
++       criticox<-round(criticot*desv,7)
++       if(colas=="I"){
++         pvalor<-round(pt(estadistico,grados),7)
++         r$PValor<-pvalor
++         r$Estadistico<-estadistico
++         r$RegionRechazoT<-paste("<",-criticot)
++         r$RegionRechazoX<-paste("<",mu-criticox)
++       }else{
++         pvalor<-round(pt(estadistico,grados,lower.tail=F),7)
++         r$PValor<-pvalor
++         r$Estadistico<-estadistico
++         r$RegionRechazoT<-paste(">",criticot)
++         r$RegionRechazoX<-paste(">",mu+criticox)
++       }
++     }
++   }
++   return(r)
++ }
+> if(is.null(alfa)){
++   if(!is.null(sigma1)){
++     Test<-TestMedia(n1,n2,mu,m,sigma1,sigma2,colas=cola,conocidas=TRUE,
++                     pareadas=par)
++   }else{
++     Test<-TestMedia(n1,n2,mu,m,s1,s2,sD=sD,colas=cola,conocidas=FALSE,
++                     iguales=desv.iguales,pareadas=par)
++   }
++ }else{
++   if(!is.null(sigma1)){
++     Test<-TestMedia(n1,n2,mu,m,sigma1,sigma2,alfa=alfa,colas=cola,
++                     conocidas=TRUE,pareadas=par)
++   }else{
++     Test<-TestMedia(n1,n2,mu,m,s1,s2,sD=sD,alfa=alfa,colas=cola,
++                     conocidas=FALSE,iguales=desv.iguales,pareadas=par)
++   }
++   resultado<-ifelse(Test[,"PValor"]>=alfa,"No se rechaza H0","Se rechaza H0")
++   Test$Resultado<-resultado
++   Test$Resultado[is.na(Test$Resultado)]<-"Pocos datos"
++ }
+> Test
+  Prueba H0 n1 n2 DifMedias desv.est1 desv.est2 error.est alpha PValor
+1      Z  0 30 30        34      10.5      10.2  2.672639  0.05      0
+  Estadistico RegionRechazoZ RegionRechazoX
+1    12.72151    > 1.6448536    > 4.3961001
+ \end{verbatim}
+ \vspace{-0.5cm}
+ N\'otese que el c\'odigo muestra en el resultado
+ que se us\'o una prueba $Z$,
+ esto es porque los tama\~nos muestrales son mayores
+ o iguales que $30$.
+ Por lo tanto, nunca va a mostrar una prueba $t$.
+ En la pr\'actica no importa
+ porque la prueba $Z$ es muy pr\'oxima a la prueba $t$
+ en estos casos y, por ello, con esta prueba basta para concluir;
+ sin embargo, y \'unicamente para demostrar la coincidencia
+ con los resultados de las cuentas realizadas en este ejercicio,
+ se har\'a un cambio s\'olo para este ejercicio
+ y as\'{\i} muestre el resultado de la prueba $t$.
+ Esto se hace eliminando el siguiente fragmento del c\'odigo:
+ \begin{verbatim}
+> if(n1>=30 & n2>=30){
++    if(is.null(sigma1)) sigma1<-s1
++    if(is.null(sigma2)) sigma2<-s2
++ }
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que se encuentra casi inmediatamente despu\'es
+ de la secci\'on modificable por el usuario.
+ Entonces, sin hacer ning\'un otro cambio, el programa de R lanza
+ el siguiente resultado:
+ \begin{verbatim}
+> Test
+  Prueba var.pobl H0 n1 n2 DifMedias desv.est1 desv.est2   est.sp error.est
+1      t  Iguales  0 30 30        34      10.5      10.2 10.35109  2.672639
+  grados.libertad alpha PValor Estadistico RegionRechazoT RegionRechazoX
+1              58  0.05      0    12.72151    > 1.6715528    > 4.4674574
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos,
+ adem\'as de dar m\'as informaci\'on como el error est\'andar
+ y una regi\'on de rechazo, tanto para el estad\'{\i}stico 
+ como para $\bar{x}_1-\bar{x}_2$, suponiendo que $\alpha=0.05$,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,70 @@
+\begin{enunciado}
+ Un grupo de consumidores est\'a interesado en comparar los costos de operaci\'on para dos diferentes tipos de motor para autom\'ovil. El grupo es capaz de encontrar $15$ propietarios cuyos autom\'oviles tienen motor tipo $A$ y $15$ que tienen motor tipo $B$. Los $30$ propietarios compraron sus autom\'oviles en aproximadamente el mismo tiempo y todos llevan buenos registros por cierto periodo de 12 meses. Adem\'as, se encontr\'o que los propietarios recorrieron aproximadamente el mismo n\'umero de millas. Los estad\'{\i}sticos de costo son $\bar{y}_A = \$87.00/1,000$ millas $\bar{y}_B = \$75.00/1,000$ millas, $s_A = \$5.99$, y $s_B = \$4.85$. Calcule un intervalo de confianza de $95\%$ para estimar $\mu_A - \mu_B$, la diferencia en el costo medio de operaci\'on. Suponga normalidad e igual varianza.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $Y_A$ y $Y_B$ las variables aleatorias de costos de operaci\'on para los tipos de motor para autom\'ovil $A$ y $B$, respectivamente, entonces, del enunciado, se tiene el siguiente resumen de datos:
+ \begin{itemize}
+  \item $Y_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ A, B \}$.
+  \item $\mu_i$ y $\sigma_i$ son desconocidos, para cada $i \in \{ A, B \}$.
+  \item $\sigma_A = \sigma_B$.
+  \item $n_A = n_B = 15$.
+  \item $\bar{y}_A = 87$ d\'olares por cada mil millas y $\bar{y}_B = 75$ d\'olares por cada mil millas.
+  \item $s_A = 5.99$ d\'olares y $s_B = 4.85$ d\'olares.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Como se desea encontrar un intervalo de confianza bilateral para $\mu_A - \mu_B$, usando como estimador $\bar{y}_A - \bar{y}_B$, desconociendo las varianzas poblacionales aunque suponi\'endolas iguales, con muestras peque\~nas de poblaciones que se distribuyen aproximadamente normal, entonces se requeri\'a del valor $t_{\alpha/2, n_A + n_B - 2} = t_{0.025,28}$. De la Tabla A.4, se tiene que $t_{0.025,28} = 2.048$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,28,lower.tail=F)
+[1] 2.048407141795244967852
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $2.04840714$.
+ \par Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales usando como estimador la diferencia de las medias muestrales en muestras peque\~nas, en donde se desconoce las desviaciones est\'andar poblacionales pero suponiendo que son iguales y donde se suponen que las poblaciones se distribuyen aproximadamentenormal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \left( \bar{y}_A - \bar{y}_B \right) - t_{\alpha/2,n_A+n_B-2}s_p\sqrt{\frac{1}{n_A} + \frac{1}{n_B}} < \mu_A - \mu_B < \left( \bar{y}_A - \bar{y}_B \right) + t_{\alpha/2,n_A+n_B-2}s_p\sqrt{\frac{1}{n_A} + \frac{1}{n_B}}
+ \end{equation*}
+ en donde
+ \begin{equation*}
+  s_p = \sqrt{\frac{\left( n_A - 1 \right)s_A^2 + \left( n_B - 1 \right)s_B^2}{n_A + n_B - 2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n_A+n_B - 2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites de confianza como siguen:
+ \begin{eqnarray*}
+  s_p & = & \sqrt{\frac{\left( n_A - 1 \right)s_A^2 + \left( n_B - 1 \right)s_B^2}{n_A + n_B - 2}} = \sqrt{\frac{(15-1)5.99^2 + (15-1)4.85^2}{15 + 15 - 2}} \\
+  & = & \sqrt{\frac{14( 35.8801 + 23.5225)}{28}} = \sqrt{\frac{59.4026}{2}} = \sqrt{\frac{594\,026}{20\,000}} = \sqrt{\frac{297\,013}{10\,000}} \\ 
+  & = & \frac{\sqrt{297\,013}}{100}
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \left( \bar{y}_A - \bar{y}_B \right) \pm t_{\alpha/2,n_A+n_B-2}s_p\sqrt{\frac{1}{n_A} + \frac{1}{n_B}} & = & (87 - 75) \pm 2.048\left( \frac{\sqrt{297\,013}}{100} \right) \left( \sqrt{\frac{1}{15} + \frac{1}{15}}\right) \\
+  & = & 12 \pm  \frac{\cancelto{64}{256}}{125} \, \left( \frac{\sqrt{297\,013}\sqrt{2}}{\cancelto{25}{100}\,\sqrt{15}} \right) = 12 \pm \frac{64\sqrt{594\,026}\sqrt{15}}{3\,125(15)} \\
+  & = & 12 \pm \frac{64\sqrt{8\,910\,390}}{46\,875} = 12 \pm 0.001365\overline{3}\sqrt{8\,910\,390} \\
+  & \approx & 12 \pm 4.075557735
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $95\%$ de la diferencia en el costo medio de operaci\'on para los tipos de motor para autom\'ovil $A$ menos el costo medio de operaci\'on para los tipos de motor para autom\'ovil $B$ es aproximadamente:
+ \begin{equation*}
+  7.92444226483 < \mu_A - \mu_B < 16.0755577351
+ \end{equation*}
+ Finalmente, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P14\_Intervalo\_de\_confianza\_05.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-15
+> n2<-15
+> m1<-87
+> m2<-75
+> desv.tipica1<-5.99
+> desv.tipica2<-4.85
+> alfa<-0.05
+> val<-FALSE
+> varia<-TRUE
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  n1 n2 media1 media2   LimInf diferencia   LimSup
+1 15 15     87     75 7.923632         12 16.07637
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $7.924 < \mu_A - \mu_B < 16.076$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

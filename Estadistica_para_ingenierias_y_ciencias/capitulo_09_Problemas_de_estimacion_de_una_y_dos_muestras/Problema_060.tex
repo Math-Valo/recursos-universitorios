@@ -1,0 +1,43 @@
+\begin{enunciado}
+ ¿Qu\'e tan grande se requiere que sea la muestra en el ejercicio 9.53, si deseamos tener una confianza de $99\%$ de que nuestra proporci\'on de la muestra estar\'a dentro de $0.05$ de la proporci\'on real de casas en esta ciudad que se calientan con petr\'oleo?
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.53 y a\~nadiendo el error m\'aximo en el que se debe encontrar $\hat{p}$ para estimar la proporci\'on, se tiene lo siguiente:
+ \begin{itemize}
+  \item $n = 1\,000$ viviendas muestreadas previamente.
+  \item $x = 228$ casos favorables en la muestra previa.
+  \item $\hat{p} = \frac{57}{250} = 0.228$.
+  \item $\hat{q} = \frac{193}{250} = 0.772$.
+  \item $\alpha = 0.01$.
+  \item $z_{\alpha/2} = 2.575$, seg\'un el libro, y $z_{\alpha/2} = 2.5758293$, con la aproximaci\'on realizada en R.
+  \item $e = 0.05$.
+ \end{itemize}
+ Entonces, como $\hat{p}$ estima a $p$ y hay una muestra previa, se usa el siguiente resultado:
+ \begin{equation*}
+  n = \left\lceil \frac{z_{\alpha/2}^2\hat{p}\hat{q}}{e^2} \right\rceil
+ \end{equation*}
+ por lo tanto, el valor pedido se puede calcular, usando la primera aproximaci\'on de $z_{\alpha/2}$, como
+ \begin{equation*}
+  n = \left\lceil \frac{2.575^2(0.228)(0.772)}{0.05^2} \right\rceil = \left\lceil \frac{6.630625(0.176016)}{0.0025} \right\rceil = \lceil 466.838436 \rceil
+ \end{equation*}
+ Por lo tanto, el tama\~no de la muestra buscada es de $n = 467$.
+ \par 
+ Finalmente, usando R, se puede calcular el tama\~no de la muestra usando la rutina del archivo anexo \texttt{P19\_Tamanyo\_de\_muestra\_2.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+error<-0.05
+alfa<-0.01
+inter<-'D'
+previo<-TRUE
+n<-1000
+x<-228
+p<-NULL
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+[1] 468
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Esto quiere decir que una mejor aproximaci\'on de $z_{\alpha/2}$ da una cantidad m\'as precisa, que es el que se tomar\'a como resultado final. Por lo tanto, un resultado inicial ser\'{\i}a $n=467$, pero siendo m\'as precisos, la cantidad m\'{\i}nima de la muestra para que el error se encuentre en un margen de $0.05$ es de $n = 468$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

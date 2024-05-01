@@ -1,0 +1,115 @@
+\begin{enunciado}
+ Se considera usar dos marcas diferentes de pintura l\'atex. El tiempo de secado en horas se mide en espec\'{\i}menes de muestras del uso de las dos pinturas. Se seleccionan 15 espec\'{\i}menes de cada una y los tiempos de secado son los siguientes:
+ \begin{center}
+  \begin{tabular}{ccccc}
+   \multicolumn{5}{c}{\textbf{Pintura \textit{A}}} \\
+   \hline
+   $3.5$ & $2.7$ & $3.9$ & $4.2$ & $3.6$ \\
+   $2.7$ & $3.3$ & $5.2$ & $4.2$ & $2.9$ \\
+   $4.4$ & $5.2$ & $4.0$ & $4.1$ & $3.4$
+  \end{tabular}
+  \hspace{2cm}
+  \begin{tabular}{ccccc}
+   \multicolumn{5}{c}{\textbf{Pintura \textit{B}}} \\
+   \hline 
+   $4.7$ & $3.9$ & $4.5$ & $5.5$ & $4.0$ \\
+   $5.3$ & $4.3$ & $6.0$ & $5.2$ & $3.7$ \\
+   $5.5$ & $6.2$ & $5.1$ & $5.4$ & $4.8$
+  \end{tabular}
+ \end{center}
+ Suponga que el tiempo de secado se distribuye normalmente con $\sigma_A = \sigma_B$. Encuentre un intervalo de confianza en $\mu_B - \mu_A$, donde $\mu_A$ y $\mu_B$ sean los tiempos medios de secado.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_A$ y $X_B$ las variables aleatorias de las horas de tiempo de secado de las pinturas de marca \textit{A} y \textit{B}, respectivamente, entonces, del enunciado, se tiene lo siguiente:
+ \begin{itemize}
+  \item $X_i \sim n\left( \mu_i, \sigma_i  \right)$, para cada $i \in \{ A, B \}$.
+  \item $\mu_i$ y $\sigma_i$ son desconocidas, para cada $i \in \{ A, B \}$.
+  \item $\sigma_A = \sigma_B$.
+  \item $n_A = n_B = 15$.
+ \end{itemize}
+ adem\'as de los datos obtenidos en cada muestra, de donde se calcula la media y varianza muestral de ambas muestras como se muestra a continuaci\'on. Las medias muestrales se calculan como sigue:
+ \begin{eqnarray*}
+  \bar{x}_A & = & \frac{3.5 + 2.7 + 3.9 + 4.2 + 3.6 + 2.7 + 3.3 + 5.2 + 4.2 + 2.9 + 4.4 + 5.2 + 4.0 + 4.1 + 3.4}{15} \\
+  & = & \frac{57.3}{15} = 3.82
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \bar{x}_B & = & \frac{4.7 + 3.9 + 4.5 + 5.5 + 4.0 + 5.3 + 4.3 + 6.0 + 5.2 + 3.7 + 5.5 + 6.2 + 5.1 + 5.4 + 4.8}{15} \\
+  & = & \frac{74.1}{15} = 4.94
+ \end{eqnarray*}
+ por lo que las varianzas muestrales se obtienen, usando el Teorema 8.1, como sigue:
+ \begin{eqnarray*}
+  s_A^2 & = & \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n x_i^2 - \left( \sum_{i=1}^n \right)^2 \right] \\
+  & = & \frac{1}{15(14)} \left[ 15\left( 3.5^2 + 2.7^2 + 3.9^2 + 4.2^2 + 3.6^2 + 2.7^2 + 3.3^2 + 5.2^2 + 4.2^2 + 2.9^2 + 4.4^2 + \right. \right. \\
+  & & \left. \left. + 5.2^2 + 4.0^2 + 4.1^2 + 3.4^2 \right) - 57.3^2 \right] \\
+  & = & \frac{1}{210}\left[ 15 (12.25 + 7.29 + 15.21 + 17.64 + 12.96 + 7.29 + 10.89 + 27.04 + 17.64 + 8.41 + \right.  \\
+  & & \left. + 19.36 + 27.04 + 16 + 16.81 + 11.56) - 3283.29 \right] \\
+  & = & \frac{15(227.39) - 3\,283.29}{210} = \frac{3\,410.85 - 3\,283.29}{210} = \frac{127.56}{210} = \frac{1\,063}{1\,750} = 0.607\overline{428571}
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  s_B^2 & = & \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n x_i^2 - \left( \sum_{i=1}^n \right)^2 \right] \\
+  & = & \frac{1}{15(14)} \left[ 15\left( 4.7^2 + 3.9^2 + 4.5^2 + 5.5^2 + 4.0^2 + 5.3^2 + 4.3^2 + 6.0^2 + 5.2^2 + 3.7^2 + 5.5^2 + \right. \right. \\
+  & & \left. \left. + 6.2^2 + 5.1^2 + 5.4^2 + 4.8^2 \right) - 74.1^2 \right] \\
+  & = & \frac{1}{210}\left[ 15( 22.09 + 15.21 + 20.25 + 30.25 + 16 + 28.09 + 18.49 + 36 + 27.04 + 13.69 + \right. \\
+  & & \left. + 30.25 + 38.44 + 26.01 + 29.16 + 23.04 ) - 5490.81 \right] \\
+  & = & \frac{15(374.01) - 5\,490.81}{210} = \frac{5\,610.15 - 5\,490.81}{210} = \frac{119.34}{210} = \frac{1\,989}{3\,500} = 0.568\overline{285714}
+ \end{eqnarray*}
+ Por otro lado, como se desea encontrar un intervalo de confianza bilateral para $\mu_B - \mu_A$, usando como estimador $\bar{x}_B - \bar{x}_A$, desconociendo las varianzas poblacionales y suponi\'endolas iguales, con muestras peque\~nas de poblaciones que se distribuyen aproximadamente normal, entonces se requerir\'a el valor $t_{\alpha/2},n_A+n_B-2$.
+ \par 
+ El valor de $\alpha$ no fue dado en el enunciado; sin embargo, haciendo comparaciones con la solucici\'on al final del libro, se puede comparar y obtener que el valor de $\alpha$ debe de ser $\alpha=0.05$, que es lo que se va a tomar en lo subsiguiente.
+ \par 
+ De la Tabla A.4, se tiene que $t_{\alpha/2,n_A+n_B-2} = t_{0.025,28} = 2.048$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,28,lower.tail=F)
+[1] 2.048407141795244967852
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $2.04840714$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales usando como estimador la diferencia de las medias muestrales en muestras peque\~nas, en donde se desconoce las desviaciones est\'andar poblacionales pero suponiendo que son iguales y donde se suponen que las poblaciones se distribuyen aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \left( \bar{x}_B - \bar{x}_A \right) - t_{\alpha/2,n_A+n_B-2}s_p\sqrt{\frac{1}{n_A} + \frac{1}{n_B}} < \mu_B - \mu_A < \left( \bar{x}_B - \bar{x}_A \right) + t_{\alpha/2,n_A+n_B-2}s_p\sqrt{\frac{1}{n_A} + \frac{1}{n_B}}
+ \end{equation*}
+ en donde
+ \begin{equation*}
+  s_p = \sqrt{\frac{\left( n_A -1 \right)s_A^2 + \left( n_B - 1 \right)s_B^2}{n_A + n_B - 2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2, n_A+n_B-2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  s_p & = & \sqrt{\frac{\left( n_A -1 \right)s_A^2 + \left( n_B - 1 \right)s_B^2}{n_A + n_B - 2}} = \sqrt{\frac{ \displaystyle{ (15-1)\left( \frac{1\,063}{1\,750} \right) + (15-1)\left( \frac{1\,989}{3\,500} \right)}}{15+15-2}} \\
+  & = & \sqrt{\frac{ \displaystyle{ 14\left( \frac{2\,126}{3\,500} + \frac{1\,989}{3\,500} \right)}}{28}} = \sqrt{\frac{\displaystyle{\frac{4\,115}{3\,500}}}{2}} = \sqrt{\frac{4\,115}{7\,000}} = \frac{\sqrt{823}\sqrt{14}}{140} = \frac{\sqrt{11\,522}}{140}
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \left( \bar{x}_B - \bar{x}_A \right) \pm t_{\alpha/2,n_A+n_B-2}s_p\sqrt{\frac{1}{n_A} + \frac{1}{n_B}} & = & (4.94 - 3.82) \pm (2.048) \left( \frac{\sqrt{11\,522}}{140} \right) \sqrt{\frac{1}{15} +\frac{1}{15}} \\
+  & = & 1.12 \pm \frac{2.048\sqrt{11\,522}}{140} \sqrt{\frac{2}{15}} \\
+  & = & 1.12 \pm \frac{2.048\sqrt{23\,044}\sqrt{15}}{140(15)} = 1.12 \pm \frac{2.048\sqrt{345\,660}}{2\,100} \\
+  & = & 1.12 \pm \frac{2.048\sqrt{86\,415}}{1\,050} \\
+  & = & 1.12 \pm 0.00195\overline{047619}\sqrt{86\,415} \\
+  & \approx & 1.12 \pm 0.5733703359
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $95\%$ de confianza de la diferencia entre las horas de tiempo de secado promedio de la pintura de marca \textit{B} menos la pintura de marca \textit{A} es de:
+ \begin{equation*}
+  0.546629664 < \mu_B - \mu_A < 1.6933703359
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P15\_Intervalo\_de\_confianza\_06.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+datos<-read.csv("DB08_Problema_49.csv",sep=";",encoding="UTF-8")
+varInteres<-c("Tiempo.h")
+varSel<-list("Marca")
+alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  Tipo.de.Grupo     Var1 Freq n1 n2 media1 media2    limInf diferencia
+1         Marca Tiempo.h   30 15 15   3.82   4.94 -1.693484      -1.12
+      limSup  valorPMedia valorPVar          varIgual            Resultado
+1 -0.5465157 0.0004196597  0.902581 Var no diferentes Signif dif de medias
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Los valores negativos se deben a que el programa considera el intevalo para $\mu_A - \mu_B$, entonces, al multiplicar todo por $-1$, el resultado del script da $0.5465157 < \mu_B - \mu_A < 1.693484$, por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $0.546 < \mu_B - \mu_A < 1.693$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

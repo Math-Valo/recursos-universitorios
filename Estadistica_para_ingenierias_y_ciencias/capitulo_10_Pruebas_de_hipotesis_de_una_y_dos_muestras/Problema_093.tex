@@ -1,0 +1,164 @@
+\begin{enunciado}
+ Un crimin\'ologo realiz\'o una investigaci\'on para determinar
+ si, en una ciudad grande, la incidencia de ciertos tipos de delitos var\'{\i}a
+ de una parte a otra.
+ Los cr\'{\i}menes espec\'{\i}ficos de inter\'es son asalto (con violencia),
+ robo a casa, hurto y homicidio.
+ La siguiente tabla muestra el n\'umero de delitos cometidos en cuatro \'areas
+ de la ciudad durante el a\~no pasado.
+ \begin{center}
+  \begin{tabular}{lcccc}
+   & \multicolumn{4}{c}{\textbf{Tipo de crimen}} \\
+   \cline{2-5}
+   \textbf{Distrito} & \textbf{Asalto} & \textbf{Robo en casa} &
+   \textbf{Hurto} & \textbf{Homicidio} \\
+   \hline 
+   1 & $162$ & $118$ & $451$ & $18$ \\
+   2 & $310$ & $196$ & $996$ & $25$ \\
+   3 & $258$ & $193$ & $458$ & $10$ \\
+   4 & $280$ & $175$ & $390$ & $19$
+  \end{tabular}
+ \end{center}
+ ¿A partir de tales datos podemos concluir, con un nivel de significancia
+ de $0.01$, que la ocurrencia de estos tipos de delitos es dependiente del distrito de la ciudad?
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item Tamaño de muestra total: $4\,059$.
+   \item Cr\'{\i}menes en el distrito 1: $162 + 118 + 451 + 18 = 749$.
+   \item Cr\'{\i}menes en el distrito 2: $310 + 196 + 996 + 25 = 1\,527$.
+   \item Cr\'{\i}menes en el distrito 3: $258 + 193 + 458 + 10 = 919$.
+   \item Cr\'{\i}menes en el distrito 4: $280 + 175 + 390 + 19 = 864$.
+   \item Total de asaltos: $162 + 310 + 258 + 280 = 1\,010$.
+   \item Total de robos en casa: $118 + 196 + 193 + 175 = 682$.
+   \item Total de hurtos: $451 + 996 + 458 + 390 = 2\,295$.
+   \item Total de homicidios: $18 + 25 + 10 + 19 = 72$.
+   \item Frecuencias observadas y esperadas: $o_{i,j}$
+   y $e_{i,j}=\frac{R_i C_j}{n}$, respectivamente,
+   donde $R_i$ y $C_j$ son los marginales del rengl\'on $i$ y la columna $j$,
+   respectivamente, y $n$ es el total de toda la muestra.
+   As\'{\i}, pues, redondeando a un decimal, se muestra el resumen 
+   en la siguiente tabla,
+   en donde aparece entre par\'entesis la frecuencia esperada
+   y a la izquierda el valor observado:
+   \begin{center}
+    \begin{tabular}{lcccc|c}
+     & \multicolumn{4}{c}{\textbf{Tipo de crimen}} &
+     \textbf{Marginal} \\
+     \cline{2-5}
+     \textbf{Distrito} & \textbf{Asalto} & \textbf{Robo en casa} &
+     \textbf{Hurto} & \textbf{Homicidio} & \textbf{por distrito} \\
+     \hline 
+     1 & $162 (186.4)$ & $118 (125.8)$ & $451 (423.5)$ & $18 (13.3)$ &
+     $749$ \\
+     2 & $310 (379.9)$ & $196 (256.6)$ & $996 (863.4)$ & $25 (27.1)$ &
+     $1\,527$ \\
+     3 & $258 (228.7)$ & $193 (154.4)$ & $458 (519.6)$ & $10 (16.3)$ &
+     $919$ \\
+     4 & $280 (215)$ & $175 (145.2)$ & $390 (488.5)$ & $19 (15.3)$ &
+     $864$ \\
+     \hline 
+     \textbf{Marginal} & \multirow{2}{*}{$1\,010$} &
+     \multirow{2}{*}{$682$} & \multirow{2}{*}{$2\,295$} &
+     \multirow{2}{*}{$72$} & \textbf{TOTAL} \\
+     \textbf{por crimen} & & & & & $n=4\,059$
+    \end{tabular}
+   \end{center}
+   \item Tama\~no de la tabla de contingencia: $r\times c = 4\times 4$.
+   \item Grados de libertad de la prueba $\chi^2$: $v = (r-1)(c-1) = 9$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: & & \text{Los cr\'{\i}menes en la ciudad son independientes
+   del distrito.} \\
+   H_1: & & \text{Los cr\'{\i}menes en la ciudad dependen del distrito.}
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.01$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{\alpha,v} = \chi^2_{0.01,9} \approx 21.666$,
+  por lo que la regi\'on de rechazo est\'a dado
+  para $\chi^2 > 21.666$, donde
+  $\chi^2 = \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   \chi^2 & = & \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i} \\
+   & \approx & \frac{595.36}{186.4} + \frac{60.84}{125.8} + 
+   \frac{756.25}{423.5} + \frac{22.09}{13.3} + \frac{4\,886.01}{379.9} +
+   \frac{3\,672.36}{256.6} + \frac{17\,582.76}{863.4} + \frac{4.41}{27.1} +\\
+   & & \frac{858.49}{228.7} + \frac{1\,489.96}{154.4} +
+   \frac{3\,794.56}{519.6} + \frac{39.69}{16.3} + \frac{4\,225}{215} +
+   \frac{888.04}{145.2} + \frac{9\,702.25}{488.5} + \frac{13.69}{15.3} \\
+   & \approx & 3.194 + 0.4836 + 1.7857 + 1.6609 + 12.8613 + 14.3116 +
+   20.3646 + 0.1627 \\
+   & & 3.7538 + 9.65 + 7.3028 + 2.435 + 19.6512 + 6.116 + 19.8613 + 0.8948 \\
+   & = & 124.4893
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  Hay evidencia para afirmar que el nivel de cr\'{\i}menes depende
+  del distrito.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeniedad\_01.r},
+ que a su vez requiere los datos del archivo
+ \texttt{BD29\_Problema\_093.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB29_Problema_093.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Distrito","Crimen")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1,2)
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+$tabla
+        Crimen
+Distrito Asalto Homicidio Hurto Robo en casa
+       1    162        18   451          118
+       2    310        25   996          196
+       3    258        10   458          193
+       4    280        19   390          175
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 124.53, df = 9, p-value < 2.2e-16
+
+
+$listaPruebas[[2]]
+
+	Log likelihood ratio (G-test) test of independence without correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 124.82, X-squared df = 9, p-value <
+2.2e-16
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos, adem\'as de brindar m\'as
+ informaci\'on y los valores $P$ junto con la prueba G.
+ N\'otese que esta vez no se us\'o la correcci\'on de Williams,
+ ya que los totales marginales var\'{\i}an bastante.
+ Que es lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

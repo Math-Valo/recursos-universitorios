@@ -1,0 +1,106 @@
+\begin{enunciado}
+ Considere las medidas del tiempo de secado del ejercicio 9.18. Suponga que las $15$ observaciones en el conjunto de datos tambi\'en incluyen un 16o. valor de $6.9$ horas. En el contexto de las $15$ observaciones originales, ¿el decimosexto es un valor extremo? Demuestre su trabajo.
+\end{enunciado}
+
+\begin{solucion}
+ Hablar de valor extremo para un valor nuevo, se refiere a hablar de intervalo de predicci\'on para una nueva observaci\'on, lo cual ya se hizo en la soluci\'on del ejercicio 9.27; sin embargo, se va a ampliar aqu\'{\i} un poco m\'as sobre el intervalo de predicci\'on, as\'{\i} pues, usando la notaci\'on y datos del ejercicio 9.27, exceptuando el valor $\alpha$ del intervalo de predicci\'on, el cual es cambiado a $0.01$, se tiene lo siguiente:
+ \begin{itemize}
+  \item $X\sim n(\mu, \sigma)$.
+  \item $\mu$ y $\sigma$ desconocidos.
+  \item $n=15$.
+  \item $\bar{x} = 3.78\overline{6}$.
+  \item $s\approx 0.97091$.
+  \item $\alpha=0.01$.
+ \end{itemize}
+ Lo natural, al saber que la nueva muestra es mayor a las otras, ser\'{\i}a calcular un intervalo de predicci\'on unilateral superior, pero se proceder\'a a calcular el intervalo bilateral, ya que ofrece mayor restricci\'on a lo que puede ser  un valor extremo, esto es, si $LU_1$ es el valor del l\'{\i}mite superior, al calcular el intervalo de predicci\'on unilateral superior, y $LU_2$ es el l\'{\i}mite superior, al calcular el intervalo de predicci\'on bilateral, entonces $LU_1 < LU_2$, por lo que, para que una observaci\'on, $x_0$, sea considerado un valor extremo, en el primer caso, puede ocurrir que $LU_1 < x_0 < LU_2$, pero si con un intervalo bilateral se obtiene que es un valor extremo, entonces implica que tambi\'en es un valor extremo si se hubiese calculado con el intervalo unilateral, ya que ocurrir\'{\i}a que $LU_1 < LU_2 < x_0$.
+ \par 
+ Antes de continuar, se probar\'a lo anterior para el caso del l\'{\i}mite superior entre el intervalo bilateral y unilateral superior de predicci\'on; para el caso del l\'{\i}mite inferior entre el intervalo bilateral y unilateral inferior de predicci\'on, se puede proceder de manera an\'aloga. Para demostrarlo, basta con notar que, para un valor de $\alpha$ fija, el l\'{\i}mite superior en el intervalo de predicci\'on bilateral usa alguna de las siguientes formulaciones:
+ \begin{equation*}
+  \bar{x} + z_{\alpha/2}s\sqrt{1+1/n} \qquad \text{\'o} \qquad \bar{x} + t_{\alpha/2,n-1}s\sqrt{1+1/n}
+ \end{equation*}
+ mientras que el l\'{\i}mite en el intervalo unilateral superior usa alguna de las siguientes formulaciones
+ \begin{equation*}
+  \bar{x} + z_{\alpha}s\sqrt{1+1/n} \qquad \text{\'o} \qquad \bar{x} + t_{\alpha,n-1}s\sqrt{1+1/n}
+ \end{equation*}
+ luego entonces, el l\'{\i}mite depende del valor cr\'{\i}tico $z$ \'o $t$, pero como $z_{\alpha}$ es el valor $z$ que deja un \'area de $\alpha$ la derecha, mientras que $z_{\alpha/2}$ es el valor $z$ que deja un \'area de $\alpha/2$ a la derecha, entonces $z_{\alpha} < z_{\alpha/2}$, an\'alogamente $t_{\alpha,n-1} < t_{\alpha/2,n-1}$, por lo que el l\'{\i}mite del interval unilateral superior es menor al l\'{\i}mite superior del intervalo bilateral, lo cual concluye esta prueba.
+ \par 
+ Dado que se desconoce la desviaci\'on est\'andar poblacional y la muestra no es lo suficientemente grande pero la poblaci\'on tiene una distribuci\'on normal, se usar\'a el valor $t_{\alpha/2,n-1} = t_{0.005,14}$. De la tabla A.4, se tiene que $t_{0.005,14} = 2.977$, mientras que, usando el software estad\'{\i}stico R, se obtiene un valor m\'as preciso con los siguientes comandos
+ \begin{verbatim}
+options(digits=22)
+qt(0.005,14,lower.tail=F)
+[1] 2.976842734370834353541
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $2.97684273$.
+ \par 
+ Como se est\'a buscando un intervalo de predicci\'on para una muestra peque\~na que proviene de una poblaci\'on normal con varianza desconocida, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{x} - t_{\alpha/2,n-1}s\sqrt{1+1/n} < x_0 < \bar{x} + t_{\alpha/2,n-1}s\sqrt{1+1/n}
+ \end{equation*}
+ Por lo tanto, con los datos obtenidos y el valor $t_{\alpha/2,n-1}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de predicci\'on como siguen:
+ \begin{eqnarray*}
+  \bar{x} \pm t_{\alpha/2,n-1}s\sqrt{1+1/n} & = & 3.78\overline{6} \pm (2.977)(0.97091)\sqrt{1+\frac{1}{15}} = 3.78\overline{6} \pm 2.89039907\sqrt{\frac{16}{15}} \\
+  & = & 3.78\overline{6} \pm \frac{(2.89039907)(4)}{\sqrt{15}} = 3.78\overline{6} \pm \frac{11.56159628 \sqrt{15}}{15} \\
+  & = & 3.78\overline{6} \pm 0.770773085\overline{3}\sqrt{15}
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de predicci\'on de $99\%$ para la medici\'on pr\'oxima observada en el tiempo de secado de la pintura l\'atex es de
+ \begin{equation*}
+  0.80147534346575845546 x_0 < 6.771857989867574877873
+ \end{equation*}
+ Por otro lado, el c\'alculo del intervalo de predicci\'on usando R se puede obtener con los siguientes comandos. Los c\'odigos escritos se encuentran registrados en un script en el archivo anexo \texttt{P12\_Intervalo\_de\_prediccion\_4.r}. El archivo es una modificaci\'on del script que se encuentra en el anexo \texttt{P09\_Intervalo\_de\_prediccion\_2.r}, para que pueda calcular intervalos unilaterales mostrando el resultado de forma an\'aloga.
+ \begin{verbatim}
+>library(EnvStats)
+>read.csv("DB02_Problema_18.csv",sep=";",encoding="UTF-8")
+>varInteres<-c("Tiempo.h")
+>alfa<-0.01
+>inter<-'D'
+>valores<-unlist(datos[,varInteres])
+>variable<-factor(rep(varInteres,each=dim(datos)[1]))
+>IP<-function(x,sup=TRUE,alfa=0.05,colas=2){
++   if (length(x[!is.na(x)])>=2){
++      if(colas==2){
++         RespGen<-predIntNorm(x[!is.na(x)],conf.level=alfa,pi.type="two-side",
++                              method="Bonferroni")
++         v<-ifelse(sup,round(RespGen$interval$limits[[2]],7),
++                   round(RespGen$interval$limits[[1]],7))
++      } else{
++         if(sup){
++            RespGen<-predIntNorm(x[!is.na(x)],conf.level=alfa,pi.type="upper",
++                                 method="Bonferroni")
++            v<-round(RespGen$interval$limits[[2]],7)
++         } else{
++            RespGen<-predIntNorm(x[!is.na(x)],conf.level=alfa,pi.type="lower",
++                                 method="Bonferroni")
++            v<-round(RespGen$interval$limits[[1]],7)
++         }
++      }
++      return(v)
++   } else return(NA)
++}
+>media<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),mean,
++                           na.rm=TRUE),responseName="Media")
+>if(inter == 'D'){
++   IPs1<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),IP,
++                             alfa=1-alfa),responseName="LimSup")
++   IPs2<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),IP,
++                             sup=FALSE,alfa=1-alfa),responseName="LimInf")
++   IPs<-na.omit(data.frame(IPs2,Media=media[,"Media"],LimSup=IPs1[,"LimSup"]))
++} else{
++   if(inter == 'I'){
++      IPs1<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),IP,
++                                alfa=1-alfa,sup=FALSE,colas=1),responseName=
++                                "LimSup")
++      IPs<-na.omit(data.frame(IPs2,Media=media[,"Media"]))
++   } else{
++      IPs1<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),IP,
++                                alfa=1-alfa,colas=1),responseName="LimSup")
++      IPs<-na.omit(data.frame(media,LimSup=IPs1[,"LimSup"]))
++   }
++}
+>IPs
+  variable    LimInf    Media   LimSup
+1 Tiempo.h 0.8016323 3.786667 6.771701
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Entonces, redondeando a dos decimales para unificar las soluciones, se tiene que el intervalo de predicci\'on, con $99\%$ de seguridad, para la siguiente observaci\'on es $(0.8,6.77)$. Por lo tanto, el 16o. valor, $6.9$, queda fuera del intervalo de predicci\'on, por lo que s\'{\i} se considera un valor extremo, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

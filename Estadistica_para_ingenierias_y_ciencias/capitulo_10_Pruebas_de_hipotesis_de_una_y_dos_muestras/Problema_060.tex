@@ -1,0 +1,79 @@
+\begin{enunciado}
+ En cierta universidad se estima que a lo m\'as $25\%$ de los estudiantes van
+ en bicicleta a la escuela.
+ ¿\'Esta parece ser una estimaci\'on v\'alida
+ si, en una muestra aleatoria de $90$ estudiantes universitarios, se encuentra que $28$
+ van en bicicleta a la escuela?
+ Utilice un nivel de significancia de $0.05$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n=90$.
+   \item $x=28$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p & \leq & 0.25 \\
+   H_1: p &  >   & 0.25
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.3, se tiene el valor cr\'{\i}tico $z_{\alpha} = z_{0.05} = 1.645$,
+  por lo que la regi\'on de rechazo est\'a dado para $z > 1.645$,
+  donde $z = \frac{x - np}{\sqrt{npq}} 
+  = \frac{\widehat{p} - p}{\sqrt{pq/n}}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{equation*}
+   z = \frac{x - np}{\sqrt{npq}}
+   = \frac{28 - (90)(0.25)}{\sqrt{(90)(0.25)(0.75)}}
+   = \frac{28 - 22.5}{\sqrt{16.875}}
+   = \frac{\frac{11}{2}}{\sqrt{\frac{135}{8}}}
+   = \frac{11\cdot \cancel{2} \sqrt{2}}{\cancel{2}\cdot3\sqrt{15}}
+   = \frac{11\sqrt{30}}{45}
+   \approx 1.3388773627904
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  No hay pruebas suficientes para refutar la afirmaci\'on de que a lo m\'as $25\%$
+  de los estudiantes van en bicicleta a la escuela.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo \texttt{P08\_Prueba\_de\_una\_proporcion\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n<-90
+> x<-28
+> p0<-NULL
+> p<-0.25
+> alfa<-0.05
+> cola<-'S'
+> distr<-NULL
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+   distr    p  n  x pMuestral media desv.est alpha    PValor Estadistico
+1 Normal 0.25 90 28 0.3111111  22.5 4.107919  0.05 0.0903053    1.338877
+  RegionRechazoZ RegionRechazoX        Resultado
+1   >= 1.6448536          >= 30 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

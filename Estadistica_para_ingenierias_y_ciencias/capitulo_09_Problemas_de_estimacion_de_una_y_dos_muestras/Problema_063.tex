@@ -1,0 +1,37 @@
+\begin{enunciado}
+ La conjetura de un miembro del profesorado del departamento de microbiolog\'{\i}a de la Escuela de Odontolog\'{\i}a de la Universidad de Washington, en St. Louis, afirma que un par de tasas diarias de t\'e verde o negro proporcionan suficiente fl\'uor para evitar caries en los dientes. ¿Qu\'e tan grande se requiere que sea la muestra para estimar el porcentaje de habitantes de cierta ciudad que est\'an a favor de tener su agua fluorada, si se desea tener al menos el $99\%$ de confianza de que la estimaci\'on est\'a dentro del $1\%$ del porcentaje real?
+\end{enunciado}
+
+\begin{solucion}
+ Del enunciado se tienen los siguientes datos:
+ \begin{itemize}
+  \item $\alpha = 0.01$.
+  \item $e = 0.01$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a el tama\~no de muestra para que el error al estimar la proporci\'on est\'e dentro de un margen de error, entonces se requiere del valor $z_{\alpha/2} = z_{0.005}$, el cual se calcul\'o en el ejercicio 9.7 y su aproximaci\'on es de $2.575$, aunque, en R, se puede considerar con mayor precisi\'on como $2.5758293$.
+ \par 
+ Entonces, como no hay una muestra previa para estimar el tama\~no de muestra, se usa el siguiente resultado:
+ \begin{equation*}
+  n = \left\lceil \frac{z_{\alpha/2}^2}{4e^2} \right\rceil = \left\lceil \left( \frac{z_{\alpha/2}}{2e} \right)^2 \right\rceil
+ \end{equation*}
+ por lo tanto, el valor pedido se puede calcular, usando la primera aproximaci\'on de $z_{\alpha/2}$, como
+ \begin{equation*}
+  n = \left\lceil \left( \frac{2.575}{2(0.01)} \right)^2 \right\rceil = \left\lceil \left( 128.75 \right)^2 \right\rceil = \lceil 16\,576.5625 \rceil
+ \end{equation*}
+ Por lo tanto, el tama\~no de la muestra buscada es de $n = 16\,577$.
+ \par 
+ Finalmente, usando R, se puede calcular el tama\~no de la muestra usando la rutina del archivo anexo \texttt{P19\_Tamanyo\_de\_muestra\_2.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> error<-0.01
+> alfa<-0.01
+> inter<-'D'
+> previo<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+[1] 16588
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Esto quiere decir que una mejor aproximaci\'on de $z_{\alpha/2}$ da una cantidad m\'as precisa, que es el que se tomar\'a como resultado final. Por lo tanto, un resultado inicial ser\'{\i}a $n = 16\,577$ (n\'otese que \'esta es la soluci\'on indicada por el libro), pero siendo m\'as precisos, la cantidad m\'{\i}nima de la muestra para que el error se encuentre en un margen del $1\%$ es de $n = 16\,588$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

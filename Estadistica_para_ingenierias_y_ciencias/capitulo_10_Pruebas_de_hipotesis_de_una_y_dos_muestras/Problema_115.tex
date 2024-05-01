@@ -1,0 +1,59 @@
+\begin{enunciado}
+ Estudios indican que la concentraci\'on de \texttt{PCB} es mucho
+ m\'as alta en tejido maligno de pecho que en tejido normal de pecho.
+ Si un estudio de $50$ mujeres con c\'ancer de seno revela
+ una concentraci\'on promedio de \texttt{PCB} de $22.8 \times 10^{-4}$
+ gramos, con una desviaci\'on est\'andar de $4.8 \times 10^{-4}$ gramos,
+ ¿la concentraci\'on media de \texttt{PCB} es menor
+ que $24 \times 10^{-4}$ gramos?
+\end{enunciado}
+
+\begin{solucion}
+ El enunciado hace referencia a una concentraci\'on media,
+ es decir que se trata de una prueba de una media.
+ Entonces, representando con $X$ a la variable aleatoria
+ de la concentraci\'on de PCB, en $10^{-4}$ gramos,
+ donde $\mu$ y $\sigma$ representan su media y desviaci\'on
+ est\'andar poblacional,
+ la hip\'otesis de la prueba se puede escribir como:
+ \begin{eqnarray*}
+  H_0: & & \mu \geq 24 \\
+  H_1: & & \mu   <  24
+ \end{eqnarray*}
+ Como el tama\~no de la muestra es de $50$, que es mayor o igual a $30$,
+ entonces, por teorema del l\'{\i}mite central, se tiene
+ que $\overline{X}$, la variable aleatoria de la media muestral de $X$,
+ tiene una distribuci\'on normal
+ y, adem\'as, que la desviac\'on est\'andar muestral aproxima bien
+ a $\sigma$, por lo que es v\'alido realizar la prueba
+ con el estad\'{\i}stico $z$, el cual se procede a hacer
+ con ayuda del archivo \texttt{P03\_Prueba\_de\_una\_media\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n<-50
+> mu<-24
+> m<-22.8
+> desv<-4.8
+> pobl<-FALSE
+> alfa<-NULL
+> cola<-'I'
+> val<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que, al ejecutarlo, R muestra el siguiente resultado:
+ \begin{verbatim}
+  Prueba H0  n MediaMuestral desv.est error.est alpha    PValor Estadistico
+1      Z 24 50          22.8      4.8 0.6788225  0.05 0.0385499   -1.767767
+  RegionRechazoZ RegionRechazoX
+1   < -1.6448536   < 22.8834364
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Esto muestra que el estad\'{\i}stico
+ $z = \frac{\overline{x} - \mu}{\sigma/\sqrt{n}} \approx \frac{\overline{x} - \mu}{s/\sqrt{n}}$ adquiere el valor $-1.767767$,
+ cuyo valor $P$ es $0.0385499$.
+ Este valor $P$ es muy bajo y, por lo tanto, arroja evidencia suficiente
+ para rechazar $H_0$ a favor de $H_1$;
+ es decir, que la concentraci\'on media de PCB en mujeres
+ con c\'ancer de seno es menor a $24\times 10^{-4}$ gramos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

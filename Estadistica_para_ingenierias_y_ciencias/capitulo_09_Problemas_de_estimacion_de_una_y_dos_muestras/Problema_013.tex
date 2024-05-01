@@ -1,0 +1,84 @@
+\begin{enunciado}
+ Una m\'aquina produce piezas met\'alicas de forma cil\'{\i}ndrica. Se toma una muestra de las piezas y los di\'ametros son $1.01$, $0.97$, $1.03$, $1.04$, $0.99$, $0.98$, $0.99$, $1.01$ y $1.03$ cent\'{\i}metros. Encuentre un intervalo de confianza de $99\%$ para el di\'ametro medio de las piezas de esta m\'aquina. Suponga una distribuci\'on aproximadamente normal.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del tama\~no de los di\'ametros de las piezas met\'alicas cil\'{\i}ndricas producidas por la m\'aquina, medido en cent\'{\i}metros, el enunciado aporta los siguientes datos:
+ \begin{itemize}
+  \item $X\sim\text{normal}(\mu,\sigma)$.
+  \item $\mu$ desconocida.
+  \item $\sigma$ desconocida.
+  \item $n=9$ piezas.
+  \item $\alpha=0.01$.
+ \end{itemize}
+ adem\'as de los $9$ datos obtenidos en la muestra.
+ \par
+ A partir de estos datos, se puede calcular la media y desviaci\'on est\'andar muestral como se muestra a continuaci\'on. La media muestral se calcula f\'acilmente como sigue:
+ \begin{equation*}
+  \bar{x} = \frac{1.01 + 0.97 + 1.03 + 1.04 + 0.99 + 0.98 + 0.99 + 1.01 + 1.03}{9} = \frac{9.05}{9} =  1.00\overline{5}
+ \end{equation*}
+ por lo que la varianza muestral se obtiene como:
+ \begin{eqnarray*}  
+  s^2 & = & \frac{1}{8} \left[ \left(1.01-1.00\overline{5} \right)^2 + \left(0.97-1.00\overline{5} \right)^2 + \left(1.03-1.00\overline{5} \right)^2 + \left(1.04-1.00\overline{5} \right)^2 + \right. \\
+  & & \left. \left(0.99-1.00\overline{5} \right)^2 + \left(0.98-1.00\overline{5} \right)^2 + \left(0.99-1.00\overline{5} \right)^2 + \left(1.01-1.00\overline{5} \right)^2 + \left(1.03-1.00\overline{5} \right)^2 \right] \\
+  & = & \frac{1}{8}\left( 0.0000\overline{197530864} + 0.0012\overline{641975308} + 0.0005\overline{975308641} + 0.0011\overline{864197530} \right. \\
+  & & \left. 0.0002\overline{419753086} + 0.0006\overline{530864197} + 0.0002\overline{419753086} + 0.0000\overline{197530864} + \right. \\
+  & & \left. + 0.0005\overline{975308641} \right) \\
+  & = & \frac{0.0048\overline{2}}{8} = \frac{217/45000}{8} = \frac{217}{360\,000} \\
+  & = & 0.000602\overline{7}
+ \end{eqnarray*}
+ y, por lo tanto, la desviaci\'on est\'andar muestral es:
+ \begin{equation*}
+  s = \sqrt{s^2} = \sqrt{\frac{217}{360\,000}} = \frac{\sqrt{217}}{600} \approx 0.0245515331
+ \end{equation*}
+ Por otro lado, como se desconoce la desviaci\'on est\'andar poblacional y la muestra no es lo suficientemente grande, se requerir\'a del valor $t_{\alpha/2,n-1} = t_{0.005,8}$. De la tabla A.4 se tiene que vale $3.355$.
+ \par 
+ Luego, como se desea calcular un intervalo de confianza para la media poblacional usando la media muestral, sin conocer la desviaci\'on est\'andar poblacional y con una muestra peque\~na, entonces se debe de usar la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{x} - t_{\alpha/2,n-1} \frac{s}{\sqrt{n}} < \mu < \bar{x} + t_{\alpha/2,n-1} \frac{s}{\sqrt{n}}
+ \end{equation*}
+ Por l otanto, usando los datos obtenidos, los c\'alculos de los l\'{\i}mites del intervalo de confianza se muestran a continuaci\'on:
+ \begin{eqnarray*}
+  \bar{x} \pm t_{\alpha/2,n-1} \frac{s}{\sqrt{n}} & = & 1.00\overline{5} \pm  3.355\left( \frac{0.0245515331}{\sqrt{9}} \right) = 1.00\overline{5} \pm \frac{0.0823703935505}{3} \\
+  & = & 1.00\overline{5} \pm 0.0274567978501\overline{6}
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $99\%$ de confianza de la media del tama\~no del di\'ametro de las piezas met\'alicas cil\'{\i}ndricas, medido en cent\'{\i}metros, es de aproximadamente
+ \begin{equation*}
+  0.9780987577053\overline{8} < \mu < 1.0330123534057\overline{2}
+ \end{equation*}
+ o bien, redondeando a los tres decimales, el intervalo de confianza queda aproximadamente de
+ \begin{equation*}
+  0.978 < \mu < 1.033
+ \end{equation*}
+ El c\'alculo del intervalo de confianza puede ser obtenido tambi\'en usando el software estad\'{\i}stico R. Se ha escrito un script que se encuentra anexo bajo el nombre de \texttt{P05\_Intervalo\_de\_confianza\_03.r}, el cual ha sido creado para leer un archivo externo con extensi\'on .csv que contiene los datos de la muestra. En este caso, el archivo anexo con los datos del enunciado se llama \texttt{DB01\_Problema\_13.csv}, el cual se conforma de dos columnas con t\'{\i}tulos, la primera se llama \texttt{N\'umeroDePieza}, que contiene una numeraci\'on del 1 al 9, y la segunda columna se llama \texttt{Di\'ametro.cm}, que contiene los valores medidos. Finalmente, el script ha sido escrito pensando en una posible modificaci\'on futura para adaptar los dem\'as intervalos de confianza, bajo la funci\'on \texttt{IC} que contiene. El script se muestra a continuaci\'on.
+ \begin{verbatim}
+>datos<-read.csv("DB01_Problema_13.csv",sep=";",encoding="UTF-8")
+>varInteres<-c("Diámetro.cm")
+>alfa<-0.01
+>valores<-unlist(datos[,varInteres])
+>variable<-factor(rep(varInteres,each=dim(datos)[1]))
+>IC<-function(x,sup=TRUE,alfa=0.05){
+>   if (length(x[!is.na(x)])>=2){
+>      pruebaT<-t.test(x[!is.na(x)],conf.level=1-alfa)
+>      v<-ifelse(sup,round(pruebaT$conf.int[2],7),round(pruebaT$conf.int[1],7))
+>      return(v)
+>   } else return(NA)
+>}
+>media<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),mean,
+ na.rm=TRUE),responseName="Media")
+>ICs1<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),IC,alfa
+ =alfa),responseName="LimSup")
+>ICs2<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),IC,sup
+ =FALSE,alfa=alfa),responseName="LimInf")
+>ICs<-na.omit(data.frame(ICs2,Media=media[,"Media"],LimSup=ICs1[,"LimSup"]))
+>ICs
+ \end{verbatim}
+ \vspace{-0.5cm}
+ al aplicar este script, se presenta el resultado final, describiendo primero la variable de la cual se va a sacar el intervalo de confianza, seguido del l\'{\i}mite inferior, la media muestral y el l\'{\i}mite superior, en ese orden, de modo que sea m\'as c\'omodo de leer. Para este problema, el resultado al usar estos comandos se muestra a continuaci\'on
+ \begin{verbatim}
+      variable    LimInf    Media   LimSup
+ 1 Diámetro.cm 0.9780956 1.005556 1.033016
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

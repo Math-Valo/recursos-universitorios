@@ -1,0 +1,58 @@
+\begin{enunciado}
+ Se comparan las resistencias de dos clases de hilo. Cincuenta piezas de cada clase de hilo se prueban bajo condiciones similares. La marca $A$ tiene una resistencia a la tensi\'on promedio de $78.3$ kilogramos con una desviaci\'on est\'andar de $5.6$ kilogramos; en tanto que la marca $B$ tiene una resistencia a la tensi\'on promedio de $87.2$ kilogramos con una desviaci\'on est\'andar de $6.3$ kilogramos. Construya un intervalo de confianza de $95\%$ para la diferencia de las medias poblacionales.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de las resistencias a la tensi\'on de los hilos de la marca $A$ y $B$, respectivamente, medido en kilogramos. Entonces del enunciado se tienen los siguientes datos:
+ \begin{itemize}
+  \item $\mu_1$, $\sigma_1$, $\mu_2$ y $\sigma_2$ desconocidos.
+  \item $n_1 = n_2 = 50$ piezas
+  \item $\bar{x}_1 = 78.3$ kilogramos y $\bar{x}_2 = 87.2$ kilogramos.
+  \item $s_1 = 5.6$ kilogramos y $s_2 = 6.3$ kilogramos.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Como se desea encontrar un intervalo de confianza para $\mu_1 - \mu_2$, usando $\bar{x}_1 - \bar{x}_2$ y el tama\~no de las muestras son grandes, entonces se requerir\'a el valor cr\'{\i}tico $z_{\alpha/2} = z_{0.025}$. De la Tabla A.3, se tiene aproximadamente que $z_{0.025} = 1.96$; mientras, usando R, se obtiene el valor con los siguientes comandos.
+ \begin{verbatim}
+> options(digits=22)
+> qnorm(0.025, mean = 0, sd = 1, lower.tail = F)
+[1] 1.959963984540053827388
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $1.95996398454$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de medias poblacionales usando como estimador a la diferencia de medias muestrales en muestras grandes, entonces se usar\'a la formulaci\'on siguiente:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} < \mu_1 - \mu_1 < \left( \bar{x}_1 - \bar{x}_2 \right) + z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor de $z_{\alpha/2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} & = & (78.3 - 87.2) \pm 1.96\sqrt{\frac{5.6^2}{50} + \frac{6.3^2}{50}} = -8.9 \pm 1.96\sqrt{\frac{31.36}{50} + \frac{39.69}{50}} \\ 
+  & = & -8.9 \pm 1.96\sqrt{\frac{71.05}{50}} = -8.9 \pm 1.96\sqrt{\frac{1421}{1000}} \\
+  & = & -8.9 \pm (1.96)\left( \frac{7\sqrt{29}}{10\sqrt{10}} \right) = -8.9 \pm \frac{1.372\sqrt{290}}{10} \\
+  & = & -8.9 \pm 0.1372\sqrt{290}
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $96\%$ de confianza de la diferencia de las medias de las resistencias a la tensi\'on de las marcas $A$ y $B$ de hilos es de:
+ \begin{equation*}
+  -11.23643 < \mu_1 - \mu_2 < -6.56356819
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P13\_Intervalo\_de\_confianza\_04.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-50
+> n2<-50
+> m1<-78.3
+> m2<-87.2
+> desv.tipica1<-5.6
+> desv.tipica2<-6.3
+> alfa<-0.05
+> val<-FALSE
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  n1 n2 media1 media2    LimInf diferencia    LimSup
+1 50 50   78.3   87.2 -11.23639       -8.9 -6.563611
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $-11.236 < \mu_1 - \mu_2 < -6.564$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,192 @@
+\begin{enunciado}
+ Por experiencia se sabe
+ que el tiempo que se requiere para que los estudiantes de preparatoria
+ de \'ultimo a\~no completen una prueba estandarizada es una variable aleatoria
+ normal, con una desviaci\'on est\'andar de $6$ minutos.
+ Pruebe la hip\'otesis de que $\sigma = 6$ contra la alternativa
+ de que $\sigma < 6$,
+ si una muestra aleatoria de $20$ estudiantes de preparatoria de \'ultimo a\~no
+ tiene una desviaci\'on est\'andar $s = 4.51$.
+ Utilice un nivel de significancia de $0.05$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X \sim n\left( \mu, \sigma \right)$.
+   \item $n = 20$.
+   \item $s = 4.51$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \sigma^2 & = & 36 \\
+   H_1: \sigma^2 & < & 36
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{1-\alpha,n-1}=\chi^2_{0.95,19} \approx 10.117$,
+  por lo que la regi\'on de rechazo est\'a dado para $\chi^2 < 10.117$,
+  donde $\chi^2 = \frac{(n-1)s^2}{\sigma_0^2}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{equation*}
+   \chi^2 = \frac{(n-1)s^2}{\sigma_0^2} = \frac{19(4.51)^2}{36}
+   = \frac{19(20.3401)}{36} = \frac{386.4619}{36}
+   = \frac{3\,864\,619}{360\,000} = 10.735052\bar{7}
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  Seg\'un el criterio del nivel de significancia, se concluye
+  que no hay prueba suficiente para rechazar la hip\'otesis nula;
+  es decir, se mantiene la afirmaci\'on de que los estudiantes
+  var\'{\i}an en al menos $6$ minutos para completar una prueba estandarizada.
+ \end{conclusion}
+
+ En el c\'odigo registrado en el archivo anexo
+ \texttt{P11\_Prueba\_de\_una\_varianza\_02.r}, en R,
+ se realiza este procedimiento.
+ El c\'odigo permite modificar los valores iniciales correspondientes a:
+ \texttt{n} para el tama\~no de la muestra;
+ \texttt{sigma2} para la varianza poblacional supuesta en la hip\'otesis nula;
+ \texttt{s2} para la varianza muestral;
+ \texttt{alfa} para el nivel de significancia;
+ \texttt{cola} para indicar si la prueba es de dos colas,
+ con \texttt{'D'}, de cola inferior, con \texttt{'I'},
+ o de cola superior, con \texttt{'S'}.
+ \par 
+ El programa espera al menos los datos correspondientes a la muestra:
+ el tama\~no de la muestra y la varianza muestral;
+ se indica tambi\'en el tipo de prueba (cola izquierda o derecha,
+ o dos colas);
+ y, finalmente, la varianza poblacional,
+ que corresponde a la hip\'otesis nula $H_0$.
+ En caso de no fijar una probabilidad de cometer un error de tipo I
+ a la variable \texttt{alfa}, se le asigna el valor \texttt{NULL}.
+ \par 
+ La prueba de hip\'otesis siempre usar\'a un estad\'{\i}stico
+ con distribuci\'on $\chi^2$.
+ Para ello, se est\'a suponiendo de antemano la normalidad
+ de la poblaci\'on de las que viene la muestra.
+ \par
+ Independientemente del tipo de prueba, el resultado muestra lo siguiente:
+ \texttt{n} indica el tama\~no de la muestra;
+ \texttt{H0} para indicar el valor propuesto en la hip\'otesis nula
+ de la varianza poblacional;
+ \texttt{var.muestral}, para indicar la varianza muestral de los datos;
+ \texttt{grados}, indica los grados de libertad de la distribuci\'on $\chi^2$
+ correspondiente al estadístico de la prueba;
+ \texttt{error.est}, para indicar el error est\'andar,
+ que corresponde a la estimaci\'on de la varianza poblacional
+ usando la varianza muestral, calculado como $e.e.(s^2)=\sigma^2/n$;
+ \texttt{alfa}, para el nivel de significancia dado,
+ el cual muestra por defecto $0.05$
+ en caso de asignarle \texttt{NULL} a \texttt{alfa};
+ \texttt{PValor}, para el valor $P$, la probabilidad
+ de haber obtenido la varianza muestral
+ que se obtuvo suponiendo que la hip\'otesis nula sea cierta;
+ \texttt{Estadistico}, para el valor resultante
+ del estad\'{\i}stico de prueba;
+ \texttt{RegionRechazoJi} para la regi\'on de rechazo del estad\'{\i}stico
+ de prueba;
+ y, \texttt{RegionRechazoX} para la regi\'on de rechazo de la varianza muestral.
+ \par 
+ Adem\'as, seg\'un el tipo de prueba, pueden darse el valor
+ de \texttt{Resultado} para indicar si se rechaza o no
+ la hip\'otesis nula, que aparece al final de los resultados
+ cuando se asigna un valor a \texttt{alfa}.
+ \par 
+ El c\'odigo junto con el resultado se muestra a continuaci\'on:
+ \begin{verbatim}
+> n<-20
+> sigma2<-36
+> s2<-4.51^2
+> alfa<-0.05
+> cola<-'I'
+> TestVar<-function(n,varP,varM,alfa=0.05,colas='D'){
++   v<-n-1
++   r<-data.frame(n=n,
++                 H0=varP,
++                 var.muestral=varM,
++                 grados=v)
++   if(n<2){
++     r$error.est<-NA
++     r$alpha<-alfa
++     r$Pvalor<-NA
++     r$estadistico<-NA
++     r$RegionRechazoJi<-NA
++     r$RegionRechazoX<-NA
++   }else{
++     error<-varP/v
++     estadistico<-varM*v/varP
++     r$error.est<-round(error,7)
++     r$alpha<-alfa
++     if(colas=='I'){
++       criticojiL<-qchisq(alfa,v)
++       criticoXL<-criticojiL*error
++       r$PValor<-round(pchisq(estadistico,v),7)
++       r$Estadistico<-estadistico
++       r$RegionRechazoJi<-paste("<",round(criticojiL,7))
++       r$RegionRechazoX<-paste("<",round(criticoXL,7))
++     }else{
++       if (colas=='S') {
++         criticojiU<-qchisq(alfa,v,lower.tail=F)
++         criticoXU<-criticojiU*error
++         r$PValor<-round(pchisq(estadistico,v,lower.tail=F),7)
++         r$Estadistico<-estadistico
++         r$RegionRechazoJi<-paste(">",round(criticojiU,7))
++         r$RegionRechazoX<-paste(">",round(criticoXU,7))
++       }else{
++         criticojiU<-round(qchisq(alfa/2,v,lower.tail=F),7)
++         criticoXU<-round(criticojiU*error,7)
++         criticojiL<-round(qchisq(alfa/2,v),7)
++         criticoXL<-round(criticojiL*error,7)
++         pvalor<-round(pchisq(estadistico,v),7)
++         r$PValor<-ifelse(varM<varP,2*pvalor,2*(1-pvalor))
++         r$Estadistico<-estadistico
++         r$RegionRechazoJi<-paste("<",criticojiL,"y >",criticojiU)
++         r$RegionRechazoX<-paste("<",criticoXL,"y >",criticoXU)
++       }
++     }
++     return(r)
++   }
++ }
+> if(is.null(alfa)){
++   Test<-TestVar(n,sigma2,s2,colas=cola)
++ }else{
++   Test<-TestVar(n,sigma2,s2,alfa=alfa,colas=cola)
++   resultado<-ifelse(Test[,"PValor"]>=alfa,
++                     "No se rechaza H0","Se rechaza H0")
++   Test$Resultado<-resultado
++   Test$Resultado[is.na(Test$Resultado)]<-"Pocos datos"
++ }
+> Test
+   n H0 var.muestral grados error.est alpha    PValor Estadistico RegionRechazoJi
+1 20 36      20.3401     19  1.894737  0.05 0.0675709    10.73505    < 10.1170131
+  RegionRechazoX        Resultado
+1   < 19.1690774 No se rechaza H0
+ \end{verbatim}
+ El cual coincide con los c\'alculos obtenidos,
+ adem\'as de ofrecer m\'as informaci\'on, como el valor $P$
+ para el estad\'{\i}stico calculado, el cual se observar es bastante bajo,
+ aunque no llega a ser menor que el nivel de significancia $\alpha$.
+ Esto implica que, aunque no se rechace la hip\'otesis nula,
+ se tiene algo de evidencia que podr\'{\i}a indicar una diferencia
+ en la varianza supuesta en la hip\'otesis nula y quiz\'as valga la pena
+ generar una nueva muestra.
+ Que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

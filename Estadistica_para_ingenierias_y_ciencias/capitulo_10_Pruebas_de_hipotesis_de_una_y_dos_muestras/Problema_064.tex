@@ -1,0 +1,103 @@
+\begin{enunciado}
+ En un estudio sobre la fertilidad de mujeres casadas conducido por Martin O'Connell
+ y Carolyn C. Rogers para la Oficina de Censos en 1979,
+ se seleccionaron al azar dos grupos de esposas con edades de 25 y 29 a\~nos
+ y sin hijos, y a cada una se le pregunt\'o si a final de cuentas planeaba tener
+ un hijo.
+ Se seleccion\'o un grupo entre las mujeres con menos de dos a\~nos de casadas
+ y otro entre las que ten\'{\i}an cinco a\~nos de casadas.
+ Suponga que $240$ de las $300$ con menos de dos a\~nos de casadas planean
+ tener un hijo alg\'un d\'{\i}a,
+ comparadas con $288$ de las $400$ con cinco a\~nos de casadas.
+ ¿Podemos concluir que la proporci\'on de mujeres con menos de dos a\~nos de casadas
+ que planean tener hijos es significativamente mayor que la proporci\'on
+ con cinco a\~nos de casadas? Utilice un valor $P$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n_1 = 300$ y $n_2 = 400$.
+   \item $x_1 = 240$ y $x_2 = 288$.
+  \end{itemize}
+  Adem\'as, se pueden calcular las proporciones estimadas de cada muestra
+  y la estimaci\'on combinada de la proporci\'on a la que se supone que son iguales
+  en ambas poblaciones, como se muestra a continuaci\'on:
+  \begin{itemize}
+   \item $\widehat{p}_1 = \frac{240}{300} = \frac{8}{10} = 0.8$.
+   \item $\widehat{p}_2 = \frac{288}{400} = \frac{18}{25} = 0.72$.
+   \item $\widehat{p} = \frac{x_1+x_2}{n_1+n_2} = \frac{240+288}{300+400}
+   = \frac{528}{700} = \frac{132}{175} = 0.75\overline{428571}$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p_1 & \leq & p_2 \\
+   H_1: p_1 &  >   & p_2
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   z & \approx &
+   \frac{\widehat{p}_1 - 
+   \widehat{p}_2}{\sqrt{\widehat{p}\widehat{q}\left(1/n_1+1/n_2\right)}}
+   = \frac{
+   \displaystyle{ \frac{8}{10} - \frac{18}{25}}
+   }{
+   \displaystyle{ \sqrt{
+   \left(\frac{132}{175}\right)\left(\frac{43}{175}\right)
+   \left(\frac{1}{300} + \frac{1}{400}\right)
+   }}} \\
+   & = & \frac{
+   \displaystyle{ \frac{8}{100}}
+   }{\displaystyle{
+   \frac{1}{175}\sqrt{ \left( \cancel{2^2}\cdot\cancel{3}\cdot 11\cdot 43 \right)
+   \left( \frac{7}{2^{\cancelto{2}{4}} \cdot \cancel{3} \cdot 5^2} \right) } 
+   }}
+   = \frac{\frac{1\,400}{100}}{\displaystyle{\frac{1}{10}\sqrt{3\,311}}}
+   = \frac{14(10)\sqrt{3\,311}}{3\,311} \\
+   & = & \frac{140\sqrt{3\,311}}{3\,311} \approx 2.43303549781
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.3 se tiene que:
+  \begin{equation*}
+   P(Z > z) = 1 - P(Z < z) \approx 1 - P(Z < 2.43) \approx 1 - 0.9925 = 0.0075
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es muy peque\~no,
+  se tiene evidencia suficiente para rechazar la hip\'otesis nula
+  y concluir que, en efecto, la proporci\'on de mujeres con menos de dos a\~nos
+  de casadas que pleanean tener hijos es significativamente mayor
+  que la proporci\'on con cinco a\~nos de casadas.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P09\_Prueba\_de\_dos\_proporciones\_01.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n1<-300
+> n2<-400
+> x1<-240
+> x2<-288
+> p1<-NULL
+> p2<-NULL
+> alfa<-NULL
+> alternativa<-'>'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  alternativa  n1  n2  x1  x2  p1   p2 pEstimada DifProp  error.est alpha
+1     p1 > p2 300 400 240 288 0.8 0.72 0.7542857    0.08 0.03288074  0.05
+     PValor Estadistico RegionRechazoZ
+1 0.0074864    2.433035   >= 1.6448536
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

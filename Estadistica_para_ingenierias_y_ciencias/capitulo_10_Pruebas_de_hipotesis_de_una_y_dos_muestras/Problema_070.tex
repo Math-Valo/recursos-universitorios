@@ -1,0 +1,83 @@
+\begin{enunciado}
+ Datos hist\'oricos indican que la cantidad de dinero que aportaron los residentes
+ trabajadores de una ciudad grande para un escuadr\'on de rescate voluntario es
+ una variable aleatoria normal con una desviaci\'on est\'andar de $\$1.40$.
+ Se sugiere que las contribuciones al escuadr\'on de rescate s\'olo
+ de los empleados del departamento de sanidad son mucho m\'as variables.
+ Si las contribuciones de una muestra aleatoria de $12$ empleados
+ del departamento de sanidad tienen una desviaci\'on est\'andar de $\$1.75$,
+ ¿podemos concluir con un nivel de significancia de $0.01$
+ que la desviaci\'on est\'andar de las contribuciones
+ de todos los trabajadores de sanidad es mayor que la de todos los trabajadores
+ que viven en dicha ciudad?
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X \sim n\left( \mu, \sigma \right)$.
+   \item $n = 12$.
+   \item $s = 1.75$,
+   entonces $s^2 = \left(\frac{7}{4}\right)^2 = \frac{49}{16} = 3.0625$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \sigma^2 & = & 1.96 \\
+   H_1: \sigma^2 & > & 1.96
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.01$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{\alpha,n-1}=\chi^2_{0.01,11} \approx 24.725$,
+  por lo que la regi\'on de rechazo est\'a dado para $\chi^2 > 24.725$,
+  donde $\chi^2 = \frac{(n-1)s^2}{\sigma_0^2}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{equation*}
+   \chi^2 = \frac{(n-1)s^2}{\sigma_0^2}
+   = \frac{11\left(\frac{\cancel{49}}{16}\right)}{\frac{\cancel{49}}{25}}
+   = \frac{11(25)}{16} = \frac{275}{16} = 17.1875
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  Por el criterio del nivel de significancia, se concluye
+  que no hay prueba suficiente para rechazar la hip\'otesis nula;
+  es decir, la desviaci\'on est\'andar de los contribuyentes de todos
+  los trabajadores de sanidad no es mayor que la de todos los trabajadores
+  que viven en dicha ciudad.
+ \end{conclusion}
+ 
+ Finalmente, usando el archivo anexo \texttt{P11\_Prueba\_de\_una\_varianza\_02.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n<-12
+> sigma2<-1.4^2
+> s2<-1.75^2
+> alfa<-0.01
+> cola<-'S'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+   n   H0 var.muestral grados error.est alpha    PValor Estadistico
+1 12 1.96       3.0625     11 0.1781818  0.01 0.1024504     17.1875
+  RegionRechazoJi RegionRechazoX        Resultado
+1    > 24.7249703    > 4.4055402 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

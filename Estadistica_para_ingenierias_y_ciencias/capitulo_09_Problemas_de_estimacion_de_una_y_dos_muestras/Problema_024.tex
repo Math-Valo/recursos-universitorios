@@ -1,0 +1,25 @@
+\begin{enunciado}
+ Considerando el ejercicio 9.23. Utilice el \texttt{ECM} que se estudi\'o en el ejercicio 9.21 para determinar qu\'e estimador es m\'as eficaz. De hecho, escriba
+ \begin{equation*}
+  \frac{\texttt{ECM}\left( S^2 \right)}{\texttt{ECM}\left( S'^2 \right)}.
+ \end{equation*}
+\end{enunciado}
+
+\begin{solucion}
+ Dado que se sabe que $S^2$ no tiene sesgo y usando los resultados de los ejercicio 9.22 y 9.23, se tiene el siguiente resumen de resultados:
+ \begin{eqnarray*}
+  sesgo\left( S^2 \right) = 0 & \hspace{4cm} & sesgo\left( S'^2 \right) = -\frac{\sigma^2}{n} \\
+  V\left( S^2 \right) = \frac{2\sigma^4}{n-1} & & V\left( S'^2 \right) = \frac{2(n-1)\sigma^4}{n^2}
+ \end{eqnarray*}
+ Por lo error cuadrado medio de cada estimador se calcula como sigue:
+ \begin{eqnarray*}
+  \text{\texttt{ECM}}\left( S^2 \right) & = & V\left( S^2 \right) + \left[ sesgo\left( S^2 \right) \right]^2 = \frac{2\sigma^4}{n-1} + 0^2 = \frac{2\sigma^4}{n-1} \\
+  \text{\texttt{ECM}}\left( S'^2 \right) & = & V\left( S'^2 \right) + \left[ sesgo\left( S'^2 \right) \right]^2 = \frac{2(n-1)\sigma^4}{n^2} + \left( -\frac{\sigma^2}{n} \right)^2 = \frac{2(n-1)\sigma^4 + \sigma^4}{n^2} \\
+  & = & \frac{(2n-1)\sigma^4}{n^2}
+ \end{eqnarray*}
+ Por lo tanto:
+ \begin{equation*}
+  \frac{\texttt{ECM}\left( S^2 \right)}{\texttt{ECM}\left( S'^2 \right)} = \frac{\displaystyle{\frac{2\cancel{\sigma^4}}{n-1}}}{\displaystyle{\frac{(2n-1)\cancel{\sigma^4}}{n^2}}} = \frac{2n^2}{(n-1)(2n-1)} = \frac{2n^2}{2n^2 - 3n + 1} > 1
+ \end{equation*}
+ Y, de esto, se concluye que \texttt{ECM}$\left( S^2 \right) > $\texttt{ECM}$\left( S'^2 \right)$, por lo que el estimador m\'as eficaz usando esta medida es $S'^2$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

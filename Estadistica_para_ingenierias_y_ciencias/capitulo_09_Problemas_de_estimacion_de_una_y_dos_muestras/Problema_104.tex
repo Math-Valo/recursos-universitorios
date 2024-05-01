@@ -1,0 +1,50 @@
+\begin{enunciado}
+ Se seleccion\'o una muestra aleatoria de $30$ empresas que comercializan productos inal\'ambricos para determinar la proporci\'on de tales firmas que implementaron software nuevo para mejorar la productividad. Result\'o que $8$ de $30$ hab\'{\i}an implementado tal software. Encuentre un intervalo de confianza de $95\%$ en $p$, la proporci\'on real de tales empresas que implement\'o el nuevo software.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de empresas que implementaron software nuevo para mejorar la productividad, de entre cada $n$ empresas que comercializan productos inal\'ambricos, entendiendo que $n$ es peque\~na en comparaci\'on a $N$, la poblaci\'on total de este tipo de empresas, suponiendo que $n/N \leq 0.05$, y sea $k$ la cantidad total de estas empresas que implementaron esto software, entonces $\widehat{P} = X/n$ es un estad\'{\i}stico de proporci\'on que estima el valor de $p = k/N$, entonces, del enunciado, se tienen los siguientes datos obtenidos de una muestra:
+ \begin{itemize}
+  \item $n = 30$.
+  \item $x = 8$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ por lo que $\hat{p}$, la proporci\'on de \'exitos en la muestra, y $\hat{q} = 1 - \hat{p}$ est\'an dados por:
+ \begin{itemize}
+  \item $\hat{p} = \frac{x}{n} = \frac{8}{30} = \frac{4}{15} = 0.2\overline{6}$; y,
+  \item $\hat{q} = 1 - \frac{4}{15} = \frac{11}{15} = 0.7\overline{3}$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p$, entonces se requiere del valor $z_{\alpha/2} = z_{0.025}$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+ \par 
+ Ya que se busca un intervalo de confianza para al proporci\'on de un experimento hipergeom\'etrico en donde el tama\~no de las muestras son grandes, y por tanto aproximan bien a los experimentos binomiales, y se tiene que $n\hat{p}$ y $n\hat{q}$ son ambos mayores a $5$, entonces se usar\'a la f\'ormula de intervalo siguientes:
+ \begin{equation*}
+  \hat{p} - z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} < p < \hat{p} + z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tienen los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} & = & \frac{4}{15} \pm 1.96\sqrt{\frac{(4/15)(11/15)}{30}} = \frac{4}{15} \pm \frac{49}{25} \left( \sqrt{\frac{44}{15^2(30)}} \right) \\
+  & = & \frac{4}{15} \pm \frac{49}{25} \left( \frac{\sqrt{22}\sqrt{15}}{15(15)} \right) = \frac{4}{15} \pm \frac{49\sqrt{330}}{25(225)} \\
+  & = & \frac{4}{15} \pm \frac{49\sqrt{330}}{5625} = 0.2\overline{6} \pm 0.0087\overline{1}\sqrt{330} \approx 0.2\overline{6} \pm 0.15824519184
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $95\%$ de la proporci\'on de las empresas que implement\'o nuevo software para mejorar la productividad de entre las empresas que comercializan productos inal\'ambricos es aproximadamente
+ \begin{equation*}
+  0.108421 < p < 0.42491
+ \end{equation*}
+ Por otro lado, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P17\_Intervalo\_de\_confianza\_08.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n<-30
+> x<-8
+> p<-NULL
+> alfa<-0.05
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+> IC
+     LimInf Proporción   LimSup
+1 0.1084244  0.2666667 0.424909
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $0.10842 < p < 0.42491$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

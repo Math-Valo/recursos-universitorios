@@ -1,0 +1,35 @@
+\begin{enunciado}
+ Especifique los estimadores del momento para $\mu$ y $\sigma^2$ para la distribuci\'on logar\'{\i}tmica normal.
+\end{enunciado}
+
+\begin{solucion}
+ Por resultado conocido, se sabe que la media poblacional de una distribuci\'on logar\'{\i}tmica normal es
+ \begin{equation*}
+  e^{\mu + \sigma^2/2}
+ \end{equation*}
+ y la varianza poblacional es
+ \begin{equation*}
+  e^{2\mu+\sigma^2}\left( e^{\sigma^2} - 1 \right)
+ \end{equation*}
+ entonces, al igualar la media poblacional con la muestral, se tienen la siguiente equivalencia:
+ \begin{equation*}
+  e^{\mu + \sigma^2/2} = \bar{x} \Leftrightarrow \mu + \frac{\sigma^2}{2} = \ln \bar{x}
+ \end{equation*}
+ mientras que al igualar la varianza poblacional con $s'^2$, se tienen las siguientes equivalencias, que incluyen la igualdad reci\'en obtenida:
+ \begin{eqnarray*}
+  e^{2\mu+\sigma^2}\left( e^{\sigma^2} - 1 \right) = s'^2 & \Leftrightarrow & 2\left( \mu + \frac{\sigma^2}{2} \right) + \ln\left( e^{\sigma^2} - 1 \right) = \ln s'^2 \\
+  & \Leftrightarrow & \ln\left( e^{\sigma^2} - 1 \right) = \ln s'^2 - 2\ln \bar{x} = \ln \left( \frac{s'^2}{\bar{x}^2} \right) \\
+  & \Leftrightarrow & e^{\sigma^2} = \frac{s'^2}{\bar{x}^2} + 1 \\
+  & \Leftrightarrow & \sigma^2 = \ln \left( \frac{s'^2}{\bar{x}^2} + 1 \right)
+ \end{eqnarray*}
+ y, sustituyendo esta \'ultima igualdad en la equivalencia de la igualdad del primer momento, se tiene que
+ \begin{eqnarray*}
+  \mu + \frac{\sigma^2}{2} = \ln \bar{x} & \Leftrightarrow & \mu = \ln \bar{x} - \frac{1}{2}\ln \left( \frac{s'^2}{\bar{x}^2} + 1 \right) = \ln \bar{x} - \ln \sqrt{\frac{s'^2 + \bar{x}^2}{\bar{x}^2}} = \ln \left( \frac{\bar{x}}{\sqrt{s'^2 + \bar{x^2}}/\bar{x}} \right)
+ \end{eqnarray*}
+ Por lo tanto, los estimadores de momentos de $\mu$ y $\sigma^2$ son:
+ \begin{eqnarray*}
+  \widehat{\mu} & = & \ln \left( \frac{\bar{x}^2}{\sqrt{\bar{x}^2 + s'^2}} \right) \\
+  \widehat{\sigma^2} & = & \ln\left( \frac{\bar{x}^2 + s'^2}{\bar{x}^2} \right)
+ \end{eqnarray*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

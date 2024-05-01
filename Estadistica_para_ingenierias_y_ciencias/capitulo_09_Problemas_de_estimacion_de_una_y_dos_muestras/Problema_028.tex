@@ -1,0 +1,46 @@
+\begin{enunciado}
+ Considere la situaci\'on del ejercicio 9.13. Aunque la estimaci\'on del di\'ametro medio sea importante, no es ni con mucho tan importante como intentar ``determinar'' la ubicaci\'on de la mayor\'{\i}a de la distribuci\'on de los di\'ametros. Para tal fin, encuentre los l\'{\i}mites de tolerancia de $95\%$ que contengan $95\%$ de los di\'ametros.
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como en la soluci\'on del ejercicio 9.13 pero ahora siendo $\alpha = 0.05$ y representando el valor para el cual la proporci\'on $1-\alpha$ de la poblaci\'on es cubierta con $(1-\gamma)100\%$ de seguridad, entonces se tienen los siguientes datos:
+ \begin{itemize}
+  \item $X\sim n(\mu,\sigma)$.
+  \item $\mu$ desconocida.
+  \item $\sigma$ desconocida.
+  \item $n = 9$ piezas.
+  \item $\alpha = 0.05$.
+  \item $\gamma = 0.05$.
+  \item $\bar{x} = 1.00\overline{5}$.
+  \item $s \approx 0.0245515331$.
+ \end{itemize}
+ Como se desea encontrar l\'{\i}mites de tolerancia, se requiere el factor de tolerancia, $k$. De la Tabla A.7 se tiene que $k = 3.532$, mientras que, usando el software estad\'{\i}stico R, se obtiene un valor m\'as preciso con los siguientes comandos:
+ \begin{verbatim}
+>library(tolerance)
+>options(digits=22)
+>K.table(9,alpha=0.05,P=0.95,side=2,method=("WBE"))
+$`9`
+                        0.95
+0.95 3.531736753917766424848
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $3.5317367539177664$.
+ \par 
+ Dado que se desea calcular un intervalo de tolerancia de una poblaci\'on que se supone normal, entonces se usa la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{x} \pm ks
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando el valor $k$ del libro, se obtiene los siguientes c\'alculos:
+ \begin{equation*}
+  \bar{x} \pm ks = 1.00\overline{5} \pm (3.532)(0.0245515331) = 1.00\overline{5} \pm 0.0867160149092
+ \end{equation*}
+ Por lo tanto, el intervalo de tolerancia con el $95\%$ de seguridad de que contendr\'a el $95\%$ de los di\'ametros est\'a dado desde $0.9188395406463\overline{5}$ hasta $1.0922715704647\overline{5}$. El c\'alculo del intervalo de tolerancia usando el valor $k$ obtenido en R se puede obtener cambiando los siguientes comandos del archivo anexo \texttt{P07\_Intervalo\_de\_tolerancia\_2.r}:
+ \begin{verbatim}
+>datos<-read.csv("DB01_Problema_13.csv",sep=";",encoding="UTF-8")
+>varInteres<-c("Diámetro.cm")
+>gamma<-0.05
+>alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene un intervalo de tolerancia de $0.918846$ a $1.092265$ cent\'{\i}metros, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

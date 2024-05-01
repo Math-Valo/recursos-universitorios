@@ -1,0 +1,15 @@
+\begin{enunciado}
+ Considere dos estimadores de $\sigma^2$ en una muestra $x_1, x_2, \ldots, x_n$, que se extrae de una distribuci\'on normal con media $\mu$ y varianza $\sigma^2$. Los estimadores son el estimador insesgado $s^2 = \frac{1}{n-1}\sum_{i=1}^n \left( x_i - \bar{x} \right)^2$, y el estimador de probabilidad m\'axima $\widehat{\sigma^2} = \frac{1}{n} \sum_{i=1}^n \left( x_i - \bar{x} \right)^2$. Discuta las propiedades de la varianza de estos dos estimadores.
+\end{enunciado}
+
+\begin{solucion}
+ Dado que el estimador de m\'axima probabilidad, $S'^2$, cumple que
+ \begin{equation*}
+  S'^2 = \frac{n-1}{n}S^2
+ \end{equation*}
+ entonces, por las propiedades de la varianza, se tiene que
+ \begin{equation*}
+  V\left( S'^2 \right) = V\left( \frac{n-1}{n}S^2 \right) = \left( \frac{n-1}{n} \right)^2 V(S^2)
+ \end{equation*}
+ Como $\frac{n-1}{n} < 1$, entonces se cumple que la varianza del estimador de la varianza de m\'axima probabilidad, $S'^2$, es menor a la varianza del estimador insesgado de la varianza $S^2$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

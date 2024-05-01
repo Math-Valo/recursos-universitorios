@@ -1,0 +1,136 @@
+\begin{enunciado}
+ Considere la situaci\'on del ejercicio 10.54 de la p\'agina 361.
+ El consumo de ox\'{\i}geno en ml/kg/min tambi\'en se midi\'o
+ en los nueve sujetos.
+ \begin{center}
+  \begin{tabular}{ccc}
+   \textbf{Sujeto} & \textbf{Con CO} & \textbf{Sin Co} \\
+   1 & $26.46$ & $25.41$ \\
+   2 & $17.46$ & $22.53$ \\
+   3 & $16.32$ & $16.32$ \\
+   4 & $20.19$ & $27.48$ \\
+   5 & $19.84$ & $24.97$ \\
+   6 & $20.65$ & $21.77$ \\
+   7 & $28.21$ & $28.17$ \\
+   8 & $33.94$ & $32.02$ \\
+   9 & $29.32$ & $28.96$
+  \end{tabular}
+ \end{center}
+ Se conjetura que el consumo de ox\'{\i}geno deber\'{\i}a ser mayor en un ambiente relativamente libre de CO.
+ Realice una prueba de significancia y discuta la conjetura.
+\end{enunciado}
+
+\begin{solucion}
+ Como se explic\'o en la soluci\'on del ejercicio 10.54,
+ las observaciones fueron sobre las mismas unidades experimentales,
+ por lo que se trata de una prueba de observaciones pareadas.
+ \par 
+ Aunque en el ejercicio 10.54 se dio por supuesto que la frecuencia de la respiraci\'on sigue una distribuci\'on normal,
+ no se tiene el mismo supuesto previo para el consumo de ox\'{\i}geno,
+ por lo que se recurre al archivo anexo
+ \texttt{P17\_Prueba\_de\_normalidad\_01.r}, que a su vez usa el archivo 
+ \texttt{DB37\_Problema\_102.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB37_Problema_102.csv",sep=";",encoding="UTF-8")
+> varInteres<-"Oxígeno.ml.kg.min"
+> media<-NULL
+> desv.est<-NULL
+> clases<-NULL
+> graficaHist<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+            nombres  n X de chi2 param chi2 Valor-p chi2 Z de Geary
+1 Oxígeno.ml.kg.min 18 0.1912547          1    0.6618744    1.47051
+  Valor-p Geary  D de K-S Valor-p K-S D de K-S Lilliefors
+1     0.1414236 0.1278719   0.9112188           0.1049961
+  Valor-p K-S Lilliefors W de Shapiro Valor-p Shapiro
+1              0.8647186    0.9590317       0.5830456
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual indica en todas las pruebas que el ajuste de los datos a una normal
+ no es mala.
+ \par 
+ Es importante notar que la informaci\'on ingresada corresponde a todos los datos,
+ tanto con CO como sin CO, por lo que podr\'{\i}a interesar probar
+ individualmente los casos.
+ Esto se puede hacer, manteniendo las variables de la \'ultima ejecuci\'on
+ en R, agregando las siguientes l\'{\i}neas,
+ las cuales se muestran a continuaci\'on junto con los resultados
+ al aplicar la prueba de Geary:
+ \begin{verbatim}
+> lista<-split(datos[,varInteres],datos[,"CO"])
+> x<-lista$Con
+> n<-length(x)
+> U<-sqrt(pi/2)*mean(abs(x-mean(x)))/sqrt(var(x)*(n-1)/n)
+> x.Geary.statistic<-(U-1)/(0.2661/sqrt(n))
+> x.Geary.p.value<-2*pnorm(abs(x.Geary.statistic),lower.tail=FALSE)
+> y<-lista$Sin
+> n<-length(y)
+> U<-sqrt(pi/2)*mean(abs(y-mean(y)))/sqrt(var(y)*(n-1)/n)
+> y.Geary.statistic<-(U-1)/(0.2661/sqrt(n))
+> y.Geary.p.value<-2*pnorm(abs(y.Geary.statistic),lower.tail=FALSE)
+> print("P-Valor de datos con CO usando la prueba de Geary"); x.Geary.p.value
+[1] "P-Valor de datos con CO usando la prueba de Geary"
+[1] 0.09889042
+> print("P-Valor de datos sin CO usando la prueba de Geary"); y.Geary.p.value
+[1] "P-Valor de datos sin CO usando la prueba de Geary"
+[1] 0.9215314
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual indica un buen ajuste a una normal de los datos sin CO,
+ aunque de los datos con CO s\'{\i} muestra baja probabilidad,
+ de 0.09889042.
+ Aunque con el riesgo, se considerar\'a suficiente para la prueba
+ de dos medias pareada.
+ \par 
+ Entonces, usando el archivo anexo
+ \texttt{P06\_Prueba\_de\_dos\_medias\_02.r}, que a su vez usa
+ la misma base de datos en el archivo \texttt{DB37\_Problema\_102.csv},
+ con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB37_Problema_102.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Oxígeno.ml.kg.min")
+> varSel<-c("CO")
+> mu<-0
+> desv.iguales<-NULL
+> alfa<-0.05
+> cola<-'I'
+> par<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que corresponden a los datos iniciales, la hip\'otesis de prueba:
+ \begin{eqnarray*}
+  H_0: & & \mu_D = \mu_1 - \mu_2 = 0 \\
+  H_1: & & \mu_D = \mu_1 - \mu_2 \leq 0
+ \end{eqnarray*}
+ donde $\mu_1$ corresponde a la media poblacional del consumo
+ de ox\'{\i}geno con CO y $\mu_2$ la media poblacional del consumo
+ de ox\'{\i}geno sin CO, con un nivel de significancia de $\alpha = 0.05$,
+ entonces se obtiene el siguiente resultado:
+ \begin{verbatim}
+               Var1 Freq Poblaciones H0 n diferencia desv.par error.est grados
+1 Oxígeno.ml.kg.min    9    Pareadas  0 9  -1.693333 3.269824  1.089941      8
+  alpha     PValor Estadistico RegionRechazoInfT RegionRechazoInfX
+1  0.05 0.07944246     -1.5536         -1.859548         -2.026798
+         Resultado
+1 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el cual indica la regi\'on cr\'{\i}tica de $t < -1.859548$, 
+ donde $t = \frac{\overline{D} - d_0}{S_d/\sqrt{n}}$,
+ donde $\overline{D}$ es la media muestral de los datos pareados,
+ esto es $\overline{D} = -1.69\bar{3}$, $d_0$ es el valor correspondiente
+ a la hip\'otesis nula, $S_d$ es la desviaci\'on est\'andar muestral
+ de los datos pareados, esto es $S_d = 3.269824$ y $n$ el tama\~no
+ de las unidades experimentales, es decir $n=9$,
+ entonces el valor del estad\'{\i}stico obtenido es $t = -1.5536$,
+ por lo que no se rechaza la hip\'otesis nula; sin embargo, 
+ los resultados tambi\'en arrojan el valor $P$ que da $0.07944246$,
+ lo cual indica un riesgo de no rechazar la hip\'otesis nula.
+ A\'un as\'{\i}, por la prueba de significancia,
+ se concluye que no hay una diferencia significativa entre el consumo
+ de ox\'{\i}geno con o sin CO,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

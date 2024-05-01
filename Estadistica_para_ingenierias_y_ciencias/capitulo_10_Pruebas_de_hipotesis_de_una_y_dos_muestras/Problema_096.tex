@@ -1,0 +1,138 @@
+\begin{enunciado}
+ De acuerdo con un estudio de la Universidad Johns Hopkins publicado
+ En \textit{American Journal of Public Health}, las viudas viven m\'as
+ que los viudos.
+ Considere los siguientes datos de supervivencia de $100$ viudas
+ y $100$ viudos despu\'es de la muerte del c\'onyugue:
+ \begin{center}
+  \begin{tabular}{lcc}
+   \textbf{A\~nos de vida} & \textbf{Viuda} & \textbf{Viudo} \\
+   \hline
+   Menos de 5 & $25$ & $39$ \\
+   de 5 a 10 & $42$ & $40$ \\
+   M\'as de 10 & $33$ & $21$
+  \end{tabular}
+ \end{center}
+ ¿Con un nivel de significancia de $0.05$ podemos concluir
+ que las proporciones de viudas y viudos son iguales
+ con respecto a los diferentes periodos que un c\'onyugue sobrevive
+ luego de la muerte de su compa\~nero?
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item Tamaño de muestra total: $200$.
+   \item Tama\~no muestral de viudas: $100$.
+   \item Tama\~no muestral de viudos: $100$.
+   \item Tama\~no muestral de quienes vivieron menos de 5 a\~nos: $64$.
+   \item Tama\~no muestral de quienes vivieron de 5 a 10 a\~nos: $82$.
+   \item Tama\~no muestral de quienes vivieron m\'as de 5 a\~nos: $54$.
+   \item Frecuencias observadas y esperadas: $o_{i,j}$
+   y $e_{i,j}=\frac{R_i C_j}{n}$, respectivamente,
+   donde $R_i$ y $C_j$ son los marginales del rengl\'on $i$ y la columna $j$,
+   respectivamente, y $n$ es el total de toda la muestra.
+   As\'{\i}, pues, redondeando a un decimal, se muestra el resumen 
+   en la siguiente tabla,
+   en donde aparece entre par\'entesis la frecuencia esperada
+   y a la izquierda el valor observado:
+   \begin{center}
+    \begin{tabular}{lcc|c}
+     & & & \textbf{Marginal por a\~nos} \\
+     \textbf{A\~nos de vida} & \textbf{Viuda} & \textbf{Viudo} &
+     \textbf{de supervivencia} \\
+     \hline
+     Menos de 5 & $25 (32)$ & $39 (32)$ & $64$ \\
+     de 5 a 10 & $42 (41)$ & $40 (41)$ & $82$ \\
+     M\'as de 10 & $33 (27)$ & $21 (27)$ & $54$ \\
+     \textbf{Marginal por sexo} & $100$ & $100$ & \textbf{TOTAL:} $n=200$
+    \end{tabular}
+   \end{center}
+   \item Tama\~no de la tabla de contingencia: $r\times c = 3\times 2$.
+   \item Grados de libertad de la prueba $\chi^2$: $v = (r-1)(c-1) = 2$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: & & p_1 = p_2 = p_3,
+   \text{ las proporciones de supervivencias por g\'enero son iguales} \\
+   H_1: & & \text{Alguna de las proporciones de supervivencia por g\'enero
+   no son iguales.}
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{\alpha,v} = \chi^2_{0.05,2} \approx 5.991$,
+  por lo que la regi\'on de rechazo est\'a dado
+  para $\chi^2 > 5.991$, donde
+  $\chi^2 = \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   \chi^2 & = & \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i} \\
+   & \approx & \frac{(25 - 32)^2}{32} + \frac{(39 - 32)^2}{32} +
+   \frac{(42 - 41)^2}{41} + \frac{(40 - 41)^2}{41} + 
+   \frac{(33 - 27)^2}{27} + \frac{(21 - 27)^2}{27} \\
+   & = & \frac{49 + 49}{32} + \frac{1 + 1}{41} + 
+   \frac{36 + 36}{27} = \frac{98}{32} + \frac{2}{41} + \frac{72}{27}
+   \approx 3.0625 + 0.0488 + 2.6667 \\
+   & = & 5.778
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  A un nivel de significancia de $0.05$, los resultados arrojan
+  que no hay evidencia que rechace la diferencia de las proporciones,
+  por lo que se puede considerar las proporciones de supervivencia por
+  el viudo y viudo como iguales.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeniedad\_01.r},
+ que a su vez requiere los datos del archivo
+ \texttt{BD32\_Problema\_096.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB32_Problema_096.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Sexo","Vida.años")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1)
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+$tabla
+       Vida.años
+Sexo    de 5 a 10 Más de 10 Menos de 5
+  Viuda        42        33         25
+  Viudo        40        21         39
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 5.7779, df = 2, p-value = 0.05563
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos,
+ adem\'as de brindar la informaci\'on del $P-$valor.
+ N\'otese que, aunque se ha usado el programa de independencia
+ y homogeneidad, el resultado es v\'alidos debido a que corresponden
+ a los mismo procedimientos;
+ sin embargo, no se ha usado la prueba G ya que no se ha encontrado a\'un
+ en la literatura algo que valide dicha prueba para proporciones.
+ Que es lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,195 @@
+\begin{enunciado}
+ Un fabricante de telas considera que la proporci\'on de pedidos de materia prima que llegan tarde es $p = 0.6$. Si una muestra aleatoria de $10$ pedidos muestra que $3$ o menos llegan tarde, la hip\'otesis de que $p = 0.6$ se deber\'{\i}a rechazar a favor de la alternativa $p < 0.6$. Utilice la distribuci\'on binomial.
+ \begin{enumerate}
+  \item Encuentre la probabilidad de cometer un error tipo I si la proporci\'on verdadera es $p = 0.6$.
+  
+  \item Encuentre la probabilidad de cometer un error tipo II para las alternativas $p = 0.3$, $p = 0.4$ y $p = 0.5$.
+ \end{enumerate}
+
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del n\'umero de pedidos de materia prima que llegan tarde en la muestra de pedidos, del enunciado se tiene lo siguiente, en donde $x_{\text{inf}}$ representa el valor cr\'{\i}tico inferior, en el que incluye la regi\'on de aceptaci\'on.
+ \begin{itemize}
+  \item $X \sim b(n,p)$.
+  \item $n = 10$.
+  \item $x_{\text{inf}} = 4$.
+ \end{itemize}
+ Con lo que se realiza lo pedido en los incisos como sigue.
+ \begin{enumerate}
+  \item Suponiendo adem\'as que
+  \begin{itemize}
+   \item $p=0.6$
+  \end{itemize}
+  el error tipo I se calcula como sigue:
+  \begin{equation*}
+   \alpha = P(\text{Error tipo I}) = P(X \leq 3) = P(X < 4) = \sum_{x=0}^{3} b(x;10,0.6)
+  \end{equation*}
+  Esto se puede aproximar usando la Tabla A.1, con lo que se obtiene lo siguiente:
+  \begin{equation*}
+   \alpha = \sum_{x=0}^{3} b(x;10,0.6) = 0.0548.
+  \end{equation*}
+  Aunque el valor preciso se obtiene con los siguientes c\'alculos:
+  \begin{eqnarray*}
+   \alpha & = & \sum_{x=0}^{3} b(x;10,0.6) = \sum_{x=0}^{3} \left[ \binom{10}{x} \left( \frac{6}{10} \right)^x \left( \frac{4}{10} \right)^{10-x} \right] \\
+   & = & \frac{1}{10^{10}} \left( 4^{10} + 10\cdot 6 \cdot 4^9 + 45\cdot 6^2 \cdot 4^8 + 120 \cdot 6^3 \cdot 4^7 \right) \\
+   & = & \frac{4^7}{10^{10}}\left( 4^3 + 10\cdot 6 \cdot 4^2 + 45\cdot 6^2 \cdot 4 + 120 \cdot 6^3 \right) \\
+   & = & \frac{16\,384}{10\,000\,000\,000}(64 + 960 + 6\,480 + 25\,920) = \frac{16\,384(33\,424)}{10\,000\,000\,000} = \frac{547\,618\,816}{10\,000\,000\,000} \\
+   & = & 0.0547618816
+  \end{eqnarray*}
+  Finalmente, usando R, se puede calcular la probabilidad usando el script del archivo anexo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-10
+> CriticoInf<-4
+> CriticoSup<-NULL
+> p0<-0.6
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+$`Probabilidad de error tipo I`
+  HipotesisNula  n CriticoInf      alpha
+1           0.6 10          4 0.05476188
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene lo siguiente:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas: $\alpha = 0.0548$.
+   \item El valor preciso: $\alpha = 0.0547618816$.
+   \item La aproximaci\'on con R: $\alpha = 0.05476188$.${}_{\square}$
+  \end{itemize}
+  
+  \item Si se supone que
+  \begin{itemize}
+   \item $p = 0.3$
+  \end{itemize}
+  el error tipo II se calcula como sigue:
+  \begin{equation*}
+   \beta = P(\text{Error Tipo II}) = P(X \geq 4) = 1 - P(X < 3) = 1 - P(X \leq 3) = 1 - \sum_{x = 0}^{3} b(x;10,0.3)
+  \end{equation*}
+  Usando la Tabla A.1, esto se aproxima a:
+  \begin{equation*}
+   \beta = 1 - \sum_{x = 0}^{3} b(x;10,0.3) = 1 - 0.6496 = 0.3504
+  \end{equation*}
+  Aunque el valor preciso se obtiene con los siguientes c\'alculos:
+  \begin{eqnarray*}
+   \beta & = & 1 - \sum_{x = 0}^{3} b(x;10,0.3) = 1 - \frac{1}{10^{10}} \sum_{x=0}^{3} \binom{10}{x}\cdot 3^x\cdot 7^{10-x} \\
+   & = & 1 - \frac{7^7}{10^{10}}\left( 7^3 + 10 \cdot 3 \cdot 7^2 + 45 \cdot 3^2 \cdot 7 + 120 \cdot 3^3 \right) \\
+   & = & 1- \frac{823\,543}{10^{10}}(343 + 1\,470 + 2\,835 + 3\,240) = 1 - \frac{823\,543(7\,888)}{10\,000\,000\,000} \\
+   & = & \frac{10\,000\,000\,000 - 6\,496\,107\,184}{10\,000\,000\,000} = \frac{3\,503\,892\,816}{10\,000\,000\,000} \\
+   & = & 0.3503892816
+  \end{eqnarray*}
+  Por otro lado, usando R, se puece calcular esta probabilidad usando el script del archivo anexo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-10
+> CriticoInf<-4
+> CriticoSup<-NULL
+> p0<-NULL
+> p1<-0.3
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa  n CriticoInf      beta
+1                  0.3 10          4 0.3503893
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Para el siguiente supuesto, se tiene que
+  \begin{itemize}
+   \item $p=0.4$
+  \end{itemize}
+  as\'{\i}, el error tipo II se calcula como sigue:
+  \begin{equation*}
+   \beta = 1 - P(X \leq 3) = 1 - \sum_{x=0}^3 b(x;10,0.4)
+  \end{equation*}
+  La aproximaci\'on usando la tabla A.1 es la siguiente:
+  \begin{equation*}
+   \beta = 1 - \sum_{x=0}^3 b(x;10,0.4) = 1 - 0.3823 = 0.6177
+  \end{equation*}
+  Mientras que el valor preciso se obtiene como sigue:
+  \begin{eqnarray*}
+   \beta & = & 1 - \sum_{x=0}^3 b(x;10,0.4) = 1 - \frac{1}{10^{10}} \sum_{x=0}^{3} \binom{10}{x} \cdot 4^x \cdot 6^{10-x} \\
+   & = & 1 - \frac{6^7}{10^{10}} \left( 6^3 + 10 \cdot 4 \cdot 6^2 + 45 \cdot 4^2 \cdot 6 + 120 \cdot 4^3 \right) \\
+   & = & 1 - \frac{279\,936}{10^{10}}(216 + 1\,440 + 4\,320 + 7\,680) = 1 - \frac{279\,936(13\,656)}{10\,000\,000\,000} \\
+   & = & \frac{10\,000\,000\,000 - 3\,822\,806\,016}{10\,000\,000\,000} = \frac{6\,177\,193\,984}{10\,000\,000\,000} \\
+   & = & 0.6177193984
+  \end{eqnarray*}
+  Usando R, con el script del archivo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-10
+> CriticoInf<-4
+> CriticoSup<-NULL
+> p0<-NULL
+> p1<-0.4
+  \end{verbatim}
+  \vspace{-0.5cm}
+  se obtiene el siguiente resultado:
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa  n CriticoInf      beta
+1                  0.4 10          4 0.6177194
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Y, si se supone que
+  \begin{itemize}
+   \item $p = 0.7$.
+  \end{itemize}
+  el error tipo II se calcula como sigue:
+  \begin{equation*}
+   \beta = 1 - P(X \leq 3) = 1 - \sum_{x=0}^3 b(x;10,0.5)
+  \end{equation*}
+  La aproximaci\'on usando la Tabla A.1 es la siguiente:
+  \begin{equation*}
+   \beta = 1 - \sum_{x=0}^3 b(x;10,0.5) = 1 - 0.1719 = 0.8281
+  \end{equation*}
+  mientras que el valor preciso se obtiene como sigue:
+  \begin{eqnarray*}
+   \beta & = & 1 - \sum_{x=0}^3 b(x;10,0.5) = 1 - \frac{1}{10^{10}} \sum_{x = 0}^{3} \binom{10}{x} \cdot 5^x \cdot 5^{10-x} \\
+   & = & 1 - \frac{5^{10}}{10^{10}} (1 + 10 + 45 + 120) = 1 - \frac{176}{2^{10}} \\
+   & = & 1 - \frac{176}{1\,024} = \frac{1\,024 - 176}{1\,024} = \frac{848}{1\,024} = \frac{53}{64} \\
+   & = & 0.828125
+  \end{eqnarray*}
+  Finalmente, usando R, se puede calcular la probabilidad usando el script del archivo anexo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-10
+> CriticoInf<-4
+> CriticoSup<-NULL
+> p0<-NULL
+> p1<-0.5
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene:
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa  n CriticoInf     beta
+1                  0.5 10          4 0.828125
+  \end{verbatim}
+  \vspace{-0.5cm}
+  En resumen, se tiene lo siguiente:
+  \begin{itemize}
+   \item Bajo el supuesto $p = 0.3$:
+   \begin{itemize}
+    \item La aproximaci\'on con las tablas da $\beta = 0.3504$.
+    \item El valor preciso es $\beta = 0.3503892816$.
+    \item La aproximaci\'on con R da $\beta = 0.3503893$.
+   \end{itemize}
+
+   \item Bajo el supuesto $p = 0.4$:
+   \begin{itemize}
+    \item La aproximaci\'on con las tablas da $\beta = 0.6177$.
+    \item El valor preciso es $\beta = 0.6177193984$.
+    \item La aproximaci\'on con R da $\beta = 0.6177194$.
+   \end{itemize}
+
+   \item Y, bajo el supuesto $p=0.5$:
+   \begin{itemize}
+    \item La aproximaci\'on con las tablas da $\beta = 0.8281$.
+    \item El valor preciso es $\beta = 0.828125$.
+    \item La aproximaci\'on con R da $\beta = 0.828125$.
+   \end{itemize}
+  \end{itemize}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

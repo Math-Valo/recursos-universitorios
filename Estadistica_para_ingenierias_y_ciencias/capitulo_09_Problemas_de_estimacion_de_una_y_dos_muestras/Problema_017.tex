@@ -1,0 +1,51 @@
+\begin{enunciado}
+ Una muestra aleatoria de $25$ botellas de aspirinas contiene, en promedio, $325.05\,$mg de aspirina con una desviaci\'on est\'andar de $0.5$. Encuentre los l\'{\i}mites de tolerancia de $95\%$ que contendr\'an $90\%$ del contenido de aspirina para esta marca. Suponga que el contenido de aspirina se distribuye normalmente.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de la cantidad de miligramos de aspirina que contiene una botella de aspirinas, el enunciado provee de los siguientes datos:
+ \begin{itemize}
+  \item $X\sim\text{normal}(\mu,\sigma)$.
+  \item $n=25$.
+  \item $\bar{x} = 325.05\,$mg.
+  \item $s=0.5\,$mg.
+  \item $\gamma=0.05$.
+  \item $\alpha=0.1$.
+ \end{itemize}
+ Entonces, como se desea encontrar l\'{\i}mites de tolerancia, se requiere encontrar el factor de tolerancia, $k$. De la Tabla A.7, en el Ap\'endice A del libro, se tiene que $k = 2.208$, mientras que, usando el software estad\'{\i}stico R, y con el paquete \texttt{tolerance} (que se debe instalar previamente), se obtiene un valor m\'as preciso con los siguientes comandos:
+ \begin{verbatim}
+>library(tolerance)
+>options(digits=22)
+>K.table(25,alpha=0.05,P=0.9,side=2,method=c("WBE"))
+$'25'
+                         0.9
+0.95 2.208321826635702755937
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $2.2083218266357$.
+ \par
+ Dado que se desea calcular un intervalo de tolerancia de una variable que se supone normal, entonces se usa la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{x}\pm ks
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, y considerando el valor $k$ del libro, se obtiene los siguientes c\'alculos:
+ \begin{equation*}
+  \bar{x}\pm ks = 325.05\pm (2.208)(0.5) = 325.05 \pm 1.104
+ \end{equation*}
+ Por lo tanto, el intervalo de tolerancia con el $95\%$ de seguridad de que contendr\'a el $90\%$ del contenido de las aspirinas para esta marca es de $323.946$ a $326.154$ gramos. El c\'alculo del intervalo de tolerancia usando el valor $k$ obtenido en R se puede realizar usando los siguientes comandos, registrados en el archivo anexo \texttt{P06\_Intervalo\_de\_tolerancia\_1.r}.
+ \begin{verbatim}
+>n<-25
+>m<-325.05
+>s<-0.5
+>gamma<-0.05
+>alfa<-0.1
+>k<-K.factor(n,alpha=gamma,P=1-alfa,side=2,method=c("WBE"))
+>LL<-m-k*s
+>LU<-m+k*s
+>LL;LU;
+[1] 323.9458390866821559939
+[1] 326.1541609133178667435
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

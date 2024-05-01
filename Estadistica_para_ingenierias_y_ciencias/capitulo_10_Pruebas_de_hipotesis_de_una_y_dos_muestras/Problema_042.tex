@@ -1,0 +1,148 @@
+\begin{enunciado}
+ Cinco muestras de una sustancia ferrosa se usan para determinar si hay una diferencia entre un an\'alisis qu\'{\i}mico de laboratorio y un an\'alisis de fluorescencia de rayos X del contenido de hierro. Cada muestra se divide en dos submuestras y se aplican los dos tipos de an\'alisis. A continuaci\'on se presentan los datos codificados que muestran los an\'alisis de contenido de hierro:
+ \begin{center}
+  \begin{tabular}{l|ccccc}
+   & \multicolumn{5}{c}{\textbf{Muestra}} \\
+   \hline 
+   \textbf{An\'alisis} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+   \hline 
+   Rayos X & $2.0$ & $2.0$ & $2.3$ & $2.1$ & $2.4$ \\
+   Qu\'{\i}mica & $2.2$ & $1.9$ & $2.5$ & $2.3$ & $2.4$
+  \end{tabular}
+ \end{center}
+ Suponiendo que las poblaciones son normales, pruebe con un nivel de significancia de $0.05$ si los dos m\'etodos de an\'alisis dan, en promedio, el mismo resultado.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido, se tiene que
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{ 1, 2 \}$.
+   \item $n_1 = n_2 = 5$.
+  \end{itemize}
+  Como las observaciones est\'an pareadas,
+  se usar\'an las diferencias de los datos,
+  que muestra la siguiente tabla:
+  \begin{center}
+   \begin{tabular}{l|ccccc}
+    & \multicolumn{5}{c}{\textbf{Muestra}} \\
+    \hline 
+    \textbf{An\'alisis} & \textbf{1} & \textbf{2} & \textbf{3} &  \textbf{4} & \textbf{5} \\
+    \hline 
+    Rayos X & $\phantom{-}2.0$ & $2.0$ & $\phantom{-}2.3$ &
+    $\phantom{-}2.1$ & $2.4$ \\
+    Qu\'{\i}mica & $\phantom{-}2.2$ & $1.9$ & $\phantom{-}2.5$ &
+    $\phantom{-}2.3$ & $2.4$ \\
+    $\phantom{000}d_i$ & $-0.2$ & $0.1$ & $-0.2$ & $-0.2$ &
+    $0\phantom{.4}$
+   \end{tabular}
+  \end{center}
+  Para obtener la media y desviaci\'on est\'andar
+  de las diferencias muestrales, se calcula lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^5 d_i & = & -0.2 + 0.1 - 0.2 - 0.2 + 0 = -0.5 \\
+   \sum_{i=1}^5 d_i^2 & = &
+   (-0.2)^2 + 0.1^2 + (-0.2)^2 + (-0.2)^2 + 0^2 = 0.13
+  \end{eqnarray*}
+  por lo que la media de las diferencias muestrales es:
+  \begin{equation*}
+   \bar{d} = \frac{1}{5} \sum_{i=1}^5 d_i = \frac{-0.5}{5} 
+   = -\frac{1}{10} = -0.1
+  \end{equation*}
+  y la varianza de las diferencias muestrales se calcula,
+  usando el teorema 8.1, como sigue:
+  \begin{eqnarray*}
+   s_D^2 & = &
+   \frac{1}{5(4)}\left[
+   5\sum_{i=1}^5 d_i^2 - \left( \sum_{i=1}^5 d_i \right)^2
+   \right] = \frac{5(0.13) - (-0.5)^2}{20} = \frac{0.65 - 0.25}{20}
+   = \frac{0.4}{20} = \frac{2}{100} \\
+   & = & \frac{1}{50} = 0.02
+  \end{eqnarray*}
+  por lo que la desviaci\'on est\'andar de las diferencias
+  muestrales es:
+  \begin{equation*}
+   s_D = \sqrt{s_D^2} = \sqrt{\frac{1}{50}} = \frac{\sqrt{2}}{10}
+   \approx 0.1414213562
+  \end{equation*}
+  Por lo tanto, se resume el resto de los datos como sigue:
+  \begin{itemize}
+   \item $\bar{d} = -\frac{1}{10} = -0.1$.
+   \item $s_D = \frac{\sqrt{2}}{10} \approx 0.1414213562$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_D = \mu_1 - \mu_2 &   =  & 0 \\
+   H_1: \mu_D = \mu_1 - \mu_2 & \neq & 0
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.4, se tiene el valor cr\'{\i}tico
+  $t_{\alpha/2,n-1} = t_{0.025,4} \approx 2.776$,
+  por lo que la regi\'on de rechazo est\'a dado para $|t| > 2.776$,
+  donde $t = \frac{\bar{d} - d_0}{s_D/\sqrt{n}}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   t & = & \frac{\bar{d} - d_0}{s_D/\sqrt{n}}
+   = \frac{
+   -\frac{1}{\cancel{10}}
+   }{
+   \frac{\sqrt{2}}{\cancel{10}}/\sqrt{5}
+   }
+   = -\frac{\sqrt{10}}{2}
+   \approx -1.58113883
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  La prueba no da evidencia suficiente para afirmar
+  que los promedios de los an\'alisis sean distintos,
+  por lo que se concluye que no hay una diferencia significativa
+  entre los resultados promedios del an\'alisis qu\'{\i}mico
+  de laboratorio y el an\'alisis de fluorescencia de rayos X
+  sobre el contenido de hierro en la sustancia ferrosa.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P06\_Prueba\_de\_dos\_medias\_02.r},
+ que a su vez requiere los datos del archivo
+ \texttt{DB06\_Problema\_042.csv},
+ con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB06_Problema_042.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Hierro.x")
+> varSel<-c("Análisis")
+> mu<-0
+> desv.iguales<-NULL
+> alfa<-0.05
+> cola<-'D'
+> par<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+      Var1 Freq Poblaciones H0 n diferencia  desv.par  error.est grados alpha
+1 Hierro.x    5    Pareadas  0 5       -0.1 0.1414214 0.06324555      4  0.05
+     PValor Estadistico RegionRechazoInfT RegionRechazoSupT RegionRechazoInfX
+1 0.1890037   -1.581139         -2.776445          2.776445        -0.1755978
+  RegionRechazoSupX        Resultado
+1         0.1755978 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

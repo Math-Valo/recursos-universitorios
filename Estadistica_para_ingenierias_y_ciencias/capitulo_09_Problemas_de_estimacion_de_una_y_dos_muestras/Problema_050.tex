@@ -1,0 +1,80 @@
+\begin{enunciado}
+ Dos niveles (alto y bajo) de dosis de insulina se suministran a dos grupos de ratas diab\'eticas para verificar la capacidad de fijaci\'on de la insulina. Se obtuvieron los siguientes datos.
+ \begin{center}
+  \begin{tabular}{lccc}
+   Dosis baja: & $n_1 = 8$ & $\bar{x}_1 = 1.98$ & $s_1 = 0.51$ \\
+   Dosis alta: & $n_2 = 13$ & $\bar{x}_2 = 1.30$ & $s_2 = 0.35$
+  \end{tabular}
+ \end{center}
+ Suponga que ambas varianzas son iguales. Determine un intervalo de confianza de $95\%$ para la diferencia de la capacidad promedio real para fijar la insulina entre las dos muestras.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de la capacidad de fijaci\'on de la insulina en ratas para niveles de dosis baja y alta, respectivamente, entonces, del enunciado, se tiene el siguiente resumen de datos:
+ \begin{itemize}
+  \item $\mu_i$ y $\sigma_i$ desconocidas, para cada $i \in \{ 1, 2 \}$.
+  \item $\sigma_1^2 = \sigma_2^2$.
+  \item $n_1 = 8$ y $n_2 = 13$.
+  \item $\bar{x}_1 = 1.98$ y $\bar{x}_2 = 1.3$.
+  \item $s_1 = 0.51$ y $s_2 = 0.35$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para $\mu_1 - \mu_2$, usando como estimador $\bar{x}_1 - \bar{x}_2$, con muestras peque\~nas, se requiere suponer, para los m\'etodos conocidos, que $X_1$ y $X_2$ se distribuyen de forma normal. Por lo tanto, se va a suponer en lo que sigue que $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1, 2 \}$. Luego, aunque las varianzas poblacionales sean desconocidas, se est\'a suponiendo que \'estas son iguales, por lo que el m\'etodo que se usa requiere del valor $t_{\alpha/2,n_1+n_2-2} = t_{0.025,19}$. De la Tabla A.4, se tiene que $t_{0.025,19} = 2.093$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,19,lower.tail=F)
+[1] 2.093024054408309631015
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $2.093024$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de los promedios reales usando como estimador la diferencia de las  medias muestrales en muestras peque\~nas, en donde se desconoce las desviaciones est\'andar poblacionales pero suponiendo que son iguales y donde se suponenen que las poblaciones se distribuyen aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - t_{\alpha/2,n_1+n_2-2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2 \right) + t_{\alpha/2,n_1+n_2-2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+ \end{equation*}
+ en donde
+ \begin{equation*}
+  s_p = \sqrt{\frac{\left( n_1 - 1 \right)s_1^2 + \left( n_2 - 1 \right)s_2^2}{n_1 + n_2 - 2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n_1+n_2-2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  s_p & = & \sqrt{\frac{\left( n_1 - 1 \right)s_1^2 + \left( n_2 - 1 \right)s_2^2}{n_1 + n_2 - 2}} = \sqrt{\frac{(8-1)0.51^2 + (13-1)0.35^2}{8+13-2}} = \sqrt{\frac{7(0.2601)+ 12(0.1225)}{19}} \\
+  & = & \frac{\sqrt{19}\sqrt{1.8207 + 1.47}}{19} = \frac{\sqrt{19}\sqrt{3.2907}}{19} = \frac{\sqrt{62.5233}}{19} = \frac{\sqrt{625\,233}}{1\,900} \approx 0.4161667176
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - t_{\alpha/2,n_1+n_2-2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} & = & (1.98 - 1.3) \pm (2.093)\left( \frac{\sqrt{625\,233}}{1\,900} \right) \sqrt{\frac{1}{8} + \frac{1}{13}} \\
+   & = & 0.68 \pm \frac{2.093\sqrt{625\,233}}{1\,900} \sqrt{\frac{13+8}{104}} \\
+   & = & 0.68 \pm \frac{2\,093\sqrt{625\,233}}{1\,900\,000} \sqrt{\frac{21}{104}} \\
+   & = & 0.68 \pm \frac{2\,093\sqrt{625\,233}\sqrt{21}}{1\,900\,000\left( 2\sqrt{26} \right)} \\
+   & = & 0.68 \pm \frac{2\,093 (21)\sqrt{29\,773}\sqrt{26}}{98\,800\,000} \\
+   & = & 0.68 \pm \frac{43\,953\sqrt{774\,098}}{98\,800\,000} \\
+   & = & 0.68 \pm \frac{3\,381\sqrt{774\,098}}{7\,600\,000} \\
+   & \approx & 0.68 \pm 0.3914078677
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $95\%$ de confianza de la diferencia de la capacidad promedio real para fijar la insulina entre las muestras de dosis baja y alta, es de:
+ \begin{equation*}
+  0.288592132 < \mu_1 - \mu_2 < 1.0714078677
+ \end{equation*}
+ Finalmente, en R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P14\_Intervalo\_de\_confianza\_05.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+n1<-8
+n2<-13
+m1<-1.98
+m2<-1.3
+desv.tipica1<-0.51
+desv.tipica2<-0.35
+alfa<-0.05
+val<-FALSE
+varia<-TRUE
+inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  n1 n2 media1 media2    LimInf diferencia   LimSup
+1  8 13   1.98    1.3 0.2885876       0.68 1.071412
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el interfvalo de confianza del $95\%$ es $0.28859 < \mu_1 - \mu_2 < 1.07141$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

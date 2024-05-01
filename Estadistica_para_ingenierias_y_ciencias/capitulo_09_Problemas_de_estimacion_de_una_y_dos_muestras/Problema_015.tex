@@ -1,0 +1,50 @@
+\begin{enunciado}
+ Se toma una muestra aleatoria de $12$ alfileres para costura en un estudio de dureza de Rockwell en la cabeza de los alfileres. Se realizaron mediciones de la dureza de Rockwell para cada una de las $12$, lo cual dio un valor promedio de $48.50$ con una desviaci\'on est\'andar muestral de $1.5$. Suponiendo que las mediciones se distribuyen de forma normal, construya un intervalo de confianza de $90\%$ para la dureza de Rockwell media.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de la dureza de Rockwell en la cabeza de los alfileres, se tienen los siguientes datos:
+ \begin{itemize}
+  \item $X\sim\text{normal}(\mu,\sigma)$.
+  \item $\mu$ desconocida.
+  \item $\sigma$ desconocida.
+  \item $n = 12$.
+  \item $\bar{x} = 48.50$.
+  \item $s = 1.5$.
+  \item $\alpha = 0.1$.
+ \end{itemize}
+ Dado que se desconoce la desviaci\'on est\'andar poblacional y la muestra no es lo suficientemente grande, se requerir\'a del valor $t_{\alpha/2,n-1} = t_{0.05,11}$. De la tabla A.4 se tiene que $t_{0.05,11} = 1.796$, mientras que, usando el software estad\'{\i}stico R, se obtiene un valor m\'as preciso con los siguientes comandos:
+ \begin{verbatim}
+>options(digits=22)
+>qt(0.05,11,lower.tail=F)
+[1] 1.79588481870404392815
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $1.795884818704$.
+ \par 
+ Dado que se desea calcular un intervalo de confianza para la media poblacional usando la media muestral, sin conocer la desviaci\'on est\'andar poblacional y con una muestra paque\~na, entonces se debe de usar la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{x} - t_{\alpha/2,n-1}\frac{s}{\sqrt{n}} < \mu < \bar{x} + t_{\alpha/2,n-1}\frac{s}{\sqrt{n}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, y considerando el valor $t_{\alpha/2, n-1}$ del libro, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{equation*}
+  \bar{x} \pm t_{\alpha/2,n-1}\frac{s}{\sqrt{n}} = 48.5\pm 1.796\left( \frac{1.5}{\sqrt{12}} \right) = 48.5\pm \frac{2.694\sqrt{12}}{12} = 48.5\pm 0.2245\sqrt{12}
+ \end{equation*}
+ Por lo tanto, el intervalo del $90\%$ de confianza de la media de la dureza de Rockwell en la cabeza de los alfileres es de aproximadamente:
+ \begin{equation*}
+  47.7223 < \mu < 49.27768
+ \end{equation*}
+ El c\'alculo del intervalo de confianza usando el valor $t_{\alpha/2,n-1}$ obtenido en R se puede realizar usando el archivo anexo \texttt{P04\_Intervalo\_de\_confianza\_02.r} cambiando los siguientes comandos:
+ \begin{verbatim}
+>n<-12
+>m<-48.5
+>s<-1.5
+>alfa<-0.1
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el intervalo de confianza
+ \begin{equation*}
+  47.72236 < \mu < 49.27764
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

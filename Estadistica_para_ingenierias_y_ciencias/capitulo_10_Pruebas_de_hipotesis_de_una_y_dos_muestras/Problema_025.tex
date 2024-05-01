@@ -1,0 +1,248 @@
+\begin{enunciado}
+ Pruebe la hip\'otesis de que el contenido promedio de los envases de un lubricante espec\'{\i}fico es de $10$ litros, si los contenidos de una muestra aleatoria de $10$ envases son $10.2$, $9.7$, $10.1$, $10.3$, $10.1$, $9.8$, $9.9$, $10.4$, $10.3$ y $9.8$ litros. Utilice un nivel de significancia de $0.01$ y suponga que la distribuci\'on del contenido es normal.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido, lo \'unico que se tiene es
+  \begin{itemize}
+   \item $X \sim n(\mu, \sigma)$.
+   \item $n = 10$.
+  \end{itemize}
+  Para obtener la media y desviaci\'on est\'andar muestral, se calcula primero lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^{10} x_i & = & 10.2 + 9.7 + 10.1 + 10.3 + 10.1 + 9.8 + 9.9 + 10.4 + 10.3 + 9.8 = 100.6 \\
+   \sum_{i=1}^{10} x_i^2 & = & 10.2^2 + 9.7^2 + 10.1^2 + 10.3^2 + 10.1^2 + 9.8^2 + 9.9^2 + 10.4^2 + 10.3^2 + 9.8^2 = 1012.58
+  \end{eqnarray*}
+  Por lo que la media muestral se calcula como sigue
+  \begin{equation*}
+   \bar{x} = \frac{1}{10} \sum_{i=1}^{10} x_i = \frac{100.6}{10} = 10.06
+  \end{equation*}
+  y la varianza muestral se calcula, usando el teorema 8.1, como sigue:
+  \begin{eqnarray*}
+   s^2 & = & \frac{1}{10(9)} \left[ 10\sum_{i=1}^{10} x_i^2 - \left( \sum_{i=1}^{10} x_i \right)^2 \right] = \frac{10(1012.58) - 100.6^2}{90} = \frac{10125.8 - 10120.36}{90} = \frac{5.44}{90} \\
+   & = & \frac{136}{2\,250} = \frac{68}{1\,125} = 0.060\overline{4}.
+  \end{eqnarray*}
+  por lo que la desviaci\'on est\'andar muestral se calcula como sigue:
+  \begin{equation*}
+   s = \sqrt{s^2} = \sqrt{\frac{68}{1\,125}} = \frac{2\sqrt{17}}{15\sqrt{5}} = \frac{2\sqrt{85}}{75} \approx 0.245854518861
+  \end{equation*}
+  Por lo que el resto de los datos se resume como sigue:
+  \begin{itemize}
+   \item $\bar{x} = \frac{100.6}{10} = 10.06$.
+   \item $s = \frac{2\sqrt{85}}{75} \approx 0.245854518861$
+  \end{itemize}
+  Por la suposici\'on de normalidad en la distribuci\'on
+  poblacional, se tiene la distribuci\'on siguiente:
+  \begin{itemize}
+   \item $\displaystyle{\frac{\overline{X} - \mu}{S/\sqrt{n}}  \sim t(v) }$.
+   \item $v = n-1 = 9$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu & = & 10 \\
+   H_1: \mu & \neq & 10
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.01$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.4, se tiene el valor cr\'{\i}tico $t_{\alpha/2,n-1} = t_{0.005,9} = 3.25$, por lo que la regi\'on de rechazo est\'a dado para $t < -3.25$ y $t > 3.25$, donde $t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{equation*}
+   t = \frac{\bar{x} - \mu}{s/\sqrt{n}} = \frac{10.06-10}{\frac{2\sqrt{85}}{75} / \sqrt{10}} = \frac{0.06(75)\sqrt{2}}{2\sqrt{17}} = \frac{4.5\sqrt{34}}{34} = \frac{9\sqrt{34}}{68} \approx 0.77174
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  La cantidad de litros promedio contenida en los envases del lubricante no es significativamente distinto a los $10$ l.
+ \end{conclusion}
+ En el c\'odigo registrado en el archivo anexo \texttt{P04\_Prueba\_de\_una\_media\_02.r}, en R, se realiza este procedimiento. El c\'odigo permite modificar los valores iniciales que corresponden al nombre del archivo de datos que se va a leer, en este caso \texttt{DB01\_Problema\_025.csv}; \texttt{varInteres} para indicar el nombre de la columna que corresponden a los datos en la base anterior; \texttt{mu} para la media de la prueba; \texttt{alfa} para el nivel de significancia; \texttt{cola} para indicar si ser\'a una prueba de dos colas, con \texttt{'D'}, de cola inferior, con \texttt{'I'}, o de cola superior, con \texttt{'S'}; y, \texttt{desv.pobl} para indicar, si se conoce, la desviaci\'on poblacional. El nivel de significancia y la desviaci\'on poblacional son opcionales y se les asigna \texttt{NULL} en caso de no requerirlos.
+ \par 
+ El modo de proceder y la salida son similares a \texttt{P03\_Prueba\_de\_una\_media\_01.r}, la diferencia radica en que en este c\'odigo no se dan los valores resumidos sino las datos a partir de un archivo y, en la salida, el primer valor dado es la variable de los datos.
+ \par 
+ El c\'odigo junto con el resultado se muestra a continuaci\'on:
+ \begin{verbatim}
+> library(TeachingDemos)
+> datos<-read.csv("DB01_Problema_025.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Contenido.l")
+> mu<-10
+> alfa<-0.01
+> cola<-'D'
+> desv.pobl<-NULL
+> valores<-unlist(datos[,varInteres])
+> variable<-factor(rep(varInteres,each=dim(datos)[1]))
+> TestMedia<-function(x,mu,alfa=0.05,colas='D',desv.pobl=NULL){
++    n<-length(x[!is.na(x)])
++    if(length(x[!is.na(x)])<=2){
++       r<-data.frame(Prueba=NA,
++                     H0=mu,
++                     n=n,
++                     MediaMuestral=mean(x[!is.na(x)]),
++                     desv.est=NA,
++                     error.est=NA,
++                     alpha=alfa,
++                     PValor=NA,
++                     estadístico=NA,
++                     RegionRechazoZ=NA,
++                     RegionRechazoX=NA)
++    }else{
++       if(is.null(desv.pobl) & length(x[!is.na(x)])>=30){
++          desv.pobl=sd(x)
++       }
++       if(is.null(desv.pobl)){
++          if(colas=='D'){
++             prueba<-t.test(x[!is.na(x)],mu=mu,conf.level=1-alfa)
++             m<-as.numeric(prueba$estimate)
++             error<-sd(x[!is.na(x)])/sqrt(n)
++             criticot<-round((prueba$conf.int[2]-m)/error,7)
++             criticox<-round(prueba$conf.int[2]-m,7)
++             r<-data.frame(Prueba="t",
++                           H0=mu,
++                           n=n,
++                           MediaMuestral=m,
++                           desv.est=sd(x[!is.na(x)]),
++                           error.est=error,
++                           alpha=alfa,
++                           PValor=prueba$p.value,
++                           estadístico=round(as.numeric(prueba$statistic),7),
++                           RegionRechazoT=paste("<",-criticot,7,
++                                                " y >",criticot,7),
++                           RegionRechazoX=paste("<",mu-criticox,7,
++                                                " y >",mu+criticox))
++          }else{
++             if(colas=='I'){
++                prueba<-t.test(x[!is.na(x)],mu=mu,conf.level=1-alfa,
++                               alternative="less")
++                m<-as.numeric(prueba$estimate)
++                error<-sd(x[!is.na(x)])/sqrt(n)
++                criticot<-round(qt(1-alfa,n-1),7)
++                criticox<-round(criticot*error,7)
++                r<-data.frame(Prueba="t",
++                              H0=mu,
++                              n=n,
++                              MediaMuestral=m,
++                              desv.est=sd(x[!is.na(x)]),
++                              error.est=error,
++                              alpha=alfa,
++                              PValor=prueba$p.value,
++                              estadístico=round(as.numeric(prueba$statistic),7),
++                              RegionRechazoT=paste("<",-criticot),
++                              RegionRechazoX=paste("<",mu-criticox))
++             }else{
++                prueba<-t.test(x[!is.na(x)],mu=mu,conf.level=1-alfa,
++                               alternative="greater")
++                m<-as.numeric(prueba$estimate)
++                error<-sd(x[!is.na(x)])/sqrt(n)
++                criticot<-round(qt(1-alfa,n-1),7)
++                criticox<-round(criticot*error,7)
++                r<-data.frame(Prueba="t",
++                              H0=mu,
++                              n=n,
++                              MediaMuestral=m,
++                              desv.est=sd(x[!is.na(x)]),
++                              error.est=error,
++                              alpha=alfa,
++                              PValor=prueba$p.value,
++                              estadístico=round(as.numeric(prueba$statistic),7),
++                              RegionRechazoT=paste(">",criticot),
++                              RegionRechazoX=paste(">",mu+criticox))
++             }
++          }
++       }else{
++          if(colas=='D'){
++             prueba<-z.test(x[!is.na(x)],sd=desv.pobl,mu=mu,conf.level=1-alfa)
++             m<-as.numeric(prueba$estimate)
++             error<-sd(x[!is.na(x)])/sqrt(n)
++             criticoz<-round((prueba$conf.int[2]-m)/error,7)
++             criticox<-round(prueba$conf.int[2]-m,7)
++             r<-data.frame(Prueba="Z",
++                           H0=mu,
++                           n=n,
++                           MediaMuestral=m,
++                           desv.est=sd(x[!is.na(x)]),
++                           error.est=error,
++                           alpha=alfa,
++                           PValor=prueba$p.value,
++                           estadístico=round(as.numeric(prueba$statistic),7),
++                           RegionRechazoZ=paste("<",-criticoz,
++                                                " y >",criticoz),
++                           RegionRechazoX=paste("<",mu-criticox,
++                                                " y >",mu+criticox))
++          }else{
++             if(colas=='I'){
++                prueba<-z.test(x[!is.na(x)],sd=desv.pobl,mu=mu,
++                               conf.level=1-alfa,alternative="less")
++                m<-as.numeric(prueba$estimate)
++                error<-sd(x[!is.na(x)])/sqrt(n)
++                criticoz<-round(qnorm(1-alfa),7)
++                criticox<-round(criticoz*error,7)
++                r<-data.frame(Prueba="Z",
++                              H0=mu,
++                              n=n,
++                              MediaMuestral=m,
++                              desv.est=sd(x[!is.na(x)]),
++                              error.est=error,
++                              alpha=alfa,
++                              PValor=prueba$p.value,
++                              estadístico=round(as.numeric(prueba$statistic),7),
++                              RegionRechazoZ=paste("<",-criticoz),
++                              RegionRechazoX=paste("<",mu-criticox))
++             }else{
++                prueba<-z.test(x[!is.na(x)],sd=desv.pobl,mu=mu,
++                               conf.level=1-alfa,alternative="greater")
++                m<-as.numeric(prueba$estimate)
++                error<-sd(x[!is.na(x)])/sqrt(n)
++                criticoz<-round(qnorm(1-alfa),7)
++                criticox<-round(criticoz*error,7)
++                r<-data.frame(Prueba="Z",
++                              H0=mu,
++                              n=n,
++                              MediaMuestral=m,
++                              desv.est=sd(x[!is.na(x)]),
++                              error.est=error,
++                              alpha=alfa,
++                              PValor=prueba$p.value,
++                              estadístico=round(as.numeric(prueba$statistic),7),
++                              RegionRechazoZ=paste(">",criticoz),
++                              RegionRechazoX=paste(">",mu+criticox))
++             }
++          }
++       }
++    }
++    return(r)
++ }
+> if(is.null(alfa)){
++     Test<-TestMedia(valores,mu,colas=cola,desv.pobl=desv.pobl)
++ }else{
++     Test<-TestMedia(valores,mu,alfa=alfa,colas=cola,desv.pobl=desv.pobl)
++     resultado<-ifelse(Test[,"PValor"]>=alfa,
++                       "No se rechaza H0","Se rechaza H0")
++     Test$Resultado<-resultado
++     Test$Resultado[is.na(Test$Resultado)]<-"Pocos datos"
++ }
+> identif<-data.frame(varInteres)
+> names(identif)<-"var"
+> Test<-data.frame(identif,Test)
+> Test
+          var Prueba H0  n MediaMuestral  desv.est  error.est alpha   PValor
+1 Contenido.l      t 10 10         10.06 0.2458545 0.07774603  0.01 0.460049
+  estadístico                  RegionRechazoT                RegionRechazoX
+1   0.7717436 < -3.2498355 7  y > 3.2498355 7 < 9.7473382 7  y > 10.2526618
+         Resultado
+1 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos, adem\'as de dar m\'as informaci\'on como la regi\'on de rechazo sin estandarizar la variable aleatoria, es decir en t\'erminos de las unidades originales, adem\'as del valor $P$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

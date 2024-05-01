@@ -1,0 +1,143 @@
+\begin{enunciado}
+ Construya un intervalo de confianza de $98\%$ para $\sigma_1/\sigma_2$ en el ejercicio 9.42 de la p\'agina 298, donde $\sigma_1$ y $\sigma_2$ son, respectivamente, las desviaciones est\'andar para las distancias que se obtienen por litro de combustible en los camiones compactos Volkswagen y Toyota.
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explici\'o en la soluci\'on del ejercicio 9.42, pero cambiando el significado de $\alpha$ al nivel de significancia del intervalo de confianza para $\sigma_1/\sigma_2$, entonces se tiene los siguientes datos:
+ \begin{itemize}
+  \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1, 2\}$.
+  \item $\sigma_i$ desconocidas, para cada $i \in \{ 1, 2\}$.
+  \item $n_1 = 12$ y $n_2 = 10$.
+  \item $\bar{x}_1 = 16$ y $\bar{x}_2 = 11$.
+  \item $s_1 = 1$ y $s_2 = 0.8$.
+  \item $\alpha = 0.02$
+ \end{itemize}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para la proporci\'on de desviaciones est\'andar de poblaciones independientes y normalmente distribuidas, entonces se requerir\'a de los valores $f_{\alpha/2}(n_1-1,n_2-1) = f_{0.01}(11,9)$ y $f_{\alpha/2}(n_2-1,n_1-1) = f_{0.01}(9,11)$. De la Tabla A.6: \textit{Valores cr\'{\i}ticos de la distribuci\'on $F$}, en el ap\'endice A del libro, se puede interpolar para obtener que $f_{0.01}(11,9) = 5.185$ y se obtiene que $f_{0.01}(9,11) = 4.63$. Por otro lado, usando R, con los siguientes comandos, se obtiene mayor precisi\'on.
+ \begin{verbatim}
+> options(digits=22)
+> qf(0.01,11,9,lower.tail=F)
+[1] 5.17789035011653098195
+> qf(0.01,9,11,lower.tail=F)
+[1] 4.631539747647495985916
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar, con mayor precisi\'on que: $f_{0.01}(11,9) = 5.1778903501$ y $f_{0.01}(9,11) = 4.6315397476$.
+ \par 
+ Ya que se busca un intervalo de confianza bilateral para la proporci\'on de desviaciones est\'andar de poblaciones normalmente distribuidas usando la proporci\'on de las desviaciones est\'andar muestrales, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \frac{s_1}{s_2}\cdot \frac{1}{\sqrt{f_{\alpha/2}(n_1-1,n_2-1)}} < \frac{\sigma_1}{\sigma_2} < \frac{s_1}{s_2}\cdot \sqrt{f_{\alpha/2}(n_2-1,n_1-1)}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando los valores $f_{0.01}(11,9)$ y $f_{0.01}(9,11)$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \frac{s_1}{s_2}\cdot \frac{1}{\sqrt{f_{\alpha/2}(n_1-1,n_2-1)}} & = & \frac{1}{0.8}\cdot \frac{1}{\sqrt{5.185}} = \frac{1.25\sqrt{200}}{\sqrt{1\,037}} = \frac{12.5\sqrt{2\,074}}{1\,037} = \frac{25\sqrt{2\,074}}{2\,074} \\
+  & \approx & 0.01205400192864\sqrt{2074} \approx 0.54895359386382
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \frac{s_1}{s_2}\cdot \sqrt{f_{\alpha/2}(n_2-1,n_1-1)} & = & \frac{1}{0.8}\cdot \sqrt{4.63} = \frac{1.25\sqrt{463}}{10} = \frac{\sqrt{463}}{8} \\
+  & = & 0.125\sqrt{463} \approx 2.68967934891875
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $98\%$ para la proporci\'on de las desviaciones est\'andar para las distancias, medidas en kil\'ometros, que se obtienen por litro de combustible en los camiones compactos de la Volkswagen y la Toyota es aproximadamente de:
+ \begin{equation*}
+  0.54895359386382 < \frac{\sigma_1}{\sigma_2} < 2.68967934891875
+ \end{equation*}
+ Finalmente, usando R, se puede calcular el intervalo de confianza directamente con el c\'odigo registrado en el archivo anexo \texttt{P23\_Intervalo\_de\_confianza\_12.r}. En el archivo se puede modificar los valores iniciales que corresponden a: \texttt{n1} y \texttt{n2}, para el tama\~no de las muestras; el valor de los estimadores de dispersi\'on se pueden dar con las varianzas muestrales, con las variables \texttt{var1} y \texttt{var2}, o las desviaciones est\'andar muestrales, con las variables \texttt{desv.est1} y \texttt{desv.est2}, o una pareja de estas que contengan estimadores de dispersi\'on de ambas muestras; \texttt{alfa}, para el nivel de significancia; \texttt{tipoInter}, para indicar si se calcular\'a el intervalo de confianza para la raz\'on de varianzas, con el valor \texttt{var}, o para la raz\'on de desviaciones est\'andar, con el varlor \texttt{desv.est}; \texttt{inter}, para indicar si el intervalo ser\'a bilateral, con el valor texttt{D}, unilateral superior, con el valor \texttt{S}, o unilateral inferior, con el valor \texttt{I}; y, \texttt{val}, para indicar si se supone que la poblaci\'on se distribuye normalmente, con el valor \texttt{TRUE}, o no, con el valor \texttt{FALSE}.
+ \par 
+ El resultado final indica en la primera columna lo que se est\'a estimando, si la raz\'on que se estima es de las varianzas o las desviaciones est\'andar; en las dos siguientes columnas se muestran los tama\~nos de la primera y segunda muestra, respectivamente; las siguientes dos, indica las desviaciones est\'andar de la primera y segunda muestra, respectivamente; las siguientes columnas corresponden seg\'un el tipo de intervalo pedido, que pueden mostrar dos o tres de los siguientes valores: \texttt{LimInf} es el l\'{\i}mite inferior del intervalo, \texttt{razon} es el estimador de la raz\'on que se indica en la primera columna y \texttt{LimSup} es el l\'{\i}mite superior del intervalo; la pen\'ultima columna indica la probabilidad de haber obtenido el valor estimado suponiendo que las varianzas poblacionales son iguales; y, la la \'ultima columna, concluye si las varianzas son o no iguales seg\'un si la probabilidad antes mencionada es menor o mayor al nivel de significancia.
+ \par
+ El c\'odigo completo se presenta a continuaci\'on junto con la soluci\'on obtenida al final.
+ \begin{verbatim}
+> n1<-12
+> n2<-10
+> var1<-NULL
+> var2<-NULL
+> desv.est1<-1
+> desv.est2<-0.8
+> alfa<-0.02
+> tipoInterv<-"desv.est"
+> inter<-'D'
+> val<-TRUE
+> if(!val & n1 < 30 & n2 < 30){
++     stop("Se requiere normalidad o muestras grandes")
++ }
+> if((is.null(var1)&is.null(desv.est1))|(is.null(var2)&is.null(desv.est2))){
++     stop("datos insuficientes")
++ }
+> if(is.null(var1)) var1<-desv.est1^2
+> if(is.null(var2)) var2<-desv.est2^2
+> difMedias<-function(n1,n2,var1,var2,alfa=0.05,colas='D',tipoInter="var"){
++     razon<-round(var1/var2,7)
++     estimador<-ifelse(tipoInter=="var",razon,round(sqrt(razon),7))
++     if(n1<2 | n2 < 2){
++         r<-data.frame(Estimando=tipoInterv,
++                       n1=n1,n2=n2,
++                       desv.Est1=NA,
++                       desv.Est2=NA,
++                       LimInf=NA,
++                       razon=NA,
++                       LimSup=NA)
++     }else{
++         if(colas=='D'){
++             jicuadL<-qf(alfa/2,n1-1,n2-1,lower.tail=F)
++             jicuadU<-qf(alfa/2,n2-1,n1-1,lower.tail=F)
++             LL<-round(ifelse(tipoInter=="var",
++                              estimador/jicuadL,
++                              estimador/sqrt(jicuadL)),7)
++             LU<-round(ifelse(tipoInter=="var",
++                              estimador*jicuadU,
++                              estimador*sqrt(jicuadU)),7)
++             Pvalor<-2*min(pf(razon,n1-1,n2-1,lower.tail=F),
++                           pf(razon,n1-1,n2-1))
++             r<-data.frame(Estimando=tipoInterv,
++                           n1=n1,n2=n2,
++                           desv.Est1=sqrt(var1),
++                           desv.Est2=sqrt(var2),
++                           LimInf=LL,
++                           razon=estimador,
++                           LimSup=LU,
++                           Pvalor=Pvalor)
++         }else{
++             if(colas=='I'){
++                 jicuadL<-qf(alfa,n1-1,n2-1,lower.tail=F)
++                 LL<-round(ifelse(tipoInter=="var",
++                                  estimador/jicuadL,
++                                  estimador/sqrt(jicuadL)),7)
++                 Pvalor<-pf(razon,n1-1,n2-1)
++                 r<-data.frame(Estimando=tipoInterv,
++                               n1=n1,n2=n2,
++                               desv.Est1=sqrt(var1),
++                               desv.Est2=sqrt(var2),
++                               LimInf=LL,
++                               razon=estimador,
++                               Pvalor=Pvalor)
++             }else{
++                 jicuadU<-qf(alfa,n2-1,n1-1,lower.tail=F)
++                 LU<-round(ifelse(tipoInter=="var",
++                                  estimador*jicuadU,
++                                  estimador*sqrt(jicuadU)),7)
++                 Pvalor<-1/pf(razon,n2-1,n1-1)
++                 r<-data.frame(Estimando=tipoInterv,
++                               n1=n1,n2=n2,
++                               desv.Est1=sqrt(var1),
++                               desv.Est2=sqrt(var2),
++                               razon=estimador,
++                               LimSup=LU,
++                               Pvalor=Pvalor)
++             }
++         }
++     }
++     return(r)
++ }
+> ICs<-difMedias(n1,n2,var1,var2,alfa=alfa,colas=inter,tipoInter=tipoInterv)
+> resultado<-ifelse(ICs[,"Pvalor"]>=alfa,"Var no diferentes","Var diferentes")
+> ICs$Resultado<-resultado
+> ICs$Resultado[is.na(ICs$Resultado)]<-"Pocos datos"
+> ICs
+  Estimando n1 n2 desv.Est1 desv.Est2    LimInf razon   LimSup    Pvalor
+1  desv.est 12 10         1       0.8 0.5493303  1.25 2.690127 0.5120603
+          Resultado
+1 Var no diferentes
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $98\%$ es $0.59 < \frac{\sigma_1}{\sigma_2} < 2.69$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

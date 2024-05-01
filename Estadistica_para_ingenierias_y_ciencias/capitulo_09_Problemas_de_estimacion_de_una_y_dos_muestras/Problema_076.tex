@@ -1,0 +1,61 @@
+\begin{enunciado}
+ Construya un intervalo de confianza de $90\%$ para $\sigma$ en el ejercicio 9.15 de la p\'agina 286.
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.15, pero cambiando el significado de $\alpha$ al nivel de significancia del intervalo de confianza para $\sigma$, entonces se tiene los siguientes datos:
+ \begin{itemize}
+  \item $X \sim n(\mu, \sigma)$.
+  \item $\sigma$ desconocida.
+  \item $n = 12$ alfileres.
+  \item $s = 1.5$.
+  \item $\alpha = 0.1$
+ \end{itemize}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para la varianza de una poblaci\'on aproximadamente normal, entonces se requerir\'a de los valores $\chi^2_{\alpha/2,n-1} = \chi^2_{0.05,11}$ y $\chi^2_{1-\alpha/2,n-1} = \chi^2_{0.95,11}$. De la Tabla A.5, se tiene que estos valores son: $\chi^2_{0.05,11} = 19.675$ y $\chi^2_{0.95,11} = 4.575$. Por otro lado, usando R, con los siguientes comandos, se obtiene mayor precisi\'on.
+ \begin{verbatim}
+> options(digits=22)
+> qchisq(0.05,11,lower.tail=F)
+[1] 19.67513757268249108279
+> qchisq(0.95,11,lower.tail=F)
+[1] 4.574813079322225917167
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar con mayor precisi\'on que $\chi^2_{0.05,11} = 19.675137572682$ y $\chi^2_{0.995,11} = 4.574813079322$.
+ \par 
+ Ya que se busca un intervalo de confianza para la desviaci\'on est\'andar de una poblaci\'on que se distribuye normalmente usando la desviaci\'on est\'andar muestral como estimador, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \frac{\sqrt{n-1}s}{\sqrt{\chi^2_{\alpha/2,n-1}}} < \sigma < \frac{\sqrt{n-1}s}{\sqrt{\chi^2_{1-\alpha/2,n-1}}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando los valores $\chi^2_{\alpha/2,n-1}$ y $\chi^2_{1-\alpha/2,n-1}$ del libro, se tiene los c\'alculos de los l\'{\i}mites de intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \frac{\sqrt{n-1}s}{\sqrt{\chi^2_{\alpha/2,n-1}}} & = & \frac{1.5\sqrt{11}}{\sqrt{19.675}} = \frac{1.5\sqrt{11}\sqrt{40}}{\sqrt{787}} = \frac{3\sqrt{86\,570}}{787} \\
+  & \approx & 0.003811944\sqrt{86\,570} \approx 1.12157993
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \frac{\sqrt{n-1}s}{\sqrt{\chi^2_{1-\alpha/2,n-1}}} & = & \frac{1.5\sqrt{11}}{\sqrt{4.575}} = \frac{1.5\sqrt{11}\sqrt{40}}{\sqrt{183}} = \frac{3\sqrt{20\,130}}{183} = \frac{\sqrt{20\,130}}{61} \\
+  & \approx & 0.01639344\sqrt{20\,130} \approx 2.3259054
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $90\%$ para la desviaci\'on est\'andar de la dureza de Rockwell en la cabeza de los alfileres es aproximadamente
+ \begin{equation*}
+  1.12157993 < \sigma < 2.3259054
+ \end{equation*}
+ Finalmente, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P22\_Intervalo\_de\_confianza\_11.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n<-12
+> var<-NULL
+> desv.est<-1.5
+> alfa<-0.1
+> tipoInterv<-"desv.est"
+> inter<-'D'
+> val<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  Estimando  n   LimInf estimador   LimSup
+1  desv.est 12 1.121576       1.5 2.325953
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $90\%$ es $1.122 < \sigma < 2.326$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

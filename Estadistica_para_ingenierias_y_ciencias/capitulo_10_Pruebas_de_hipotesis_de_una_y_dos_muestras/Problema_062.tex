@@ -1,0 +1,79 @@
+\begin{enunciado}
+ En un experimento de laboratorio controlado, cient\'{\i}ficos de la Universidad
+ de Minnesota descubrieron que $25\%$ de cierta camada de ratas sujetas a una dieta
+ de 20\% de grano de caf\'e, y luego forzadas a consumir un poderoso qu\'{\i}mico
+ causante de c\'ancer, desarrollaron tumores cancerosos.
+ ¿Tendr\'{\i}amos razones para creer que la proporci\'on de ratas que desarrollan
+ tumores cuando se sujeta a esta dieta aumenta, si el experimento se repite
+ y $16$ de $48$ ratas desarrollan tumores?
+ Utilice un nivel de significancia de $0.05$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n=48$.
+   \item $x=16$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p & \leq & 0.25 \\
+   H_1: p &  >   & 0.25
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.3, se tiene el valor cr\'{\i}tico $z_{\alpha} = z_{0.05} = 1.645$,
+  por lo que la regi\'on de rechazo est\'a dado para $z > 1.645$,
+  donde $z = \frac{x - np}{\sqrt{npq}} 
+  = \frac{\widehat{p} - p}{\sqrt{pq/n}}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{equation*}
+   z = \frac{x - np}{\sqrt{npq}}
+   = \frac{16 - (48)(0.25)}{\sqrt{(48)(0.25)(0.75)}}
+   = \frac{16 - 12}{\sqrt{9}}
+   = \frac{4}{3}
+   \approx 1.\bar{3}
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  No hay raz\'on para creer que la proporci\'on de ratas que desarrollan tumores,
+  cuando se sujeta a la dieta, aumenta del $25\%$.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo \texttt{P08\_Prueba\_de\_una\_proporcion\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n<-48
+> x<-16
+> p0<-NULL
+> p<-0.25
+> alfa<-0.05
+> cola<-'S'
+> distr<-NULL
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+   distr    p  n  x pMuestral media desv.est alpha    PValor Estadistico
+1 Normal 0.25 48 16 0.3333333    12        3  0.05 0.0912112    1.333333
+  RegionRechazoZ RegionRechazoX        Resultado
+1   >= 1.6448536          >= 17 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

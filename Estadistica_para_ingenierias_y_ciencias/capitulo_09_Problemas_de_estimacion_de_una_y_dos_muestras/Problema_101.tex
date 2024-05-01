@@ -1,0 +1,76 @@
+\begin{enunciado}
+ Se realiz\'o una encuesta con la finalidad de comparar los sueldos de administradores de plantas qu\'{\i}micas empleados en dos \'areas del pa\'{\i}s: las regiones norte y centro-occidente. Se eligieron muestras aleatorias independientes de $300$ gerentes de planta para cada una de las dos regiones. A tales gerentes se les pregunt\'o el monto de su sueldo anual. Los resultados fueron.
+ \begin{center}
+  \begin{tabular}{cc}
+   \textbf{Norte} & \textbf{Centro-Occidente} \\
+   \hline 
+   $\bar{x}_1 = \$102,300$ & $\bar{x}_2 = \$98,500$ \\
+   $s_1 = \$5,700$ & $s_2 = \$3,800$
+  \end{tabular}
+ \end{center}
+ \begin{enumerate}
+  \item Construya un intervalo de confianza de $99\%$ en $\mu_1 - \mu_2$, la diferencia en los dos sueldos medios.
+  
+  \item ¿Cu\'al es la suposici\'on que usted hizo en el inciso $a)$ acerca de la distribuci\'on de los sueldos anuales para las dos regiones? ¿Es necesaria la suposici\'on de normalidad? ¿Por qu\'e?
+  
+  \item ¿Qu\'e suposici\'on hizo acerca de las dos varianzas? ¿Es razonable la suposici\'on de igualdad de varianzas?
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de los sueldos de los gerentes de plantas qu\'{\i}micas empleados en la regi\'on norte y en la reci\'on centro-occidente, respectivamente, entonces, del enunciado, se tienen los siguientes datos:
+ \begin{itemize}
+  \item $\mu_i$ y $\sigma_i$ desconocidos, para cada $i \in \{ 1, 2 \}$.
+  \item $n_1 = n_2 = 300$.
+  \item $\bar{x}_1 = 102\,300$ y $\bar{x}_2 = 98\,500$.
+  \item $s_1 = 5\,700$ y $s_2 = 3\,800$.
+ \end{itemize}
+ \begin{enumerate}
+  \item Se agrega a los datos que se tienen el nivel de significancia:
+  \begin{itemize}
+   \item $\alpha = 0.01$.
+  \end{itemize}
+  Adem\'as, como se buscar\'a un intervalo de confianza bilateral para $\mu_1 - \mu_2$, usando como estimador $\bar{x}_1 - \bar{x}_2$, y el tama\~no de las muestras son grandes, entonces se requerir\'a del valor cr\'{\i}tico $z_{\alpha/2} = 0.005$, el cual se calcul\'o en el ejercicio 9.7 y su aproximaci\'on es $2.575$, aunque en R, se puede considerar con mayor precisi\'on como $2.5758293$.
+  \par 
+  Ya que se busca un intervalo de confianza para al diferencia de medias poblacionales usando como estimaador a la diferencia de medias muestrales en muestras grandes, entonces se usar\'a la formulaci\'on siguiente:
+  \begin{equation*}
+   \left( \bar{x}_1 - \bar{x}_2 \right) - z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2 \right) + z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos, considerando la primera aproximaci\'on de $z_{\alpha/2}$, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+  \begin{eqnarray*}
+   \left( \bar{x}_1 - \bar{x}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} & = & (102\,300 - 98\,500) \pm \frac{103}{40} \sqrt{\frac{5\,700^2}{300} + \frac{3\,800^2}{300}} \\
+   & = & 3\,800 \pm 2.575\sqrt{\frac{100^2\left( 57^2 + 38^2 \right)}{300}} \\
+   & = & 3\,800 \pm \frac{103(100)\sqrt{3\,249 + 1\,444}\sqrt{3}}{40(30)} = 3\,800 \pm \frac{103\sqrt{4\,693(3)}}{12} \\
+   & = & 3\,800 \pm \frac{103(19)\sqrt{39}}{12} = 3\,800 \pm \frac{1\,957\sqrt{39}}{12} \\
+   & = & 3\,800 \pm 163.08\overline{3}\sqrt{39} \approx 3\,800 \pm 1018.455090238805
+  \end{eqnarray*}
+  Por lo tanto, el intervalo del $99\%$ de confianza de la diferencia del sueldo promedio de los gerentes de plantas qu\'{\i}micas empleados de la regi\'on norte menos los sueldos promedios de los de la regi\'on centro occidente, es aproximadamente de:
+  \begin{equation*}
+   2\,781.544909761 < \mu_1 - \mu_2 < 4\,818.4550902
+  \end{equation*}
+  Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P13\_Intervalo\_de\_confianza\_04.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n1<-300
+> n2<-300
+> m1<-102300
+> m2<-98500
+> desv.tipica1<-5700
+> desv.tipica2<-3800
+> alfa<-0.01
+> val<-FALSE
+> inter<-'D'
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+   n1  n2 media1 media2   LimInf diferencia   LimSup
+1 300 300 102300  98500 2781.217       3800 4818.783
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de $99\%$ de confianza es $2\,781 < \mu_1 - \mu_2 < 4\,818$.${}_{\square}$
+  
+  \item No hizo falta ninguna suposici\'on, salvo las necesarias para permitir la ley de los grandes n\'umeros para decir que con $300$ datos, se puede aproximar a una distribuci\'on normal. Pero suponer esta distribuci\'on en s\'{\i} para la poblaci\'on es innecesario debido a que la muestra es grande.${}_{\square}$
+  
+  \item No hizo falta suponer nada acerca de las varianzas, porque como la muestra es lo suficientemente grande, entonces las desviaciones est\'andar muestrales aproximan bien las desviaciones est\'andar poblacionales. Sin embargo, si no se usara la f\'ormula que se usa, no es razonable la suposici\'on de igualdad de varianzas debido a que, con una muestra grande, las desviaciones est\'andar muestrales deber\'{\i}an aproximarse entre s\'{\i} de haber varianzas poblacionales iguales, cosa que no ocurre, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

@@ -1,0 +1,35 @@
+\begin{enunciado}
+ Un investigador de la \texttt{UCLA} afirma que la vida de los ratones se puede extender hasta un $25\%$ cuando se reducen las calor\'{\i}as en su alimento en aproximadamente $40\%$, desde el momento en que se les desteta.
+ Las dietas restringidas se enriquecen a niveles normales con vitaminas y prote\'{\i}nas.
+ Suponiendo que por estudios previos se sabe que $\sigma = 5.8$ meses, ?`cu\'antos ratones se deber\'{\i}an incluir en nuestra muestra, si deseamos tener $99\%$ de confianza de que la vida media de la muestra est\'e dentro de 2 meses de la media de la poblaci\'on para todos los ratones sujetos a la dieta reducida?
+\end{enunciado}
+
+\begin{solucion}
+ El problema pide conocer el tama\~no de la muestra para estimar $\mu$, medido en meses, usando $\bar{x}$ con los siguientes datos:
+ \begin{itemize}
+  \item $\sigma = 5.8$ meses.
+  \item $\alpha=0.01$.
+  \item $e=2$ meses.
+ \end{itemize}
+ Para conocer el tama\~no de muestra se precisa obtener el valor de $z_{\alpha/2} = z_{0.005}$, el cual, por ejercicios previos resueltos, se sabe que vale aproximadamente $2.575$, seg\'un el libro, y m\'as precisamente $2.5758293$, usando el software estad\'{\i}stico R.
+ \par 
+ Entonces, por el tipo de problema y el valor conocido de $\sigma$, se puede usar la siguiente formulaci\'on:
+ \begin{equation*}
+  n = \left( \frac{z_{\alpha/2}\sigma}{e} \right)^2
+ \end{equation*}
+ por lo tanto, el valor pedido se puede calcular, usando el valor $z_{\alpha/2}$ del libro, como
+ \begin{equation*}
+  n = \left\lceil \left( \frac{2.575\times 5.8}{2} \right)^2  \right\rceil = \left\lceil \left( 7.4675 \right)^2 \right\rceil = \left\lceil 55.76355625 \right\rceil = 56
+ \end{equation*}
+ Por lo tanto, el tama\~no de la muestra buscada es de $n=56$.
+ \par 
+ N\'otese que usando el valor $z_{\alpha/2}$ de la aproximaci\'on hecha en R da el mismo valor, esto se puede verificar usando el programa anexo \texttt{P03\_Tamanyo\_de\_muestra\_1.r} y cambiando las siguientes l\'{\i}neas de c\'odigo.
+ \begin{verbatim}
+>error<-2
+>desv.tipica<-5.8
+>alfa<-0.01
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
+

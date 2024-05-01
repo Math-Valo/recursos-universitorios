@@ -1,0 +1,126 @@
+\begin{enunciado}
+ En un estudio para estimar la proporci\'on de esposas
+ que de manera regular ven telenovelas,
+ se encuentra que $52$ de $200$ esposas de Denver, $31$ de $150$ en Phoenix,
+ y $37$ de $150$ en Rochester ven al menos una telenovela.
+ Utilice un nivel de significancia de $0.05$ para probar la hip\'otesis
+ de que no hay diferencia entre las proporciones reales de esposas
+ que ven telenovelas en esas tres ciudades.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item Tamaño de muestra total: $500$.
+   \item Esposas encuestadas de Denver: $200$.
+   \item Esposas encuestadas de Phoenix: $150$.
+   \item Esposas encuestadas de Rochester: $150$.
+   \item Esposas que ven telenovelas: $52 + 31 + 37 = 120$.
+   \item Esposas que no ven telenovelas: $380$.
+   \item Frecuencias observadas y esperadas: $o_{i,j}$
+   y $e_{i,j}=\frac{R_i C_j}{n}$, respectivamente,
+   donde $R_i$ y $C_j$ son los marginales del rengl\'on $i$ y la columna $j$,
+   respectivamente, y $n$ es el total de toda la muestra.
+   As\'{\i}, pues, redondeando a un decimal, se muestra el resumen 
+   en la siguiente tabla,
+   en donde aparece entre par\'entesis la frecuencia esperada
+   y a la izquierda el valor observado:
+   \begin{center}
+    \begin{tabular}{lccc|c}
+     & \multicolumn{3}{c}{\textbf{Ciudad}} & \textbf{Marginal} \\
+     \textbf{H\'abito} & \textbf{Denver} & \textbf{Phoenix} &
+     \textbf{Rochester} & \textbf{por hábito} \\
+     \hline
+     Ve telenovelas & $52 (48)$ & $31 (36)$ & $37 (36)$ & $120$ \\
+     No ve telenovelas & $148 (152)$ & $119 (114)$ & $113 (114)$ & $380$ \\
+     \hline
+     \textbf{Marginal por ciudad} & $200$ & $150$ & $150$ & 
+     \textbf{TOTAL:} $n=500$
+    \end{tabular}
+   \end{center}
+   \item Tama\~no de la tabla de contingencia: $r\times c = 2\times 3$.
+   \item Grados de libertad de la prueba $\chi^2$: $v = (r-1)(c-1) = 2$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  Representando con $p_1$, $p_2$ y $p_3$ las proporciones reales de
+  esposas que ven telenovelas en Denver, Phoenix y Rochester,
+  respectivamente,
+  \begin{eqnarray*}
+   H_0: & & p_1 = p_2 = p_3 \\
+   H_1: & & p_1, p_2 \text{ y } p_3 \text{ no son todas iguales.}
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{\alpha,v} = \chi^2_{0.05,2} \approx 5.991$,
+  por lo que la regi\'on de rechazo est\'a dado
+  para $\chi^2 > 5.991$, donde
+  $\chi^2 = \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   \chi^2 & = & \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i} \\
+   & = & \frac{(52 - 48)^2}{48} + \frac{(148 - 152)^2}{152} +
+   \frac{(31 - 36)^2}{36} + \frac{(37 - 36)^2}{36} + 
+   \frac{(119 - 114)^2}{114} + \frac{(113 - 114)^2}{114} \\
+   & = & \frac{16}{48}+\frac{16}{152}+\frac{26}{36}+\frac{26}{114}
+   \approx 0.3333 + 0.1053 + 0.7222 + 0.2281 \\
+   & = & 1.3889
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  A un nivel de significancia de $0.05$, los resultados arrojan
+  que no hay evidencia que rechace la diferencia de las proporciones,
+  por lo que se puede considerar las proporciones de mujeres
+  que ven telenovelas en Denver, Phoenix y Rochester como iguales.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeniedad\_01.r},
+ que a su vez requiere los datos del archivo
+ \texttt{BD36\_Problema\_100.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB36_Problema_100.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Hábito.telenovelas","Ciudad")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1)
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+$tabla
+                   Ciudad
+Hábito.telenovelas Denver Phoenix Rochester
+  No ve telenovelas    148     119       113
+  Ve telenovelas        52      31        37
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 1.3889, df = 2, p-value = 0.4994
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos,
+ adem\'as de brindar la informaci\'on del $P-$valor.
+ N\'otese que, aunque se ha usado el programa de independencia
+ y homogeneidad, el resultado es v\'alidos debido a que corresponden
+ a los mismo procedimientos.
+ Que es lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

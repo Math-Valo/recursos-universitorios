@@ -1,0 +1,21 @@
+\begin{enunciado}
+ Muestre que el estimador $P'$ del ejercicio 9.2b) se vuelve insesgado conforme $n \rightarrow \infty$.
+\end{enunciado}
+
+\begin{solucion}
+ N\'otese que la expresi\'on $E\left(P'\right) = E\left( \frac{X+\sqrt{n}/2}{n+\sqrt{n}} \right) = \frac{E(X)+\sqrt{n}/2}{n+\sqrt{n}} =\frac{2np + \sqrt{n}}{2\left( n + \sqrt{n} \right)}$ tiene las siguientes equivalencias algebraicas
+ \begin{eqnarray*}
+  E\left(P'\right) & = & \frac{2np + \sqrt{n}}{2\left( n + \sqrt{n} \right)} = \frac{\sqrt{n} \left( 2\sqrt{n}p + 1\right)}{2\sqrt{n}\left( \sqrt{n} + 1 \right)} = \frac{2\sqrt{n}p + 1}{2\left( \sqrt{n} + 1 \right)} = \frac{2\sqrt{n}p}{2\left( \sqrt{n} + 1 \right)} + \frac{1}{2\left( \sqrt{n} + 1 \right)} \\
+     & = & \frac{\sqrt{n}p}{\sqrt{n}+1}\cdot \frac{\sqrt{n}-1}{\sqrt{n}-1} + \frac{1}{2\left( \sqrt{n} + 1 \right)} = \frac{p\left( n - \sqrt{n} \right)}{n-1} + \frac{1}{2\left( \sqrt{n} + 1 \right)} \\
+     & = & \frac{p\left( n - \sqrt{n} + 1 - 1 \right)}{n-1} + \frac{1}{2\left( \sqrt{n} + 1 \right)} = \frac{p(n-1)}{n-1} + \frac{p\left( 1-\sqrt{n} \right)}{n-1} + \frac{1}{2\left( \sqrt{n} + 1 \right)} \\
+     & = & p + \frac{p}{1 + \sqrt{n}} + \frac{1}{2\left( \sqrt{n} + 1 \right)}
+ \end{eqnarray*}
+ Por lo tanto, cuand $n \to \infty$, se sigue que la esperanza de $P'$ tiende a
+ \begin{eqnarray*}
+  \lim_{n \to \infty} E\left( P' \right) & = & \lim_{n \to \infty} \left[ p + \frac{p}{1 + \sqrt{n}} + \frac{1}{2\left( \sqrt{n} + 1 \right)} \right] \\ 
+    & = & \lim_{n \to \infty} p + \lim_{n\to\infty} \frac{1}{\sqrt{n}+1} + \lim_{n \to \infty} \frac{1}{2\left(n + \sqrt{n}\right)} = p + 0 + 0 \\
+    & = & p
+ \end{eqnarray*}
+ Por lo tanto, cuando $n \to \infty$, el estimador $P'$ tiende a ser insesgado, Q.E.D.${}_{\blacksquare}$
+\end{solucion}
+

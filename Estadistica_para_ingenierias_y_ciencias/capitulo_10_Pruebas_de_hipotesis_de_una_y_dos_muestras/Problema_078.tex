@@ -1,0 +1,148 @@
+\begin{enunciado}
+ Se sabe que las emisiones de hidrocarburos disminuyeron
+ de forma dram\'atica durante la d\'ecada de 1980.
+ Se realiz\'o un estudio para comparar las emisiones de hidrocarburos
+ a velocidad estacionaria, en partes por mill\'on (ppm),
+ para autom\'oviles de 1980 y 1990.
+ Se seleccionaron al azar $20$ autom\'oviles de cada modelo y se registraron
+ sus niveles de emisi\'on de hidrocarburos.
+ Los datos son los siguientes:
+ \begin{verbatim}
+Modelos 1980:
+ 141 359 247 940 882 494 306 210 105 880
+ 200 223 188 940 241 190 300 435 241 380
+Modelos 1990:
+ 140 160  20  20 223  60  20  95 360  70
+ 220 400 217  58 235 380 200 175  85  65
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Pruebe la hip\'otesis de que $\sigma_1 = \sigma_2$ contra la alternativa
+ de que $\sigma_1 \neq \sigma_2$.
+ Suponga que ambas poblaciones son normales. Utilice un valor $P$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido se tiene que:
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{1,2\}$.
+   \item $n_1 = n_2 = 20$.
+  \end{itemize}
+  Para obtener las varianzas se calcula primero lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^{20} x_{1,i} & = &
+   141 + 359 + 247 + 940 + 882 + 494 + 306 + 210 + 105 + 880 + \\
+   & & 200 + 223 + 188 + 940 + 241 + 190 + 300 + 435 + 241 + 380 \\
+   & = & 7\,902 \\
+   \sum_{i=1}^{8} x_{1,i}^2 & = & 
+   141^2 + 359^2 + 247^2 + 940^2 + 882^2 + 
+   494^2 + 306^2 + 210^2 + 105^2 + 880^2 + \\
+   & & 200^2 + 223^2 + 188^2 + 940^2 + 241^2
+   + 190^2 + 300^2 + 435^2 + 241^2 + 380^2 \\
+   & = & 4\,623\,052
+  \end{eqnarray*}
+  \begin{eqnarray*}
+   \sum_{i=1}^{20} x_{2,i} & = &
+   140 + 160 + 20 + 20 + 223 + 60 + 20 + 95 + 360 + 70 + \\
+   & & 220 + 400 + 217 + 58 + 235 + 380 + 200 + 175 + 85 + 65 \\
+   & = & 3\,203 \\
+   \sum_{i=1}^{20} x_{2,i}^2 & = &
+   140^2 + 160^2 + 20^2 + 20^2 + 223^2 +
+   60^2 + 20^2 + 95^2 + 360^2 + 70^2 + \\
+   & & 220^2 + 400^2 + 217^2 + 58^2 + 235^2
+   + 380^2 + 200^2 + 175^2 + 85^2 + 65^2 \\
+   & = & 783\,807
+  \end{eqnarray*}
+  por lo que las varianzas muestrales se calculan, usando el teorema 8.1,
+  como sigue:
+  \begin{eqnarray*}
+   s_1^2 & = &
+   \frac{1}{20(19)}
+   \left[ 20\sum_{i=1}^{20} x_{1,i}^2 -
+   \left( \sum_{i=1}^{20} x_{1,i} \right)^2 \right]
+   = \frac{20(4\,623\,052) - 7\,902^2}{380} \\
+   & = & \frac{92\,461\,040 - 62\,441\,604}{380} = \frac{30\,019\,436}{380}
+   = \frac{7\,504\,859}{95} = 78\,998.5\overline{157894736842105263} \\
+   s_2^2 & = &
+   \frac{1}{20(19)}
+   \left[ 20\sum_{i=1}^{20} x_{2,i}^2 -
+   \left( \sum_{i=1}^{20} x_{2,i} \right)^2 \right]
+   = \frac{20(783\,807) - 3\,203^2}{380} \\
+   & = & \frac{15\,676\,140 - 10\,259\,209}{380}
+   = \frac{5\,416\,931}{380} = 14\,255.08\overline{157894736842105263}
+  \end{eqnarray*}
+  Por lo que el resto de los datos se resume como sigue:
+  \begin{itemize}
+   \item $s_1^2 = \frac{7\,504\,859}{95}
+   = 78\,998.5\overline{157894736842105263}$
+   y $s_2^2 = \frac{5\,416\,931}{380}
+   = 14\,255.08\overline{157894736842105263}$.
+  \end{itemize}
+  Adem\'as, por la suposici\'on de normalidad en las distribuciones
+  poblacionales, se tiene la distribuci\'on siguiente:
+  \begin{itemize}
+   \item $\frac{s_1^2}{s_1^2} \sim f(v_1,v_2)$.
+   \item $v_1 = n_1 - 1 = 19$ y $v_2 = n_2 - 1 = 19$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \sigma_1 &  =   & \sigma_2 \\
+   H_1: \sigma_1 & \neq & \sigma_2
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   f = \frac{s_1^2}{s_2^2}
+   = \frac{\displaystyle{\frac{7\,504\,859}{\cancel{95}}}}
+   {\displaystyle{\frac{5\,416\,931}{\cancelto{4}{380}}}}
+   = \frac{7\,504\,859(4)}{5\,416\,931}
+   = \frac{30\,019\,436}{5\,416\,931} \approx 5.5417792842
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.6 se observa que no se puede hallar directamente un valor
+  cr\'{\i}tico con $v_1=19$, sin embargo, s\'{\i} se observa que,
+  para un valor $\alpha$ espec\'{\i}fico,
+  $f_{\alpha,v_1,v_2} > f_{\alpha,v_1',v_2}$, cuando $v_1 < v_2'$,
+  entonces, se tiene que $3.15 = f_{0.01,15,19} > f_{0.01,19,19}$ y,
+  sin embargo, el estad\'{\i}stico $f$ obtenido est\'a alejado a la derecha
+  de este valor, por lo que se entiende que $P(F > f) < 0.01$.
+  Por lo tanto, se tiene que:
+  \begin{equation*}
+   2\times P\left( F_{v_1,v_2} > f \right) < 2\times(0.01) = 0.02
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es muy peque\~no,
+  se concluye que hay evidencia suficiente para rechazar la hip\'otesis nula,
+  y, por lo tanto, se afirma que la varianza en las emisiones de hidrocarburos
+  no solo disminuyen sino que tambi\'en difieren entre los autom\'oviles
+  entre los modelos de 1980 y 1990.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P14\_Prueba\_de\_dos\_varianzas\_02.r}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB14_Problema_078.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Hidrocarburos.ppm")
+> varSel<-c("Modelo")
+> alfa<-NULL
+> cola<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+           variable Freq n1 n2 media1 media2 varianza1 varianza2 v1 v2 alpha
+1 Hidrocarburos.ppm   40 20 20  395.1 160.15  78998.52  14255.08 19 19  0.05
+   PValor Estadistico             RegionRechazo
+1 0.00048    5.541779 < 0.3958122 y > 2.5264509
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ adem\'as de ofrecer un valor m\'as preciso para el valor $P$,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

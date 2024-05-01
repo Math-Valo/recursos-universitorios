@@ -1,0 +1,151 @@
+\begin{enunciado}
+ El hospital de una universidad realiz\'o un experimento para determinar el grado de alivio que brindan tres remedios para la tos.
+ Cada medicamento para la tos se trata en $50$ estudiantes y se registran los sigientes datos:
+ \begin{center}
+  \begin{tabular}{lccc}
+   & \multicolumn{3}{c}{\textbf{Remedio para la tos}} \\
+   & \textbf{NyQuil} & \textbf{Robitussin} & \textbf{Triaminic} \\
+   \hline 
+   Sin alivio & $11$ & $13$ & $9$ \\
+   Cierto alivio & $32$ & $28$ & $27$ \\
+   Alivio completo & $7$ & $9$ & $14$
+  \end{tabular}
+ \end{center}
+ Con un nivel de significancia de $0.05$, pruebe la hip\'otesis de que los tres remedios para la tos son igualmente efectivos.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item Tamaño de muestra total: $150$.
+   \item Estudiantes medicados por NyQuil: $50$.
+   \item Estudiantes medicados por Robitussin: $50$.
+   \item Estudiantes medicados por Triaminic: $50$.
+   \item Estudiantes que no sintieron alivio: $11 + 13 + 9 = 33$.
+   \item Estudiantes que sintieron cierto alivio: $32 + 28 + 27 = 87$.
+   \item Estudiantes completamente aliviados: $7 + 9 + 14 = 30$.
+   \item Frecuencias observadas y esperadas: $o_{i,j}$
+   y $e_{i,j}=\frac{R_i C_j}{n}$, respectivamente,
+   donde $R_i$ y $C_j$ son los marginales del rengl\'on $i$ y la columna $j$,
+   respectivamente, y $n$ es el total de toda la muestra.
+   As\'{\i}, pues, redondeando a un decimal, se muestra el resumen 
+   en la siguiente tabla,
+   en donde aparece entre par\'entesis la frecuencia esperada
+   y a la izquierda el valor observado:
+   \begin{center}
+    \begin{tabular}{lccc|c}
+     & \multicolumn{3}{c}{\textbf{Remedio para la tos}} &
+     \textbf{Marginal por} \\
+     \cline{2-4}
+     & \textbf{NyQuil} & \textbf{Robitussin} & \textbf{Triaminic} &
+     \textbf{efectividad} \\
+     \hline 
+     Sin alivio & $11 (11)$ & $13 (11)$ & $9 (11)$ & $33$ \\
+     Cierto alivio & $32 (29)$ & $28 (29)$ & $27 (29)$ & $87$ \\
+     Alivio completo & $7 (10)$ & $9 (10)$ & $14 (10)$ & $30$ \\
+     \hline 
+     \textbf{Marginal por} & \multirow{2}{*}{$50$} & \multirow{2}{*}{$50$} &
+     \multirow{2}{*}{$50$} & \textbf{TOTAL} \\
+     \textbf{medicamento} & & & & $n = 150$
+    \end{tabular}
+   \end{center}
+   \item Tama\~no de la tabla de contingencia: $r\times c = 3\times 3$.
+   \item Grados de libertad de la prueba $\chi^2$: $v = (r-1)(c-1) = 4$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: & & \text{La efectividad de los medicamentos son homog\'eneos.} \\
+   H_1: & & \text{La efectividad de los medicamentos no son homog\'eneos.}
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{\alpha,v} = \chi^2_{0.05,4} \approx 9.488$,
+  por lo que la regi\'on de rechazo est\'a dado
+  para $\chi^2 > 9.488$, donde
+  $\chi^2 = \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   \chi^2 & = & \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i} \\
+   & \approx & \frac{(11 - 11)^2}{11} + \frac{(13 - 11)^2}{11} +
+   \frac{(9 - 11)^2}{11} + \frac{(32 - 29)^2}{29} + \frac{(28 - 29)^2}{29} \\
+   & & \frac{(27 - 29)^2}{29} + \frac{(7 - 10)^2}{10} + 
+   \frac{(9 - 10)^2}{10} + \frac{(14 - 10)^2}{10} \\
+   & = & \frac{0 + 4 + 4}{11} + \frac{9 + 1 + 4}{29} + 
+   \frac{9 + 1+ 16}{10} = \frac{8}{11} + \frac{14}{29} + \frac{26}{10}
+   \approx 0.72727 + 0.48276 + 2.6 \\
+   & = & 3.81003
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  No hay evidencia para que indique que los medicamentos no son homog\'eneos
+  y, por lo tanto, se puede considerar que tienen la misma efectividad.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeniedad\_01.r},
+ que a su vez requiere los datos del archivo
+ \texttt{BD30\_Problema\_094.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB30_Problema_094.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Medicamento","Efectividad")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1,2,3)
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+$tabla
+            Efectividad
+Medicamento  Alivio completo Cierto alivio Sin alivio
+  NyQuil                   7            32         11
+  Robitussin               9            28         13
+  Triaminic               14            27          9
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 3.81, df = 4, p-value = 0.4323
+
+
+$listaPruebas[[2]]
+
+	Log likelihood ratio (G-test) test of independence without correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 3.7389, X-squared df = 4, p-value =
+0.4425
+
+
+$listaPruebas[[3]]
+
+	Log likelihood ratio (G-test) test of independence with Williams'
+	correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 3.6555, X-squared df = 4, p-value =
+0.4546
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos, adem\'as de brindar m\'as
+ informaci\'on y los valores $P$ junto con otros estad\'{\i}sticos,
+ que es lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

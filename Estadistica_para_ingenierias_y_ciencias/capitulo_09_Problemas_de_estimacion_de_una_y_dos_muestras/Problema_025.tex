@@ -1,0 +1,53 @@
+\begin{enunciado}
+ Considere el ejercicio 9.12. Calcule un intervalo de predicci\'on de $95\%$ para el contenido de az\'ucar de la siguiente porci\'on sencilla del cereal Alpha-Bits.
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.12 pero ahora con $\alpha$ representando el valor para el cual hay $(1-\alpha)100\%$ de seguridad en el intervalo de predicci\'on, se tiene lo siguiente:
+ \begin{itemize}
+  \item $X\sim n(\mu,\sigma)$.
+  \item $\mu$ desconocida.
+  \item $\sigma$ desconocida.
+  \item $n = 20$ porciones.
+  \item $\bar{x}=11.3\,$g.
+  \item $s=2.45\,$g.
+  \item $\alpha=0.05$.
+  \item $t_{\alpha/2,n-1} = t_{0.025,19} = 2.093$, seg\'un la Tabla A.4 del libro, y $t_{0.025,19} = 2.093024$, usando el software estad\'{\i}stico R.
+ \end{itemize}
+ Como se est\'a buscando un intervalo de predicci\'on para una muestra peque\~na que proviene de una poblaci\'on normal con varianza desconocida, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{x} - t_{\alpha/2,n-1} s \sqrt{1 + 1/n} < x_0 < \bar{x} + t_{\alpha/2,n-1} s \sqrt{1 + 1/n}
+ \end{equation*}
+ Por lo tanto, con los datos obtenidos y el valor $t_{\alpha/2,n-1}$ del libro, se tienen los c\'alculo de los l\'{\i}mites del intervalo de predicci\'on como siguen:
+ \begin{equation*}
+  \bar{x} \pm t_{\alpha/2,n-1} s \sqrt{1 + 1/n} = 11.3 \pm (2.093)(2.45)\sqrt{1+\frac{1}{20}} = 11.3 \pm 5.12785 \frac{\sqrt{21}}{2\sqrt{5}} = 11.3\pm 0.512785\sqrt{105}
+ \end{equation*}
+ Por lo tanto, el intervalo de predicci\'on de $95\%$ para el contenido de az\'ucar en la siguiente porci\'on sencilla del cereal Alpha-Bits es de:
+ \begin{equation*}
+  6.0455173514774 < x_0 < 16.55448264852
+ \end{equation*}
+ que redondeado al segundo decimal se reduce a que el intervalo es $(6.05, 16.55)$. Por otro lado, el c\'alculo del intervalo de predicci\'on usando el valor $t_{\alpha/2, n-1}$ obtenido en R se puede realizar con los siguientes comandos. Los c\'odigos escritos se encuentran registrados en un script en el archivo anexo \texttt{P08\_Intervalo\_de\_prediccion\_1.r}. El resultado mostrado al final presenta el l\'{\i}mite inferior, la media muestral y el l\'{\i}mite superior, en ese orden, que se encuentra almacenado en la variable \texttt{IT}. La variable \texttt{val} indica si se conoce o no la varianza poblacional, de todos modos se considera \texttt{TRUE} si el tama\~no de muestra es grande, es decir, se aproximar\'a la desviaci\'on poblacional usando la desviaci\'on muestral si la muestra es mayor o igual a $30$.
+ 
+ \begin{verbatim}
+>n<-20
+>m<-11.3
+>desv<-2.45
+>alfa<-0.05
+>val<-FALSE
+>if (n >= 30)
+>{
+>    val<-TRUE
+>}
+>k<-ifelse(val,round(qnorm(1-alfa/2),7),round(qt(1-alfa/2,n-1),7))
+>LL<-m-k*desv*sqrt(1+1/n)
+>LU<-m+k*desv*sqrt(1+1/n)
+>IP<-data.frame(LL,m,LU)
+>names(IP)[names(IP) == "LL"]<-"LimInf"
+>names(IP)[names(IP) == "m"]<-"Media"
+>names(IP)[names(IP) == "LU"]<-"LimSup"
+>IP
+    LimInf Media   LimSup
+1 6.045457  11.3 16.55454
+ \end{verbatim}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

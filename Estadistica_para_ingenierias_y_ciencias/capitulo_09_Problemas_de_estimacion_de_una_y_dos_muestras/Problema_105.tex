@@ -1,0 +1,42 @@
+\begin{enunciado}
+ Refi\'erase al ejercicio de repaso 9.104. Suponga que hay inter\'es en si la estimaci\'on puntual $\hat{p} = 8/30$ es lo suficientemente precisa porque el intervalo porque el intervalo de confianza alrededor de $p$ no es suficientemente estrecho. Utilizando $\hat{p}$ como nuestro estimado de $p$, ¿cu\'antas compa\~n\'{\i}as necesitar\'{\i}an muestrearse para tener un intervalo de confianza de $95\%$ con un ancho de s\'olo $0.05$?
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.104, pero cambiando el sentido del nivel de confianza al nivel de confianza de que el intervalo no superar\'a cierta magnitud, llamado error, y a eso a\~nadiendo el valor del error m\'aximo permitido, se tiene lo siguiente:
+ \begin{itemize}
+  \item $n = 30$ empresas muestreadas previamente.
+  \item $\hat{p} = \frac{8}{30} = \frac{4}{15} = 0.2\overline{6}$, proporci\'on previa de \'exitos.
+  \item $\hat{q} = \frac{11}{15} = 0.7\overline{3}$, proporci\'on previa de fracasos.
+  \item $\alpha = 0.05$.
+  \item $z_{\alpha/2} = 1.96$, seg\'un el libro, y $z_{\alpha/2} = 1.95996398454$, con la aproximaci\'on realizada en R.
+  \item $e = 0.05$. 
+ \end{itemize}
+ Entonces, como $\hat{p}$ estima a $p$ y hay una muestra previa, se usar\'a la siguiente f\'ormula:
+ \begin{equation*}
+  n = \left\lceil \frac{z_{\alpha/2}^2 \hat{p}\hat{q}}{e^2} \right\rceil
+ \end{equation*}
+ por lo tanto, el valor pedido se puede calcular, usando la primera aproximaci\'on de $z_{\alpha/2}$,como:
+ \begin{equation*}
+  n = \left\lceil \frac{1.96^2 (4/15)(11/15)}{0.05^2} \right\rceil =  \left\lceil \frac{(3.8416)(44)}{(225)(0.0025)} \right\rceil = \left\lceil \frac{169.0304}{0.5625} \right\rceil = \lceil 300.4984\overline{8} \rceil
+ \end{equation*}
+ Por lo tanto, la cantidad de empresas que se deben muestrear para que el intervalo del $95\%$ de confianza para $p$, usando $\hat{p}$ como estimador, no supere una magnitud de $0.05$, es de $n = 301$ empresas.
+ \par 
+ Finalmente, usando R, se puede calcular el tama\~no de la muestra usando la rutina del archivo anexo \texttt{P19\_Tamanyo\_de\_muestra\_2.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> error<-0.05
+> alfa<-0.05
+> inter<-'D'
+> previo<-TRUE
+> n<-30
+> x<-8
+> p<-NULL
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+[1] 301
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que coincide con el valor ya calculado. Por lo tanto $n = 301$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

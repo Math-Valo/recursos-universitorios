@@ -1,0 +1,160 @@
+\begin{enunciado}
+ Una muestra aleatoria de $200$ hombres casados, todos jubilados, se clasifica
+ de acuerdo con la educaci\'on y el n\'umero de hijos.
+ \begin{center}
+  \begin{tabular}{lccc}
+   & \multicolumn{3}{c}{\textbf{N\'umero de hijos}} \\
+   \cline{2-4}
+   \textbf{Educaci\'on} & \textbf{0-1} & \textbf{2-3} & \textbf{M\'as de 3} \\
+   \hline
+   Primaria & $14$ & $37$ & $32$ \\
+   Secundaria & $19$ & $42$ & $17$ \\
+   Universidad & $12$ & $17$ & $10$
+  \end{tabular}
+ \end{center}
+ Con un nivel de significancia de $0.05$, pruebe la hip\'otesis
+ de que el tama\~no de la familia es independiente del nivel acad\'emico
+ del padre.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item Tamaño de muestra total: $200$.
+   \item Hombres con educaci\'on m\'aximo de Primaria: $14 + 37 + 32 = 83$.
+   \item Hombres con educaci\'on m\'aximo de Secundaria: $19 + 42 + 17 = 78$.
+   \item Hombres con educaci\'on m\'aximo universitaria: $12 + 17 + 10 = 39$.
+   \item Hombres con 0 a 1 hijos: $14 + 19 + 12 = 45$.
+   \item Hombres con 2 a 3 hijos: $37 + 42 + 17 = 96$.
+   \item Hombres con más de 3 hijos: $32 + 17 + 10 = 59$.
+   \item Frecuencias observadas y esperadas: $o_{i,j}$
+   y $e_{i,j}=\frac{R_i C_j}{n}$, respectivamente,
+   donde $R_i$ y $C_j$ son los marginales del rengl\'on $i$ y la columna $j$,
+   respectivamente, y $n$ es el total de toda la muestra.
+   As\'{\i}, pues, redondeando a un decimal, se muestra el resumen 
+   en la siguiente tabla,
+   en donde aparece entre par\'entesis la frecuencia esperada
+   y a la izquierda el valor observado:
+   \begin{center}
+    \begin{tabular}{lccc|c}
+     & \multicolumn{3}{c}{\textbf{N\'umero de hijos}} &
+     \textbf{Marginal seg\'un el} \\
+     \cline{2-4}
+     \textbf{Educaci\'on} & \textbf{0-1} & \textbf{2-3} &
+     \textbf{M\'as de 3} & \textbf{nivel educativo} \\
+     \hline
+     Primaria & $14 (18.7)$ & $37 (39.8)$ & $32 (24.5)$ & $83$ \\
+     Secundaria & $19 (17.5)$ & $42 (37.5)$ & $17 (23)$ & $78$ \\
+     Universidad & $12 (8.8)$ & $17 (18.7)$ & $10 (11.5)$ & $39$ \\
+     \hline 
+     \textbf{Marginal seg\'un la} & & & & \textbf{TOTAL} \\
+     $\,$ \textbf{cantidad de hijos} & $45$ & $96$ & $59$ & $n=200$
+    \end{tabular}
+   \end{center}
+   \item Tama\~no de la tabla de contingencia: $r\times c = 3\times 3$.
+   \item Grados de libertad de la prueba $\chi^2$: $v = (r-1)(c-1) = 4$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: & & \text{El total de hijos de hombres casados y jubilados no depende de la educaci\'on.} \\
+   H_1: & & \text{El total de hijos de hombres casados y jubilados depende de la educaci\'on.}
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{\alpha,v} = \chi^2_{0.05,4} \approx 9.488$,
+  por lo que la regi\'on de rechazo est\'a dado
+  para $\chi^2 > 9.488$, donde
+  $\chi^2 = \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   \chi^2 & = & \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i} \\
+   & \approx & \frac{(14 - 18.7)^2}{18.7} + \frac{(37 - 39.8)^2}{39.8} +
+   \frac{(32 - 24.5)^2}{24.5} + \frac{(19 - 17.5)^2}{17.5} +
+   \frac{(42 - 37.5)^2}{37.5} + \\
+   & & \frac{(17 - 23)^2}{23} + \frac{(12 - 8.8)^2}{8.8} +
+   \frac{(17 - 18.7)^2}{18.7} + \frac{(10 - 11.5)^2}{11.5} \\
+   & = & \frac{22.09}{18.7} + \frac{7.84}{39.8} + \frac{56.25}{24.5} +
+   \frac{2.25}{17.5} + \frac{20.25}{37.5} + \frac{36}{23} +
+   \frac{10.24}{8.8} + \frac{2.89}{18.7} + \frac{2.25}{11.5} \\
+   & \approx & 1.181283 + 0.19698 + 2.295918 + 0.12857 + 0.54 + 1.565217 + \\
+   & & 1.163636 + 0.154545 + 0.195652 \\
+   & = & 7.421801
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  No hay evidencia suficiente para rechazar la hip\'otesis nula 
+  y se considera, a un nivel de significancia de $0.05$,
+  que la cantidad de hijos es independiente del nivel de estudios del padre.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeniedad\_01.r},
+ que a su vez requiere los datos del archivo
+ \texttt{BD28\_Problema\_092.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB28_Problema_092.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Educación.nivel","Hijos.cantidad")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1,2,3)
+ \end{verbatim}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+$tabla
+               Hijos.cantidad
+Educación.nivel 0-1 2-3 Más de 3
+    Primaria     14  37       32
+    Secundaria   19  42       17
+    Universidad  12  17       10
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 7.4644, df = 4, p-value = 0.1133
+
+
+$listaPruebas[[2]]
+
+	Log likelihood ratio (G-test) test of independence without correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 7.4007, X-squared df = 4, p-value =
+0.1162
+
+
+$listaPruebas[[3]]
+
+	Log likelihood ratio (G-test) test of independence with Williams'
+	correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 7.2776, X-squared df = 4, p-value =
+0.1219
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos, adem\'as de brindar m\'as
+ informaci\'on y los valores $P$ junto con otros estad\'{\i}sticos, 
+ el cual no es menor al nivel de significancia de $0.01$ en ning\'un caso.
+ De cualquier forma, se prueba tambi\'en la correcci\'on de Yates
+ para verificar lo que se hubiese obtenido en caso de haberse necesitado,
+ lo cual se sabe que no es as\'{\i} gracias a que las frecuencias no son
+ tan bajas, que es lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

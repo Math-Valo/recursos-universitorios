@@ -1,0 +1,65 @@
+\begin{enunciado}
+ Se afirma que un autom\'ovil se maneja en promedio m\'as de $20,000$ kil\'ometros por a\~no. Para probar tal afirmaci\'on, se pide a una muestra de $100$ propietarios de autom\'oviles que lleven un registro de los kil\'ometros que recorran. ¿Estar\'{\i}a usted de acuerdo con esta afirmaci\'on, si la muestra aleatoria mostr\'o un promedio de $23,500$ kil\'ometros y una desviaci\'on est\'andar de $3900$ kil\'ometros? Utilice un valor $P$ en su conclusi\'on.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n=100$.
+   \item $\bar{x} = 23\,500$.
+   \item $s = 3\,900$.
+  \end{itemize}
+  Adem\'as, por el teorema del l\'{\i}mite central, como $n \geq 30$, se puede aproximar la variable aleatoria de la media muestral a una normal, y usar el estad\'{\i}stico siguiente:
+  \begin{itemize}
+   \item $\overline{X} \sim n\left( \mu , \sigma/\sqrt{n} \right)$.
+   \item $Z = \frac{\overline{X}-\mu}{S/\sqrt{n}} \approx
+   \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \sim n(0,1)$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu & \leq & 20\,000 \\
+   H_1: \mu & > & 20\,000
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   z = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}} \approx \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{23\,500 - 20\,000}{3\,900/\sqrt{100}} = \frac{350}{39} = 8.\overline{974358}
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.3, se tiene que:
+  \begin{equation*}
+   P\left( Z > z \right) \approx P(Z > 8.97) = P(Z < -8.97) \approx 0
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P < 0.0001$, entonces se tiene evidencia suficiente para concluir que el autom\'ovil se maneja en promedio m\'as de $20\,000$ kil\'ometros, como bien se afirma.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo \texttt{P03\_Prueba\_de\_una\_media\_01.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n<-100
+> mu<-20000
+> m<-23500
+> desv<-3900
+> pobl<-FALSE
+> alfa<-NULL
+> cola<-'S'
+> val<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba    H0   n MediaMuestral desv.est error.est alpha PValor Estadistico
+1      Z 20000 100         23500     3900       390  0.05      0    8.974359
+  RegionRechazoZ RegionRechazoX
+1    > 1.6448536 > 20641.492904
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

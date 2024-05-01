@@ -1,0 +1,127 @@
+\begin{enunciado}
+ Un fabricante desarrolla un nuevo sedal para pesca que, seg\'un afirma, tiene una resistencia media a la rotura de $15$ kilogramos con una desviaci\'on est\'andar de $0.5$ kilogramos. Para probar la hip\'otesis de que $\mu = 15$ kilogramos contra la alternativa de que $\mu < 15$ kilogramos, se prueba una muestra aleatoria de $50$ sedales. La regi\'on cr\'{\i}tica se define como $\bar{x} < 14.9$.
+ \begin{enumerate}
+  \item Encuentre la probabilidad de cometer un error tipo I cuando $H_0$ es verdadera.
+  
+  \item Eval\'ue $\beta$ para las alternativas $\mu = 14.8$ y $\mu = 14.9$ kilogramos.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la resistencia a la rotura, en kilogramos, de este nuevo sedal y sea $\overline{X}$ la variable aleatoria de la muestra, del enunciado se tiene lo siguiente, en donde $x_{\text{inf}}$ representa el valor cr\'{\i}tico inferior, en el que se incluye la regi\'on de aceptaci\'on.
+ \begin{itemize}
+  \item $X \sim n(\mu,\sigma)$.
+  \item $\overline{X} \sim n\left( \mu, \sigma/\sqrt{n} \right)$
+  \item $n = 50$.
+  \item $\sigma = 0.5\,$kg.
+  \item $\sigma_{\overline{X}} = 0.5/\sqrt{50} = \frac{0.5\sqrt{2}}{10} = 0.05\sqrt{2}$
+  \item $x_{\text{inf}} = 14.9$.
+ \end{itemize}
+ Con lo que se realiza lo pedido en los incisos como sigue.
+ \begin{enumerate}
+  \item Suponiendo que
+  \begin{itemize}
+   \item $\mu = 15$.
+  \end{itemize}
+  el error tipo I se aproxima usando la tabla A.3 como sigue:
+  \begin{eqnarray*}
+   \alpha & = & P(\overline{X} < 14.9) = P\left( Z < \frac{14.9-15}{0.05\sqrt{2}} \right) = P\left( Z < -\frac{0.1\sqrt{2}}{0.1} \right) = P\left( Z < -\sqrt{2} \right) \\
+   & \approx & P(Z < -1.41) \approx 0.0793
+  \end{eqnarray*}
+  Finalmente, usando R, se puede calcular la probabilidad usando el script en el archivo anexo \texttt{P02\_Probabilidad\_de\_error\_normal\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-50
+> CriticoInf<-14.9
+> CriticoSup<-NULL
+> desv<-0.05*sqrt(2)
+> media0<-15
+> media1<-NULL
+> p0<-0.6
+> p1<-0.5
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene
+  \begin{verbatim}
+$`Probabilidad de error tipo I`
+  HipotesisNula  n media       desv CriticoInf     alpha
+1      mu =  15 50    15 0.07071068       14.9 0.0786496
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene lo siguiente:
+  \begin{itemize}
+   \item La aproximaci\'on las tablas da $\alpha = 0.0793$.
+   \item La aproximaci\'on con R da $\beta = 0.0786496$.${}_{\square}$
+  \end{itemize}
+
+  \item Suponiendo que
+  \begin{itemize}
+   \item $\mu = 14.8$
+  \end{itemize}
+  el error tipo II se aproxima usando la tabla A.3 como sigue:
+  \begin{eqnarray*}
+   \beta & = & P\left(\overline{X} \geq 14.9\right) = 1 - P\left(\overline{X} < 14.9\right) = 1 - P\left( Z < \frac{14.9-14.8}{0.05\sqrt{2}} \right) \\
+   & = & 1 - P\left( Z < \frac{0.1\sqrt{2}}{0.1} \right) = 1 - P\left( Z < \sqrt{2} \right) = 1 - P(Z < 1.41) \approx 1 - 0.9207 = 0.0793.
+  \end{eqnarray*}
+  Bajo supuesto siguiente
+  \begin{itemize}
+   \item $\mu = 14.9$.
+  \end{itemize}
+  se tiene ahora que el error tipo II se calcula como sigue:
+  \begin{eqnarray*}
+   \beta & = & P\left(\overline{X} \geq 14.9\right) = 1 - P\left(\overline{X} < 14.9\right) = 1 - P\left( Z < \frac{14.9-14.9}{0.05\sqrt{2}} \right) \\
+   & = & 1 - P(Z < 0) = 1 - 0.5 = 0.5
+  \end{eqnarray*}
+  Finalmente, usando R, se puede calcular estas probabilidades usando el script en el archivo anexo \texttt{P02\_Probabilidad\_de\_errror\_normal\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo para el primer caso:
+  \begin{verbatim}
+> n<-50
+> CriticoInf<-14.9
+> CriticoSup<-NULL
+> desv<-0.05*sqrt(5)
+> media0<-NULL
+> media1<-14.8
+> p0<-NULL
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa  n media       desv CriticoInf      beta
+1           mu =  14.8 50  14.8 0.07071068       14.9 0.0786496
+  \end{verbatim}
+  \vspace{-0.5cm}
+  mientras que para el segundo caso se cambian las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-50
+> CriticoInf<-14.9
+> CriticoSup<-NULL
+> desv<-0.5
+> media0<-NULL
+> media1<-14.9
+> p0<-NULL
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa  n media desv CriticoInf beta
+1           mu =  14.9 50  14.9  0.5       14.9  0.5
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene el siguiente resumen:
+  \begin{itemize}
+   \item Bajo el supuesto $\mu = 14.8$:
+   \begin{itemize}
+    \item La aproximaci\'on con las tablas da $\beta = 0.4207$.
+    \item La aproximaci\'on con R da $\beta = 0.4207403$.
+   \end{itemize}
+   
+   \item Y, bajo el supuesto $p = 14.9$:
+   \begin{itemize}
+    \item El valor exacto, ya sea con tablas o con R, da $\beta = 0.5$.
+   \end{itemize}
+  \end{itemize}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

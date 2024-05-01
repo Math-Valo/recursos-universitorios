@@ -1,0 +1,105 @@
+\begin{enunciado}
+ Los siguientes datos representan los tiempos de duraci\'on de las pel\'{\i}culas que producen dos compa\~n\'{\i}as cinematogr\'aficas.
+ \begin{center}
+  \begin{tabular}{lrrrrrrr}
+   \textbf{Compa\~n\'{\i}a} & \multicolumn{7}{c}{\textbf{Tiempo (minutos)}} \\
+   \hline 
+   I & $103$ & $94$ & $110$ & $87$ & $98$ & & \\
+   II & $97$ & $82$ & $123$ & $92$ & $175$ & $88$ & $118$
+  \end{tabular}
+ \end{center}
+ Calcule un intervalo de confianza de $90\%$ para la diferencia entre los tiempos de duraci\'on promedio de las pel\'{\i}culas que producen las dos compa\~n\'{\i}as. Suponga que las diferencias del tiempo de duraci\'on se distribuyen de forma aproximadamente normal con varianzas distintas.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias del tiempo de duraci\'on de las pel\'{\i}culas, medidas en minutos, que producen las compa\~n\'{\i}as cinematogr\'aficas I y II, respectivamente, entonces, del enunciado, se tiene el siguiente resumen de datos:
+ \begin{itemize}
+  \item $X_i \sim n(\mu_i, \sigma_i)$, para cada $i \in \{ 1, 2 \}$.
+  \item $\mu_i$ y $\sigma_i$ son desconocidas, para cada $i \in \{ 1, 2 \}$.
+  \item $\sigma_1 \neq \sigma_2$.
+  \item $n_1 = 5$ y $n_2 = 7$.
+  \item $\alpha = 0.1$.
+ \end{itemize}
+ adem\'as de los datos obtenidos en cada muestra, de donde se calcula la media y varianza muestral de ambas muestras como se muestra a continuaci\'on. Las medias muestrales se calculan como sigue:
+ \begin{equation*}
+  \bar{x}_1 = \frac{103 + 94 + 110 + 87 + 98}{5} = \frac{492}{5} = 98.4
+ \end{equation*}
+ y
+ \begin{equation*}
+  \bar{x}_2 = \frac{97 + 82 + 123 + 92 + 175 + 88 + 118}{7} = \frac{775}{7} = 110.\overline{714285}
+ \end{equation*}
+ por lo que las varianzas muestrales se obtienen, usando el Teorema 8.1, como sigue:
+ \begin{eqnarray*}
+  s_1^2 & = & \frac{1}{n(n-1)} \left[ n \sum_{i=1}^n x_i^2 - \left( \sum_{i=1}^n x_i \right)^2 \right] \\
+  & = & \frac{5(103^2 + 94^2 + 110^2 + 87^2 + 98^2) - 492^2}{5(4)} \\
+  & = & \frac{5(10\,609 + 8\,836 + 12\,100 + 7\,569 + 9\,604) - 242\,064}{20} \\
+  & = & \frac{5(48718) - 242\,064}{20} = \frac{243\,590 - 242\,064}{20} = \frac{1526}{20} = \frac{763}{10} = 76.3
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  s_2^2 & = & \frac{1}{n(n-1)} \left[ n \sum_{i=1}^n x_i^2 - \left( \sum_{i=1}^n x_i \right)^2 \right] \\
+  & = & \frac{7(97^2 + 82^2 + 123^2 + 92^2 + 175^2 + 88^2 + 118^2) - 775^2}{7(6)} \\
+  & = & \frac{7(9\,409 + 6\,724 + 15\,129 + 8\,464 + 30\,625 + 7\,744 + 13\,924) - 600\,625}{42} \\
+  & = & \frac{7(92\,019) - 600\,625}{42} = \frac{644\,133 - 600\,625}{42} = \frac{43\,508}{42} = \frac{21\,754}{21} = 1\,035.\overline{904761}
+ \end{eqnarray*}
+ Por otro lado, como se desea encontrar un intervalo de confianza bilateral para $\mu_1 - \mu_2$, usando como estiamdor $\bar{x}_1 - \bar{x}_2$, desconociendo las varianzas poblacionales y suponi\'endolas no iguales, con muestras peque\~nas de poblaciones que se distribuyen aproximadamente normal, entonces se requerir\'a el valor $t_{\alpha/2,v}$, donde $v$ representa los grados de libertad que es el entero m\'as pr\'oximo a:
+ \begin{equation*}
+  v = \frac{\displaystyle{ \left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2 }}{\displaystyle{ \frac{\left( s_1^2/n_1 \right)^2}{n_1 - 1} + \frac{\left( s_2^2/n_2 \right)^2}{n_2 - 1} }}
+ \end{equation*}
+ el cual se calcula como sigue:
+ \begin{eqnarray*}
+  v & = & \frac{\displaystyle{ \left( \frac{763/10}{5} + \frac{21\,754/21}{7} \right)^2 }}{\displaystyle{ \frac{\left[ \left( 763/10 \right)/5 \right]^2}{5-1} + \frac{\left[ \left( 21\,754/21 \right)/ 7 \right]^2}{7 - 1} }} = \frac{\displaystyle{ \left[ \frac{763}{5(10)} + \frac{21\,754}{7(21)}  \right]^2 }}{\displaystyle{ \frac{\left[ 763/(5\times 10)  \right]^2}{4} + \frac{\left[ 21\,754/(7\times 21) \right]^2}{6} }} \\
+  & = & \frac{\displaystyle{ \left[ \frac{7(21)(763) + 5(10)(21\,754)}{5(10)(7)(21)} \right]^2 } }{ \displaystyle{ \frac{763^2}{5^2\left( 10^2 \right)(4)  } + \frac{21\,754^2}{7^2\left( 21^2 \right)(6) } } } = \frac{\displaystyle{ \frac{\left[ 112\,161 + 1\,087\,700 \right]^2}{\cancel{5^2(10)^2(7)^2(21)^2}} } }{\displaystyle{ \frac{ 7^2(21)^2(763)^2(6) + 5^2(10)^2(21\,754)^2(4) }{\cancel{5^2(10)^2(7)^2(21)^2}(4)(6)} } } \\
+  & = & \frac{(4)(6)(1\,199\,861)^2}{75\,480\,539\,526 + 4\,732\,365\,160\,000} = \frac{34\,551\,944\,063\,704}{4\,807\,845\,699\,526} = \frac{17\,275\,997\,031\,852}{2\,403\,922\,849\,763} \\
+  & \approx & 7.18658547 \approx 7
+ \end{eqnarray*}
+ Por lo tanto, se requiere del valor $t_{\alpha/2,v} = t_{0.05,7}$. De la Tabla A.4, se tiene que $t_{0.05,7} = 1.895$, mientras que, usando R, se botiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.05,7,lower.tail=F)
+[1] 1.894578605090006862
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $1.8945786$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales usando como estimador la diferencia de las medias muestrales en muestras peque\~nas, en donde se desconoce las desviaciones est\'andar poblacionales y suponiendo que no son iguales y donde se suponen que las poblaciones se distribuyen aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - t_{\alpha/2,v} \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2 \right) + t_{\alpha/2,v} \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+ \end{equation*}
+ en donde $v$ es el entero m\'as pr\'oximo a
+ \begin{equation*}
+  \frac{\displaystyle{ \left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2 }}{\displaystyle{ \frac{\left( s_1^2/n_1 \right)^2}{n_1 - 1} + \frac{\left( s_2^2/n_2 \right)^2}{n_2 - 1} }}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,v}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) \pm t_{\alpha/2,v} \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} & = & (98.4 - 110.\overline{714285}) \pm 1.895 \sqrt{\frac{763/10}{5} + \frac{21\,754/21}{7}} \\
+  & = & -12.3\overline{142857} \pm 1.895\sqrt{\frac{763}{50} + \frac{21\,754}{147}} \\
+  & = & -12.3\overline{142857} \pm 1.895 \sqrt{\frac{763(147)+21\,754(50)}{7350}} \\
+  & = & -12.3\overline{142857} \pm 1.895\left( \frac{\sqrt{ 1\,199\,861 }}{35\sqrt{6}} \right) \\
+  & = &  -12.3\overline{142857} \pm  \frac{1.895\sqrt{ 7\,199\,166 }}{210} \\
+  & = & -12.3\overline{142857} \pm 0.0090\overline{238095}\sqrt{7\,199\,166} \\
+  & \approx & -12.3\overline{142857} \pm 24.212
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $90\%$ de confianza de la diferencia entre los minutos de la duraci\'on de las pel\'{\i}culas que producen las compa\~n\'{\i}as cinematogr\'aficas I y II, es de:
+ \begin{equation*}
+  -36.5263 < \mu_1 - \mu_2 < 11.8977
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P15\_Intervalo\_de\_confianza\_06.r} cambiando las siguientes l\'{\i}neas de c\'odigo, que utiliza la base de datos que se encuentra en el archivo anexo \texttt{DB06\_Problema\_46.csv}.
+ \begin{verbatim}
+> datos<-read.csv("DB06_Problema_46.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Tiempo.min")
+> varAgrupacion<-NULL
+> varSel<-list("Compañía")
+> alfa<-0.1
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  Tipo.de.Grupo       Var1 Freq n1 n2 media1   media2   limInf diferencia
+1      Compañía Tiempo.min   12  5  7   98.4 110.7143 -36.4267  -12.31429
+    limSup valorPMedia  valorPVar       varIgual               Resultado
+1 11.79813   0.3664487 0.02467702 Var diferentes No signif dif de medias
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $90\%$ es $-36.5 < \mu_1 - \mu_2 < 11.8$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

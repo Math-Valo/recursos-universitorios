@@ -1,0 +1,72 @@
+\begin{enunciado}
+ En un informe de investigaci\'on de Richard H. Weindruch de la Escuela de Medicina de la \texttt{UCLA}, se afirma que los ratones con una vida promedio de 32 meses vivir\'{\i}an hasta alrededor de $40$ meses de edad, cuando 40\% de las calor\'{\i}as en su dieta se reemplacen con vitaminas y prote\'{\i}nas. ¿Hay alguna raz\'on para creer que $\mu < 40$, si $64$ ratones que se sujetan a esa dieta tienen una vida promedio de $38$ meses con una desviaci\'on est\'andar de $5.8$ meses? Utilice un valor $P$ en su conclusi\'on.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n = 64$.
+   \item $\bar{x} = 38$.
+   \item $s = 5.8$.
+  \end{itemize}
+  Adem\'as, por el teorema del l\'{\i}mite central, como $n \geq 30$, se puede aproximar la variable aleatoria de la media muestral a una normal, y usar el estad\'{\i}stico siguiente:
+  \begin{itemize}
+   \item $\overline{X} \sim n\left( \mu , \sigma/\sqrt{n} \right)$.
+   \item $Z = \frac{\overline{X}-\mu}{S/\sqrt{n}} \approx
+   \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \sim n(0,1)$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu & = & 40 \\
+   H_1: \mu & < & 40
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} \approx \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{38-40}{5.8/\sqrt{64}} = -\frac{2(8)}{5.8} = -\frac{80}{29} \approx -2.75862
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.3, se tiene que:
+  \begin{equation*}
+   P(Z<z) \approx P(Z < -2.76) \approx 0.0029
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Dado que el valor $P$ es muy peque\~no,
+  tanto que \'unicamente hay un aproximado $0.3\%$ de las muestras
+  que pueden dar resultados similares,
+  es evidencia suficiente para rechazar la afirmaci\'on de la escuela
+  de Medicina de la UCLA y concluir que la vida promedio de los ratones
+  con una vida promedio de 32 meses que sigue una dieta
+  en el que se reemplaza el 40\% de calor\'{\i}as con vitaminas
+  y prote\'{\i}nas es significativamente menor a los 40 meses.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo \texttt{P03\_Prueba\_de\_una\_media\_01.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n<-64
+> mu<-40
+> m<-38
+> desv<-5.8
+> pobl<-FALSE
+> alfa<-NULL
+> cola<-'I'
+> val<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba H0  n MediaMuestral desv.est error.est alpha    PValor Estadistico
+1      Z 40 64            38      5.8     0.725  0.05 0.0029023   -2.758621
+  RegionRechazoZ RegionRechazoX
+1   < -1.6448536   < 38.8074811
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

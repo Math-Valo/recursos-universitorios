@@ -1,0 +1,41 @@
+\begin{enunciado}
+ En la secci\'on 9.3 destacamos la noci\'on del ``estimador m\'as eficaz'' comparando la varianza de dos estimadores insesgados $\widehat{\Theta}_1$ y $\widehat{\Theta}_2$. Sin embargo, ello no toma en cuenta el sesgo en el caso de que uno o ambos estimadores no sean insesgados. Considere la cantidad
+ \begin{equation*}
+  \text{\texttt{ECM}} = E\left( \widehat{\Theta} - \theta \right),
+ \end{equation*}
+ donde \texttt{ECM} denota el \textbf{error cuadrado medio}. El error cuadrado medio a menudo se utiliza para comparar dos estimadores $\widehat{\Theta}_1$ y $\widehat{\Theta}_2$ de $\theta$, cuando uno o ambos son insesgados porque \textbf{i.} ello es intuitivamente razonable y \textbf{ii.} se toma en cuenta para el sesgo. Demuestre que el \texttt{ECM} se puede escribir como
+ \begin{eqnarray*}
+  \text{\texttt{ECM}} 
+  & = & E\left[ \widehat{\Theta} - E\left( \widehat{\Theta} \right) \right]^2 + \left[ E\left( \widehat{\Theta} - \theta \right) \right]^2 \\
+  & = & Var\left( \widehat{\Theta} \right) + \left[ sesgo\left( \widehat{\Theta} \right) \right]^2.
+ \end{eqnarray*}
+
+\end{enunciado}
+
+\begin{solucion}
+ $\phantom{0}$
+ \begin{description}
+  \item[Nota 1.] El enunciado dice que \texttt{ECM} $= E\left( \widehat{\Theta}- \theta \right)$, cuando debe de ser:
+  \begin{equation*}
+   \text{\texttt{ECM}} = E\left[ \left( \widehat{\Theta}- \theta \right)^2 \right]
+  \end{equation*}
+  
+  \item[Nota 2.] El enunciado dice que \texttt{ECM} $= E\left[ \widehat{\Theta} - E\left( \widehat{\Theta} \right) \right]^2 + \left[ E\left( \widehat{\Theta} - \theta \right) \right]^2$ cuando debe de ser:
+  \begin{equation*}
+   \text{\texttt{ECM}} = E \left\{ \left[ \widehat{\Theta} - E\left( \widehat{\Theta} \right) \right]^2 \right\} + \left[ E\left( \widehat{\Theta} - \theta \right) \right]^2
+  \end{equation*}
+ \end{description}
+
+ A partir de la definici\'on del \texttt{ECM} y que $\theta$ es un valor fijo conocido, se tiene que \texttt{ECM} $=E\left[ \left( \widehat{\Theta}- \theta \right)^2 \right]$, que $E(\theta) = \theta$ y, por resultado conocido, que $E\left( X^2 \right) - E(X)^2 = E\left[ X - E(X) \right]^2 = Var(X)$, por lo que se obtienen las siguientes igualdades:
+ \begin{eqnarray*}
+  \text{\texttt{ECM}} 
+  & = & E\left[ \left( \widehat{\Theta}- \theta \right)^2 \right] \\
+  & = & E\left( \widehat{\Theta}^2 -2\widehat{\Theta}\theta  + \theta ^2 \right) \\
+  & = & E\left( \widehat{\Theta}^2 \right) - 2\theta E \left( \widehat{\Theta} \right) + \theta^2 \\
+  & = & \left[ E\left( \widehat{\Theta}^2 \right) - 2E(\theta) E \left( \widehat{\Theta} \right) + E(\theta)^2 \right] + \left[ E\left( \widehat{\Theta} \right)^2 - E\left( \widehat{\Theta} \right)^2 \right] \\
+  & = & \left[ E\left( \widehat{\Theta}^2 \right) - E\left( \widehat{\Theta} \right)^2 \right] + \left[ E\left( \widehat{\Theta} \right)^2 - 2E(\theta) E \left( \widehat{\Theta} \right) + E(\theta)^2 \right] \\
+  & = & E \left\{ \left[ \widehat{\Theta} - E\left( \widehat{\Theta} \right) \right]^2 \right\} + \left[ E\left( \widehat{\Theta} - \theta \right) \right]^2 \\
+  & = & Var\left( \widehat{\Theta} \right) + \left[ sesgo\left( \widehat{\Theta} \right) \right]^2
+ \end{eqnarray*}
+ Q.E.D.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,102 @@
+\begin{enunciado}
+ Se realiza un estudio para determinar si los temas de la materia en un curso de f\'{\i}sica se comprenden mejor cuando se emplea un laboratorio en parte del curso. Se seleccionan estudiantes al azar para que participen, ya sea en un curso de tres semestres-hora sin laboratorio o en un curso de cuatro semestres-hora con laboratorio. En la secci\'on con laboratorio $11$ estudiantes tuvieron una calificaci\'on promedio de $85$ con una desviaci\'on est\'andar de $4.7$; mientras que en la secci\'on sin laboratorio $17$ estudiantes tuvieron una calificaci\'on promedio de $79$ con una desviaci\'on est\'andar de $6.1$. ¿Dir\'{\i}a usted que el curso con laboratorio aumenta la calificaci\'on promedio hasta en $8$ puntos? Utilice un valor $P$ en su conclusi\'on y suponga que las poblaciones se distribuyen de forma aproximadamente normal con varianzas iguales.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1, 2 \}$.
+   \item $n_1 = 11$ y $n_2 = 17$.
+   \item $\bar{x}_1 = 85$ y $\bar{x}_2 = 79$.
+   \item $s_1 = 4.7$ y $s_2 = 6.1$.
+   \item $\sigma_1^2 = \sigma_2^2$.
+  \end{itemize}
+  Adem\'as, por la suposici\'on de normalidad en las distribuciones
+  poblacionales, se sabe que el siguiente estad\'{\i}stico,
+  que se va a requerir,
+  se aproxima a la distribuci\'on mostrada
+  con el respectivo par\'ametro que se indica:
+  \begin{itemize}
+   \item $T = \frac{
+   \left( \overline{X}_1 - \overline{X}_2 \right) - d_0
+   }{
+   S_p\sqrt{1/n_1 + 1/n_2}
+   } \sim t(v)$.
+   \item $v = n_1 + n_2 - 2 = 26$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_1 - \mu_2 & \leq & 8 \\
+   H_1: \mu_1 - \mu_2 & > & 8
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  Dado que
+  \begin{eqnarray*}
+   s_p^2 & = & \frac{s_1^2\left( n_1 - 1 \right) + s_2^2\left( n_2 - 1 \right)}{n_1 + n_2 - 2} = \frac{4.7^2(11-1) + 6.1^2(17-1)}{11+17-2} = \frac{22.09(10) + 37.21(16)}{26} \\
+   & = & \frac{220.9 + 595.36}{26} = \frac{816.26}{26} = \frac{40\,813}{1300} = 31.39\overline{461538}
+  \end{eqnarray*}
+  entonces
+  \begin{equation*}
+   s_p = \sqrt{s_p^2} = \sqrt{\frac{40\,813}{1300}} = \frac{\sqrt{530\,569}}{130} \approx 5.60308906938256153528470749535345154
+  \end{equation*}
+  y
+  \begin{eqnarray*}
+   t & = & \frac{\left( \bar{x}_1 - \bar{x}_2 \right) - d_0}{s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} = \frac{(85-79) - 8}{\frac{\sqrt{530\,569}}{130}\sqrt{\frac{1}{11} + \frac{1}{17}}} = \frac{(6-8)(130)}{\sqrt{530\,569}\sqrt{\frac{17+11}{187}}} = -\frac{260\sqrt{187}}{\sqrt{14\,855\,932}} \\
+   & = & - \frac{130\sqrt{187}\sqrt{3\,713\,983}}{3\,713\,983} = - \frac{10\sqrt{694\,514\,821}}{285\,691} \approx -0.92245289486873725
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la Tabla A.4, se tiene que:
+  \begin{eqnarray*}
+   P(T > t) & = & P(T > -0.92245289486873725) = 1 - P(T < -0.92245289486873725) \\
+   & = & 1 - P(T > 0.92245289486873725)
+  \end{eqnarray*}
+  Y ya que $0.856 < 0.92245289486873725 < 1.058$, en donde $P(T > 0.856) = 0.2$ y $P(T > 1.058) = 0.15$, entonces, interpolando, se aproximar\'a que $P(T > 0.92245289486873725) \approx 0.17$, luego entonces:
+  \begin{equation*}
+   P(T > t) \approx 1 + 0.17 = 0.83
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es demasiado alto, se concluye que el curso con laboratorio no aumenta la calificaci\'on promedio hasta en $8$ puntos.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P05\_Prueba\_de\_dos\_medias\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n1<-11
+> n2<-17
+> mu<-8
+> m1<-85
+> m2<-79
+> m<-NULL
+> sigma1<-NULL
+> sigma2<-NULL
+> s1<-4.7
+> s2<-6.1
+> sD<-NULL
+> desv.iguales<-TRUE
+> alfa<-NULL
+> cola<-'S'
+> par<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el progama de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba var.pobl H0 n1 n2 DifMedias desv.est1 desv.est2  est.sp error.est
+1      t  Iguales  8 11 17         6       4.7       6.1 5.60309  2.168132
+  grados.libertad alpha    PValor Estadistico RegionRechazoT RegionRechazoX
+1              26  0.05 0.8176131  -0.9224529    > 1.7056179   > 11.6980054
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual ofrece mayor precisi\'on el valor $P$
+ y coincide con el resto de los datos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

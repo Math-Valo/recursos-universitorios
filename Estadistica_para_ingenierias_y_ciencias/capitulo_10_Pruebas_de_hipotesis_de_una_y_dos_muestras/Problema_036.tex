@@ -1,0 +1,132 @@
+\begin{enunciado}
+ Una compa\~n\'{\i}a grande armadora de autom\'oviles trata de decidir si compra llantas de la marca $A$ o de la $B$ para sus modelos nuevos. Para ayudar a tomar una decisi\'on, se realiza un experimento en donde se usan $12$ llantas de cada marca. Las llantas se utilizan hasta que se acaban. Los resultados son
+ \begin{center}
+  \begin{tabular}{rlcr}
+   Marca A: & $\bar{x}_1$ & $=$ & $37,900$ kil\'ometros, \\
+   & $s_1$ & $=$ & $5,100$ kil\'ometros. \\
+   Marca B: & $\bar{x}_2$ & $=$ & $39,800$ kil\'ometros, \\
+   & $s_2$ & $=$ & $5,900$ kil\'ometros
+  \end{tabular}
+ \end{center}
+ Pruebe la hip\'otesis de que no hay diferencia en el desgaste promedio de las 2 marcas de llantas. Suponga que las poblaciones se distribuyen de forma aproximadamente normal con varianzas iguales. Use un valor $P$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{ 1, 2\}$.
+   \item $n_1 = n_2 = 12$.
+   \item $\bar{x}_1 = 37\,900$ y $\bar{x}_2 = 39\,800$.
+   \item $s_1 = 5\,100$ y $s_2 = 5\,900$.
+   \item $\sigma_1^2 = \sigma_2^2$.
+  \end{itemize}
+  Adem\'as, por la suposici\'on de normalidad en las distribuciones
+  poblacionales, se sabe que el siguiente estad\'{\i}stico,
+  que se va a requerir, se aproxima a la distribuci\'on mostrada
+  con el respectivo par\'ametro que se indica:
+  \begin{itemize}
+   \item $T = \frac{
+   \left( \overline{X}_1 - \overline{X}_2 \right) - d_0
+   }{
+   S_p\sqrt{1/n_1 + 1/n_2}
+   } \sim t(v)$.
+   \item $v = n_1 + n_2 - 2 = 22$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_1 - \mu_2 &  =   & 0 \\
+   H_1: \mu_1 - \mu_2 & \neq & 0
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  Dado que
+  \begin{eqnarray*}
+   s_p^2 & = &
+   \frac{
+   s_1^2\left( n_1 - 1 \right) + s_2^2\left( n_2 - 1 \right)
+   }{
+   n_1 + n_2 - 2
+   }
+   = \frac{5\,100^2(12 - 1) + 5\,900^2(12 - 1)}{12+12-2} 
+   = \frac{100^2\left[ \cancel{11}(51^2 + 59^2) \right]}{\cancelto{2}{22}}
+   \\
+   & = & \frac{10\,000(2\,601 + 3\,481)}{2} = 5\,000(6\,082)
+   = 30\,410\,000
+  \end{eqnarray*}
+  entonces
+  \begin{equation*}
+   s_p = \sqrt{s_p^2} = \sqrt{30\,410\,000} = 100\sqrt{3\,041}
+   \approx 5\,514.52627158489471639493
+  \end{equation*}
+  y
+  \begin{eqnarray*}
+   t & = &
+   \frac{
+   \left( \bar{x}_1 - \bar{x}_2 \right) - d_0
+   }{
+   s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+   }
+   = \frac{(37\,900 - 39\,800) - 0}{100\sqrt{3\,041}\sqrt{\frac{2}{12}}}
+   = -\frac{1\,900\sqrt{3\,041}}{304\,100\sqrt{\frac{1}{6}}}
+   = -\frac{19\sqrt{18\,246}}{3\,041}
+   \approx -0.843958353
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la Tabla A.4, se tiene que:
+  \begin{eqnarray*}
+   P(|T|>|t|) & \approx & 2P(T > 0.843958353) \approx 2P(T > 0.856)
+   \approx 2(0.2) = 0.4
+  \end{eqnarray*}
+  N\'otese que la aproximaci\'on de $0.843958353$ a $0.856$ es que es,
+  por mucho, el valor cr\'{\i}tico m\'as cercano,
+  ya que en la tabla el valor cr\'{\i}tico pr\'oximo despu\'es de ese
+  es $0.531$.
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es demasiado alto, se concluye
+  que no hay diferencia en el desgaste promedio
+  de las 2 marcas de llantas.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P05\_Prueba\_de\_dos\_medias\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n1<-12
+> n2<-12
+> mu<-0
+> m1<-37900
+> m2<-39800
+> m<-NULL
+> sigma1<-NULL
+> sigma2<-NULL
+> s1<-5100
+> s2<-5900
+> sD<-NULL
+> desv.iguales<-TRUE
+> alfa<-NULL
+> cola<-'D'
+> par<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba var.pobl H0 n1 n2 DifMedias desv.est1 desv.est2   est.sp error.est
+1      t  Iguales  0 12 12     -1900      5100      5900 5514.526  2251.296
+  grados.libertad alpha    PValor Estadistico              RegionRechazoT
+1              22  0.05 0.4077763  -0.8439584 < -2.0738731  y > 2.0738731
+                   RegionRechazoX
+1 < -4668.902055  y > 4668.902055
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

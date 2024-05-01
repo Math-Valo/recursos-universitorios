@@ -1,0 +1,64 @@
+\begin{enunciado}
+ Considere los datos del ejercicio 9.15. Suponga que el fabricante de los alfileres insiste en que la dureza del producto ser\'a tan baja o m\'as que el valor de $44.0$ s\'olo un $5\%$ de las veces. ¿Cu\'al es su reacci\'on al respecto? Realice el c\'alculo de un l\'{\i}mite de tolerancia para determinar su veredicto.
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos de los ejercicios 9.15 y 9.20, considerando ahora dos posibles valores para $\gamma$, se tiene lo siguiente:
+ \begin{itemize}
+  \item $X\sim n(\mu, \sigma)$.
+  \item $n=12$.
+  \item $\bar{x} = 48.5$.
+  \item $s = 1.5$.
+  \item $\gamma_1 = 0.05$ y $\gamma_2 = 0.01$.
+  \item $\alpha=0.05$
+ \end{itemize}
+ Como se desea encontrar l\'{\i}mites de tolerancia, se requiere el factor de tolerancia, $k$, para el cual se abarque el $95\%$ de la poblaci\'on y deja $5\%$ a la izquierda, es decir, se buscan intervalos de tolerancia unilaterales. Se considerar\'an dos casos: el intervalo unilateral inferior con $95\%$ de seguridad y el intervalo unilateral inferior con $99\%$ de seguridad, cada caso requiere de un factor $k$ diferente que ser\'an nombrados como $k_{95}$ y $k_{99}$, respectivamente. Estos valores se pueden encontrar en la Tabla A.7, dando as\'{\i} los siguientes valores: $k_{u,95} = 2.736$ y $k_{u,99} = 3.41$; tambi\'en se pueden calcular usando R con los siguientes comandos:
+ \begin{verbatim}
+>library(tolerance)
+>options(digits=22)
+>K.table(12,alpha=0.05,P=0.95,side=1,method=("WBE"))
+$`12`
+                        0.95
+0.95 2.736342505809913117076
+
+>K.table(12,alpha=0.01,P=0.95,side=1,method=("WBE"))
+$`12`
+                        0.95
+0.99 3.409926860106897272829
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se pueden considerar con mayor precisi\'on como $k_{95} = 2.7363$ y $k_{u,99} = 3.40992686$.
+ \par 
+ Dado que se desea calcular intervalos inferiores de tolerancia, de una poblaci\'on que se supone normal, entonces se usa la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{x}-ks
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando los valores $k$ del libro, se obtienen los siguientes c\'alculos:
+ \begin{eqnarray*}
+  \bar{x} - k_{95}s & = & 48.5 - (2.736)(1.5) = 48.5 - 4.104 = 44.396 \\
+  \bar{x} - k_{99}s & = & 48.5 - (3.41)(1.5) = 48.5 - 5.115 = 43.385
+ \end{eqnarray*}
+ Por lo tanto, seg\'un el nivel de seguridad, puede que el $5\%$ de las veces la dureza del producto ser\'a tan bajo o m\'as que el valor de $44$, o que el $5\%$ de las veces la dureza del producto ser\'a tan bajo o m\'as que el valor de $43$. Estos c\'alculos se pueden realizar tambi\'en con R usando el script del archivo anexo \texttt{P11\_Intervalo\_de\_tolerancia\_3.r}, modificando los siguientes comandos para el $95\%$ de confianza:
+ \begin{verbatim}
+>n<-12
+>m<-48.5
+>desv<-1.5
+>gamma<-0.05
+>alfa<-0.05
+>inter<-'I'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ o bien, modificando los siguientes comandos para el $99\%$ de confianza:
+ \begin{verbatim}
+>n<-12
+>m<-48.5
+>desv<-1.5
+>gamma<-0.01
+>alfa<-0.05
+>inter<-'I'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene un intervalo de tolerancia inferior, con $95\%$ de confianza, de $44.39549$; o bien, con $99\%$ de confianza, de $43.38511$.
+ \par 
+ En conclusi\'on, el veredicto ya no debe de depender \'unicamente del l\'{\i}mite de tolerancia, pues si el costo por hacer los cambios necesarios para asegurarse de que s\'{\i} \'unicamente el $5\%$ de los alfileres est\'en con una dureza de Rockwell igual o menor a $44$, es mayor al costo por dejarlo as\'{\i} aunque pudiese ocurrir que haya m\'as del $5\%$ de alfilerez con dureza de Rockwell menor o igual a $44$, entonces es mejor aceptar como est\'a la poblaci\'on; sin embargo, en el otro caso, si es m\'as costoso dejar los alfileres como est\'an y resulte que m\'as de $5\%$ de los alfileres tienen una dureza de Rockwell igual o menor a $44$, entonces es mejor hacer el cambio, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

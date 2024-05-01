@@ -1,0 +1,75 @@
+\begin{enunciado}
+ Un determinado tipo de hilo se somete a estudio para conocer sus propiedades de resistencia a la tensi\'on. Se probaron $50$ piezas en condiciones similares y los resultados mostraron una resistencia a la tensi\'on promedio de $78.3$ kilogramos y una desviaci\'on est\'andar de $5.6$ kilogramos. Suponiendo una distribuci\'on normal de la resistencia a la tensi\'on, d\'e un intervalo de predicci\'on inferior de $95\%$ en un \'unico valor observado de resistencia a la tensi\'on. Adem\'as, determine un l\'{\i}mite inferior de tolerancia de $95\%$ que sea excedido por $99\%$ de los valores de resistencia a la tensi\'on.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de la resistencia a la tensi\'on, medido en kilogramos, de las piezas del tipo de hilo que se hace referencia en el problema, se tiene los siguientes datos, en donde se hace distinci\'on entre el valor $\alpha$ del l\'{\i}mite de predicci\'on y el del l\'{\i}mite de tolerancia como $\alpha_{\text{pred}}$ para el primero y $\alpha_{\text{tol}}$ para el segundo.
+ \begin{itemize}
+  \item $X\sim n(\mu, \sigma)$.
+  \item $\mu$ y $\sigma$ desconocidos.
+  \item $n=50$ piezas.
+  \item $\bar{x} = 78.3\,$Kg.
+  \item $s=5.6\,$Kg.
+  \item $\alpha_{\text{pred}} = 0.05$.
+  \item $\gamma = 0.05$.
+  \item $\alpha_{\text{tol}}=0.01$.
+ \end{itemize}
+ An\'alogo al ejercicio 9.29, obtener el intervalo unilateral de predicci\'on y tolerancia es natural de calcular. Para el intervalo de predicci\'on inferior, aunque se desconoce la desviaci\'on poblacional, la muestra es lo suficientemente grande, entonces se usar\'a el valor $z_{\alpha_{\text{pred}}} = z_{0.05}$. De la Tabla A.3, se tiene que se encuentra entre $1.64$ y $1.65$, por lo que se considerar\'a como $z_{0.05} = 1.645$, mientras que, usando el el software estad\'{\i}stico R, se obtiene un valor m\'as preciso con las siguientes l\'{\i}neas de comandos:
+ \begin{verbatim}
+>options(digits=22)
+>qnorm(0.05,lower.tail=F)
+[1] 1.644853626951472636009
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $1.644853626951$.
+ \par 
+ Por otro lado, para el l\'{\i}mite de tolerancia, se requiere del factor de tolerancia, $k$. De la tabla A.7, se tiene que $k=2.863$, mientras que, usando el software estad\'{\i}stico R, se obtiene un valor m\'as preciso con los siguientes comandos:
+ \begin{verbatim}
+>library(tolerance)
+>options(digits=22)
+>K.table(50,alpha=0.05,P=0.99,side=1,method=("WBE"))
+$`50`
+                        0.99
+0.95 2.862449263824704992487
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $2.86244926382$.
+ \par 
+ Dado que se quiere calcular el l\'{\i}mite inferior de tolerancia y de predicci\'on, de una muestra grande, entonces se usar\'an las siguientes formulaciones:
+ \begin{center}
+  \begin{tabular}{lcc}
+   Para el l\'{\i}mite de predicci\'on: & \hspace{1cm} & $\bar{x} - z_{\alpha_{\text{pred}}}s\sqrt{1+1/n} < x_0$ \\
+   Para el l\'{\i}mite de tolerancia: &  & $\bar{x}-ks$
+  \end{tabular}
+ \end{center}
+ Por lo tanto, usando los datos obtenidos y considerando los valores $z_{\alpha_{\text{pred}}}$ y $k$ del libro, se obtienen los c\'alculos para los l\'{\i}mites como siguen:
+ \begin{eqnarray*}
+  \bar{x} - z_{\alpha_{\text{pred}}}s\sqrt{1+1/n} & = & 78.3 - (1.645)(5.6)\sqrt{1+1/50} = 78.3 - 9.212\sqrt{\frac{51}{50}} \\
+  & = & 78.3 - \frac{9.212\sqrt{51}}{5\sqrt{2}} = 78.3 - \frac{1.8424\sqrt{102}}{2} \\
+  & = & 78.3 - 0.9212\sqrt{102} \\
+  \bar{x}-ks & = & 78.3 - (2.863)(5.6) = 78.3 - 16.0328 = 62.2672
+ \end{eqnarray*}
+ Por lo tanto, el l\'{\i}mite inferior de predicci\'on es de $68.9963$ y el l\'{\i}mite inferior de tolerancia es de $62.2672$. El c\'alculo del l\'{\i}mite inferior de predicci\'on y tolerancia usando R se puede obtener con los scripts anexos \texttt{P10\_Intervalo\_de\_prediccion\_3.r} y \texttt{P11\_Intervalo\_de\_tolerancia\_3.r}, respectivamente, cambiando los comandos en la secci\'on modificable por el usuario. En el de predicci\'on se realizan los siguientes cambios:
+ \begin{verbatim}
+>n<-50
+>m<-78.3
+>desv<-5.6
+>alfa<-0.05
+>val<-FALSE
+>inter<-'I'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene un l\'{\i}mite inferior de $68.99716$; mientras que para el de tolerancia se realizan los siguientes cambios:
+ \begin{verbatim}
+>n<-50
+>m<-78.3
+>desv<-5.6
+>gamma<-0.05
+>alfa<-0.01
+>inter<-'I'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene un l\'{\i}mite inferior de $62.27028$.
+ \par 
+ En resumen, y redondeando cifras para unificar las soluciones hechas con y sin R, se tiene que el l\'{\i}mite inferior de predicci\'on de la resistencia a la tensi\'on del tipo de hilo, con un nivel de $95\%$ de confianza, es de $69\,$Kg, y el l\'{\i}mite inferior de tolerancia de $95\%$ de confianza para la resistencia a la tensi\'on del tipo de hilo, que sea excedido por $99\%$ de los valores de resistencia a la tensi\'on de las piezas, es de $62.27\,$Kg, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

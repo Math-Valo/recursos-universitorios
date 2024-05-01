@@ -1,0 +1,80 @@
+\begin{enunciado}
+ Se lanza $20$ veces una moneda, con un resultado de $5$ caras.
+ ¿\'Esta es suficiente evidencia para rechazar la hip\'otesis
+ de que la moneda est\'a balanceada, a favor de la alternativa
+ de que las caras ocurren menos de $50\%$ de las veces?
+ Cite un valor $P$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n = 20$.
+   \item $x = 5$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p & = & 0.5 \\
+   H_1: p & < & 0.5
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  Variable binomial $X$ con $p = 0.5$ y $n = 20$.
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.1, se tiene la siguiente aproximaci\'on:
+  \begin{equation*}
+   P\left( X \leq 5 | p = 0.5 \right) = \sum_{i=0}^{5} b\left( x; 20, 0.5 \right)
+   \approx 0.0207
+  \end{equation*}
+  Mientras que el valor preciso se obtiene como sigue:
+  \begin{eqnarray*}
+   P\left( X \leq 5 | p = 0.5 \right) & = & \sum_{i=0}^{5} b\left( x; 20, 0.5 \right) \\
+   & = & \frac{1}{10^{20}} \left( 5^{20} + 20\cdot 5\cdot 5^{19} + 
+   190 \cdot 5^2 \cdot 5^{18} + 1\,140\cdot 5^3 \cdot 5^{17} +
+   4\,845 \cdot 5^4 \cdot 5^{16} + \right. \\
+   & & \left. 15\,504\cdot 5^5 \cdot 5^{15} \right) \\
+   & = & \frac{5^{20}}{10^{20}} (1 + 20 + 190 + 1\,140 + 4\,845 + 15\,504)
+   = \frac{95\,367\,431\,640\,625 \cdot 21\,700}{100\,000\,000\,000\,000\,000\,000} \\
+   & = & \frac{2\,069\,473\,266\,601\,562\,500}{100\,000\,000\,000\,000\,000\,000}
+   = 0.020694732666015625
+  \end{eqnarray*}
+ \end{valorp}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  El valor $P$ es muy peque\~no, por lo que se evidencia la falta de probabilidad
+  de que est\'e balanceada; es decir, hay pruebas suficientes para rechazar dicha
+  hip\'otesis y concluir que la moneda no est\'a balanceada.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo \texttt{P08\_Prueba\_de\_una\_proporcion\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n<-20
+> x<-5
+> p0<-NULL
+> p<-0.5
+> alfa<-NULL
+> cola<-'I'
+> distr<-NULL
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+     distr   p  n x pMuestral media desv.est alpha
+1 Binomial 0.5 20 5      0.25    10 2.236068  0.05
+                          Estadistico    PValor RegionRechazoX
+1 Var. binomial X con p= 0.5  y n= 20 0.0206947           <= 5
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,59 @@
+\begin{enunciado}
+ Construya un intervalo de confianza de $95\%$ para $\sigma_A^2/\sigma_B^2$ en el ejercicio 9.49 de la p\'agina 299. ¿Deber\'{\i}a utilizarse la suposici\'on de la varianza igual?
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos del ejercicio 9.49, pero cambiando el significado de $\alpha$ al nivel de significancia del intervalo de confianza para $\sigma_A^2/\sigma_B^2$, entonces se tiene los siguientes datos:
+ \begin{itemize}
+  \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ A, B \}$.
+  \item $\sigma_i$ son desconocidas, para cada $i \in \{ A, B \}$.
+  \item $n_A = n_B = 15$.
+  \item $\bar{x}_A = 3.82$ y  $\bar{x}_B = 4.94$.
+  \item $s_A^2 = \frac{1\,063}{1\,750} = 0.607\overline{428571}$ y $s_B^2 = \frac{1\,989}{3\,500} = 0.568\overline{285714}$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para la proporci\'on de varianzas poblacionales independientes y normalmente distribuidas, entonces se requerir\'a de los valor $f_{\alpha/2}(n_A - 1, n_B - 1) = f_{0.025}(14,14)$ y $f_{\alpha/2}(n_B-1,n_A-1) = f_{0.025}(14,14)$, que en este caso coinciden. Estos valores no se encuentran en la Tabla A.6, del libro, por lo que se utiliza otra funte, el libro \textit{Tratamiento de datos con R, STATISTICA y SPSS}, en donde, aunque no da el valor de $f_{0.025}(14,14)$, se tiene los valores $f_{0.025}(15,14) = 2.95$ y $f_{0.025}(12,14) = 3.05$, por lo que, al interpolar, se considerar\'a entonces la aproximaci\'on $f_{0.025}(14,14) \approx 2.98$. Por otro lado, usando R, con los siguientes comandos, se obtiene mayor precisi\'on.
+ \begin{verbatim}
+> options(digits=22)
+> qf(0.025,14,14,lower.tail=F)
+[1] 2.978587524101880656957
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar con mayor precisi\'on que $f_{0.025} = 2.97858752$.
+ \par 
+ Ya que se busca un intervalo de confianza bilateral para la proporci\'on de varianzas de poblaciones normalmente distribuidas usando la proporci\'on de las varianzas muestrales como estimador, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \frac{s_A^2}{s_B^2}\cdot \frac{1}{f_{\alpha/2}(n_A-1,n_B-1)} < \frac{\sigma_A^2}{\sigma_B^2} < \frac{s_A^2}{s_B^2} \cdot f_{\alpha/2}(n_B-1,n_A-1)
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando el valor $f_{0.025}(14,14)$ de la primera aproximaci\'on, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \frac{s_A^2}{s_B^2}\cdot \frac{1}{f_{\alpha/2}(n_A-1,n_B-1)} & = & \frac{1\,063/1\,750}{1\,989/3\,500} \cdot \frac{1}{2.98} = \frac{1\,063(3\,500)}{1\,989\left( \cancelto{35}{1\,750} \right)} \; \cdot \frac{\cancel{50}}{149} = \frac{1\,063\left( \cancelto{100}{3\,500} \right)}{1989(\cancel{35})(149)} \\
+  & = & \frac{106\,300}{296\,361} \approx 0.358684172
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \frac{s_A^2}{s_B^2} \cdot f_{\alpha/2}(n_B-1,n_A-1) & = & \frac{1\,063/1\,750}{1\,989/3\,500} \cdot 2.98 = \frac{1\,063\left( \cancelto{70}{3\,500} \right)}{1\,989(1\,750)} \; \cdot \frac{149}{\cancel{50}} = \frac{1\,063(\cancel{70})(149)}{1\,989\left( \cancelto{25}{1\,750} \right)} \\
+  & = & \frac{158\,387}{49\,725} \approx 3.185258924
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $95\%$ para la proporci\'on de las varianzas entra las horas de tiempo de secado, medido en horas, de la pintura de marca A entre el de la pintura de marca B es aproximadamente:
+ \begin{equation*}
+  0.358684172 < \frac{\sigma_A^2}{\sigma_B^2} < 3.185258924
+ \end{equation*}
+ Por otro lado, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P24\_Intervalo\_de\_confianza\_13.r}, el cual usa a su vez los datos almacenados en el fichero \texttt{DB08\_Problema\_49.csv}, cambiando las siguientes l\'{\i}neas del c\'odigo:
+ \begin{verbatim}
+> datos<-read.csv("DB08_Problema_49.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Tiempo.h")
+> varSel<-c("Marca")
+> alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+      Var1 Freq n1 n2 desv.Est1 desv.Est2    limInf    razon   limSup valorPVar
+1 Tiempo.h   30 15 15  0.779377 0.7538473 0.3588543 1.068879 3.183749  0.902581
+          Resultado
+1 Var no diferentes
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $0.36 < \frac{\sigma_A^2}{\sigma_B^2} < 3.18$. Por lo tanto, como el intervalo contiene a la unidad, al multiplicar ambos lados por $\sigma_B^2$, se tiene, con una seguridad del $95\%$, que $\sigma_A^2 = \sigma_B^2$, por lo cual, est\'a bien considerar que las varianzas son iguales, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

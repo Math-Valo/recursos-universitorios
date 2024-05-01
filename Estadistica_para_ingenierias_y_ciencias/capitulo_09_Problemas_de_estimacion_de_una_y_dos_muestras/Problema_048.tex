@@ -1,0 +1,79 @@
+\begin{enunciado}
+ Una compa\~n\'{\i}a automotriz considera dos tipos de bater\'{\i}as para sus veh\'{\i}culos. Se emplea la informaci\'on muestral de la vida de las bater\'{\i}as. Se utilizan $30$ bater\'{\i}as del tipo \textit{A} y $20$ bater\'{\i}as del tipo \textit{B}. El extracto de los estad\'{\i}sticos es $\bar{x}_A = 32.91$, $\bar{x}_B = 30.47$, $s_A = 1.57$ y $s_B = 1.74$. Suponga que los datos de cada bater\'{\i}a se distribuyen normalmente y que $\sigma_A = \sigma_B$.
+ \begin{enumerate}
+  \item Encuentre un intervalo de confianza de $95\%$ para $\mu_A - \mu_B$.
+  \item A partir del inciso a) obtenga algunas conclusiones que ayuden a decidir si se deber\'{\i}a adoptar \textit{A} o \textit{B}.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_A$ y $X_B$ las variables aleatorias del tiempo de vida de las bater\'{\i}as del tipo \textit{A} y del tipo \textit{B}, respectivamente, entonces, del enunciado, se tiene lo siguiente:
+ \begin{itemize}
+  \item $X_i \sim n\left( \mu_i , \sigma_i \right)$, para cada $i \in \{ A, B \}$.
+  \item $\mu_i$ y $\sigma_i$ son desconocidos, para cada $i \in \{ A, B \}$.
+  \item $\sigma_A = \sigma_B$.
+  \item $n_A = 30$ y $n_B = 20$.
+  \item $\bar{x}_A = 32.91$ y $\bar{x}_B = 30.47$.
+  \item $s_A = 1.57$ y $s_B = 1.74$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para $\mu_A - \mu_B$, usando como estimador $\bar{x}_A - \bar{x}_B$, desconociendo las varianzas poblacionales aunque suponi\'endolas iguales, con muestras peque\~nas\footnote{En realidad, una muestra es peque\~na y la otra es grande, pero para usar el m\'etodo para muestras grandes se requiere que ambas muestras sean grandes, por lo que se descarta aquel m\'etodo.} de poblaciones que se distribuyen aproximadamente normal, entonces se requerir\'a del valor $t_{\alpha/2,n_A+n_B-2} = t_{0.025,48}$. La Tabla A.4 no presenta dicho valor, pero s\'{\i} da los valores de $t_{0.025,40} = 2.021$ y $t_{0.025,60} = 2$, por lo que promediando, se aproxima que $t_{0.025,48} \approx 2.01$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,48,lower.tail=F)
+[1] 2.010634757624232271667
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $2.0106347576$.
+ \begin{enumerate}
+  \item Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales usando como estimador la diferencia de las medias muestral es en muestras peque\~nas, en donde se desconoce las desviaciones est\'andar poblacionales pero suponiendo que son iguales y donde se suponene que las poblaciones se distribuyen aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+  \begin{equation*}
+   \left( \bar{x}_A - \bar{x}_B \right) - t_{\alpha/2,n_A+n_B-2} s_p \sqrt{\frac{1}{n_A} + \frac{1}{n_B}} < \mu_A - \mu_B < \left( \bar{x}_A - \bar{x}_B \right) + t_{\alpha/2,n_A+n_B-2} s_p \sqrt{\frac{1}{n_A} + \frac{1}{n_B}}
+  \end{equation*}
+  en donde
+  \begin{equation*}
+   s_p = \sqrt{\frac{\left(n_A - 1\right) s_A^2 + \left( n_B -1 \right)s_B^2 }{n_A + n_B - 2}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos, considerando finalmente el valor $t_{\alpha/2,n_A+n_B-2} = 2.011$, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+  \begin{eqnarray*}
+   s_p & = & \sqrt{\frac{\left(n_A - 1\right) s_A^2 + \left( n_B -1 \right)s_B^2 }{n_A + n_B - 2}} = \sqrt{\frac{(30 - 1)(1.57)^2 + (20 - 1)(1.74)^2}{30 + 20 - 2}} \\
+   & = & \sqrt{\frac{29(2.4649) + 19(3.0276)}{48}} = \sqrt{\frac{71.4821 + 57.5244}{48}} = \sqrt{\frac{129.0065}{48}} \\
+   & = & \sqrt{\frac{1\,290\,065 (3)}{1\,440\,000}} = \frac{\sqrt{3\,870\,195}}{1200}
+  \end{eqnarray*}
+  y
+  \begin{eqnarray*}
+   \left( \bar{x}_A - \bar{x}_B \right) \pm t_{\alpha/2,n_A+n_B-2} s_p \sqrt{\frac{1}{n_A} + \frac{1}{n_B}} \\
+   & \hspace{-4cm} = & \hspace{-2cm} (32.91 - 30.47) \pm (2.011)\left( \frac{\sqrt{3\,870\,195}}{1200} \right) \sqrt{\frac{1}{30} + \frac{1}{20}} \\
+   & \hspace{-4cm} = & \hspace{-2cm} 2.44 \pm 0.0016758\overline{3}\sqrt{3\,870\,195} \sqrt{\frac{2+3}{60}} \\
+   & \hspace{-4cm} = & \hspace{-2cm} 2.44 \pm \frac{0.0016758\overline{3}\sqrt{3\,870\,195}}{\sqrt{12}}  =  2.44 \pm \frac{0.0016758\overline{3}\sqrt{1\,290\,065}}{2} \\
+   & \hspace{-4cm} = & \hspace{-2cm} 2.44 \pm 0.00083791\overline{6}\sqrt{1\,290\,065} \approx 2.44 \pm 0.95171436667755
+  \end{eqnarray*}
+  Por lo tanto, el intervalo del $95\%$ de confianza de la diferencia entre los tiempos de vida la bater\'{\i}a \textit{A} y la bater\'{\i}a \textit{B} es de:
+  \begin{equation*}
+   1.4882856333224... < \mu_A - \mu_B < 3.39171436667755...
+  \end{equation*}
+  Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P14\_Intervalo\_de\_confianza\_05.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n1<-30
+> n2<-20
+> m1<-32.91
+> m2<-30.47
+> desv.tipica1<-1.57
+> desv.tipica2<-1.74
+> alfa<-0.05
+> val<-FALSE
+> varia<-TRUE
+> inter<-'D'
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+  n1 n2 media1 media2   LimInf diferencia   LimSup
+1 30 20  32.91  30.47 1.488458       2.44 3.391542
+  \end{verbatim}
+  \vspace{-0.5cm}
+  por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $1.488 < \mu_A - \mu_B < 3.392$.${}_{\square}$
+  
+  \item Dado que el intervalo con el $95\%$ de confianza indican cualquiera que sea el valor $\mu_A - \mu_B$ dentro de los valores del intervalo, esta diferencia es siempre mayor a $0$, entonces $\mu_A - \mu_B > 0$ con $95\%$ de confianza; es decir, $\mu_A > \mu_B$ con un $95\%$ de confianza. Por lo tanto, el tiempo promedio de vida de las bater\'{\i}as del tipo \textit{A} es mayor al tiempo promedio de vida de las bater\'{\i}as del tipo \textit{B}, con una confianza del $95\%$. Por lo tanto, con este nivel de confianza se concluye que es mejor adoptar las bater\'{\i}as del tipo \textit{A}, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

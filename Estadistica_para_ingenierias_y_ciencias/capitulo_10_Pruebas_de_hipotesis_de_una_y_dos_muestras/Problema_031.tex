@@ -1,0 +1,77 @@
+\begin{enunciado}
+ Un fabricante afirma que la resistencia a la tensi\'on promedio del hilo A excede la resistencia a la tensi\'on promedio del hilo B, en al menos $12$ kilogramos. Para probar esta afirmaci\'on, se prueban $50$ piezas de cada tipo de hilo bajo condiciones similares. El hilo tipo A tiene una resistencia a la tensi\'on promedio de $86.7$ kilogramos con una desviaci\'on est\'andar de $6.28$ kilogramos; mientras que el hilo tipo B tiene una resistencia a la tensi\'on promedio de $77.8$ kilogramos con una desviaci\'on est\'andar de $5.61$ kilogramos. Pruebe la afirmaci\'on del fabricante usando un nivel de significancia de $0.05$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n_1 = n_2 = 50$.
+   \item $\bar{x}_1 = 86.7$ y $\bar{x}_2 = 77.8$.
+   \item $s_1 = 6.28$ y $s_2 = 5.61$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_1 - \mu_2 & \geq & 12 \\
+   H_1: \mu_1 - \mu_2 & < & 12
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.3, se tiene el valor cr\'{\i}tico $z_{\alpha} = z_{0.05} \approx 1.645$, por lo que la regi\'on de rechazo est\'a dado para $z < -1.645$, donde $z = \frac{\left( \bar{x}_1 - \bar{x}_2 \right) - d_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}}$.
+ \end{region}
+
+ \begin{estadistico}
+  Ya que el tama\~ no de las muestras es grande, se puede aproximar las desviaciones est\'andar muestrales a las poblacionales con lo que se usa el siguiente estad\'{\i}stico:
+  \begin{eqnarray*}
+   z & = & \frac{\left( \bar{x}_1 - \bar{x}_2 \right) - d_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}} \approx \frac{\left( \bar{x}_1 - \bar{x}_2 \right) - d_0}{\sqrt{s_1^2/n_1 + s_2^2/n_2}} = \frac{(86.7 - 77.8) - 12}{\sqrt{\frac{6.28^2}{50} + \frac{5.61^2}{50}}} = \frac{8.9-12}{\sqrt{\frac{39.4384 + 31.4721}{50}}} \\
+   & = & -\frac{3.1}{\sqrt{\frac{70.9105}{50}}} = -\frac{3.1}{\sqrt{\frac{141\,821}{100\,000}}} = -\frac{3.1}{\frac{1}{1000}\sqrt{1\,418\,210}} = -\frac{3\,100\sqrt{1\,418\,210}}{1\,418\,210} \approx -2.6031034
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  La evidencia indica que la resistencia a la tensi\'on promedio del hilo A es menor a 12 kilogramos con respecto a la resistencia a la tensi\'on promedio del hilo B.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P05\_Prueba\_de\_dos\_medias\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n1<-50
+> n2<-50
+> mu<-12
+> m1<-86.7
+> m2<-77.8
+> m<-NULL
+> sigma1<-NULL
+> sigma2<-NULL
+> s1<-6.28
+> s2<-5.61
+> sD<-NULL
+> desv.iguales<-NULL
+> alfa<-0.05
+> cola<-'I'
+> par<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba H0 n1 n2 DifMedias desv.est1 desv.est2 error.est alpha    PValor
+1      Z 12 50 50       8.9      6.28      5.61  1.190886  0.05 0.0046192
+  Estadistico RegionRechazoZ RegionRechazoX     Resultado
+1   -2.603103   < -1.6448536   < 10.0411665 Se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

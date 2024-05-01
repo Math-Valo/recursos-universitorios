@@ -1,0 +1,249 @@
+\begin{enunciado}
+ En un estudio para estimar la proporci\'on de residentes de cierta ciudad
+ y sus suburbios que est\'an a favor de la construcci\'on de una planta
+ de energ\'{\i}a nuclear,
+ se encuentra que $63$ de $100$ residentes urbanos favorecen la construcci\'on,
+ mientras que s\'olo $59$ de $125$ residentes suburbanos la favorecen.
+ ¿Hay una diferencia significativa entre la proporci\'on de residentes urbanos
+ y suburbanos que favorecen la construcci\'on de la planta nuclear?
+ Utilice un valor $P$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n_1 = 100$ y $n_2 = 125$.
+   \item $x_1 = 63$ y $x_2 = 59$.
+  \end{itemize}
+  Adem\'as, se pueden calcular las proporciones estimadas de cada muestra
+  y la estimaci\'on combinada de la proporci\'on a la que se supone que son iguales
+  en ambas poblaciones, como se muestra a continuaci\'on:
+  \begin{itemize}
+   \item $\widehat{p}_1 = \frac{63}{100} = 0.63$.
+   \item $\widehat{p}_2 = \frac{59}{125} = 0.472$.
+   \item $\widehat{p} = \frac{x_1+x_2}{n_1+n_2} = \frac{63+59}{100+125}
+   = \frac{122}{225} = 0.54\bar{2}$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p_1 &  =   & p_2 \\
+   H_1: p_1 & \neq & p_2
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   z & \approx &
+   \frac{\widehat{p}_1 - 
+   \widehat{p}_2}{\sqrt{\widehat{p}\widehat{q}\left(1/n_1+1/n_2\right)}}
+   = \frac{
+   \displaystyle{ \frac{63}{100} - \frac{59}{125}}
+   }{
+   \displaystyle{ \sqrt{
+   \left(\frac{122}{225}\right)\left(\frac{103}{225}\right)
+   \left(\frac{1}{100} + \frac{1}{125}\right)
+   }}}
+   = \frac{
+   \displaystyle{ \frac{7\,875 - 5\,900}{100(125)} }
+   }{
+   \displaystyle{ \sqrt{
+   \frac{(122)(103)(\cancel{125 + 100})}{(\cancel{225})(225)(100)(125)}
+   }}} \\
+   & = & \frac{
+   \displaystyle{\frac{\cancelto{395}{1\,975}}{10^2\cdot 5^{\cancelto{2}{3}}}}
+   }{
+   \displaystyle{\sqrt{\frac{12\,566}{3^2 \cdot 5^2 \cdot 10^2 \cdot 5^2 \cdot 5}}}
+   }
+   = \frac{
+   395\left(3\cdot\cancel{5^2}\cdot\cancel{10}\sqrt{5}\right)
+   \left(\sqrt{12\,566}\right)
+   }{12\,566\cdot 10^{\cancel{2}}\cdot \cancel{5^{2}}}
+   = \frac{
+   \cancel{5}\cdot 79 \cdot 3 \sqrt{5\cdot 12\,566}
+   }{
+   12\,566 \cdot \cancel{5} \cdot 2
+   } \\
+   & = & \frac{237\sqrt{62\,830}}{25\,132} \approx 2.3637678684
+  \end{eqnarray*}
+ \end{estadistico}
+ 
+ \begin{valorp}
+  De la tabla A.3, se tiene que:
+  \begin{equation*}
+   P(|Z| > |z|) 1 = 2P(Z > z) \approx 2\left(1 - P(Z < 2.36)\right)
+   \approx 2(1-0.9909) = 2(0.0091) = 0.0182
+  \end{equation*}
+ \end{valorp}
+ 
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es muy peque\~no,
+  se tiene evidencia suficiente para concluir
+  que la proporci\'on de residentes urbanos que favorecen
+  la construcci\'on de la planta nuclear es mayor que la proporci\'on
+  de residentes suburbanos que favorecen dicha construcci\'on.
+ \end{conclusion}
+
+ En el c\'odigo registrado en el archivo anexo
+ \texttt{P09\_Prueba\_de\_dos\_proporciones\_01.r}, en R,
+ se realiza este procedimiento.
+ El c\'odigo permite modificar los valores iniciales correspondientes a:
+ \texttt{n1} y \texttt{n2} para el tama\~no de las muestras;
+ \texttt{x1} y \texttt{x2} para la cantidad de casos favorables o,
+ en su defecto, \texttt{p1} o \texttt{p2}
+ para la proporci\'on de \'exitos muestrales,
+ seg\'un la muestra correspondiente;
+ \texttt{alfa} para el nivel de significancia;
+ y, \texttt{alternativa} para indicar el tipo de prueba seg\'un la hip\'otesis
+ alternativa seg\'un si se supone proporciones distintas, con \texttt{!=},
+ si se supone la proporci\'on de la primera muestra mayor a la de la segunda muestra,
+ con \texttt{>}, o si se supone la proporci\'on de la primera muestra menor
+ a la de la segunda muestra, con \texttt{>}.
+ \par 
+ El programa espera al menos los datos correspondientes a las muestras:
+ el tama\~no de ambas muestras; para cada muestra, la cantidad de casos
+ favorables o, en su defecto, la proporci\'on muestral;
+ y, el indicador del tipo de prueba, seg\'un su alternativa.
+ Por lo tanto, el valor $P$ siempre se obtiene,
+ independientemente de si se desea una prueba de hip\'otesis
+ fijando la probabilidad del error tipo I
+ o si se realiza una prueba de significancia (aproximaci\'on al valor $P$).
+ En caso de no querer fijar una probabilidad de cometer un error de tipo I,
+ $\alpha$, a la variable \texttt{alfa} se le asigna el valor \texttt{NULL}.
+ \par 
+ La prueba de hip\'otesis usar\'a el estad\'{\i}stico $Z$
+ de la estandarizaci\'on de la distribuci\'on normal obtenida por la diferencia
+ de las proporciones muestrales,
+ considerando la estimaci\'on combinada de la proporci\'on $p$,
+ el valor al que se suponen las proporciones poblacionales son iguales,
+ seg\'un la hip\'otesis nula.
+ \par 
+ El resultado muestra la siguiente:
+ \texttt{alternativa}, que muestra la hip\'otesis alternativa en contraste
+ con la hip\'otesis nula de que las proporciones poblacionales son iguales;
+ \texttt{n1} y \texttt{n2} para el tama\~no de cada muestra;
+ \texttt{x1} y \texttt{x2} para la cantidad de casos favorables de cada muestra;
+ \texttt{p1} y \texttt{p2} para la proporci\'on muestral de cada muestra;
+ \texttt{pEstimada} para la estimaci\'on combinada de la proporci\'on $p$,
+ el valor al que se suponen las proporciones poblacionales son iguales,
+ seg\'un la hip\'otesis nula;
+ \texttt{DifProp} para la diferencia de las proporciones muestrales;
+ \texttt{error.est} para el valor est\'andar en el estad\'{\i}stico,
+ que est\'a dado por el valor $\sqrt{\hat{p}\hat{q}(1/n_1 + 1/n_2)}$,
+ donde, a su vez, el valor $\hat{p}$ es la estimaci\'on combinada
+ de la proporci\'on $p$, dado por la f\'ormula $\frac{x_1+x_2}{n_1+n_2}$,
+ y $\hat{q} = 1 - \hat{p}$;
+ \texttt{alpha} para el nivel de significancia dado,
+ el cual muestra por defecto $0.05$ en caso de asignar \texttt{NULL} a \texttt{alfa};
+ \texttt{PValor} para el valor $P$,
+ la probabilidad de haber obtenido un par de muestras como se obtuvo,
+ suponiendo que la hip\'otesis nula sea cierta;
+ \texttt{Estadistico} para el valor resultante del estad\'{\i}stico de prueba;
+ \texttt{RegionRechazoZ} que indica en d\'onde se encuentra la regi\'on de rechazo
+ para los valores obtenidos por el estad\'{\i}stico de prueba,
+ seg\'un el valor de $\alpha$ (posiblemente el dado por defecto);
+ y, en caso de haber indicado un valor a \texttt{alfa}, \texttt{Resultado}
+ para indicar si se rechaza o no la hip\'otesis nula.
+ \par 
+ N\'otesse que no se consider\'o esta vez
+ lo que en otros c\'odigos se le llama \texttt{RegionRechazoX},
+ que indica una regi\'on de rechazo en t\'erminos de las unidades originales
+ para los resultados obtenidos en la o las muestras.
+ Esto debido a que se debe considerar primero un \'unico par\'ametro
+ para los posibles resultados de las muestras,
+ es decir, en t\'erminos de $x_1$ y $x_2$ o de $p_1$ y $p_2$,
+ y el candidato principal es $P_1 - P_2$. Luego, el c\'alculo
+ para obtener dicha regi\'on de rechazo es un despeje de la transformaci\'on
+ con la que obtuvo el estad\'{\i}stico de prueba, una vez obtenida la regi\'on
+ de rechazo de dicho estad\'{\i}stico.
+ El problema radica en que el estad\'{\i}stico de prueba es
+ $z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{pq(1/n_1 + 1/n_2)}}$,
+ donde $p$ es el valor al que se suponene que son iguales las proporciones,
+ seg\'un la hip\'otesis nula;
+ sin embargo, dicho valor no se puede siquiera suponer,
+ por lo que en realidad se usa la transformaci\'on
+ $z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}\hat{q}(1/n_1 + 1/n_2)}}$,
+ donde $\hat{p}$ es la estimaci\'on combinada de esta proporci\'on
+ y est\'a dado por la f\'ormula $\hat{p} = \frac{x_1 + x_2}{n_1 + n_2}$.
+ Esto quiere decir que tratar de despejar el par\'ametro de los resultados,
+ $\hat{p}_1 - \hat{p}_2$, al pasar multiplicando este error
+ que lo divide en la estandarizaci\'on a $z$ implica llegar a un valor
+ que lleva consigo resultados de la muestra, es decir de $x_1$ y $x_2$,
+ por lo que no ser\'{\i}a un dato \'util.
+ Por otro lado, no existe un despeje directo de dicho valor
+ en la transformaci\'on $z$.
+ Como resultado, se ha decidido omitir en esta ocasi\'on dicha regi\'on de rechazo.
+ \par 
+ El c\'odigo junto con el resultado se muestra a continuaci\'on:
+ \begin{verbatim}
+> n1<-100
+> n2<-125
+> x1<-63
+> x2<-59
+> p1<-NULL
+> p2<-NULL
+> alfa<-NULL
+> alternativa<-'!='
+> if(n1<30 || n2<30){
++   stop("Las muestras no deben ser pequeñas (al menos de 30 observaciones).")
++ }
+> if(is.null(x1)){
++   x1<-round(p1*n1)
++ }
+> if(is.null(x2)){
++   x2<-round(p2*n2)
++ }
+> TestProp<-function(n1,n2,x1,x2,alfa=0.05,prueba='!='){
++   p1<-x1/n1
++   p2<-x2/n2
++   p<-(x1+x2)/(n1+n2)
++   r<-data.frame(alternativa=paste("p1",prueba,"p2"),
++                 n1=n1,n2=n2,
++                 x1=x1,x2=x2,
++                 p1=p1,p2=p2,
++                 pEstimada=p,
++                 DifProp=p1-p2,
++                 error.est=sqrt(p*(1-p)*(1/n1+1/n2)),
++                 alpha=alfa
++   )
++   estadistico<-(p1-p2)/sqrt(p*(1-p)*(1/n1+1/n2))
++   if(prueba=='!='){
++     pvalor<-round(2*pnorm(abs(estadistico),lower.tail=F),7)
++     criticoz<-round(qnorm(1-alfa/2),7)
++     r$PValor<-pvalor
++     r$Estadistico<-estadistico
++     r$RegionRechazoZ<-paste("<=",-criticoz," y >=",criticoz)
++   }else{
++     criticoz<-round(qnorm(1-alfa),7)
++     if(prueba=='<'){
++       pvalor<-round(pnorm(estadistico),7)
++       r$PValor<-pvalor
++       r$Estadistico<-estadistico
++       r$RegionRechazoZ<-paste("<=",-criticoz)
++     }else{
++       pvalor<-round(pnorm(estadistico,lower.tail=F),7)
++       r$PValor<-pvalor
++       r$Estadistico<-estadistico
++       r$RegionRechazoZ<-paste(">=",criticoz)
++     }
++   }
++   return(r)
++ }
+> if(is.null(alfa)){
++   Test<-TestProp(n1,n2,x1,x2,prueba=alternativa)
++ }else{
++   Test<-TestProp(n1,n2,x1,x2,alfa,alternativa)
++   resultado<-ifelse(Test[,"PValor"]>=alfa,"No se rechaza H0","Se rechaza H0")
++   Test$Resultado<-resultado
++ }
+> Test
+  alternativa  n1  n2 x1 x2   p1    p2 pEstimada DifProp  error.est alpha
+1    p1 != p2 100 125 63 59 0.63 0.472 0.5422222   0.158 0.06684243  0.05
+     PValor Estadistico              RegionRechazoZ
+1 0.0180901    2.363768 <= -1.959964  y >= 1.959964
+ \end{verbatim}
+ Lo cual coincide con los resultado obtenido,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,103 @@
+\begin{enunciado}
+ En la publicaci\'on \textit{Relief from Arthritis} de Thorsons Publishers, Ltd., John E. Croft afirma que m\'as de $40\%$ de los individuos que sufren de artritis \'osea obtienen un alivio mensurable de un ingrediente producido por una especie particular de mejill\'on que se encuentra en la costa de Nueva Zelanda. Para demostrar tal afirmaci\'on, el extracto de mejill\'on se suministra a un grupo de $7$ pacientes con artritis \'osea. Si $3$ o m\'as de los pacientes obtienen alivio, no rechazaremos la hip\'otesis nula de que $p = 0.4$; de otro modo, concluiremos que $p < 0.4$.
+ \begin{enumerate}
+  \item Eval\'ue $\alpha$ suponiendo que $p = 0.4$. 
+  
+  \item Eval\'ue $\beta$ para la alternativa $p = 0.3$
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del n\'umero de pacientes aliviados en la muestra, del enunciado se tiene lo siguiente, en donde $x_{\text{inf}}$ representa el valor cr\'{\i}tico inferior, en el que incluye la regi\'on de aceptaci\'on.
+ \begin{itemize}
+  \item $X \sim b(n,p)$.
+  \item $n = 7$.
+  \item $x_{\text{inf}} = 3$.
+ \end{itemize}
+ Con lo que se realiza lo pedido en los incisos como sigue.
+ \begin{enumerate}
+  \item Suponiendo adem\'as que
+  \begin{itemize}
+   \item $p = 0.4$
+  \end{itemize}
+  el error tipo I se calcula como sigue:
+  \begin{equation*}
+   \alpha = P(X < 3) = \sum_{x=0}^{2} b(x;7,0.4).
+  \end{equation*}
+  Esto se puede aproximar usando la tabla A.1, con lo que se obtiene lo siguiente:
+  \begin{equation*}
+   \alpha = \sum_{x=0}^{2} b(x:7,0.4) = 0.4199.
+  \end{equation*}
+  Aunque el valor preciso se obtiene con los siguientes c\'alculos:
+  \begin{eqnarray*}
+   \alpha & = & \sum_{x=0}^{2} b(x:7,0.4) = \sum_{x=0}^{2} \binom{7}{x} \left( \frac{4}{10} \right)^x \left( \frac{6}{10} \right)^{7-x} = \frac{1}{10^7} \left(6^7 + 7\cdot 4\cdot 6^6 + 21\cdot 4^2 \cdot 6^5 \right) \\
+   & = & \frac{6^5}{10^7} (6^2 + 7\cdot 4 \cdot 6 + 21 \cdot 4^2) = \frac{7\,776}{10\,000\,000}(36 + 168 + 336) = \frac{7\,776(540)}{10\,000\,000} = \frac{4\,199\,040}{10\,000\,000} \\
+   & = & 0.419904
+  \end{eqnarray*}
+  Finalmente, usando R, se puede calcular la probabilidad usando el script del archivo anexo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-7
+> CriticoInf<-3
+> CriticoSup<-NULL
+> p0<-0.4
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+$`Probabilidad de error tipo I`
+  HipotesisNula n CriticoInf    alpha
+1           0.4 7          3 0.419904
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene lo siguiente:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas da $\alpha = 0.4199$.
+   \item El valor preciso es $\alpha = 0.419904$.
+   \item La aproximaci\'on con R da: $\alpha = 0.419904$.${}_{\square}$
+  \end{itemize}
+  
+  \item Si se supone que
+  \begin{itemize}
+   \item $p = 0.3$.
+  \end{itemize}
+  el error tipo II se calcula como sigue:
+  \begin{equation*}
+   \beta = P(X \geq 3) = 1 - P(X < 3) = 1 - \sum_{x=0}^{2} b(x;7,0.3)
+  \end{equation*}
+  Usando la tabla A.1, esto se aproxima a:
+  \begin{equation*}
+   \beta = 1 - \sum_{x=0}^{2} b(x;7,0.3) = 1 - 0.6471 = 0.3529
+  \end{equation*}
+  Aunque el valor preciso se obtiene con los siguientes c\'alculos:
+  \begin{eqnarray*}
+   \beta & = & 1 - \sum_{x=0}^{2} b(x;7,0.3) = 1 - \frac{1}{10^7}\sum_{x=0}^{2} \binom{7}{x} \cdot 3^x \cdot 7^{7-x} \\
+   & = & 1 - \frac{1}{10^7}\left(7^7 + 7\cdot 3 \cdot 7^6 + 21 \cdot 3^2 \cdot 7^5\right) = 1 - \frac{7^6}{10^7}(7 + 7\cdot 3 + 3\cdot 3^2) \\
+   & = & 1 - \frac{117\,649(55)}{10\,000\,000} = \frac{10\,000\,000 - 6\,470\,695}{10\,000\,000} = \frac{3\,529\,305}{10\,000\,000} \\
+   & = & 0.3529305
+  \end{eqnarray*}
+  Finalmente, usando R, se puede calcular la probabilidad usando el script del archivo anexo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-7
+> CriticoInf<-3
+> CriticoSup<-NULL
+> p0<-NULL
+> p1<-0.3
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa n CriticoInf      beta
+1                  0.3 7          3 0.3529305
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene lo siguiente:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas da $\beta = 0.3529$.
+   \item El valor preciso es $\beta = 0.3529305$.
+   \item La aproximaci\'on con R da $\beta = 0.3529305$.
+  \end{itemize}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

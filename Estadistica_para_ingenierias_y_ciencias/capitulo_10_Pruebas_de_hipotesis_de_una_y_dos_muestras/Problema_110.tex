@@ -1,0 +1,125 @@
+\begin{enunciado}
+ Se lleva a cabo un estudio en el Centro de Medicina Veterinaria Equina
+ de la Universidad Regional de Virgini-Maryland, para determinar
+ si la realizaci\'on de cierto tipo de cirug\'{\i}a en caballos j\'ovenes
+ tiene alg\'un efecto en ciertas clases de c\'elulas sangu\'{\i}neas
+ en el animal.
+ Se toman muestras del fluido de cada uno de seis potros antes y despu\'es
+ de la cirug\'{\i}a.
+ Se analizan las muestras para el n\'umero de leucogramos
+ de gl\'obulos blancos (\texttt{WBC}) posoperatorios.
+ Tambi\'en se realiza una medici\'on de leucogramos \texttt{WBC}
+ preoperatorios.
+ Utilice una prueba $t$ de una muestra pareada
+ para determinar si hay un cambio significativo en los leucogramos
+ \texttt{WBC} con la cirug\'{\i}a.
+ \begin{center}
+  \begin{tabular}{ccc}
+   \textbf{Potro} & \textbf{Precirug\'{\i}a*} & \textbf{Postcirug\'{\i}a*}
+   \\
+   \hline 
+   1 & $10.80$ & $10.60$ \\
+   2 & $12.90$ & $16.60$ \\
+   3 & $ 9.59$ & $17.20$ \\
+   4 & $ 8.81$ & $14.00$ \\
+   5 & $12.00$ & $10.60$ \\
+   6 & $ 6.07$ & $ 8.60$ \\
+   \hline
+   \multicolumn{3}{l}{*Todos los valores $\times 10^{-3}$.}
+  \end{tabular}
+ \end{center}
+\end{enunciado}
+
+\begin{solucion}
+ Como se menciona en el ejercicio, el procedimiento corresponde
+ a una prueba de muestras pareada.
+ Para ello, primero habr\'a que verificar que las muestras provienen
+ de poblaciones normales.
+ Esto es, antes que todo, probar la hip\'otesis nula que se enuncia como: $X_1$ y $X_2$, las variables aleatorias correspondientes
+ a las mediciones de WBC preoperatorios y posoperatorios,
+ tienen distribuciones normales, contra la hip\'otesis alternativa,
+ de que no es as\'{\i}.
+ \par 
+ El proceso que generalmente se usa para probar la normalidad 
+ se encuentra registrado en el archivo anexo
+ \texttt{P17\_Prueba\_de\_normalidad\_01.r}
+ que, en este caso, usar\'{\i}a el archivo 
+ \texttt{DB41\_Problema\_110.csv} que contiene la base de datos
+ escritos en la tabla;
+ sin embargo, se trata de muy pocos datos
+ y el programa causa un error debido que,
+ al colapsar las frecuencias para tener al menos una frecuencia esperada
+ de 5 unidades por clase, se obtiene una \'unica clase,
+ lo cual no permite realizar la prueba $\chi^2$
+ por no tener una valor positivo de grados de libertad.
+ Por lo tanto, se proceder\'a a hacer la prueba de Geary
+ con las siguientes l\'{\i}neas de c\'odigo junto con sus resultados:
+ \begin{verbatim}
+> datos<-read.csv("DB41_Problema_110.csv",sep=";",encoding="UTF-8")
+> varInteres<-"WBC.cantidad"; distincion<-"Muestra"
+> lista<-split(datos[,varInteres],datos[,distincion])
+> x<-lista$Precirugía
+> y<-lista$Postcirugía
+> n1<-length(x); n2<-length(y)
+> U1<-sqrt(pi/2)*mean(abs(x-mean(x)))/sqrt(var(x)*(n1-1)/n1)
+> U2<-sqrt(pi/2)*mean(abs(y-mean(y)))/sqrt(var(y)*(n2-1)/n2)
+> x.Geary.statistic<-(U1-1)/(0.2661/sqrt(n1))
+> y.Geary.statistic<-(U2-1)/(0.2661/sqrt(n2))
+> x.Geary.p.value<-2*pnorm(abs(x.Geary.statistic),lower.tail=FALSE)
+> y.Geary.p.value<-2*pnorm(abs(y.Geary.statistic),lower.tail=FALSE)
+> print("P-valor de datos precirugía usando la prueba de Geary"); x.Geary.p.value
+[1] "P-valor de datos precirugía usando la prueba de Geary"
+[1] 0.6601252
+> print("P-valor de datos precirugía usando la prueba de Geary"); y.Geary.p.value
+[1] "P-valor de datos precirugía usando la prueba de Geary"
+[1] 0.1278513
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual indica un buen ajuste a una normal de los datos precirug\'{\i}a
+ y postcirug\'{\i}a, al tener, en ambos casos, valores $P$ mayores a 0.1.
+ \par 
+ Ahora que se tienen las condiciones iniciales, la prueba con muestras
+ pareadas se puede realizar definiendo primero la hip\'otesis de prueba:
+ \begin{eqnarray*}
+  H_0: & & \mu_D = \mu_1 - \mu_2  =   0 \\
+  H_1: & & \mu_D = \mu_1 - \mu_2 \neq 0
+ \end{eqnarray*}
+ usando el estad\'{\i}stico $t$ con $n_1 + n_2 - 2 = 10$ grados
+ de libertad.
+ Entonces, los valores de los c\'alculos se pueden obtener
+ usando el archivo anexo
+ \texttt{P06\_Prueba\_de\_dos\_medias\_02.r},
+ que a su vez usa la base de datos en el archivo ya mencionado
+ \texttt{DB41\_Problema\_110.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB41_Problema_110.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("WBC.cantidad")
+> varSel<-c("Muestra")
+> mu<-0
+> desv.iguales<-NULL
+> alfa<-NULL
+> cola<-'D'
+> par<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+          Var1 Freq Poblaciones H0 n diferencia desv.par error.est grados alpha
+1 WBC.cantidad    6    Pareadas  0 6     -2.905  3.35574  1.369975      5  0.05
+      PValor Estadistico RegionRechazoInfT RegionRechazoSupT RegionRechazoInfX
+1 0.08745276   -2.120477         -2.570582          2.570582         -3.521633
+  RegionRechazoSupX
+1          3.521633
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual muestra el valor del estad\'{\i}stico $t = -2.120477$,
+ cuyo valor $P$ es $0.08745276$, el cual rechazar\'{\i}a la hip\'otesis
+ nula si se considerara una significancia menor $0.0874528$.
+ En este caso, como la prueba es de dos colas, el cual se sabe
+ no es tan riguroso sobre cu\'ando rechazar una hip\'otesis nula, 
+ entonces se considera este valor $P$ lo suficientemente alto
+ como para decidir en este caso rechazar la hip\'otesis nula
+ y, por lo tanto, concluir que s\'{\i} hay un cambio significativo
+ en los leucogramos WBC con la cirug\'{\i}a,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,161 @@
+\begin{enunciado}
+ Una muestra aleatoria de $90$ adultos se clasifica de acuerdo con su g\'enero
+ y el n\'umero de horas que pasan viendo la televisi\'on durante una semana:
+ \begin{center}
+  \begin{tabular}{lcc}
+   & \multicolumn{2}{c}{\textbf{Sexo}} \\
+   \cline{2-3}
+   & \textbf{Masculino} & \textbf{Femenino} \\
+   \hline 
+   M\'as de 25 horas & $15$ & $29$ \\
+   Menos de 25 horas & $27$ & $19$
+  \end{tabular}
+ \end{center}
+ Utilice un nivel de significancia de $0.01$ y pruebe la hip\'otesis
+ de que el tiempo que pasan viendo televisi\'on es independiente
+ de si el espectador es hombre o mujer.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item Tamaño de muestra total: $90$.
+   \item Personas que ven m\'as de $25$ horas la T.V. en una semana:
+   $15 + 29 = 44$.
+   \item Personas que ven menos de $25$ horas la T.V. en una semana:
+   $27 + 19 = 46$.
+   \item Cantida de hombres en la muestra: $15 + 27 = 42$.
+   \item Cantidad de mujeres en la muestra: $29 + 19 = 48$.
+   \item Frecuencias observadas y esperadas: $o_{i,j}$
+   y $e_{i,j}=\frac{R_i C_j}{n}$, respectivamente,
+   donde $R_i$ y $C_j$ son los marginales del rengl\'on $i$ y la columna $j$,
+   respectivamente, y $n$ es el total de toda la muestra.
+   As\'{\i}, pues, redondeando a un decimal, se muestra el resumen 
+   en la siguiente tabla,
+   en donde aparece entre par\'entesis la frecuencia esperada
+   y a la izquierda el valor observado:
+   \begin{center}
+    \begin{tabular}{lcc|c}
+     & \multicolumn{2}{c}{\textbf{Sexo}} \\
+     \cline{2-3}
+     & \textbf{Masculino} & \textbf{Femenino} &
+     \textbf{Marginal seg\'un el tiempo} \\
+     \hline 
+     M\'as de 25 horas & $15 (20.5)$ & $29 (23.5)$ & $44$ \\
+     Menos de 25 horas & $27 (21.5)$ & $19 (24.5)$ & $46$ \\
+     \hline 
+     \textbf{Marginal por sexo} & $42$ & $48$ & $n=90$
+    \end{tabular}
+   \end{center}
+   \item Tama\~no de la tabla de contingencia: $r\times c = 2\times 2$.
+   \item Grados de libertad de la prueba $\chi^2$: $v = (r-1)(c-1) = 1$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: & & \text{Ver m\'as o menos de 25 horas de T.V. a la semana es independiente del sexo.} \\
+   H_1: & & \text{Ver m\'as o menos de 25 horas de T.V. a la semana es dependiente del sexo.}
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.01$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{\alpha,v} = \chi^2_{0.01,1} \approx 6.635$,
+  por lo que la regi\'on de rechazo est\'a dado
+  para $\chi^2 > 6.635$, donde
+  $\chi^2 = \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i}$.
+  N\'otese que aqu\'{\i} no se har\'a la correcci\'on de Yates,
+  ya que las frecuencias esperadas son grandes en cada caso (m\'as de 10).
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   \chi^2 & = & \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i}
+   = \frac{(15 - 20.5)^2}{20.5} + \frac{(29 - 23.5)^2}{23.5} +
+   \frac{(27 - 21.5)^2}{21.5} + \frac{(19 - 24.5)^2}{24.5} \\
+   & = & \frac{30.25}{20.5} + \frac{30.25}{23.5} + \frac{30.25}{21.5} + 
+   \frac{30.25}{24.5}
+   \approx 1.47560976 + 1.287234 + 1.40697674 + 1.23469388 \\
+   & = & 5.40451438
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  No hay evidencia suficiente para rechazar la hip\'otesis nula 
+  y se considera que el tiempo de televisi\'on es independiente
+  del sexo del individuo.
+ \end{conclusion}
+ 
+ Finalmente, usando el archivo anexo
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeniedad\_01.r},
+ que a su vez requiere los datos del archivo
+ \texttt{BD27\_Problema\_091.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB27_Problema_091.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Tiempo.tv.horas","Sexo")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1,2,3)
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+$tabla
+                   Sexo
+Tiempo.tv.horas     Femenino Masculino
+  Más de 25 horas         29        15
+  Menos de 25 horas       19        27
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 5.4702, df = 1, p-value = 0.01934
+
+
+$listaPruebas[[2]]
+
+	Log likelihood ratio (G-test) test of independence without correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 5.531, X-squared df = 1, p-value =
+0.01868
+
+
+$listaPruebas[[3]]
+
+	Log likelihood ratio (G-test) test of independence with Williams'
+	correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 5.4398, X-squared df = 1, p-value =
+0.01968
+
+
+$listaPruebas[[4]]
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  tbl1
+X-squared = 4.5262, df = 1, p-value = 0.03338
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos, adem\'as de brindar m\'as
+ informaci\'on y los valores $P$ usando otros estad\'{\i}sticos, 
+ el cual no es menor al nivel de significancia de $0.01$ en ning\'un caso.
+ De cualquier forma, se prueba tambi\'en la correcci\'on de Yates
+ para verificar lo que se hubiese obtenido en caso de haberse necesitado,
+ lo cual se sabe que no es as\'{\i} gracias a que las frecuencias no son
+ tan bajas, que es lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,45 @@
+\begin{enunciado}
+ Refi\'erase al ejercicio 9.15, construya un intervalo de tolerancia de $95\%$ que contenga $90\%$ de las mediciones.
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.7, y a eso a\~nadiendo los valores $\gamma$ y $\alpha$ del l\'{\i}mite de tolerancia pedido, se tiene lo siguiente:
+ \begin{itemize}
+  \item $X\sim\text{normal}(\mu,\sigma)$.
+  \item $n=12$.
+  \item $\bar{x}=48.5$.
+  \item $s=1.5$.
+  \item $\gamma=0.05$.
+  \item $\alpha=0.1$.
+ \end{itemize}
+ Como se desea encontrar l\'{\i}mites de tolerancia, se requiere el factor de tolerancia, $k$. De la Tabla A.7 se tiene que $k=2.655$, mientras que, usando el software estad\'{\i}stico R, se obtiene un valor m\'as preciso con los siguientes comandos:
+ \begin{verbatim}
+>library(tolerance)
+>options(digits=22)
+>K.table(12,alpha=0.05,P=0.9,side=2,method=("WBE"))
+$'12'
+                         0.9
+0.95 2.654958380278124696616
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $2.65495838$.
+ \par
+ Dado que se desea calcular un intervalo de toleranciaa de una poblaci\'on que se supone normal, entonces se usa la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{x}\pm ks
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando el valor $k$ del libro, se obtiene los siguientes c\'alculos:
+ \begin{equation*}
+  \bar{x}\pm ks = 48.5 \pm (2.655)(1.5) = 48.5 \pm 3.9825
+ \end{equation*}
+ Por lo tanto, el intervalo de tolerancia con el $95\%$ de seguridad de que contendr\'a el $90\%$ de las durezas de Rockwell en las cabezas de los alfileres es de $44.5175$ hasta $52.4825$. El c\'alculo del intervalo de tolerancia usando el valor $k$ obtenido en R se puede obtener cambiando los siguientes comando del archivo anexo \texttt{P06\_Intervalo\_de\_tolerancia\_1.r}:
+ \begin{verbatim}
+>n<-12
+>m<-48.5
+>s<-1.5
+>gamma<-0.05
+>alfa<-0.1
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene un intervalo de tolerancia de $44.51756$ hasta $52.48244$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

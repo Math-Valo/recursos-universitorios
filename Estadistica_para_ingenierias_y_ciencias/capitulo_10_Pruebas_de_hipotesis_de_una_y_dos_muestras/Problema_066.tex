@@ -1,0 +1,116 @@
+\begin{enunciado}
+ En un invierno con epidemia de gripe, una compa\~n\'{\i}a farmac\'eutica
+ bien conocida estudi\'o a $2\,000$ beb\'es,
+ para determinar si el nuevo medicamento de la comp\~n\'{\i}a era eficaz despu\'es
+ de dos d\'{\i}as.
+ Entre $120$ beb\'es que ten\'{\i}an gripe y se les suministr\'o el medicamento,
+ $29$ se curaron dentro de dos d\'{\i}as.
+ Entre $280$ beb\'es que ten\'{\i}an gripe pero que no recibieron el f\'armaco,
+ $56$ se curaron dentro de dos d\'{\i}as.
+ ¿Hay alguna indicaci\'on significativa que apoye la afirmaci\'on
+ de la compa\~n\'{\i}a de la efectividad del medicamento?
+\end{enunciado}
+
+\vspace{2cm}
+\begin{solucion}
+ El m\'etodo para la soluci\'on de este problema ser\'a a trav\'es del valor $P$,
+ la probabilidad de cometer un error de tipo I ante las muestras obtenidas.
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n_1 = 120$ y $n_2 = 280$.
+   \item $x_1 = 29$ y $x_2 = 56$.
+  \end{itemize}
+  Adem\'as, se pueden calcular las proporciones estimadas de cada muestra
+  y la estimaci\'on combinada de la proporci\'on a la que se supone que son iguales
+  en ambas poblaciones, como se muestra a continuaci\'on:
+  \begin{itemize}
+   \item $\widehat{p}_1 = \frac{29}{120} = 0.241\bar{6}$.
+   \item $\widehat{p}_2 = \frac{56}{280} = \frac{2}{10} = 0.2$.
+   \item $\widehat{p} = \frac{x_1+x_2}{n_1+n_2} = \frac{29+56}{120+280}
+   = \frac{85}{400} = \frac{17}{80} = 0.2125$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p_1 & \leq & p_2 \\
+   H_1: p_1 &  >   & p_2
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   z & \approx &
+   \frac{
+   \widehat{p}_1 - \widehat{p}_2
+   }{
+   \sqrt{\widehat{p}\widehat{q}\left(1/n_1+1/n_2\right)}
+   }
+   = \frac{
+   \displaystyle{ \frac{29}{120} - \frac{2}{10}}
+   }{
+   \displaystyle{ \sqrt{
+   \left(\frac{17}{80}\right)\left(\frac{63}{80}\right)
+   \left(\frac{1}{120} + \frac{1}{280}\right)
+   }}}
+   = \frac{
+   \displaystyle{\frac{29-24}{120}}
+   }{\displaystyle{
+   \sqrt{\left(\frac{17\cdot 7\cdot 3^2}{80^2}\right)\left( \frac{7+3}{840} \right)}
+   }} \\
+   & = & \frac{\displaystyle{\frac{\cancel{5}}{\cancelto{24}{120}}}}{\displaystyle{
+   \frac{3}{80} \sqrt{
+   \frac{
+   17\cdot \cancel{7} \cdot \cancel{10}
+   }{
+   \cancel{7}\cdot 2^2 \cdot 3 \cdot \cancel{2\cdot 5}
+   } }
+   }}
+   = \frac{80}{\displaystyle{
+   \frac{ \cancelto{12}{24}(3)}{\cancel{2}}\sqrt{\frac{17}{3}}
+   }}
+   = \frac{\cancelto{20}{80}\sqrt{51}}{\cancelto{9}{36}(17)}
+   = \frac{20\sqrt{51}}{153} \approx 0.93352
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.3 se tiene que:
+  \begin{equation*}
+   P(Z > z) = 1 - P(Z < z) \approx 1-P(Z<0.93) \approx 1 - 0.8238
+   = 0.1762
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Las muestras se\~nalan, con ayuda del c\'alculo del $P$-valor,
+  que no alguna indicaci\'on significativa que apoye la afirmaci\'on
+  de la compa\~n\'{\i}a acerca de la efectividad del medicamente;
+  es decir, no se puede asegurar que el medicamente sea eficaz
+  para curar la gripe en beb\'es.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P09\_Prueba\_de\_dos\_proporciones\_01.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n1<-120
+> n2<-280
+> x1<-29
+> x2<-56
+> p1<-NULL
+> p2<-NULL
+> alfa<-NULL
+> alternativa<-'>'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  alternativa  n1  n2 x1 x2        p1  p2 pEstimada    DifProp  error.est alpha
+1     p1 > p2 120 280 29 56 0.2416667 0.2    0.2125 0.04166667 0.04463393  0.05
+     PValor Estadistico RegionRechazoZ
+1 0.1752758   0.9335201   >= 1.6448536
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

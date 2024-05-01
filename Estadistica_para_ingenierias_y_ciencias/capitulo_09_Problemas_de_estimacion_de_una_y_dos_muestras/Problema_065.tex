@@ -1,0 +1,94 @@
+\begin{enunciado}
+ Cierto genetista se interesa en la proporci\'on de hombres y mujeres en la poblaci\'on que tienen cierto trastorno sangu\'{\i}neo menor. En una muestra aleatoria de $1\,000$ hombres se encuentra que $250$ lo padecen; mientras que $275$ de $1\,000$ mujeres examinadas parecen tener el trastorno. Calcule un intervalo de confianza de $95\%$ para la diferencia entrra la proporci\'on de hombres y mujeres que padecen el trastorno sangu\'{\i}neo.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de la cantidad de mujeres y hombres que padecen el trastorno entre cada $n_1$ mujeres y cada $n_2$ hombres, respectivamente, donde $n_1$ y $n_2$ son peque\~nas en comparaci\'on a $N_1$ y $N_2$, la poblaci\'on total de mujeres y hombres, respectivamente, suponiendo que $n_1/N_1$ y $n_2/N_2$ son ambos menores o iguales a $0.05$, y sean $k_1$ y $k_2$ la cantidad total de mujeres y hombres en la poblaci\'on que padecen el trastorno, respectivamente, entonces $\widehat{P}_1 = X_1/n_1$ y $\widehat{P}_2 = X_2/n_2$ son estad\'{\i}sticos de una proporci\'on, cada uno, de los experimentos binomiales que aproximan a los valores $p_1=k_1/N_1$, la proporci\'on de mujeres que padecen el trastorno en la poblaci\'on, y $p_2=k_2/N_2$, la proporci\'on de hombres que padecen el trastorno en la poblaci\'on, respectivamente, entonces, del enunciado, se tienen los siguientes datos obtenidos de muestras:
+ \begin{itemize}
+  \item $n_1 = n_2 = 1\,000$.
+  \item $x_1 = 275$ y $x_2 = 250$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ por lo que $\hat{p}_1$ y $\hat{p}_2$, las proporciones de \'exito en las muestras, y $\hat{q}_1 = 1 - \hat{p}_1$ y $\hat{q}_2 = 1 - \hat{p}_2$ valen:
+ \begin{itemize}
+  \item $\hat{p}_1 = \frac{275}{1\,000} = \frac{11}{40} = 0.275$ y $\hat{p}_2 = \frac{250}{1\,000} = \frac{1}{4} = 0.25$; y,
+  \item $\hat{q}_1 = 1- \hat{p} = \frac{29}{40} = 0.725$ y $\hat{q}_2 = \frac{3}{4} = 0.75$.
+ \end{itemize}
+
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p_1 - p_2$, entonces se requiere del valor $z_{\alpha/2} = z_{0.025}$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+ \par 
+ Ya que se busca un intervalo para la diferencia de proporciones de experimentos binomiales en donde el tama\~no de las muestras es grande y se tiene que $n_1\hat{p}_1$, $n_1\hat{q}_1$, $n_2\hat{p}_2$ y $n_2\hat{q}_2$ son todos mayores a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \left( \hat{p}_1 - \hat{p}_2 \right) - z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} < p_1 - p_2 < \left( \hat{p}_1 - \hat{p}_2 \right) + z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \left( \hat{p}_1 - \hat{p}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} & = & ( 0.275 - 0.25 ) \pm 1.96\sqrt{\frac{(0.275)(0.725)}{1\,000} + \frac{(0.25)(0.75)}{1\,000}} \\
+  & = & 0.025 \pm 1.96\sqrt{\frac{0.199375 + 0.1875}{1\,000}} = 0.025 \pm 1.96\sqrt{\frac{0.386875}{1\,000}} \\
+  & = & 0.025 \pm 1.96\left( \frac{\sqrt{386\,875}\sqrt{10}}{1\,000(100)} \right) = 0.025 \pm \frac{1.96\sqrt{6\,190}}{4\,000} \\
+  & = & 0.025 \pm 0.00049\sqrt{6\,190} \approx 0.025 \pm 0.03855151
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $95\%$ de la diferencia de la proporci\'on de las mujeres que padecen el trastorno en la poblaci\'on menos la proporci\'on de los hombres que lo padecen, es aproximadamente
+ \begin{equation*}
+  -0.01355151 < p_1 - p_2 < 0.06355151
+ \end{equation*}
+ Finalmente, usando R, se puede calcular el intervalo de confianza directamente con las siguientes l\'{\i}neas de c\'odigo, registradas en el archivo anexo \texttt{P20\_Intervalo\_de\_confianza\_09.r}, que permite la posibilidad de indicar los valores $x_1$ y $x_2$ de casos favorables o, bien, directamente las proporciones $\hat{p}_1$ y $\hat{p}_2$, adem\'as, tambi\'en permite la posibilidad de calcular intervalos de confianza unilaterales. Al final, este script muestra el l\'{\i}mite inferior, la diferencia de proporciones muestrales y el l\'{\i}mite superior, nombrados \texttt{LimInf}, \texttt{diferencia} y \texttt{LimSup}, respectivamente, como se muestra al final del c\'odigo, el cual se muestra a continuaci\'on:
+ \begin{verbatim}
+> n1<-1000
+> n2<-1000
+> x1<-275
+> x2<-250
+> p1<-NULL
+> p2<-NULL
+> alfa<-0.05
+> inter<-'D'
+> if(is.null(p1))
++     p1<-x1/n1
+> if(is.null(p2))
++     p2<-x2/n2
+> difMedias<-function(n1,n2,p1,p2,alfa=0.05,colas='D'){
++     q1<-1-p1
++     q2<-1-p2
++     diferencia<-p1-p2
++     if(n1 < 2 | n2 < 2){
++         r<-data.frame(n1=n1,n2=n2,
++                       media1=m1,media2=m2,
++                       LimInf=NA,
++                       diferencia=diferencia,
++                       LimSup=NA)
++     }else{
++         desvDifProm<-sqrt(p1*q1/n1 + p2*q2/n2)
++         if(colas=='D'){
++             zalfa<-qnorm(1-alfa/2)
++             LL<-round(diferencia-zalfa*desvDifProm,7)
++             LU<-round(diferencia+zalfa*desvDifProm,7)
++             r<-data.frame(n1=n1,n2=n2,p1=p2,p2=p2,
++                           LimInf=LL,
++                           diferencia=diferencia,
++                           LimSup=LU)
++         }
++         else{
++             zalfa<-qnorm(1-alfa)
++             if(colas=='I'){
++                 LL<-round(diferencia-zalfa*desvDifProm,7)
++                 r<-data.frame(n1=n1,n2=n2,p1=p1,p2=2,
++                               LimInf=LL,
++                               diferencia=diferencia)
++             }else{
++                 LU<-round(diferencia+zalfa*desvDifProm,7)
++                 r<-data.frame(n1=n1,n2=n2,p1=p1,p2=p2,
++                               diferencia=diferencia,
++                               LimSup=LU)
++             }
++         }
++     }
++     return(r)
++ }
+> rFin<-difMedias(n1,n2,p1,p2,alfa=alfa, colas=inter)
+> rFin
+    n1   n2   p1   p2     LimInf diferencia    LimSup
+1 1000 1000 0.25 0.25 -0.0135508      0.025 0.0635508
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $-0.01355 < p_1 - p_2 < 0.06355$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

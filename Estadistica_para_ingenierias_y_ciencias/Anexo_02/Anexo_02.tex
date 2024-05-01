@@ -1,0 +1,203 @@
+\documentclass[a4paper,11pt]{article}
+%%\documentclass[a4paper,12pt]{amsart}
+\usepackage[cp1252]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+\setlength{\textheight}{23.5cm} \setlength{\evensidemargin}{0cm}
+\setlength{\oddsidemargin}{-0.8cm} \setlength{\topmargin}{-2.5cm}
+\setlength{\textwidth}{17.5cm} \setlength{\parskip}{0.25cm}
+
+\hyphenation{pro-ba-bi-li-dad}
+\spanishdecimal{.}
+
+\newtheoremstyle{teoremas}{\topsep}{\topsep}%
+     {}% Body font
+     {}% Indent amount (empty = no indent, \parindent = para indent)
+     {}% Thm head font
+     {}% Punctuation after thm head
+     {0.5em}% Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}.}\thmnote{ {\itshape#3}.}}% Thm head spec
+\theoremstyle{teoremas}
+
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{corolario}[teorema]{Corolario}
+
+
+\newtheoremstyle{ejemplos}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{ejemplos}
+
+\newtheoremstyle{definiciones}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{definiciones}
+
+\newtheoremstyle{lemas}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{lemas}
+
+
+\newtheorem*{definicion}{Definici\'on}
+\newtheorem*{enunciado}{Enunciado}
+\newtheorem*{propiedad}{Propiedad}
+\newtheorem*{solucion}{Soluci\'on}
+\newtheorem*{demostracion}{Demostraci\'on}
+\newtheorem*{lema}{Lema}
+\newtheorem*{conclusion}{Conclusi\'on}
+\newtheorem*{hallar}{Por hallar}
+
+
+\title{Anexo 02: La funci\'on Gamma}
+\author{\'Alvaro J. Carde\~na Mej\'{\i}a}
+
+\begin{document}
+
+\maketitle
+
+\section{Funci\'on Gamma}
+
+\begin{definicion}
+ La \textit{funci\'on Gamma} se define como la funci\'on $\Gamma: (0,\infty) \to \mathbb{R}$,
+ \begin{equation*}
+  \Gamma(\alpha) = \int_0^{\infty} x^{\alpha - 1} e^{-x} \, dt
+ \end{equation*}
+\end{definicion}
+
+
+\begin{teorema} \label{Teorema:GammaDefinida}
+ La funci\'on $\Gamma$ est\'a bien definida. Es decir, la integral impropia converge para toda $\alpha > 0$.
+\end{teorema}
+
+\begin{demostracion}
+ Conviene para esto primero separar la integral como sigue:
+ \begin{equation*}
+  \Gamma(\alpha) = \int_{0}^{\infty} e^{-x}x^{\alpha-1}\, dx = \int_{0}^{1} e^{-x}x^{\alpha-1}\, dx + \int_{1}^{\infty} e^{-x}x^{\alpha-1}\, dx
+ \end{equation*}
+ y dado que para $x > 0$ se cumple que $0 < e^{-x} < 1$, entonces
+ \begin{equation*}
+  \int_{0}^{1} e^{-x} x^{\alpha - 1}\, dx < \int_{0}^{1} x^{\alpha - 1} \, dx = \left. \frac{x^{\alpha}}{\alpha} \right|_{0}^{1} = \frac{1}{\alpha} - \lim_{x\to 0} \frac{x^{\alpha}}{\alpha} = \frac{1}{\alpha} - 0 = \frac{1}{\alpha}
+ \end{equation*}
+ por lo que la primera integral converge.
+ \par 
+ Para la segunda integral, se considerar\'an otros dos casos. Primer caso: $0 < \alpha \leq 1$, entonces $\alpha - 1 < 0$, entonces, para cada $x \geq 1$, se cumple que $x^{\alpha - 1} < x^{0} = 1$, por lo que $0 \leq e^{-x}x^{\alpha - 1} \leq e^{-x}$, entonces
+ \begin{equation*}
+  \int_{1}^{\infty} e^{-x} x^{\alpha - 1} \, dx \leq \int_{0}^{\infty} e^{-x}\, dx = \left. -e^{-x}  \right|_{1}^{\infty} = \left( \lim_{x\to \infty} -e^{-x} \right) - (-e^{-1}) = 0 + \frac{1}{e}
+ \end{equation*}
+ por lo que, por el criterio de comparaci\'on, el caso $0 < \alpha \leq 1$ converge. Para el segundo caso, $\alpha > 1$, se va a integrar por partes haciendo $u = x^{\alpha - 1}$ y $dv = e^{-x}\,dx$, entonces $du = (\alpha - 1)x^{\alpha - 2}$ y $v = - e^{-x}$, entonces
+ \begin{equation*}
+  \int_{1}^{\infty} e^{-x}x^{\alpha - 1} \, dx = \int_{1}^{\infty} u\, dv = uv|_{1}^{\infty} - \int_{1}^{\infty} v\, du = \left. -e^{-x}x^{\alpha-1} \right|_{1}^{\infty} + (\alpha - 1) \int_{1}^{\infty} e^{-x}x^{\alpha - 2} \, dx
+ \end{equation*}
+ Adem\'as,
+ \begin{equation*}
+  \left. -e^{-x}x^{\alpha-1} \right|_{1}^{\infty} = \left( \lim_{x \to \infty} -e^{-x}x^{\alpha-1} \right) - \left( -e^{-1}(1)^{\alpha - 1} \right) = 0 + e^1 = e
+ \end{equation*}
+ el cual no depende de $\alpha$, y la convergencia de la integral buscada depende de la convergencia de $\int_{1}^{\infty} e^{-x}x^{\alpha - 2}\, dx$. N\'otese que al hacer $\alpha' = \alpha - 1$, se regresa a una integral similar a la anterior, pero con un valor disminuido de $\alpha$. Luego entonces, si $0 < \alpha' \leq 1$, entonces queda probado que la integral converge por el caso anterior, si no, se repite el proceso $n$ veces hasta que esto ocurra, en donde $n = \lfloor \alpha \rfloor$. Por lo tanto, para el caso de $\alpha > 1$,
+ \begin{equation*}
+  \int_1^{\infty} e^{-x} x^{\alpha - 1} \, dx
+ \end{equation*}
+ converge, y, por lo tanto, todos los casos quedan probados, por lo que
+ \begin{equation*}
+  \Gamma(\alpha) = \int_0^{\infty} e^{-x}x^{\alpha - 1} \, dx
+ \end{equation*}
+ converge para todo valor de $\alpha > 0$. Es decir, $\Gamma (\alpha)$ est\'a bien definida. Q.E.D.${}_{\square}$
+\end{demostracion}
+
+\begin{propiedad}
+ $\Gamma(1) = 1$.
+\end{propiedad}
+
+\begin{demostracion}
+ Por definici\'on, se tiene que
+ \begin{equation*}
+  \Gamma(1) = \int_0^{\infty} x^{1 - 1} e^{-x} \, dx = \int_{0}^{\infty} e^{-x} \, dx = \left. -e^{-t} \right|_{t=0}^{\infty} = 
+ \end{equation*}
+ Luego, como una antiderivada de $e^{-x}$ est\'a dado por $-e^{-x}$, se tiene que
+ \begin{equation*}
+  \Gamma(1) = \left. -e^{-x} \right|_{x=0}^{\infty} = \left( \lim_{x\to \infty} - e^{-x} \right) - \left( - e^{-0} \right) = 0 + 1 = 1
+ \end{equation*}
+ Por lo tanto, $\Gamma(1) = 1$. Q.E.D.${}_{\square}$
+\end{demostracion}
+
+\begin{teorema} \label{Teorema:GammaRecursiva}
+ Para toda $\alpha > 0$, $\Gamma(\alpha + 1) = \alpha \Gamma(\alpha)$.
+\end{teorema}
+
+\begin{demostracion}
+ Al integrar por partes con $u = x^{\alpha - 1}$ y $dv = e^{-x}$, se obtiene, para toda $\alpha > 1$, que:
+ \begin{equation*}
+  \Gamma(\alpha) = \left. -e^{-x}e^{\alpha - 1} \right|_{0}^{\infty} + \int_{0}^{\infty} e^{-x}(\alpha - 1)x^{\alpha-2}\, dx = (\alpha-1) \int_0^{\infty} x^{\alpha - 2}e^{-x} \, dx
+ \end{equation*}
+ Luego, como esta \'ultima expresi\'on es, por definici\'on, $\Gamma(\alpha - 1)$, se concluye que $\Gamma(\alpha)=(\alpha-1)\Gamma(\alpha-1)$, para toda $\alpha > 1$, lo cual es equivalente a que para toda $\alpha > 0$, $\Gamma(\alpha+1) = \alpha\Gamma(\alpha-1)$. Q.E.D.${}_{\square}$
+\end{demostracion}
+
+\begin{corolario}
+ Para toda $n \in \mathbb{N}\cup \{ 0 \}$, $\Gamma(n+1) = n!$.
+\end{corolario}
+
+\begin{demostracion}
+ La demostraci\'on se realiza por simple inducci\'on. Para el primer caso, ya se ha demostrado que para $n=0$
+ \begin{equation*}
+  \Gamma(n+1) = \Gamma(1) = 1 = 0! = n!
+ \end{equation*}
+ luego, suponiendo que es cierto que $\Gamma(n+1) = n!$, para cierto $n \in \mathbb{N} \cup \{ 0 \}$, se tiene, por el teorema \ref{Teorema:GammaRecursiva}, que:
+ \begin{equation*}
+  \Gamma\left[(n+1) + 1\right] = \Gamma(n+2) = (n+1)\Gamma(n+1) = (n+1)\left( n! \right) = (n+1)!
+ \end{equation*}
+ por lo que la suposici\'on de que sea cierto para cierto $n$ implica que es cierto para $n+1$, lo cual concluye la prueba por inducci\'on y, por lo tanto, se concluye que $\Gamma(n+1) = n!$, para toda $n \in \mathbb{N} \cup \{ 0 \}$. Q.E.D.${}_{\square}$
+\end{demostracion}
+
+\begin{teorema}
+ $\Gamma \in C^{\infty}(0,\infty)$.
+\end{teorema}
+
+\begin{demostracion}
+ Para esto se usar\'a la regla de Leibniz para la diferenciaci\'on bajo el signo de integraci\'on, el cual dice que si $f:[a,b]\times [c,d] \subset \mathbb{R}^2 \to \mathbb{R}$ es una funci\'on continua y sean $\alpha,\beta: [c,d] \to \mathbb{R}$ funciones derivables tales que
+ \begin{equation*}
+  a \leq \alpha(y) \leq x \leq \beta(y) \leq b \qquad \forall y \in [c,d]
+ \end{equation*}
+ si $\frac{\delta f}{\delta y}$ existe y es continua en el conjunto
+ \begin{equation*}
+  T = \left\{ (x,y) \in \mathbb{R}^2 \left| \alpha(y) \leq x \leq \beta(y), \; y \in [c,d] \right. \right\}
+ \end{equation*}
+ entonces
+ \begin{equation*}
+  F(y) = \int_{\alpha(y)}^{\beta(y)} f(x,y) \, dx
+ \end{equation*}
+ derivable $\forall y \in [c,d]$ y
+ \begin{equation*}
+  F'(y) = \int_{\alpha(y)}^{\beta(y)} \frac{\delta f(x,y)}{\delta y} \, dx 
+   f\left( \beta(y),y \right) \beta'(y) + f\left( \alpha(y), y \right) \alpha'(y)
+ \end{equation*}
+ Aunque el teorema dice que se usa para un intervalo, un teorema que surge a partir de \'este dice que se puede usar en integrales impropias uniformemente convergentes, como es el caso de $\Gamma$.
+ En este caso, como la funci\'on $f(t,\alpha) = e^{t}t^{\alpha - 1}$ pertenece a $C^{\infty}$, para cualesquiera valores $(t,\alpha) \in (0,\infty)\times(0,\infty)$, entonces se puede aplicar indefinidamente de forma recursiva este teorema, por lo que se tiene que $\Gamma'(\alpha)$ pertenece a $C^{\infty}(0,\infty)$. Q.E.D.${}_{\square}$
+\end{demostracion}
+
+Particularmente, para la primera derivada de $\Gamma$ se calcula como sigue:
+\begin{equation*}
+ \Gamma'(\alpha) = \frac{\delta}{\delta \alpha} \left( \int_{0}^{\infty} e^t t^{\alpha - 1} \, dt \right) = \int_{0}^{\infty} \frac{\delta}{\delta \alpha} \left( e^t t^{\alpha - 1} \right) \, dt = \int_{0}^{\infty} e^{t} t^{\alpha - 1} \ln(t) \, dt
+\end{equation*}
+
+\end{document}

@@ -1,0 +1,154 @@
+\begin{enunciado}
+ Considere las observaciones $x_1, x_2, \ldots, x_n$ de la distribuci\'on gamma que se discuti\'o en la secci\'on 6.6.
+ \begin{enumerate}
+  \item Escriba la funci\'on de probabilidad.
+  \item Escriba un conjunto de ecuaciones que cuando se resuelvan den los estimadores de probabilidad m\'axima de $\alpha$ y $\beta$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Recu\'erdese que la funci\'on de densidad gamma est\'a dada por
+ \begin{equation*}
+  f(x; \alpha, \beta) =
+  \begin{cases}
+  \frac{1}{\beta^{\alpha} \Gamma(\alpha)} x^{\alpha-1} e^{-x/\beta} , & x > 0 \\
+  0, & \text{en cualquier otro caso},
+  \end{cases}
+ \end{equation*}
+ donde $\alpha > 0$ y $\beta > 0$, y en donde la funci\'on gamma, $\Gamma(\alpha)$, se define como
+ \begin{equation*}
+  \Gamma(\alpha) = \int_0^{\infty} x^{\alpha - 1} e^{-x} \, dx
+ \end{equation*}
+ para $\alpha > 0$. Adem\'as, se tienen varias propiedades de la funci\'on Gamma, algunas de ellas se encuentran enlistadas en el \textit{Anexo 02.pdf}, entre las que se destacar\'an para este problema el hecho que $\Gamma \in C^{\infty}$; adem\'as, se define la funci\'on psi, o digamma, como:
+ \begin{equation*}
+  \psi(x) = \frac{\delta}{\delta x} \ln\left( \Gamma(x) \right) = \frac{\Gamma'(x)}{\Gamma(x)}
+ \end{equation*}
+ y las funciones poligamma como:
+ \begin{eqnarray*}
+  \psi^{(0)}(x) & = & \psi(x), \qquad \text{y} \\
+  \psi^{(n)}(x) & = & \psi^{(n)}(x) = \frac{\delta}{\delta x} \psi^{(n-1)}, \qquad \forall n \in \mathbb{N}
+ \end{eqnarray*}
+ Una representaci\'on de la funci\'on digamma como una integral queda definida gracias a la expresi\'on de la funci\'on Gamma como el producto:
+ \begin{equation*}
+  \Gamma(\alpha+1) = e^{-\gamma z} \prod_{n\in\mathbb{N}} \left( 1 + \frac{\alpha}{n} \right)^{-1} e^{\alpha/n}
+ \end{equation*}
+ en donde $\gamma$ representa la constante de Euler-Mascheroni, definido como
+ \begin{equation*}
+  \gamma = \sum_{k=1}^{\infty} \left[  \frac{1}{k} - \ln\left( 1 + \frac{1}{k} \right) \right] = \int_{1}^{\infty} \left( \frac{1}{\lfloor x \rfloor} - \frac{1}{x} \right) \, dx
+ \end{equation*}
+ aunque tambi\'en se puede obtener bajo la relaci\'on $\gamma = -\Gamma'(1)$, y cuyo valor es aproximadamente $0.5772\ldots$.
+ \par
+ Entonces se obtiene que
+ \begin{equation*}
+  \psi(\alpha + 1) = - \gamma + \sum_{n\in\mathbb{N}} \left( \frac{1}{n} - \frac{1}{\alpha + n} \right) = \sum_{n\in\mathbb{N}} \left[ \ln(n+1) - \ln(n) + \frac{1}{n+\alpha} \right]
+ \end{equation*}
+ y por la transformaci\'on inversa de Laplace y el teorema de Frullani, se tiene que
+ \begin{equation*}
+  \ln(n+1) - \ln(n) = \int_{0}^{\infty} \frac{e^{-nt} - e^{-(n+1)t}}{t} \, dt, \qquad \text{ y } \qquad \frac{1}{n + \alpha} = \int_{0}^{\infty} e^{-(n+\alpha)t} \, dt
+ \end{equation*}
+ Luego, bajo la manipulaci\'on adecuada, se obtiene que una representaci\'on como una \'unica integral de la funci\'on digamma es:
+ \begin{equation*}
+  \psi(\alpha) = \int_{0}^{\infty} \left( \frac{e^{-t}}{t} - \frac{e^{-\alpha t}}{1 - e^{-t}} \right) \, dt
+ \end{equation*}
+ Por otro lado, se puede demostrar que la funci\'on poligamma se puede representar como
+ \begin{equation*}
+  \psi^{(n)} (\alpha) = (-1)^{n+1} \int_{0}^{\infty} \frac{t^{n}e^{-\alpha t}}{1-e^{-t}} \, dt
+ \end{equation*}
+ para $n \in \mathbb{N}$.
+ \begin{enumerate}
+  \item A partir de la definici\'on de la funci\'on de densidad, si alguna muestra es menor o igual que cero, se tiene que la funci\'on de densidad, y por lo tanto la funci\'on de probabilidad, es cero. Por lo tanto, suponiendo que ninguna muestra es menor o igual que cero, se tiene que la funci\'on de probabilidad es:
+  \begin{eqnarray*}
+   L\left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \prod_{i=1}^n L\left( x_i; \alpha, \beta \right) \\
+   & = & \prod_{i=1}^n \frac{1}{\beta^{\alpha} \Gamma(\alpha)} x_i^{\alpha-1} e^{-x_i/\beta} \\
+   & = & \frac{1}{\beta^{n\alpha}\left[ \Gamma(\alpha) \right]^n} \left( \prod_{i=1}^n x_i \right)^{\alpha-1} e^{-\frac{1}{\beta}\sum_{i=1}^n x_i}._{\square}
+  \end{eqnarray*}
+  
+  \item Por otro lado, para obtener las ecuaciones que den los estimadores de probabilidad m\'axima de $\alpha$ y $\beta$, convendr\'a calcular el logaritmo natural de la funci\'on de probabilidad como sigue:
+  \begin{equation*}
+   \ln L \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) = -n\alpha \ln \beta - n\ln \left[ \Gamma(\alpha) \right] + (\alpha-1)\sum_{i=1}^n \ln x_i - \frac{1}{\beta} \sum_{i=1}^n x_i
+  \end{equation*}
+  As\'{\i} que sus derivadas parciales son
+  \begin{eqnarray*}
+   \frac{\delta \ln L}{\delta \alpha} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \alpha} \left( -n\alpha \ln \beta - n\ln \left[ \Gamma(\alpha) \right] + (\alpha-1)\sum_{i=1}^n \ln x_i - \cancel{ \frac{1}{\beta} \sum_{i=1}^n x_i } \right) \\
+   & = & -n\ln \beta - \frac{n}{\Gamma(\alpha)} \cdot \frac{\delta \Gamma(\alpha)}{\delta \alpha} + \sum_{i=1}^n \ln x_i \\
+   & = & -n\ln \beta - n\psi(\alpha) + \sum_{i=1}^{n} \ln x_i
+  \end{eqnarray*}
+  y
+  \begin{eqnarray*}
+   \frac{\delta \ln L}{\delta \beta} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \beta} \left( -n\alpha \ln \beta - \cancel{ n\ln \left[ \Gamma(\alpha) \right] }  + \cancel{ (\alpha-1)\sum_{i=1}^n \ln x_i } - \frac{1}{\beta} \sum_{i=1}^n x_i \right) \\
+   & = & - \frac{n\alpha}{\beta} + \frac{\sum_{i=1}^n x_i}{\beta^2}
+  \end{eqnarray*}
+  Por otro lado, las derivadas parciales de segundo orden del logaritmo de la funci\'on de probabilidad son:
+  \begin{eqnarray*}
+   \frac{\delta^2 \ln L}{\delta \alpha^2} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \alpha} \left( \cancel{-n\ln \beta} - n\psi(\alpha) + \cancel{\sum_{i=1}^{n} \ln x_i} \right) \\
+   & = &  = -n\psi^{(1)}(\alpha) \\
+   \frac{\delta^2 \ln L}{\delta \beta \delta\alpha} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \beta} \left( -n\ln \beta - \cancel{n\psi(\alpha) + \sum_{i=1}^{n} \ln x_i} \right) \\
+   & = & -\frac{n}{\beta} \\
+   \frac{\delta^2 \ln L}{\delta \alpha \delta\beta} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \alpha} \left( - \frac{n\alpha}{\beta} + \cancel{ \frac{\sum_{i=1}^n x_i}{\beta^2} } \right) \\
+   & = & -\frac{n}{\beta}
+  \end{eqnarray*}
+  y
+  \begin{eqnarray*}
+   \frac{\delta^2 \ln L}{\delta^2 \beta} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) & = & \frac{\delta}{\delta \beta} \left( - \frac{n\alpha}{\beta} + \frac{\sum_{i=1}^n x_i}{\beta^2} \right) \\
+   & = & \frac{n\alpha}{\beta^2} - \frac{2\sum_{i=1}^{n} x_i }{\beta^3} \\
+   & = & \frac{n\alpha\beta - 2\sum_{i=1}^n x_i}{\beta^3}
+  \end{eqnarray*}
+  por lo que la Hessiana del logaritmo de la funci\'on de probabilidad es:
+  \begin{equation*}
+   H_{\ln L} \left( x_1, x_2, \ldots, x_n; \alpha, \beta \right) =
+   \begin{bmatrix}
+    -n\psi^{(1)}(\alpha) & \displaystyle{ -\frac{n}{\beta} } \\
+    \displaystyle{ -\frac{n}{\beta} } & \displaystyle{ \frac{n\alpha\beta - 2\sum_{i=1}^n x_i}{\beta^3} }
+   \end{bmatrix}
+  \end{equation*}
+  Entonces, los estimadores de probabilidad m\'axima, $\widehat{\alpha}$ y $\widehat{\beta}$, cumplen que al evaluarse sobre las derivadas parciales de primer orden, \'estas se hacen cero, y, adem\'as, la Hessiana es definida negativamente. Para que esto primero se cumpla, se tiene lo siguiente:
+  \begin{eqnarray*}
+   -n\ln \widehat{\beta} - n\psi\left(\widehat{\alpha}\right) + \sum_{i=1}^{n} \ln x_i = 0 & \Leftrightarrow & n\left( \ln \widehat{\beta} + \psi\left(\widehat{\alpha}\right) \right) = \sum_{i=1}^n x_i \\
+   & \Leftrightarrow & \ln \widehat{\beta} + \psi\left(\widehat{\alpha}\right) = \frac{1}{n} \sum_{i=1}^{n} \ln x_i
+  \end{eqnarray*}
+  y
+  \begin{eqnarray*}
+   - \frac{n\widehat{\alpha}}{\widehat{\beta}} + \frac{\sum_{i=1}^n x_i}{\widehat{\beta}^2} = 0 & \Leftrightarrow & \frac{ \sum_{i=1}^n x_i - n\widehat{\alpha}\widehat{\beta}}{\widehat{\beta}^2} = 0 \\
+   & \Leftrightarrow & \sum_{i=1}^n x_i = n\widehat{\alpha}\widehat{\beta} \\
+   & \Leftrightarrow & \widehat{\alpha}\widehat{\beta} = \frac{1}{n}\sum_{i=1}^n x_i
+  \end{eqnarray*}
+  y, al evaluar la Hessiana en estos puntos se tiene que:
+  \begin{eqnarray*}
+   \begin{bmatrix}
+    -n\psi^{(1)}\left(\widehat{\alpha}\right) & \displaystyle{ -\frac{n}{\widehat{\beta}} } \\
+    \displaystyle{ -\frac{n}{\widehat{\beta}} } & \displaystyle{ \frac{n\widehat{\alpha}\widehat{\beta} - 2\sum_{i=1}^n x_i}{\widehat{\beta}^3} }
+   \end{bmatrix}
+   & = & 
+   \begin{bmatrix}
+    -n\psi^{(1)}\left(\widehat{\alpha}\right) & \displaystyle{ -\frac{n}{\widehat{\beta}} } \\
+    \displaystyle{ -\frac{n}{\widehat{\beta}} } & \displaystyle{ \frac{n\widehat{\alpha}\widehat{\beta} - 2n\widehat{\alpha}\widehat{\beta}}{\widehat{\beta}^3} }
+   \end{bmatrix}
+   \\
+   & = &
+   \begin{bmatrix}
+    -n\psi^{(1)}\left(\widehat{\alpha}\right) & \displaystyle{ -\frac{n}{\widehat{\beta}} } \\
+    \displaystyle{ -\frac{n}{\widehat{\beta}} } & \displaystyle{ - \frac{n\widehat{\alpha}}{\widehat{\beta}^2} }
+   \end{bmatrix}
+  \end{eqnarray*}
+  demostrar que la Hessiana es definida negativamente es equivalente a comprobar que el determinante $\left| a_{1,1} \right| = a_{1,1}$ es negativo y que el determinante de la Hessiana es positivo. Como $n$ y $\psi^{(1)}\left( \widehat{\alpha} \right)$ son positivos, para todo $\alpha > 0$, entonces se cumple que $a_{1,1} = -n\psi^{(1)}(\alpha) < 0$, y, como adem\'as $\alpha$ y $\beta$ son positivos, entonces
+  \begin{equation*}
+   \begin{vmatrix}
+    -n\psi^{(1)}\left(\widehat{\alpha}\right) & \displaystyle{ -\frac{n}{\widehat{\beta}} } \\
+    \displaystyle{ -\frac{n}{\widehat{\beta}} } & \displaystyle{ - \frac{n\widehat{\alpha}}{\widehat{\beta}^2} }
+   \end{vmatrix} 
+   = \frac{n^2\alpha\psi^{(1)}(\alpha)}{\beta^2} + \frac{n^2}{\beta^2} = \frac{n^2\left( \alpha\psi^{(1)}(\alpha) + 1 \right)}{\beta^2}
+  \end{equation*}
+  es positivo si y s\'olo si
+  \begin{equation*}
+   \alpha\psi^{(1)}(\alpha) + 1 > 0
+  \end{equation*}
+  lo cual ocurre siempre para los estimadores que cumplen la condici\'on de igualdad en cero de la primera derivada. Por lo tanto la Hessiana que cumple las primeras condiciones, siempre es negativo.
+  \par 
+  Por lo tanto, los estimadores de m\'axima probabilidad, $\widehat{\alpha}$ y $\widehat{\beta}$ de los par\'ametros $\alpha$ y $\beta$, respectivamente, deben cumplir las siguientes ecuaciones simult\'aneamente:
+  \begin{eqnarray*}
+   \ln \widehat{\beta} + \psi\left(\widehat{\alpha}\right) & = & \frac{1}{n} \sum_{i=1}^{n} \ln x_i \\
+   \widehat{\alpha}\widehat{\beta} & = & \frac{1}{n}\sum_{i=1}^n x_i
+  \end{eqnarray*}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

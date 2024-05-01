@@ -1,0 +1,65 @@
+\begin{enunciado}
+ Un fabricante produce un art\'{\i}culo que se clasifica como ``defectuoso'' o ``no de defectuoso''. Para estimar la proporci\'on de defectuosos, se toma una muestra aleatoria de $100$ art\'{\i}culos de la producci\'on y se encuentran $10$ defectuosos. Despu\'es de la implementaci\'on del programa de mejoramiento de la calidad, se realiz\'o nuevamente el experimento. Se tom\'o una nueva muestra de $100$ y esta vez \'unicamente $6$ salieron defectuosos.
+ \begin{enumerate}
+  \item Dado un intervalo de confianza de $95\%$ en $p_1 - p_2$, donde $p_1$ es la proporci\'on de defectuosos de la poblaci\'on antes de la mejor\'{\i}a, y $p_2$ es la proporci\'on de defectuosos despu\'es de la mejor\'{\i}a.
+  
+  \item ¿Hay informaci\'on en el intervalo de confianza que se encontr\'o en el inciso $a)$ que sugiera que $p_1 > p_2$? Explique.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de la cantidad de art\'{\i}culos defectuosos producidos por la f\'abrica de la que se hace referencia en el enunciado de entre $n_1$ art\'{\i}culos antes de la implementaci\'on del programa de mejoramiento de calidad y $n_2$ art\'{\i}culos despu\'es de la implementaci\'on del programa de mejoramiento de calidad, respectivamente, entonces $\widehat{P}_1 = X_1/n_1$ y $\widehat{P}_2 = X_2/n_2$ son estad\'{\i}sticos de proporci\'on, cada uno, de los experimentos binomiales que estiman a los valores $p_1$ y $p_2$, respectivamente, entonces, del enunciado, se tienen los siguientes datos obtenidos de muestras:
+ \begin{itemize}
+  \item $n_1 = n_2 = 100$.
+  \item $x_1 = 10$ y $x_2 = 6$.
+ \end{itemize}
+ por lo que $\hat{p}_1$ y $\hat{p}_2$, la proporciones de \'exito en estas muestras, y $\hat{q}_1 = 1 - \hat{p}_1$ y $\hat{q}_2 = 1  - \hat{p}_2$ valen:
+ \begin{itemize}
+  \item $\hat{p}_1 = \frac{10}{100} = \frac{1}{10} = 0.1$ y $\hat{p}_2 = \frac{6}{100} = \frac{3}{50} = 0.06$; y,
+  \item $\hat{q}_1 = 1 - \frac{1}{10} = \frac{9}{10} = 0.9$ y $\hat{q}_2 = 1 - \frac{3}{50} = \frac{47}{50} = 0.94$.
+ \end{itemize}
+ \begin{enumerate}
+  \item Del inciso, se tiene un dato m\'as: el valor del nivel de confianza:
+  \begin{itemize}
+   \item $\alpha = 0.05$.
+  \end{itemize}
+  Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p_1 - p_2$, entonces se requiere del valor $z_{\alpha/2} = z_{0.025}$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+  \par 
+  Ya que se busca un intervalo para la diferencia de proporciones de experimentos binomiales en donde el tama\~no de las muestras es grande y se tiene que $n_1\hat{p}_1$, $n_1\hat{q}_1$, $n_2\hat{p}_2$ y $n_2\hat{q}_2$ son todos mayores a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+  \begin{equation*}
+   \left( \hat{p}_1 - \hat{p}_2 \right) - z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} < p_1 - p_2 < \left( \hat{p}_1 - \hat{p}_2 \right) + z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+  \begin{eqnarray*}
+   \left( \hat{p}_1 - \hat{p}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} & = & (0.1 - 0.06) \pm 1.96\sqrt{\frac{(0.1)(0.9)}{100} + \frac{(0.06)(0.94)}{100}} \\
+   & = & 0.04 \pm \frac{49}{25} \sqrt{\frac{900}{100^3} + \frac{564}{100^3}} = 0.04 \pm \frac{49\sqrt{1\,464}}{25\left(10^3\right)} \\
+   & = & 0.04 \pm \frac{49\sqrt{366}}{12\,500} = 0.04 \pm 0.00392\sqrt{366} \approx 0.04 \pm 0.074994
+  \end{eqnarray*}
+  Por lo tanto, el intervalo de confianza de $95\%$ para $p_1 - p_2$, la proporci\'on de defectuosos de la poblaci\'on antes de la mejor\'{\i}a menos la proporci\'on de defectuosos despu\'es de la mejor\'{\i}a, es aproximadamente:
+  \begin{equation*}
+   -0.034994 < p_1 - p_2 < 0.114994
+  \end{equation*}
+  Finalmente, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P20\_Intervalo\_de\_confianza\_09.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n1<-100
+> n2<-100
+> x1<-10
+> x2<-6
+> p1<-NULL
+> p2<-NULL
+> alfa<-0.05
+> inter<-'D'
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+   n1  n2   p1   p2     LimInf diferencia    LimSup
+1 100 100 0.06 0.06 -0.0349926       0.04 0.1149926
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $-0.03499 < p_1 - p_2 < 0.11499$.${}_{\square}$
+  
+  \item No. Como el intervalo de confianza incluye el valor $0$, e incluso valores negativos, entonces, puede ocurrir que $p_1 - p_2 < 0$ o $p_1 - p_2 = 0$ o $p_1 - p_2 > 0$,  lo cual indica, respectivamente cualquiera de las posibilidades: $p_1 < p_2$, $p_1 = p_2$ o $p_1 > p_2$, por lo que no hay informaci\'on suficiente que sugiera que ocurra alguna relaci\'on espec\'{\i}fica, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+
+\end{solucion}

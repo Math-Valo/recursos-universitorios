@@ -1,0 +1,97 @@
+\begin{enunciado}
+ Repita el ejercicio 10.8 cuando se tratan $100$ manchas y la regi\'on cr\'{\i}tica se define como $x > 82$, donde $x$ es el n\'umero de manchas que se eliminan.
+\end{enunciado}
+
+\begin{solucion}
+ Usando los t\'erminos del ejercicio 10.8, se tiene ahora que:
+ \begin{itemize}
+  \item $X \sim b(n,p) \sim n\left( \mu = np, \sigma = \sqrt{npq} \right)$.
+  \item $n = 100$.
+  \item $x_{\text{sup}} = 81$.
+ \end{itemize}
+ El resultado se calcular\'a a trav\'es de la aproximaci\'on de la binomial a la normal. El valor preciso binomial es poco pr\'actico obtenerlo, por lo que no se precisar\'a. Finalmente, se realizar\'a las comparaciones con los c\'alculos binomiales y normales en R.
+ \par 
+ Para el primer supuesto, se tiene adem\'as que
+ \begin{itemize}
+  \item $p = 0.7$.
+  \item $\mu = np = (100)(0.7) = 70$.
+  \item $\sigma^2 = npq = 70(0.3) = 21$.
+ \end{itemize}
+ as\'{\i}, el error tipo I se aproxima usando la tabla A.1 como sigue:
+ \begin{eqnarray*}
+  \alpha & = & P(X \geq 82) = 1 - P(X < 82) \approx 1 - P\left( Z < \frac{81.5 - 70}{\sqrt{21}} \right) \\
+  & = & 1 - P\left( Z < \frac{11.5\sqrt{21}}{21} \right) = 1- P\left( Z < \frac{23\sqrt{21}}{42} \right) \approx 1 - P(Z <  2.51) \approx 1 - 0.994 \\
+  & = & 0.006
+ \end{eqnarray*}
+ Para el siguiente supuesto, se tiene que
+ \begin{itemize}
+  \item $p = 0.9$.
+  \item $\mu = np = (100)(0.9) = 90$.
+  \item $\sigma^2 = npq = 90(0.1) = 9$
+ \end{itemize}
+ as\'{\i}, el error tipo II se aproximar usando la tabla A.1 como sigue:
+ \begin{eqnarray*}
+  \beta & = & P(X < 82) \approx P\left( Z < \frac{81.5 - 90}{\sqrt{9}} \right) = P\left( Z < -\frac{8.5}{3} \right) = P\left( Z < -\frac{17}{6} \right) \\
+  & \approx & P(Z < -2.83) \approx 0.0023
+ \end{eqnarray*}
+ Finalmente, usando R, se calcula primero estas probabilidades con el script del archivo anexo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n<-100
+> CriticoInf<-NULL
+> CriticoSup<-81
+> p0<-0.7
+> p1<-0.9
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene
+ \begin{verbatim}
+$`Probabilidad de error tipo I`
+  HipotesisNula   n CriticoSup       alpha
+1           0.7 100         81 0.004522639
+
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa   n CriticoSup        beta
+1                  0.9 100         81 0.004580754
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Mientras que con el script del archivo anexo \texttt{P02\_Probabilidad\_de\_error\_normal\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n<-100
+> CriticoInf<-NULL
+> CriticoSup<-81
+> desv<-NULL
+> media0<-NULL
+> media1<-NULL
+> p0<-0.7
+> p1<-0.9
+ \end{verbatim}
+ \vspace{-0.5cm}
+ se obtiene lo siguiente:
+ \begin{verbatim}
+$`Probabilidad de error tipo I`
+  HipotesisNula   n media     desv CriticoSup       alpha
+1      p =  0.7 100    70 4.582576       81.5 0.006045013
+
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa   n media desv CriticoSup        beta
+1             p =  0.9 100    90    3       81.5 0.002303266
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo tanto, se tiene el siguiente resumen:
+ \begin{itemize}
+  \item Bajo el supuesto real $p = 0.7$:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas normales da $\alpha = 0.006$.
+   \item La aproximaci\'on binomial con R da $\alpha = 0.004522639$.
+   \item La aproximaci\'on normal con R da $\alpha = 0.006045013$.
+  \end{itemize}
+
+  \item Y, bajo el supuesto $p  = 0.9$:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas normales da $\beta = 0.0023$.
+   \item La aproximaci\'on binomial con R da $\beta = 0.004580754$.
+   \item La aproximaci\'on normal con R da $\beta = 0.002303266$.
+  \end{itemize}
+ \end{itemize}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

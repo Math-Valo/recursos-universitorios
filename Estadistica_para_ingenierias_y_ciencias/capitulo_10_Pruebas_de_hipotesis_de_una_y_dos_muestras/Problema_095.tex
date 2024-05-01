@@ -1,0 +1,160 @@
+\begin{enunciado}
+ Para determinar las posiciones actuales acerca de las oraciones en escuelas p\'ublicas, se llev\'o a cabo una investifaci\'on en cuatro condados de Virginia.
+ La siguiente tabla da las opiniones de $200$ padres del condado de Craig,
+ $150$ padres del de Giles, $100$ padres del de Franklin
+ y $100$ del de Montgomery:
+ \begin{center}
+  \begin{tabular}{lcccc}
+   & \multicolumn{4}{c}{\textbf{Condado}} \\
+   \textbf{Posici\'on} & \textbf{Craig} & \textbf{Giles} &
+   \textbf{Franklin} & \textbf{Mount.} \\
+   \hline 
+   A favor & $65$ & $66$ & $40$ & $34$ \\
+   En contra & $42$ & $30$ & $33$ & $42$ \\
+   Sin opini\'on & $93$ & $54$ & $27$ & $24$
+  \end{tabular}
+ \end{center}
+ Pruebe la homogeneidad de las opiniones entre los 4 condados con respecto a las oraciones en escuelas p\'ublicas. Utilice un valor $P$ en sus conclusiones.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item Tamaño de muestra total: $550$.
+   \item Opiniones de padres de Craig: $200$.
+   \item Opiniones de padres de Giles: $150$.
+   \item Opiniones de padres de Franklin: $100$.
+   \item Opiniones de padres de Montgomery: $100$.
+   \item Opiniones a favor: $65 + 66 + 40 + 34 = 205$.
+   \item Opiniones a favor: $42 + 30 + 33 + 42 = 147$.
+   \item Opiniones a favor: $93 + 54 + 27 + 24 = 198$.
+   \item Frecuencias observadas y esperadas: $o_{i,j}$
+   y $e_{i,j}=\frac{R_i C_j}{n}$, respectivamente,
+   donde $R_i$ y $C_j$ son los marginales del rengl\'on $i$ y la columna $j$,
+   respectivamente, y $n$ es el total de toda la muestra.
+   As\'{\i}, pues, redondeando a un decimal, se muestra el resumen 
+   en la siguiente tabla,
+   en donde aparece entre par\'entesis la frecuencia esperada
+   y a la izquierda el valor observado:
+   \begin{center}
+    \begin{tabular}{lcccc|c}
+     & \multicolumn{4}{c}{\textbf{Condado}} & \textbf{Marginal por} \\
+     \textbf{Posici\'on} & \textbf{Craig} & \textbf{Giles} &
+     \textbf{Franklin} & \textbf{Mount.} & \textbf{Posici\'on} \\
+     \hline 
+     A favor & $65 (74.5)$ & $66 (55.9)$ & $40 (37.3)$ & $34 (37.3)$ & 
+     $205$ \\
+     En contra & $42 (53.5)$ & $30 (40.1)$ & $33 (26.7)$ & $42 (26.7)$ &
+     $147$ \\
+     Sin opini\'on & $93 (72)$ & $54 (54)$ & $27 (36)$ & $24 (36)$ & 
+     $198$ \\
+     \textbf{Marginal} & \multirow{2}{*}{$200$} & \multirow{2}{*}{$150$} &
+     \multirow{2}{*}{$100$} & \multirow{2}{*}{$100$} & \textbf{TOTAL:} \\
+     \textbf{por condado} & & & & & $n=550$
+    \end{tabular}
+   \end{center}
+   \item Tama\~no de la tabla de contingencia: $r\times c = 3\times 4$.
+   \item Grados de libertad de la prueba $\chi^2$: $v = (r-1)(c-1) = 6$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: & & \text{Las opiniones entre los condados son homog\'eneas.} \\
+   H_1: & & \text{Las opiniones entre los condados no son homog\'eneas.}
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   \chi^2 & = & \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i} \\
+   & \approx & \frac{(65 - 74.5)^2}{74.5} + \frac{(66 - 55.9)^2}{55.9} +
+   \frac{(40 - 37.3)^2}{37.3} + \frac{(34 - 37.3)^2}{37.3} + 
+   \frac{(42 - 53.5)^2}{53.5} \\
+   & & \frac{(30 - 40.1)^2}{40.1} + \frac{(33 - 26.7)^2}{26.7} + 
+   \frac{(42 - 26.7)^2}{26.7} + \frac{(93 - 72)^2}{72} + 
+   \frac{(54 - 54)^2}{54} \\
+   & & \frac{(27 - 36)^2}{36} + \frac{(24 - 36)^2}{36} \\
+   & \approx & 1.2114 + 1.8249 + 0.1954 + 0.292 + 2.472 + 2.5439 +
+   1.4865 + 8.7674 + \\
+   & & 6.125 + 0 + 2.25 + 4 \\
+   & = & 31.1685
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.5 se encuentran los valores de probabilidad hasta $0.001$,
+  sin embargo, para los 6 grados de libertad, la m\'{\i}nima probabilidad
+  se haya en el valor $22.457$, pero se encuentra m\'as lejos el valor
+  del estad\'{\i}stico en la tabla.
+  Esto es,
+  $P\left(\chi^2\geq 31.1685\right) <0.001 =P\left( \chi^2 > 22.457 \right)$.
+  En otras palabras, el valor $P$ es mucho menor a $0.001$.
+ \end{valorp}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  Debido a la baja probabilidad de haber obtenido estas frecuencias
+  de opiniones al suponer que fuesen homog\'eneas,
+  se rechaza esta hip\'otesis y se concluye
+  que las opiniones entre los condados no son homog\'eneas.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeniedad\_01.r},
+ que a su vez requiere los datos del archivo
+ \texttt{BD31\_Problema\_095.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB31_Problema_095.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Condado","Posición")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1,2,3)
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+$tabla
+            Posición
+Condado      A favor En contra Sin opinión
+  Craig           65        42          93
+  Franklin        40        33          27
+  Giles           66        30          54
+  Montgomery      34        42          24
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 31.099, df = 6, p-value = 2.427e-05
+
+
+$listaPruebas[[2]]
+
+	Log likelihood ratio (G-test) test of independence without correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 30.323, X-squared df = 6, p-value =
+3.413e-05
+
+
+$listaPruebas[[3]]
+
+	Log likelihood ratio (G-test) test of independence with Williams'
+	correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 30.118, X-squared df = 6, p-value =
+3.733e-05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos, adem\'as de brindar m\'as
+ informaci\'on como valores m\'as precisos del $P-$valor,
+ junto con otros estad\'{\i}sticos,
+ que es lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

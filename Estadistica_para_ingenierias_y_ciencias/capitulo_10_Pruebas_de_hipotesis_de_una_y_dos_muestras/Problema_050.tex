@@ -1,0 +1,64 @@
+\begin{enunciado}
+ ¿Qu\'e tan grandes deber\'{\i}an ser las muestras del ejercicio 10.31, si la potencia de nuestra prueba debe ser $0.95$ cuando la diferencia real entre los tipos de hilo $A$ y $B$ es $8$ kilogramos?
+\end{enunciado}
+
+\begin{solucion}
+ Usando los datos del ejercicios 10.31
+ y la informaci\'on del enunciado,
+ se tienen los siguientes datos y supuestos:
+ \begin{itemize}
+  \item $\alpha = 0.05$.
+  \item $1-\beta = 0.95$, entonces $\beta = 0.05$.
+  \item $\mu_1 - \mu_2 \geq 12$, seg\'un la hip\'otesis nula.
+  \item $\mu_1 - \mu_2 = 8$, seg\'un una alternativa espec\'{\'i}fica,
+  entonces $\delta = -4$.
+%   \item $\sigma_1$ y $\sigma_2$
+ \end{itemize}
+ Los c\'alculos requeridos para obtener los tama\~nos de muestra requieren,
+ en este caso, de conocer las varianzas poblacionales o, alternativamente,
+ de suponer que las desviaciones est\'andar poblacionales son iguales
+ y conocer o suponer el valor proporcional de $\delta$
+ con respecto al supuesto valor al que son iguales las desviaciones,
+ esto es $\Delta = \frac{|\delta|}{\sigma}$, para apoyarse de la tabla A.9.
+ Sin emabrgo, se desconocen las varianzas y no hay manera de suponer que son iguales,
+ adem\'as de que no se enuncia alg\'un supuesto al respecto de la proporci\'on
+ mencionada, por lo que no se puede proceder a implementar el c\'alculo con el apoyo de la tabla A.9.
+ Entonces, el camino por el que se proceder\'a para calcular lo solicitado
+ es usar estimados de los valores de $\sigma_1$ y $\sigma_2$,
+ us\'andolos, no como estimados, sino como si fueran los valores reales.
+ \par
+ En el ejercicio 10.31 se tienen los valores de $s_1$ y $s_2$, que pueden ser usados
+ como aproximaciones de $\sigma_1$ y $\sigma_2$, respectivamente,
+ cuando el tama\~no de las muestras es al menos de $30$ observaciones.
+ Por el momento, estas ser\'an las aproximaciones de $\sigma_1$ y $\sigma_2$ usadas,
+ bajo la precauci\'on de que el resultado ser\'a v\'alido
+ s\'olo en caso de que se obtenga un tama\~no de muestras de al menos de 30
+ observaciones. Entonces
+ \begin{itemize}
+  \item $\sigma_1 \approx s_1 = 6.28$ y $\sigma_2 \approx s_2 = 5.61$
+ \end{itemize}
+ Adem\'as, de la tabla A.3, se tiene que
+ \begin{itemize}
+  \item $z_{\alpha} = 1.645$.
+  \item $z_{\beta} = 1.645$.
+ \end{itemize}
+ Entonces se puede calcular el tama\~no de muestra
+ requerido para la calidad buscada en la prueba
+ con los siguientes c\'alculos
+ \begin{eqnarray*}
+  n (=n_1=n_2) & = & \left\lceil \frac{\left( z_{\alpha} + z_{\beta} \right)^2\left( \sigma_1 + \sigma_2 \right)^2}{\delta^2} \right\rceil = \left\lceil \frac{(1.645 + 1.645)^2(6.28 + 5.61)^2}{(-4)^2} \right\rceil \\
+  & = & \left\lceil \frac{3.29^2\times 11.89^2}{16} \right\rceil 
+  = \left\lceil \frac{ 10.8241 \times 141.3721}{16} \right\rceil
+  = \left\lceil \frac{1\,530.22574761}{16} \right\rceil \\
+  & = & \lceil 95.6391 \rceil = 96
+ \end{eqnarray*}
+ Por lo tanto, y como no se contradice la condici\'on para usar $s_1$ y $s_2$,
+ se concluye que, a partir de un tama\~no muestral de $n_1 = n_2 = 96$,
+ se puede realizar una prueba de hip\'otesis de que
+ la resistencia a la tensi\'on promedio del hilo A excede la resistencia
+ a la tensi\'on promedio del hilo B en al menos 12 kilogramos,
+ esto es $\mu_1 - \mu_2 \geq 12$, con un nivel de significancia de $0.05$
+ considerando una potencia de prueba de $0.95$ para la hip\'otesis alternativa
+ de que dicha diferencia es $\mu_1 - \mu_2 = 8$,
+ es decir con una diferencia entre hip\'otesis de $|\delta| = 4$.${}_{\blacksquare}$
+\end{solucion}

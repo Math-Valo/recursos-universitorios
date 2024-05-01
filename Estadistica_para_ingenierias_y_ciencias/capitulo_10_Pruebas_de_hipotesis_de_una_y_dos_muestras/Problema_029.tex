@@ -1,0 +1,66 @@
+\begin{enunciado}
+ La experiencia indica que el tiempo para que los estudiantes de \'ultimo a\~no de preparatoria terminen un examen estandarizado es una variable aleatoria normal con una media de $35$ minutos. Si a una muestra aleatoria de $20$ estudiantes de \'ultimo a\~no de preparatoria le toma un promedio de $33.1$ minutos completar dicho examen con una desviaci\'on est\'andar de $4.3$ minutos, con un nivel de significancia de $0.025$, pruebe la hip\'itesis de que $\mu = 35$ minutos contra la alternativa de que $\mu < 35$ minutos.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X \sim n\left( \mu, \sigma \right)$.
+   \item $n = 20$.
+   \item $\bar{x} = 33.1$.
+   \item $s = 4.3$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu & = & 35 \\
+   H_1: \mu & < & 35
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.025$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.4, se tiene que $t_{\alpha,n-1} = t_{0.025,19} = 2.093$, por lo que la regi\'on de rechazo est\'a dado para $t < -2.093$, donde $t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{equation*}
+   t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{33.1 - 35}{4.3/\sqrt{20}} = - \frac{1.9(10)\sqrt{20}}{43} = - \frac{19(2)\sqrt{5}}{43} = - \frac{38\sqrt{5}}{43} \approx -1.976060073\ldots
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  Seg\'un la prueba de hip\'otesis, el tiempo para que los estudiantes de \'ultimo a\~no de preparatoria terminen el examen estandarizado es en promedio $35$ minutos, como supon\'{\i}a la experiencia.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P03\_Prueba\_de\_una\_media\_01.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n<-20
+> mu<-35
+> m<-33.1
+> desv<-4.3
+> pobl<-FALSE
+> alfa<-0.025
+> cola<-'I'
+> val<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba H0  n MediaMuestral desv.est error.est alpha    PValor Estadsitico
+1      t 35 20          33.1      4.3 0.9615092 0.025 0.0314254    -1.97606
+  RegionRechazoT RegionRechazoX        Resultado
+1   < -2.0930241    < 32.987538 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

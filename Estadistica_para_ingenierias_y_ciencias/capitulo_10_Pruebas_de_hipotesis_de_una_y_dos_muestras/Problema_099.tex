@@ -1,0 +1,157 @@
+\begin{enunciado}
+ Se lleva a cabo una investigaci\'on en dos ciudades de Virginia,
+ para determinar la opini\'on de los votantes hacia los candidatos
+ a la gubernatura en una elecci\'on pr\'oxima.
+ En cada ciudad se seleccionan $500$ votantes al azar y se registran
+ los siguientes datos:
+ \begin{center}
+  \begin{tabular}{lcc}
+   & \multicolumn{2}{c}{\textbf{Ciudad}} \\
+   \cline{2-3}
+   \textbf{Opini\'on del votante} & \textbf{Richmond} & \textbf{Norfolk} \\
+   \hline
+   Favorece a A & $204$ & $225$ \\
+   Favorece a B & $211$ & $198$ \\
+   Indeciso & $85$ & $77$
+  \end{tabular}
+ \end{center}
+ Con un nivel de significancia de $0.05$, pruebe la hip\'otesis nula
+ de que las proporciones de votantes que favorecen al candidato A,
+ al candidato B o est\'an indecisos son las mismas para cada ciudad.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item Tamaño de muestra total: $1\,000$.
+   \item Votantes encuestados de Richmond: $500$.
+   \item Votantes encuestados de Norfolk: $500$.
+   \item Votantes encuestados de Ohio: $200$.
+   \item Votantes encuestados con opini\'on a favor de A: $204 + 225 = 429$.
+   \item Votantes encuestados con opini\'on a favor de B: $211 + 198 = 409$.
+   \item Votantes encuestados con opini\'on indecisa: $85 + 77 = 162$.
+   \item Frecuencias observadas y esperadas: $o_{i,j}$
+   y $e_{i,j}=\frac{R_i C_j}{n}$, respectivamente,
+   donde $R_i$ y $C_j$ son los marginales del rengl\'on $i$ y la columna $j$,
+   respectivamente, y $n$ es el total de toda la muestra.
+   As\'{\i}, pues, redondeando a un decimal, se muestra el resumen 
+   en la siguiente tabla,
+   en donde aparece entre par\'entesis la frecuencia esperada
+   y a la izquierda el valor observado:
+   \begin{center}
+    \begin{tabular}{lcc|c}
+     & \multicolumn{2}{c}{\textbf{Ciudad}} \\
+     \cline{2-3} & & & \textbf{Marginal} \\
+     \textbf{Opini\'on del votante} & \textbf{Richmond} & \textbf{Norfolk} &
+     \textbf{por opini\'on} \\
+     \hline
+     Favorece a A & $204 (214.5)$ & $225 (214.5)$ & $429$ \\
+     Favorece a B & $211 (204.5)$ & $198 (204.5)$ & $409$ \\
+     Indeciso & $85 (81)$ & $77 (81)$ & $162$ \\
+     \hline 
+     \textbf{Marginal} & \multirow{2}{*}{$500$} & \multirow{2}{*}{$500$} &
+     \textbf{TOTAL} \\
+     \textbf{por estado} & & & $n=1\,000$
+    \end{tabular}
+   \end{center}
+   \item Tama\~no de la tabla de contingencia: $r\times c = 3\times 2$.
+   \item Grados de libertad de la prueba $\chi^2$: $v = (r-1)(c-1) = 2$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: & &
+   \text{Los votantes por ciudad son homog\'eneos respecto a las opiniones.} \\
+   H_1: & &
+   \text{Los votantes por ciudad no son homog\'eneos respecto a las opiniones.}
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{\alpha,v} = \chi^2_{0.025,4} \approx 5.991$,
+  por lo que la regi\'on de rechazo est\'a dado
+  para $\chi^2 > 5.991$, donde
+  $\chi^2 = \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   \chi^2 & = & \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i} \\
+   & = & \frac{(204 - 214.5)^2}{214.5} + \frac{(225 - 214.5)^2}{214.5} +
+   \frac{(211 - 204.5)^2}{204.5} + \frac{(198 - 204.5)^2}{204.5} + \\
+   & & \frac{(85 - 81)^2}{81} + \frac{(77 - 81)^2}{81} \\
+   & = & \frac{220.5}{214.5} + \frac{84.5}{204.5} + \frac{32}{81}
+   = \frac{2\,205}{2\,145} + \frac{845}{2\,045} + \frac{32}{81} \\
+   & \approx & 1.028 + 0.4132 + 0.3951 = 1.8363
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  A un nivel de significancia de $0.05$, los resultados no arrojan
+  evidencia suficiente rechazar la hip\'otesis nula
+  y, por lo tanto, se considera que los votantes por cada ciudad
+  Virginia son homog\'eneos con respecto a sus opiniones.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeniedad\_01.r},
+ que a su vez requiere los datos del archivo
+ \texttt{BD35\_Problema\_099.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB35_Problema_099.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Ciudad","Opinión")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1,2,3)
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+$tabla
+          Opinión
+Ciudad     Favorece a A Favorece a B Indeciso
+  Norfolk           225          198       77
+  Richmond          204          211       85
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 1.8362, df = 2, p-value = 0.3993
+
+
+$listaPruebas[[2]]
+
+	Log likelihood ratio (G-test) test of independence without correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 1.8369, X-squared df = 2, p-value =
+0.3991
+
+
+$listaPruebas[[3]]
+
+	Log likelihood ratio (G-test) test of independence with Williams' correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 1.8323, X-squared df = 2, p-value =
+0.4001
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos,
+ adem\'as de brindar m\'as informaci\'on como el $P-$valor
+ y las pruebas con otros estad\'{\i}sticos,
+ que es lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,160 @@
+\begin{enunciado}
+ Se lleva a cabo un experimento para determinar si el acabado superficial tiene un efecto sobre el l\'{\i}mite de fatiga del acero. Una teor\'{\i}a existente indica que el pulido aumenta el l\'{\i}mite de fatiga medio (flexi\'on inversa). Desde un punto de vista pr\'actico, el pulido no deber\'{\i}a tener efecto alguno en la desviaci\'on est\'andar del l\'{\i}mite de fatiga, el cual se sabe que es de $4\,000$ psi, gracias a la realizaci\'on de diversos experimentos de l\'{\i}mite de fatiga. El experimento se realiza sobre acero al carb\'on al $0.4\%$ usando espec\'{\i}menes sin y con pulido suave. Los datos son los siguiente:
+ \begin{center}
+  \begin{tabular}{cc}
+   \multicolumn{2}{c}{\textbf{L\'{\i}mite de fatiga (psi) para:}} \\
+   \hline 
+   \textbf{Acero al carb\'on} & \textbf{Acero al carb\'on} \\
+   \textbf{0.4\% pulido} & \textbf{0.4\% sin pulir} \\
+   \hline 
+   $85,500$ & $82,600$ \\
+   $91,900$ & $82,400$ \\
+   $89,400$ & $81,700$ \\
+   $84,000$ & $79,500$ \\
+   $89,900$ & $79,400$ \\
+   $78,700$ & $69,800$ \\
+   $87,500$ & $79,900$ \\
+   $83,100$ & $83,400$
+  \end{tabular}
+ \end{center}
+ Encuentre un intervalo de confianza de $95\%$ para la diferencia entre las medias poblacionales para los dos m\'etodos. Suponga que las poblaciones se distribuyen de forma aproximadamente normal.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de las cantidades del l\'{\i}mite de fatiga, medido en psi, del acero al carb\'on $0.4\%$ pulido y del acero al carb\'on $0.4\%$ sin pulir, respectivamente, entonces, del enunciado, se tiene el siguiente resumen de datos:
+ \begin{itemize}
+  \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1,2 \}$.
+  \item $\mu_1$ y $\mu_2$ desconocidos.
+  \item $\sigma_1 = \sigma_2 = 4\,000\,$psi.
+  \item $n_1 = n_2 = 8$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Adem\'as de los 8 datos obtenidos en cada muestra.
+ \par 
+ A partir de estos datos, se puede calcular la media de ambas muestras, como se muestra a continuaci\'on.
+ \begin{equation*}
+  \bar{x}_1 = \frac{85\,500 + 91\,900 + 89\,400 + 84\,000 + 89\,900 + 78\,700 + 87\,500 + 83\,100}{8} = \frac{690\,000}{8} = 86\,250
+ \end{equation*}
+ y
+ \begin{equation*}
+  \bar{x}_2 = \frac{82\,600 + 82\,400 + 81\,700 + 79\,500 + 79\,400 + 69\,800 + 79\,900 + 83\,400}{8} = \frac{638\,700}{8} = 79\,837.5
+ \end{equation*}
+ Adem\'as, aunque la desviaci\'on est\'andar se supone conocida en ambas poblaciones, se proceder\'a a calcularlo usando el Teorema 8.1 como sigue:
+ \begin{eqnarray*}
+  s_1^2 & = & \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n x_i^2 - \left( \sum_{i=1}^n x_i \right)^2 \right] \\
+  & = & \frac{1}{8(7)} \left[ 8\left( 85\,500^2 + 91\,900^2 + 89\,400^2 + 84\,000^2 + 89\,900^2 + 78\,700^2 + 87\,500^2 + 83\,100^2 \right) \right. \\
+  & & \left. - 690\,000^2 \right] \\
+  & = & \frac{100^2\left[ 8\left( 855^2 + 919^2 + 894^2 + 840^2 + 899^2 + 787^2 + 875^2 + 831^2 \right) - 6\,900^2 \right]}{8(7)} \\
+  & = & \frac{100^2}{8(7)} \left[ 8( 731\,025 + 844\,561 + 799\,236 + 705\,600 + 808\,201 + 619\,369 + 765\,625 + 690\,561) \right. \\
+  & & \left. - 47\,610\,000 \right] \\
+  & = & 
+  \frac{100^2\left[ 8(5\,964\,178) - 47\,610\,000 \right]}{8(7)} = \frac{1\,250(47\,713\,424 - 47\,610\,000)}{7} = \frac{1\,250(103\,424)}{7} \\
+  & = & \frac{129\,280\,000}{7} = 18\,468\,571.\overline{428571}
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  s_2^2 & = & \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n x_i^2 - \left( \sum_{i=1}^n x_i \right)^2 \right] \\
+  & = & \frac{1}{8(7)}\left[ 8\left( 82\,600^2 + 82\,400^2 + 81\,700^2 + 79\,500^2 + 79\,400^2 + 69\,800^2 + 79\,900^2 + 83\,400^2 \right) \right. \\
+  & & \left. - 638\,700^2 \right] \\
+  & = & \frac{100^2 \left[ 8\left( 826^2 + 824^2 + 817^2 + 795^2 + 794^2 + 698^2 + 799^2 + 834^2 \right) - 6\,387^2 \right]}{8(7)} \\
+  & = & \frac{100^2}{8(7)} \left[ 8( 682\,276 + 678\,976 + 667\,489 + 632\,025 + 630\,436 + 487\,204 + 638\,401 + 695\,556) \right. \\
+  & & \left.  - 40\,793\,769 \right] \\
+  & = & \frac{10\,000\left[ 8(5\,112\,363) - 40\,793\,769 \right]}{8(7)} = \frac{1\,250(40\,898\,904 - 40\,793\,769)}{7} = \frac{1\,250(105\,135)}{7} \\
+  & = & \frac{131\,418\,750}{7} = 18\,774\,107.\overline{142857}
+ \end{eqnarray*}
+ Como se desea encontrar un intervalo de confianza para $\mu_1 - \mu_2$, usando $\bar{x}_1 - \bar{x}_2$ y conociendo $\sigma_1$ y $\sigma_2$, entonces se requerir\'a el valor cr\'{\i}tico $z_{\alpha/2} = 0.025$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales que se distribuyen de forma normal y se conocen las desviaciones est\'andar usando como estimador a la diferencia de medias muestrales, entonces se usar\'a la formulaci\'on siguiente:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2 \right) + z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando la primera aproximaci\'on de $z_{\alpha/2}$, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} & = & (86\,250 - 79\,837.5) \pm 1.96\sqrt{\frac{4\,000^2}{8} + \frac{4\,000^2}{8}} \\
+  & = & 6\,412.5 \pm 1.96 \sqrt{\frac{2(16)\left(1\,000^2\right)}{8}} = 6\,412.5 \pm 1.96 \sqrt{4\left( 1\,000^2 \right)} \\
+  & = & 6\,412.5 \pm 1.96 (2\,000) = 6\,412.5 \pm 3\,920
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza del $95\%$ de la diferencia entre la media del l\'{\i}mite de fatiga, en unidades psi, del acero al carb\'on $0.4\%$ pulido menos el l\'{\i}mite de fatiga del acero al carb\'on $0.4\%$ sin pulir es aproximadamente:
+ \begin{equation*}
+  2492.5 < \mu_1 - \mu_2 < 10\,332.5
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P13\_Intervalo\_de\_confianza\_04.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-8
+> n2<-8
+> m1<-86250
+> m2<-79837.5
+> desv.tipica1<-4000
+> desv.tipica2<-4000
+> alfa<-0.05
+> val<-TRUE
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  n1 n2 media1  media2   LimInf diferencia   LimSup
+1  8  8  86250 79837.5 2492.572     6412.5 10332.43
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de $95\%$ es $2\,492.5 < \mu_1 - \mu_2 < 10\,332.5$, que es a lo que se quer\'{\i}a llegar.
+ \par 
+ Sin embargo, n\'otese que si la desviaci\'on est\'andar fuese de $4\,000$ en cada poblaci\'on como indica el enunciado, entonces la varianza ser\'{\i}a de $16$ millones, pero las muestras dan varianzas de aproximadamente $2.5$ millones, lo cual da la intuici\'on de que podr\'{\i}a ser mayor la desviaci\'on. Por lo tanto, se calcular\'a un intervalo de confianza suponiendo que no se conoce la desviaci\'on est\'andar, pero, por el momento, s\'{\i} se les va a suponer iguales, lo cual m\'as se ver\'a que tiene sentido esto.
+ \par 
+ Como se desea encontrar un interfvalo de confianza bilateral para $\mu_1 - \mu_2$ usando como estimador $\bar{x}_1 - \bar{x}_2$, desconociendo las varianzas poblacionales aunque suponi\'endolas iguales, con muestras peque\~nas de poblaciones que se distribuyen aproximadamente normal, entonces se requerir\'a el valor $t_{\alpha/2,n_1+n_2 - 2} = t_{0.025,14}$. De la Tabla A.4, se tiene que $t_{0.025,14} = 2.145$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,14,lower.tail=F)
+[1] 2.144786687917804357539
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $2.144786687917804$.
+ \par 
+ Ya que se busca un intervalo de confianza de la diferencia de las medias poblacionales usando como estimador la diferencia de las medias muestrales en muestras peque\~nas, en donde ahora se va a suponer que se desconoce las desviaciones est\'andar poblacionales pero a\'un as\'{\i} suponiendo que son iguales y donde se suponene que las poblaciones se distribuyen de forma normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - t_{\alpha/2,n_1 +n_2 - 2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2 \right) + t_{\alpha/2,n_1 +n_2 - 2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+ \end{equation*}
+ en donde
+ \begin{equation*}
+  s_p = \sqrt{\frac{\left( n_1 - 1 \right)s_1^2 + \left( n_2 - 1 \right)s_2^2}{n_1 + n_2 - 2}}
+ \end{equation*}
+ Por lo tanto, usandos los datos obtenidos, considerando el valor $t_{\alpha/2,n_1+n_2-2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  s_p & = & \sqrt{\frac{\left( n_1 - 1 \right)s_1^2 + \left( n_2 - 1 \right)s_2^2}{n_1 + n_2 - 2}} = \sqrt{\frac{(8-1)\left( \frac{129\,280\,000}{7} \right) + (8-1)\left( \frac{131\,418\,750}{7} \right) }{8+8-2}} \\
+  & = & \sqrt{\frac{129\,280\,000 + 131\,418\,750}{14}} = \sqrt{\frac{260\,698\,750}{14}} = \frac{\sqrt{130\,349\,375}\sqrt{7}}{7} \\
+  & = & \frac{25\sqrt{1\,459\,913}}{7} \approx 4\,315.24498559633
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) \pm t_{\alpha/2,n_1 +n_2 - 2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} & = & 6\,412.5 \pm (2.145)\left( \frac{25\sqrt{1\,459\,913}}{7} \right) \sqrt{\frac{1}{8} + \frac{1}{8}} \\
+  & = & 6\,412.5 \pm \frac{429}{200}\left( \frac{25\sqrt{1\,459\,913}}{7} \right) \sqrt{\frac{1}{4}} \\
+  & = & 6\,412.5 \pm \frac{429\sqrt{1\,459\,913}}{8(7)} \left( \frac{1}{2} \right) \\
+  & = & 6\,412.5 \pm \frac{429\sqrt{1\,459\,913}}{112} \\
+  & = & 6\,412.5 \pm 3.8303\overline{571428}\sqrt{1\,459\,913} \\
+  & \approx & 6\,412.5 \pm 4\,628.100247052
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza del $95\%$ de la diferencia entre la media del l\'{\i}mite de fatiga, en unidades psi, del acero al carb\'on $0.4\%$ pulido menos el l\'{\i}mite de fatiga del acero al carb\'on $0.4\%$ sin pulir, en este caso en el que se suponen desconocidas las varianzas poblacionales, es aproximadamente:
+ \begin{equation*}
+  1\,784.39975294793 < \mu_1 - \mu_2 < 11\,040.600247052
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P15\_Intervalo\_de\_confianza\_06.r}, y usando la base de datos \texttt{DB14\_Problema\_93.csv}.
+ \begin{verbatim}
+> datos<-read.csv("DB14_Problema_93.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("LímiteDeFatiga.psi")
+> varAgrupacion<-NULL
+> varSel<-list("Método")
+> alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  Tipo.de.Grupo               Var1 Freq n1 n2 media1  media2  limInf diferencia
+1        Método LímiteDeFatiga.psi   16  8  8  86250 79837.5 1784.86     6412.5
+    limSup valorPMedia valorPVar          varIgual            Resultado
+1 11040.14  0.01009596 0.9832881 Var no diferentes Signif dif de medias
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de $95\%$, suponiendo desconocidas las varianzas aunque iguales, es $1\,784 < \mu_1 - \mu_2 < 11\,040$.
+ \par 
+ N\'otese que el propio programa indica que las varianzas s\'{\i} se deben considerar iguales, pero el intervalo cambia considerablemente, lo cual sugiere que se analice mejor si la desviaci\'on est\'andar poblacional es lo que se dice ser. Por lo tanto, si se obtiene que las desviaci\'on est\'andar es, en efecto, $4\,000$, entonces el intervalo de confianza del $95\%$ es $2\,492.5 < \mu_1 - \mu_2 < 10\,332.5$, mientras que si el la desviaci\'on no es de $4\,000$, entonces es mejor considera el intervalo del $95\%$ que se obtuvo al final: $1\,784 < \mu_1 - \mu_2 < 11\,040$, que es a lo que se quer\'{\i}a llegar, y m\'as.${}_{\blacksquare}$
+\end{solucion}

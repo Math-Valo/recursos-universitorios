@@ -1,0 +1,217 @@
+\begin{enunciado}
+ Los siguientes datos representan los tiempos de duraci\'on de pel\'{\i}culas producidas por 2 compa\~n\'{\i}as cinematogr\'aficas:
+ \begin{center}
+  \begin{tabular}{crrrrrrr}
+   \textbf{Compa\~n\'{\i}a} & \multicolumn{7}{c}{\textbf{Tiempo (minutos)}} \\
+   \hline 
+   1 & $102$ & $86$ & $98$ & $109$ & $92$ & & \\
+   2 & $81$ & $165$ & $97$ & $134$ & $92$ & $87$ & $114$
+  \end{tabular}
+ \end{center}
+ Pruebe la hip\'otesis de que el tiempo de duraci\'on promedio de las pel\'{\i}culas producidas por la compa\~n\'{\i}a 2 excede el tiempo promedio de duraci\'on de las que produce la compa\~n\'{\i}a 1 en $10$ minutos, contra la alternativa unilateral de que la diferencia es de menos de $10$ minutos. Utilice un nivel de significancia de $0.1$ y suponga que las distribuciones de los tiempos son aproximadamente normales con varianzas iguales.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido, se tiene que
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{ 1,2\}$.
+   \item $n_1 = 5$ y $n_2 = 7$.
+   \item $\sigma_1^2 = \sigma_2^2$.
+  \end{itemize}
+  Para obtener las medias y desviaciones est\'andar muestrales,
+  se calcula lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^5 x_{1,i} & = & 102 + 86 + 98 + 109 + 92 = 487 \\
+   \sum_{i=1}^5 x_{1,i}^2 & = & 102^2 + 86^2 + 98^2 + 109^2 + 92^2
+   = 47\,749 \\
+   \sum_{i=1}^7 x_{2,i} & = & 81 + 165 + 97 + 134 + 92 + 87 + 114
+   = 770 \\
+   \sum_{i=1}^7 x_{2,i}^2 & = & 
+   81^2 + 165^2 + 97^2 + 134^2 + 92^2 + 87^2 + 114^2 = 90\,180
+  \end{eqnarray*}
+  Por lo que el valor de cada media muestral es:
+  \begin{eqnarray*}
+   \bar{x}_1 & = & \frac{1}{5}\sum_{i=1}^5 x_{1,i} = \frac{487}{5}
+   = 97.4 \\
+   \bar{x}_2 & = & \frac{1}{7}\sum_{i=1}^7 x_{2,i} = \frac{770}{7}
+   = 110
+  \end{eqnarray*}
+  y las varianzas muestrales se calculan, usando el teorema 8.1,
+  como sigue:
+  \begin{eqnarray*}
+   s_1^2 & = &
+   \frac{1}{5(4)}
+   \left[
+   5\sum_{i=1}^5 x_{1,i}^2 - \left( \sum_{i=1}^5 x_{1,i} \right)^2 \right]
+   = \frac{5(47\,749) - 487^2}{20} = \frac{238\,745-237\,169}{20}
+   = \frac{1\,576}{20} \\
+   & = & \frac{394}{5} = 78.8 \\
+   s_2^2 & = &
+   \frac{1}{7(6)}
+   \left[
+   7\sum_{i=1}^7 x_{2,i}^2 - \left( \sum_{i=1}^7 x_{2,i} \right)^2
+   \right]
+   = \frac{7(90\,180) - 770^2}{42} = \frac{631\,260 - 592\,900}{42}
+   = \frac{38\,360}{42} \\
+   & = & \frac{2\,740}{3} = 913.\overline{3}
+  \end{eqnarray*}
+  por lo que el valor de cada desviaci\'on est\'andar muestral es:
+  \begin{eqnarray*}
+   s_1 & = & \sqrt{s_1^2} = \sqrt{\frac{394}{5}} =
+   \frac{\sqrt{1\,970}}{5} \approx 8.8769364 \\
+   s_2 & = & \sqrt{s_2^2} = \sqrt{\frac{2\,740}{3}}
+   = \frac{2\sqrt{685}\sqrt{3}}{3} = \frac{2\sqrt{2\,055}}{3}
+   \approx 30.2214052
+  \end{eqnarray*}
+  Por lo tanto, se resume el resto de los datos como sigue:
+  \begin{itemize}
+   \item $\bar{x}_1 = \frac{487}{5} = 97.4$ y $\bar{x}_2 = 110$.
+   \item $s_1 = \frac{\sqrt{1\,970}}{5} \approx 8.8769364$
+   y $s_2 = \frac{2\sqrt{2\,055}}{3} \approx 30.2214052$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_1 - \mu_2 & \leq & -10 \\
+   H_1: \mu_1 - \mu_2 &   >  & -10
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.1$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.4, se tiene el valor cr\'{\i}tico
+  $t_{\alpha, n_1+n_2-2} = t_{0.1,10} \approx 1.372$,
+  por lo que la regi\'on de rechazo est\'a dado para $t > 1.372$,
+  donde $t =
+  \frac{
+  \left( \bar{x}_1 - \bar{x}_2 \right) - d_0
+  }{
+  s_p\sqrt{1/n_1 + 1/n_2}
+  }$.
+ \end{region}
+
+ \begin{estadistico}
+  Dado que
+  \begin{eqnarray*}
+   s_p^2 & = & \frac{
+   s_1^2 \left( n_1 - 1 \right) + s_2^2 \left( n_2 - 1\right)
+   }{
+   n_1 + n_2 -2
+   }
+   = \frac{\frac{394}{5}(5-1) + \frac{2\,740}{3}(7-1)}{10}
+   = \frac{\frac{394(4) + 2\,740(2)(5)}{5}}{10} \\
+   & = & \frac{1\,576 + 27\,400}{50} = \frac{28\,976}{50}
+   = \frac{14\,488}{25} = 579.52
+  \end{eqnarray*}
+  entonces
+  \begin{equation*}
+   s_p = \sqrt{s_p^2} = \sqrt{\frac{14\,488}{25}}
+   = \frac{2\sqrt{3\,622}}{5} \approx 24.0732216373
+  \end{equation*}
+  y
+  \begin{eqnarray*}
+   t & = & 
+   \frac{
+   \left( \bar{x}_1 - \bar{x}_2 \right) - d_0
+   }{
+   s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+   }
+   = \frac{
+   (97.4 - 110) - (-10)
+   }{
+   \frac{2\sqrt{3\,622}}{5}\sqrt{\frac{1}{5} + \frac{1}{7}}
+   }
+   = \frac{
+   (-12.6 + 10)\left(5\sqrt{3\,622}\right)
+   }{
+   2(3\,622)\sqrt{\frac{7+5}{35}}
+   }
+   = \frac{-13\sqrt{3\,622}\sqrt{35}}{7\,244\sqrt{12}} \\
+   & = & -\frac{13\sqrt{126\,770}\sqrt{3}}{7\,244(2)(3)}
+   = -\frac{13\sqrt{380\,310}}{43\,464}
+   \approx -0.18445164501914
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  No hay evidencia suficiente para creer
+  que el tiempo promedio de duraci\'on de las pel\'{\i}culas producidas
+  por la compa\~n\'{\i}a 2 es menor al tiempo promedio de duraci\'on
+  de las que produce la compa\~n\'{\i}a 1 en 10 minutos.
+  \par 
+  N\'otese que desde que la media muestral del tiempo de duraci\'on
+  de las pel\'{\i}culas producidas por la compa\~n\'{\i}a 2 fue mayor
+  a la media muestral del tiempo de duraci\'on de las que produce
+  la compa\~n\'{\i}a 1 en 10 minutos, entonces no se hubiese
+  podido rechazar la hip\'otesis nula,
+  ya que el signo del estad\'{\i}stico quedaba opuesto al signo del
+  valor cr\'{\i}tico de la regi\'on de rechazo;
+  sin embargo, a\'un cambiando el sentido de desigualdad
+  de las hip\'otesis, tampoco se podr\'{\i}a rechazar la hip\'otesis
+  nula de que el tiempo promedio de duraci\'on de las pel\'{\i}culas
+  producidas por la compa\~{\i}a 2 sea menor al tiempo promedio
+  de duraci\'on de las producidas por la compa\~{\i}a 1
+  en 10 minutos,
+  puesto que, como se observan en las cuentas, el valor absoluto
+  del estad\'{\i}stico sigue siendo menor al del valor cr\'{\i}tico.
+  \par 
+  Por lo tanto, se tiene que la prueba no es concluyente.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo
+ \texttt{P06\_Prueba\_de\_dos\_medias\_02.r},
+ que a su vez requiere los datos del archivo
+ \texttt{DB03\_Problema\_039.csv},
+ con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB03_Problema_039.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Tiempo.min")
+> varSel<-c("Compañía")
+> mu<--10
+> desv.iguales<-TRUE
+> alfa<-0.1
+> cola<-'S'
+> par<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+        Var1 Freq    Poblaciones  H0  valorPVar     suposicionVar n1 n2 media1
+1 Tiempo.min   12 Independientes -10 0.03297718 Var no diferentes  5  7   97.4
+  media2 diferencia desv.est1 desv.est2   est.sp error.est grados alpha
+1    110      -12.6  8.876936  30.22141 24.07322  14.09584     10   0.1
+    PValor Estadistico RegionRechazoSupT RegionRechazoSupX        Resultado
+1 0.571327  -0.1844516          1.372184          9.342074 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos.
+ \par
+ N\'otese que a\'un cambiando la cola de la prueba,
+ esto es, cambiando la siguiente l\'{\i}nea:
+ \begin{verbatim}
+> cola<-'I'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el nuevo resultado:
+ \begin{verbatim}
+        Var1 Freq    Poblaciones  H0  valorPVar     suposicionVar n1 n2 media1
+1 Tiempo.min   12 Independientes -10 0.03297718 Var no diferentes  5  7   97.4
+  media2 diferencia desv.est1 desv.est2   est.sp error.est grados alpha
+1    110      -12.6  8.876936  30.22141 24.07322  14.09584     10   0.1
+    PValor Estadistico RegionRechazoInfT RegionRechazoInfX        Resultado
+1 0.428673  -0.1844516         -1.372184         -29.34207 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual ofrece m\'as detalle de la menci\'on final
+ en la conclusi\'on, reforzando lo ya dicho,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

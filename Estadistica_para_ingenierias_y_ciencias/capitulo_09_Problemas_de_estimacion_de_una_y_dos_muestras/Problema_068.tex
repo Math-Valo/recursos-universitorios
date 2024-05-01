@@ -1,0 +1,53 @@
+\begin{enunciado}
+ En un estudio, \textit{Germination and Emergence of Broccoli}, que lleva a cabo el Departamento de Horticultura del Instituto Polit\'ecnico y Universidad Estatal de Virginia, un investigador encuentra que a $5^{\circ}$C, $10$ semillas de $20$ germinaron; en tanto que a $15^{\circ}$C, $15$ semillas de $20$ lo hicieron. Calcule un intervalo de confianza de $95\%$ para la diferencia entre la proporci\'on de germinaci\'on en las dos diferentes temperaturas, y decida si hay una diferencia significativa.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de la cantidad de semillas que germinan a $5^{\circ}$C, entre un total de $n_1$ semillas, y la cantidad de semillas que germinan a $15^{\circ}$C, entre un total de $n_2$ se millas, respectivamente, entonces $\widehat{P}_1 = X_1/n_1$ y $\widehat{P}_2 = X_2/n_2$ son estad\'{\i}sticos de proporci\'on, cada uno, de los experimentos binomiales que aproximan a los valores $p_1$, la proporci\'on de germinaci\'on a $5^{\circ}$C, y $p_2$, la proporci\'on de germinaci\'on a $15^{\circ}$C, respectivamente, entonces, del enunciado se tienen los siguientes datos obtenidos de muestra:
+ \begin{itemize}
+  \item $n_1 = n_2 = 20$.
+  \item $x_1 = 10$ y $x_2 = 15$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ por lo que $\hat{p}_1$ y $\hat{p}_2$, las proporciones de \'exito en las muestras, y $\hat{q}_1 = 1 - \hat{p}_1$ y $\hat{q}_2 = 1 - \hat{p}_2$ valen:
+ \begin{itemize}
+  \item $\hat{p}_1 = \frac{10}{20} = \frac{1}{2} = 0.5$ y $\hat{p}_2 = \frac{15}{20} = \frac{3}{4} = 0.75$; y,
+  \item $\hat{q}_1 = 1 - \hat{p}_1 = 1 - \frac{1}{2} = \frac{1}{2} = 0.5$ y $\hat{q}_2 = 1 - \hat{p}_2 = 1 - \frac{3}{4} = \frac{1}{4} = 0.25$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p_1 - p_2$, entonces se requiere del valor $z_{\alpha/2} = 0.025$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+ \par 
+ Ya que se busca un intervalo para la diferencia de proporciones de experimentos binomiales en donde, aunque el tama\~no de las muestras no es grande, se tiene que $n_1\hat{p}_1$, $n_1\hat{q}_1$, $n_2\hat{p}_2$ y $n_2\hat{q}_2$ son todos mayores a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \left( \hat{p}_1 - \hat{p}_2 \right) - z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} < p_1 - p_2 < \left( \hat{p}_1 - \hat{p}_2 \right) + z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \left( \hat{p}_1 - \hat{p}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} & = & \left( 0.5 - 0.75 \right) 1.96\sqrt{\frac{(1/2)(1/2)}{20} + \frac{(3/4)(1/4)}{20}} \\
+  & = & -0.25 \pm 1.96\sqrt{\frac{4+3}{4^2(20)}} = -0.25 \pm 1.96 \left( \frac{\sqrt{7}\sqrt{5}}{40} \right) \\
+  & = & -0.25 \pm \frac{49\sqrt{35}}{1\,000} = -0.25 \pm 0.049\sqrt{35} \\
+  & \approx & -0.25 \pm 0.289887909371881
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $95\%$ para la diferencia de la proporci\'on de germinaci\'on a $5^{\circ}$C menos la proporci\'on de germinaci\'on a $15^{\circ}$C es aproximadamente
+ \begin{equation*}
+  -0.5398879 < p_1 - p_2 < 0.0398879
+ \end{equation*}
+ Por otro lado, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P20\_Intervalo\_de\_confianza\_09.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-20
+> n2<-20
+> x1<-10
+> x2<-15
+> p1<-NULL
+> p2<-NULL
+> alfa<-0.05
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  n1 n2   p1   p2     LimInf diferencia    LimSup
+1 20 20 0.75 0.75 -0.5398826      -0.25 0.0398826
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $-0.5399 < p_1 - p_2 < 0.0399$, con lo que obtiene que $p_1 - p_2$ puede que sea negativo o positivo, o lo que es equivalente, no hay una diferencia significativa que diga cu\'al proporci\'on es amyor, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

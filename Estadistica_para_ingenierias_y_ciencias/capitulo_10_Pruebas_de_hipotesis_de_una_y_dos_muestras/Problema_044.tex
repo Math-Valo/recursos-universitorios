@@ -1,0 +1,104 @@
+\begin{enunciado}
+ En el ejercicio 9.88 de la p\'agina 315, utilice la distribuci\'on $t$ para probar la hip\'otesis de que la dieta reduce el peso de un individuo en $4.5$ kilogramos, en promedio, contra la hip\'otesis alternativa de que la diferencia media en peso es menor que $4.5$ kilogramos. Utilice un valor $P$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Usando los datos del ejercicio 9.88, se tiene lo siguiente:
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{ 1, 2 \}$.
+   \item $n_1 = n_2 = 7$.
+   \item $\bar{d} = \frac{249}{70} = 3.5\overline{571428}$.
+   \item $s_D = \frac{\sqrt{339\,843}}{210}
+   \approx2.7760026073817863$.
+  \end{itemize}
+  Adem\'as, por la suposici\'on de normalidad en la distribuci\'on
+  de las diferencias poblacionales pareadas,
+  se sabe que el siguiente estad\'{\i}stico, que se va a requerir,
+  se aproxima a la distribuci\'on mostrada
+  con el respectivo par\'ametro que se indica:
+  \begin{itemize}
+   \item $T = \frac{\overline{D} - d_0}{S_D/\sqrt{n}} \sim t(v)$.
+   \item $v = n_1 - 1 = n_2 - 1 = 6$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_D = \mu_1 - \mu_2 & \geq & 4.5 \\
+   H_1: \mu_D = \mu_1 - \mu_2 &   <  & 4.5
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  En el c\'alculo siguiente, se aprovech\'o que se ten\'{\i}a
+  el valor de $s_D/\sqrt{n}$ en el ejercicio 9.88.
+  \begin{eqnarray*}
+   t & = & \frac{\bar{d} - d_0}{s_D/\sqrt{n}}
+   = \frac{\frac{249}{70} - 4.5}{\frac{\sqrt{48\,549}}{210}}
+   = \frac{
+   \frac{249 - 9(35)}{\cancel{70}} \sqrt{48\,549} 
+   }{
+   \frac{48\,549}{\cancelto{3}{210}}
+   }
+   = -\frac{-66\sqrt{48\,549}}{16\,183}
+   \approx -0.898617859805857047351
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.4, se tiene que:
+  \begin{eqnarray*}
+   P\left( T < t \right) & \approx & P(T < -0.898617859805857047351)
+   \\
+   & = & P(T > 0.898617859805857047351)
+   \approx P(T>0.906) \approx 0.2
+  \end{eqnarray*}
+  N\'otese que $0.898617859805857047351$ a $0.906$
+  es debido a que es, por mucho, el valor cr\'{\i}tico m\'as cercano,
+  ya que en la tabla el valor cr\'{\i}tico pr\'oximo despu\'es
+  de ese es $0.553$.
+ \end{valorp}
+
+ \begin{conclusion}
+  Como el valor $P$ es alto, se concluye
+  que la reducci\'on de peso usando la dieta
+  no es significativamente menor a los $4.5$ kilogramos,
+  y no hay evidencia para contradecir al fabricante si
+  \'el afirma que su dieta reducir\'a en $4.5$ kilogramos el peso
+  de un individuo, en un lapso de 2 semanas.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P05\_Prueba\_de\_dos\_medias\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n1<-7
+> n2<-7
+> mu<-4.5
+> m1<-NULL
+> m2<-NULL
+> m<-249/70
+> sigma1<-NULL
+> sigma2<-NULL
+> s1<-NULL
+> s2<-NULL
+> sD<-sqrt(339843)/210
+> desv.iguales<-NULL
+> alfa<-NULL
+> cola<-'I'
+> par<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba              Tipo  H0 n MediaPareada desv.par error.est
+1      t Muestras pareadas 4.5 7     3.557143 2.776003   1.04923
+  grados.libertad alpha    PValor Estadistico RegionRechazoT RegionRechazoX
+1               6  0.05 0.2017374  -0.8986179   < -1.9431803    < 2.4611562
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

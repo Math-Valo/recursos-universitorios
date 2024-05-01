@@ -1,0 +1,53 @@
+\begin{enunciado}
+ Se lleva a cabo una prueba cl\'{\i}nica para determinar si cierto tipo de inoculaci\'on tiene un efecto sobre la incidencia de cierta enfermedad. Una muestra de $1\,000$ ratas se mantiene en un ambiente controlado durante un periodo de un a\~no y a $500$ de \'estas se les inocul\'o. Del grupo al que no se le dio el f\'armaco, hubo $120$ incidencias de la enfermedad; mientras que $98$ del grupo inoculado la contrajeron. Si $p_1$ es la probabilidad de incidencia de la enfermedad en las ratas no inoculadas y $p_2$ es la probabilidad de incidencia despu\'es de recibir el f\'armaco, calcule un intervalo de confianza de $90\%$ para $p_1 - p_2$.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de la cantidad incidencias de la enfermedad del que se hace referencia en el enunciado, entre cada $n_1$ ratas a las que no se les ha dado f\'armaco y $n_2$ a las que s\'{\i}, respectivamente, entonces $\widehat{P}_1 = X_1/n_1$ y $\widehat{P}_2 = X_2/n_2$ estiman a $p_1$ y $p_2$, respectivamente, entonces, del enunciado se tienen los siguientes datos:
+ \begin{itemize}
+  \item $n_1 = n_2 = 500$.
+  \item $x_1 = 120$ y $x_2 = 98$.
+  \item $\alpha = 0.1$
+ \end{itemize}
+ por lo que $\hat{p}_1$ y $\hat{p}_2$, las proporciones de \'exito muestrales, y $\hat{q}_1$ y $\hat{q}_2$ valen:
+ \begin{itemize}
+  \item $\hat{p}_1 = \frac{120}{500} = \frac{6}{25} = 0.24$ y $\hat{p}_2 = \frac{98}{500} = \frac{49}{250} = 0.196$; y,
+  \item $\hat{q}_1 = 1 - \frac{6}{25} = \frac{19}{25} = 0.76$ y $\hat{q}_2 = 1 - \frac{201}{250} = 0.804$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p_1 - p_2$, entonces se requiere del valor $z_{\alpha/2} = z_{0.05}$, el cual se calcul\'o en el ejercicio 9.30 y su aproximaci\'on es de $1.645$, aunque, en R, se puede considerar con mayor precisi\'on $1.644853626951$.
+ \par 
+ Ya que se busca un intervalo para la diferencia de proporciones de experimentos binomiales en donde el tama\~no de la muestra es grande y se tiene que $n_1\hat{p}_1$, $n_1\hat{q}_1$, $n_2\hat{p}_2$ y $n_2\hat{q}_2$ son todos mayores a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \left( \hat{p}_1 - \hat{p}_2 \right) - z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} < p_1 - p_2 < \left( \hat{p}_1 - \hat{p}_2 \right) + z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \left( \hat{p}_1 - \hat{p}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} & = & ( 0.24 - 0.196 ) \pm 1.645\sqrt{\frac{(6/25)(19/25)}{500} + \frac{(49/250)(201/250)}{500}} \\
+  & = & 0.044 \pm 1.645\sqrt{\frac{11\,400 + 9\,849}{250^2(500)}} = 0.044 \pm 1.645\left( \frac{\sqrt{21\,249}\sqrt{5}}{250(50)} \right) \\
+  & = & 0.044 \pm \frac{329\sqrt{106\,245}}{2\,500\,000} = 0.044 \pm \frac{987\sqrt{11\,805}}{2\,500\,000} \\
+  & = & 0.044 \pm 0.0003948\sqrt{11\,805} \approx 0.044 \pm 0.0424895342
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $90\%$ para $p_1 - p_2$ es aproximadamente
+ \begin{equation*}
+  0.00110465751 < p_1 - p_2 < 0.086895322
+ \end{equation*}
+ Finalmente, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P20\_Intervalo\_de\_confianza\_09.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-500
+> n2<-500
+> x1<-120
+> x2<-98
+> p1<-NULL
+> p2<-NULL
+> alfa<-0.1
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+   n1  n2    p1    p2    LimInf diferencia    LimSup
+1 500 500 0.196 0.196 0.0011085      0.044 0.0868915
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $90\%$ es $0.0011 < p_1 - p_2 < 0.0869$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

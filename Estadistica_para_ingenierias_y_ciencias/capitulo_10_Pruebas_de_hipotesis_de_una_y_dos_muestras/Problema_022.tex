@@ -1,0 +1,65 @@
+\begin{enunciado}
+ La estatura promedio de mujeres en el grupo de primer a\~no de cierta universidad es de $162.5$ cent\'{\i}metros con una desviaci\'on est\'andar de $6.9$ cent\'{\i}metros. ¿Hay alguna raz\'on para creer que hay un cambio en la estatura promedio, si una muestra aleatoria de $50$ mujeres en el grupo actual de primer a\~no tiene una altura promedio de $165.2$ cent\'{\i}metros? Utilice un valor $P$ en su conclusi\'on. Suponga que la desviaci\'on est\'andar permanece constante.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n = 50$.
+   \item $\bar{x} = 162.5$.
+   \item $\sigma = 6.9$.
+  \end{itemize}
+  Adem\'as, por el teorema del l\'{\i}mite central, como $n \geq 30$, se puede aproximar la variable aleatoria de la media muestral a una normal, y usar el estad\'{\i}stico siguiente:
+  \begin{itemize}
+   \item $\overline{X} \sim n\left( \mu , \sigma/\sqrt{n} \right)$.
+   \item $Z = \frac{\overline{X} - \mu}{\sigma/\sqrt{n}}
+   \sim n(0,1)$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu & = & 162.5 \\
+   H_1: \mu & \neq & 162.5
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   z = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}} = \frac{165.2-162.5}{6.9/\sqrt{50}} = \frac{2.7(5)\sqrt{2}}{6.9} = \frac{135\sqrt{2}}{69} = \frac{45\sqrt{2}}{23} \approx 2.766939578556
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.3, se tiene que:
+  \begin{equation*}
+   P(|Z| > |z|) \approx 2P(Z < -2.77) \approx 2(0.0028) = 0.0056
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  El valor $P$ es peque\~no, lo cual es evidencia suficiente para rechazar la hip\'otesis nula de que la estatura promedio de mujeres de primer a\~no en la universidad se mantiene en $162.5\,$cm y concluir a favor de que ha cambiado la estatura de estas mujeres.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo \texttt{P03\_Prueba\_de\_una\_media\_01.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n<-50
+> mu<-162.5
+> m<-165.2
+> desv<-6.9
+> pobl<-TRUE
+> alfa<-NULL
+> cola<-'D'
+> val<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba    H0  n MediaMuestral desv.est error.est alpha    PValor Estadistico
+1      Z 162.5 50         165.2      6.9 0.9758074  0.05 0.0056585     2.76694
+             RegionRechazoZ                 RegionRechazoX
+1 < -1.959964  y > 1.959964 < 160.5874527  y > 164.4125473
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

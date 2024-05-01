@@ -1,0 +1,53 @@
+\begin{enunciado}
+ En el art\'{\i}culo del peri\'odico al que se hace referencia en el ejercicio 9.57, $32\%$ de los $1\,600$ adultos encuestados dijeron que el programa espacial estadounidense deber\'{\i}a enfatizar la exploraci\'on cient\'{\i}fica. ¿Qu\'e tan grande se necesita que sea una muestra de adultos en la encuesta si se desea tener una confianza de $95\%$ de que el porcentaje estimado est\'e dentro de $2\%$ del porcentaje real?
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.57, pero cambiando ahora el significado de los casos de \'exito como los adultos estadounidense que dijeron que el programa deber\'{\i}a enfatizar la exploraci\'on cient\'{\i}fica y a\~nadiendo el error m\'aximo en el que se debe encontrar $\hat{p}$ para estimar la proporci\'on, se tiene lo siguiente:
+ \begin{itemize}
+  \item $n=1600$ entrevistados previamente.
+  \item $\hat{p} = 32\%$, proporci\'on previa de \'exitos.
+  \item $\hat{q} = 1-\hat{p} = 68\%$, proporci\'on previa de fracasos.
+  \item $\alpha=0.05$.
+  \item $z_{\alpha/2} = 1.96$, seg\'un el libro, y $z_{\alpha/2} = 1.95996398454$, con la aproximaci\'on realizada en R.
+  \item $e=0.02$.
+ \end{itemize}
+ Entonces, como $\hat{p}$ estima a $p$ y hay una muestra previa, se usa el siguiente resultado:
+ \begin{equation*}
+  n = \left\lceil \frac{z_{\alpha/2}^2\hat{p}\hat{q}}{e^2} \right\rceil
+ \end{equation*}
+ por lo tanto, el valor pedido se puede calcular, usando la primera aproximaci\'on de $z_{\alpha/2}$, como
+ \begin{equation*}
+  n = \left\lceil \frac{1.96^2(0.32)(0.68)}{0.02^2} \right\rceil = \left\lceil \frac{(3.8416)(0.2176)}{0.0004} \right\rceil = \lceil 2\,089.8304 \rceil
+ \end{equation*}
+ Por lo tanto, el tama\~no de la muestra buscado es de $n = 2\,090$.
+ \par 
+ Finalmente, usando R, se escribe una rutina para calcular el tama\~no de muestra y se registra en el archivo anexo \texttt{P19\_Tamanyo\_de\_muestra\_2.r}, el cual considera realiza los c\'alculos seg\'un si hubo muestra previa o no, y, en dado caso de que haya habido una muestra previa, calcula el valor de la proporci\'on estimada en caso de no se d\'e el valor directamente de la proporci\'on. A continuaci\'on se muestra el c\'odigo escrito:
+ \begin{verbatim}
+> error<-0.02
+> alfa<-0.05
+> inter<-'D'
+> previo<-TRUE
+> n<-1600
+> x<-NULL
+> p<-0.32
+> if(inter=='D'){
++    zalfa<-qnorm(1-alfa/2)
++ }else{
++    zalfa<-qnorm(1-alfa)
++ }
+> if(previo){
++    if(is.null(p)){
++       p<-x/n
++    }
++ }else{
++    p<-1/2
++ }
+> q<-1-p
+> n<-ceiling((zalfa/error)^2*p*q)
+> n
+[1] 2090
+ \end{verbatim}
+ \vspace{-0.5cm}
+ en donde el \'ultimo valor indica el resultado final del tama\~no de muestra calculado, el cual coincide con el valor anteriormente calculado a mano, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

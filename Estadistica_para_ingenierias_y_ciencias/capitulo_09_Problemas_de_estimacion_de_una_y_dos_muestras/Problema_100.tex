@@ -1,0 +1,25 @@
+\begin{enunciado}
+ Especifique los estimadores del momento para $\alpha$ y $\beta$ para la distribuci\'on gamma.
+\end{enunciado}
+
+\begin{solucion}
+ Por resultado conocido, se sabe que la media y varianza poblacional de una distribici\'on $\Gamma$ con par\'ametros $\alpha$ y $\beta$ son, respectivamente $E(X) = \alpha\beta$ y $E\left( X^2 \right) = \alpha\beta^2$, entonces, si $\widehat{\alpha}$ y $\widehat{\beta}$ son los estimadores por momentos de $\alpha$ y $\beta$, respectivamente, se debe cumplir el siguiente sistema de ecuaciones:
+ \begin{eqnarray*}
+  \widehat{\alpha}\widehat{\beta} & = & \frac{1}{n} \sum_{i=1}^n x_i \\
+  \widehat{ \alpha} \widehat{\beta}^2 & = & \frac{1}{n} \sum_{i=1}^n x_i^2
+ \end{eqnarray*}
+ entonces, dividiendo la segunda ecuaci\'on entre la primera, se obtiene el valor del segundo estimador, que tiene la siguiente expresi\'on:
+ \begin{equation*}
+  \widehat{\beta} = \frac{\sum_{i=1}^n x_i^2}{\sum_{i=1}^n x_i}
+ \end{equation*}
+ y sustituyendo y despejando este valor en la primera ecuaci\'on del sistema de ecuaciones, se obtiene que el segundo estimador tiene la siguiente expresi\'on:
+ \begin{equation*}
+  \widehat{\alpha } = \frac{\left( \sum_{i=1}^n x_i \right)^2}{n\sum_{i=1}^n x_i^2}
+ \end{equation*}
+ En resumen, los estimadores de momentos de $\alpha$ y $\beta$ son:
+ \begin{equation*}
+  \widehat{\alpha} = \frac{\displaystyle{ \left( \sum_{i=1}^n x_i \right)^2 }}{\displaystyle{n\sum_{i=1}^n x_i^2}} \qquad \text{ y  } \qquad
+  \widehat{\beta} = \frac{\displaystyle{ \sum_{i=1}^n x_i^2 }}{\displaystyle{ \sum_{i=1}^n x_i }}  
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,23 @@
+\begin{enunciado}
+ Considere el ejercicio 9.1 y $S'^2$, el estimado de $\sigma^2$. El analista a menudo utiliza $S'^2$ en vez de dividir $\displaystyle{ \sum_{i=1}^n \left( X_i - \overline{X} \right)^2 }$ entre $n-1$, los \textit{grados de libertad} en la muestra.
+ \begin{enumerate}
+  \item ¿Cu\'al es el sesgo de $S'^2$?
+  \item Demuestre que el sesgo de $S'^2$ se aproxima a cero conforme $n \to \infty$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Como el sesgo de un estimador, $\widehat{ \Theta }$, que estima el par\'ametro $\theta$, est\'a dado por $E\left( \widehat{ \Theta } - \theta \right)$, donde se sabe, por resultado del ejercicio 9.1, que $E\left( S'^2 \right) = \left[ (n-1)/n \right]\sigma^2$ y, al ser un valor determinado, que $E(\sigma^2)=\sigma^2$, entonces los incisos se pueden resolver como siguen:
+ \begin{enumerate}
+  \item Por la linealidad de la esperanza, se tiene que
+  \begin{equation*}
+   E\left( S'^2 - \sigma^2 \right) = E\left( S'^2 \right) - E(\sigma^2) = \frac{n-1}{n}\sigma^2 - \sigma^2 = \sigma^2\left( \frac{n-1}{n} - 1 \right) = \sigma^2\left( \frac{n-1-n}{n}  \right) = -\frac{\sigma^2}{n}
+  \end{equation*}
+
+  \item Dado que el sesgo de $S'^2$ est\'a dado por $-\frac{\sigma^2}{n}$, entonces
+  \begin{equation*}
+   \lim_{n\to\infty} sesgo\left(S'^2\right) = \lim_{n\to\infty} \left( -\frac{\sigma^2}{n} \right) = -\sigma^2 \left( \lim_{n\to\infty} \frac{1}{n} \right) = -\sigma^2 (0) = 0
+  \end{equation*}
+  Q.E.D.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

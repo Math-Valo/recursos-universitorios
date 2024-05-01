@@ -1,0 +1,74 @@
+\begin{enunciado}
+ De acuerdo con un estudio diet\'etico una ingesta alta de sodio se puede relacionar con \'ulceras, c\'ancer estomacal y migra\~na. El requerimiento humano de sal es de tan s\'olo $220$ miligramos diarios, el cual se rebasa en la mayor\'{\i}a de las porciones individuales de cereales listos para comerse. Si una muestra aleatoria de $20$ porciones similares de cierto cereal tiene un contenido medio de $244$ miligramos de sodio y una desviaci\'on est\'andar de $24.5$ miligramos, ¿esto sugiere, en el nivel de significancia de $0.05$, que el contenido promedio de sodio para porciones individuales de tal cereal es mayor que $220$ miligramos? Suponga que la distribuci\'on de contenidos de sodio es normal.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X \sim n(\mu, \sigma)$.
+   \item $n = 20$.
+   \item $\bar{x} = 244$.
+   \item $s = 24.5$.
+  \end{itemize}
+  Por la suposici\'on de normalidad en la distribuci\'on
+  poblacional, se tiene la distribuci\'on siguiente:
+  \begin{itemize}
+   \item $\displaystyle{\frac{\overline{X} - \mu}{S/\sqrt{n}}  \sim t(v) }$.
+   \item $v = n-1 = 19$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu & = & 220 \\
+   H_1: \mu & > & 220
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $a = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.4, se tiene el valor cr\'{\i}tico $t_{\alpha,n-1} = t_{0.05,19} = 1.729$, por lo que la regi\'on de rechazo est\'a dado para $t > 1.729$, donde $t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{equation*}
+   t = \frac{\bar{x}-\mu_0}{s/\sqrt{n}} = \frac{244-220}{24.5/\sqrt{20}} = \frac{24(2)\left(2\sqrt{5}\right)}{49} = \frac{96\sqrt{5}}{49} \approx 4.380867874
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  El contenido promedio de sodio para porciones individuales del cereal es significativamente mayor a los $220$ miligramos.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P03\_Prueba\_de\_una\_media\_01.r}, con los siguientes cambios:
+ \vspace{-0.3cm}
+ \begin{verbatim}
+> n<-20
+> mu<-220
+> m<-244
+> desv<-24.5
+> pobl<-FALSE
+> alfa<-0.05
+> cola<-'S'
+> val<-TRUE
+ \end{verbatim}
+ \vspace{-0.8cm}
+ el programa de R lanza el siguiente resultado:
+ \vspace{-0.3cm}
+ \begin{verbatim}
+  Prueba  H0  n MediaMuestral desv.est error.est alpha    PValor Estadistico
+1      t 220 20           244     24.5  5.478367  0.05 0.0001607    4.380868
+  RegionRechazoT RegionRechazoX     Resultado
+1    > 1.7291328  > 229.4728233 Se rechaza H0
+ \end{verbatim}
+ \vspace{-0.8cm}
+ El cual coincide con los resultados obtenidos, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

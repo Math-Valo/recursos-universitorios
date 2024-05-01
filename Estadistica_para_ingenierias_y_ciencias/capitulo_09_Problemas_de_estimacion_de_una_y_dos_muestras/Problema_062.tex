@@ -1,0 +1,37 @@
+\begin{enunciado}
+ Se lleva a cabo un estudio para estimar el porcentaje de ciudadanos de una ciudad que est\'an a favor de tener su agua fluorada. ¿Qu\'e tan grande se requiere que sea la muestra si se desea tener al menos una confianza de $95\%$ de que nuestra estimaci\'on est\'e dentro del $1\%$ del porcentaje real?
+\end{enunciado}
+
+\begin{solucion}
+ Del enunciado se tiene los siguientes datos:
+ \begin{itemize}
+  \item $\alpha = 0.05$.
+  \item $e = 0.01$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a el tama\~no de muestra para que el error al estimar la proporci\'on est\'e dentro de un margen de error, entonces se requiere del valor $z_{\alpha/2} = z_{0.025}$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, puede considerarse con mayor precisi\'on como $1.95996398454$.
+ \par 
+ Entonces, como no hay una muestra previa para estimar el tama\~no de muestra, se usa el siguiente resultado:
+ \begin{equation*}
+  n = \left\lceil \frac{z_{\alpha/2}^2}{4e^2} \right\rceil = \left\lceil \left( \frac{z_{\alpha/2}}{2e} \right)^2 \right\rceil
+ \end{equation*}
+ por lo tanto, el valor pedido se puede calcular, usando la primera aproximaci\'on de $z_{\alpha/2}$, como
+ \begin{equation*}
+  n = \left\lceil \left( \frac{1.96}{2(0.01)} \right)^2 \right\rceil = \left\lceil \left( 98 \right)^2 \right\rceil = 9\,604
+ \end{equation*}
+ Por lo tanto, el tama\~no de la muestra buscada es de $n=9\,604$.
+ \par 
+ Finalmente, usando R, se puede calcular el tama\~no de la muestra usando la rutina del archivo anexo \texttt{P19\_Tamanyo\_de\_muestra\_2.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+error<-0.01
+alfa<-0.05
+inter<-'D'
+previo<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+[1] 9604
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que coincide con el valor ya calculado. Por lo tanto $n=9\,604$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

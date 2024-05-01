@@ -1,0 +1,324 @@
+\begin{enunciado}
+ \textbf{Prueba de $\mathbf{\sigma^2 = \sigma_0^2}$ para una muestra grande:}
+ Cuando $n \geq 30$ podemos probar la hip\'otesis nula de que $\sigma^2=\sigma_0^2$
+ o $\sigma = \sigma_0$, al calcular
+ \begin{equation*}
+  z = \frac{s - \sigma_0}{\sigma_0/\sqrt{2n}},
+ \end{equation*}
+ que es un valor de una variable aleatoria
+ cuya distribuci\'on de muestreo es aproximadamente normal est\'andar.
+ \begin{enumerate}
+  \item Con referencia al ejemplo 10.5 pruebe,
+  con un nivel de significancia de $0.05$, si $\sigma = 10.0$ a\~nos
+  contra la alternativa de que $\sigma \neq 10.0$ a\~nos.
+  
+  \item Se sospecha que la varianza de la distribuci\'on de distancias
+  en kil\'ometros logrados en $5$ litros de combustible, por un modelo nuevo
+  de autom\'ovil equipado con un motor diesel, es menor que la varianza
+  de la distribuci\'on de distancias lograda por el mismo modelo equipado
+  con un motor de gasolina de seis cilindros, que se sabe es $\sigma^2 = 6.25$.
+  Si $72$ recorridos de prueba en el modelo diesel tienen una varianza de $4.41$,
+  ¿podemos concluir con un nivel de significancia de $0.05$
+  que la varianza de las distancias alcanzadas por el modelo diesel es menor
+  que la del modelo de gasolina?
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Se realizan estos ejercicios siguiendo cada paso manualmente
+ as\'{\i} como tambi\'en usando el c\'odigo registrado en el archivo anexo
+ \texttt{P12\_Prueba\_de\_una\_varianza\_03.r}, en R,
+ el cual es una extensi\'on de \texttt{P11\_Prueba\_de\_una\_varianza\_02.r},
+ con las siguientes diferencias:
+ se agrega el valor inicial \texttt{val} para indicar, con \texttt{TRUE},
+ si la poblaci\'on de donde viene la muestra se distribuye normalmente,
+ o \texttt{FALSE} en otro caso,
+ siendo una variable del que se le requiere asignar un valor;
+ se agrega tambi\'en una condici\'on de parada
+ si la distribuci\'on no es normal y el tama\~no de muestra es menor a $30$;
+ en caso de que la poblaci\'on se distribuya como una normal,
+ se realizar\'a la prueba por medio del estad\'{\i}stico $\chi^2$,
+ en otro caso se realizar\'a por medio de la aproximaci\'on
+ la distribuci\'on normal cuando la muestra sea de al menos $30$ datos;
+ ahora en la salida se mostrar\'a el nombre de la distribuci\'on usada
+ en el estad\'{\i}stico al principio de la salida, el valor \texttt{grados} aparecer\'a \'unicamente al usar el estad\'{\i}stico
+ con distribuci\'on $\chi^2$, y cuando se use el estad\'{\i}stico
+ con distribuci\'on normal, la hip\'otesis nula indicar\'a el valor
+ de la desviaci\'on est\'andar poblacional y se renombrar\'an
+ tanto la salida \texttt{RegionRechazoJi} por \texttt{RegionRechazoZ},
+ como \texttt{var.muestral} por \texttt{desv.muestral}
+ ahora mostrar la desviaci\'on est\'andar muestral.
+ El c\'odigo se muestra a continuaci\'on junto con el resultado
+ del problema 69, en donde se advirti\'o que no se sab\'{\i}a
+ si la poblaci\'on de donde vino la muestra se distribu\'{\i}a normalmente,
+ mostrando as\'{\i} el resultado con el estad\'{\i}stico
+ que aproxima a la normal:
+ \begin{verbatim}
+> n<-64
+> sigma2<-4.2
+> s2<-4.25
+> alfa<-NULL
+> cola<-'D'
+> val<-FALSE
+> if(!val & n < 30){
++   stop("Se requiere normalidad o muestras grandes")
++ }
+> TestVar<-function(n,varP,varM,alfa=0.05,colas='D',val){
++   if(val){
++     v<-n-1
++     r<-data.frame(Distr="Chi Cuadrada",
++                   n=n,
++                   H0=varP,
++                   var.muestral=varM,
++                   grados=v)
++     if(n<2){
++       r$error.est<-NA
++       r$alpha<-alfa
++       r$Pvalor<-NA
++       r$estadistico<-NA
++       r$RegionRechazoJi<-NA
++       r$RegionRechazoX<-NA
++     }else{
++       error<-varP/v
++       estadistico<-varM*v/varP
++       r$error.est<-round(error,7)
++       r$alpha<-alfa
++       if(colas=='I'){
++         criticojiL<-qchisq(alfa,v)
++         criticoXL<-criticojiL*error
++         r$PValor<-round(pchisq(estadistico,v),7)
++         r$Estadistico<-estadistico
++         r$RegionRechazoJi<-paste("<",round(criticojiL,7))
++         r$RegionRechazoX<-paste("<",round(criticoXL,7))
++       }else{
++         if (colas=='S'){
++           criticojiU<-qchisq(alfa,v,lower.tail=F)
++           criticoXU<-criticojiU*error
++           r$PValor<-round(pchisq(estadistico,v,lower.tail=F),7)
++           r$Estadistico<-estadistico
++           r$RegionRechazoJi<-paste(">",round(criticojiU,7))
++           r$RegionRechazoX<-paste(">",round(criticoXU,7))
++         }else{
++           criticojiU<-round(qchisq(alfa/2,v,lower.tail=F),7)
++           criticoXU<-round(criticojiU*error,7)
++           criticojiL<-round(qchisq(alfa/2,v),7)
++           criticoXL<-round(criticojiL*error,7)
++           pvalor<-round(pchisq(estadistico,v),7)
++           r$PValor<-ifelse(varM<varP,2*pvalor,2*(1-pvalor))
++           r$Estadistico<-estadistico
++           r$RegionRechazoJi<-paste("<",criticojiL,7,"y >",criticojiU)
++           r$RegionRechazoX<-paste("<",criticoXL,7,"y >",criticoXU)
++         }
++       }
++       return(r)
++     }
++   }else{
++     desvM<-sqrt(varM)
++     desvP<-sqrt(varP)
++     error<-round(desvP/sqrt(2*n),7)
++     estadistico<-(desvM-desvP)/error
++     r<-data.frame(Distr="Normal",
++                   n=n,
++                   H0=desvP,
++                   desv.muestral=desvM,
++                   error.est=error,
++                   alpha=alfa
++                   )
++     pvalor<-round(pnorm(estadistico),7)
++     if(colas=='D'){
++      criticoZ<-round(qnorm(alfa/2,lower.tail = F),7)
++      criticoX<-round(criticoZ*error,7)
++      r$PValor<-ifelse(varM<varP, 2*pvalor, 2*(1-pvalor))
++      r$Estadistico<-estadistico
++      r$RegionRechazoZ<-paste("<",-criticoZ,"y >",criticoZ)
++      r$RegionRechazoX<-paste("<",desvP-criticoX,"y >",desvP+criticoX)
++     }else{
++       criticoZ<-round(qnorm(alfa,lower.tail = F),7)
++       criticoX<-round(criticoZ*error,7)
++       if(colas=='S'){
++         r$PValor<-(1-pvalor)
++         r$Estadistico<-estadistico
++         r$RegionRechazoZ<-paste(">",criticoZ)
++         r$RegionRechazoX<-paste(">",desvP+criticoX)
++       }else{
++         r$PValor<-pvalor
++         r$Estadistico<-estadistico
++         r$RegionRechazoZ<-paste("<",-criticoZ)
++         r$RegionRechazoX<-paste("<",desvP-criticoX)
++       }
++     }
++   }
++   return(r)
++ }
+> if(is.null(alfa)){
++   Test<-TestVar(n,sigma2,s2,colas=cola,val=val)
++ }else{
++   Test<-TestVar(n,sigma2,s2,alfa=alfa,colas=cola,val=val)
++   resultado<-ifelse(Test[,"PValor"]>=alfa,
++                     "No se rechaza H0","Se rechaza H0")
++   Test$Resultado<-resultado
++   Test$Resultado[is.na(Test$Resultado)]<-"Pocos datos"
++ }
+> Test
+   Distr  n      H0 desv.muestral error.est alpha    PValor Estadistico
+1 Normal 64 2.04939      2.061553 0.1811422  0.05 0.9464668  0.06714426
+            RegionRechazoZ                          RegionRechazoX
+1 < -1.959964 y > 1.959964 < 1.69435795319192 y > 2.40442235319192
+ \end{verbatim}
+ Como se puede apreciar, el valor $P$ es realmente alto
+ y no hay de qu\'e preocuparse por errar en la decisi\'on
+ tomada en ese ejercicio.
+ \begin{enumerate}
+  \item El enunciado menciona el ejemplo 10.5
+  pero dicho ejemplo no hace referencia a mediciones de a\~nos,
+  adem\'as de que el tipo de mediciones que se hacen se aleja demasiado de $10$
+  como para siquiera tomarlo en cuenta.
+  Revisando ejercicios y ejemplos pasados, lo m\'as pr\'oximo
+  a lo que sugiere realizar en este inciso es el ejemplo 10.3,
+  aunque en dicho ejemplo ya se est\'a dando la desviaci\'on est\'andar
+  poblacional.
+  Ante esto, lo que se har\'a es resolver el problema con los datos del ejemplo
+  10.3 considerando que la desviaci\'on est\'andar dada en dicho ejemplo
+  corresponde a la muestra y no a la poblacional.
+  \begin{datos}
+   $\phantom{0}$
+   \begin{itemize}
+    \item $n = 100$.
+    \item $\bar{x} = 71.8$.
+    \item $s = 8.9$.
+   \end{itemize}
+  \end{datos}
+
+  \begin{hipotesis}
+   \begin{eqnarray*}
+    H_0: \sigma &  =   & 10.0 \\
+    H_1: \sigma & \neq & 10.0
+   \end{eqnarray*}
+  \end{hipotesis}
+
+  \begin{significancia}
+   $\alpha = 0.05$
+  \end{significancia}
+
+  \begin{region}
+   De la tabla A.3, se tiene el valor cr\'{\i}tico
+   $z_{\alpha/2} = z_{0.025} = -1.96$,
+   por lo que la regi\'on de rechazo est\'a dado para $|z| > |1.96|$,
+   donde $z = \frac{s-\sigma_0}{\sigma_0/\sqrt{2n}}$.
+  \end{region}
+
+  \begin{estadistico}
+   \begin{equation*}
+    z = \frac{s-\sigma_0}{\sigma_0/\sqrt{2n}}
+    = \frac{8.9 - 10}{10/\sqrt{2(100)}}
+    = - \frac{1.1}{\frac{\cancel{10}}{\cancel{10}\sqrt{2}}}
+    = - \frac{11\sqrt{2}}{10} \approx - 1.55563491861
+   \end{equation*}
+  \end{estadistico}
+
+  \begin{decision}
+   No se rechaza $H_0$.
+  \end{decision}
+
+  \begin{conclusion}
+   La prueba no arroja suficiente evidencia para suponer lo contrario
+   a lo supuesto y, por lo tanto, se concluye que la desviaci\'on est\'andar
+   de años de vida en Estados Unidos no es significativamente distinto
+   a $10$ a\~nos.
+  \end{conclusion}
+
+  Finalmente, usando el archivo anexo
+  \texttt{P12\_Prueba\_de\_una\_varianza\_03.r},
+  con los siguientes cambios:
+  \begin{verbatim}
+> n<-100
+> sigma2<-10^2
+> s2<-8.9^2
+> alfa<-0.05
+> cola<-'D'
+> val<-FALSE
+  \end{verbatim}
+  \vspace{-0.5cm}
+  el programa de R lanza el siguiente resultado:
+  \begin{verbatim}
+   Distr   n H0 desv.muestral error.est alpha   PValor Estadistico
+1 Normal 100 10           8.9 0.7071068  0.05 0.119795   -1.555635
+            RegionRechazoZ             RegionRechazoX        Resultado
+1 < -1.959964 y > 1.959964 < 8.6140961 y > 11.3859039 No se rechaza H0
+  \end{verbatim}
+  \vspace{-0.5cm}
+  El cual coincide con los resultados obtenidos.${}_{\square}$
+  
+  \item
+  \begin{datos}
+   $\phantom{0}$
+   \begin{enumerate}
+    \item $n = 72$.
+    \item $s^2 = 4.41$.
+   \end{enumerate}
+  \end{datos}
+
+  \begin{hipotesis}
+   \begin{eqnarray*}
+    H_0: \sigma^2 & = & 6.25 \\
+    H_1: \sigma^2 & < & 6.25
+   \end{eqnarray*}
+  \end{hipotesis}
+
+  \begin{significancia}
+   $\alpha = 0.05$
+  \end{significancia}
+
+  \begin{region}
+   De la tabla A.3, se tiene el valor cr\'{\i}tico
+   $z_{\alpha} = z_{0.05} = -1.645$,
+   por lo que la regi\'on de rechazo est\'a dado para $Z < -1.645$,
+   donde $z = \frac{s-\sigma_0}{\sigma_0/\sqrt{2n}}$.
+  \end{region}
+
+  \begin{estadistico}
+   \begin{equation*}
+    z = \frac{s-\sigma_0}{\sigma_0/\sqrt{2n}}
+    = \frac{\sqrt{4.41} - \sqrt{6.25}}{\sqrt{6.25}/\sqrt{2(72)}}
+    = \frac{2.1 - 2.5}{2.5/\sqrt{144}} 
+    = - \frac{0.4}{2.5/12}
+    = - \frac{4(12)}{25}
+    = - \frac{48}{25} = -1.92
+   \end{equation*}
+  \end{estadistico}
+
+  \begin{decision}
+   Se rechaza $H_0$ a favor de $H_1$.
+  \end{decision}
+
+  \begin{conclusion}
+   Se tiene suficiente evidencia para afirmar
+   con un nivel de significancia $0.05$
+   que, en efecto, la varianza de las distancias alcanzadas por el modelo diesel
+   es menor que la del modelo de gasolina.
+  \end{conclusion}
+
+  Finalmente, usando el archivo anexo
+  \texttt{P12\_Prueba\_de\_una\_varianza\_03.r},
+  con los siguientes cambios:
+  \begin{verbatim}
+> n<-72
+> sigma2<-6.25
+> s2<-4.41
+> alfa<-0.05
+> cola<-'I'
+> val<-FALSE
+  \end{verbatim}
+  \vspace{-0.5cm}
+  el programa de R lanza el siguiente resultado:
+  \begin{verbatim}
+   Distr  n  H0 desv.muestral error.est alpha    PValor Estadistico
+1 Normal 72 2.5           2.1 0.2083333  0.05 0.0274289       -1.92
+  RegionRechazoZ RegionRechazoX     Resultado
+1   < -1.6448536    < 2.1573222 Se rechaza H0
+  \end{verbatim}
+  \vspace{-0.5cm}
+  El cual coincide con los resultados obtenidos,
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

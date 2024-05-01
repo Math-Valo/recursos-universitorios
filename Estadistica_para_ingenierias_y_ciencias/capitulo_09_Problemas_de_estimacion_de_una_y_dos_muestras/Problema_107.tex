@@ -1,0 +1,51 @@
+\begin{enunciado}
+ Se utiliza una m\'aquina para llenar cajas de un producto en una operaci\'on de la l\'{\i}nea de ensamble. Mucho del inter\'es se centra en la variabilidad del n\'umero de onzas del producto en la caja. Se sabe que la desviaci\'on est\'andar en el peso del producto es de $0.3$ onzas. Se realizan mejoras y luego se toma una muestra aleatoria de $20$ cajas y se encuentra que la varianza de la muestra es $0.045$ onzas. Encuentre un intervalo de confianza de $95\%$ en la varianza del peso del producto. Considerando el rango del intervalo de confianza, ¿parecer\'{\i}a que el mejoramiento en el proceso increment\'o la calidad en cuanto a variabilidad se refiere? Suponga normalidad en la distribuci\'on del peso del producto.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del peso del producto en la caja llenada por la m\'aquina, medido en onzas, entonces, del enunciado, se tiene el siguiente resumen de datos:
+ \begin{itemize}
+  \item $X \sim n(\mu, \sigma)$.
+  \item $\sigma_{\text{previa}} = 0.3$ onzas, y, por lo tanto $\sigma^2_{\text{previa}} = 0.09$ onzas.
+  \item $\sigma^2$, la varianza tras la mejora, es desconocida.
+  \item $n = 20$ cajas.
+  \item $s^2 = 0.045$ onzas.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para la varianza de una poblaci\'on aproximadamente normal, entonces se requerir\'a de los valores $\chi^2_{\alpha/2,n-1} = \chi^2_{0.025,19}$ y $\chi^2_{1-\alpha/2,n-1} = \chi^2_{0.975,19}$, los cuales se calcularon en el ejercicio 9.73 y sus aproximaciones son de $\chi^2_{0.025,19} = 32.852$ y $\chi^2_{0.975,19} = 8.907$, aunque, con R, se pueden considerar con mayor precisi\'on como $\chi^2_{0.025,19} = 32.8523268617297$ y $\chi^2_{0.975,19} = 8.90651648198797$.
+ \par 
+ Ya que se busca un intervalo de confianza para la varianza de una poblaci\'on que se distribuye normalmente usando la varianza muestral como estimador, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}} < \sigma^2 < \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerandos las primeras aproximaciones de $\chi^2_{\alpha/2,n-1}$ y $\chi^2_{1-\alpha/2,n-1}$ del libro, se tiene los c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}} = \frac{(20-1)0.045}{32.852} = \frac{19(45)}{32\,852} = \frac{855}{32\,852} \approx 0.02602581273590648971
+ \end{equation*}
+ y
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}} = \frac{(20-1)0.045}{8.907} = \frac{19(45)}{8\,907} = \frac{19(15)}{2\,969} = \frac{285}{2\,969} \approx 0.09599191647019198383
+ \end{equation*}
+ Por lo tanto, el intervalo de confianza de $95\%$ para la varianza del peso en las cajas llenadas por la m\'aquina, es aproximadamente
+ \begin{equation*}
+  0.02602581273590648971 < \sigma^2 < 0.09599191647019198383
+ \end{equation*}
+ Por otro lado, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P22\_Intervalo\_de\_confianza\_11.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n<-20
+> var<-0.045
+> desv.est<-NULL
+> alfa<-0.05
+> tipoInterv<-"var"
+> inter<-'D'
+> val<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  Estimando  n    LimInf estimador    LimSup
+1       var 20 0.0260256     0.045 0.0959971
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $0.26 < \sigma^2 < 0.096$, por lo tanto, como el intervalo de confianza contiene incluso valores mayores que $0.09$, no hay pruebas suficientes que indiquen que el mejoramiento en el proceso increment\'o la calidad en cuanto a variabilidad se refiere, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

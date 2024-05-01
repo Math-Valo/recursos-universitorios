@@ -1,0 +1,48 @@
+\begin{enunciado}
+ De acuerdo con el \textit{Roanoke Times} (16 de marzo de 1997), la cadena McDonald's vendi\'o $42.1\%$ del mercado de hamburguesas. Una muestra aleatoria de $75$ hamburguesas vendidas tiene como resultado que $28$ de ellas fueron vendidas por McDonald's. Utilice el material de la secci\'on 9.9 para determinar si esta informaci\'on informaci\'on apoya la afirmaci\'on del \textit{Roanoke Times}.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X$ la variable aleatoria del n\'umero de hamburguesas que vende McDonald's, de entre un  total de $n$ de hamburguesas vendidas, entonces $\widehat{P} = X/n$ es un estad\'{\i}stico de proporci\'on de un experimento binomial que aproxima el valor de $p$, la proporci\'on total de hamburguesas vendidas por McDonalds en el mercado de las hamburguesas, entonces, del enunciado, se tienen los siguientes datos obtenidos de una muestra:
+ \begin{itemize}
+  \item $n = 75$.
+  \item $x = 28$.
+ \end{itemize}
+ por lo que $\hat{p}$, la proporci\'on de \'exitos en la muestra, y $\hat{q} = 1 - \hat{p}$ est\'an dados por:
+ \begin{itemize}
+  \item $\hat{p} = \frac{x}{n} = \frac{28}{75} = 0.37\overline{3}$.
+  \item $\hat{q} = 1 - \hat{p} = 1 - \frac{28}{75} = \frac{47}{75} = 0.62\overline{6}$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p$, entonces se requiere del valor de $\alpha$, del nivel de confianza, y del valor de $z_{\alpha/ 2}$. Como no hay algo que indique lo que es peor entre equivocarse en un intervalo que contenga al porcentaje que se desea verificar cuando no es cierto o equivocarse en un intervalo que no contenga al valor cuando s\'{\i} sea cierta la afirmaci\'on, entonces se tomar\'a un valor de nivel de confianza est\'andar de $\alpha = 0.05$. Entonces, $z_{\alpha/2} = z_{0.025}$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+ \par
+ Ya que se busca un intervalo de confianza para la proporci\'on de un experimento binomial en donde el tama\~no de muestra es grande y se tiene que tanto $n\hat{p}$ como $n\hat{q}$ es mayor que o igual a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \hat{p} - z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} < p < \hat{p} + z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} & = & \frac{28}{75} \pm 1.96\sqrt{\frac{\left( 28/75 \right)\left( 47/75 \right)}{75}} = \frac{28}{75} \pm 1.96\left( \frac{\sqrt{28(47)}\sqrt{3}}{75(15)} \right) \\
+  & = & \frac{28}{75} \pm \frac{49(2)\sqrt{987}}{25(1\,125)} = \frac{28}{75} \pm \frac{98\sqrt{987}}{28\,125} \\
+  & = & 0.37\overline{3} \pm 0.00348\overline{4}\sqrt{987} \approx 0.37\overline{3} \pm 0.10946924452236
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $95\%$ de la proporci\'on de ventas hamburguesas hechas por McDonald's en el mercado de las hamburguesas es aproximadamente:
+ \begin{equation*}
+  0.2638640888109730984 < p < 0.4828025778556935692
+ \end{equation*}
+ Por otro lado, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P17\_Intervalo\_de\_confianza\_08.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n<-75
+> x<-28
+> p<-NULL
+> alfa<-0.05
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+     LimInf Proporción    LimSup
+1 0.2638661  0.3733333 0.4828006
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo del $95\%$ es $0.2639 < p < 0.4828$, luego entonces, como el intervalo de confianza contiene el valor de $0.421$, entonces la informaci\'on obtenido permite apoyar, con $95\%$ de confianza, la afirmaci\'on de \textit{Roanoke Times} de que la cadena McDonald's vende $42.1\%$ del mercado de hamburguesas, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

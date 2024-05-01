@@ -1,0 +1,51 @@
+\begin{enunciado}
+ Una muestra aleatoria de 12 graduadas de cierta escuela secretarial teclearon un promedio de 79.3 palabras por minuto, con una desviaci\'on est\'andar de 7.8 palabras por minuto. Suponiendo una distribuci\'on normal para el n\'umero de palabras que se teclea por minuto, encuentre un intervalo de confianza de $95\%$ para el n\'umero promedio de palabras tecleadas por todas las graduadas de esta escuela.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de la cantidad de palabras que teclean por minuto las graduadas de la escuela secretarial, entonces se tiene los siguientes datos:
+ \begin{itemize}
+  \item $X\sim\text{normal}(\mu,\sigma)$.
+  \item $\mu$ desconocida.
+  \item $\sigma$ desconocida.
+  \item $n=12$.
+  \item $\bar{x}=79.3$.
+  \item $s=7.8$.
+  \item $\alpha=0.05$.
+ \end{itemize}
+ Dado que se desconoce la desviaci\'on est\'andar poblacional y la muestra no es lo suficientemente grande, se requerir\'a del valor $t_{\alpha/2,n-1} = t_{0.025,11}$. De la tabla A.4 se tiene que $t_{0.025,11} = 2.201$, mientras que, usando el software estad\'{\i}stico R, se obtiene un valor m\'as preciso con los siguientes comandos:
+ \begin{verbatim}
+>options(digits=22)
+>qt(0.025,11,lower.tail=F)
+[1] 2.200985160091639691871
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $2.20098516$.
+ \par 
+ Dado que se desea calcular un intervalo de confianza para la media poblacional usando la media muestral, sin conocer la desviaci\'on est\'andar poblacional y con una muestra peque\~na, entonces se debe de usar la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{x} - t_{\alpha/2,n-1}\frac{s}{\sqrt{n}} < \mu < \bar{x} + t_{\alpha/2,n-1}\frac{s}{\sqrt{n}}
+ \end{equation*}
+ \par 
+ Por lo tanto, usando los datos obtenidos, y considerando el valor $t_{\alpha/2,n-1}$ del libro, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{equation*}
+  \bar{x} \pm t_{\alpha/2,n-1}\frac{s}{\sqrt{n}} = 79.3 \pm 2.201\left( \frac{7.8}{\sqrt{12}} \right) = 79.3 \pm \frac{17.1678\sqrt{12}}{12} = 79.3 \pm 1.43065\sqrt{12}
+ \end{equation*}
+ Por lo tanto, el intervalo del $95\%$ de confianza de la media de la cantidad de palabras que teclean por minuto las graduadas de esta escuela es de aproximadamente:
+ \begin{equation*}
+  74.344 < \mu < 84.2559
+ \end{equation*}
+ El c\'alculo del intervalo de confianza usando el valor $t_{\alpha/2,n-1}$ obtenido en R se puede realizar usando el archivo anexo \texttt{P04\_Intervalo\_de\_confianza\_02.r} cambiando los siguientes comandos:
+ \begin{verbatim}
+>n<-12
+>m<-79.3
+>s<-7.8
+>alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el intervalo de confianza
+ \begin{equation*}
+  74.34412 < \mu < 84.25588
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

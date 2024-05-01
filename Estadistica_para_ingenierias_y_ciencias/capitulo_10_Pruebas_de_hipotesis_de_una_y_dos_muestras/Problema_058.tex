@@ -1,0 +1,77 @@
+\begin{enunciado}
+ Se cree que al menos $60\%$ de los residentes de cierta \'area favorecen
+ una demanda de anexi\'on de una ciudad vecina.
+ ¿Qu\'e conclusi\'on extraer\'{\i}a, si s\'olo $110$ en una muestra de $200$ votantes
+ est\'an a favor de la demanda?
+ Utilice un nivel de significancia de $0.05$
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n = 200$.
+   \item $x = 110$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p & \geq & 0.6 \\
+   H_1: p &  <   & 0.6
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.3, se tiene el valor cr\'{\i}tico $z_{\alpha} = z_{0.05} = 1.645$,
+  por lo que la regi\'on de rechazo est\'a dado para $z < -1.645$,
+  donde $z = \frac{x - np}{\sqrt{npq}} 
+  = \frac{\widehat{p} - p}{\sqrt{pq/n}}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{equation*}
+   z = \frac{x - np}{\sqrt{npq}}
+   = \frac{110 - (200)(0.6)}{\sqrt{(200)(0.6)(0.4)}}
+   = \frac{110 - 120}{\sqrt{48}}
+   = - \frac{10}{4\sqrt{3}}
+   = - \frac{5\sqrt{3}}{6}
+   \approx - 1.443375672974
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  No hay pruebas suficientes para refutar la creencia y se puede tomar por cierto
+  que al menos el $60\%$ de los residentes est\'an a favor de la demanda.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo \texttt{P08\_Prueba\_de\_una\_proporcion\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n<-200
+> x<-110
+> p0<-NULL
+> p<-0.6
+> alfa<-0.05
+> cola<-'I'
+> distr<-NULL
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+   distr   p   n   x pMuestral media desv.est alpha    PValor Estadistico
+1 Normal 0.6 200 110      0.55   120 6.928203  0.05 0.0744573   -1.443376
+  RegionRechazoZ RegionRechazoX        Resultado
+1  <= -1.6448536         <= 108 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

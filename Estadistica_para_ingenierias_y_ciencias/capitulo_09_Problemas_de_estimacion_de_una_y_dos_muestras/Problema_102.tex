@@ -1,0 +1,108 @@
+\begin{enunciado}
+ Considere el ejercicio de repaso 9.101. Supongamos que los datos no se han recabado a\'un. Supongamos tambi\'en que los estad\'{\i}sticos previos sugieren que $\sigma_1 = \sigma_2 = \$4000$. Los tama\~nos de las muestras en el ejercicio de repaso 9.101 son suficientes para producir un intervalo de confianza de $95\%$ en $\mu_1 - \mu_2$ que tenga un ancho de s\'olo $\$1000$? Presente el desarrollo completo.
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio $9.101$, pero cambiando algunos valores, seg\'un se indica en el enunciado de este problema, y agregando el error hasta el cual se permite, se tiene los siguientes datos:
+ \begin{itemize}
+  \item $n_1 = n_2 = 300$.
+  \item $\sigma_1 = \sigma_2 = 4\,000$.
+  \item $\alpha = 0.05$.
+  \item $e = 1\,000$.
+ \end{itemize}
+ Como se desea conocer si el tama\~no de muestra, se requerir\'a adem\'as del valor $z_{\alpha/2} = z_{0.025}$, el cual se calcul\'o en el ejercicio $9.5$ y su aproximaci\'on es de $1.96$, aunque, en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+ \par 
+ En el caso de los intervalos  de confianza de la diferencia de dos medias, no se ha visto hasta ahora cu\'al es el tama\~no de error, ni el n\'umero m\'{\i}nimo de muestras para obtener dicho error, por lo que se proceder\'a a obtener primero dichas f\'ormulas.
+ \par 
+ Siguiendo la l\'ogica antes propuesta, hay una confianza de $(1-\alpha)100\%$ de que el error no exceder\'a $K\cdot e.e.\left( \bar{x}_1 - \bar{x}_2 \right)$, donde $e.e.\left( \bar{x}_1 - \bar{x}_2 \right)$ es el error est\'andar en funci\'on del estimador puntual y $K$ es una constante (ya sea $t$ o el punto porcentual normal).
+ \par 
+ Por lo tanto, con una confianza de $(1-\alpha)100\%$, el valor $\bar{x}_1 - \bar{x}_2$ estima $\mu_1 - \mu_2$ con una magnitud de este error seg\'un el caso en el que uno se encuentre.
+ \par 
+ Si la muestra es grande o se sabe que hay una distribuci\'on normal de las poblaciones, y se conozcan las varianzas o desviaciones est\'andar poblacionales, el error est\'a dado por la f\'ormula
+ \begin{equation*}
+  z_{\alpha/2}\sqrt{ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}
+ \end{equation*}
+ En caso de que la muestra sea grande y no se conozcan las varianzas o desviaciones est\'andar poblacionales, el error est\'a dado por:
+ \begin{equation*}
+  z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+ \end{equation*}
+ En el caso de que la muestra sea peque\~na y no se conozcan las varianzas o desviaciones est\'andar poblacionales, pero que se supongan iguales, el error est\'a dado por
+ \begin{equation*}
+  t_{\alpha/2,n_1+n_2-2}s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+ \end{equation*}
+ en donde $s_p$ representa el estimador de la uni\'on de las desviaciones est\'andar y su cuadrado, el estimador de la uni\'on de las varianzas, est\'a dado por:
+ \begin{equation*}
+  S_p^2 = \frac{\left( n_1 - 1 \right)S_1^2 + \left( n_2 - 1 \right)S_2^2}{n_1 + n_2 - 2}
+ \end{equation*}
+ Y, finalmente, si se tiene un caso como el anterior, pero ahora suponiendo que las varianzas o desviaciones est\'andar son distintos, entonces el error est\'a dado por:
+ \begin{equation*}
+  t_{\alpha/2,v}\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+ \end{equation*}
+ en donde $v$ representa los grados de liberta del valor $t$ y est\'a dado por la ecuaci\'on
+ \begin{equation*}
+  v = \left\lceil \frac{\left(s_1^2/n_1 + s_2^2/n_2\right)^2}{\left[ \left( s_1^2/n_1 \right)^2/\left( n_1 - 1 \right) \right] + \left[ \left( s_2^2/n_2 \right)^2/\left( n_2 - 1 \right) \right]} \right\rceil
+ \end{equation*}
+ N\'otese que cuando las muestras son peque\~nas, se requiere el valor de $t$, cuyos grados de libertad dependen del tama\~no de la muestra, por lo tanto, si se desea calcular un tama\~no de muestra m\'{\i}nimo para asegurar que el estimador no superar\'a un valor de error dado, entonces se va a suponer que la muestra es lo suficientemente grande, m\'as a\'un, para simplificar cuentas, se va a suponer que los tama\~nos de muestras son iguales, esto es, que $n_1 = n_2 = n$.
+ \par 
+ Por lo tanto, despejando, se tiene con una seguridad del $(1-\alpha)100\%$ que la magnitud del error $e$ no ser\'a superado si el tama\~no de muestra es el menor entero mayor o igual que
+ \begin{equation*}
+  n = 2\left( \frac{z_{\alpha/2} \sigma}{e}  \right)^2
+ \end{equation*}
+ para el caso en que se conocen las desviaciones est\'andar iguales, y
+ \begin{equation*}
+  n = 2\left( \frac{z_{\alpha/2} s}{e}  \right)^2
+ \end{equation*}
+ para el caso de las varianzas est\'andar poblacionales iguales.
+ \par 
+ Por lo tanto, usando los datos obtenidos, considerando la primera aproximaci\'on de $z_{\alpha/2}$, se tiene el c\'alculo del tama\~no del error como sigue:
+ \begin{equation*}
+  z_{\alpha/2}\sqrt{ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} = 1.96\sqrt{\frac{4\,000^2}{300} + \frac{4\,000^2}{300}} = 1.96\left( \frac{4\,000\sqrt{6}}{30} \right) = \frac{784\sqrt{6}}{3} = 261.\overline{3}\sqrt{6} \approx 640.13
+ \end{equation*}
+ Por lo tanto, con el tama\~no de las muestras actuales, se puede asegurar, con $95\%$ que el ancho ser\'a de menos de $\$1\,000$ para el intervalo de confianza para $\mu_1 - \mu_2$.
+ \par 
+ Por otro lado, se puede calcular el tama\~no de muestra m\'{\i}nimo con el c\'alculo siguiente:
+ \begin{equation*}
+  n = \left\lceil 2\left( \frac{z_{\alpha/2} \sigma}{e}  \right)^2 \right\rceil = \left\lceil 2\left( \frac{1.96 (4\,000)}{1000} \right)^2 \right\rceil = \left\lceil 2\left( 7.84 \right)^2 \right\rceil = \left\lceil 2(61.4656) \right\rceil = \lceil 122.9312 \rceil = 123
+ \end{equation*}
+ Por lo tanto, a partir de muestras de $123$ empleados, se tiene que el tama\~no de muestra ser\'a de a lo m\'as $\$1\,000$.
+ \par 
+ Finalmente, se puede obtener en R estos c\'alculos. Como este tipo de ejercicios no son tan comunes, no se crear\'an otros programas, sino que se usar\'an de los que ya se tienen.
+ \par 
+ Para ver la magnitud del error, se usa el la rutina en el archivo \texttt{P13\_Intervalo\_de\_confianza\_04.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-300
+> n2<-300
+> m1<-0
+> m2<-0
+> desv.tipica1<-4000
+> desv.tipica2<-4000
+> alfa<-0.05
+> val<-TRUE
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ N\'otese que como no interesa el intervalo sino \'unicamente el tama\~no, se han dado a las medias muestrales los valores de $\bar{x}_1 = \bar{x}_1 = 0$, as\'{\i}, los l\'{\i}mites del intervalo dar\'an, por s\'{\i} mismos, en valor absoluto, la magnitud del intervalo, y se obtiene lo siguiente:
+ \begin{verbatim}
+   n1  n2 media1 media2    LimInf diferencia   LimSup
+1 300 300      0      0 -640.1216          0 640.1216
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Mientras que el tama\~no de las muestras se pueden obtener al usar el script que se encuentra guardado en el archivo \texttt{P03\_Tamanyo\_de\_muestra\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> error<-1000
+> desv.tipica<-4000
+> alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene un valor final al ejecutar todas las l\'{\i}neas de c\'odigo, sin embargo, hay que cambiar ligeramente esta f\'ormula final a la siguiente:
+ \begin{verbatim}
+> n<-ceiling(2*(zalfa*desv.tipica/error)^2)
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene:
+ \begin{verbatim}
+[1] 123
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene, con un $95\%$ de confianza, que a partir de muestras de $123$ gerentes, se puede asegurar que el intervalo de confianza no supera los $\$1\,000$, por lo tanto, el tama\~no actual no supera una magnitud en el intervalo de los $\$1\,000$, m\'as a\'un, el tama\~no ser\'a de a lo m\'as $640.1$ para la magnitud del intervalo de confianza para $\mu_1 - \mu_2$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

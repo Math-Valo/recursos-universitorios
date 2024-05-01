@@ -1,0 +1,61 @@
+\begin{enunciado}
+ Una empresa de material el\'ectrico fabrica bombillas de luz que tienen una duraci\'on aproximadamente distribuida de forma normal, con una desviaci\'on est\'andar de $40$ horas.
+ Si una muestra de $30$ bombillas tiene una duraci\'on promedio de $780$ horas, encuentre un intervalo de confianza de $96\%$ para la media de la poblaci\'on de todas las bombillas que produce esta empresa.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de la duraci\'on de las bombilas de luz fabricadas en la empresa del enunciado, medido en horas, y $\widehat{X}$ la variable aleatoria de la muestra tomada de $n$ elementos y media muestral $\bar{x}$, y llamando $\alpha$ al nivel de confianza, se tienen los siguientes datos:
+ \begin{itemize}
+  \item $X \sim \text{normal}(\mu, \sigma)$.
+  \item $\mu_X$ es desconocida
+  \item $\sigma_X = 40\,\text{h}$.
+  \item $n = 30$
+  \item $\bar{x} = 780$
+  \item $\alpha = 0.04$
+ \end{itemize}
+ Como la poblaci\'on tiene distribuci\'on normal y se conoce la varianza poblacional, se va usar $z_{\alpha/2} = z_{0.02}$. De la Tabla A.3, en el ap\'endice A del libro, \'este es un valor entre $2.05$ y $2.06$, con mayor aproximidad a $2.05$, que es el que se tomar\'a. Por otro lado, usando en el software estad\'{\i}stico R con los siguientes comandos, se obtiene mayor precisi\'on.
+  \begin{verbatim}
+>options(digits=22)
+>qnorm(0.02,mean = 0, sd = 1, lower.tail = F)
+[1] 2.053748910631822521822
+  \end{verbatim}
+  \vspace{-0.5cm}
+  por lo que tambi\'en se puede considerar, con mayor precisi\'on, como $2.05374891$.
+ \par 
+ Ya que se busca un intervalo de confianza para la media de una poblaci\'on que se distribuye normalmente y se conoce la desviaci\'on est\'andar, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \bar{x} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \bar{x} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando el valor de $z_{\alpha/2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{equation*}
+  \bar{x} \pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}} = 780 \pm 2.05\left( \frac{40}{\sqrt{30}} \right) = 780\pm \frac{82}{\sqrt{30}} = \frac{780\sqrt{30}\pm82}{\sqrt{30}}
+ \end{equation*}
+ Por lo tanto el intervalo de confianza de $96\%$ de la vida media de las bombillas es aproximadamente:
+ \begin{equation*}
+  765.02891676 < \mu < 794.9710832
+ \end{equation*}
+ Si se usa el valor $z_{\alpha/2}$ obtenido en R, se obtienen estos otros c\'alculos de los l\'{\i}mites del intervalo de confianza:
+ \begin{equation*}
+  \bar{x} \pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}} = 780 \pm 2.05374891\left( \frac{40}{\sqrt{30}} \right) = 780\pm \frac{82.1499564}{\sqrt{3}} = \frac{780\sqrt{30}\pm82.1499564}{\sqrt{30}}
+ \end{equation*}
+ Por lo tanto el intervalo de confianza de $96\%$ de la vida media de las bombillas es, con mayor precisi\'on:
+ \begin{equation*}
+  765.001538594 < \mu < 794.9984614
+ \end{equation*}
+ Finalmente, en el software estad\'{\i}stico R se puede calcular el intervalo de confianza directamente con las siguientes l\'{\i}neas de c\'odigo, registradas en el archivo anexo \texttt{P01\_Intervalo\_de\_confianza\_01.r}:
+ \begin{verbatim}
+>n<-30
+>m<-780
+>desv.tipica<-40
+>alfa<-0.04
+>zalfa<-qnorm(1-alfa/2)
+>LL<-round(m-zalfa*desv.tipica/sqrt(n),7)
+>LU<-round(m+zalfa*desv.tipica/sqrt(n),7)
+>LL;LU;
+[1] 765.0015
+[1] 794.9985
+ \end{verbatim}
+ \vspace{-0.5cm}
+ donde las \'ultimas dos l\'{\i}neas indican el l\'{\i}mite inferior y el superior, respectivamente, del intervalo de confianza, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
+

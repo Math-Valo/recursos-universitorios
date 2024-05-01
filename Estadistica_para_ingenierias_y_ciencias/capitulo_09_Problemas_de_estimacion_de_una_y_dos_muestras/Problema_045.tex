@@ -1,0 +1,93 @@
+\begin{enunciado}
+ El gobierno otorga fondos para los departamentos de agricultura de $9$ universidades para probar las capacidades de rendimiento de dos nuevas variedades de trigo. Cada variedad se siembra en parcelas de \'area igual en cada universidad y el rendimiento, en kilogramos por parcela, se registra como sigue:
+ \begin{center}
+  \begin{tabular}{cccccccccc}
+   & \multicolumn{9}{c}{\textbf{Universidad}} \\
+   \cline{2-10}
+   \textbf{Variedad} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+   \hline 
+   1 & $38$ & $23$ & $35$ & $41$ & $44$ & $29$ & $37$ & $31$ & $38$ \\
+   2 & $45$ & $25$ & $31$ & $38$ & $50$ & $33$ & $36$ & $40$ & $43$
+  \end{tabular}
+ \end{center}
+ Encuentre un intervalo de confianza de $95\%$ para la diferencia media entre los rendimientos de las dos variedades, suponiendo que las diferencias de rendimiento se distribuyen de forma aproximadamente normal. Explique por qu\'e en este problema se necesita el pareamiento.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias del rendimiento, en kilogramos por parcela, de las nuevas variedades de trigo, 1 y 2, respectivamente, entonces, del enunciado, se tiene el siguiente resumen de datos:
+ \begin{itemize}
+  \item $X_i \sim n(\mu_i, \sigma_i)$, para cada $i \in \{ 1, 2 \}$.
+  \item $\mu_i$ y $\sigma_i$ son desconocidos, para cada $i \in \{ 1, 2 \}$.
+  \item $n_1 = n_2 = 9$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Dado que las unidades experimentales, es decir las parcelas de igual \'area, son homog\'eneas, ya que cada una pertenece a una universidad diferente, y cada unidad experimenta ambas condiciones poblacionales, es decir se siembran ambas variedades de trigo en cada parcela, entonces no hay independencia entre las muestras y se reduce la varianza del error experimental de las observaciones pareadas, es decir la varianza de la diferencia $X_2 - X_1$. La diferencia entre el rendimiento de la variedad 1 y la variedad 2 de trigo, en cada universidad, está dado en la siguiente tabla, en donde se est\'a tomando $D = X_2 - X_1$ y $d_i = x_{2i} - x_{1i}$.
+ \begin{center}
+  \begin{tabular}{cccc}
+   \textbf{Universidad} & \textbf{Rendimiento de la variedad 1} & \textbf{Rendimiento de la variedad 2} & $d_i$ \\
+   \hline 
+   1 & $38$ & $45$ & $\phantom{-}7$ \\
+   2 & $23$ & $25$ & $\phantom{-}2$ \\
+   3 & $35$ & $31$ & $-4$ \\
+   4 & $41$ & $38$ & $-3$ \\
+   5 & $44$ & $50$ & $\phantom{-}6$ \\
+   6 & $29$ & $33$ & $\phantom{-}4$ \\
+   7 & $37$ & $36$ & $-1$ \\
+   8 & $31$ & $40$ & $\phantom{-}9$ \\
+   9 & $38$ & $43$ & $\phantom{-}5$
+  \end{tabular}
+ \end{center}
+ Por lo que la media muestral de las observaciones pareadas est\'a dada por:
+ \begin{equation*}
+  \bar{d} = \frac{7 + 2 + (-4) + (-3) + 6 + 4 + (-1) + 9 + 5}{9} = \frac{25}{9} = 2.\overline{7}
+ \end{equation*}
+ con lo que se procede a calcular la varianza muestral, usando el Teorema 8.1, como sigue:
+ \begin{eqnarray*}
+  s_d^2 & = & \frac{1}{n(n-1)} \left[ n \sum_{i=1}^n X_i^2 - \left( \sum_{i=1}^n X_i \right)^2 \right] \\
+  & = & \frac{1}{9(8)} \left\{ 9\left[7^2 + 2^2+ (-4)^2 + (-3)^2 + 6^2 + 4^2 + (-1)^2 + 9^2 + 5^2 \right] - 25^2 \right\} \\
+  & = & \frac{237}{8} - \frac{625}{72} = \frac{2\,133 - 625}{72} = \frac{1\,508}{72} \\
+  & = & \frac{377}{18} = 20.9\overline{4}
+ \end{eqnarray*}
+ y, por lo tanto, la desviaci\'on est\'andar muestral se calcula como sigue:
+ \begin{equation*}
+  s_d = \sqrt{s_d^2} = \sqrt{\frac{377}{18}} = \frac{\sqrt{377}\sqrt{2}}{6} = \frac{\sqrt{754}}{6} \approx 4.57651
+ \end{equation*}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para $\mu_D = \mu_2 - \mu_1$, para observaciones pareadas, entonces se requerir\'a del valor $t_{\alpha/2,n-1} = t_{0.025,8}$. De la Tabla A.4, se tiene que  $t_{0.025,8} = 2.306$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,8,lower.tail=F)
+[1] 2.306004135204166249906
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo uqe tambi\'en se puede considerar con m\'as precisi\'on como $2.3060041352$. 
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales pareadas usando como estimador la media muestral de las diferencias de datos pareados en una muestra peque\~na, en donde se desconoce la desviaci\'on est\'andar poblacional pero suponiendo que las poblaciones se distribuyen de forma aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{d} - t_{\alpha/2,n-1} \frac{s_d}{\sqrt{n}} < \mu_D < \bar{d} + t_{\alpha/2,n-1} \frac{s_d}{\sqrt{n}}
+ \end{equation*}
+ en donde $\mu_D = \mu_2 - \mu_1$.
+ Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n-1}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  \bar{d} \pm t_{\alpha/2,n-1} \frac{s_d}{\sqrt{n}} & = & 2.\overline{7} \pm (2.306)\left( \frac{\sqrt{754}/6}{\sqrt{9}} \right) = 2.\overline{7} \pm \frac{2.306\sqrt{754}}{18} = 2.\overline{7} \pm \frac{1\,153\sqrt{754}}{9\,000} \\
+  & \approx & 2.\overline{7} \pm  3.51781
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza es de aproximadamente:
+ \begin{equation*}
+  -0.74003296468 < \mu_D < 6.2955885202358
+ \end{equation*}
+ Finalmente, en R, se puede calcular el intervalo de confianza de las observaciones pareadas cambiando los siguientes comandos en el archivo anexo \texttt{P16\_Intervalo\_de\_confianza\_07.r}, y usando la base de datos \texttt{DB05\_Problema\_45.csv}.
+ \begin{verbatim}
+> datos<-read.csv("DB05_Problema_45.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Rendimiento.kgpp")
+> varSel<-list("Variedad")
+> alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+          variable     LimInf    Media   LimSup
+1 Rendimiento.kgpp -0.7400393 2.777778 6.295595
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $-0.74 < \mu_2 - \mu_1  < 6.295$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

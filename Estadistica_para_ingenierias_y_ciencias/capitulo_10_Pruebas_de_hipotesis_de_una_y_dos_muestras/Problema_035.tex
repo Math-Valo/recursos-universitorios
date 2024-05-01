@@ -1,0 +1,499 @@
+\begin{enunciado}
+ Para indagar si un nuevo suero frena el desarrollo de la leucemia,
+ se seleccionan $9$ ratones,
+ todos con una etapa avanzada de la enfermedad.
+ Cinco ratones reciben el tratamiento y cuatro no.
+ Los tiempos de supervivencia, en a\~nos, a partir del momento
+ en que comienza el experimento son los siguientes:
+ \begin{center}
+  \begin{tabular}{l|ccccc}
+   Con tratamiento & $2.1$ & $5.3$ & $1.4$ & $4.6$ & $0.9$ \\
+   \hline 
+   Sin tratamiento & $1.9$ & $0.5$ & $2.8$ & $3.1$
+  \end{tabular}
+ \end{center}
+ ¿Se puede decir en el nivel de significancia de $0.05$
+ que el suero es efectivo?
+ Suponga que las dos distribuciones se distribuyen de forma normal
+ con varianzas iguales.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido, se tiene que
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1, 2 \}$.
+   \item $n_1 = 5$ y $n_2 = 4$.
+   \item $\sigma_1^2 = \sigma_2^2$.
+  \end{itemize}
+  Para obtener las medias y desviaciones est\'andar muestrales,
+  se calcula lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^{5} x_{1,i} & = & 2.1 + 5.3 + 1.4 + 4.6 + 0.9 = 14.3 \\
+   \sum_{i=1}^{5} x_{1,i}^2 & = & 2.1^2 + 5.3^2 + 1.4^2 + 4.6^2 + 0.9^2 = 56.43 \\
+   \sum_{i=1}^{4} x_{2,i} & = & 1.9 + 0.5 + 2.8 + 3.1 = 8.3 \\
+   \sum_{i=1}^{4} x_{2,i}^2 & = & 1.9^2 + 0.5^2 + 2.8^2 + 3.1^2 = 21.31
+  \end{eqnarray*}
+  Por lo que el valor de cada media muestral es:
+  \begin{eqnarray*}
+   \bar{x}_1 & = & \frac{1}{5} \sum_{i=1}^5 x_{1,i} = \frac{14.3}{5} = 2.86 \\
+   \bar{x}_2 & = & \frac{1}{4} \sum_{i=1}^4 x_{2,i} = \frac{8.3}{4} = 2.075
+  \end{eqnarray*}
+  y las varianzas muestrales se calculan, usando el teorema 8.1, como sigue:
+  \begin{eqnarray*}
+   s_1^2 & = & \frac{1}{5(4)}\left[ 5\sum_{i=1}^5 x_{1,i}^2 - \left( \sum_{i=1}^5 x_{1,i} \right)^2 \right] = \frac{5(56.43) - 14.3^2}{20} = \frac{282.15 - 204.49}{20} = \frac{77.66}{20} \\
+   & = & \frac{3\,883}{1\,000} = 3.883 \\
+   s_2^2 & = &
+   \frac{1}{4(3)}\left[
+   4\sum_{i=1}^4 x_{2,i}^2 - 
+   \left( \sum_{i=1}^4 x_{2,i} \right)^2
+   \right]
+   = \frac{4(21.31) -  8.3^2}{12} = \frac{85.24 - 68.89}{12}
+   = \frac{16.35}{12} \\
+   & = & \frac{327}{240} = \frac{109}{80} = 1.3625
+  \end{eqnarray*}
+  por lo que el valor de cada desviaci\'on est\'andar muestral es:
+  \begin{eqnarray*}
+   s_1 & = & \sqrt{s_1^2} = \sqrt{\frac{3\,883}{1\,000}} = \frac{\sqrt{3\,883}}{10\sqrt{10}} = \frac{\sqrt{38\,830}}{100} \approx 1.97053292 \\
+   s_2 & = & \sqrt{s_2^2} = \sqrt{\frac{109}{80}} = \frac{\sqrt{109}}{4\sqrt{5}} = \frac{\sqrt{545}}{20} \approx 1.1672617529928752
+  \end{eqnarray*}
+  Por lo tanto, se resume el resto de los datos como sigue:
+  \begin{itemize}
+   \item $\bar{x}_1 = \frac{14.3}{5} = 2.86$ y $\bar{x}_2 = \frac{8.3}{4} = 2.075$.
+   \item $s_1 = \frac{\sqrt{38\,830}}{100} \approx 1.97053292$ y $s_2 = \frac{\sqrt{1090}}{20} \approx 1.1672617529928752$
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_1 - \mu_2 & \leq & 0 \\
+   H_1: \mu_1 - \mu_2 &   >  & 0
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.4, se tiene el valor cr\'{\i}tico
+  $t_{\alpha,n_1+n_2-2} = t_{0.05,7} \approx 1.895$,
+  por lo que la regi\'on de rechazo est\'a dado para $t > 1.895$,
+  donde
+  $t=\frac{\left(\bar{x}_1-\bar{x}_2\right)-d_0}{s_p\sqrt{1/n_1+1/n_2}}$.
+ \end{region}
+
+ \begin{estadistico}
+  Dado que
+  \begin{eqnarray*}
+   s_p^2 & = &
+   \frac{s_1^2\left(n_1-1\right) +s_2^2\left(n_2-1\right)}{n_1+n_2-2}
+   = \frac{\frac{3\,883}{1\,000}(5-1)+\frac{109}{80}(4-1)}{7}
+   = \frac{\frac{15\,532(2) + 327(25)}{2\,000}}{7} \\
+   & = & \frac{31\,064 + 8\,175}{14\,000}
+   = \frac{39\,239}{14\,000}
+   = 2.8027\overline{857142}
+  \end{eqnarray*}
+  entonces
+  \begin{equation*}
+   s_p = \sqrt{s_p^2} = \sqrt{\frac{39\,239}{14\,000}}
+   = \frac{\sqrt{39\,239}\sqrt{35}}{700}
+   = \frac{\sqrt{1\,373\,365}}{700}
+   \approx 1.674152237487891746154                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+  \end{equation*}
+  y
+  \begin{eqnarray*}
+   t & = &
+   \frac{ \left( \bar{x}_1 - \bar{x}_2 \right) - d_0
+   }{
+   s_p \sqrt{ \frac{1}{n_1} + \frac{1}{n_2} }
+   }
+   =
+   \frac{
+   \left( 2.86 - 2.075 \right) - 0
+   }{
+   \frac{\sqrt{1\,373\,365}}{700}\sqrt{\frac{1}{5}+\frac{1}{4}}
+   }
+   = \frac{700(0.785)}{\sqrt{1\,373\,365}\sqrt{\frac{4+5}{20}}}
+   = \frac{549.5}{\sqrt{1\,373\,365}\left( \frac{3}{2\sqrt{5}} \right)}
+   \\
+   & = & \frac{2(549.5)}{3\sqrt{274\,673}}
+   = \frac{1\,099\sqrt{274\,673}}{824\,019}
+   = \frac{157\sqrt{274\,673}}{117\,717}
+   \approx 0.6989859595927896853
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  No hay evidencia suficiente para creer
+  que el nuevo suero aumenta el tiempo de vida de ratones con leucemia,
+  lo que quiere decir que no se puede concluir
+  que el nuevo suero frena el desarrollo de la leucemia,
+  por lo tanto, no se puede decir que el suero sea efectivo.
+ \end{conclusion}
+
+ En el c\'odigo registrado en el archivo anexo
+ \texttt{P06\_Prueba\_de\_dos\_medias\_02.r}, en R,
+ se realiza este procedimiento.
+ El c\'odigo permite modificar los valores iniciales
+ que corresponden a:
+ \texttt{datos}, que guarda los datos de la lectura
+ de un archivo,
+ en este caso se lee el arhivo \texttt{DB02\_Problema\_035.csv},
+ y \'este \'ultimo nombre es el que se modifica 
+ para leer otros archivos;
+ \texttt{varInteres} para indicar el nombre de la columna
+ que corresponden a los datos en la base anterior;
+ \texttt{varSel} para indicar el nombre de la columna
+ en donde se indica a cu\'al muestra corresponde cada dato;
+ \texttt{mu} para el valor de la diferencia de las medias
+ poblacionales supuestas en la hip\'otesis nula;
+ \texttt{desv.iguales} indica si se est\'a suponiendo
+ que las varianzas poblacionales son iguales,
+ con el valor \texttt{TRUE}, o diferentes, con \texttt{FALSE};
+ \texttt{alfa} para el nivel de significancia;
+ \texttt{cola} para indicar si la prueba es de dos colas,
+ con \texttt{'D'}, de cola inferior, con \texttt{'I'},
+ o de cola superior, con \texttt{'S'};
+ adicionalmente, la rutina puede realizar pruebas pareadas
+ con \texttt{par} al darle el valor \texttt{TRUE},
+ que por defecto aparece como \texttt{FALSE}.
+ \par 
+ El programa espera al menos los datos correspondientes
+ a la base de datos, escrito en un archivo \texttt{.csv},
+ con una columna con todos los datos y otra columna
+ para distinguir a cu\'al de los dos tipos de muestra corresponde cada dato; ambos nombres de columnas deben ser indicados;
+ se indica tambi\'en el tipo de prueba (cola izquierda o derecha,
+ o dos colas);
+ adem\'as, se indica si las muestras son o no pareadas;
+ y, finalmente, la diferencia de las medias poblacionales,
+ que corresponde a la hip\'otesis nula $H_0$.
+ No es necesario indicar una suposici\'on acerca de la relaci\'on
+ entre las varianzas poblacionales,
+ pues, de no tener una suposici\'on previa, se calcula
+ una prueba de hip\'otesis para la igualdad de las varianzas
+ poblacionales (que se ve en uno de los apartados que siguen
+ sobre este mismo cap\'{\i}tulo
+ y cuya explicaci\'on, por lo tanto, no se dar\'a
+ sino hasta que se llegue a dicho apartado).
+ Si no hay una instrucci\'on para asignar un valor a $\alpha$
+ o suponer algo acerca de las variancias iguales,
+ entonces sus respectivas variables se les debe asignar el valor
+ \texttt{NULL}.
+ \par 
+ La prueba de hip\'otesis siempre usar\'a un estad\'{\i}stico
+ con distribuci\'on $t$,
+ independientemente de los tama\~nos muestrales.
+ Para ello, se est\'a suponiendo de antemano la normalidad
+ de las poblaciones de las que viene la muestra.
+ \par 
+ Independientemente del tipo de prueba, el resultado muestra lo siguiente:
+ \texttt{Var1} para conocer lo que est\'a midiendo los datos,
+ incluyendo el tipo de unidad que se usa;
+ \texttt{Freq} indica el tama\~no de las unidades experimentales,
+ es decir, la suma de los tama\~nos muestrales en caso de no ser
+ muestras pareadas o el tama\~no de una muestra en el otro caso;
+ \texttt{Poblaciones} que indica, si es \texttt{Pareadas}, 
+ que las poblaciones son dependientes
+ y se est\'a realizando una prueba pareada,
+ o \texttt{Independientes}, en otro caso;
+ \texttt{H0} para indicar el valor propuesto en la hip\'otesis nula
+ de la diferencia de las medias poblacionales;
+ \texttt{n1} y \texttt{n2}, para el tama\~no de cada muestra
+ en caso de ser poblaciones independientes, o \texttt{n},
+ en el caso de que se haga una prueba pareada
+ (que corresponde igual al valor de la frecuencia);
+ \texttt{media1} y \texttt{media2} para indicar las medias
+ muestrales; \texttt{diferencia}, para la diferencia
+ de las medias muestrales;
+ \texttt{desv.est1} y \texttt{desv.est2}, 
+ para las desviaciones est\'andar en pruebas no pareadas,
+ o, en otro caso, \texttt{desv.par}
+ para indicar la desviaci\'on est\'andar muestral de los datos
+ que resultan de restar por parejas los datos de cada muestra
+ seg\'un correspondan a una misma unidad experimental;
+ \texttt{error.est}, para indicar el error est\'andar,
+ que corresponde a la estimaci\'on de la desviaci\'on est\'andar
+ de $\overline{X}_1 - \overline{X}_2$;
+ \texttt{grados} indica los grados de libertad
+ de la distribuci\'on $t$ correspondiente al estad\'{\i}stico
+ de la prueba;
+ \texttt{alfa}, para el nivel de significancia dado,
+ el cual muestra por defecto $0.05$
+ en caso de asignarle \texttt{NULL} a \texttt{alfa};
+ \texttt{PValor}, para el valor $P$, la probabilidad
+ de haber obtenido la diferencia de medias muestrales
+ que se obtuvo suponiendo que la hip\'otesis nula sea cierta;
+ y, \texttt{Estadistico}, para el valor resultante
+ del estad\'{\i}stico de prueba.
+ \par 
+ Adem\'as, tambi\'en se da dos regiones de rechazo:
+ la regi\'on de rechazo para el estad\'{\i}stico
+ y la regi\'on de rechazo para la diferencia de las medias
+ muestrales; adem\'as, las regiones se muestran
+ con una o dos variables seg\'un si es una prueba
+ de una o dos colas, respectivamente.
+ Para el estad\'{\i}stico y para la diferencia de medias
+ muestrales, respectivamente, se muestran las siguientes variables
+ para cada prueba:
+ para la de cola inferior, aparecen las salidas
+ \texttt{RegionRechazoInfT} y \texttt{RegionRechazoInfX};
+ para la de cola superior, aparecen \'unicamente las salidas
+ \texttt{RegionRechazoSupT} y \texttt{RegionRechazoSupX};
+ y, para la de dos colas, aparece \texttt{RegionRechazoInfT}
+ y \texttt{RegionRechazoSupT}, para el estad\'{\i}stico de prueba,
+ y \texttt{RegionRechazoInfX} y \texttt{RegionRechazoSupX},
+ para la diferencia de las medias muestrales.
+ \par 
+ Adem\'as, seg\'un el tipo de prueba, pueden darse
+ los siguientes valores:
+ \texttt{valorPVar} que indica la probabilidad
+ de que las varianzas sean iguales en caso de una prueba
+ no pareada;
+ \texttt{suposicionVar} aparece siempre que aparezca la salida
+ anterior e indica si se est\'a suponiendo
+ que las varianzas son iguales, con \texttt{Var no diferentes},
+ o diferentes, con \texttt{Var diferentes},
+ el cual corresponde a la hip\'otesis dada en los datos de entrada
+ o, en su defecto, se da el veredicto de que son iguales
+ si el valor $P$ de las varianzas es mayor a $\alpha$
+ (que vale $0.05$ si se omite en la entrada),
+ o bien dar el veredicto de que las varianzas son distintas
+ si el valor $P$ de las varianzas es menor a $\alpha$;
+ adem\'as, en el caso de suponer varianzas poblacionales iguales,
+ se da el valor de $s_p$, con la variable \texttt{est.sp},
+ que es el estimador de la desviaci\'on est\'andar poblacional
+ com\'un, $\sigma$, de las distribuciones poblacionales
+ de las que se est\'an obteniendo las muestras, 
+ \'este valor aparece despu\'es de las desviaciones est\'andar
+ muestrales;
+ y, finalmente, \texttt{Resultado} para indicar si se rechaza o no
+ la hip\'otesis nula, que aparece al final de los resultados
+ cuando se asigna un valor a \texttt{alfa}.
+ \par 
+ El c\'odigo junto con el resultado se muestra a continuaci\'on:
+ \begin{verbatim}
+> datos<-read.csv("DB02_Problema_035.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("supervivencia.años")
+> varSel<-c("Registro")
+> mu<-0
+> desv.iguales<-TRUE
+> alfa<-0.05
+> cola<-'S'
+> par<-FALSE
+> w<-data.frame(factor(datos[,varSel]))
+> names(w)<-varSel
+> varBin<-c(varSel)
+> datos<-data.frame(datos,w)
+> if (length(varBin)<1){
++  stop("Debe al menos indicar una variable binaria")
++ }else{
++  sonbinarios<-ifelse(length(table(datos[,varBin]))!=2,1,0)
++ }
+> if (sonbinarios!=0)  stop("La variable no es binaria")
+> valores<-unlist(datos[,c(varInteres)])
+> variables<-factor(rep(varInteres,each=dim(datos)[1]))
+> 
+> agrupaciones<-data.frame(datos[1:dim(datos)[1],varBin])
+> names(agrupaciones)<-varBin
+> datos2<-data.frame(agrupaciones,variable=variables,valor=valores)
+> difMedias<-function(l,mu,cola,alfa=0.05,iguales=NULL,pareadas=FALSE){
++   x<-l[[1]][!is.na(l[[1]])]
++   y<-l[[2]][!is.na(l[[2]])]
++   n1<-length(x)
++   n2<-length(y)
++   m1<-mean(x)
++   m2<-mean(y)
++   sd1<-sd(x)
++   sd2<-sd(y)
++   if ( n1< 2 | n2 < 2){
++      r<-data.frame(H0=mu,Poblaciones=NA,
++                    n1=n1,n2=n2,
++                    media1=m1,media2=m2,
++                    diferencia=m1-m2,
++                    alpha=alfa,
++                    PValor=NA,
++                    valorPMedia=NA,
++                    valorPVar=NA,
++                    varIgual=NA,
++                    Estadistico=NA,
++                    RegionRechazoZ=NA,
++                    RegionRechazoX=NA)
++   }else{
++     if(!pareadas){
++       r1<-var.test(x,y,conf.level=1-alfa)
++       if(is.null(iguales)){
++         varIgual<-(r1$p.value>=alfa)
++       }else{
++         varIgual<-iguales
++       }
++       r2<-t.test(x,y,mu=mu,alternative=cola,conf.level=1-alfa,
++                  var.equal=varIgual)
++       grados<-as.numeric(r2$parameter)
++       r<-data.frame(Poblaciones=TRUE,
++                     H0=mu,
++                     valorPVar=r1$p.value,
++                     suposicionVar=varIgual,
++                     n1=n1, n2=n2,
++                     media1=m1, media2=m2,
++                     diferencia=m1-m2,
++                     desv.est1=sd1,
++                     desv.est2=sd2)
++       if(varIgual){
++         r$est.sp=round(r2$stderr/sqrt(1/n1+1/n2),7)
++         r$error.est=r2$stderr
++         r$grados=grados
++         r$alpha=alfa
++         r$PValor=r2$p.value
++         r$Estadistico=r2$statistic
++         if(cola=="two.sided"){
++           criticot<-round(qt(1-alfa/2,grados),7)
++           criticox<-round(criticot*r2$stderr,7)
++           r$RegionRechazoInfT<--criticot
++           r$RegionRechazoSupT<-criticot
++           r$RegionRechazoInfX<-mu-criticox
++           r$RegionRechazoSupX<-mu+criticox
++         }else{
++           criticot<-round(qt(1-alfa,grados),7)
++           criticox<-round(criticot*r2$stderr,7)
++           if(cola=="less"){
++             r$RegionRechazoInfT<--criticot
++             r$RegionRechazoInfX<-mu-criticox
++           }else{
++             r$RegionRechazoSupT<-criticot
++             r$RegionRechazoSupX<-mu+criticox
++           }
++         }
++       }else{
++         r$error.est=r2$stderr
++         r$grados.libertad=round(grados,0)
++         r$alpha=alfa
++         r$PValor=r2$p.value
++         r$Estadistico=r2$statistic
++         if(cola=="two.sided"){
++           criticot<-round(qt(1-alfa/2,grados),7)
++           criticox<-round(criticot*r2$stderr,7)
++           r$RegionRechazoInfT<--criticot
++           r$RegionRechazoSupT<-criticot
++           r$RegionRechazoInfX<-mu-criticox
++           r$RegionRechazoSupX<-mu+criticox
++         }else{
++           criticot<-round(qt(1-alfa,grados),7)
++           criticox<-round(criticot*r2$stderr,7)
++           if(cola=="less"){
++             r$RegionRechazoInfT<--criticot
++             r$RegionRechazoInfX<-mu-criticox
++           }else{
++             r$RegionRechazoSupT<-criticot
++             r$RegionRechazoSupX<-mu+criticox
++           }
++         }
++       }
++     }else{
++       r1<-t.test(x,y,mu=mu,alternative=cola,conf.level=1-alfa,paired=TRUE)
++       grados<-as.numeric(r1$parameter)
++       r<-data.frame(Poblaciones=FALSE,
++                     H0=mu,
++                     n=n1,
++                     diferencia=m1-m2,
++                     desv.par=sd(x-y),
++                     error.est=r1$stderr,
++                     grados=grados,
++                     alpha=alfa,
++                     PValor=r1$p.value,
++                     Estadistico=r1$statistic)
++       if(cola=="two.sided"){
++         criticot<-round(qt(1-alfa/2,grados),7)
++         criticox<-round(criticot*r1$stderr,7)
++         r$RegionRechazoInfT<--criticot
++         r$RegionRechazoSupT<-criticot
++         r$RegionRechazoInfX<-mu-criticox
++         r$RegionRechazoSupX<-mu+criticox
++       }else{
++         criticot<-round(qt(1-alfa,grados),7)
++         criticox<-round(criticot*r1$stderr,7)
++         if(cola=="less"){
++           r$RegionRechazoInfT<--criticot
++           r$RegionRechazoInfX<-mu-criticox
++         }else{
++           r$RegionRechazoSupT<-criticot
++           r$RegionRechazoSupX<-mu+criticox
++         }
++       }
++     }
++   }
++   return(r)
++ }
+> listaG<-datos2[,c(varBin,"valor")]
+> listaG1<-split(listaG$"valor", listaG[,varBin])
+> if(as.matrix(listaG)[1]==names(listaG1[2])){
++    listaG1=listaG1[c(2,1)]
++ }
+> listaG1<-list(listaG1)
+> names(listaG1)<-varInteres
+> if(cola=='I'){
++    cola<-"less"
++ }else{
++    if(cola=='S'){
++       cola<-"greater"
++    }
++    else{
++       cola<-"two.sided"
++    }
++ }
+> if(is.null(alfa)){
++    rFin<-t(sapply(listaG1,difMedias,mu,cola,iguales=desv.iguales,pareadas=par))
++ }else{
++    rFin<-t(sapply(listaG1,difMedias,mu,cola,alfa=alfa,iguales=desv.iguales,
++                   pareadas=par))
++ }
+> t1<-as.data.frame.table(table(datos2[,c("variable")]))
+> identif<-t1[t1$Freq>0,]
+> d<-dim(rFin)
+> n<-colnames(rFin)
+> rFin<-data.frame(matrix(unlist(rFin),d))
+> names(rFin)<-n
+> rFin<-data.frame(identif,rFin)
+> if(rFin$Poblaciones){
++    rFin<-rFin[with(rFin,n1!=0 | n2!=0),]
++    rFin$Poblaciones<-"Independientes"
++    if(is.null(alfa)){
++      rFin$suposicionVar<-ifelse(rFin$suposicionVar>=0.05,"Var no diferentes",
++                                 "Var diferentes")
++    }else{
++      rFin$suposicionVar<-ifelse(rFin$suposicionVar>=alfa,"Var no diferentes",
++                                 "Var diferentes")
++    }
++ }else{
++    rFin<-rFin[with(rFin,n!=0),]
++    rFin$Freq=rFin$Freq/2
++    rFin$Poblaciones<-"Pareadas"
++ }
+> if(!is.null(alfa)){
++    rFin$Resultado<-ifelse(rFin$PValor>=alfa,
++                           "No se rechaza H0","Se rechaza H0")
++    rFin$Resultado[is.na(rFin$Resultado)]<-"Pocos datos"
++ }
+> rFin
+                Var1 Freq    Poblaciones H0 valorPVar     suposicionVar n1 n2
+1 supervivencia.años    9 Independientes  0 0.4160363 Var no diferentes  5  4
+  media1 media2 diferencia desv.est1 desv.est2   est.sp error.est grados alpha
+1   2.86  2.075      0.785  1.970533  1.167262 1.674152  1.123055      7  0.05
+     PValor Estadistico RegionRechazoSupT RegionRechazoSupX        Resultado
+1 0.2535567    0.698986          1.894579          2.127717 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos,
+ adem\'as de dar m\'as informaci\'on
+ como: el valor $P$ de una prueba de igualdad de varianzas,
+ que refuerza la suposici\'on de que las varianzas son iguales;
+ el error est\'andar;
+ el valor $P$ para del estad\'{\i}stico de prueba;
+ y regiones de rechazo, una para el estad\'{\i}stico de prueba
+ y una para $\bar{x}_1 - \bar{x}_2$,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

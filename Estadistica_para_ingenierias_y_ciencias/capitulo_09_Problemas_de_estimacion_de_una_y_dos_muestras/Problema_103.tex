@@ -1,0 +1,51 @@
+\begin{enunciado}
+ Un sindicato espec\'{\i}fico se preocupa por el notorio ausentismo de sus miembros. El sindicato decidi\'o verificar esto monitoreando una muestra aleatoria de sus miembros. A los l\'{\i}deres del sindicato siempre se les ha reclamado que, en un mes t\'{\i}pico, $95\%$ de sus afiliados est\'an ausentes al menos $10$ horas mensuales. Utilice los datos para responder tal reclamaci\'on. Utilice un l\'{\i}mite de tolerancia unilateral y elija el nivel de confianza de $99\%$. Aseg\'urese de aplicar lo que ya sabe acerca del c\'alculo del l\'{\i}mite de tolerancia. El n\'umero de miembros en esta muestra fue $300$. El n\'umero de horas de ausentismo se registr\'o para cada uno de los $300$ miembros. Los resultados fueron $\bar{x} = 6.5$ horas y $s = 2.5$ horas.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de la cantidad horas de ausentismo de los miembros del sindicato, del enunciado se tienen los siguientes datos:
+ \begin{itemize}
+  \item $n = 300$ miembros.
+  \item $\bar{x} = 6.5\,$hrs.
+  \item $s = 2.5\,$hrs.
+  \item $\gamma = 0.01$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Entonces, como se desea encontrar un l\'{\i}mite de tolerancia unlateral, se requiere encontrar el factor de tolerancia, $k$. De la Tabla A.7, se tiene que $k = 1.868$, mientras que, en R, y el paquete \texttt{tolerance} (que se debe instalar previamente), se obtiene un valor m\'as preciso con los siguientes comandos:
+ \begin{verbatim}
+> library(tolerance)
+> options(digits=22)
+> K.table(300,alpha=0.01,P=0.95,side=1,method=("WBE"))
+$`300`
+                        0.95
+0.99 1.867598654196164220664
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $1.867598654$.
+ \par 
+ Dado que se desea calcular un intervalo de tolerancia unilateral de una variable cuya muestra es lo suficientemente grande, entonces se usa la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{x} + ks
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, y considerando el valor $k$ del libro, se obtiene los siguientes c\'alculos:
+ \begin{equation*}
+  \bar{x} + ks = 6.5 + 1.868(2.5) = 6.5 + 4.67 = 11.17
+ \end{equation*}
+ Por lo tanto, el intervalo de tolerancia unilateral superior indica con el $99\%$ de seguridad que el $95\%$ de los miembros del sindicato se ausentar\'an hasta por $11.17$ horas. El c\'alculo del intervalo de tolerancia usando el valor $k$ obtenido en R se puede realizar usando los siguientes comandos registrados en el archivo \texttt{P11\_Intervalo\_de\_tolerancia\_3.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n<-300
+> m<-6.5
+> desv<-2.5
+> gamma<-0.01
+> alfa<-0.05
+> inter<-'S'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+      LU Media
+1 11.169   6.5
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene, con un $99\%$ de confianza, que el $95\%$ de la poblaci\'on se ausenta hasta por $11.17$ horas. Por lo tanto, la reclamaci\'on es muy v\'alida y hay que tomar decisiones al respecto, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

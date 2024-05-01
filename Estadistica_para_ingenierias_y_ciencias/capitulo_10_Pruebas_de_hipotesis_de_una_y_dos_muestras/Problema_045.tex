@@ -1,0 +1,198 @@
+\begin{enunciado}
+ De acuerdo con informes publicados, el ejercicio bajo condiciones de fatiga altera los mecanismos que determinan el desempe\~no. Se realiz\'o un experimento donde se usaron $15$ estudiantes universitarios hombres, entrenados para realizar un movimiento horizontal continuo del brazo, de derecha a izquierda, desde un microinterruptor hasta una barrera, golpeando sobre la barrera en coincidencia con la llegada de una manecilla del reloj a la posici\'on de las 6 en punto. Se registra el valor absoluto de la diferencia entre el tiempo, en milisegundos, que toma golpear sobre la barrera y el tiempo para que la manecilla alcance la posici\'on de las 6 en punto (500 mseg). Cada participante ejecuta la tarea cinco veces en condiciones sin fatiga y con fatiga, y se registraron las sumas de las diferencias absolutas para las cinco ejecuciones como sigue:
+ \begin{center}
+  \begin{tabular}{ccc}
+   & \multicolumn{2}{c}{\textbf{Diferencias absolutas de tiempo}} \\
+   \hline 
+   \textbf{Sujeto} & $\phantom{000}$\textbf{Sin fatiga}$\phantom{000}$ & $\phantom{000}$\textbf{Con fatiga}$\phantom{000}$ \\
+   \hline 
+   $\phantom{1}1$ & $158$ & $\phantom{1}91$ \\
+   $\phantom{1}2$ & $\phantom{1}92$ & $\phantom{1}59$ \\
+   $\phantom{1}3$ &  $\phantom{1}65$ & $215$ \\
+   $\phantom{1}4$ & $\phantom{1}98$ & $226$ \\
+   $\phantom{1}5$ &  $\phantom{1}33$ & $223$ \\
+   $\phantom{1}6$ & $\phantom{1}89$ & $\phantom{1}91$ \\
+   $\phantom{1}7$ & $148$ & $\phantom{1}92$ \\
+   $\phantom{1}8$ & $\phantom{1}58$ & $177$ \\
+   $\phantom{1}9$ & $142$ & $134$ \\
+   $10$ & $117$ & $116$ \\
+   $11$ & $\phantom{1}74$ & $153$ \\
+   $12$ & $\phantom{1}66$ & $219$ \\
+   $13$ & $109$ & $143$ \\
+   $14$ & $\phantom{1}57$ & $164$ \\
+   $15$ & $\phantom{1}85$ & $100$
+  \end{tabular}
+ \end{center}
+ Un aumento en las diferencias medias absolutas de tiempo cuando la tarea se ejecuta bajo condiciones de fatiga apoyar\'{\i}a la afirmaci\'on de que el ejercicio, en condiciones de fatiga, altera el mecanismo que determina el desempe\~no. Suponiendo de que las poblaciones se distribuyen normalmente, pruebe tal afirmaci\'on.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido, se tiene que
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{ 1, 2 \}$.
+   \item $n_1 = n_2 = 15$.
+  \end{itemize}
+  Como las observaciones fueron sobre las mismas unidades
+  experimentales, entonces se trata de observaciones pareadas,
+  por lo que se usar\'an las diferencias de los datos,
+  que muestra la tabla siguiente:
+  \begin{center}
+   \begin{tabular}{cccc}
+    & \multicolumn{2}{c}{\textbf{Diferencias absolutas de tiempo}}
+    & \\
+    \hline 
+    \textbf{Sujeto} & $\phantom{000}$\textbf{Sin fatiga}$
+    \phantom{000}$ & $\phantom{000}$\textbf{Con fatiga}$
+    \phantom{000}$ & $\phantom{00000}d_i\phantom{00000}$ \\
+    \hline 
+    $\phantom{1}1$ & $158$ & $\phantom{1}91$ &
+    $\phantom{-1}67$ \\
+    $\phantom{1}2$ & $\phantom{1}92$ & $\phantom{1}59$ &
+    $\phantom{-1}33$ \\
+    $\phantom{1}3$ &  $\phantom{1}65$ & $215$ & $-150$  \\
+    $\phantom{1}4$ & $\phantom{1}98$ & $226$ & $-128$ \\
+    $\phantom{1}5$ &  $\phantom{1}33$ & $223$ & $-190$ \\
+    $\phantom{1}6$ & $\phantom{1}89$ & $\phantom{1}91$ &
+    $-\phantom{15}2$ \\
+    $\phantom{1}7$ & $148$ & $\phantom{1}92$ & $\phantom{-1}56$ \\
+    $\phantom{1}8$ & $\phantom{1}58$ & $177$ & $-119$ \\
+    $\phantom{1}9$ & $142$ & $134$ & $\phantom{-15}8$ \\
+    $10$ & $117$ & $116$ & $\phantom{-15}1$ \\
+    $11$ & $\phantom{1}74$ & $153$ & $-\phantom{1}79$ \\
+    $12$ & $\phantom{1}66$ & $219$ & $-153$ \\
+    $13$ & $109$ & $143$ & $-\phantom{1}34$ \\
+    $14$ & $\phantom{1}57$ & $164$ & $-107$ \\
+    $15$ & $\phantom{1}85$ & $100$ & $-\phantom{5}15$
+   \end{tabular}
+  \end{center}
+  Para obtener la media y desviaci\'on est\'andar 
+  de las diferencias muestrales, se calcula lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^{15} d_{i} & = &
+   67 + 33 -150 -128 -190 -2 +56 -119 + 8 + 1 -79 -153 -34 -107 -15
+   \\
+   & = & -812 \\
+   \sum_{i=1}^{15} d_{i}^2 & = &
+   67^2 + 33^2 + (-150)^2 + (-128)^2 + (-190)^2 + (-2)^2 + 56^2
+   + (-119)^2 + 8^2 + \\
+   & & + 1^2 + (-79)^2 + (-153)^2 + (-34)^2 + (-107)^2 + (-15)^2
+   \\
+   & = & 140\,408
+  \end{eqnarray*}
+  por lo que la media de las diferencias muestrales es:
+  \begin{equation*}
+   \bar{d} = \frac{1}{15} \sum_{i=1}^{15} d_i
+   = \frac{-812}{15} = -54.1\overline{3}
+  \end{equation*}
+  y la varianza de las diferencias muestrales se calcula,
+  usando el teorema 8.1, como sigue:
+  \begin{eqnarray*}
+   s_D^2 & = & \frac{1}{15(14)} \left[
+   15 \sum_{i=1}^{15} d_i^2 - \left( \sum_{i=1}^{15} d_i \right)^2
+   \right]
+   = \frac{15(140\,408) - (-812)^2}{210}
+   = \frac{2\,106\,120 - 659\,344}{210} \\
+   & = & \frac{1\,446\,776}{210} = \frac{723\,388}{105}
+   \approx 6\,889.4\overline{095238}
+  \end{eqnarray*}
+  por lo que la desviaci\'on est\'andar de las diferencias
+  muestrales es:
+  \begin{equation*}
+   s_D = \sqrt{s_D^2} = \sqrt{\frac{723\,388}{105}}
+   = \frac{2\sqrt{180\,847}\sqrt{105}}{105}
+   = \frac{2\sqrt{18\,988\,935}}{105}
+   \approx 83.002466974
+  \end{equation*}
+  Por lo tanto, se resume el resto de los datos como sigue:
+  \begin{itemize}
+   \item $\bar{d} = -\frac{812}{15} = -54.1\overline{3}$.
+   \item $S_D = \frac{2\sqrt{18\,988\,935}}{105}
+   \approx 83.002466974$
+  \end{itemize}
+  Adem\'as, por la suposici\'on de normalidad
+  en las distribuciones poblacionales,
+  se tiene que la distribuci\'on de las diferencias pareadas
+  es normal,
+  entonces el siguiente estad\'{\i}stico, que se va a requerir,
+  se aproxima a la distribuci\'on mostrada
+  con el respectivo par\'ametro que se indica:
+  \begin{itemize}
+   \item $T = \frac{\overline{D} - d_0}{S_d/\sqrt{n}} \sim t(v)$.
+   \item $v = n_1 - 1 = n_2 - 1 = 14$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_D = \mu_1 - \mu_2 & \geq & 0 \\
+   H_0: \mu_D = \mu_1 - \mu_2 &   <  & 0
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   t & = & \frac{\bar{d} - d_0}{s_D/\sqrt{n}}
+   = \frac{
+   -\frac{812}{15}
+   }{
+   \frac{2\sqrt{18\,988\,935}}{105}/\sqrt{15}
+   }
+   = - \frac{812(105)}{30\sqrt{1\,265\,929}}
+   = - \frac{812(7)\sqrt{1\,265\,929}}{2(1\,265\,929)} \\
+   & = & - \frac{406\sqrt{1\,265\,929}}{180\,847}
+   \approx -2.5259188806974
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  Dado que:
+  \begin{equation*}
+   P(T<t) \approx P(T < -2.5259188806974) = P(T > 2.5259188806974)
+  \end{equation*}
+  Y ya que $2.415 < 2.5259188806974 < 2.624$,
+  en donde, de la tabla A.4, se tiene que
+  $P(T > 2.415) = 0.015$ y $P(T > 2.624) = 0.01$,
+  entonces, interpolando, se considerar\'a la aproximaci\'on
+  de $P(T > 2.5381052) \approx 0.012$, luego entonces:
+  \begin{equation*}
+   P(T<t) \approx P(T > 2.5381052) \approx 0.012
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, se concluye que la afirmaci\'on es correcta,
+  es decir, hay evidencia para afirmar
+  que, bajo condiciones de fatiga, hay un aumento
+  en las diferencias medias absolutas de tiempo
+  cuando la tarea se ejecuta.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P06\_Prueba\_de\_dos\_medias\_02.r},
+ que a su vez requiere los datos del archivo
+ \texttt{DB08\_Problema\_045.csv},
+ con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB08_Problema_045.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Tiempo.mseg")
+> varSel<-c("Fatiga")
+> mu<-0
+> desv.iguales<-NULL
+> alfa<-NULL
+> cola<-'I'
+> par<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+         Var1 Freq Poblaciones H0  n diferencia desv.par error.est grados alpha
+1 Tiempo.mseg   15    Pareadas  0 15  -54.13333 83.00247  21.43114     14  0.05
+      PValor Estadistico RegionRechazoInfT RegionRechazoInfX
+1 0.01211081   -2.525919          -1.76131         -37.74689
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

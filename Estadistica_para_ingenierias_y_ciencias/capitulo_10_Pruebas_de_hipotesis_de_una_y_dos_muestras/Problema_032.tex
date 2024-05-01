@@ -1,0 +1,77 @@
+\begin{enunciado}
+ El \textit{Amstat News} (diciembre de 2004) lista los sueldos medios de profesores asociados de estad\'{\i}stica en instituciones de investigaci\'on, en escuelas de humanidades y en otras instituciones en Estados Unidos. Suponga que una muestra de $200$ profesores asociados de instituciones de investigaci\'on que tienen un sueldo promedio de $\$70,750$ anuales con una desviaci\'on est\'andar de $\$6000$. Suponga tambi\'en una muestra de $200$ profesores asociados de otros tipos de instituci\'on que tienen un sueldo promedio de $\$65,200$ con una desviaci\'on est\'andar de $\$5000$. Pruebe la hip\'otesis de que el sueldo medio de profesores asociados en instituciones de investigaci\'on es $\$2000$ mayor que los de los de otras instituciones. Utilice un nivel de significancia de $0.01$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n_1 = n_2 = 200$.
+   \item $\bar{x}_1 = 70\,750$ y $\bar{x}_2 = 65\,200$.
+   \item $s_1 = 6\,000$ y $s_2 = 5\,000$
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_1: \mu_1 - \mu_2 & \leq & 2\,000 \\
+   H_1: \mu_1 - \mu_2 & > & 2\,000
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.01$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.3, se tiene el valor cr\'{\i}tico $z_{\alpha} = z_{0.01} \approx 2.33$, por lo que la regi\'on de rechazo est\'a dado para $z > 2.33$, donde $z = \frac{\left( \bar{x}_1 - \bar{x}_2 \right) - d_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}}$.
+ \end{region}
+
+ \begin{estadistico}
+  Ya que el tama\~no de las muestras es grande, se puede aproximar las desviaciones est\'andar muestrales a las poblacionales con lo que se usa el siguiente estad\'{\i}stico:
+  \begin{eqnarray*}
+   z & = & \frac{\left( \bar{x}_1 - \bar{x}_2 \right) - d_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}} \approx \frac{\left( \bar{x}_1 - \bar{x}_2 \right) - d_0}{\sqrt{s_1^2/n_1 + s_2^2/n_2}} = \frac{(70\,750 - 65\,200) - 2\,000}{\sqrt{\frac{6\,000^2}{200} + \frac{5\,000^2}{200}}} = \frac{5\,550 - 2\,000}{\sqrt{\frac{36\,000\,000 + 25\,000\,000}{200}}} \\
+   & = & \frac{3\,550}{\sqrt{\frac{61000000}{200}}} = \frac{3\,550}{\sqrt{305\,000}} = \frac{3\,550}{50\sqrt{122}} = \frac{71\sqrt{122}}{122} \approx 6.428037969
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  El sueldo medio de profesores asociados en instituciones de investigaci\'on es, en efecto, $\$2\,000$ mayor que los de las otras instituciones.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P05\_Prueba\_de\_dos\_medias\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n1<-200
+> n2<-200
+> mu<-2000
+> m1<-70750
+> m2<-65200
+> m<-NULL
+> sigma1<-NULL
+> sigma2<-NULL
+> s1<-6000
+> s2<-5000
+> sD<-NULL
+> desv.iguales<-NULL
+> alfa<-0.01
+> cola<-'S'
+> par<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba   H0  n1  n2 DifMedias desv.est1 desv.est2 error.est alpha PValor
+1      Z 2000 200 200      5550      6000      5000  552.2681  0.01      0
+  Estadistico RegionRechazoZ RegionRechazoX     Resultado
+1    6.428038    > 2.3263479 > 3284.7676204 Se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

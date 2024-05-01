@@ -1,0 +1,48 @@
+\begin{enunciado}
+ Un genetista se interesa en la proporci\'on de hombres y mujeres
+ de una poblaci\'on que tiene cierto trastorno sangu\'{\i}neo menor.
+ En una muestra aleatoria de $100$ hombres, se encuentra
+ que $31$ lo padecen, mientras que s\'olo $24$ de $100$ mujeres parecen
+ tener el trastorno.
+ ¿Con un nivel de significancia de $0.01$ podemos concluir
+ que la proporci\'on de hombres en la poblaci\'on
+ con este trastorno sangu\'{\i}neo es significantemente mayor
+ que la proporci\'on de mujeres afectadas?
+\end{enunciado}
+
+\begin{solucion}
+ Usando el archivo anexo \texttt{P09\_Prueba\_de\_dos\_proporciones\_01.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n1<-100
+> n2<-100
+> x1<-31
+> x2<-24
+> p1<-NULL
+> p2<-NULL
+> alfa<-0.01
+> alternativa<-'>'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  alternativa  n1  n2 x1 x2   p1   p2 pEstimada DifProp  error.est alpha
+1     p1 > p2 100 100 31 24 0.31 0.24     0.275    0.07 0.06314665  0.01
+     PValor Estadistico RegionRechazoZ        Resultado
+1 0.1338164    1.108531   >= 2.3263479 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual indica que los datos: $n_1 = n_2 = 100$,
+ con $x_1 = 31$ y $x_2 = 24$; la hip\'otesis nula: $H_0: p_1 \leq p_2$
+ contra la hip\'otesiis alternativa: $H_1: p_1 > p_2$; el nivel
+ de significancia: $\alpha = 0.01$; el valor del estad\'{\i}stico $z \approx
+ \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}\hat{q}(1/n_1+1/n_2)}} \approx
+ 1.108531$; la regi\'on de rechazo $z > 2.3263479$, con todo y la decisi\'on
+ de no rechazar $H_0$; e, incluso, el valor $P$ de $P(z > 1.108531) \approx
+ 0.1338164$.
+ \par 
+ Luego entonces se concluye que los datos no arrojan evidencia suficiente
+ para rechazar $H_0$; es decir, no se puede concluir que la proporci\'on
+ de hombres en la poblaci\'on con el trastorno sangu\'{\i}neo
+ se significantemente mayor que la proporci\'on de mujeres afectadas,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

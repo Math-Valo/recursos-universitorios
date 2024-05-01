@@ -1,0 +1,105 @@
+\begin{enunciado}
+ Considere la distribuci\'on logar\'{\i}tmica normal con la funci\'on de densidad dada en la secci\'on 6.9. Suponga que que tenemos una muestra $x_1, x_2, \ldots, x_n$ de una distribuci\'on logar\'{\i}tmica normal.
+ \begin{enumerate}
+  \item Escriba la funci\'on de probabilidad.
+  \item Desarrolle los estimadores de probabilidad m\'axima de $\mu$ y $\sigma^2$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Recu\'erdese que la funci\'on de densidad logar\'{\i}tmica est\'a dada por
+ \begin{equation*}
+  f(x;\mu,\sigma^2) =
+  \begin{cases}
+   \frac{1}{\sqrt{2\pi}\sigma x}e^{-\frac{1}{2\sigma^2}\left[ \ln(x) - \mu \right]^2}, & x \geq 0, \\
+   0, & x < 0
+  \end{cases}
+ \end{equation*}
+ 
+ \begin{enumerate}
+  \item A partir de la definici\'on de la funci\'on de densidad, si alguna muestra es menor a cero, se tiene que la funci\'on de densidad, y por lo tanto la funci\'on de probabilidad, es cero. Por lo tanto, suponiendo que ninguna muestra es menor a cero, se tiene que la funci\'on de probabilidad es:
+  \begin{eqnarray*}
+   L\left( x_1, x_2, \ldots, x_n; \mu, \sigma^2 \right) & = & \prod_{i=1}^n L\left( x_i; \mu, \sigma^2 \right) \\
+   & = & \prod_{i=1}^n \frac{1}{\sqrt{2\pi \sigma^2} x_i}e^{-\frac{1}{2\sigma^2}\left[ \ln\left(x_i\right) - \mu \right]^2} \\
+   & = & \frac{1}{(2\pi)^{n/2}\left( \sigma^2 \right)^{n/2} \prod_{i=1}^n x_i} e^{-\frac{1}{2\sigma^2} \sum_{i=1}^n \left[ \ln\left( x_i \right) - \mu \right]^2}._{\square}
+  \end{eqnarray*}
+  
+  \item Por otro lado, para obtener las ecuaciones que den los estimadores de probabilidad m\'axima de $\mu$ y $\sigma^2$, convendr\'a calcular el logaritmo natural de la funci\'on de probabilidad como sigue:
+  \begin{equation*}
+   \ln L \left( x_1, x_2, \ldots, x_n; \mu, \sigma^2 \right) = -\frac{n}{2}\ln(2\pi) - \frac{n}{2}\ln\left( \sigma^2 \right) - \sum_{i=1}^2 x_i - \frac{1}{2\sigma^2} \sum_{i=1}^n \left[ \ln\left( x_i \right) - \mu \right]^2
+  \end{equation*}
+  As\'{\i} que sus derivadas parciales son
+  \begin{eqnarray*}
+   \frac{\delta \ln L}{\delta \mu} \left( x_1, x_2, \ldots, x_n; \mu, \sigma^2 \right) & = & \\
+   & & \hspace{-0.5cm} \frac{\delta}{\delta \mu} \left( \cancel{ -\frac{n}{2}\ln(2\pi) } - \cancel{ \frac{n}{2}\ln\left( \sigma^2 \right) } - \cancel{ \sum_{i=1}^2 x_i } - \frac{1}{2\sigma^2} \sum_{i=1}^n \left[ \ln\left( x_i \right) - \mu \right]^2 \right) \\
+   & = & \frac{\sum_{i=1}^n \ln\left( x_i \right) - n\mu}{\sigma^2}
+  \end{eqnarray*}
+  y
+  \begin{eqnarray*}
+   \frac{\delta \ln L}{\delta \sigma^2} \left( x_1, x_2, \ldots, x_n; \mu, \sigma^2 \right) & = & \\
+   & & \hspace{-0.5cm} \frac{\delta}{\delta \sigma^2} \left( \cancel{ -\frac{n}{2}\ln(2\pi) } - \frac{n}{2}\ln\left( \sigma^2 \right) - \cancel{ \sum_{i=1}^2 x_i } - \frac{1}{2\sigma^2} \sum_{i=1}^n \left[ \ln\left( x_i \right) - \mu \right]^2 \right) \\
+   & = & - \frac{n}{2\sigma^2} + \frac{\sum_{i=1}^n \left[ \ln\left( x_i \right) - \mu \right]^2}{2\left( \sigma^2 \right)^2}
+  \end{eqnarray*}
+  Por otro lado, las derivadas parciales de segundo orden del logaritmo de la funci\'on de probabilidad son:
+  \begin{eqnarray*}
+   \frac{\delta^2 \ln L}{\delta \mu^2} \left( x_1, x_2, \ldots, x_n; \mu, \sigma^2 \right) & = & \frac{\delta}{\delta \mu} \left( \frac{\cancel{ \sum_{i=1}^n \ln\left( x_i \right) } - n\mu}{\sigma^2} \right) \\
+   & = & - \frac{n}{\sigma^2} \\
+   \frac{\delta^2 \ln L}{\delta \sigma^2 \delta \mu} \left( x_1, x_2, \ldots, x_n; \mu, \sigma^2 \right) & = & \frac{\delta}{\delta \sigma^2} \left( \frac{\sum_{i=1}^n \ln\left( x_i \right) - n\mu}{\sigma^2} \right) \\
+   & = & \frac{n\mu - \sum_{i=1}^n \ln x_i}{\left( \sigma^2 \right)^2} \\
+   \frac{\delta^2 \ln L}{\delta \left( \sigma^2 \right)^2} \left( x_1, x_2, \ldots, x_n; \mu, \sigma^2 \right) & = & \frac{\delta}{\delta \sigma^2} \left( - \frac{n}{2\sigma^2} + \frac{\sum_{i=1}^n \left[ \ln\left( x_i \right) - \mu \right]^2}{2\left( \sigma^2 \right)^2} \right) \\
+   & = & \frac{n}{2\left( \sigma^2 \right)^2} - \frac{\sum_{i= 1}^n \left[ \ln\left( x_i \right) - \mu \right]^2}{\left( \sigma^2 \right)^3} \\
+   & = & \frac{n\sigma^2 - 2\sum_{i=1}^n \left[ \ln\left( x_i \right) - \mu \right]^2}{2\left( \sigma^2 \right)^3} 
+  \end{eqnarray*}
+  y
+  \begin{eqnarray*}
+   \frac{\delta^2 \ln L}{\delta \mu \delta \sigma^2} \left( x_1, x_2, \ldots, x_n; \mu, \sigma^2 \right) & = & \frac{\delta}{\delta \mu} \left( \cancel{ - \frac{n}{2\sigma^2} } + \frac{\sum_{i=1}^n \left[ \ln\left( x_i \right) - \mu \right]^2}{2\left( \sigma^2 \right)^2} \right) \\
+   & = & \frac{n\mu - \sum_{i=1}^n \ln x_i}{\left( \sigma^2 \right)^2}
+  \end{eqnarray*}
+  por lo que la Hessiana del logaritmo de la funci\'on de probabilidad es:
+  \begin{equation*}
+   H_{\ln L \left( x_1, x_2, \ldots, x_n; \mu, \sigma^2 \right)} =
+   \begin{bmatrix}
+    \displaystyle{ - \frac{n}{\sigma^2} } & \displaystyle{ \frac{n\mu - \sum_{i=1}^n \ln x_i}{\left( \sigma^2 \right)^2} } \\
+    \displaystyle{ \frac{n\mu - \sum_{i=1}^n \ln x_i}{\left( \sigma^2 \right)^2} } & \displaystyle{ \frac{n\sigma^2 - 2\sum_{i=1}^n \left[ \ln\left( x_i \right) - \mu \right]^2}{2\left( \sigma^2 \right)^3} }
+   \end{bmatrix}
+  \end{equation*}
+  Entonces, los estimadores de probabilidad m\'axima, $\hat{\mu}$ y $\widehat{\sigma^2}$, cumplen que al evaluarse sobre las derivadas parciales de primer orden, estas se hacen cero, y, adem\'as, la Hessiana es definida negativamente. Para que esto primero se cumpla, se tiene lo siguiente, en donde $y_i = \ln x_i$:
+  \begin{eqnarray*}
+   \frac{\sum_{i=1}^n \ln\left( x_i \right) - n\hat{\mu}}{\widehat{\sigma^2}} = 0 & \Leftrightarrow & \sum_{i=1}^n \ln\left( x_i \right) - n\hat{\mu} = 0 \\
+   & \Leftrightarrow & n\hat{\mu} = \sum_{i=1}^n \ln\left( x_i \right) \\
+   & \Leftrightarrow & \hat{\mu} = \frac{\sum_{i=1}^n \ln\left( x_i \right)}{n} \\
+   & \Leftrightarrow & \hat{\mu} = \frac{\sum_{i=1}^n y_i}{n} = \bar{y}
+  \end{eqnarray*}
+  y
+  \begin{eqnarray*}
+   - \frac{n}{2\widehat{\sigma^2}} + \frac{\sum_{i=1}^n \left[ \ln\left( x_i \right) - \hat{\mu} \right]^2}{2\left( \widehat{\sigma^2} \right)^2} = 0 & \Leftrightarrow & \frac{\sum_{i=1}^n \left[ \ln\left( x_i \right) - \hat{\mu} \right]^2 - n\widehat{\sigma^2}}{2\left( \widehat{\sigma^2} \right)^2} = 0 \\
+   & \Leftrightarrow & \sum_{i=1}^n \left[ \ln\left( x_i \right) - \hat{\mu} \right]^2 - n\widehat{\sigma^2} = 0 \\
+   & \Leftrightarrow & n\widehat{\sigma^2} = \sum_{i=1}^n \left[ \ln\left( x_i \right) - \hat{\mu} \right]^2 \\
+   & \Leftrightarrow & \widehat{\sigma^2} = \frac{\sum_{i=1}^n \left[ \ln\left( x_i \right) - \hat{\mu} \right]^2}{n} = \frac{1}{n} \sum_{i=1}^n \left( y_i - \bar{y} \right)^2
+  \end{eqnarray*}
+  y, al evaluar la Hessiana en estos puntos, se tiene que:
+  \begin{eqnarray*}
+   \begin{bmatrix}
+    \displaystyle{ - \frac{n}{\widehat{\sigma^2}} } & \displaystyle{ \frac{n\hat{\mu} - \sum_{i=1}^n \ln x_i}{\left( \widehat{ \sigma^2 } \right)^2} } \\
+    \displaystyle{ \frac{n\hat{\mu} - \sum_{i=1}^n \ln x_i}{\left( \widehat{ \sigma^2 } \right)^2} } & \displaystyle{ \frac{n\widehat{ \sigma^2 } - 2\sum_{i=1}^n \left[ \ln\left( x_i \right) - \hat{\mu} \right]^2}{2\left( \widehat{ \sigma^2 } \right)^3} }
+   \end{bmatrix}
+   & = & 
+   \begin{bmatrix}
+    \displaystyle{ -\frac{n^2}{\sum_{i=1}^n \left( y_i - \bar{y} \right)^2 } } & \displaystyle{ \frac{ \cancel{n\bar{y} - n\bar{y}} }{\left( \widehat{\sigma^2} \right)^2} } \\
+    \displaystyle{ \frac{ \cancel{n\bar{y} - n\bar{y}} }{\left( \widehat{\sigma^2} \right)^2} } & \displaystyle{ \frac{n\widehat{\sigma^2} - 2n\widehat{\sigma^2}}{2\left( \widehat{\sigma^2} \right)^3} }
+   \end{bmatrix}
+   \\
+   & = &
+   \begin{bmatrix}
+    \displaystyle{ -\frac{n^2}{\sum_{i=1}^n \left( y_i - \bar{y} \right)^2 } } & 0 \\
+    0 & - \frac{n}{2\left( \widehat{\sigma^2} \right)^2}
+   \end{bmatrix}
+  \end{eqnarray*}
+  por lo que la Hessiana en este punto resulta ser una matriz diagonal, por lo que sus autovalores son iguales a los elementos en su diagonal, lo cual indica que todos los autovalores de la Hessiana son negativos y, por lo tanto, la Hessiana es definida negativa. Por lo tanto, el logaritmo de la funci\'on de probabilidad es estrictamente c\'oncava en el punto $\left( \hat{\mu} , \widehat{\sigma^2} \right)$. Por lo tanto, con todo lo anterior, se tiene que:
+  \begin{eqnarray*}
+   \hat{\mu} & = & \frac{1}{n} \sum_{i=1}^n \ln x_i \\
+   \widehat{\sigma^2} & = & \frac{1}{n} \sum_{i=1}^n \left[ \ln\left( x_i \right) - \left( \frac{1}{n} \sum_{i=1}^n \ln x_i \right) \right]^2
+  \end{eqnarray*}
+  son los estimadores de m\'axima probabilidad, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

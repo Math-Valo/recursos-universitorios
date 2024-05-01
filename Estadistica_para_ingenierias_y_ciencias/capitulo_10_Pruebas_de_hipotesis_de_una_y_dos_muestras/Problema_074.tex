@@ -1,0 +1,253 @@
+\begin{enunciado}
+ En el ejercicio 10.41 de la p\'agina 359, pruebe la hip\'otesis
+ al nivel de significancia de $0.05$ de que $\sigma_1^2 = \sigma_2^2$
+ contra la alternativa de que $\sigma_1^2 \neq \sigma_2^2$,
+ donde $\sigma_1^2$ y $\sigma_2^2$ son las varianzas
+ para el n\'umero de organismos por metro cuadrado
+ en los dos diferentes lugares de Cedar Run.
+\end{enunciado}
+
+\begin{solucion}
+ Resumiendo los datos del ejercicio 10.41, se tiene lo siguiente:
+ \begin{itemize}
+  \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+  para cada $i \in \{ 1,2 \}$.
+  \item $n_1 = 16$ y $n_2 = 12$.
+  \item $s_1^2 = 62\,005\,060$
+  y $s_2^2 = \frac{202\,881\,875}{33} = 6\,147\,935.\overline{60}$.
+ \end{itemize}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \sigma_1^2 &  =   & \sigma_2^2 \\
+   H_1: \sigma_1^2 & \neq & \sigma_2^2
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  En la tabla A.6 \'unicamente se tiene valores cr\'{\i}ticos
+  para significancias unilaterales de $\alpha=0.05$ o $\alpha=0.01$
+  y para significancias bilaterales de $\alpha=0.1$ y $\alpha=0.02$,
+  por lo que no es posible obtener de ah\'{\i} los valores cr\'{\i}ticos
+  $f_{\alpha/2,n-1,n-2}=f_{0.05,15,11}$
+  ni tampoco de $f_{1-\alpha/2,n-1,n-2}=f_{0.95,15,11}$.
+  Por lo tanto, se tendr\'a que obtener dichos valores
+  con las l\'{\i}neas de c\'odigo escritas en R
+  que se muestran a continuaci\'on con sus respectivos resultados:
+  \begin{verbatim}
+> qf(0.025,16-1,12-1)
+[1] 0.3324659
+> qf(0.025,16-1,12-1,lower.tail = F)  # = 1/qf(0.025,12-1,16-1)
+[1] 3.329935
+  \end{verbatim}
+  \vspace{-0.5cm}
+  por lo que la regi\'on de rechazo est\'a dado
+  para $0.3324659 < f < 3.329935$, donde $f = \frac{s_1^2}{s_2^2}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{equation*}
+   f = \frac{s_1^2}{s_2^2}
+   = \frac{62\,005\,060}{\frac{202\,881\,875}{33}}
+   = \frac{33(\cancelto{12\,401\,012}{62\,005\,060})}
+   {\cancelto{40\,576\,375}{202\,881\,875}} \hspace{1cm}
+   = \frac{409\,233\,396}{40\,576\,375} \approx 10.0855
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  Se concluye entonces que son diferentes las varianzas
+  del n\'umero de organismos por metro cuadrado
+  en los dos diferentes lugares de Cedar Run.
+ \end{conclusion}
+
+ En el c\'odigo registrado en el archivo anexo
+ \texttt{P14\_Prueba\_de\_dos\_varianzas\_02.r}, en R,
+ se realiza este procedimiento.
+ El c\'odigo permite modificar los valores iniciales
+ que corresponden a:
+ \texttt{datos}, que guarda los datos de la lectura
+ de un archivo,
+ en este caso se lee el arhivo \texttt{DB05\_Problema\_041.csv},
+ y este \'ultimo nombre es el que se modifica 
+ para leer otros archivos;
+ \texttt{varInteres} para indicar el nombre de la columna
+ que corresponden a los datos en la base anterior;
+ \texttt{varSel} para indicar el nombre de la columna
+ en donde se indica a cu\'al muestra corresponde cada dato;
+ \texttt{alfa} para el nivel de significancia;
+ \texttt{cola} para indicar si la prueba es de dos colas,
+ con \texttt{'D'}, de cola inferior, con \texttt{'I'},
+ o de cola superior, con \texttt{'S'}.
+ \par 
+ El programa espera todos los datos, excepto \texttt{alfa} que es opcional.
+ En caso de no fijar una probabilidad de cometer un error de tipo I
+ a esta variable, se le asigna el valor \texttt{NULL}.
+ \par 
+ La prueba de hip\'otesis siempre usar\'a un estad\'{\i}stico
+ con distribuci\'on $f$ de Fisher.
+ Para ello, se est\'a suponiendo de antemano la normalidad
+ de las poblaciones de donde provienen las muestras.
+ \par 
+ Independientemente del tipo de prueba, el resultado muestra lo siguiente:
+ \texttt{variable} para conocer lo que est\'a midiendo los datos,
+ incluyendo el tipo de unidad que se usa;
+ \texttt{Freq} indica el tama\~no de las unidades experimentales,
+ es decir, la suma de los tama\~nos muestrales;
+ \texttt{n1} y \texttt{n2} indica el tama\~no de cada muestra;
+ \texttt{media1} y \texttt{media2} indica la media muestral de cada muestra;
+ \texttt{varianza1} y \texttt{varianza2} indica la varianza muestral
+ de cada muestra;
+ \texttt{v1} y \texttt{v2} indica los grados de libertad usados
+ en el estad\'{\i}stico $f$ de Fisher;
+ \texttt{alfa} para el nivel de significancia dado,
+ el cual muestra por defecto $0.05$
+ en caso de asignarle \texttt{NULL} a \texttt{alfa};
+ \texttt{PValor} indica el valor $P$, la probabilidad
+ de haber obtenido la proporci\'on de varianzas muestrales
+ que se obtuvo suponiendo que la hip\'otesis nula sea cierta;
+ \texttt{Estadistico} indica el valor resultante
+ del estad\'{\i}stico de prueba;
+ \texttt{RegionRechazo} indica la regi\'on de rechazo del estad\'{\i}stico
+ de prueba, el cual es precisamente la regi\'on de rechazo de la proporci\'on
+ de varianzas muestrales.
+ \par 
+ Adem\'as, seg\'un el tipo de prueba, pueden darse el valor
+ de \texttt{Resultado} para indicar si se rechaza o no
+ la hip\'otesis nula, que aparece al final de los resultados
+ cuando se asigna un valor a \texttt{alfa}.
+ \par 
+ El c\'odigo junto con el resultado se muestra a continuaci\'on:
+ \begin{verbatim}
+> datos<-read.csv("DB05_Problema_041.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("AcidoAscórbico.mgpcml")
+> varSel<-c("Estación")
+> alfa<-0.05
+> cola<-'D'
+> w<-data.frame(factor(datos[,varSel]))
+> names(w)<-varSel
+> varBin<-c(varSel)
+> datos<-data.frame(datos,w)
+> if (length(varBin)<1){
++   stop("Debe al menos indicar una variable binaria")
++ }else{
++   sonbinarios<-ifelse(length(table(datos[,varBin]))!=2,1,0)
++ }
+> if (sonbinarios!=0)  stop("La variable no es binaria")
+> valores<-unlist(datos[,c(varInteres)])
+> variables<-factor(rep(varInteres,each=dim(datos)[1]))
+> agrupaciones<-data.frame(datos[1:dim(datos)[1],varBin])
+> names(agrupaciones)<-varBin
+> datos2<-data.frame(agrupaciones,variable=variables,valor=valores)
+> propVar<-function(l,cola,alfa=0.05){
++   x<-l[[1]][!is.na(l[[1]])]
++   y<-l[[2]][!is.na(l[[2]])]
++   n1<-length(x)
++   n2<-length(y)
++   m1<-mean(x)
++   m2<-mean(y)
++   s1<-var(x)
++   s2<-var(y)
++   v1<-n1-1
++   v2<-n2-1
++   if ( n1< 2 | n2 < 2){
++     r<-data.frame(n1=n1,n2=n2,
++                   media1=round(m1,7),media2=round(m2,7),
++                   varianza1=round(s1,7),varianza2=round(s2,7),
++                   v1=v1,v2=v2,
++                   alpha=alfa,
++                   PValor=NA,
++                   Estadistico=NA,
++                   RegionRechazo=NA
++                   )
++   }else{
++     estadistico = round(s1/s2,7)
++     if(cola=='D'){
++       regionL<-round(qf(alfa/2,v1,v2),7)
++       regionU<-round(qf(alfa/2,v1,v2,lower.tail=F),7)
++       pvalor<-2*min(pf(estadistico,v1,v2,lower.tail=F),
++                     pf(estadistico,v1,v2))
++       r<-data.frame(n1=n1,n2=n2,
++                     media1=round(m1,7),media2=round(m2,7),
++                     varianza1=round(s1,7),varianza2=round(s2,7),
++                     v1=v1,v2=v2,
++                     alpha=alfa,
++                     PValor=round(pvalor,7),
++                     Estadistico=estadistico,
++                     RegionRechazo=paste("<",regionL,"y >",regionU)
++                     )
++     }else{
++       if(cola=='I'){
++         region<-round(qf(alfa,v1,v2),7)
++         pvalor<-round(pf(estadistico,v1,v2),7)
++         r<-data.frame(n1=n1,n2=n2,
++                       media1=round(m1,7),media2=round(m2,7),
++                       varianza1=round(s1,7),varianza2=round(s2,7),
++                       v1=v1,v2=v2,
++                       alpha=alfa,
++                       PValor=pvalor,
++                       Estadistico=estadistico,
++                       RegionRechazo=paste("<",region)
++                       )
++       }else{
++         region<-round(qf(alfa,v1,v2,lower.tail=F),7)
++         pvalor<-round(pf(estadistico,v1,v2,lower.tail=F),7)
++         r<-data.frame(n1=n1,n2=n2,
++                       media1=round(m1,7),media2=round(m2,7),
++                       varianza1=round(s1,7),varianza2=round(s2,7),
++                       v1=v1,v2=v2,
++                       alpha=alfa,
++                       PValor=pvalor,
++                       Estadistico=estadistico,
++                       RegionRechazo=paste(">",region)
++                       )
++       }
++     }
++   }
++   return(r)
++ }
+> listaG<-datos2[,c(varBin,"valor")]
+> listaG1<-split(listaG$"valor", listaG[,varBin])
+> if(as.matrix(listaG)[1]==names(listaG1[2])){
++   listaG1=listaG1[c(2,1)]
++ }
+> listaG1<-list(listaG1)
+> names(listaG1)<-varInteres
+> if(is.null(alfa)){
++   Test<-t(sapply(listaG1,propVar,cola))
++ }else{
++   Test<-t(sapply(listaG1,propVar,cola,alfa=alfa))
++ }
+> t1<-as.data.frame.table(table(datos2[,c("variable")]))
+> identif<-t1[t1$Freq>0,]
+> names(identif)[names(identif)=="Var1"]<-"variable"
+> Test<-data.frame(identif,Test)
+> if(!is.null(alfa)){
++   Test$Resultado<-ifelse(Test$PValor>=alfa,
++                          "No se rechaza H0","Se rechaza H0")
++   Test$Resultado[is.na(Test$Resultado)]<-"Pocos datos"
++ }
+> Test
+               variable Freq n1 n2 media1   media2 varianza1 varianza2 v1 v2
+1 AcidoAscórbico.mgpcml   28 16 12 9897.5 4120.833  62005060   6147936 15 11
+  alpha   PValor Estadistico             RegionRechazo     Resultado
+1  0.05 0.000452    10.08551 < 0.3324659 y > 3.3299348 Se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los c\'alculos obtenidos,
+ adem\'as de ofrecer m\'as informaci\'on como las medias muestrales,
+ los cuales pueden servir en futuros c\'alculos,
+ as\'{\i} como tambi\'en ofrecer valores m\'as precisos
+ de lo que se hubiese obtenido si realizar a mano los c\'alculos,
+ como, la regi\'on de rechazo que no se encontraba en la tabla A.6,
+ con lo que se prueba la eficiencia del programa,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

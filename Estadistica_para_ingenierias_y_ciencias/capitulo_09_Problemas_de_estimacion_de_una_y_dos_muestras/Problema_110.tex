@@ -1,0 +1,150 @@
+\begin{enunciado}
+ Un grupo de investigadores del factor humano est\'an interesados en la reacci\'on de los pilotos de avi\'on ante un est\'{\i}mulo con cierta disposici\'on de la cabina del avi\'on. Se realiz\'o un experimento de simulaci\'on en un laboratorio y se utilizaron $15$ pilotos con un tiempo de reacci\'on promedio de $3.2$ segundos y una desviaci\'on est\'andar muestral de $0.6$ segundos. Resulta de inter\'es caracterizar los extremos (es decir, el escenario del peor de los casos). Para tal objetivo, responda lo siguiente:
+ \begin{enumerate}
+  \item Determine un importante l\'{\i}mite de confianza espec\'{\i}fico de $99\%$ unilateral en el tiempo medio de reacci\'on. ¿Qu\'e suposici\'on, si la hubiera, deber\'{\i}a hacer acerca de la distribuci\'on del tiempo de reacci\'on?
+  
+  \item Determine un intervalo de predicci\'on de $99\%$ unilateral y d\'e una interpretaci\'on de lo que significa. ¿Deber\'{\i}a usted hacer alguna suposici\'on sobre la distribuci\'on del tiempo de reacci\'on para calcular este l\'{\i}mite?
+  
+  \item Calcule un l\'{\i}mite de tolerancia unnilateral con $99\%$ de confianza que implique $95\%$ del tiempo de reacci\'on. De nuevo, si las hubiera, d\'e una interpretaci\'on y una suposici\'on de la distribuci\'on. [Nota: Los valores del l\'{\i}mite de tolerancia unilateral tambi\'en se incluyen en la tabla A.7.]
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del tiempo de reacci\'on, en segundos, de los pilotos de avi\'on ante un est\'{\i}mulo con cierta disposici\'on de la cabina del avi\'on, del enunciado se tienen los siguientes datos:
+ \begin{itemize}
+  \item $\mu$ y $\sigma$ desconocidas
+  \item $n = 15$ pilotos.
+  \item $\bar{x} = 3.2$ segundos.
+  \item $s = 0.6$ segundos
+ \end{itemize}
+ Dado que el tama\~no de muestra es peque\~no y se requiere en ciertos casos conocer la distribuci\'on poblacional, para calcular los siguientes l\'{\i}mites se requerir\'a, para cada uno de los casos, suponer que la distribuci\'on de $X$ es aproximadamente normal. Adem\'as, para cada inciso, se dar\'a un significado diferente a $\alpha$.
+ \begin{enumerate}
+  \item Agregando las nuevas suposiciones, se tiene que
+  \begin{itemize}
+   \item $X \sim n(\mu, \sigma)$.
+   \item $\alpha = 0.01$, el nivel de confianza para el intervalo de confianza unilateral.
+  \end{itemize}
+  Dado que se desea encontrar el l\'{\i}mite de confianza unilateral de la media de una poblaci\'on aproximadamente noraml en el que se desconoce la desviaci\'on est\'andar poblacional, usando una muestra peque\~na, entonces se requerir\'a del valor $t_{\alpha,n-1} = t_{0.005,14}$. De la Tabla A.4, se tiene que $t_{0.005,14} = 2.977$, mientras que, usando el software estad\'{\i}stico R, se obtiene el c\'alculo con los siguientes comandos:
+  \begin{verbatim}
+> options(digits=22)
+> qt(0.005,14,lower.tail=F)
+[1] 2.976842734370834353541
+  \end{verbatim}
+  \vspace{-0.5cm}
+  por lo que tambi\'en se puede considerar como $2.976842734$.
+  \par 
+  Dado que se desea calcular un intervalo de confianza unilateral superior para la media de una poblaci\'on normalmente distribuida usando la media muestral, sin conocer la desviaci\'on est\'andar poblacional y con una muestra peque\~na, entonces se debe de usar la siguiente formulaci\'on:
+  \begin{equation*}
+   \mu < \bar{x} + t_{\alpha,n-1}\frac{s}{\sqrt{n}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos y considerando el valor $t_{\alpha,n-1}$ del libro, se tiene los c\'alculos del l\'{\i}mite del intervalo unilateral superior de confianza como sigue:
+  \begin{eqnarray*}
+   \bar{x} + t_{\alpha,n-1}\frac{s}{\sqrt{n}} & = & 3.2 + 2.977\left( \frac{0.6}{\sqrt{15}} \right) = 3.2 + \frac{2\,977}{1\,000}\left( \frac{\cancel{3}\sqrt{15}}{5(\cancelto{5}{15} \,)} \right) \\
+   & = & 3.2 + \frac{2\,977\sqrt{15}}{25\,000} = 3.2 + 0.11908\sqrt{15} \approx 3.2 + 0.4611948568663792
+  \end{eqnarray*}
+  Por lo tanto, el intervalo de confianza unilateral superior de $99\%$ del tiempo medio de reacci\'on, en segundos, de los pilotos de avi\'on ante un est\'{\i}mulo con cierta disposici\'on de la cabina del avi\'on es aproximadamente
+  \begin{equation*}
+   \mu < 3.6611948568663792
+  \end{equation*}
+  Finalmente, usando R, se puede calcular el intervalo de confianza unilateral superior. No se ha escrito un script para el intervalos unilaterales de confianza como \'este, por lo que se usar\'a el c\'odigo en el archivo anexo \texttt{P04\_Intervalo\_de\_confianza\_02.r}, el cual calcula el intervalo bilateral para las suposiciones dadas. Como la \'unica diferencia aqu\'{\i} es que el valor cr\'{\i}tico $t$ usa el par\'ametro $\alpha/2$, entonces, al momento de agregar el nivel de confianza, se duplicar\'a para obtener un l\'{\i}mite superior acertado, esto es, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-15
+> m<-3.2
+> s<-0.6
+> alfa<-0.02
+  \end{verbatim}
+  \vspace{-0.5cm}
+  se obtiene el siguiente resultado:
+  \begin{verbatim}
+    LimInf Media   LimSup
+1 2.793415   3.2 3.606585
+  \end{verbatim}
+  \vspace{-0.5cm}
+  por lo que, de acuerdo a R, el intervalo unilateral superior es $3.606585$, por lo que, al redondear al decimal en que coinciden los resultados anteriores se tiene que el intervalo de confianza unilateral superior del $99\%$ es $\mu < 3.6$ segundos, cuya \'unica suposici\'on acerca de la distribuci\'on del tiempo de reacci\'on es que fuese aproximadamente normal.${}_{\square}$
+  
+  \item Agregando las suposiciones correspondientes a este inciso, se tiene que
+  \begin{itemize}
+   \item $X \sim n\left( \mu. \sigma \right)$.
+   \item $\alpha = 0.01$, el nivel de confianza para el intervalo de predicci\'on unilateral.
+  \end{itemize}
+  Dado que se desea encontrar el l\'{\i}mite de predicci\'on unilateral de una poblaci\'on noraml en el que se desconoce la desviaci\'on est\'andar poblacional y la muestra no es lo suficientemente grande, se requerir\'a del valor $t_{\alpha,n-1} = t_{0.005,14}$, del ejercicio anterior se tiene que $t_{0.005,14} = 2.977$, mientras que con una mayor aproximaci\'on se tiene que $t_{0.005,14} = 2.1447866879178$.
+  \par 
+  Como se est\'a buscando un intervalo de predicci\'on unilateral superior para una muestra que proviene de una poblaci\'on normal con varianza desconocida, entonces se usar\'a la siguiente formulaci\'on:
+  \begin{equation*}
+   x_0 < \bar{x} + t_{\alpha,n-1}s\sqrt{1 + 1/n}
+  \end{equation*}
+  Por lo tanto, con los datos obtenidos y la primera aproximaci\'on de $t_{\alpha,n-1}$, se tiene los c\'alculos del l\'{\i}mite del intervalo de predicci\'on unilateral superior como sigue:
+  \begin{eqnarray*}
+   \bar{x} + t_{\alpha,n-1}s\sqrt{1 + 1/n} & = & 3.2 + (2.977)(0.6)\sqrt{1+1/15} = 3.2 + 1.7862\sqrt{\frac{16}{15}} \\
+   & = & 3.2 + \frac{8\,931}{5\,000}\left( \frac{4}{\sqrt{15}} \right) = 3.2 + \frac{\cancelto{2\,977}{8\,931} \qquad \sqrt{15}}{1\,250(\cancelto{5}{15}\,)} \\
+   & = & 3.2 + \frac{2\,977\sqrt{15}}{6\,250} = 3.2 + 0.47632\sqrt{15} \approx 3.2 + 1.8447794
+  \end{eqnarray*}
+  Por lo tanto, el intervalo de predicci\'on unilateral superior de $99\%$ del tiempo de reacci\'on, en segundos, del pr\'oximo piloto de avi\'on ante un est\'{\i}mulo con cierta disposici\'on de la cabina de avi\'on es aproximadamente
+  \begin{equation*}
+   x_0 < 5.0447794
+  \end{equation*}
+  Finalmente, usando R, se puede calcular el intervalo de predicci\'on unilateral superior usando el script en el archivo anexo \texttt{P10\_Intervalo\_de\_prediccion\_3.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-15
+> m<-3.2
+> desv<-0.6
+> alfa<-0.01
+> val<-FALSE
+> inter<-'S'
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+  Media  LimSup
+1   3.2 4.82634
+  \end{verbatim}
+  \vspace{-0.5cm}
+  en el cual se observa un valor diferente, resultado de la diferencia entre el valor $t_{0.01,14}$ y la aproximaci\'on en R. Entonces se tiene que el intervalo de predicci\'on unilateral superior del $99\%$ es $x_0 < 5$ segundos, usando el valor $t_{0.01,14}$ del libro, y $x_0 < 4.8$ segundos, usando el valor $t_{0.01,14}$ de R, cuya \'unica suposici\'on acerca de la distribuci\'on del tiempo de reacci\'on es que fuese normalmente distribuida.${}_{\square}$
+  
+  \item Agregando las suposiciones correspondientes a este inciso, se tiene que
+  \begin{itemize}
+   \item $X \sim n(\mu, \sigma)$.
+   \item $\alpha = 0.05$, el valor para el cual la proporci\'on $1-\alpha$ ser\'a cubierta.
+   \item $\gamma = 0.01$, el nivel de confianza para el intervalo de tolerancia unilateral.
+  \end{itemize}
+  Como se desea encontrar el l\'{\i}mite de tolerancia unilateral, se requiere el factor de tolerancia, $k$. De la Tabla A.7, se tiene que $k = 3.102$, mientras que, usando R, se obtiene un valor m\'as preciso con los siguientes comandos:
+  \begin{verbatim}
+> library(tolerance)
+> options(digits=22)
+> K.table(15,alpha=0.01,P=0.95,side=1,method=("WBE"))
+$`15`
+                        0.95
+0.99 3.102372279615060346458
+  \end{verbatim}
+  \vspace{-0.5cm}
+  por lo que tambi\'en se puede considerar con mayor precisi\'on como $3.102372$.
+  \par 
+  Dado que se desea calcular un intervalo de tolerancia unilateral superior de una poblaci\'on que se supone normal, entonces se usa la siguiente formulaci\'on:
+  \begin{equation*}
+   \bar{x} + ks
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos y considerando el valor $k$ del libro, se obtiene los siguientes c\'alculos:
+  \begin{equation*}
+   \bar{x}+ks = 3.2 + 3.102(0.6) = 3.2 + 1.8612 = 5.0612
+  \end{equation*}
+  Por lo tanto, el intervalo de tolerancia unilateral superior de $99\%$ que cubre el tiempo de reacci\'on, en segundos, del $95\%$ de los pilotos de avi\'on ante un est\'{\i}mulo con cierta disposici\'on de la cabina de avi\'on es aproximadamente $5.0612$.
+  \par 
+  Finalmente, usando R, se puede calcular el intervalo de tolerancia unilateral superior usando el script en el archivo anexo \texttt{P11\_Intervalo\_de\_tolerancia\_3.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-15
+> m<-3.2
+> desv<-0.6
+> gamma<-0.01
+> alfa<-0.05
+> inter<-'S'
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+        LU Media
+1 5.061423   3.2
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de tolerancia del $99\%$ para el $95\%$ de la poblaci\'on es $5.061$, en donde la \'unica suposici\'on sobre la distribui\'on del tiempo de reacci\'on es que fuese normalmente distribuida, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

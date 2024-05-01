@@ -1,0 +1,101 @@
+\begin{enunciado}
+ Una muestra aleatoria de tama\~no $n_1 = 25$ que se toma de una poblaci\'on normal con una desviaci\'on est\'andar $\sigma_1 = 5$ tiene una media $\bar{x}_1 =80$. Una segunda muestra aleatoria de tama\~no $n_2 = 36$, que se toma de una poblaci\'on normal diferente con una desviaci\'on est\'andar $\sigma_2 = 3$, tiene una media $\bar{x}_2 = 75$. Encuentre un intervalo de confianza de $94\%$ para $\mu_1 - \mu_2$.
+\end{enunciado}
+
+\begin{solucion}
+ Del enunciado, se tienen los siguientes datos, donde $X_1$ y $X_2$ representan las variables aleatorias de las poblaciones de donde provienen la primera y segunda muestra, respectivamente.
+ \begin{itemize}
+  \item $X_i \sim n(\mu_i,\sigma_i)$, para cada $i\in\{1,2\}$.
+  \item $\mu_1$ y $\mu_2$ son desconocidas.
+  \item $\sigma_1 = 5$ y $\sigma_2 = 3$.
+  \item $n_1 = 25$ y $n_2 = 36$.
+  \item $\bar{x}_1 = 80$ y $\bar{x}_2 = 75$.
+  \item $\alpha = 0.06$.
+ \end{itemize}
+ Como se desea encontrar un intervalo de confianza para $\mu_1-\mu_2$, usando $\bar{x}_1-\bar{x}_2$ y conociendo $\sigma_1$ y $\sigma_2$, entonces se requerir\'a el valor cr\'{\i}tico $z_{\alpha/2} = z_{0.03}$. De la Tabla A.3, se tiene que este es un valor entre $1.88$ y $1.89$, con mayor aproximaci\'on a $1.88$, que es el valor que se tomar\'a; mientras que, usando el software estad\'{\i}stico R, con los siguientes comandos, se obtiene un valor m\'as preciso.
+ \begin{verbatim}
+> options(digits=22)
+> qnorm(0.03, mean = 0, sd = 1, lower.tail = F)
+[1] 1.880793608151250850824
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar, con mayor precisi\'on, como $1.880793608151$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de medias de poblaciones que se distribuyen de forma normal y se conocen las desviaciones est\'andar, entonces se usar\'a la formulaci\'on siguiente:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2 \right) + z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor de $z_{\alpha/2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} & = & (80-75) \pm 1.88 \sqrt{\frac{5^2}{25} + \frac{3^2}{36}} = 5 \pm 1.88\sqrt{\frac{25}{25} + \frac{9}{36}} \\
+  & = & 5 \pm 1.88\sqrt{1 + \frac{1}{4}} = 5 \pm 1.88\sqrt{\frac{5}{4}} = 5 \pm (1.88) \left( \frac{\sqrt{5}}{2} \right) \\
+  & = & 5\pm 0.94\sqrt{5}
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza del $96\%$ de la diferencia de las medias de $X_1$ y $X_2$ es aproximadamente:
+ \begin{equation*}
+  2.89809610115 < \mu_1 - \mu_2 < 7.101903898849802
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza directamente con las siguientes l\'{\i}neas de c\'odigo, registradas en el archivo anexo \texttt{P13\_Intervalo\_de\_confianza\_04.r}. En el archivo se puede modificar los valores iniciales que corresponden a: \texttt{n1} y \texttt{n2}, para\ los tama\~nos de las muestras; \texttt{m1} y \texttt{m2}, para las medias muestrales; \texttt{desv.tipica1} y \texttt{desv.tipica2}, para las desviaciones est\'andar poblacionales o muestrales, seg\'un sea el caso; \texttt{alfa}, para el nivel de significancia, es decir, el valor para el cual hay $(1-\alpha)100\%$ de confianza; \texttt{val}, para indicar si la desviaciones est\'andar son poblacionales (\texttt{TRUE}) o muestrales (\texttt{FALSE}); e \texttt{inter}, para indicar si se calcular\'a un intervalo de confianza inferior, bilateral o superior, seg\'un si la variable vale I, D o S, respectivamente. Con esto, se calcula un intervalo de confianza usando las desviaciones est\'andar poblacionales, o las desviaciones est\'andar muestrales si el tama\~no de la muestra es lo suficientemente grande. La soluci\'on final, en la variable \texttt{rFin}, indica los tama\~nos de las muestras, las medias muestrales, el l\'{\i}mite inferior del intervalo de confianza, la diferencia de las medias y el l\'{\i}mite superior del intervalo de confianza, en ese orden, de modo que si el intervalo es unilateral, no se mostrar\'a alguno de los l\'{\i}mites, seg\'un sea el caso.
+ \begin{verbatim}
+> n1<-25
+> n2<-36
+> m1<-80
+> m2<-75
+> desv.tipica1<-5
+> desv.tipica2<-3
+> alfa<-0.06
+> val<-TRUE
+> inter<-'D'
+> if (n1 >= 30 & n2 >= 30){
++     val<-TRUE
++ }
+> if (val == FALSE){
++     stop("Se requiere muestras grandes o desviaciones poblacionales conocidas")
++ }
+> difMedias<-function(n1,n2,m1,m2,desv1,desv2,alfa=0.05,colas='D'){
++     diferencia<-m1-m2
++     if(n1 < 2 | n2 < 2){
++         r<-data.frame(n1=n1,n2=n2,
++                       media1=m1,media2=m2,
++                       LimInf=NA,
++                       diferencia=diferencia,
++                       LimSup=NA)
++     }else{
++         desvDifMedia<-sqrt(desv1^2/n1 + desv2^2/n2)
++         if(colas=='D'){
++             k<-qnorm(1-alfa/2)
++             LL<-round(diferencia-k*desvDifMedia,7)
++             LU<-round(diferencia+k*desvDifMedia,7)
++             r<-data.frame(n1=n1,n2=n2,
++                           media1=m1,media2=m2,
++                           LimInf=LL,
++                           diferencia=diferencia,
++                           LimSup=LU)
++         }
++         else{
++             k<-qnorm(1-alfa)
++             if(colas=='I'){
++                 LL<-round(diferencia-k*desvDifMedia,7)
++                 r<-data.frame(n1=n1,n2=n2,
++                               media1=m1,media2=m2,
++                               LimInf=LL,
++                               diferencia=diferencia)
++             }else{
++                 LU<-round(diferencia+k*desvDifMedia,7)
++                 r<-data.frame(n1=n1,n2=n2,
++                               media1=m1,media2=m2,
++                               diferencia=diferencia,
++                               LimSup=LU)
++             }
++         }
++     }
++     return(r)
++ }
+> rFin<-difMedias(n1,n2,m1,m2,desv.tipica1,desv.tipica2,alfa=alfa, colas=inter)
+> rFin
+  n1 n2 media1 media2   LimInf diferencia   LimSup
+1 25 36     80     75 2.897209          5 7.102791
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $94\%$ es $2.9<\mu_1 - \mu_2< 7.1$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

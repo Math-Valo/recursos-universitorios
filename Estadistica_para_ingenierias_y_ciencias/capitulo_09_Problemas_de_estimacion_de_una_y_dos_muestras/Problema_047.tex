@@ -1,0 +1,103 @@
+\begin{enunciado}
+ A continuaci\'on se listan $10$ de las $431$ compa\~n\'{\i}as estudiadas en la revista \textit{Fortune} (marzo de 1997). Se listan las utilidades totales para los 10 a\~nos anteriores a 1996 y tamb\'en para 1996. Encuentre un intervalo de confianza de $95\%$ para el cambio promedio en el porcentaje de utilidad de los inversionistas.
+ \begin{center}
+  \begin{tabular}{llr}
+   & \multicolumn{2}{c}{\textbf{Utilidad total para}} \\
+   & \multicolumn{2}{c}{\textbf{los inversionistas}} \\
+   \textbf{Compa\~n\'{\i}a} & \textbf{1986-1996} & \textbf{1996} \\
+   \hline 
+   Coca-Cola & $29.8\%$ & $43.3\%$ \\
+   Mirage Resorts & $27.9\%$ & $25.4\%$ \\
+   Merck & $22.1\%$ & $24.0\%$ \\
+   Microsoft & $44.5\%$ & $88.3\%$ \\
+   Johnson \& Johnson & $22.2\%$ & $18.1\%$ \\
+   Intel & $43.8\%$ & $131.2\%$ \\
+   Pfizer & $21.7\%$ & $34.0\%$ \\
+   Procter \& Gamble & $21.9\%$ & $32.1\%$ \\
+   Berkshire Hathaway & $28.3\%$ & $6.2\%$ \\
+   S\&P 500 & $11.8\%$ & $20.3\%$
+  \end{tabular}
+ \end{center}
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las cantidades del porcentaje de utilidad total para los 10 a\~nos anteriores a 1996 y para 1996, respectivamente, de los inversionistas en las compa\~n\'{\i}as durante este tiempo, entonces, como se desea encontrar un intervalo de confianza para el cambio promedio en el porcentaje de utilidad de los inversionistas, se desea calcular $\mu_2 - \mu_1$. Por el momento, no se sabe si las utilidades tienen una distribuci\'on normal; sin embargo, como la muestra es peque\~na y no se conoce de alg\'un otro m\'etodo para calcular intervalos de confianza en muestras salvo las que suponen normalidad, se supondr\'a adem\'as para este ejercicio la normalidad de las distribuciones de $X_1$ y $X_2$. Luego entonces, se tienen los siguientes datos:
+ \begin{itemize}
+  \item $X_i \sim n \left( \mu_i , \sigma_i \right)$, para cada $i \in \{ 1, 2 \}$.
+  \item $\mu_i$ y $\sigma_i$ son desconocidos, para cada $i \in \{ 1, 2 \}$.
+  \item $n_1 = n_2 = 10$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Dado que las unidades experimentales, que en este caso se refiere a las compa\~n\'{\i}as, son homog\'eneas y cada unidad experimenta ambas condiciones poblacionales, es decir, se observa la utilidad total de los inversionistas de ambos periodos para cada compa\~n\'{\i}a, entonces el problema se trata de un intervalo pareado y, por lo tanto, se debe de considerar la diferencia entre las utilidades, $D = X_2 - X_1$. La diferencia $d_i = x_{2i} - x_{1i}$ est\'a dado en la siguiente tabla:
+ \begin{center}
+  \begin{tabular}{lccr}
+   & \textbf{Utilidad para} & \textbf{Utilidad para} \\
+   \textbf{Compa\~n\'{\i}a} & \textbf{1986-1996} & \textbf{1996} & $d_i$ \\
+   \hline 
+   Coca-Cola & $29.8\%$ & $43.3\%$ & $13.5\%$ \\
+   Mirage Resorts & $27.9\%$ & $25.4\%$ & $-2.5\%$ \\
+   Merck & $22.1\%$ & $24.0\%$ & $1.9\%$ \\
+   Microsoft & $44.5\%$ & $88.3\%$ & $43.8\%$ \\
+   Johnson \& Johnson & $22.2\%$ & $18.1\%$ & $-4.1\%$ \\
+   Intel & $43.8\%$ & $131.2\%$ & $87.4\%$ \\
+   Pfizer & $21.7\%$ & $34.0\%$ & $12.3\%$ \\
+   Procter \& Gamble & $21.9\%$ & $32.1\%$ & $10.2\%$ \\
+   Berkshire Hathaway & $28.3\%$ & $6.2\%$ & $-22.1\%$ \\
+   S\&P 500 & $11.8\%$ & $20.3\%$ & $8.5\%$
+  \end{tabular}
+ \end{center}
+ por lo que la media muestral de las observaciones pareadas est\'a dada por:
+ \begin{equation*}
+  \bar{d} = \frac{13.5 + (-2.5) + 1.9 + 43.8 + (-4.1) + 87.4 + 12.3 + 10.2 + (-22.1) + 8.5}{10} = \frac{148.9}{10} = 14.89
+ \end{equation*}
+ con lo que se procede a calcular la varianza muestral, usando el Teorema 8.1, como sigue:
+ \begin{eqnarray*}
+  s_d^2 & = & \frac{1}{n(n-1)} \left[ n \sum_{i=1}^n d_i^2 - \left( \sum_{i=1}^n d_i \right)^2 \right] \\
+  & = & \frac{1}{10(9)} \left\{ 10\left[ 13.5^2 + (-2.5)^2 + 1.9^2 + 43.8^2 + (-4.1)^2 + 87.4^2 + 12.3^2 + 10.2^2 + (-22.1)^2 + \right. \right. \\
+  & & \left. \left. + 8.5^2 \right] - 148.9^2 \right\} \\
+  & = & \frac{1}{10(9)} \left[ 10(182.25 + 6.25 + 3.61 + 1\,918.44 + 16.81 + 7\,638.76 + 151.29 + 104.04 + 488.41 + \right. \\
+  & & \left. + 72.25) - 22\,171.21\right] \\
+  & = & \frac{105\,821.1 - 22\,171.21}{90} = \frac{83\,649.89}{90} = \frac{8\,364\,989}{9\,000} = 929.443\overline{2}
+ \end{eqnarray*}
+ y, por lo tanto, la desviaci\'on est\'andar muestral se calcula como sigue:
+ \begin{equation*}
+  s_d = \sqrt{s_d^2} = \sqrt{\frac{8\,364\,989}{9\,000}} = \frac{\sqrt{8\,364\,989}\sqrt{10}}{300} = \frac{\sqrt{83\,649\,890}}{300} \approx 30.48677
+ \end{equation*}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para $\mu_D = \mu_2 - \mu_1$, para observaciones pareadas, entonces se requerir\'a del valor $t_{\alpha/2,n-1} = t_{0.025,9}$. De la Tabla A.4, se tiene que $t_{0.025,9} = 2.262$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,9,lower.tail=F)
+[1] 2.262157162798204890208
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con m\'as precisi\'on como $2.2621571627982$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales pareadas usando como estimador la media muestral de las difencias de datos pareados en una muestra paque\~na, en donde se desconoce la desviaci\'on est\'andar poblacional pero se ha supuesto al principio de esta soluci\'on que las poblaciones se distribuyen de forma aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on: 
+ \begin{equation*}
+  \bar{d} - t_{\alpha/2,n-1} \frac{s_d}{\sqrt{n}} < \mu_D < \bar{d} + t_{\alpha/2,n-1} \frac{s_d}{\sqrt{n}}
+ \end{equation*}
+ en donde $\mu_D = \mu_2 - \mu_1$. Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n-1}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  \bar{d} \pm t_{\alpha/2,n-1} \frac{s_d}{\sqrt{n}} & = & 14.89 \pm (2.262) \left( \frac{\sqrt{83\,649\,890}/300}{\sqrt{10}} \right) = 14.89 \pm \frac{2.262\sqrt{8\,364\,989}}{300} \\
+  & = & 14.89 \pm 0.00754\sqrt{8\,364\,989} \approx 14.89 \pm 21.8074
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza es de aproximadamente:
+ \begin{equation*}
+  -6.9174 < \mu_D < 36.6974
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza de las observaciones pareadas cambiando los siguientes comandos en el archivo anexo \texttt{P16\_Intervalo\_de\_confianza\_07.r}, que utiliza la base de datos que se encuentra en el archivo anexo \texttt{DB07\_Problema\_47.csv}.
+ \begin{verbatim}
+> datos<-read.csv("DB07_Problema_47.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Utilidad.porc")
+> varSel<-list("Época")
+> alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+       variable    LimInf Media   LimSup
+1 Utilidad.porc -6.918922 14.89 36.69892
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $-6.92 < \mu_2 - \mu_1 < 36.7$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

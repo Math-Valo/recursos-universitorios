@@ -1,0 +1,39 @@
+\begin{enunciado}
+ ¿Qu\'e tan grande se requiere que sea la muestra del ejercicio 10.24 si la potencia de nuestra prueba ser\'a $0.8$ cuando el tiempo medio real de meditaci\'on exceda el valor hipot\'etico en $1.2\,\sigma$? Utilice $\alpha = 0.05$.
+\end{enunciado}
+
+\begin{solucion}
+ Usando los datos del ejercicio 10.24
+ y la informaci\'on del enunciado,
+ se tienen los siguientes datos y supuestos:
+ \begin{itemize}
+  \item $\alpha = 0.05$.
+  \item $1 - \beta = 0.8$, entonces $\beta = 0.2$.
+  \item $\mu = 8$, seg\'un la hip\'otesis nula.
+  \item $\delta = 1.2\sigma$,
+  donde $\mu + \delta$ es una alternativa espec\'{\i}fica.
+ \end{itemize}
+%  Entonces, de la tabla A.3, se tiene que
+%  \begin{itemize}
+%   \item $z_{\alpha} = 1.645$.
+%   \item $z_{\beta} = 1.645$.
+%  \end{itemize}
+ Entonces se puede calcular el tama\~no de muestra
+ requerido para la calidad buscada en la prueba
+ usando la tabla A.8.
+ As\'{\i}, pues, se busca en la tabla la columna
+ que corresponde el valor de $\alpha=0.05$ para pruebas unilaterales,
+ con $\beta = 0.2$, cruzando en la fila
+ con el valor de $\Delta = \frac{|\delta|}{\sigma} = \frac{1.2\sigma}{\sigma} = 1.2$,
+ con lo que se llega al valor $n = 8$.
+ \par 
+ Por lo tanto, a partir de un tama\~no muestral de $n = 8$ se puede realizar una prueba
+ de hip\'otesis de que, de las personas que usan la meditaci\'on trascendental,
+ la cantidad de horas promedio que meditan es de no m\'as de 8 horas a la semana,
+ esto es $\mu \leq 8$, con un nivel de significancia de $0.05$
+ considerando una potencia de prueba de $0.8$ para una hip\'otesis alternativa
+ de que el promedio real de horas de meditaci\'on para estas personas
+ en realidad difiere de la hip\'otesis nula en un valor de $\delta = 1.2\sigma$,
+ es decir contra la hip\'otesis alternativa
+ de que $\mu = 8 + 1.2\sigma$.${}_{\blacksquare}$
+\end{solucion}

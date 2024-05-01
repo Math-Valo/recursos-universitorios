@@ -1,0 +1,258 @@
+\begin{enunciado}
+ En un estudio que se lleva a cabo en el Instituto Polit\'ecnico y Universidad Estatal de Virginia sobre el desarrollo de ectomycorrhizal, una relaci\'on simbi\'otica entre las ra\'{\i}ces de los \'arboles y un hongo, en la cual se transfieren minerales del hongo a los \'arboles y az\'ucares de los \'arboles a los hongos, se plantan en un invernadero $20$ robles rojos con el hongo \textit{Pisolithus tinctorus}. Todos los \'arboles se plantan en el mismo tipo de suelo y reciben la misma cantidad de luz solar y agua. La mitad no recibe nitr\'ogeno en el momento de plantarlos para servir como control y la otra mitad recibe 368 ppm de nitr\'ogeno en forma de $\text{NaNO}_3$. Los pesos de los tallos, que se registran en gramos, al final de 140 d\'{\i}as se registran como sigue:
+ \begin{center}
+  \begin{tabular}{ccc}
+   \textbf{Sin nitr\'ogeno} & \hspace{1cm} & \textbf{Con nitr\'ogeno} \\
+   \hline 
+   0.32 & & 0.26 \\
+   0.53 & & 0.43 \\
+   0.28 & & 0.47 \\
+   0.37 & & 0.49 \\
+   0.47 & & 0.52 \\
+   0.43 & & 0.75 \\
+   0.36 & & 0.79 \\
+   0.42 & & 0.86 \\
+   0.38 & & 0.62 \\
+   0.43 & & 0.46 \\
+   \hline
+  \end{tabular}
+ \end{center}
+ Construya un intervalo de confianza de $95\%$ para la diferencia en los pesos medios de los tallos entre los que no recibieron nitr\'ogeno y los que recibieron 368 ppm de nitr\'ogeno. Suponga que las poblaciones est\'an distribuidas normalmente con varianzas iguales.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de los pesos de los tallos, medido en gramos, al final de 140 d\'{\i}as despu\'es de ser plantados, bajo las condiciones del tipo de suelo, cantidad de luz solar y cantidad de agua especificadas en el experimento del enunciado, de los robles rojos con el hongo \textit{Pisolithus tinctorus} sin nitr\'ogeno al momento de ser plantados y de los robles rojos con el mismo hongo con 368 ppm (partes por mill\'on) de nitr\'ogeno en forma de $\text{NaNO}_3$ al ser plantados, respectivamente, entonces, del enunciado, se tiene el siguiente resumen de datos:
+ \begin{itemize}
+  \item $X_i \sim n(\mu_i, \sigma_i)$, para cada $i \in \{ 1, 2 \}$.
+  \item $\mu_i$ y $\sigma_i$ desconocidas, para cada $i \in \{ 1, 2 \}$.
+  \item $\sigma_1 = \sigma_2$.
+  \item $n_1 = n_2 = 10$ robles.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ adem\'as de los 10 datos obtenidos en cada muestra.
+ \par 
+ A partir de estos datos, se puede calcular la media y varianza de ambas muestras, como se muestra a continuaci\'on. Las medias muestrales se calculan como sigue:
+ \begin{eqnarray*}
+  \bar{x}_1 & = & \frac{0.32 + 0.53 + 0.28 + 0.37 + 0.47 + 0.43 + 0.36 + 0.42 + 0.38 + 0.43}{10} \\
+  & = & \frac{3.99}{10} = 0.399
+ \end{eqnarray*}
+ y 
+ \begin{eqnarray*}
+  \bar{x}_2 & = & \frac{0.26 + 0.43 + 0.47 + 0.49 + 0.52 + 0.75 + 0.79 + 0.86 + 0.62 + 0.46}{10} \\
+  & = & \frac{5.65}{10} = 0.565
+ \end{eqnarray*}
+ por lo que las varianzas muestrales se obtienen, usando el Teorema 8.1, como sigue:
+  \begin{eqnarray*}
+  s^2_1 & = & \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n x_i^2 - \left( \sum_{i=1}^n x_i \right)^2 \right] \\
+  & = & \frac{1}{10(9)} \left[ 10\left( 0.32^2 + 0.53^2 + 0.28^2 + 0.37^2 + 0.47^2 + 0.43^2 + 0.36^2 + 0.42^2 + 0.38^2 + 0.43^2 \right) \right. \\
+  & & \left. - 3.99^2 \right] \\
+  & = & \frac{0.1024 + 0.2809 + 0.0784 + 0.1369 + 0.2209 + 0.1849 + 0.1296 + 0.1764 + 0.1444 + 0.1849}{9} \\
+  & & - \frac{15.9201}{90} \\
+  & = & \frac{1.6397}{9} - 0.17689 = 0.1821\overline{8} - 0.17689 \\
+  & = & 0.00529\overline{8}
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  s^2_2 & = & \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n x_i^2 - \left( \sum_{i=1}^n x_i \right)^2 \right] \\
+  & = & \frac{1}{10(9)} \left[ 10\left( 0.26^2 + 0.43^2 + 0.47^2 + 0.49^2 + 0.52^2 + 0.75^2 + 0.79^2 + 0.86^2 + 0.62^2 + 0.46^2 \right) \right. \\
+  & & \left. - 5.65^2 \right] \\
+  & & \frac{0.0676 + 0.1849 + 0.2209 + 0.2401 + 0.2704 + 0.5625 + 0.6241 + 0.7396 + 0.3844 + 0.2116}{9} \\
+  & & - \frac{31.9225}{90} \\
+  & = & \frac{3.5061}{9} - 0.35469\overline{4} = 0.3895\overline{6} - 0.35469\overline{4} \\
+  & = & 0.03487\overline{2}
+ \end{eqnarray*}
+ Adem\'as, como se desea encontrar un intervalo de confianza bilateral para $\mu_1 - \mu_2$ usando como estimador $\bar{x}_1 - \bar{x_2}$, desconociendo las varianzas poblacionales aunque suponi\'endolas iguales, con muestras peque\~na de poblaciones que se distribuyen aproximadamente normal, entonces se requerir\'a el valor $t_{\alpha/2,n_1+n_2-2} = t_{0.025,18}$. De la Tabla A.4, se tiene que $t_{0.025,18} = 2.101$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,18,lower.tail=F)
+[1] 2.100922040241038679653
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $2.100922$.
+ \par 
+ Ya que se busca un intervalo de confianza de la diferencia de las medias poblacionales usando como estimador la diferencia de las medias muestrales en muestras peque\~nas, en donde se deconoce las desviaciones est\'andar poblacionales pero suponiendo que son iguales y donde se suponen que las poblaciones se distribuyen aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2  \right) - t_{\alpha/2,n_1+n_2-2}s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2  \right) + t_{\alpha/2,n_1+n_2-2}s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+ \end{equation*}
+ en donde
+ \begin{equation*}
+  s_p = \sqrt{\frac{\left( n_1-1 \right)s_1^2 + \left( n_2 - 1 \right)s_2^2}{n_1 + n_2 - 2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n_1+n_2-2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  s_p & = & \sqrt{\frac{\left( n_1-1 \right)s_1^2 + \left( n_2 - 1 \right)s_2^2}{n_1 + n_2 - 2}} = \sqrt{\frac{(10-1)\left(\frac{4769}{900\,000}\right) + (10-1)\left(\frac{6277}{180\,000}\right)}{10+10-2}} \\
+  & = & \sqrt{\frac{\frac{4769}{100\,000} + \frac{6277}{20\,000}}{18}} = \sqrt{\frac{\frac{4769}{100\,000} + \frac{31\,385}{100\,000}}{18}} = \sqrt{\frac{36154}{1\,800\,000}} = \frac{1}{300}\sqrt{\frac{18\,077}{10}} \\
+  & = & \frac{\sqrt{180\,770}}{3000}
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2  \right) \pm t_{\alpha/2,n_1+n_2-2}s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} 
+  & = & (0.399 - 0.565) \pm (2.101)\left(\frac{\sqrt{180\,770}}{3000} \right) \sqrt{\frac{1}{10} + \frac{1}{10}} \\
+  & = & -0.166 \pm 0.000700\overline{3}\sqrt{180\,770}\sqrt{\frac{2}{10}} \\
+  & = & -0.166 \pm 0.000700\overline{3}\sqrt{18\,077}\sqrt{2} \\
+  & = & -0.166 \pm 0.000700\overline{3}\sqrt{36154}
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $95\%$ de confianza de la diferencia de la media de los pesos de los tallos, medido en gramos, al final de 140 d\'{\i}as despu\'es de ser plantados, bajo las especificaciones enunciadas del experimento, de los robles rojos con el hongo \textit{Pisolithus tinctorus} para los dos casos: sin nitr\'ogeno  y con 368 pmm de nitr\'ogeno en forma de NaNO${}_3$, al ser plantados, es de:
+ \begin{equation*}
+  -0.2991628171967692 < \mu_1 - \mu_2 < -0.032837182803
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza con las siguientes l\'{\i}neas de c\'odigo, registradas en el archivo anexo \texttt{P15\_Intervalo\_de\_confianza\_06.r}, el cual ha sido creado para leer un archivo externo con extensi\'on .csv, cuyo nombre de archivo debe de ser especificado entre comillas como la primera bariable de la funci\'on \texttt{read.csv}, agregando el s\'{\i}mbolo de separaci\'on y la codificaci\'on. En este caso, el archivo anexo que contiene los datos del problema se llama \texttt{DB03\_Problema\_40.csv}  que contiene dos columnas: \texttt{\'Arbol}, conformado por la cactegorizaci\'on de los datos, si pertenece a la primera o segunda muestra; y \texttt{Peso.g}, conformado por los valores medidos.
+ El script, sin embargo, permite leer m\'as columnas para posibles categor\'{\i}as y agrupaciones para los datos. \\
+ En el archivo se puede modificar las siguientes variables: \texttt{varInteres}, que corresponde al nombre de la columna de datos; \texttt{varAgrupacion}, que permite la agrupaci\'on de variables seg\'un las categorizaciones que se tengan en la base de datos, lo cual no es obligatorio poner, como es este el caso, pero s\'{\i} hay que indicar un valor a la variable, cuando menos el valor \texttt{NULL}; \texttt{varSel}, para seleccionar la variable o variables de categorizaci\'on de los dos grupos, de donde es importante mencionar que si la variable fue definida anteriormente como variable de agrupaci\'on, entonces no es posible usarla en esta parte, mientras que si la variable tiene m\'as de 2 grupos, es necesario especificar cuales son los grupos; y \texttt{alfa}, para el nivel de confianza. \\
+ El script ha sido pensado a futuro, por lo que permite la posibilidad de agrupar los datos para realizar distintos intervalos de confianza seg\'un las agrupaciones. El script se muestra a continuaci\'on:
+ \begin{verbatim}
+> datos<-read.csv("DB03_Problema_40.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Peso.g")
+> varAgrupacion<-NULL
+> varSel<-list("Árbol")
+> alfa<-0.05
+> w<-data.frame(row.names=1:dim(datos)[1])
+> varBin<-as.character()
+> for(i in 1:length(varSel)){
++     nom<-varSel[[i]][1]
++     x<-factor(datos[,nom])
++     if (length(varSel[[i]])>1){
++         sufijo<-paste(varSel[[i]][2:3],collapse="_")
++         nom<-paste(nom,".",sufijo,sep="")
++         x1<-factor(ifelse(x %in% varSel[[i]][2:3],as.character(x),NA))
++         x1<-data.frame(factor(x1))
++     }else{
++         x1<-x
++         x1<-data.frame(x)
++     }
++     names(x1)<-nom
++     varBin<-c(varBin,nom)
++     w<-data.frame(w,x1)
++ }
+> datos<-data.frame(datos,w)
+> if (length(varBin)<1){
++     stop("Debe al menos indicar una variable binaria")
++     }else{
++     sonbinarios<-sapply(1:length(varBin),function(i) if(length(table(datos[,
++     varBin[i]]))!=2) return(1) else return(0))
++ }
+> if (sum(sonbinarios)!=0)  stop("Alguna variable no es binaria")
+> valores<-unlist(datos[,c(varInteres)])
+> variables<-factor(rep(varInteres,each=dim(datos)[1]))
+> agrupaciones<-data.frame(datos[rep(1:dim(datos)[1],length(varInteres)),
++                                    c(varAgrupacion,varBin)])
+> names(agrupaciones)<-c(varAgrupacion,varBin)
+> datos2<-data.frame(agrupaciones,variable=variables,valor=valores)
+> difMedias<-function(l,alfa=0.05){
++     x<-l[[1]][!is.na(l[[1]])]
++     y<-l[[2]][!is.na(l[[2]])]
++     n1<-length(x)
++     n2<-length(y)
++     m1<-mean(x)
++     m2<-mean(y)
++     diferencia<-m1-m2
++     if ( n1< 2 | n2 < 2){
++         r<-data.frame(n1=n1,n2=n2,
++                       media1=m1,media2=m2,
++                       limInf=NA,
++                       diferencia=m1-m2,
++                       limSup=NA,
++                       valorPMedia=NA,
++                       valorPVar=NA,
++                       varIgual=NA)
++     }else{ 
++         r1<-var.test(x,y,conf.level=1-alfa)
++         varIgual<-(r1$p.value>=alfa)
++         r2<-t.test(x,y,conf.level=1-alfa,var.equal=varIgual)
++         r<-data.frame(n1=n1,n2=n2,
++                       media1=m1,media2=m2,
++                       limInf=r2$conf.int[1],
++                       diferencia=-diff(r2$estimate),
++                       limSup=r2$conf.int[2],
++                       valorPMedia=r2$p.value,
++                       valorPVar=r1$p.value,
++                       varIgual=varIgual)
++     }
++     return(r)
++ }
+> dividegrupos<-function(i,l,vB) split(l[[i]]$valor,l[[i]][,vB])
+> listdiv<-function(i,l,vB) {
++     nombres<-names(l[[i]])
++     l2<-lapply(1:length(l[[i]]),dividegrupos,l[[i]],vB[i])
++     names(l2)<-nombres
++     return(l2)
++ }
+> if(!is.null(varAgrupacion)) 
++     lista1<-as.list(datos2[,c(varAgrupacion,"variable")])
++     else lista1<-datos2$variable
+> listaG<-lapply(1:length(varBin),
++                function(i) split(datos2[,c(varBin[i],"valor")],
++                                  lista1,drop=TRUE))
+> listaG1<-lapply(1:length(listaG),listdiv,listaG,varBin)
+> r<-lapply(1:length(listaG1),function(i) t(sapply(listaG1[[i]],difMedias,alfa)))
+> names(r)<-varBin
+> rFin<-r[[1]]
+> f1<-function(i){ rFin<<-rbind(rFin,r[[i]]) }
+> if (length(r)>=2) invisible(lapply(2:length(r),f1) )
+> t1<-as.data.frame.table(table(datos2[,c(varAgrupacion,"variable")]))
+> identif<-t1[t1$Freq>0,]
+> d<-dim(rFin)
+> n<-colnames(rFin)
+> rFin<-data.frame(matrix(unlist(rFin),d))
+> names(rFin)<-n
+> rFin<-data.frame(Tipo.de.Grupo=rep(names(r), each=dim(r[[1]])[1]),
++                  identif[rep(1:dim(identif)[1],length(r)),],rFin)
+> rFin<-rFin[with(rFin,n1!=0 | n2!=0),]
+> rFin$Resultado<-ifelse(rFin$valorPMedia>=alfa,"No signif dif de medias",
++                        "Signif dif de medias")
+> rFin$Resultado[is.na(rFin$Resultado)]<-"Poco datos"
+> rFin$varIgual<-ifelse(rFin$varIgual==1,"Var no diferentes","Var diferentes")
+> rFin
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Al ingresar estas l\'{\i}neas de c\'odigo, se presentar\'a el resultado final. Primero se describe el nombre del grupo (o nombres de grupos, en caso de haber m\'as de uno) de donde se realiza el intervalo; luego, se muestra el nombre de la variable de inter\'es de los datos, que en este caso corresponde al peso de las muestras; luego el total de datos, seguido por el n\'umero de datos en la primera y segunda muestra, respectivamente; en sexto lugar se muestra la media muestral de la primera muestra y luego la media muestral de la segunda muestra; y, finalmente los resultados de inter\'es: el l\'{\i}mite inferior del intervalo de confianza, la diferencia de las medias muestrales, el l\'{\i}mite superior de la diferencia de las medias y, adicionalmente y pens\'andolo a futuro, las probabilidades de que los datos datos correspondan a una distribuci\'on id\'entica con igual media poblacional e igual varianza poblacional, respectivamente, seguido de una anotaci\'on de estos resultados que nos dice si el programa supone la varianza igual o no, y si es probable que las medias sean iguales o no, respectivamente. El resultado al usar estos comandos se muestra a continuaci\'on:
+ \begin{verbatim}
+  Tipo.de.Grupo   Var1 Freq n1 n2 media1 media2     limInf diferencia
+1         Árbol Peso.g   20 10 10  0.399  0.565 -0.3045244     -0.166
+       limSup valorPMedia   valorPVar       varIgual            Resultado
+1 -0.02747562  0.02286395 0.009786692 Var diferentes Signif dif de medias
+ \end{verbatim}
+ \vspace{-0.5cm}
+ lo cual indica que el intervalo de confianza es, con una probabilidad del $95\%$, de:
+ \begin{equation*}
+  -0.3045244 < \mu_1 - \mu_2 < -0.02747562
+ \end{equation*}
+ lo cual aparentemente difiere del resultado hecho a mano, pero esto es debido a que el programa determin\'o que es poco probable que las varianzas sean iguales, lo cual se puede ver en los resultados finales, por lo que consider\'o otra formulaci\'on para el intervalo de confianza.
+ \par 
+ Para verificar este hecho, se usar\'a el script del archivo anexo \texttt{P14\_Intervalo\_de\_confianza\_05.r}, con los siguientes datos:
+ \begin{verbatim}
+> n1<-10
+> n2<-10
+> m1<-0.399
+> m2<-0.565
+> desv.tipica1<-sqrt(4769/900000)
+> desv.tipica2<-sqrt(6277/180000)
+> alfa<-0.05
+> val<-FALSE
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ y donde la variable \texttt{varia}, que sirve par a indicar si las varianzas se suponen iguales o no, tomar\'a el valor \texttt{TRUE} para revisar si coincide con el resultado hecho a mano, y luego con el valor \texttt{FALSE} para revisar si coincide con el resultado del script anterior. Con lo que se tiene, para el primer caso, el siguiente resultado:
+ \begin{verbatim}
+  n1 n2 media1 media2     LimInf diferencia     LimSup
+1 10 10  0.399  0.565 -0.2991579     -0.166 -0.0328421  
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el cual dice que el intervalo de confianza es de
+ \begin{equation*}
+  -0.2991579 < \mu_1 - \mu_2 < -0.0328421
+ \end{equation*}
+ el cual coincide mejor con el resultado hecho a mano; mientras que si se considera las varianzas diferentes, se tiene este otro resultado:
+ \begin{verbatim}
+  n1 n2 media1 media2     LimInf diferencia     LimSup
+1 10 10  0.399  0.565 -0.3040946     -0.166 -0.0279054
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el cual indica que el intervalo de confianza es de
+ \begin{equation*}
+  -0.3040946 < \mu_1 - \mu_2 < -0.0279054
+ \end{equation*}
+ el cual coincide mejor con el script anterior, por lo que se verifica la forma de trabajar del \'ultimo script anexo creado.
+ \par 
+ Por lo tanto, al usar el resultado del script \texttt{P14\_Intervalo\_de\_confianza\_05.r} al suponer las varianzas iguales y redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $-0.2992 < \mu_1 - \mu_2 < -0.0328$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,71 @@
+\begin{enunciado}
+ Consid\'erese el ejercicio 9.18. Calcule un intervalo de predicci\'on de $95\%$ en una nueva medicci\'on observada del tiempo de secado de la pintura l\'atex.
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como en la soluci\'on del ejercicio 9.18 pero ahora con $\alpha$ representando el valor para el cual hay $(1-\alpha)100\%$ de seguridad en el intervalo de predicci\'on, se tiene lo siguiente:
+ \begin{itemize}
+  \item $X\sim n(\mu, \sigma)$.
+  \item $\mu$ desconocida.
+  \item $\sigma$ desconocida.
+  \item $n=15$.
+  \item $\bar{x} = 3.78\overline{6}$.
+  \item $s\approx 0.97091$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Dado que se desconoce la desviaci\'on est\'andar poblacional y la muestra no es lo suficientemente grande, se requerir\'a del valor $t_{\alpha/2,n-1} = t_{0.025,14}$. De la Tabla A.4 se tiene que $t_{0.025,14} = 2.145$, mientras que, usando el software estad\'{\i}stico R, se obtiene un valor m\'as preciso con los siguientes comandos:
+ \begin{verbatim}
+>options(digits=22)
+>qt(0.025,14,lower.tail=F)
+[1] 2.144786687917804357539
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $2.1447866879178$.
+ \par 
+ Como se est\'a buscando un intervalo de predicci\'on para una muestra que proviene de una poblaci\'on normal con varianza desconocida, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{x}-t_{\alpha/2,n-1}s\sqrt{1+1/n} < x_0 < \bar{x}+t_{\alpha/2,n-1}s\sqrt{1+1/n}
+ \end{equation*}
+ Por lo tanto, con los datos obtenidos y el valor $t_{\alpha/2,n-1}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de predicci\'on como siguen:
+ \begin{eqnarray*}
+  \bar{x} \pm t_{\alpha/2,n-1}s\sqrt{1+1/n} 
+  & = & 3.78\overline{6} \pm (2.145)(0.97091)\sqrt{1 + \frac{1}{15}} 
+  = 3.78\overline{6} \pm 2.08260195 \sqrt{\frac{16}{15}} \\
+  & = & 3.78\overline{6} \pm \frac{(2.08260195)(4)}{\sqrt{15}} = 3.78\overline{6} \pm \frac{8.3304078\sqrt{15}}{15} \\
+  & = & 3.78\overline{6} \pm 0.55536052\sqrt{15}
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de predicci\'on de $95\%$ para la medici\'on pr\'oxima observada en el tiempo de secado de la pintura l\'atex es de:
+ \begin{equation*}
+  1.63576462 < x_0 < 5.93756871
+ \end{equation*}
+ que, redondeando al cuarto decimal, se reduce a que el intervalo es $(1.6358, 5.9376)$. El c\'alculo del intervalo de predicci\'on usando el valor $t_{\alpha/2,n-1}$ obtenido en R se puede realizar con los siguientes comandos. Los c\'odigos escritos se encuentran registrados en un script en el archivo anexo \texttt{P09\_Intervalo\_de\_prediccion\_2.r}. El resultado mostrado al final presenta el l\'{\i}mite inferior, la media muestral y el l\'{\i}mite superior, en ese orden, que se encuentra almacenado en la variable \texttt{IPs}. Para usar los comandos, se requiere el uso de la biblioteca \texttt{EnvStats}.
+ \begin{verbatim}
+>library(EnvStats)
+>datos<-read.csv("DB02_Problema_18.csv",sep=";",encoding="UTF-8")
+>varInteres<-c("Tiempo.h")
+>alfa<-0.05
+>valores<-unlist(datos[,varInteres])
+variable<-factor(rep(varInteres,each=dim(datos)[1]))
+>IP<-function(x,sup=TRUE,alfa=0.05){
+>   if (length(x[!is.na(x)])>=2){
+>      RespGen<-predIntNorm(x[!is.na(x)],conf.level=alfa,pi.type="two-side",
+>                           method="Bonferroni")
+>      v<-ifelse(sup,round(RespGen$interval$limits[[2]],7),
+>                round(RespGen$interval$limits[[1]],7))
+>      return(v)
+>   } else return(NA)
+>}
+>media<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),
+>                          mean,na.rm=TRUE),responseName="Media")
+>IPs1<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),
+>                          IP,alfa=1-alfa),responseName="LimSup")
+>IPs2<-as.data.frame.table(tapply(valores,as.list(data.frame(variable)),
+>                          IP,sup=FALSE,alfa=1-alfa),responseName="LimInf")
+>IPs<-na.omit(data.frame(IPs2,Media=media[,"Media"],LimSup=IPs1[,"LimSup"]))
+>IPs
+  variable   LimInf    Media   LimSup
+1 Tiempo.h 1.635978 3.786667 5.937355
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

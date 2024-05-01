@@ -1,0 +1,51 @@
+\begin{enunciado}
+ Se considera una prueba $t$ de nivel $\alpha = 0.05$ para probar
+ \begin{eqnarray*}
+  H_0: \mu & = & 14 \\
+  H_1: \mu & \neq & 14
+ \end{eqnarray*}
+ ¿Qu\'e tama\~no de la muestra se necesita para que la probabilidad sea $0.1$ de no rechazar de manera err\'onea $H_0$, cuando la media poblacional real difiera de $14$ en $0.5$? A partir de una muestra preliminar estimamos que $\sigma$ es $1.25$.
+\end{enunciado}
+
+\begin{solucion}
+ A partir del enunciado, se tiene los siguientes datos:
+ \begin{itemize}
+  \item $\alpha = 0.05$.
+  \item $\beta = 0.1$.
+  \item $\mu = 14$, seg\'un la hip\'otesis nula.
+  \item $\delta = 0.5$, donde $\mu \pm \delta$
+  es una alternativa espec\'{\i}fica.
+  \item $\sigma = 1.25$.
+ \end{itemize}
+ Entonces, de la tabla $A.3$, se deduce adem\'as que:
+ \begin{itemize}
+  \item $z_{\alpha/2} = 1.96$.
+  \item $z_{\beta} = 1.28$.
+ \end{itemize}
+ Entonces se puede calcular el tama\~no de muestra requerido
+ para la calidad buscada en la prueba
+ con los siguientes c\'alculos:
+ \begin{equation*}
+  n =
+  \left\lceil
+  \frac{
+  \left( z_{\alpha} + z_{\beta} \right)^2 \sigma^2
+  }{
+  \delta^2
+  }
+  \right\rceil
+  =
+  \left\lceil \frac{(1.96+1.28)^2(1.25)^2}{0.5^2} \right\rceil
+  = \left\lceil \frac{3.24^2\times 1.5625}{0.25} \right\rceil
+  = \lceil 10.4976 \times 6.25 \rceil
+  = \lceil 65.61 \rceil
+ \end{equation*}
+ Por lo tanto, el tama\~no muestral buscado es $n = 66$.
+ Es decir que, a partir de un tama\~no muestral de $n = 66$,
+ se puede realizar una prueba de hip\'otesis bilateral de que $\mu = 14$,
+ con un nivel de significancia de $\alpha = 0.05$
+ y considerando una probabilidad de cometer un error tipo II de $0.1$
+ para la hip\'otesis alternativa de que hay una diferencia de $0.5$
+ respecto a la hip\'otesis nula,
+ esto es que $|\mu - 14| = |\delta| = 0.5$.${}_{\blacksquare}$
+\end{solucion}

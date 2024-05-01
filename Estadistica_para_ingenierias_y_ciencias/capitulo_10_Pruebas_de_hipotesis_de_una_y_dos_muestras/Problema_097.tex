@@ -1,0 +1,167 @@
+\begin{enunciado}
+ Las siguientes respuestas con respecto al est\'andar de vida al momento
+ de una encuesta de opini\'on independiente de $1\,000$ familias
+ contra un a\~no antes parece estar de acuerdo con los resultados
+ de un estudio publicado en \textit{Across the Board} (junio de 1981):
+ \begin{center}
+  \begin{tabular}{lcccr}
+   & \multicolumn{3}{c}{\textbf{Est\'andar de vida}} & \\
+   \cline{2-4}
+   & \textbf{Algo} & & \textbf{No tan} & \\
+   \textbf{Periodo} & \textbf{mejor} & \textbf{Igual} & \textbf{bueno} &
+   \textbf{Total} \\
+   \hline
+   1980: Enero & $72$ & $144$ & $84$ & $300$ \\
+   $\phantom{1980:}$ Mayo & $63$ & $135$ & $102$ & $300$ \\
+   $\phantom{1980:}$ Septiembre & $47$ & $100$ & $53$ & $200$ \\
+   1981: Enero & $40$ & $105$ & $55$ & $200$
+  \end{tabular}
+ \end{center}
+ Pruebe la hip\'otesis
+ de que las proporciones de familias dentro de cada est\'andar de vida
+ son las mismas para cada uno de los cuatro periodos.
+ Utilice un valor $P$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item Tamaño de muestra total: $1\,000$.
+   \item Familias encuestadas en Enero de 1980: $300$.
+   \item Familias encuestadas en Mayo de 1980: $300$.
+   \item Familias encuestadas en Septiembre de 1980: $200$.
+   \item Familias encuestadas en Enero de 1981: $200$.
+   \item Opiniones de est\'andar ``Algo mejor'': $72+63+47+40 = 222$.
+   \item Opiniones de est\'andar ``Igual'': $144+135+100+105 = 484$.
+   \item Opiniones de est\'andar ``No tan bueno'': $84+102+53+55 = 294$.
+   \item Frecuencias observadas y esperadas: $o_{i,j}$
+   y $e_{i,j}=\frac{R_i C_j}{n}$, respectivamente,
+   donde $R_i$ y $C_j$ son los marginales del rengl\'on $i$ y la columna $j$,
+   respectivamente, y $n$ es el total de toda la muestra.
+   As\'{\i}, pues, redondeando a un decimal, se muestra el resumen 
+   en la siguiente tabla,
+   en donde aparece entre par\'entesis la frecuencia esperada
+   y a la izquierda el valor observado:
+   \begin{center}
+    \begin{tabular}{lcccr}
+     & \multicolumn{3}{c}{\textbf{Est\'andar de vida}} & \\
+     \cline{2-4}
+     & \textbf{Algo} & & \textbf{No tan} & \\
+     \textbf{Periodo} & \textbf{mejor} & \textbf{Igual} & \textbf{bueno} &
+     \textbf{Total} \\
+     \hline
+     1980: Enero & $72 (66.6)$ & $144 (145.2)$ & $84 (88.2)$ & 
+     $300$ \\
+     $\phantom{1980:}$ Mayo & $63 (66.6)$ & $135 (145.2)$ & $102 (88.2)$ &
+     $300$ \\
+     $\phantom{1980:}$ Septiembre & $47(44.4)$ & $100(96.8)$ & $53(58.8)$ &
+     $200$ \\
+     1981: Enero & $40 (44.4)$ & $105 (96.8)$ & $55 (58.8)$ & 
+     $200$ \\
+     \hline
+     \textbf{Marginal por est\'andar} & $222$ & $484$ & $294$ & $n=1\,000$
+    \end{tabular}
+   \end{center}
+   \item Tama\~no de la tabla de contingencia: $r\times c = 4\times 3$.
+   \item Grados de libertad de la prueba $\chi^2$: $v = (r-1)(c-1) = 6$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: & & \text{Las familias en cada est\'andar de vida
+   son homog\'eneas.} \\
+   H_1: & & \text{Las familias en cada est\'andar de vida
+   no son homog\'eneas.}
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   \chi^2 & = & \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i} \\
+   & = & \frac{(72 - 66.6)^2}{66.6} + \frac{(63 - 66.6)^2}{66.6} +
+   \frac{(47 - 44.4)^2}{44.4} + \frac{(40 - 44.4)^2}{44.4} + \\
+   & & \frac{(144 - 145.2)^2}{145.2} + \frac{(135 - 145.2)^2}{145.2} + \frac{(100 - 96.8)^2}{96.8} + \frac{(105 - 96.8)^2}{96.8} + \\
+   & & \frac{(84 - 88.2)^2}{88.2} + \frac{(102 - 88.2)^2}{88.2} +
+   \frac{(53 - 58.8)^2}{58.8} + \frac{(55 - 58.8)^2}{58.8} \\
+   & = & \frac{29.16 + 12.96}{66.6} + \frac{6.76 + 19.36}{44.4} +
+   \frac{1.44 + 104.04}{145.2} + \frac{10.24 + 67.24}{96.8} + \\
+   & & \frac{17.64 + 190.44}{88.2} + \frac{33.64 + 14.44}{58.8} \\
+   & \approx & 0.6324 + 0.5883 + 0.7264 + 0.8004 + 2.3592 + 0.8177 \\
+   & = & 5.9244
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.5 se observa que, con $6$ grados de libertad, se tienen
+  $P\left(\chi^2 > 5.348\right) \approx 0.5$ y 
+  $P\left(\chi^2 > 7.231\right) \approx 0.3$, por lo que, interpolando,
+  se aproxima que $P\left(\chi^2 > 5.9244 \right) \approx 0.44$
+  lo cual es una probabilidad considerablemente alta.
+ \end{valorp}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  La muestra no lanza evidencia para rechazar la hip\'otesis nula
+  y, por lo tanto, se considera que est\'andares de vida
+  en los diferentes periodos son homog\'eneas, es decir, 
+  las proporciones de familias dentro de cada est\'andar de vida
+  son las mismas.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeniedad\_01.r},
+ que a su vez requiere los datos del archivo
+ \texttt{BD33\_Problema\_097.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB33_Problema_097.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Período","Estándar.vida")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1,2,3)
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+$tabla
+                 Estándar.vida
+Período          Algo mejor Igual No tan bueno
+  1980.Enero              72   144           84
+  1980.Mayo               63   135          102
+  1980.Septiembre         47   100           53
+  1981.Enero              40   105           55
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 5.9245, df = 6, p-value = 0.4317
+
+
+$listaPruebas[[2]]
+
+	Log likelihood ratio (G-test) test of independence without correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 5.8504, X-squared df = 6, p-value =
+0.4402
+
+
+$listaPruebas[[3]]
+
+	Log likelihood ratio (G-test) test of independence with Williams' correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 5.8276, X-squared df = 6, p-value =
+0.4428
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos, adem\'as de brindar m\'as
+ precisi\'on e informaci\'on de otros estad\'{\i}sticos,
+ que es lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

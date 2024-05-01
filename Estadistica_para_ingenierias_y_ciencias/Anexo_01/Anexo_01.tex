@@ -1,0 +1,369 @@
+\documentclass[a4paper,11pt]{article}
+%%\documentclass[a4paper,12pt]{amsart}
+\usepackage[cp1252]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+\setlength{\textheight}{23.5cm} \setlength{\evensidemargin}{0cm}
+\setlength{\oddsidemargin}{-0.8cm} \setlength{\topmargin}{-2.5cm}
+\setlength{\textwidth}{17.5cm} \setlength{\parskip}{0.25cm}
+
+\hyphenation{pro-ba-bi-li-dad}
+\spanishdecimal{.}
+
+\newtheoremstyle{teoremas}{\topsep}{\topsep}%
+     {}% Body font
+     {}% Indent amount (empty = no indent, \parindent = para indent)
+     {}% Thm head font
+     {}% Punctuation after thm head
+     {0.5em}% Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}.}\thmnote{ {\itshape#3}.}}% Thm head spec
+\theoremstyle{teoremas}
+
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{corolario}[teorema]{Corolario}
+
+
+\newtheoremstyle{ejemplos}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{ejemplos}
+
+\newtheoremstyle{definiciones}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{definiciones}
+
+\newtheoremstyle{lemas}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{lemas}
+
+
+\newtheorem*{definicion}{Definici\'on}
+\newtheorem*{enunciado}{Enunciado}
+\newtheorem*{solucion}{Soluci\'on}
+\newtheorem*{demostracion}{Demostraci\'on}
+\newtheorem*{lema}{Lema}
+\newtheorem*{hipotesis}{Hip\'otesis}
+\newtheorem*{estadistico}{Estad\'{\i}stico de Prueba}
+\newtheorem*{region}{Regi\'on de Rechazo}
+\newtheorem*{conclusion}{Conclusi\'on}
+\newtheorem*{hallar}{Por hallar}
+
+
+\title{Anexo 01}
+\author{\'Alvaro J. Carde\~na Mej\'{\i}a}
+
+\begin{document}
+
+\maketitle
+
+\section{Propiedades de $S^2$}
+
+\begin{definicion}
+ Si $\left\{ X_1, X_2, \ldots X_n \right\}$ representa una muestra aleatoria de tama\~no $n$, se define la media muestral, $\overline{X}$, como el estad\'{\i}stico:
+ \begin{equation}
+  \overline{X} = \frac{1}{n}\sum_{i=1}^n X_i
+ \end{equation}
+\end{definicion}
+
+\begin{definicion}
+ Si $\left\{ X_1, X_2, \ldots X_n \right\}$ representa una muestra aleatoria de tama\~no $n$, se define la varianza muestral, $S^2$, como el estad\'{\i}stico:
+ \begin{equation*}
+  S^2 = \frac{1}{n-1} \sum_{i=1}^n \left( X_i - \overline{X} \right)^2
+ \end{equation*}
+\end{definicion}
+
+\begin{teorema} \label{Teorema:VarMCalculoFacil}
+ Si $S^2$ es la varianza de una muestra aleatoria de tama\~no $n$, se cumple lo siguiente:
+ \begin{equation} \label{Eq:VarMFormulaFacil}
+  S^2 = \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n X_i^2 - \left( \sum_{i=1}^n X_i \right)^2 \right]
+ \end{equation}
+\end{teorema}
+
+\begin{definicion}
+ La desviaci\'on est\'andar de la muestra, que se enota con $S$, es la ra\'{\i}z cuadrada positiva de la varianza de la muestra.
+\end{definicion}
+
+
+\begin{teorema} \label{Teorema:VarMExpresion1}
+ La varianza muestral $S^2$ que proviene de una muestra de tama\~no $n$, $\left\{ X_1, X_2, \ldots X_n \right\}$, se puede reescribir como un promedio sobre todos los pares de datos de la muestra:
+ \begin{equation} \label{Eq:VarMExpresion1}
+  S^{2} = \frac{1}{ \binom{n}{2} } \sum_{1\leq i < j \leq n} \frac{1}{2} \left( X_i - X_j \right)^2
+ \end{equation}
+\end{teorema}
+
+\begin{demostracion}
+ A partir de la f\'ormula \ref{Eq:VarMFormulaFacil} dada en el Teorema \ref{Teorema:VarMCalculoFacil}, se sigue que:
+ \begin{eqnarray*}
+  S^2 & = & \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n X_i^2 - \left( \sum_{i=1}^n X_i \right)^2 \right] \\
+      & = & \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n X_i^2 - \left( \sum_{i=1}^2 X_i^2 + 2\left( \sum_{1\leq i < j \leq n}X_iX_j \right) \right) \right] \\ 
+      & = & \frac{1}{n(n-1)} \left[(n-1)\sum_{i=1}^n X_i^2 - 2\left( \sum_{1\leq i < j \leq n} X_iX_j \right) \right]
+ \end{eqnarray*}
+ Por otro lado, en la expresi\'on $\displaystyle{ (n-1)\sum_{i=1}^n X_i^2 }$ cada elemento de la muestra, $X_i$, aparece $n-1$ veces en el t\'ermino $X_i^2$; mientras que en la expresi\'on $\displaystyle{ \sum_{1\leq i < j \leq n} \left( X_i^2 + X_j^2 \right) }$, cada pareja de sumandos diferentes aparece exactamente una vez, por lo que cada elemento de la muestra, $X_i$, aparece como $X_i^2$ exactamente una vez por cada elemento diferente de la muestra con el que se le pueda sumar, habiendo $n-1$ elementos distintos de $X_i$. En otras palabras, en ambas expresiones aparecen los elementos de la muestras elevadas al cuadrado exactamente la misma cantidad de veces. Es decir, estas expresiones son iguales, lo cual se escribe como:
+ \begin{equation*}
+  (n-1)\sum_{i=1}^n X_i^2 = \sum_{1\leq i < j \leq n} \left( X_i^2 + X_j^2 \right)
+ \end{equation*}
+ Por lo tanto, continuando con la expresi\'on de $S^2$:
+ \begin{eqnarray*}
+  S^2 & = & \frac{1}{n(n-1)} \left[(n-1)\sum_{i=1}^n X_i^2 - 2\left( \sum_{1\leq i < j \leq n} X_iX_j \right) \right] \\ 
+      & = & \frac{1}{n(n-1)} \left[ \sum_{1\leq i < j \leq n} \left( X_i^2 + X_j^2 \right) - 2\left( \sum_{1\leq i < j \leq n} X_iX_j \right) \right] \\
+      & = & \frac{1}{n(n-1)} \left[ \sum_{1\leq i < j \leq n} \left( X_i^2 - 2X_iX_j + X_j^2 \right) \right] \\
+      & = & \frac{1}{n(n-1)} \sum_{1 \leq i < j \leq n} \left( X_i - X_j \right)^2 \\ 
+      & = & \frac{1}{\frac{n(n-1)}{2}} \sum_{1 \leq i < j \leq n} \frac{1}{2} \left( X_i - X_j \right)^2 \\ 
+      & = & \frac{1}{\binom{n}{2}} \sum_{1 \leq i < j \leq n} \frac{1}{2} \left( X_i - X_j \right)^2
+ \end{eqnarray*}
+ Q.E.D.${}_{\square}$
+\end{demostracion}
+
+\begin{teorema} \label{Teorema:VarMEsperanza}
+ La esperanza de la varianza muestral, $S^2$, es igual a la varianza poblacional, $\sigma^2$, es decir:
+ \begin{equation}
+  E\left( S^2 \right) = \sigma^2
+ \end{equation}
+\end{teorema}
+
+\begin{demostracion}
+ Sea $X$ una variable aleatoria poblacional, se sabe por teor\'{\i}a de probabilidad que si la esperanza y la varianza de $X$ se escriben como $E(X) = \mu$ y $V(X)$, entonces $\sigma^2 = E\left( X^2 \right) - \mu^2$ y, por lo tanto $E\left( X^2 \right) = \mu^2 + \sigma^2$. Adem\'as, la esperanza es lineal (separa sumas y saca constantes), y la esperanza de un producto de variables aleatorias mutuamente independientes es igual al producto de las esperanzas de cada una de estas variables aleatorias.
+ \par 
+ Entonces, en una muestra aleatoria, $\left\{ X_1, X_2, \ldots \right\}$, las variables son mutuamente independientes e id\'enticamente distribuidas, siguiendo la distribuci\'on poblacional, a cuya esperanza y varianza se le puede llamar $\mu$ y $\sigma^2$, entonces 
+ \begin{eqnarray*}
+  E\left[ \left( X_i - X_j \right)^2 \right] & = & E\left( X_i^2 - 2X_iX_j + X_j^2 \right) \\
+    & = & E\left( X_i^2 \right) - 2E\left( X_i \right)E\left( X_j \right) + E\left( X_j^2 \right) \\ 
+    & = & E\left( X^2 \right) - 2E(X)E(X) + E\left( X^2 \right) \\
+    & = & 2\left[ E\left( X^2 \right) -\mu^2 \right] \\
+    & = & 2\sigma^2
+ \end{eqnarray*}
+ Por lo tanto, usando la expresi\'on \ref{Eq:VarMExpresion1} del Teorema \ref{Teorema:VarMExpresion1}, se concluye que:
+ \begin{eqnarray*}
+  E\left( S^2 \right) & = & E\left[ \frac{1}{\binom{n}{2}} \sum_{1\leq i < j \leq n} \left( X_i - X_j \right)^2 \right] \\ 
+    & = & \frac{1}{\binom{n}{2}} \sum_{1 \leq i < j \leq n} \frac{1}{2} E\left[ \left( X_i - X_j \right)^2 \right] \\ 
+    & = & \frac{1}{\binom{n}{2}} \sum_{1 \leq i < j \leq n} \frac{1}{2} \left( 2\sigma^2 \right) \\ 
+    & = & \frac{1}{\binom{n}{2}} \sum_{1 \leq i < j \leq n} \sigma^2 \\ 
+    & = & \frac{\binom{n}{2}}{\binom{n}{2}} \sigma^2 \\ 
+    & = & \sigma^2
+ \end{eqnarray*}
+ Q.E.D.${}_{\square}$
+\end{demostracion}
+
+\begin{teorema} \label{Teorema:VarMVarianza}
+ La varianza de $S^2$ es igual a
+ \begin{equation} \label{Eq:VarMVarianza}
+  V\left( S^2 \right) = \frac{\mu_4}{n} - \frac{(n-3)\sigma^4}{n(n-1)}
+ \end{equation}
+ donde $\mu_4 = E\left[ (X - \mu)^4 \right]$
+\end{teorema}
+
+\begin{demostracion}
+ Por definici\'on, la varianza de una variable aleatoria $X$ se escribe como:
+ \begin{equation*}
+  V(X) = E\left\{ \left[ X - E(X)^2 \right] \right\}.
+ \end{equation*}
+ Entonces, usando esta definici\'on y el resultado del Teorema \ref{Teorema:VarMEsperanza}, se sigue que la varianza de $S^2$ se puede calcular a partir de la expresi\'on
+ \begin{equation} \label{Eq:DefEsperanza}
+  V\left( S^2 \right) = E\left[ \left( S^2 - \sigma^2 \right)^2 \right]
+ \end{equation}
+ donde
+ \begin{eqnarray*}
+  \left( S^2 - \sigma^2 \right)^2 & = & \left[ \frac{1}{\binom{n}{2}} \sum_{1\leq i < j \leq n} \frac{1}{2} \left( X_i - X_j \right)^2 - \sigma^2 \right]^2 \\ 
+    & = & \left[ \frac{1}{\binom{n}{2}} \sum_{1\leq i < j \leq n} \frac{1}{2} \left( X_i - X_j \right)^2 - \frac{\binom{n}{2}}{\binom{n}{2}} \sigma^2 \right]^2 \\ 
+    & = & \left\{ \frac{1}{\binom{n}{2}} \left[ \sum_{1\leq i < j \leq n} \frac{1}{2} \left( X_i - X_j \right)^2 - \binom{n}{2}\sigma^2 \right] \right\}^2 \\ 
+    & = & \left\{ \frac{1}{\binom{n}{2}} \sum_{1\leq i<j\leq n} \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \right\}^2.
+ \end{eqnarray*}
+ La expansi\'on del cuadrado externo en la suma da por resultado una nueva suma de los productos cruzados:
+ \begin{equation} \label{Eq:Expresion01}
+  \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \left[ \frac{1}{2}\left( X_k - X_l \right)^2 - \sigma^2 \right]
+ \end{equation}
+ el cual, dependiendo de la intersecci\'on $\{ i,j\} \cap \{ k,l \}$, hay 3 tipos de t\'erminos en el producto cruzado:
+ \begin{itemize}
+  \item cuando la intersecci\'on es vac\'{\i}a, lo cual significa que todos los factores son independientes;
+  \item cuando $\left| \{ i,j \} \cap \{ k,l \} \right|= 1$, del que se tienen $\binom{n}{2}$ posibilidades para la primera pareja y, en la segunda pareja, $2$ posibilidades para el valor que se repite de la primera pareja y $n-2$ posibilidades para el elemento que no se repite de la primera pareja, por lo que hay $\left[ \frac{n(n-1)}{\cancel{2}} \right] \left[ \cancel{2}(n-2) \right] = n(n-1)(n-2)$ t\'erminos diferentes posibles;
+  \item y, cuando $\left| \{ i,j \} \cap \{ k,l \} \right| = 2$, lo cual se determina con tan solo 
+  elegir los valores de una pareja, es decir, hay $\binom{n}{2} = \frac{n(n-1)}{2}$ t\'erminos posibles para este \'ultimo caso.
+ \end{itemize}
+ Entonces, como la varianza se define a trav\'es de la esperanza, y la esperanza es lineal, la expresi\'on \ref{Eq:DefEsperanza} se reduce a analizar la esperanza de estos tres casos.
+ \begin{description}
+  \item[Primer caso:] Usando el hecho de que los cuatro valores de la muestra en el producto son independientes, entonces cada factor del producto externo en \ref{Eq:Expresion01} es independiente y se puede separar la esperanza del producto como el producto de las esperanzas, con lo que se desarrolla lo siguiente:
+  \begin{equation*}
+   E\left\{ \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \left[ \frac{1}{2}\left( X_k - X_l \right)^2 - \sigma^2 \right] \right\} = E\left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] E\left[ \frac{1}{2}\left( X_k - X_l \right)^2 - \sigma^2 \right]
+  \end{equation*}
+  y
+  \begin{eqnarray*}
+   E\left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] & = & \frac{1}{2}E\left[ \left( X_i - X_j \right)^2 \right] - \sigma^2 \\ 
+     & = & \frac{1}{2} E\left( X_i^2 - 2X_iX_j + X_j^2 \right) - \sigma^2 \\
+     & = & \frac{1}{2}\left[ E\left( X_i^2 \right) - 2E\left( X_i \right)E\left( X_j \right) + E\left( X_j^2 \right) \right] - \sigma^2 \\
+     & = & \frac{1}{2}\left[ E\left( X^2 \right) - 2\mu^2 + E\left( X^2 \right) \right] - \sigma^2 \\ 
+     & = & \cancel{\frac{1}{2} } \left\{ \cancel{2}\left[ E\left( X^2 \right) - \mu^2 \right] \right\}  \sigma^2 \\
+     & = & (\sigma^2) - \sigma^2 \\ 
+     & = & 0.
+  \end{eqnarray*}
+  Por lo tanto, la esperanza de cada t\'ermino del producto cruzado en el primercaso es cero. 
+
+  \item[Segundo caso:] Como $\left( X_i - X_j \right)^2 = \left( X_j - X_i \right)^2$, se podr\'a suponer sin p\'erdida de generalidad el segundo factor de \ref{Eq:Expresion01} se escribe, con un renombramiento de sub\'{\i}ndices, $\left( X_i - X_l \right)^2$, por lo que el producto cruzado se desarrolla como sigue
+  \begin{eqnarray*}
+   \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \left[ \frac{1}{2}\left( X_i - X_l \right)^2 - \sigma^2 \right] \\
+    & \hspace{-14cm} = & \hspace{-7cm} \frac{1}{4}\left( X_i - X_j \right)^2\left( X_i - X_l \right)^2 - \sigma^2\left[ \frac{1}{2}\left( X_i -X_j \right)^2 + \frac{1}{2}\left( X_i - X_l \right)^2 \right] + \sigma^4 \\ 
+    & \hspace{-14cm} = & \hspace{-7cm} \frac{1}{4}\left( X_i^2 - 2X_iX_j + X_j^2 \right)\left( X_i^2 - 2X_iX_l + X_l^2 \right) \\
+    & & \hspace{-7cm} - \frac{\sigma^2}{2}\left( X_i^2 -2X_iX_j + X_j^2 + X_i^2 - 2X_iX_l + X_l^2 \right) + \sigma^4 \\
+    & \hspace{-14cm} = & \hspace{-7cm} \frac{1}{4}\left( X_i^4 - X_i^3X_l + X_i^2X_l^2 - 2X_i^3X_j + 4X_iX_jX_l - 2X_iX_jX_l^2 + X_i^2X_j^2 - 2X_iX_j^2X_l + X_j^2X_l^2 \right) \\
+    & & \hspace{-7cm} - \frac{\sigma^2}{2}\left[ 2X_i^2 - 2X_i\left( X_j + X_l \right) + X_j^2 + X_l^2 \right] + \sigma^4
+  \end{eqnarray*}
+  Y la esperanza del producto cruzado se desarrolla como:
+  \begin{eqnarray*}
+   E\left\{ \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \left[ \frac{1}{2}\left( X_i - X_l \right)^2 - \sigma^2 \right] \right\} \\
+     & \hspace{-16cm} = & \hspace{-8cm} E\left\{ \frac{1}{4}\left[ X_i^4 - 2x_i^3\left( X_l + X_j \right) + \left( 4X_i^2X_jX_l - 2X_iX_j^2X_l - 2X_iX_jX_l^2 \right) + \left( X_i^2X_l^2 + X_i^2X_j^2 + X_j^2X_l^2 \right) \right] \right. \\ 
+     & & \hspace{-8cm} \left. - \frac{\sigma^2}{2}\left[ 2X_i^2 + X_j^2 + X_l^2 - 2X_i\left( X_j + X_l \right) \right] + \sigma^4 \right\} \\
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left\{ E\left( X_i^4 \right) - 2E\left(X_i^3\right)\left[ E\left(X_l\right) + E\left(X_j\right) \right] + \left[ 4E\left(X_i^2\right)E\left(X_j\right)E\left(X_l\right) - 2E\left(X_i\right)E\left(X_j^2\right)E\left(X_l\right) \right. \right. \\
+     & & \left. \hspace{-8cm} \left. - 2E\left(X_i\right)E\left(X_j\right)E\left(X_l^2\right) \right] + \left[ E\left(X_i^2\right)E\left(X_l^2\right) + E\left(X_i^2\right)E\left(X_j^2\right) + E\left(X_j^2\right)E\left(X_l^2\right) \right] \right\} \\ 
+     & & \hspace{-8cm} - \frac{\sigma^2}{2}\left\{  2E\left(X_i^2\right) + E\left(X_j^2\right) + E\left(X_l^2\right) - 2E\left(X_i\right)\left[ E\left(X_j\right) + E\left( X_l \right) \right] \right\} + \sigma^4 \\ 
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left\{ E\left( X^4 \right) - 2E\left(X^3\right)\left[ E\left(X\right) + E\left(X\right) \right] \right. \\
+     & & \hspace{-8cm} + \underbrace{\left[ 4E\left(X^2\right)E\left(X\right)E\left(X\right) - 2E\left(X\right)E\left(X^2\right)E\left(X\right) - 2E\left(X\right)E\left(X\right)E\left(X^2\right) \right]}_{=0} \\
+     & & \hspace{-8cm} \left. + \left[ E\left(X^2\right)E\left(X^2\right) + E\left(X^2\right)E\left(X^2\right) + E\left(X^2\right)E\left(X^2\right) \right] \right\} \\ 
+     & & \hspace{-8cm} - \frac{\sigma^2}{2}\left\{  2E\left(X^2\right) + E\left(X^2\right) + E\left(X^2\right) - 2E\left(X\right)\left[ E\left(X\right) + E\left( X \right) \right] \right\} + \sigma^4 \\ 
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left[ E\left( X^4 \right) - 2E\left(X^3\right)\left( 2\mu \right) + 3E\left(X^2\right)^2 \right] - \frac{\sigma^2}{2}\left[  4E\left(X^2\right) - 2\mu \left( 2\mu \right) \right] + \sigma^4 \\ 
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left[ E\left( X^4 \right) - 4\mu E\left(X^3\right) + 3\left(\mu^2 + \sigma^2 \right) E\left(X^2\right) \right] - \frac{\sigma^2}{2}\left\{  4\left[  E\left(X^2\right) - \mu^2 \right] \right\} + \sigma^4 \\ 
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left[ E\left( X^4 \right) - 4\mu E\left(X^3\right) + 3\mu^2E\left( X^2 \right) + 3\sigma^2E\left(X^2\right) \right] - \frac{\sigma^2}{2}\left( 4\sigma^2 \right) + \sigma^4 \\
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left[ E\left( X^4 \right) - 4\mu E\left(X^3\right) + 3\mu^2E\left( X^2 \right) + 3\sigma^2\left( \mu^2 + \sigma^2 \right) \right] - 2\sigma^4 + \sigma^4 \\
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left[ E\left( X^4 \right) - 4\mu E\left(X^3\right) + 3\mu^2E\left( X^2 \right) + 3\sigma^2\mu^2 + 3\sigma^4 \right] - \sigma^4 \\
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left\{ E\left( X^4 \right) - 4\mu E\left(X^3\right) + 3\mu^2E\left( X^2 \right) + 3\left[ E\left(X^2\right) - \mu^2 \right]\mu^2 + \left( \mu^4 - \mu^4 \right) 3\sigma^4 - 4\sigma^4 \right\} \\
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left[ E\left( X^4 \right) - 4\mu E\left(X^3\right) + 3\mu^2E\left( X^2 \right) + 3\mu^2E\left(X^2\right) - 3\mu^4 - \mu^4 + \mu^4 -\sigma^4 \right] \\
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left[ E\left( X^4 \right) - 4\mu E\left(X^3\right) + 6\mu^2E\left( X^2 \right) - 4\mu^4 + \mu^4 -\sigma^4 \right] \\
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left[ E\left( X^4 \right) - 4\mu E\left(X^3\right) + 6\mu^2E\left( X^2 \right) - 4\mu^3E\left(X\right) + \mu^4 -\sigma^4 \right] \\
+     & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4} \left\{ E\left[ (X - \mu)^4 \right] - \sigma^4 \right\}.
+  \end{eqnarray*}
+  De donde $E\left[ (X - \mu)^4 \right]$ es el momento central de cuarto orden de $X$ y se denota como $\mu_4$. Por lo tanto, cada t\'ermino del producto cruzado del segundo caso tiene un valor esperado de
+  \begin{equation}
+   \frac{\mu_4 - \sigma^4}{4}
+  \end{equation}
+
+  \item[Tercer caso:] Ya que ambos factores externos en \ref{Eq:Expresion01} son iguales, este producto se puede desarrollar como sigue
+  \begin{eqnarray*}
+   \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \\
+     &\hspace{-10cm} = & \hspace{-5cm} \frac{1}{4}\left( X_i - X_j \right)^4 - \frac{2}{2}\left( X_i - X_j \right)^2\sigma^2 + \sigma^4 \\
+     & \hspace{-10cm} = & \hspace{-5cm} \frac{1}{4}\left( X_i^4 - 4X_i^3X_j + 6X_i^2X_j^2 - 4X_iX_j^3 + X_j^4 \right) - \sigma^2\left( X_i^2 - 2X_iX_j + X_j^2 \right) + \sigma^4
+  \end{eqnarray*}
+  Por lo que la esperanza en este caso se puede calcular como
+  \begin{eqnarray*}
+   E\left\{ \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \right\} \\ 
+   & \hspace{-16cm} = & \hspace{-8cm} E\left[ \frac{1}{4}\left( X_i^4 - 4X_i^3X_j + 6X_i^2X_j^2 - 4X_iX_j^3 + X_j^4 \right) - \sigma^2\left( X_i^2 - 2X_iX_j + X_j^2 \right) + \sigma^4 \right] \\
+   & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4}\left[ E\left(X_i^4\right) + E\left( X_j^4 \right) - 4E\left(X_i^3\right)E\left(X_j\right) - 4E\left(X_i\right)E\left(X_j^3\right) + 6E\left(X_i^2\right)E\left(X_j^2\right) \right] \\ 
+   & & \hspace{-8cm} - \sigma^2\left[ E\left(X_i^2\right) + E\left(X_j^2\right) - 2E\left(X_i\right) E\left(X_j\right) \right] + \sigma^4 \\ 
+   & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4}\left[ E\left(X^4\right) + E\left( X^4 \right) - 4E\left(X^3\right)E\left(X\right) - 4E\left(X\right)E\left(X^3\right) + 6E\left(X^2\right)E\left(X^2\right) \right] \\ 
+   & & \hspace{-8cm} - \sigma^2\left[ E\left(X^2\right) + E\left(X^2\right) - 2E\left(X\right) E\left(X\right) \right] + \sigma^4 \\   
+   & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4}\left[ 2E\left(X^4\right) - 8\mu E\left(X^3\right) + 6\left( \mu^2 + \sigma^2 \right)E\left(X^2\right) \right] - \sigma^2\left[ 2E\left(X^2\right) - 2\mu^2 \right] + \sigma^4 \\   
+   & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{4}\left\{ 2 \left[ E\left(X^4\right) - 4\mu E\left(X^3\right) + 3\mu^2E\left( X^2 \right) + 3\sigma^2 E\left(X^2\right) \right] \right\} - \sigma^2\left\{ 2\left[ E\left(X^2\right) - \mu^2 \right] \right\} + \sigma^4 \\ 
+   & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{2}\left[ E\left(X^4\right) - 4\mu E\left(X^3\right) + 3\mu^2E\left( X^2 \right) + 3\sigma^2\left( \mu^2 + \sigma^2 \right) \right] - 2\sigma^2\left( \sigma^2\right) + \sigma^4 \\ 
+   & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{2}\left[ E\left(X^4\right) - 4\mu E\left(X^3\right) + 3\mu^2E\left( X^2 \right) + 3\mu^2\sigma^2 + 3\sigma^4 \right] - 2\sigma^4 + \sigma^4 \\ 
+   & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{2}\left\{ E\left(X^4\right) - 4\mu E\left(X^3\right) + 3\mu^2E\left( X^2 \right) + 3\mu^2\left[ E\left( X^2 \right) - \mu^2 \right] + \left( \mu^4 - \mu^4 \right) + 3\sigma^4 \right\} - \sigma^4 \\ 
+   & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{2}\left[ E\left(X^4\right) - 4\mu E\left(X^3\right) + 6\mu^2E\left( X^2 \right) - 4\mu^4 + \mu^4 + \sigma^4 \right] \\ 
+   & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{2}\left[ E\left(X^4\right) - 4\mu E\left(X^3\right) + 6\mu^2E\left( X^2 \right) - 4\mu^3E(X) + \mu^4 + \sigma^4 \right] \\ 
+   & \hspace{-16cm} = & \hspace{-8cm} \frac{1}{2}\left\{ E\left[ (X - \mu)^4 \right] + \sigma^4 \right\}
+  \end{eqnarray*}
+  Por lo tanto, cada t\'ermino del producto cruzado del tercer caso tiene un valor esperado de
+  \begin{equation*}
+   \frac{\mu_4 + \sigma^4}{2}
+  \end{equation*}
+ \end{description}
+ Por lo tanto, ahora se puede calcular la varianza de $S^2$ como:
+ \begin{eqnarray*}
+  V(S^2) & = & E\left[ \left( S^2 - \sigma^2 \right)^2 \right] \\
+    & = & E\left( \left\{ \frac{1}{\binom{n}{2}} \sum_{1 \leq i < j \leq n} \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \right\}^2 \right) \\ 
+    & = & E\left( \frac{1}{\binom{n}{2}^2} \left\{ \sum_{1 \leq i < j \leq n} \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \right\}^2 \right) \\ 
+    & = & \frac{1}{\binom{n}{2}^2} E\left(  \left\{ \sum_{1 \leq i < j \leq n} \left[ \frac{1}{2}\left( X_i - X_j \right)^2 - \sigma^2 \right] \right\}^2 \right) \\ 
+    & = & \frac{1}{\left[ \frac{n(n-1)}{2} \right]^2} \left[ 0 + n(n-1)(n-2)\left( \frac{\mu_4 - \sigma^4}{4} \right) + \binom{n}{2}\left( \frac{\mu_4 + \sigma^4}{2} \right) \right] \\ 
+    & = & \frac{4\left[ n(n-1)(n-2)\left( \frac{\mu_4 - \sigma^4}{4} \right) + \frac{n(n-1)}{2}\left( \frac{\mu_4 + \sigma^4}{2} \right) \right]}{n^2(n-1)^2} \\ 
+    & = & \frac{\cancel{n(n-1)}\left[\left( \mu_4 - \sigma^4 \right)\right](n-2) + \mu_4 + \sigma^4}{n^{\cancel{2}}(n-1)^{\cancel{2}}} \\ 
+    & = & \frac{(n-2)\mu_4 + \mu_4 - (n-2)\sigma^4 + \sigma^4}{n(n-1)} \\ 
+    & = & \frac{(n-1)\mu_4 - (n-3)\sigma^4}{n(n-1)} \\ 
+    & = & \frac{\mu_4}{n} - \frac{(n-3)\sigma^4}{n(n-1)}
+ \end{eqnarray*}
+ Por lo tanto
+ \begin{equation*}
+  V\left( S^2 \right) = \frac{\mu_4}{n} - \frac{(n-3)\sigma^4}{n(n-1)}
+ \end{equation*}
+ donde 
+  $\mu_4 = E\left[ \left( X - \mu \right)^4 \right]$
+ Q.E.D.${}_{\blacksquare}$
+\end{demostracion}
+
+\begin{teorema} \label{Teorema:MomentosNormal}
+ Si una variable aleatoria $X$ sigue una distribuci\'on normal, entonces el momento central de cuarto orden de $X$ es
+ \begin{equation} \label{Eq:MomentosNormal}
+  E\left[ \left( X - \mu \right)^4 \right] = 3\sigma^4
+ \end{equation}
+\end{teorema}
+
+\begin{demostracion}
+ Por definici\'on del c\'alculo de una esperanza de una funci\'on una variable continua $X$ que tiene funci\'on de densidad $f(X)$, se tiene que $E\left[ g(X) \right] = \int_{-\infty}^{\infty}g(x)f(x)\, dx$.
+ En este caso, por lo tanto
+ \begin{equation*}
+  E\left[ (X - \mu)^4 \right] = \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\infty} (x-\mu)^4 e^{-\frac{1}{2}\left( \frac{x - \mu}{\sigma} \right)^2} \, dx.
+ \end{equation*}
+ Haciendo el cambio de variable $z = \frac{x-\mu}{\sigma}$, entonces $dz = \frac{1}{\sigma}dx$ y 
+ \begin{eqnarray*}
+  E\left[ (X - \mu)^4 \right] & = & \frac{\sigma^4}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\infty} \left( \frac{x - \mu}{\sigma} \right)^4 e^{-\frac{1}{2}\left( \frac{x - \mu}{\sigma} \right)^2} \, \frac{dx}{\sigma} \\ 
+    & = & \frac{\sigma^4}{\sqrt{2\pi}} \int_{-\infty}^{\infty} z^4 e^{-\frac{1}{2}z}\, dz.
+ \end{eqnarray*}
+ Para resolver esta nueva integral se proceder\'a a usar la t\'ecnica de integraci\'on por partes con $u = z^3$ y $dv = ze^{-\frac{z^2}{2}}dz$, de manera que $du = 3z^2 dz$ y $v = -e^{-\frac{z^2}{2}} dz$, entonces
+ \begin{eqnarray*}
+  E\left[ (X - \mu)^4 \right] & = & \frac{\sigma^4}{\sqrt{2\pi}} \int_{-\infty}^{\infty} z^4 e^{-\frac{1}{2}z}\, dz \\
+    & = & \frac{\sigma^4}{\sqrt{2\pi}} \left( \left. -z^3e^{-\frac{z^2}{2}} \right|_{-\infty}^{\infty} + \int_{-\infty}^{\infty} 3z^2 e^{-\frac{z^2}{2}}\, dz \right).
+ \end{eqnarray*}
+ Dado resultados de c\'alculo, se sabe que\footnote{Este resultado se obtiene pasando $e^{-\frac{z^2}{2}}$ como $e^{\frac{z^2}{2}}$ en el denominador y usando la regla de L'Hopital e inducci\'on.} 
+ \begin{equation*}
+  \lim_{x \to -\infty} - z^n e^{-\frac{z^2}{2}} = \lim_{x \to \infty} - z^n e^{-\frac{z^2}{2}} = 0
+ \end{equation*}
+ por lo que 
+ \begin{eqnarray*}
+  E\left[ (X - \mu)^4 \right] & = & \frac{\sigma^4}{\sqrt{2\pi}} \left( \left. -z^3e^{-\frac{z^2}{2}} \right|_{-\infty}^{\infty} + \int_{-\infty}^{\infty} 3z^2 e^{-\frac{z^2}{2}}\, dz \right) \\
+    & = & \frac{\sigma^4}{\sqrt{2\pi}} \int_{-\infty}^{\infty} 3z^2 e^{-\frac{z^2}{2}}\, dz \\
+    & = & 3\sigma^2 \left( \frac{\sigma^2}{\sqrt{2\pi}} \int_{-\infty}^{\infty} z^2 e^{-\frac{z^2}{2}}\, dz \right) \\
+    & = & 3\sigma^2\left[ \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\infty} (x-\mu)^2 e^{-\frac{1}{2}\left( \frac{x - \mu}{\sigma} \right)^2} \, dx \right] \\ 
+    & = & 3\sigma^2\, E\left[ (X-\mu)^2 \right] \\ 
+    & = & 3\sigma^2V(X) = 3\sigma^2\left( \sigma^2 \right) \\
+    & = & 3\sigma^4
+ \end{eqnarray*}
+ Q.E.D.${}_{\square}$
+\end{demostracion}
+
+\begin{corolario}
+ Si $S^2$ proviene de una poblaci\'on que se distribuye de forma normal, entonces
+ \begin{equation}
+  V\left( S^2 \right) = \frac{2\sigma^4}{n-1}
+ \end{equation}
+\end{corolario}
+
+\begin{demostracion}
+ A partir de la expresi\'on \ref{Eq:VarMVarianza} obtenida en el Teorema \ref{Teorema:VarMVarianza} y de que del Teorema \ref{Teorema:MomentosNormal} se sabe que en una distribuci\'on normal el momento central de cuarto orden est\'a expresado seg\'un por \ref{Eq:MomentosNormal}, entonces, si $S^2$ proviene de una poblaci\'on con distribuci\'on normal, entonces 
+ \begin{eqnarray*}
+  V\left( S^2 \right) & = & \frac{\mu_4}{n} - \frac{(n-3)\sigma^4}{n(n-1)} = \frac{3\sigma^4}{n} - \frac{(n-3)\sigma^4}{n(n-1)} \\ 
+    & = & \frac{3(n-1)\sigma^4 - (n-3)\sigma^4}{n(n-1)} \\ 
+    & = & \frac{\sigma^4(3n - \cancel{3} - n + \cancel{3})}{n(n-1)} = \frac{\sigma^4(2\cancel{n})}{\cancel{n}(n-1)} \\ 
+    & = & \frac{2\sigma^4}{n-1}
+ \end{eqnarray*}
+ Q.E.D.${}_{\blacksquare}$
+\end{demostracion}
+
+
+\end{document}

@@ -1,0 +1,113 @@
+\begin{enunciado}
+ En el ejercicio 9.42 de la p\'agina 298, pruebe la hip\'otesis de que los camiones compactos Volkswagen, en promedio, exceden a los camiones compactos Toyota, equipados de forma similar, en cuatro kil\'ometros por litro. Utilice un nivel de significancia de $0.10$.
+\end{enunciado}
+
+\begin{solucion}
+ En el ejercicio 9.42, se resolvi\'o
+ que $(4.324, 5.676)$ es un intervalo de confianza bilateral
+ del $90\%$ para la diferencia de las medias,
+ para la misma informaci\'on muestral.
+ Por lo tanto, no se rechazar\'{\i}a una prueba de hip\'otesis
+ \textit{bilateral} sobre la diferencia de las medias
+ que incluya cualquier valor hipot\'etico entre $4.324$ y $5.676$
+ (que no es este el caso).
+ Sin embargo, el problema sufiere realizar una prueba de hip\'otesis
+ unilateral, por lo que se procede seg\'un se sabe,
+ y ayudado por los c\'alculos que reaparezcan del ejercicio mencionado.
+ \begin{datos}
+  Usando la notaci\'on y datos del ejercicio 9.42,
+  se tiene lo siguiente:
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{ 1, 2 \}$.
+   \item $n_1 = 12$ y $n_2 = 10$.
+   \item $\bar{x}_1 = 16$ y $\bar{x}_2 = 11$.
+   \item $s_1 = 1$ y $s_2 = 0.8$.
+   \item $s_p = \frac{\sqrt{2\,095}}{50} \approx 0.9154233993$
+   \item $\sigma_1 = \sigma_2$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  $\phantom{0}$
+  \begin{eqnarray*}
+   H_0: \mu_1 - \mu_2 & \leq & 4 \\
+   H_1: \mu_1 - \mu_2 & > & 4
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.1$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.4, se tiene el valor cr\'{\i}tico
+  $t_{\alpha,n_1+n_2-2} = t_{0.1,20} = 1.325$,
+  por lo que la regi\'on de rechazo est\'a dado para $t > 1.325$,
+  donde $t = 
+  \frac{
+  \left( \bar{x}_1 - \bar{x}_2 \right) - d_0
+  }{
+  s_p\sqrt{1/n_1 + 1/n_2}
+  }$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   t & = & 
+   \frac{
+   \left( \bar{x}_1 - \bar{x}_2 \right) - d_0
+   }{
+   s_p\sqrt{1/n_1 + 1/n_2}
+   }
+   = \frac{(16-11)-4}{\frac{\sqrt{2\,095}}{50}\sqrt{\frac{1}{12}+\frac{1}{10}}}
+   = \frac{(5-4)(50)\sqrt{2\,095}}{2\,095\sqrt{\frac{11}{60}}}
+   = \frac{50\sqrt{2\,095}\sqrt{60}}{2\,095\sqrt{11}} \\
+   & = & \frac{10\sqrt{125\,700}\sqrt{11}}{419(11)}
+   = \frac{100\sqrt{13\,827}}{4\,609}
+   \approx 2.55127499936194
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  Se concluye que los camiones compactos Volkswagen, en promedio, exceden a los camiones compactos Toyota, equipados de forma similar, en cuatro kil\'ometros por litro.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P05\_Prueba\_de\_dos\_medias\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n1<-12
+> n2<-10
+> mu<-4
+> m1<-16
+> m2<-11
+> m<-NULL
+> sigma1<-NULL
+> sigma2<-NULL
+> s1<-1
+> s2<-0.8
+> sD<-NULL
+> desv.iguales<-TRUE
+> alfa<-0.1
+> cola<-'S'
+> par<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba var.pobl H0 n1 n2 DifMedias desv.est1 desv.est2    est.sp error.est
+1      t  Iguales  4 12 10         5         1       0.8 0.9154234 0.3919609
+  grados.libertad alpha    PValor Estadistico RegionRechazoT RegionRechazoX
+1              20   0.1 0.0095122    2.551275    > 1.3253407    > 4.5194817
+      Resultado
+1 Se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

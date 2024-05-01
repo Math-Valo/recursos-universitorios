@@ -1,0 +1,33 @@
+\begin{enunciado}
+ Un experto en eficiencia desea determinar el tiempo promedio que toma perforar tres hoyos en cierta placa met\'alica. ?`De qu\'e tama\~no se necesita una muestra para tener 95\% de confianza de que esta media muestral est\'e dentro de 15 segundos de la media real? Suponga que por estudios previos se sabe que $\sigma=40$ segundos.
+\end{enunciado}
+
+\begin{solucion}
+ Del enunciado se tienen los siguientes datos:
+ \begin{itemize}
+  \item $\sigma = 40\,$s.
+  \item $\alpha=0.05$.
+  \item $e=15\,$s.
+ \end{itemize}
+ Como se desea conocer el tama\~no de muestra y se tiene el valor de $\sigma$, se puede precisar el resultado usando el valor $z_{\alpha/2} = z_{0.025}$, el cual, por ejercicios previos resueltos, se sabe que vale $1.96$, seg\'un el libro, y m\'as precisamente $1.95996398454$, usando el software estad\'{\i}stico R.
+ \par 
+ Entonces, como se desea estimar $\mu$ usando $\bar{x}$ y se conoce el valor de $\sigma$, se puede usar la siguiente formulaci\'on:
+ \begin{equation*}
+  n = \left( \frac{z_{\alpha/2}\sigma}{e} \right)^2
+ \end{equation*}
+ por lo tanto, el valor pedido se puede calcular, usando el valor $z_{\alpha/2}$ del libro, como
+ \begin{equation*}
+  n = \left\lceil \left( \frac{1.96\times 40}{15} \right)^2  \right\rceil = \left\lceil \left( 5.22\bar{6} \right)^2 \right\rceil = \left\lceil 27.3180\bar{4} \right\rceil = 28
+ \end{equation*}
+ Por lo tanto, el tama\~no de la muestra buscada es de $n=28$.
+ \par 
+ N\'otese que usando el valor $z_{\alpha/2}$ de la aproximaci\'on hecha en R da el mismo valor, esto se puede verificar usando el programa anexo \texttt{P03\_Tamanyo\_de\_muestra\_1.r} y cambiando las siguientes l\'{\i}neas de c\'odigo.
+ \begin{verbatim}
+>error<-15
+>desv.tipica<-40
+>alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
+

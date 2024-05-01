@@ -1,0 +1,69 @@
+\begin{enunciado}
+ Una compa\~n\'{\i}a petrolera afirma que un quinto de las casas en cierta ciudad
+ se calientan con petr\'oleo.
+ ¿Tenemos raz\'on para creer que menos de $1/5$ se calientan con petr\'oleo
+ si, en una muestra aleatoria de $1000$ casas en esta ciudad, se encuentra
+ que $136$ se calientan con petr\'oleo? Utilice un valor $P$ en su conclusi\'on.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n = 1\,000$.
+   \item $x = 136$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p & \geq & 0.2 \\
+   H_1: p &  <   & 0.2
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   z = \frac{x - np}{\sqrt{npq}}
+   = \frac{136 - (1\,000)(0.2)}{\sqrt{(1\,000)(0.2)(0.8)}}
+   = \frac{136 - 200}{\sqrt{160}} = - \frac{64}{4\sqrt{10}}
+   = - \frac{64\sqrt{10}}{40} = - \frac{16\sqrt{10}}{10} \approx - 5.059644
+  \end{equation*}
+ \end{estadistico}
+ 
+ \begin{valorp}
+  De la tabla A.3, se tiene que:
+  \begin{equation*}
+   P(Z < z) = P(Z > -Z) \approx P(Z > 5.06) \approx 0
+  \end{equation*}
+ \end{valorp}
+ 
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es muy cercano a cero, se tiene evidencia
+  suficiente para rechazar la hip\'otesis nula a favor de la alternativa;
+  es decir, que s\'{\i} hay raz\'on suficiente para afirmar que menos de $1/5$
+  de las casas se calientan con petr\'oleo.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo \texttt{P08\_Prueba\_de\_una\_proporcion\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n<-1000
+> x<-136
+> p0<-NULL
+> p<-1/5
+> alfa<-NULL
+> cola<-'I'
+> distr<-NULL
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+   distr   p    n   x pMuestral media desv.est alpha PValor Estadistico
+1 Normal 0.2 1000 136     0.136   200 12.64911  0.05  2e-07   -5.059644
+  RegionRechazoZ RegionRechazoX
+1  <= -1.6448536         <= 179
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,35 @@
+\begin{enunciado}
+ Suponga que, en el ejercicio 10.12, concluimos que $60\%$ de los votantes est\'a a favor del impuesto a la venta de gasolina, si m\'as de $214$, pero menos de $266$, votantes de nuestra muestra lo favorecen. Demuestre que esta nueva regi\'on cr\'{\i}tica tiene como resultado un valor m\'as peque\~no para $\alpha$ a costa de aumentar $\beta$.
+\end{enunciado}
+
+\begin{solucion}
+ Usando los t\'erminos del ejercicio 10.12, se tiene ahora que:
+ \begin{itemize}
+  \item $X \sim b(n,p) \sim n\left( np, \sqrt{npq} \right)$.
+  \item $n = 400$.
+  \item $x_{\text{inf}} = 215$ y $x_{\text{sup}} = 265$.
+ \end{itemize}
+ Entonces, llamando $\alpha_0$ a la probabilidad de cometer el error tipo I con los intervalos anteriores, y $\alpha$ a la probabilidad actual, an\'alogamente con $\beta_0$ y $\beta$, entonces se tiene lo siguiente:
+ \begin{eqnarray*}
+  \alpha & = & P(X \leq 214) + P(X \geq 266) \\
+  & = & P(X \leq 214) + P(214 < X \leq 220) + P(260 \leq X < 266) + P(266 \leq X) \\
+  &  & - \left[ P(214 < X \leq 220) + P(260 \leq X < 266) \right] \\
+  & = & \left[ P(X \leq 220) + P(X \geq 260) \right] - \left[ P(214 < X \leq 220) + P(260 \leq X < 266) \right] \\
+  & = & \alpha_0 - \left[ P(214 < X \leq 220) + P(260 \leq X < 266) \right] \\
+  \beta & = & P(214 < X < 266) \\
+  & = & P(214 < X \leq 220) + P(220 < X < 260) + P(260 \leq X < 266) \\
+  & = & \beta_0 + \left[ P(214 < X \leq 220) + P(260 \leq X < 266) \right]
+ \end{eqnarray*}
+ Luego entonces, como la distribuci\'on es binomial (o en todo caso una aproximaci\'on normal) para una mmuestra de $n = 400$, entonces para cualquier $X$ en un subintervalo $A \subseteq [0,400]$ que contenga al menos un entero, cumplir\'a que $P(X \in A) > 0$. En particular:
+ \begin{equation*}
+  P(214 < X \leq 220) + P(260 \leq X < 266) > 0 + 0 = 0
+ \end{equation*}
+ Por lo tanto:
+ \begin{eqnarray*}
+  \alpha & = & \alpha_0 - \left[ P(214 < X \leq 220) + P(260 \leq X < 266) \right] \\
+  & < & \alpha_0 \\
+  \beta & = & \beta_0 + \left[ P(214 < X \leq 220) + P(260 \leq X < 266) \right] \\
+  & > & \beta_0
+ \end{eqnarray*}
+ Por lo tanto, esta nueva regi\'on cr\'{\i}tica tiene como resultado un valor m\'as peque\~no para $\alpha$ a costa de aumentar $\beta$. Q.E.D.${}_{\blacksquare}$
+\end{solucion}

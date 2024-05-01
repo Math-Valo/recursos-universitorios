@@ -1,0 +1,55 @@
+\begin{enunciado}
+ Se considera un nuevo sistema de lanzamiento de cohetes para el despliegue de cohetes peque\~nos de corto alcance. El sistema existente tiene $p = 0.8$ como la propabilidad de lanzamiento existoso. Se realiza una muestra de $40$ lanzamientos experimentales con el nuevo sistema y $34$ resultan exitosos.
+ \begin{enumerate}
+  \item Construya un intervalo de confianza de $95\%$ para $p$.
+  \item ¿Concluir\'{\i}a que es mejor el nuevo sistema?
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de la cantidad de lanzamientos de cohetes exitosos con el nuevo sistema entre cada $n$ lanzamientos, entonces $\widehat{P} = X/n$ es un estad\'{\i}stico de proporci\'on en un experimento binomial que aproxima el valor de $p$, la proporci\'on total de cohetes lanzados de forma exitosa en el total de lanzamientos realizados, entonces, del enunciado, se tienen los siguientes datos obtenidos de una muestra:
+ \begin{itemize}
+  \item $n = 40$.
+  \item $x = 34$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ por lo que $\hat{p}$, la proporci\'on de \'exitos en la muestra, y $\hat{q} = 1 - \hat{p}$ est\'an dados por:
+ \begin{itemize}
+  \item $\hat{p} = \frac{x}{n} = \frac{34}{40} = \frac{17}{20} = 0.85$; y,
+  \item $\hat{q} = 1-\hat{p} = 1 - \frac{3}{20} = 0.15$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p$, entonces se requiere del valor de $z_{\alpha/2} = z_{0.025}$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+ \begin{enumerate}
+  \item Ya que se busca un intervalo de confianza para la proporci\'on de un experimento binomial en donde el tama\~no de muestra es grande y se tiene que tanto $n\hat{p}$ como $n\hat{q}$ es mayor que o igual a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+  \begin{equation*}
+   \hat{p} - z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} < p < \hat{p} + z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+  \begin{eqnarray*}
+   \hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} & = & 0.85 \pm 1.96\sqrt{\frac{(0.85)(0.15)}{40}} = 0.85 \pm 1.96\left( \frac{\sqrt{51}\sqrt{10}}{20(20)} \right) \\
+   & = & 0.85 \pm \frac{49\sqrt{510}}{10\,000} = 0.85 \pm 0.0049\sqrt{510} \approx 0.85 \pm 0.1106575799482
+  \end{eqnarray*}
+  Por lo tanto, el intervalo de confianza de $95\%$ de la proporci\'on de cohetes lanzados exitosamente en el nuevo sistema es aproximadamente:
+  \begin{equation*}
+   0.73934242 < p < 0.96065758
+  \end{equation*}
+  Finalmente, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P17\_Intervalo\_de\_confianza\_08.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-40
+> x<-34
+> p<-NULL
+> alfa<-0.05
+> inter<-'D'
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+     LimInf Proporción    LimSup
+1 0.7393445       0.85 0.9606555
+  \end{verbatim}
+  \vspace{-0.5cm}
+  por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $0.73934 < p < 96066$.${}_{\square}$
+  
+  \item No. El intervalo de confianza indica no da pruebas suficiente para confirmar, con $95\%$ de confianza, que la proporci\'on de cohetes lanzados exitosamente sea estrictamente mayor a $0.8$, que es la proporci\'on del sistema antiguo, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

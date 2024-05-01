@@ -1,0 +1,55 @@
+\begin{enunciado}
+ Un antrop\'ologo se interesa en la proporci\'on de individuos de dos tribus indias con doble remolino de cabello en la zona occipital de la cabeza. Suponga que se toman muestras independientes de cada una de las dos tribus, y se encuentra que $24$ de $100$ individuos de la tribu $A$ y $36$ de $120$ individuos de la tribu $B$ poseen tal caracter\'{\i}stica. Construya un intervalo de confianza de $95\%$ para la diferencia $p_B - p_A$ entre las proporciones de estas dos tribus con remolinos de cabellos en la zona occipital de la cabeza.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_A$ y $X_B$ las variables aleatorias de la cantidad de individuos con doble remolino de cabello en la zona occipital de la cabeza para las tribus indias $A$ y $B$, respectivamente, entre un total de $n_A$ y $n_B$ de individuos de estas tribus, entendiendo que $n_A$ y $n_B$ son peque\~nas en comparaci\'on a $N_A$ y $N_B$, la poblaci\'on total de individuos de las tribus $A$ y $B$, respectivamente, donde $n_A/N_A$ y $n_B/N_B$ son menores o iguales que $0.05$, y sean $k_A$ y $k_B$ la cantidad total de individuos con doble remolino de cabello en la zona occipital de la cabeza en la tribu $A$ y $B$, respectivamente, entonces $\widehat{P}_A = X_A/n_A$ y $\widehat{P}_B = X_B/n_B$ son estad\'{\i}sticos de proporci\'on, cada uno, que estiman a los valores $p_A = k_A/N_A$ y $p_B = k_B/N_B$, la proporci\'on de indivuos con doble remolino de cabello en la zona occipital de la cabeza en la tribu $A$ y $B$, respectivamente, entonces, del enunciado, se tienen los siguientes datos obtenidos de muestras:
+ \begin{itemize}
+  \item $n_A = 100$ y $n_B = 120$.
+  \item $x_A = 24$ y $x_B = 36$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ por lo que $\hat{p}_A$ y $\hat{p}_B$, las proporciones de \'exito en estas muestras, y $\hat{q}_A = 1 - \hat{p}_A$ y $\hat{q}_B = 1 - \hat{p}_B$ valen:
+ \begin{itemize}
+  \item $\hat{p}_A = \frac{24}{100} = \frac{6}{25} = 0.24$ y $\hat{p}_B = \frac{36}{120} = \frac{3}{10} = 0.3$; y,
+  \item $\hat{q}_1 = 1- \frac{6}{25} = \frac{19}{25} = 0.76$ y $\hat{q}_B = 1 - \frac{3}{10} = \frac{7}{10} = 0.7$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p_B - p_A$, entonces se requiere del valor $z_{\alpha/2} = z_{0.025}$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+ \par 
+ Ya que se busca un intervalo para la diferencia de proporciones de experimentos hipergeom\'etricos en donde el tama\~no de las muestras son grandes, y por tanto aproximan bien a los experimentos binomiales, y se tiene que $n_A\hat{p}_A$, $n_A\hat{q}_A$, $n_B\hat{p}_B$ y $n_B\hat{q}_B$ son todos mayores a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \left( \hat{p}_B - \hat{p}_B \right) - z_{\alpha/2} \sqrt{\frac{\hat{p}_B\hat{q}_B}{n_B} + \frac{\hat{p}_A\hat{q}_A}{n_A}} < p_B - p_A < \left( \hat{p}_B - \hat{p}_B \right) + z_{\alpha/2} \sqrt{\frac{\hat{p}_B\hat{q}_B}{n_B} + \frac{\hat{p}_A\hat{q}_A}{n_A}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \left( \hat{p}_B - \hat{p}_B \right) \pm z_{\alpha/2} \sqrt{\frac{\hat{p}_B\hat{q}_B}{n_B} + \frac{\hat{p}_A\hat{q}_A}{n_A}} & = & (0.3 - 0.24) \pm 1.96 \sqrt{\frac{(3/10)(7/10)}{120} + \frac{(6/25)(19/25)}{100}} \\
+  & = & 0.06 \pm 1.96\sqrt{\frac{21}{120\left(10^2\right)} + \frac{114}{100\left( 25^2 \right)}} \\
+  & = & 0.06 \pm 1.96 \sqrt{\frac{7}{40(100)} + \frac{57}{50(625)}} \\
+  & = & 0.06 \pm \frac{49}{25} \sqrt{\frac{7(125) + 57(16)}{500\,000}} = 0.06 \pm \frac{49}{25} \left( \frac{\sqrt{1\,787}\sqrt{2}}{1\,000} \right) \\
+  & = & 0.06 \pm \frac{49\sqrt{3\,574}}{25\,000} = 0.06 \pm 0.00196\sqrt{3\,574} \\
+  & \approx & 0.06 \pm 0.1171745637926593691
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $95\%$ para la diferencia de la proporci\'on de la cantidad de individuos con doble remolino de cabello en la zona occipital de la cabeza de la tribu $B$ menos la proporci\'on en la tribu $A$ es aproximadamente
+ \begin{equation*}
+  -0.0571745637926593691 < p_B - p_A < 0.1771745637926593691
+ \end{equation*}
+ Por otro lado, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P20\_Intervalo\_de\_confianza\_09.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-120
+> n2<-100
+> x1<-36
+> x2<-24
+> p1<-NULL
+> p2<-NULL
+> alfa<-0.05
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+   n1  n2   p1   p2     LimInf diferencia    LimSup
+1 120 100 0.24 0.24 -0.0571724       0.06 0.1771724
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de $95\%$ es $-0.05717 < p_B - p_A < 0.17717$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

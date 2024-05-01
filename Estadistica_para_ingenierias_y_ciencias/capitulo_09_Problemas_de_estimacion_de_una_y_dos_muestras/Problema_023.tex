@@ -1,0 +1,15 @@
+\begin{enunciado}
+ Compare $S^2$ y $S'^2$ (v\'ease el ejercicio 9.1), los dos estimadores de $\sigma^2$, para determinar cu\'al es m\'as eficaz. Suponga que son estimadores que se encuentran usando $X_1, X_2, \ldots, X_n$, las variables aleatorias independientes de $n(x;\mu,\sigma)$. ¿Cu\'al es el estimador m\'as eficaz considerando s\'olo la varianza de los estimadores? [\textit{Sugerencia}: Utilice el teorema 8.4 y la secci\'on 6.8 donde aprendimos que la varianza de $\chi_v^2$ es $2v$.]
+\end{enunciado}
+
+\begin{solucion}
+ Por resultado conocido (v\'ease en el archivo anexo \texttt{Anexo\_01.pdf} el Corolario 1.6), se tiene que, por provenir de una poblaci\'on con distribuci\'on normal, entonces $V\left( S^2 \right) = \frac{2\sigma^4}{n-1}$; por otro lado, como $S'^2 = \frac{n-1}{n}S^2$ y usando las propiedades de la varianza, se tiene que
+ \begin{equation*}
+  V\left( S'^2 \right) = V\left( \frac{n-1}{n} S^2 \right) = \left( \frac{n-1}{n} \right)^2 V\left( S^2 \right) = \frac{(n-1)^{\cancel{2}}}{n^2} \cdot \frac{2\sigma^4}{\cancel{n-1}} = \frac{2(n-1)\sigma^4}{n^2}
+ \end{equation*}
+ Como $\frac{n-1}{n} < 1$, entonces $\left( \frac{n-1}{n} \right)^2$, por lo tanto:
+ \begin{equation*}
+  V\left( S'^2 \right) = \left( \frac{n-1}{n} \right)^2 V\left( S^2 \right) < 1\cdot V\left( S^2 \right) = V\left( S^2 \right).
+ \end{equation*}
+ Por lo tanto, el estimador m\'as eficaz, considerando s\'olo la varianza de los estimadores, es $S'^2$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

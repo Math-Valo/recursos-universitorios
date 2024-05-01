@@ -1,0 +1,92 @@
+\begin{enunciado}
+ Una compa\~n\'{\i}a de taxis trata de decidir si comprar neum\'aticos de la marca $A$ o de la $B$ para su flotilla de taxis. Para estimar la diferencia de las dos marcas, se lleva a cabo un experimento utilizando $12$ neum\'aticos de cada marca. Los neum\'aticos se utilizan hasta que se desgastan. Los resultados son
+ \begin{center}
+  \begin{tabular}{rlcr}
+   Marca A: & $\bar{x}_1$ & $=$ & $36,300$ kil\'ometros, \\
+   & $s_1$ & $=$ & $5,000$ kil\'ometros. \\
+   Marca B: & $\bar{x}_2$ & $=$ & $38,100$ kil\'ometros, \\
+   & $s_2$ & $=$ & $6,100$ kil\'ometros
+  \end{tabular}
+ \end{center}
+ Calcule un intervalo de confianza de $95\%$ para $\mu_A - \mu_B$, suponiendo que las poblaciones se distribuyen de forma aproximadamente normal. Puede no suponer que las varianzas son iguales.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de la cantidad de kil\'ometros recorridos hasta desgastarse el neum\'atico de la marca A y de la marca B, respectivamente, entonces, del enunciado, se tienen los siguientes datos:
+ \begin{itemize}
+  \item $X_i \sim n(\mu_i, \sigma_i)$, para cada $i \in \{ 1, 2 \}$.
+  \item $\mu_i$ y $\sigma_i$ desconocidas, para cada $i \in \{ 1, 2 \}$.
+  \item $\sigma_1 \neq \sigma_2$.
+  \item $n_1 = n_2 = 12$ neum\'aticos.
+  \item $\bar{x}_1 = 36\,300$ y $\bar{x}_2 = 38\,100$.
+  \item $s_1 = 5\,000$ y $s_2 = 6\,100$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Como se desea encontrar un intervalo de confianza bilateral para $\mu_1 - \mu_2$, usando como estimador $\bar{x}_1 - \bar{x}_2$, desconociendo las varianzas poblacionales y suponi\'endolas no iguales, con muestras peque\~nas de poblaciones que se distribuyen aproximadamente normal, entonces se requerir\'a del valor $t_{\alpha/2,v}$, donde $v$ represeta los grados  de libertad que es el entero m\'as pr\'oximo al c\'alculo siguiente:
+ \begin{equation*}
+  v = \frac{ \displaystyle{ \left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2 } }{ \displaystyle{ \frac{ \left( s_1^2/n_1 \right)^2 }{\left( n_1 - 1 \right)} + \frac{ \left( s_2^2/n_2 \right)^2 }{\left( n_2  - 1\right)} }}
+ \end{equation*}
+ El cual se calcula como sigue: 
+ \begin{eqnarray*}
+  v & = & \frac{ \displaystyle{ \left( \frac{ 5\,000^2 }{12} + \frac{ 6\,100^2}{12} \right)^2 } }{ \displaystyle{ \frac{ \left( 5\,000^2/ 12 \right)^2 }{\left( 12 - 1 \right)} + \frac{ \left( 6\,100^2/12 \right)^2 }{\left( 12  - 1\right)}  }} = \frac{ \displaystyle{ \left( \frac{ 25\,000\,000 + 37\,210\,000 }{12} \right)^2 } }{ \displaystyle{ \frac{ 25\,000\,000^2 }{11(12)^2} + \frac{ 37\,210\,000^2 }{11(12)^2}  }} \\
+  & = & \frac{ \displaystyle{ \frac{ 25\,000\,000^2 + 2(25\,000\,000)(37\,210\,000) + 37\,210\,000^2 }{\cancel{12^2}} } }{ \displaystyle{ \frac{ 25\,000\,000^2 + 37\,210\,000^2 }{11\cancel{(12)^2}} }} \\
+  & = & \frac{ 11\left( 25\,000\,000^2 + 2(25\,000\,000)(37\,210\,000) + 37\,210\,000^2 \right) }{ 25\,000\,000^2 + 37\,210\,000^2 } \\
+  & = & \frac{11 \cancel{\left( 25\,000\,000^2 + 37\,210\,000^2 \right)} }{\cancel{ 25\,000\,000^2 + 37\,210\,000^2 }} + \frac{22(25\,000\,000)(37\,210\,000)}{25\,000\,000^2 + 37\,210\,000^2} \\
+  & = & 11 + \frac{22\left( (50\cdot 10)^2 \right)\left( (61\cdot 10)^2 \right)}{(50\cdot10)^4 + (61\cdot 10)^4} = 11 + \frac{22\left( 50^2 \cdot 61^2 \cdot \cancel{10^4} \right)}{\left( 50^4 + 61^4 \right)\cdot \cancel{10^4} } \\
+  & = & 11 + \frac{22(2\,500 \cdot 3\,721)}{6\,250\,000 + 13\,845\,841} = 11 + \frac{204\,655\,000}{20\,095\,841} \\
+  & \approx & 11 + 10.183948 = 21.183948 \\
+  & \approx & 21
+ \end{eqnarray*}
+ Por lo tanto, se requiere del valor $t_{\alpha/2,v} = t_{0.025,21}$. De la Tabla A.4, se tiene que $t_{0.025,21} = 2.08$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,21,lower.tail=F)
+[1] 2.0796138447276804051
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $2.07961384$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales usando como estimador la diferencia de las medias muestrales en muestras peque\~nas, en donde se desconoce las desviaciones est\'andar poblacionales y suponiendo que no son iguales y donde se suponen que las poblaciones se distribuyen aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - t_{\alpha/2,v} \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2 \right) + t_{\alpha/2,v} \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+ \end{equation*}
+ en donde $v$ es el entero m\'as pr\'ximo a
+ \begin{equation*}
+  \frac{ \displaystyle{ \left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2 } }{ \displaystyle{ \frac{ \left( s_1^2/n_1 \right)^2 }{\left( n_1 - 1 \right)} + \frac{ \left( s_2^2/n_2 \right)^2 }{\left( n_2  - 1\right)}  }}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,v}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) \pm t_{\alpha/2,v} \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+  & = & (36\,300 - 38\,100) \pm 2.08 \sqrt{\frac{5\,000^2}{12} + \frac{6\,100^2}{12}} \\
+  & = & -1\,800 \pm 2.08 \sqrt{\frac{25\,000\,000 + 37\,210\,000}{12}} \\ 
+  & = & -1\,800 \pm 2.08 \frac{\sqrt{62\,210\,000}\sqrt{3}}{6} \\
+  & = & -1\,800 \pm 0.34\overline{6} \sqrt{186\,630\,000} \\
+  & = & -1\,800 \pm 0.34\overline{6} \left( 100\sqrt{18663} \right) \\
+  & = & -1\,800 \pm 34.\overline{6}\sqrt{18663} \approx -1\,800 \pm 4\,735.9031521629184
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $95\%$ de confianza de la diferencia entre los kil\'ometros promedio recorridos hasta desgastarse los neum\'atico de la marca A y de la marca B es de:
+ \begin{equation*}
+  -6\,535.903152 < \mu_1 - \mu_2 < 2\,2\,935.903152
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P14\_Intervalo\_de\_confianza\_05.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-12
+> n2<-11
+> m1<-36300
+> m2<-38100
+> desv.tipica1<-5000
+> desv.tipica2<-6100
+> alfa<-0.05
+> val<-FALSE
+> varia<-FALSE
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  n1 n2 media1 media2    LimInf diferencia   LimSup
+1 12 12  36300  38100 -6535.024      -1800 2935.024
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza resultante. Como el decimal en que difieren es el primer decimal, se considera el entero m\'as cercano. Para evitar perder confianza, se redondear\'a hacia el pr\'oximo entero mayor en valor absoluto. Por lo tanto, el intervalo de confianza del $95\%$ es $-6\,536 < \mu_1 - \mu_2 < 2\,936$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

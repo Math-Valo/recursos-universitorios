@@ -1,0 +1,285 @@
+\begin{enunciado}
+ En un experimento para estudiar la dependencia de la hipertensi\'on
+ con respecto a los h\'abitos de fumar, se tomaron los siguientes datos
+ de $180$ individuos:
+ \begin{center}
+  \begin{tabular}{lccc}
+   & \textbf{No} & \textbf{Fumadores} & \textbf{Fumadores} \\
+   & \textbf{fumadores} & \textbf{moderados} & \textbf{empedernidos} \\
+   \hline 
+   \textbf{Con} \\
+   $\,$ \textbf{hipertensi\'on} & $21$ & $36$ & $30$ \\
+   \textbf{Sin} \\
+   $\,$ \textbf{hipertensi\'on} & $48$ & $26$ & $19$
+  \end{tabular}
+ \end{center}
+ Pruebe la hip\'otesis de que la presencia o ausencia de la hipertensi\'on es
+ independiente de los h\'abitos de fumar.
+ Utilice un nivel de significancia de $0.05$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item Tamaño de muestra total: $180$.
+   \item Tama\~no de muestra de individuos con hipertensi\'on: $21+36+30= 87$.
+   \item Tama\~no de muestra de individuos sin hipertensi\'on: $48+26+19= 93$.
+   \item Tama\~no de muestra de no fumadores: $21 + 48 = 69$.
+   \item Tama\~no de muestra de fumadores moderados: $36 + 26 = 62$.
+   \item Tama\~no de muestra de fumadores empedernidos: $30 + 19 = 49$.
+   \item Frecuencias observadas y esperadas: $o_{i,j}$
+   y $e_{i,j}=\frac{R_i C_j}{n}$, respectivamente,
+   donde $R_i$ y $C_j$ son los marginales del rengl\'on $i$ y la columna $j$,
+   respectivamente, y $n$ es el total de toda la muestra.
+   As\'{\i}, pues, redondeando a un decimal, se muestra el resumen 
+   en la siguiente tabla,
+   en donde aparece entre par\'entesis la frecuencia esperada
+   y a la izquierda el valor observado:
+   \begin{center}
+    \begin{tabular}{lccc|c}
+     & \textbf{No} & \textbf{Fumadores} & \textbf{Fumadores} &
+     \textbf{marginal seg\'un} \\
+     & \textbf{fumadores} & \textbf{moderados} & \textbf{empedernidos} & 
+     \textbf{la hipertensi\'on} \\
+     \hline 
+     \textbf{Con} & & & & \\
+     $\,$ \textbf{hipertensi\'on} & $21 (33.3)$ & $36 (30)$ & $30 (23.7)$ &
+     $87$ \\
+     \textbf{Sin} & & & & \\
+     $\,$ \textbf{hipertensi\'on} & $48 (35.7)$ & $26 (32)$ & $19 (25.3)$ &
+     $93$ \\
+     \hline 
+     \textbf{Marginal seg\'un} & & & & \textbf{TOTAL} \\
+     $\,$ \textbf{tipo de fumador} & $69$ & $62$ & $49$ & $n=180$
+    \end{tabular}
+   \end{center}
+   \item Tama\~no de la tabla de contingencia: $r\times c = 2\times 3$.
+   \item Grados de libertad de la prueba $\chi^2$: $v = (r-1)(c-1) = 2$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: & & \text{La hipertensi\'on es independiente del tipo de fumador.} \\
+   H_1: & & \text{La hipertensi\'on depende del tipo de fumador.}
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.5, se tiene el valor cr\'{\i}tico
+  $\chi^2_{\alpha,v} = \chi^2_{0.05,2} \approx 5.991$,
+  por lo que la regi\'on de rechazo est\'a dado
+  para $\chi^2 > 5.991$, donde
+  $\chi^2 = \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   \chi^2 & = & \sum_{i} \frac{\left( o_i - e_i \right)^2}{e_i} \\
+   & = & \frac{(21 - 33.3)^2}{33.3} + \frac{(36 - 30)^2}{30} +
+   \frac{(30 - 23.7)^2}{23.7} + \frac{(48 - 35.7)^2}{35.7} + 
+   \frac{(26 - 32)^2}{32} + \frac{(19 - 25.3)^2}{25.3} \\
+   & = & \frac{151.29}{33.3} + \frac{36}{30} + \frac{39.69}{23.7} + 
+   \frac{151.29}{35.7} + \frac{36}{32} + \frac{39.69}{25.3} \\
+   & \approx & 4.5432 + 1.2 + 1.67468 + 4.237815 + 1.125 + 1.56877
+   = 14.349465
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  Con un nivel de significancia de $0.05$, se concluye
+  que la hipertensi\'on depende de los h\'abitos de fumar.
+ \end{conclusion}
+
+ En el c\'odigo registrado en el archivo
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeniedad\_01.r}
+ se realiza este procedimiento.
+ El c\'odigo permite modificar los valores iniciales que corresponden a:
+ \texttt{datos} que guarda los datos de la lectura de un archivo,
+ siendo en este caso \texttt{BD26\_Problema\_090.csv} es el archivo
+ le\'{\i}do;
+ \texttt{varInteres} en el que se indican los dos nombres de las columnas
+ en la base de datos que corresponden a las dos categor\'{\i}as
+ de la tabla de contingencia;
+ \texttt{varFrecuencia} para indicar, en caso de ser necesario, el nombre
+ de la columna en donde se encuentra el resume de frecuencias
+ de correspondientes a cada intersecci\'on de ambas categor\'{\i}as,
+ y, en caso de que no se haya contabilizado las frecuencias,
+ se asigna \texttt{NULL} a esta variable y el programa realiza dicho resumen;
+ y, \texttt{pruebas}, para indicar las pruebas que se desea realizar
+ con el programa de entre una lista de 7 pruebas.
+ \par 
+ El programa espera al menos los datos correspondientes a la base de datos,
+ escrito en un archivo \texttt{.csv} con dos columnas de categor\'{\i}as,
+ identificados en \texttt{varInteres},
+ as\'{\i} como tambi\'en al menos una de las pruebas disponibles,
+ indic\'andose en una lista de n\'umeros, seg\'un la prueba correspondiente:
+ \texttt{1} para la prueba $\chi^2$ de Pearson, que describe el libro
+ y que aqu\'{\i} se realiz\'o a mano;
+ \texttt{2} para la prueba $G$ sin correcci\'on de Williams,
+ tambi\'en conocido como raz\'on de verosimilitud,
+ que se parece a la prueba $\chi^2$ porque cuantifica diferencias
+ entre valores esperados y observados,
+ se contrasta con los valores de $\chi^2$ y se calculan los grados de libertad
+ del mismo modo,
+ pero con el estad\'{\i}stico
+ $G = 2\sum_{i} o_i \ln \left(\frac{o_i}{e_i}\right)$, donde $i$ recorre
+ todos los elementos de la tabla;
+ \texttt{3} para la prueba $G$ con correcci\'on de Williams, que se aplica
+ cuando las diferentes categor\'{\i}as tienen frecuencias similares
+ y la diferencia se centra en el estad\'{\i}stico que se calcula como
+ $G' = \frac{G}{q}$, en donde, si se nombra $R_1, R_2, \ldots, R_r$ y
+ $C_1, C_2, \ldots, C_c$ a los totales del rengl\'on $1$, $2$ y as\'{\i}
+ seguidamente hasta el \'ultimo rengl\'on, $r$, y a los totales
+ de la columna $1$, $2$ y as\'{\i} seguidamente hasta la \'ultima columna,
+ $c$, respectivamente, y a $n$ como el tama\~no total de la muestra,
+ se define el denominador de $G'$ como $q = 1
+ + \frac{\left[ n\left(\frac{1}{R_1} + \cdots \frac{1}{R_r}\right)-1 \right]\left[ n\left( \frac{1}{C_1} + \cdots + \frac{1}{C_c} \right) - 1 \right]}{
+ 6n(r-1)(c-1)}$;
+ \texttt{4} para la prueba $\chi^2$ con correcci\'on de Yates, 
+ la cual s\'olo se aplica en tablas de $2\times 2$;
+ \texttt{5} para la prueba exacta de Fisher, que s\'olo se aplica en tablas
+ de $2\times2$, y, en este caso, se considera para pruebas bilaterales;
+ \texttt{6} para la prueba exacta de Fisher,
+ pero ahora considerando su uso para pruebas unilaterales
+ del tipo ``menor que'';
+ y, \texttt{7} para la prueba exacta de Fisher,
+ considerado para pruebas unilaterales del tipo ``mayor que''.
+ \par 
+ El programa mostrar\'a en su salida los resultados de las pruebas en R,
+ usando de forma general funciones previamente creadas para la comunidad de R,
+ y estos resultados se mostrar\'an en forma de lista describiendo
+ el nombre del m\'etodo as\'{\i} como del estad\'{\i}stico, el valor $P$
+ o lo grados de libertad. seg\'un sea el caso.
+ Cabe hacer notar que, como se usan funciones de la comunidad de R,
+ los nombres o descripciones de los diferentes m\'etodos realizados
+ en los resultados se encuentran en ingl\'es.
+ \par 
+ El c\'odigo junto con el resultado se muestra a continuaci\'on,
+ en donde se consider\'o, para este problema,
+ el uso de los pruebas $\chi^2$, G sin correcci\'on y G
+ con correcci\'on de Williams.
+ \begin{verbatim}
+> datos<-read.csv("DB26_Problema_090.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Estado.hipertensión","Hábito.fumar")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1,2,3)
+> g.test <- function(x, correct="none",
++                    p = rep(1/length(x), length(x)))
++ {
++   DNAME <- deparse(substitute(x))
++   if (is.matrix(x)) {
++     if (min(dim(x)) == 1) 
++       x <- as.vector(x)
++   }
++   if (any(x < 0) || any(is.na(x))) 
++     stop("Todas las entradas deben de ser no negativas")
++   if ((n <- sum(x)) == 0) 
++     stop("Al menos una entrada debe de ser positiva")
++   nrows<-nrow(x)
++   ncols<-ncol(x)
++   sr <- apply(x,1,sum)
++   sc <- apply(x,2,sum)
++   E <- outer(sr,sc, "*")/n
++   # Calcular G
++   g <- 0
++   for (i in 1:nrows){
++     for (j in 1:ncols){
++       if (x[i,j] != 0) g <- g + x[i,j] * log(x[i,j]/E[i,j])
++     }
++   }
++   q <- 1
++   if (correct=="williams"){
++     row.tot <- col.tot <- 0    
++     for (i in 1:nrows){ row.tot <- row.tot + 1/(sum(x[i,])) }
++     for (j in 1:ncols){ col.tot <- col.tot + 1/(sum(x[,j])) }
++     q <- 1+ ((n*row.tot-1)*(n*col.tot-1))/(6*n*(ncols-1)*(nrows-1))
++   }
++   STATISTIC <- G <- 2 * g / q
++   PARAMETER <- (nrow(x)-1)*(ncol(x)-1)
++   PVAL <- 1-pchisq(STATISTIC,df=PARAMETER)
++   base<-"Log likelihood ratio (G-test) test of independence "
++   if(correct=="none")
++     METHOD<-paste(base,"without correction")
++   if(correct=="williams")
++     METHOD<-paste(base,"with Williams' correction")
++   names(STATISTIC) <- "Log likelihood ratio statistic (G)"
++   names(PARAMETER) <- "X-squared df"
++   names(PVAL) <- "p.value"
++   structure(list(statistic=STATISTIC,parameter=PARAMETER,p.value=PVAL,
++                  method=METHOD,data.name=DNAME, observed=x, expected=E),
++             class="htest")
++ }
+> tablaDobleEntrada<-function(datos,varInteres,pruebas){
++   tbl1<-table(datos[,varInteres])
++   listaPruebas<-NULL
++   for (i in pruebas){
++     if (i==1) listaPruebas<-c(listaPruebas,
++                               list(chisq.test(tbl1,correct=FALSE)))
++     if (i==2) listaPruebas<-c(listaPruebas,list(g.test(tbl1)))
++     if (i==3) listaPruebas<-c(listaPruebas,
++                               list(g.test(tbl1,correct="williams")))
++     if (i==4) listaPruebas<-c(listaPruebas,list(chisq.test(tbl1,correct=TRUE)))
++     if (i==5) listaPruebas<-c(listaPruebas,list(fisher.test(tbl1)))
++     if (i==6) listaPruebas<-c(listaPruebas,
++                               list(fisher.test(tbl1,alternative="less")))
++     if (i==7) listaPruebas<-c(listaPruebas,
++                               list(fisher.test(tbl1,alternative="greater")))
++   }
++   return(list(tabla=tbl1,listaPruebas=listaPruebas))
++ }
+> if(length(varInteres)!=2) stop("Deben ser dos variables de interés")
+> if(!is.null(varFrecuencia)){
++   datos<-datos[rep(row.names(datos), datos$Frecuencia),
++                 which(colnames(datos)!=varFrecuencia)]
++ }
+> listaR<-tablaDobleEntrada(datos,varInteres,pruebas)
+> listaR
+$tabla
+                   Hábito.fumar
+Estado.hipertensión Fumador empedernido Fumador moderado No fumador
+   Con hipertensión                  30               36         21
+   Sin hipertensión                  19               26         48
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 14.464, df = 2, p-value = 0.0007232
+
+
+$listaPruebas[[2]]
+
+	Log likelihood ratio (G-test) test of independence without correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 14.763, X-squared df = 2, p-value =
+0.0006226
+
+
+$listaPruebas[[3]]
+
+	Log likelihood ratio (G-test) test of independence with Williams'
+	correction
+
+data:  tbl1
+Log likelihood ratio statistic (G) = 14.597, X-squared df = 2, p-value =
+0.0006765
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con lo obtenido en la prueba,
+ adem\'as de brindar m\'as informaci\'on destacando el valor $P$
+ y las otras pruebas, siendo determinante el rechazo de la hip\'otesis nula,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

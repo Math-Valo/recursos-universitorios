@@ -1,0 +1,166 @@
+\begin{enunciado}
+ Una empresa de material el\'ectrico fabrica bombillas de luz que tienen una duraci\'on que se distribuye de forma aproximadamente normal con una media de $800$ horas y una desviaci\'on est\'andar de $40$ horas. Pruebe la hip\'otesis de que $\mu = 800$ horas contra la alternativa $\mu \neq 800$ horas, si una muestra aleatoria de $30$ bombillas tiene una duraci\'on promedio de $788$ horas. Utilice un valor $P$ en surespuesta.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X \sim n(\mu,\sigma)$.
+   \item $\overline{X} \sim n\left( \mu, \sigma/\sqrt{n} \right)$.
+   \item $\frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim n(0,1)$.
+   \item $n = 30$.
+   \item $\bar{x} = 788$.
+   \item $\sigma = 40$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu & = & 800 \\
+   H_1: \mu & \neq & 800
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   z = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}} = \frac{788-800}{40/\sqrt{30}} = -\frac{12\sqrt{30}}{40} = -\frac{3\sqrt{30}}{10} = -0.3\sqrt{30} \approx -1.643
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.3, se tiene que:
+  \begin{equation*}
+   P(|Z|>|z|) = 2P(Z < -1.64) \approx 2(0.0505) = 0.101 
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Dado que, bajo el supuesto de que el tiempo promedio de duraci\'on de las bombillas es de $\mu = 800$ horas, la probabilidad de obtener las mediciones de tiempo de las bombillas con un promedio tan alejado como el obtenido en la muestra es de $P = 0.1$, es decir, que el $10\%$ de todas las posibles muestras est\'an al menos as\'{\i} de alejado del valor hipot\'etico, lo cual no es prueba suficiente para concluir que el tiempo promedio de vida de las bombillas sea distinta a $800$ horas, como dice la empresa.
+ \end{conclusion}
+ En el c\'odigo registrado en el archivo anexo \texttt{P03\_Prueba\_de\_una\_media\_01.r}, en R, se realiza este procedimiento. El c\'odigo permite modificar los valores iniciales que corresponden a: \texttt{n} para el tama\~no de la muestra; \texttt{mu} para el valor de la media poblacional supuesta en la hip\'otesis nula; \texttt{m} para la media muestral; \texttt{desv} para la desviaci\'on est\'andar poblacional o muestral, seg\'un indique el siguiente par\'ametro; \texttt{pobl} para indicar, con \texttt{TRUE}, si la desviaci\'on est\'andar es poblacional, o con \texttt{FALSE} si es muestral; \texttt{alfa} para el nivel de significancia; \texttt{cola} para indicar si la prueba es de dos colas, con \texttt{'D'}, de cola inferior, con \texttt{'I'}, o de cola superior, con \texttt{'S'}; y, \texttt{val} para indicar, con \texttt{TRUE}, si se tiene el supuesto de que la poblaci\'on sigue una distribuci\'on normal, o con \texttt{FALSE} en otro caso.
+ \par 
+ El programa espera cuando menos los datos de una muestra, por lo que el valor $P$ siempre se obtiene, independientemente de si se desea una prueba de hip\'otesis fijando la probabilidad del error tipo I o si se realiza una prueba de significancia (aproximaci\'on al valor $P$). Por otro lado, el par\'ametro \texttt{alfa} puede no ser dado, en ese caso se indica con el valor \texttt{NULL}.
+ \par 
+ La prueba de hip\'otesis puede ser usando el estad\'{\i}stico de la distribuci\'on $Z$ o de la distribuci\'on $t$. Se usar\'a la distribuci\'on $Z$ si la desviaci\'on est\'andar es poblacional o si el tama\~no de muestra es mayor o igual que $30$, en este \'ultimo caso, se usa la desviaci\'on est\'andar muestral como la desviaci\'on poblacional, pues se supone que es buena la aproximaci\'on que se tiene. Si la distribuci\'on es poblacional y la muestra el menor a $30$, entonces se usa la prueba $t$, en otro caso no se realiza ninguna prueba.
+ \par 
+ El resultado muestra lo siguiente: \texttt{Prueba} para saber si se us\'o el estad\'{\i}stico de distribuci\'on $Z$ o de distribuci\'on $t$; $H_0$ para el valor de la media supuesta; \texttt{n} para el tama\~no de la muestra; \texttt{MediaMuestral} para la media de la muestra; \texttt{desv.est} para la desviaci\'on est\'andar, independientemente de si es la desviaci\'on poblacional o la muestral; \texttt{error.est} para el error est\'andar, que se calcula como $\sigma/\sqrt{n}$, si la desviaci\'on est\'andar es poblacional, o $s/\sqrt{n}$, si la desviaci\'on est\'andar es muestral; \texttt{alpha} para el nivel de significancia dado, el cual muestra por defecto $0.05$ en caso de dar a \texttt{alfa} el valor \texttt{NULL}; \texttt{PValor} para el valor $P$, la probabilidad de haber obtenido una muestra como la que se obtuvo; \texttt{Estadistico} para el valor del estad\'{\i}stico de prueba; \texttt{RegionRechazoZ} o \texttt{RegionRechazoT}, seg\'un el tipo de prueba realizada, que indica en d\'onde se encuentra la regi\'on de rechazo de la distribuci\'on $Z$ o $t$, respectivamente para el valor $\alpha$ dado (aunque sea el valor por defecto); \texttt{RegionRechazoX} para indicar la regi\'on de rechazo en t\'erminos de las unidades del problema original; y, en caso de haber dado un nivel de significancia, \texttt{Resultado} para indicar si se rechaza o no la hip\'otesis nula.
+ \par 
+ El c\'odigo junto con el resultado se muestra a continuaci\'on:
+ \begin{verbatim}
+> n<-30
+> mu<-800
+> m<-788
+> desv<-40
+> pobl<-TRUE
+> alfa<-NULL
+> cola<-'D'
+> val<-TRUE
+> if(!val & n < 30){
++     stop("Se requiere normalidad o muestras grandes")
++ }
+> if(!pobl & n >= 30){
++     pobl<-TRUE
++ }
+> TestMedia<-function(n,mu,m,desv,alfa=0.05,colas='D',distribucion.z=FALSE){
++     estadistico<-(m-mu)/(desv/sqrt(n))
++     if(n < 2){
++         r<-data.frame(Prueba=NA,
++                       H0=mu,
++                       n=n,
++                       MediaMuestral=m,
++                       desv.est=ifelse(is.na(desv),NA,desv),
++                       error.est=ifelse(is.na(desv),NA,desv/sqrt(n)),
++                       alpha=alfa,
++                       ValorP=NA,
++                       Estadistico=NA,
++                       RegionRechazoZ=NA,
++                       RegionRechazoX=NA)
++     }else{
++         if(distribucion.z){
++             r<-data.frame(Prueba="Z",
++                           H0=mu,
++                           n=n,
++                           MediaMuestral=m,
++                           desv.est=desv,
++                           error.est=desv/sqrt(n),
++                           alpha=alfa)
++             if(colas=='D'){
++                 pvalor<-round(2*pnorm(abs(estadistico),lower.tail=F),7)
++                 criticoz<-round(qnorm(1-alfa/2),7)
++                 criticox<-round(criticoz*desv/sqrt(n),7)
++                 r$PValor<-pvalor
++                 r$Estadistico<-estadistico
++                 r$RegionRechazoZ<-paste("<",-criticoz," y >",criticoz)
++                 r$RegionRechazoX<-paste("<",mu-criticox," y >",mu+criticox)
++             }else{
++                 criticoz<-round(qnorm(1-alfa),7)
++                 criticox<-round(criticoz*desv/sqrt(n),7)
++                 if(colas=='I'){
++                     pvalor<-round(pnorm(estadistico),7)
++                     r$PValor<-pvalor
++                     r$Estadistico<-estadistico
++                     r$RegionRechazoZ<-paste("<",-criticoz)
++                     r$RegionRechazoX<-paste("<",mu-criticox)
++                 }else{
++                     pvalor<-round(pnorm(estadistico,lower.tail=F),7)
++                     r$PValor<-pvalor
++                     r$Estadistico<-estadistico
++                     r$RegionRechazoZ<-paste(">",criticoz)
++                     r$RegionRechazoX<-paste(">",mu+criticox)
++                 }
++             }
++         }else{
++             r<-data.frame(Prueba="t",
++                           H0=mu,
++                           n=n,
++                           MediaMuestral=m,
++                           desv.est=desv,
++                           error.est=desv/sqrt(n),
++                           alpha=alfa)
++             if(colas=='D'){
++                 pvalor=round(2*pt(abs(estadistico),n-1,lower.tail=F),7)
++                 criticot<-round(qt(1-alfa/2,n-1),7)
++                 criticox<-round(criticot*desv/sqrt(n),7)
++                 r$PValor<-pvalor
++                 r$Estadistico<-estadistico
++                 r$RegionRechazoT<-paste("<",-criticot," y >",criticot)
++                 r$RegionRechazoX<-paste("<",mu-criticox," y >",mu+criticox)
++             }else{
++                 criticot<-round(qt(1-alfa,n-1),7)
++                 criticox<-round(criticot*desv/sqrt(n),7)
++                 if(colas=='I'){
++                     pvalor<-round(pt(estadistico,n-1),7)
++                     r$PValor<-pvalor
++                     r$Estadsitico<-estadistico
++                     r$RegionRechazoT<-paste("<",-criticot)
++                     r$RegionRechazoX<-paste("<",mu-criticox)
++                 }else{
++                     pvalor<-round(pt(estadistico,n-1,lower.tail=F),7)
++                     r$PValor<-pvalor
++                     r$Estadistico<-estadistico
++                     r$RegionRechazoT<-paste(">",criticot)
++                     r$RegionRechazoX<-paste(">",mu+criticox)
++                 }
++             }
++         }
++     }
++     return(r)
++ }
+> if(is.null(alfa)){
++     Test<-TestMedia(n,mu,m,desv,colas=cola,distribucion.z=pobl)
++ }else{
++     Test<-TestMedia(n,mu,m,desv,alfa,cola,pobl)
++     resultado<-ifelse(Test[,"PValor"]>=alfa,"No se rechaza H0","Se rechaza H0")
++     Test$Resultado<-resultado
++     Test$Resultado[is.na(Test$Resultado)]<-"Pocos datos"
++ }
+> Test
+  Prueba  H0  n MediaMuestral desv.est error.est alpha    PValor Estadistico
+1      Z 800 30           788       40  7.302967  0.05 0.1003482   -1.643168
+             RegionRechazoZ                 RegionRechazoX
+1 < -1.959964  y > 1.959964 < 785.6864467  y > 814.3135533
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo tanto, se puede observar que, usando la distribuci\'on $Z$, el valor $P$ es aproximadamente $0.1$, el cual indica una falta de capacidad de concluir que el tiempo promedio de las bombilas, en horas, es distinto de $800$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

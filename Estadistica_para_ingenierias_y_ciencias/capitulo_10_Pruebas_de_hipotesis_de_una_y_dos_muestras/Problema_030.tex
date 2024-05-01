@@ -1,0 +1,83 @@
+\begin{enunciado}
+ Una muestra aleatoria de tama\~no $n_1 = 25$, que se toma de una poblaci\'on normal con una desviaci\'on est\'andar $\sigma_1 = 5.2$, tiene una media $\bar{x}_1 = 81$. Una segunda muestra aleatoria de tama\~no $n_2 = 36$, que se toma de una poblaci\'on normal diferente con una desviaci\'on est\'andar $\sigma_2 = 3.4$, tiene una media $\bar{x}_2 = 76$. Pruebe la hip\'otesis de que $\mu_1 = \mu_2$ contra la alternativa $\mu_1 \neq \mu_2$. Cite un valor $P$ en su conclusi\'on.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1, 2 \}$.
+   \item $n_1 = 25$ y $n_2 = 36$.
+   \item $\bar{x}_1 = 81$ y $\bar{x}_2 = 76$.
+   \item $\sigma_1 = 5.2$ y $\sigma_2 = 3.4$.
+  \end{itemize}
+  Adem\'as, por el teorema 8.3,
+  el estad\'{\i}stico siguiente, que se requerir\'a,
+  tiene la distribuci\'on indicada a continuaci\'on:
+  \begin{itemize}
+   \item $Z =
+   \frac{
+   \left( \overline{X}_1 - \overline{X}_2 \right) - d_0
+   }{
+   \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}
+   }
+   \sim n(0,1)$
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_1 - \mu_2 & = & 0 \\
+   H_1: \mu_1 - \mu_2 & \neq & 0
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   z & = & \frac{\left( \bar{x}_1 - \bar{x}_2 \right) - d_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}} = \frac{(81-76) - 0}{\sqrt{\frac{5.2^2}{25} + \frac{3.4^2}{36}}} = \frac{5}{\sqrt{\frac{27.04(36) + 11.56(25)}{(25)(36)}}} = \frac{5(5)(6)}{\sqrt{1\,262.44}} \\
+   & = & \frac{150}{\sqrt{\frac{126\,244}{100}}} = \frac{1\,500}{\sqrt{126\,244}} = \frac{1\,500}{2\sqrt{31\,561}} = \frac{750\sqrt{31\,561}}{31\,561} \approx 4.22168558685493975
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.3 se tiene que:
+  \begin{equation*}
+   P\left( |Z| > |z| \right) \approx 2P(Z > 4.22168558685493975) \approx 2(0) = 0
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es muy peque\~no, aproximadamente cero, se tiene evidencia suficiente para concluir que las medias de ambas poblaciones son distintas.
+ \end{conclusion}
+ Finalmente, usando el archivo anexo
+ \texttt{P05\_Prueba\_de\_dos\_medias\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n1<-25
+> n2<-36
+> mu<-0
+> m1<-81
+> m2<-76
+> m<-NULL
+> sigma1<-5.2
+> sigma2<-3.4
+> s1<-NULL
+> s2<-NULL
+> sD<-NULL
+> desv.iguales<-NULL
+> alfa<-NULL
+> cola<-'D'
+> par<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba H0 n1 n2 DifMedias desv.est1 desv.est2 error.est alpha   PValor
+1      Z  0 25 36         5       5.2       3.4  1.184361  0.05 2.42e-05
+  Estadistico            RegionRechazoZ            RegionRechazoX
+1    4.221686 < -1.959964  y > 1.959964 < -2.321305  y > 2.321305
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

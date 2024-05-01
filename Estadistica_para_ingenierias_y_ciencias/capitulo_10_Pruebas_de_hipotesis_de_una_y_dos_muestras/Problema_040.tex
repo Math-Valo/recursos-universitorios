@@ -1,0 +1,281 @@
+\begin{enunciado}
+ En un estudio realizado en el Instituto Polit\'ecnico y Universidad Estatal de Virginia, se compararon los niveles de \'acido asc\'orbico en plasma en mujeres embarazadas fumadoras contra las no fumadoras. Para el estudio se seleccionaron $32$ mujeres en los \'ultimos tres meses de embarazo, libres de padecimientos importantes y con edades de entre 15 y 32 a\~nos. Antes de tomar las muestras de $20\,$ml de sangre, a las participantes se les solicit\'o ir en ayunas, no consumir sus complementos vitam\'{\i}nicos y evitar comidas con alto contenido de \'acido asc\'orbico. De las muestras de sangre se determinaron los siguientes valores, en miligramos por 100 mililitros, de \'acido asc\'orbico en plasma de cada mujer:
+ \begin{center}
+  \textbf{Valores de \'acido asc\'orbico en plasma} \\
+  \begin{tabular}{ccccc}
+   \hline 
+   \multicolumn{2}{c}{\textbf{No fumadoras}} & \multicolumn{3}{c}{\textbf{Fumadoras}} \\
+   \hline 
+   $0.97$ & $1.16$ & \hspace{1cm} & $0.48$ & \hspace{1cm} \\
+   $0.72$ & $0.86$ & & $0.71$ \\
+   $1.00$ & $0.85$ & & $0.98$ \\
+   $0.81$ & $0.58$ & & $0.68$ \\
+   $0.62$ & $0.57$ & & $1.18$ \\
+   $1.32$ & $0.64$ & & $1.36$ \\
+   $1.24$ & $0.98$ & & $0.78$ \\
+   $0.99$ & $1.09$ & & $1.64$ \\
+   $0.90$ & $0.92$ \\
+   $0.74$ & $0.78$ \\
+   $0.88$ & $1.24$ \\
+   $0.94$ & $1.18$
+  \end{tabular}
+ \end{center}
+ ¿Existe suficiente evidencia para concluir que hay una diferencia entre los niveles de \'acido asc\'orbico en plasma entre fumadoras y no fumadoras? Suponga que los dos conjuntos de datos provienen de poblaciones normales con varianzas diferentes. Utilice un valor $P$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido, se tiene que
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{ 1, 2 \}$.
+   \item $n_1 = 24$ y $n_2 = 8$.
+   \item $\sigma_1^2 \neq \sigma_2^2$.
+  \end{itemize}
+  Para obtener las medias y desviaciones est\'andar muestrales,
+  se calcula lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^{24} x_{1,i} & = &
+   0.97 + 1.16 + 0.72 + 0.86 + 1 + 0.85 + 0.81 + 0.58 + 0.62 + 0.57 +
+   1.32 + \\
+   & & + 0.64 + 1.24 + 0.98 + 0.99 + 1.09 + 0.9 + 0.92 + 0.74 + 0.78
+   + 0.88 + 1.24 + \\
+   & & + 0.94 + 1.18 = 21.98 \\
+   \sum_{i=1}^{24} x_{1,i}^2 & = &
+   0.97^2 + 1.16^2 + 0.72^2 + 0.86^2 + 1^2 + 0.85^2 + 0.81^2 +
+   0.58^2 + 0.62^2 + 0.57^2 + \\
+   & & + 1.32^2 + 0.64^2 + 1.24^2 + 0.98^2 + 0.99^2 + 1.09^2 + 0.9^2
+   + 0.92^2 + 0.74^2 + \\
+   & & + 0.78^2 + 0.88^2 + 1.24^2 + 0.94^2 + 1.18^2
+   = 21.1874 \\
+   \sum_{i=1}^8 x_{2,i} & = &
+   0.48 + 0.71 + 0.98 + 0.68 + 1.18 + 1.36 + 0.78 + 1.64 =
+   7.81 \\
+   \sum_{i=1}^8 x_{2,i}^2 & = &
+   0.48^2 + 0.71^2 + 0.98^2 + 0.68^2 + 1.18^2 + 1.36^2 + 0.78^2
+   + 1.64^2 = 8.6973 \\
+  \end{eqnarray*}
+  Por lo que el valor de cada media muestral es:
+  \begin{eqnarray*}
+   \bar{x}_1 & = & \frac{1}{24} \sum_{i=1}^{24} x_{1,i}
+   = \frac{21.98}{24} = \frac{1\,099}{1\,200} = 0.9158\overline{3} \\
+   \bar{x}_2 & = & \frac{1}{8} \sum_{i=1}^{8} x_{2,i}
+   = \frac{7.81}{8} = \frac{781}{800} = 0.97625
+  \end{eqnarray*}
+  y las varianzas muestrales se calculan, usando el teorema 8.1,
+  como sigue:
+  \begin{eqnarray*}
+   s_1^2 & = &
+   \frac{1}{24(23)}
+   \left[
+   24\sum_{i=1}^{24}x_{1,i}^2-\left( \sum_{i=1}^{24}x_{1,i} \right)^2
+   \right]
+   = \frac{24(21.1874) - 21.98^2}{552}
+   = \frac{508.4976 - 483.1204}{552} \\
+   & = & \frac{25.3772}{552}
+   = \frac{63\,443}{1\,380\,000}
+   \approx 0.0459731884 \\
+   s_2^2 & = &
+   \frac{1}{8(7)}
+   \left[
+   8 \sum_{i=1}^8 x_{2,i}^2 - \left( \sum_{i=1}^8 x_{2,i} \right)^2
+   \right]
+   = \frac{8(8.6973) - 7.81^2}{56}
+   = \frac{69.5784 - 60.9961}{56}
+   = \frac{8.5823}{56} \\
+   & = & \frac{85\,823}{560\,000}
+   = 0.1532553\overline{571428}
+  \end{eqnarray*}
+  por lo que el valor de cada desviaci\'on est\'andar muestral es:
+  \begin{eqnarray*}
+   s_1 & = & \sqrt{s_1^2} = \sqrt{\frac{63\,443}{1\,380\,000}}
+   = \frac{\sqrt{63\,443}\sqrt{138}}{13\,800}
+   = \frac{\sqrt{8\,755\,134}}{13\,800}
+   \approx 0.21441359193 \\
+   s_2 & = & \sqrt{s_2^2} = \sqrt{\frac{85\,823}{560\,000}}
+   = \frac{\sqrt{85\,823}\sqrt{14}}{2800}
+   = \frac{\sqrt{1\,201\,522}}{2800}
+   \approx 0.39147842
+  \end{eqnarray*}
+  Por lo tanto, se resume el resto de los datos como sigue:
+  \begin{itemize}
+   \item $\bar{x}_1 = \frac{1\,099}{1\,200} = 0.9158\overline{3}$
+   y $\bar{x}_2 = \frac{781}{800} = 0.97625$.
+   \item $s_1 = \frac{\sqrt{8\,755\,134}}{13\,800}
+   \approx 0.21441359193$
+   y $s_2 = \frac{\sqrt{1\,201\,522}}{2800} \approx 0.39147842$.
+  \end{itemize}
+  Adem\'as, se requerir\'a calcular la siguiente expresi\'on:
+  \begin{eqnarray*}
+   & &
+   \frac{
+   \displaystyle{\left(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\right)^2}
+   }{\displaystyle{
+   \frac{\left( s_1^2/n_1 \right)^2}{n_1 - 1} + 
+   \frac{\left( s_2^2/n_2 \right)^2}{n_2 - 1}
+   }}
+   =
+   \frac{\displaystyle{\left(
+   \frac{\frac{63\,443}{1\,380\,000}}{24}
+   +
+   \frac{\frac{85\,823}{560\,000}}{8}
+   \right)^2}}{\displaystyle{
+   \frac{\left( \frac{63\,443}{1\,380\,000}/24 \right)^2}{24 - 1} + 
+   \frac{\left( \frac{85\,823}{560\,000}/8 \right)^2}{8 - 1}
+   }}
+   \\
+   & = &
+   \frac{\displaystyle{
+   \left(\frac{63\,443(28) + 85\,823(207)}{927\,360\,000}\right)^2
+   }}{\displaystyle{
+   \frac{63\,443^2}{23(1\,380\,000)^2(24)^2} + 
+   \frac{85\,823^2}{7(560\,000)^2(8)^2}
+   }}
+   =
+   \frac{\displaystyle{
+   \frac{19\,541\,765^2}{\cancel{927\,360\,000^2}}
+   }}{\displaystyle{
+   \frac{
+   63\,443^2(28)^2(7) + 85\,823^2(207)^2(23)
+   }{
+   \cancel{927360000^2}(23)(7)
+   }
+   }}
+   \\
+   & = & 
+   \frac{
+   19\,541\,765^2(23)(7)
+   }{
+   22\,089\,278\,198\,512 + 7\,258\,985\,183\,587\,383
+   }
+   = \frac{61\,482\,773\,269\,751\,225}{7\,281\,074\,461\,785\,895} \\
+   & = &
+   \frac{12\,296\,554\,653\,950\,245}{1\,456\,214\,892\,357\,179}
+   \approx 8.444189603
+  \end{eqnarray*}
+  ya que, por la suposici\'on de normalidad en las distribuciones
+  poblacionales
+  y el supuesto de varianzas poblacionales distintas,
+  se sabe que el siguiente estad\'{\i}stico, que se va a requerir,
+  se aproxima a la distribuci\'on mostrada
+  con el respectivo par\'ametro que se indica,
+  en donde la notaci\'on $[x]$ significa la parte entera
+  m\'as pr\'oxima a $x$:
+  \begin{itemize}
+   \item $T = \displaystyle{ \frac{
+   \left( \overline{X}_1 - \overline{X}_2 \right) - d_0
+   }{
+   \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+   } }
+   \sim t(v)$.
+   \item $v \approx \left[
+   \frac{
+   \displaystyle{\left(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\right)^2}
+   }{\displaystyle{
+   \frac{\left( s_1^2/n_1 \right)^2}{n_1 - 1} + 
+   \frac{\left( s_2^2/n_2 \right)^2}{n_2 - 1}
+   }}
+   \right]
+   = 8$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  $\phantom{0}$
+  \begin{eqnarray*}
+   H_0: \mu_1 - \mu_2 &   =  & 0 \\
+   H_1: \mu_1 - \mu_2 & \neq & 0
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   t & = & \frac{
+   \left( \bar{x}_1 - \bar{x}_2 \right) - d_0
+   }{
+   \sqrt{s_1^2/n_1 + s_2^2/n_2}
+   }
+   = \frac{\displaystyle{
+   \left( \frac{1\,099}{1\,200} - \frac{781}{800} \right) - 0
+   }}{\displaystyle{
+   \sqrt{
+   \frac{\frac{63\,443}{1\,380\,000}}{24} +
+   \frac{\frac{85\,823}{560\,000}}{8}
+   }
+   }}
+   = \frac{\displaystyle{
+   \frac{1099(2) - 781(3)}{2\,400}
+   }}{\displaystyle{
+   \sqrt{\frac{19\,541\,765}{927\,360\,000}}
+   }}
+   = \frac{\displaystyle{
+   \frac{-145}{2\,400}
+   }}{\displaystyle{
+   \sqrt{\frac{3\,908\,353}{185\,472\,000}}
+   }} \\
+   & = & -\frac{
+   29\sqrt{3\,908\,353}\left( 480\sqrt{805} \right)
+   }{
+   3\,908\,353(480)
+   }
+   = -\frac{29\sqrt{3\,146\,224\,165}}{3\,908\,353}
+   \approx -0.416197097397594
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  Dado que:
+  \begin{equation*}
+   P\left( |T| > |t| \right) \approx 2P(T < -0.416197097397594)
+   = 2P(T > 0.416197097397594)
+  \end{equation*}
+  Y ya que $0.262 < 0.416197097397594 < 0.546$,
+  en donde, de la Tabla A.4, se tiene que $P(T > 0.262) = 0.4$
+  y $P(T > 0.546) = 0.3$,
+  entonces, interpolando, se considerar\'a la aproximaci\'on
+  de $P(T > 0.416197097397594) \approx 0.346$, luego entonces:
+  \begin{equation*}
+   P\left( |T| > |t| \right) \approx 2P(T > 0.416197097397594)
+   \approx 2(0.346) = 0.692 
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es demasiado alto, se concluye
+  que los niveles promedios de \'acido asc\'orbico en plasma
+  en mujeres embarazadas fumadoras y en no fumadoras
+  no tienen una diferencia significativa.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P06\_Prueba\_de\_dos\_medias\_02.r},
+ que a su vez requiere los datos del archivo
+ \texttt{DB04\_Problema\_040.csv},
+ con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB04_Problema_040.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("AcidoAscórbico.mgpcml")
+> varSel<-c("Fumar")
+> mu<-0
+> desv.iguales<-FALSE
+> alfa<-NULL
+> cola<-'D'
+> par<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa R lanza el siguiente resultado:
+ \begin{verbatim}
+                   Var1 Freq    Poblaciones H0  valorPVar  suposicionVar n1 n2
+1 AcidoAscórbico.mgpcml   32 Independientes  0 0.02672701 Var diferentes 24  8
+     media1  media2  diferencia desv.est1 desv.est2 error.est grados.libertad
+1 0.9158333 0.97625 -0.06041667 0.2144136 0.3914784 0.1451636               8
+  alpha    PValor Estadistico RegionRechazoInfT RegionRechazoSupT
+1  0.05 0.6876436  -0.4161971         -2.285059          2.285059
+  RegionRechazoInfX RegionRechazoSupX
+1        -0.3317074         0.3317074
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos
+ y ofrece una mayor precisi\'on al valor $P$,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

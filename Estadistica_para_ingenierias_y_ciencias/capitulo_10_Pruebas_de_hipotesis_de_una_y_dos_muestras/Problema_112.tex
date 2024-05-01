@@ -1,0 +1,154 @@
+\begin{enunciado}
+ En un estudio que realiza el Departamento de Ingenier\'{\i}a Mec\'anica y que analiza el Centro de Consulta Estad\'{\i}stica del Instituto Polit\'ecnico y Universidad Estata de Virginia, se comparan las varillas de acero que proveen dos compa\~n\'{\i}as diferentes.
+ Se fabrican diez resortes de muestra con las varillas proporcionadas por cada compa\~n\'{\i}a y se estudia la ``capacidad de rebote''.
+ Los datos son los siguientes:
+ \begin{verbatim}
+Compañía A
+ 9.3 8.8 6.8  8.7  8.5 6.7  8.0  6.5  9.2 7.0
+Compañía B
+11.0 9.8 9.9 10.2 10.1 9.7 11.0 11.1 10.2 9.6
+ \end{verbatim}
+ \vspace{-0.5cm}
+ ¿Puede concluir que casi no hay diferencia entre las varillas de acero proporcionadas por las dos compa\~n\'{\i}as?
+ Utilice un valor $P$ para llegar a su conclusi\'on.
+ ¿Las varianzas deber\'{\i}an combinarse aqu\'{\i}?
+\end{enunciado}
+
+\begin{solucion}
+ Para realizar una prueba de diferencia de medias con pocos datos
+ (menos de 30), el estad\'{\i}stico usado requiere una condici\'on inicial
+ que es la suposici\'on de que las muestras provengan de poblaciones
+ con distribuci\'on normal.
+ Entonces se realizar\'an dos pruebas de bondad de ajuste
+ para verificar que, en efecto, las muestras provienen de poblaciones
+ normales. Entonces, la hip\'otesis nula para estas pruebas se pueden
+ escribir de la forma
+ $X_i$ sigue una distribuci\'on normal, para cada $i \in \{1,2\}$,
+ donde $X_1$ y $X_2$ representan las medidas poblacionales de capacidad
+ de rebote de los resortes de las compa\~n\'{\i}as A y B,
+ respectivamente, contra la hip\'otesis alternativa
+ de que $X_i$, para cada $i \in \{1,2\}$ no sigue una distribuci\'on
+ normal.
+ \par 
+ Debido a que la muestra es peque\~na y no se consideran par\'ametros
+ en la suposici\'on de las normalidades,
+ la prueba con $\chi^2$ crea insuficientes clases, en cada muestra,
+ que al calcular los grados de libertad junto con los grados que se restan
+ por no considerar par\'ametros previos, entonces se obtiene
+ un valor negativo, lo cual no puede corresponde a grados de libertad.
+ Por lo tanto, se proceder\'a a realizar las pruebas de Geary,
+ simult\'aneamente, con las siguientes l\'{\i}neas de c\'odigo
+ escritas en R, que usa la base de datos
+ \texttt{DB42\_Problema\_111.csv},
+ que se presenta a continuaci\'on junto con los resultados:
+ \begin{verbatim}
+> datos<-read.csv("DB43_Problema_112.csv",sep=";",encoding="UTF-8")
+> varInteres<-"Rebote.capacidad"; distincion<-"Compañía"
+> lista<-split(datos[,varInteres],datos[,distincion])
+> x<-lista$A; y<-lista$B
+> n1<-length(x); n2<-length(y)
+> U1<-sqrt(pi/2)*mean(abs(x-mean(x)))/sqrt(var(x)*(n1-1)/n1)
+> U2<-sqrt(pi/2)*mean(abs(y-mean(y)))/sqrt(var(y)*(n2-1)/n2)
+> x.Geary.statistic<-(U1-1)/(0.2661/sqrt(n1))
+> y.Geary.statistic<-(U2-1)/(0.2661/sqrt(n2))
+> x.Geary.p.value<-2*pnorm(abs(x.Geary.statistic),lower.tail=FALSE)
+> y.Geary.p.value<-2*pnorm(abs(y.Geary.statistic),lower.tail=FALSE)
+> print("P-valor para los productos de la compañia A usando la prueba de Geary")
+[1] "P-valor para los productos de la compañia A usando la prueba de Geary"
+> x.Geary.p.value
+[1] 0.06671429
+> print("P-valor para los productos de la compañia B usando la prueba de Geary")
+[1] "P-valor para los productos de la compañia B usando la prueba de Geary"
+> y.Geary.p.value
+[1] 0.3699307
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Esto indica un buen ajuste a una distribuci\'on normal
+ para la poblaci\'on de la capacidad de rebote de los productos
+ de la compa\~n\'{\i}a B;
+ sin embargo, la poblaci\'on de esta capacidad para los productos
+ de la compa\~n\'{\i}a A
+ muestran un valor $P$ de $0.06671429$ para el ajuste de bondad.
+ Se tomar\'a el riesgo ante la baja probabilidad
+ y se tomar\'a la decisi\'on de suponer que ambas muestras vienen
+ de poblaciones con distribuciones normales.
+ \par
+ Para la prueba, se requiere ahora saber si las varianzas poblacionales
+ de donde vienen ambas muestras se deben de considerar iguales
+ o diferentes. Este implica una prueba de proporci\'on de varianzas,
+ cuya hip\'otesis nula se puede enunciar como
+ $H_0: \, \frac{\sigma_1}{\sigma_2} = 1$, contra la hip\'otesis
+ alternativa $H_1: \, \frac{\sigma_1}{\sigma_2} \neq 1$,
+ donde $\sigma_1$ y $\sigma_2$ representan las varianzas poblacionales
+ de $X_1$ y $X_2$, respectivamente.
+ Para ello se hace una prueba $F$ con ayuda del archivo adjunto
+ \texttt{P14\_Prueba\_de\_dos\_varianzas\_02.r},
+ que a su vez usa el archivo \texttt{DB43\_Problema\_112.csv},
+ con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB43_Problema_112.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Rebote.capacidad")
+> varSel<-c("Compañía")
+> alfa<-NULL
+> cola<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ lo cual arroja el siguiente resultado:
+ \begin{verbatim}
+          variable Freq n1 n2 media1 media2 varianza1 varianza2 v1 v2 alpha
+1 Rebote.capacidad   20 10 10   7.95  10.26  1.207222 0.3248889  9  9  0.05
+     PValor Estadistico             RegionRechazo
+1 0.0637265      3.7158 < 0.2483859 y > 4.0259942
+ \end{verbatim}
+ \vspace{-0.5cm}
+ en donde se observa que el estad\'{\i}stico $F=\frac{\sigma_1}{\sigma_2}$
+ toma el valor de $3.7158$ con $v_1 = 9$ y $v_2 = 9$ grados
+ de libertad para la distribuci\'on $F$,
+ obteniendo as\'{\i} un valor $P$ de $0.0637265$,
+ lo cual, aunque no es muy alto, es suficiente para decidir rechazar
+ la hip\'otesis nula y, por lo tanto, se puede suponer que las varianzas iguales para la prueba $t$.
+ \par 
+ Para la prueba se enuncia la hip\'otesis nula como sigue:
+ \begin{eqnarray*}
+  H_0: & & \mu_1 - \mu_2   =   0 \\
+  H_1: & & \mu_1 - \mu_2 \neq  0
+ \end{eqnarray*}
+ donde $\mu_1$ y $\mu_2$ representan las medias poblacionales
+ de $X_1$ y $X_2$, respectivamente.
+ El estad\'{\i}stico y el valor $P$ se calculan con ayuda
+ del archivo adjunto \texttt{P06\_Prueba\_de\_dos\_medias\_02.r},
+ que nuevamente usan la base de datos almacenado en el archivo adjunto
+ \texttt{DB43\_Problema\_112.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB43_Problema_112.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Rebote.capacidad")
+> varSel<-c("Compañía")
+ mu<-0
+> desv.iguales<-TRUE
+> alfa<-NULL
+> cola<-'D'
+> par<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ lo cual arroja el siguiente resultado:
+ \begin{verbatim}
+              Var1 Freq    Poblaciones H0  valorPVar     suposicionVar n1 n2
+1 Rebote.capacidad   20 Independientes  0 0.06372648 Var no diferentes 10 10
+  media1 media2 diferencia desv.est1 desv.est2   est.sp error.est grados alpha
+1   7.95  10.26      -2.31  1.098737 0.5699903 0.875246 0.3914219     18  0.05
+        PValor Estadistico RegionRechazoInfT RegionRechazoSupT RegionRechazoInfX
+1 1.379592e-05    -5.90156         -2.100922          2.100922        -0.8223469
+  RegionRechazoSupX
+1         0.8223469
+ \end{verbatim}
+ \vspace{-0.5cm}
+ de donde se observa que el valor del estad\'{\i}stico
+ es $t = -5.90156$, con un valor $P$ aproximado
+ de $1.379592\times 10^{-5}$, 
+ lo cual, al ser tan bajo, y teniendo en cuenta que $\bar{x}_1 = 7.95$
+ y $\bar{x}_2 = 10.26$, se concluye que la capacidad de rebote promedio
+ de los resortes son diferentes entre ambas compa\~n\'{\i}as,
+ siendo que los resortes de la compa\'{\i}a A tiene una capacidad
+ de reborte menor que los resortes de la compa\~n\'{\i}a B,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

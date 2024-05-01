@@ -1,0 +1,92 @@
+\begin{enunciado}
+ En un restaurante de carnes asadas una m\'aquina de bebidas gaseosas se ajusta de manera que la cantidad de bebida que sirva est\'e distribuida de forma aproximadamente normal, con una media de $200$ mililitros y una desviaci\'on est\'andar de $15$ mililitros. La m\'aquina se verifica peri\'odicamente tomando una muestra de $9$ bebidas y calculando el contenido promedio. Si $\bar{x}$ cae en el intervalo $191 < \bar{x} < 209$, se considera que la m\'aquina opera de forma satisfactoria; de otro modo, concluimos que $\mu \neq 200$ mililitros.
+ \begin{enumerate}
+  \item Encuentre la probabilidad de cometer un error tipo I cuando $\mu = 200$ mililitros.
+  
+  \item Encuentre la probabilidad de cometer un error tipo II cuando $\mu = 215$ mililitros.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la cantidad de mililitros que sirve la m\'aquina de bebidas gaseosas y sea $\overline{X}$ la variable aleatoria de la muestra, del enunciado se tiene lo siguiente, en donde $x_{\text{inf}}$ y $x_{\text{sup}}$ representan el valor cr\'{\i}tico inferior y superior, respectivamente. 
+ \begin{itemize}
+  \item $X \sim n(\mu, \sigma)$.
+  \item $\overline{X} \sim n\left( \mu, \sigma/\sqrt{n} \right)$
+  \item $n = 9$.
+  \item $\sigma = 15\,$ml.
+  \item $\sigma_{\overline{X}} = 15/\sqrt{9} = 15/3 = 5$.
+  \item $x_{\text{inf}} = 191$ y $x_{\text{sup}} = 209$.
+ \end{itemize}
+ Con lo que sea realiza lo pedido en los incisos como sigue.
+ \begin{enumerate}
+  \item Se tiene lo siguiente bajo el supuesto dado.
+  \begin{itemize}
+   \item $\mu = 200\,$ml.
+  \end{itemize}
+  el error tipo I se aproxima usando la tabla A.3 como sigue:
+  \begin{eqnarray*}
+   \alpha & = & P\left(\overline{X} \leq 191\right) + P\left(\overline{X} \geq 209\right) = P\left( Z < \frac{191 - 200}{5} \right) + P\left( Z > \frac{209 - 200}{5} \right) \\
+   & = & P\left( Z < -\frac{9}{5} \right) + P\left(Z > \frac{9}{5}\right) = 2P\left( Z < -\frac{9}{5} \right) = 2P(Z < -1.8) \approx 2(0.0359) \\ 
+   & = & 0.0718
+  \end{eqnarray*}
+  Finalmente, en R se puede calcular esta probabilidad usando el script en el archivo anexo \texttt{P02\_Probabilidad\_de\_error\_normal\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-9
+> CriticoInf<-191
+> CriticoSup<-209
+> desv<-5
+> media0<-200
+> media1<-NULL
+> p0<-NULL
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene
+  \begin{verbatim}
+$`Probabilidad de error tipo I`
+  HipotesisNula n media desv CríticoInf CriticoSup      alpha
+1     mu =  200 9   200    5        191        209 0.07186064
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene lo siguiente:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas da $\alpha = 0.0718$.
+   \item La aproximaci\'on con R da $\alpha = 0.07186064$.${}_{\square}$
+  \end{itemize}
+
+  \item Suponiendo que
+  \begin{itemize}
+   \item $\mu = 215$
+  \end{itemize}
+  el error tipo II se aproxima usando la tabla A.3 como sigue:
+  \begin{eqnarray*}
+   \beta & = & P\left(191 < \overline{X} < 209\right) = P\left(\frac{191 - 215}{5} < Z < \frac{209 - 215}{5}\right) = P\left( -\frac{24}{5} < Z < -\frac{6}{5} \right) \\
+   & = & P( -4.8 < Z < -1.2 ) = P(Z < -1.2) - P(Z \leq -4.8) \approx 0.1151 - 0 = 0.1151
+  \end{eqnarray*}
+  Finalmente, en R se puede calcular esta probabilidad usando el script en el archivo anexo \texttt{P02\_Probabilidad\_de\_error\_normal\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-9
+> CriticoInf<-191
+> CriticoSup<-209
+> desv<-5
+> media0<-NULL
+> media1<-215
+> p0<-NULL
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa n media desv CríticoInf CriticoSup      beta
+1            mu =  215 9   215    5        191        209 0.1150689
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene lo siguiente:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas da $\beta = 0.1151$.
+   \item La aproximaci\'on con R da $\beta = 0.1150689$.
+  \end{itemize}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

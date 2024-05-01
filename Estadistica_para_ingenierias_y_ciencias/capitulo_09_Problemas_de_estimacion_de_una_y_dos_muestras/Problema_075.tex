@@ -1,0 +1,62 @@
+\begin{enunciado}
+ Construya un intervalo de confianza de $99\%$ para $\sigma$ en el ejercicio 9.14 de la p\'agina 286.
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.14, pero cambiando el significado de $\alpha$ al nivel de significancia del intervalo de confianza para $\sigma$, entonces se tiene los siguientes datos:
+ \begin{itemize}
+  \item $X \sim n(\mu, \sigma)$.
+  \item $\sigma$ desconocida.
+  \item $n = 10$ barras.
+  \item $s = 15$ calor\'{\i}as.
+  \item $\alpha = 0.01$
+ \end{itemize}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para la varianza de una poblaci\'on aproximadamente normal, entonces se requerir\'a de los valores $\chi^2_{\alpha/2,n-1} = \chi^2_{0.005,9}$ y $\chi^2_{1-\alpha/2,n-1} = \chi^2_{0.995,9}$. De la Tabla A.5, se tiene que estos valores son: $\chi^2_{0.005,9} = 23.589$ y $\chi^2_{0.995,9} = 1.735$. Por otro lado, usando R, con los siguientes comandos, se obtiene mayor precisi\'on.
+ \begin{verbatim}
+> options(digits=22)
+> qchisq(0.005,9,lower.tail=F)
+[1] 23.58935078125737305754
+> qchisq(0.995,9,lower.tail=F)
+[1] 1.734932904996660418817
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar con mayor precisi\'on que $\chi^2_{0.005,9} = 23.58935$ y $\chi^2_{0.995,9} = 1.73493$.
+ \par 
+ Ya que se busca un intervalo de confianza para la desviaci\'on est\'andar de una poblaci\'on que se distribuye normalmente usando la desviaci\'on est\'andar muestral como estimador, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  s\sqrt{\frac{n-1}{\chi^2_{\alpha/2,n-1}}} < \sigma < s\sqrt{\frac{n-1}{\chi^2_{1-\alpha/2,n-1}}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando los valores $\chi^2_{\alpha/2,n-1}$ y $\chi^2_{1-\alpha/2,n-1}$ del libro, se tiene los c\'alculos de los l\'{\i}mites de intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  s\sqrt{\frac{n-1}{\chi^2_{\alpha/2,n-1}}} & = & 15\sqrt{\frac{9}{23.589}} = 15\sqrt{\frac{1\,000}{2\,621}} = \frac{150\sqrt{26\,210}}{2\,621} \\
+  & \approx & 0.05723\sqrt{26\,210} \approx 
+  9.2652629369657
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  s\sqrt{\frac{n-1}{\chi^2_{1-\alpha/2,n-1}}} & = & 15\sqrt{\frac{9}{1.735}} = 45\sqrt{\frac{200}{347}} = \frac{450\sqrt{694}}{347} \\
+  & \approx & 1.296829971\sqrt{694} \approx 34.16353281005055
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $99\%$ para la desviaci\'on est\'andar de calor\'{\i}as que hay en una barra de chocolate energ\'etico de la marca referenciada en el ejericio 9.14 es aproximadamente
+ \begin{equation*}
+  9.2652629369657 < \sigma < 34.16353281005055
+ \end{equation*}
+ Finalmente, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P22\_Intervalo\_de\_confianza\_11.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n<-10
+> var<-NULL
+> desv.est<-15
+> alfa<-0.01
+> tipoInterv<-"desv.est"
+> inter<-'D'
+> val<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  Estimando  n   LimInf estimador   LimSup
+1  desv.est 10 9.265194        15 34.16419
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $99\%$ es $9.265 < \sigma < 34.164$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

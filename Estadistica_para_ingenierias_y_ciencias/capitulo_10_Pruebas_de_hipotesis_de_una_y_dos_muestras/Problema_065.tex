@@ -1,0 +1,109 @@
+\begin{enunciado}
+ Una comunidad urbana quiere demostrar que la incidencia de c\'ancer de seno es mayor
+ en ella que en un \'area rural vecina.
+ (Se encontr\'o que los niveles de \texttt{PCB} son m\'as altos en el suelo
+ de la comunidad urbana.)
+ Si se encuentra que $20$ de $200$ mujeres adultas en la comunidad urbana
+ tienen c\'ancer de seno y $10$ de $150$ mujeres adultas en la comunidad rural
+ tienen c\'ancer de seno,
+ ¿podr\'{\i}amos concluir con un nivel de significancia de $0.05$
+ que este tipo de c\'ancer prevalece m\'as en la comunidad urbana?
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n_1 = 200$ y $n_2 = 150$.
+   \item $x_1 = 20$ y $x_2 = 10$.
+  \end{itemize}
+  Adem\'as, se pueden calcular las proporciones estimadas de cada muestra
+  y la estimaci\'on combinada de la proporci\'on a la que se supone que son iguales
+  en ambas poblaciones, como se muestra a continuaci\'on:
+  \begin{itemize}
+   \item $\widehat{p}_1 = \frac{20}{200} = \frac{1}{10} = 0.1$.
+   \item $\widehat{p}_2 = \frac{10}{150} = \frac{1}{15} = 0.0\bar{6}$.
+   \item $\widehat{p} = \frac{x_1+x_2}{n_1+n_2} = \frac{20+10}{200+150}
+   = \frac{30}{350} = \frac{3}{35} = 0.0\overline{857142}$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p_1 & \leq & p_2 \\
+   H_1: p_1 &  >   & p_2
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.3, se tiene el valor cr\'{\i}tico $z_{\alpha}=z_{0.05}\approx 1.645$,
+  por lo que la regi\'on de rechazo est\'a dado para $z > 1.645$,
+  donde $z \approx \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}\hat{q}(1/n_1+1/n_2)}}$.
+ \end{region}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   z & \approx &
+   \frac{\widehat{p}_1 - 
+   \widehat{p}_2}{\sqrt{\widehat{p}\widehat{q}\left(1/n_1+1/n_2\right)}}
+   = \frac{
+   \displaystyle{ \frac{1}{10} - \frac{1}{15}}
+   }{
+   \displaystyle{ \sqrt{
+   \left(\frac{3}{35}\right)\left(\frac{32}{35}\right)
+   \left(\frac{1}{200} + \frac{1}{150}\right)
+   }}}
+   = \frac{\displaystyle{\frac{\cancel{5}}{\cancelto{30}{150}}}}
+   {\displaystyle{
+   \sqrt{\left( \frac{\cancel{3}\cdot 2^5}{35^{\cancel{2}}} \right)
+   \left( \frac{\cancel{35}}{ \cancelto{1\,000}{3\,000} } \right)}
+   }} \\
+   & = & \frac{1}
+   {\displaystyle{
+   30\sqrt{\frac{ 2^{\cancelto{2}{5}} }{ 7 \cdot \cancel{2^3} \cdot 5^4  }}
+   }}
+   = \frac{1}{\displaystyle{
+   \frac{\cancelto{12}{60}}{\cancelto{5}{25}}\sqrt{\frac{1}{7}}
+   }}
+   = \frac{5\sqrt{7}}{12}
+   \approx 1.10239637961
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  No hay evidencia suficiente
+  que demuestre que la incidencia de c\'ancer de seno es mayor
+  en la comunidad urbana que en el \'area rural vecina.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P09\_Prueba\_de\_dos\_proporciones\_01.r}, con los siguientes cambios:
+ \begin{verbatim}
+> n1<-200
+> n2<-150
+> x1<-20
+> x2<-10
+> p1<-NULL
+> p2<-NULL
+> alfa<-0.05
+> alternativa<-'>'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  alternativa  n1  n2 x1 x2  p1         p2  pEstimada    DifProp  error.est
+1     p1 > p2 200 150 20 10 0.1 0.06666667 0.08571429 0.03333333 0.03023716
+  alpha    PValor Estadistico RegionRechazoZ        Resultado
+1  0.05 0.1351447    1.102396   >= 1.6448536 No se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

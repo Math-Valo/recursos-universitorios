@@ -1,0 +1,95 @@
+\begin{enunciado}
+ Se afirma que una nueva dieta reducir\'a en $4.5$ kilogramos el peso de un individuo, en promedio, en un lapso de $2$ semanas. Los pesos de $7$ mujeres que siguieron esta dieta se registraron antes y despu\'es de un periodo de $2$ semanas.
+ \begin{center}
+  \begin{tabular}{ccc}
+   \textbf{Mujer} & \textbf{Peso antes} & \textbf{Peso despu\'es} \\
+   \hline 
+   $\mathbf{1}$ & $58.5$ & $60.0$ \\
+   $\mathbf{2}$ & $60.3$ & $54.9$ \\
+   $\mathbf{3}$ & $61.7$ & $58.1$ \\
+   $\mathbf{4}$ & $69.0$ & $62.1$ \\
+   $\mathbf{5}$ & $64.0$ & $58.5$ \\
+   $\mathbf{6}$ & $62.6$ & $59.9$ \\
+   $\mathbf{7}$ & $56.7$ & $54.4$
+  \end{tabular}
+ \end{center}
+ Pruebe la afirmaci\'on del fabricante calculando un intervalo de confianza de $95\%$ para la diferencia media en el peso. Suponga que las diferencias de los pesos se distribuyen de forma aproximadamente normal.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de los pesos de las mujeres, medidos en kilogramos, antes y despu\'es del tratamiento, respectivamente, entonces del enunciado, se tiene el siguiente resumen de datos:
+ \begin{itemize}
+  \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1, 2\}$.
+  \item $\mu_i$ y $\sigma_i$ son desconocidos, para cada $i \in \{ 1, 2 \}$.
+  \item $n_1 = n_2 = 7$.
+  \item $\alpha = 0.05$
+ \end{itemize}
+ Adem\'as de los datos obtenidos en las $7$ mujeres, antes y despu\'es del tratamiento, cuyas diferencias de kilogramos, $D_i = X_1 - X_2$, son:
+ \begin{center}
+  \begin{tabular}{cccc}
+   \textbf{Mujer} & \textbf{Peso antes} & \textbf{Peso despu\'es} & $d_i$ \\
+   \hline 
+   $\mathbf{1}$ & $58.5$ & $60.0$ & $-1.5$ \\
+   $\mathbf{2}$ & $60.3$ & $54.9$ & $\phantom{-}5.4$ \\
+   $\mathbf{3}$ & $61.7$ & $58.1$ & $\phantom{-}3.6$ \\
+   $\mathbf{4}$ & $69.0$ & $62.1$ & $\phantom{-}6.9$ \\
+   $\mathbf{5}$ & $64.0$ & $58.5$ & $\phantom{-}5.5$ \\
+   $\mathbf{6}$ & $62.6$ & $59.9$ & $\phantom{-}2.7$ \\
+   $\mathbf{7}$ & $56.7$ & $54.4$ & $\phantom{-}2.3$
+  \end{tabular}
+ \end{center}
+ A partir de estos datos, se puede calcular la media y desviaci\'on est\'andar de las observaciones pareadas, como se muestra a continuaci\'on. La media muestral se calcula como sigue:
+ \begin{equation*}
+  \bar{d} = \frac{-1.5+5.4+3.6+6.9+5.5+2.7+2.3}{7} = \frac{24.9}{7} = \frac{249}{70} = 3.5\overline{571428}
+ \end{equation*}
+ por lo que la varianza muestral se obtiene, usando el Teorema 8.1, como sigue:
+ \begin{eqnarray*}
+  s_d^2 & = & \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n d_i^2 - \left( \sum_{i=1}^n d_i \right)^2 \right] \\
+  & = & \frac{7\left[ (-1.5)^2 + 5.4^2 + 3.6^2 + 6.9^2 + 5.5^2 + 2.7^2 + 2.3^2 \right] - 24.9^2}{7(6)} \\
+  & = & \frac{7(2.25 + 29.16 + 12.96 + 47.61 + 30.25 + 7.29 + 5.29) - 620.01}{42} \\
+  & = & \frac{7(134.81) - 620.01}{42} = \frac{943.67 - 620.01}{42} = \frac{323.66}{42} = \frac{161.83}{21}\\
+  & = & \frac{16\,183}{2\,100} = 7.70\overline{619047}
+ \end{eqnarray*}
+ y, por lo tanto, la desviaci\'on est\'andar muestral es:
+ \begin{equation*}
+  s_d = \sqrt{s_d^2} = \sqrt{\frac{16\,183}{2\,100}} = \frac{\sqrt{16\,183}\sqrt{21}}{210} = \frac{\sqrt{339\,843}}{210} \approx 2.7760026073817863\ldots
+ \end{equation*}
+ Por otro lado, como se desea encontrar el intervalo de  confianza bilateral para $\mu_D = \mu_1 - \mu_2$, para observaciones pareadas, entonces se requerir\'a del valor $t_{\alpha/2,n-1} = t_{0.025,6}$. De la Tabla A.4, se tiene que $t_{0.025,6} = 2.447$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,6,lower.tail=F)
+[1] 2.446911851144969229921
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con m\'as precisi\'on como $2.44691185114$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales pareadas usando como estimador la media muestral de las diferencias de los datos pareados en una muestra peque\~na, en donde se desconoce la desviaci\'on est\'andar poblacional pero suponiendo que las poblaciones se distribuyen de forma aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{d} - t_{\alpha/2,n-1} \frac{s_d}{\sqrt{n}} < \mu_D < \bar{d} + t_{\alpha/2,n-1} \frac{s_d}{\sqrt{n}}
+ \end{equation*}
+ en donde $\mu_D = \mu_1 - \mu_2$. Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n-1}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  \bar{d} \pm t_{\alpha/2,n-1} \frac{s_d}{\sqrt{n}} & = & \frac{249}{70} \pm (2.447)\left( \frac{\sqrt{339\,843}/210}{\sqrt{7}} \right) = \frac{249}{70} \pm (2.447)\left( \frac{\sqrt{48\,549}}{210} \right) \\
+  & = & \frac{249}{70} \pm \frac{2\,447\sqrt{48\,549}}{210\,000} = 3.5\overline{571428} \pm 0.0116\overline{523809}\sqrt{48\,549} \\
+  & \approx & 3.5\overline{571428} \pm 2.56746669721
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $95\%$ de confianza de la disminuci\'on media de kilogramos en las mujeres en dos semanas tras el tratamiento es de:
+ \begin{equation*}
+  0.98967615993 < \mu_1 - \mu_2 < 6.124609554
+ \end{equation*}
+ Por otro lado, en R, se puede calcular el intervalo de confianza de las observaciones pareadas cambiando los siguientes comandos en el archivo anexo \texttt{P16\_Intervalo\_de\_confianza\_07.r}, y usando la base de datos \texttt{DB10\_Problema\_88.csv}.
+ \begin{verbatim}
+> datos<-read.csv("DB10_Problema_88.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Peso.Kg")
+> varSel<-list("Registro")
+> alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  variable    LimInf    Media   LimSup
+1  Peso.Kg 0.9897686 3.557143 6.124517
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo del $95\%$ es $0.99 < \mu_1 - \mu_2 < 6.125$, luego entonces, como el intevalo contiene el valor de $4.5$, entonces se acepta la afirmaci\'on del fabricante, con $95\%$ de confianza, de que su dieta reducir\'a en $4.5$ kilogramos el peso de un individuo, en un lapso de 2 semanas, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

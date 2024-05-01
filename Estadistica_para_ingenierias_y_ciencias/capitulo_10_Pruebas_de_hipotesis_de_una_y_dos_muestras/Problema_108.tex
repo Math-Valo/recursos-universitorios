@@ -1,0 +1,163 @@
+\begin{enunciado}
+ \textbf{Valor} $\mathbf{z}$ \textbf{para probar} $\mathbf{p_1 - p_2=d_0}$.
+ Para probar la hip\'otesis nula $H_0$ de que $p_1 - p_2 = d_0$,
+ donde $d_0 \neq 0$, basamos nuestra decisi\'on en
+ \begin{equation*}
+  z =
+  \frac{\widehat{p}_1-\widehat{p}_2-d_0}{\sqrt{
+  \widehat{p}_1\widehat{q}_1/n_1 + \widehat{p}_2\widehat{q}_2/n_2}}
+ \end{equation*}
+ que es un valor de una variable aleatoria,
+ cuya distribuci\'on aproxima la distribuci\'on normal est\'andar,
+ en tanto que $n_1$ y $n_2$ sean grandes.
+ Con referencia al ejemplo 10.12 de la p\'agina 365,
+ pruebe la hip\'otesis de que el porcentaje de votantes de la ciudad que favorecen la construcci\'on de la planta qu\'{\i}mica no exceder\'a el porcentaje de votantes del condado en m\'as de $3\%$.
+ Utilice un valor $P$ en su conclusi\'on.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{enumerate}
+   \item $n_1 = 200$ y $n_2 = 500$.
+   \item $x_1 = 120$ y $x_2 = 240$.
+   \item $\bar{p}_1 = \frac{x_1}{n_2} = \frac{120}{200}=\frac{3}{50} = 0.6$
+   y $\bar{p}_1 = \frac{x_2}{n_2}=\frac{240}{500} = \frac{12}{25} = 0.48$.
+  \end{enumerate}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: & & p_1 - p_2 \leq 0.03 \\
+   H_1: & & p_1 - p_2   >  0.03
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   z & = & \frac{\widehat{p}_1-\widehat{p}_2-d_0}{\sqrt{
+  \widehat{p}_1\widehat{q}_1/n_1 + \widehat{p}_2\widehat{q}_2/n_2}}
+  = \frac{0.6 - 0.48 - 0.03}{\sqrt{
+  (0.6)(0.4)(1/200) + (0.48)(0.52)(1/500)}} \\
+  & = & \frac{0.09}{\sqrt{0.24/200 + 0.2496/500}}
+  = \frac{\displaystyle{\frac{9}{100}}}{\displaystyle{\sqrt{
+  \frac{3}{2\,500} + \frac{39}{78\,125}}}}
+  = \frac{9}{\displaystyle{100\sqrt{ 
+  \frac{531}{312\,500}}}} \\
+  & = & \frac{\cancelto{3}{9}}{\displaystyle{
+  \frac{\cancelto{2}{100}\times \cancel{3}}{\cancelto{5}{250}}\sqrt{\frac{59}{5}}}}
+  = \frac{15\sqrt{5 \times 59}}{2\times 59}
+  = \frac{15\sqrt{295}}{118} \approx 2.18333441
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.3, es tiene que:
+  \begin{equation*}
+   P(Z > 2.18) = 1 - P(Z \leq 2.18) \approx 1 - 0.9854 = 0.0146
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  La muestra arroja evidencia suficiente para rechazar la hip\'otesis nula
+  y, por lo tanto, concluir
+  que el porcentaje de votantes de la ciudad que est\'a a favor
+  de la propuesta de construir la planta qu\'{\i}mica
+  dentro de los l\'{\i}mites de la ciudad es mayor, por m\'as del 3\%,
+  al porcentaje de votante residentes del condado circundante
+  que apoya esta misma propuesta.
+ \end{conclusion}
+
+ En el c\'odigo registrado en el archivo anexo
+ \texttt{P19\_Prueba\_de\_dos\_proporciones\_02.r},
+ escrito en el lenguaje de programaci\'on estad\'{\i}stica R,
+ se realiza este procedimiento.
+ El c\'odigo no es m\'as que una ligera modificaci\'on del script
+ previamente presentado
+ \texttt{P09\_Prueba\_de\_dos\_proporciones\_01.r},
+ cuyas \'unicas diferencias consisten en la variable,
+ dentro de la entrada de datos, \texttt{d0},
+ para el valor al que es igual la diferencia de las proporciones,
+ y el c\'alculo del estad\'{\i}stico que ahora sigue la f\'ormula
+ $z = \frac{\widehat{p}_1-\widehat{p}_2-d_0}{\sqrt{
+ \widehat{p}_1\widehat{q}_1/n_1 + \widehat{p}_2\widehat{q}_2/n_2}}$,
+ que implica a su vez la eliminaci\'on del c\'alculo del estimador
+ de proporciones dado por la f\'ormula
+ $\widehat{p} = \frac{x_1+x_2}{n_1+n_2}$, que se daba
+ cuando se supon\'{\i}a en la hip\'otesis nula que las proporciones fuesen
+ iguales, que ya no se usa para este tipo de prueba.
+ Por lo dem\'as, todo permanece tal cual en el c\'odigo,
+ tal cual como se explic\'o en la soluci\'on del ejercicio 63.
+ \par 
+ El c\'odigo junto con el resultado se muestra a continuaci\'on:
+ \begin{verbatim}
+> n1<-200
+> n2<-500
+> x1<-120
+> x2<-240
+> p1<-NULL
+> p2<-NULL
+> d0<-0.03
+> alfa<-NULL
+> alternativa<-'>'
+> if(n1<30 || n2<30){
++   stop("Las muestras no deben ser pequeñas (al menos de 30 observaciones).")
++ }
+> if(is.null(x1)){
++   x1<-round(p1*n1)
++ }
+> if(is.null(x2)){
++   x2<-round(p2*n2)
++ }
+> 
+> TestProp<-function(n1,n2,x1,x2,d0,alfa=0.05,prueba='!='){
++   p1<-x1/n1
++   p2<-x2/n2
++   estadistico<-(p1-p2-d0)/sqrt((p1*(1-p1)/n1+p2*(1-p2)/n2))
++   r<-data.frame(alternativa=paste("p1",prueba,"p2"),
++                 n1=n1,n2=n2,
++                 x1=x1,x2=x2,
++                 p1=p1,p2=p2,
++                 DifProp=p1-p2,
++                 error.est=sqrt((p1*(1-p1)/n1+p2*(1-p2)/n2)),
++                 alpha=alfa
++   )
++   if(prueba=='!='){
++     pvalor<-round(2*pnorm(abs(estadistico),lower.tail=F),7)
++     criticoz<-round(qnorm(1-alfa/2),7)
++     r$PValor<-pvalor
++     r$Estadistico<-estadistico
++     r$RegionRechazoZ<-paste("<=",-criticoz," y >=",criticoz)
++   }else{
++     criticoz<-round(qnorm(1-alfa),7)
++     if(prueba=='<'){
++       pvalor<-round(pnorm(estadistico),7)
++       r$PValor<-pvalor
++       r$Estadistico<-estadistico
++       r$RegionRechazoZ<-paste("<=",-criticoz)
++     }else{
++       pvalor<-round(pnorm(estadistico,lower.tail=F),7)
++       r$PValor<-pvalor
++       r$Estadistico<-estadistico
++       r$RegionRechazoZ<-paste(">=",criticoz)
++     }
++   }
++   return(r)
++ }
+> if(is.null(alfa)){
++   Test<-TestProp(n1,n2,x1,x2,d0,prueba=alternativa)
++ }else{
++   Test<-TestProp(n1,n2,x1,x2,d0,alfa,alternativa)
++   resultado<-ifelse(Test[,"PValor"]>=alfa,"No se rechaza H0","Se rechaza H0")
++   Test$Resultado<-resultado
++ }
+> Test
+  alternativa  n1  n2  x1  x2  p1   p2 DifProp  error.est alpha    PValor
+1     p1 > p2 200 500 120 240 0.6 0.48    0.12 0.04122135  0.05 0.0145056
+  Estadistico RegionRechazoZ
+1    2.183334   >= 1.6448536
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Lo cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

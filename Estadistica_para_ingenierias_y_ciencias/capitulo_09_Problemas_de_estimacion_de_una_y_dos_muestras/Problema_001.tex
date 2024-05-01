@@ -1,0 +1,22 @@
+\begin{enunciado}
+ Definamos $S'^2 = \sum_{i=1}^n \left( X_i - \overline{X} \right)^2/n$. Muestre que
+ \begin{equation*}
+  E \left( S'^2 \right)^2 = \left[ (n-1)/n \right] \sigma^2,
+ \end{equation*}
+ y de aqu\'{\i} que $S'^2$ es un estimador sesgado para $\sigma^2$.
+\end{enunciado}
+
+\begin{solucion}
+ Como se ha demostrado en el Anexo 01, la esperanza de $S^2 = \frac{1}{n-1} \sum_{i=1}^n \left( X_i - \overline{X} \right)^2 $ es $E\left( S^2 \right) = \sigma^2$ (tambi\'en qued\'o demostrado en el libro, en la p\'agina 271).
+ Entonces, usando la linealidad de la esperanza y que $S'^2 = \frac{n-1}{n} S^2$, 
+   se obtiene que
+ \begin{equation*}
+  E \left( S'^2 \right)^2 = E \left( \frac{n-1}{n} S^2 \right) = \frac{n-1}{n}E\left( S^2 \right) =\frac{n-1}{n}\sigma^2
+ \end{equation*}
+ Por lo tanto:
+ \begin{equation*}
+  E \left( S'^2 \right)^2 = \left[ (n-1)/n \right] \sigma^2,
+ \end{equation*}
+ Q.E.D.${}_{\blacksquare}$
+\end{solucion}
+

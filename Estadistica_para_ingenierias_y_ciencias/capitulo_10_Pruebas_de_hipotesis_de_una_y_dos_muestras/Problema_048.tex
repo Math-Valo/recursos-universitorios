@@ -1,0 +1,58 @@
+\begin{enunciado}
+ Si la distribuci\'on del tiempo de vida en el ejercicio 10.21 es aproximadamente normal, ¿qu\'e tan grande se requiere que sea una muestra, para que la probabilidad de cometer un error tipo II sea $0.1$ cuando la media real es $35.9$ meses? Suponga que $\sigma = 5.8$ meses.
+\end{enunciado}
+
+\begin{solucion}
+ Usando los datos del ejercicios 10.21
+ y la informaci\'on del enunciado,
+ se tiene los siguientes datos y supuestos:
+ \begin{itemize}
+  \item $X \sim n\left( \mu, \sigma \right)$.
+%   \item $\alpha = $
+  \item $\beta = 0.1$
+  \item $\mu = 40$, seg\'un la hip\'otesis nula.
+  \item $\mu + \delta = 35.9$,
+  seg\'un una alternativa espec\'{\i}fica,
+  entonces $\delta = -4.1$
+  \item $\sigma = 5.8$.
+ \end{itemize}
+ El valor de $\alpha$ es requerido para estos c\'alculos; sin embargo, se desconoce. Por lo tanto, se supondr\'a que $\alpha$ es alg\'un valor entre los dos m\'as usados; es decir, se supondr\'a que:
+ \begin{itemize}
+  \item $\alpha \in [ 0.01, 0.05 ]$
+ \end{itemize}
+ Entonces, de la tabla A.3, se deduce adem\'as que:
+ \begin{itemize}
+  \item $z_{\alpha} \in [ 1.6545, 2.33 ]$.
+  \item $z_{\beta} = 1.28$.
+ \end{itemize}
+ Entonces se puede calcular el tama\~no de muestra requerido
+ para la calidad buscada en la prueba con la siguiente f\'ormula:
+ \begin{equation*}
+  n = \left\lceil
+  \frac{\left( z_{\alpha}+z_{\beta}\right)^2 \sigma^2}{\delta^2}
+  \right\rceil
+  = \left\lceil
+  \frac{\left(z_{\alpha} + 1.28\right)^2 (5.8)^2}{(-4.1)^2}
+  \right\rceil
+  = \left\lceil \frac{\left(z_{\alpha} + 1.28\right)^2\times 33.64}{16.81} \right\rceil
+ \end{equation*}
+ Por lo que, en el caso en que $\alpha = 0.01$, se obtiene lo siguiente:
+ \begin{equation*}
+  n = \left\lceil \frac{(2.33 + 1.28)^2 \times 33.64}{16.81} \right\rceil
+  = \left\lceil \frac{3.61^2\times 3\,364}{1\,681} \right\rceil
+  = \left\lceil \frac{43\,839.9844}{1\,681} \right\rceil
+  = \lceil 26.0797051755\ldots \rceil = 27
+ \end{equation*}
+ Por otro lado, en el caso en que $\alpha = 0.05$, se tienen los siguiente c\'alculos:
+ \begin{eqnarray*}
+  n = \left\lceil \frac{(1.645 + 1.28)^2 \times 33.64}{16.81} \right\rceil
+  = \left\lceil \frac{2.925^2\times 3\,364}{1\,681} \right\rceil
+  = \left\lceil \frac{28\,781.1225}{1\,681} \right\rceil
+  = \lceil 17.1214292\ldots \rceil = 18
+ \end{eqnarray*}
+ Por lo tanto, bajo la suposici\'on de que $\alpha \in [0.01,0.05]$,
+ el menor tama\~no muestral $n$ buscado vive en el rango $[18,27]$.
+ Es decir, a partir de un tama\~no muestral que, seg\'un el caso, es un valor en el rango $n \in [18,27]$, se puede realizar una prueba de hip\'otesis de que la vida promedio de los ratones, que tienen una vida promedio de 32 meses, que siguen una dieta en el que se reemplaza
+ el 40\% de calor\'{\i}as con vitaminas y prote\'{\i}nas no es significativamente menor a los 40 meses, esto es que $\mu \geq 40$, con un nivel de significancia, seg\'un el caso, para un valor fijo $\alpha \in [0.01, 0.05]$, considerando a lo m\'as una probabilidad de $0.1$ de cometer un error tipo II para la hip\'otesis alternativa
+ de que $\mu = 35.9$.${}_{\blacksquare}$
+\end{solucion}

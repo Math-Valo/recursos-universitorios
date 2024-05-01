@@ -1,0 +1,181 @@
+\begin{enunciado}
+ El administrador de una compa\~n\'{\i}a de taxis trata de decidir si el uso de llantas radiales en lugar de llantas regulares cinturadas mejora la econom\'{\i}a de combustible. Se equipan $12$ autom\'oviles con llantas radiales y se manejan durante un recorrido de prueba preestablecido. Sin cambiar a los conductores, los mismos autom\'oviles se equipan con llantas regulares cinturadas y se manejan otra vez en el recorrido de prueba. El consumo de gasolina, en kil\'ometros por litro, se registr\'o de la siguiente manera:
+ \begin{center}
+  \textbf{Kil\'ometros por litro} \\
+  \begin{tabular}{ccc}
+   \hline 
+   \textbf{Autom\'ovil} & \textbf{Llantas radiales} & \textbf{Llantas cinturadas} \\
+   \hline
+   $1$  & $4.2$ & $4.1$ \\
+   $2$  & $4.7$ & $4.9$ \\
+   $3$  & $6.6$ & $6.2$ \\
+   $4$  & $7.0$ & $6.9$ \\
+   $5$  & $6.7$ & $6.8$ \\
+   $6$  & $4.5$ & $4.4$ \\
+   $7$  & $5.7$ & $5.7$ \\
+   $8$  & $6.0$ & $5.8$ \\
+   $9$  & $7.4$ & $6.9$ \\
+   $10$ & $4.9$ & $4.7$ \\
+   $11$ & $6.1$ & $6.0$ \\
+   $12$ & $5.2$ & $4.9$
+  \end{tabular}
+ \end{center}
+ ¿Podemos concluir que los autom\'oviles equipados con llantas radiales dan una econom\'{\i}a de combustible mejor que aquellos equipados con llantas cinturadas? Suponga que las poblaciones se distribuyen normalmente. Utilice un valor $P$ en su conclusi\'on.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido, se tiene que
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{ 1, 2 \}$.
+   \item $n_1 = n_2 = 12$.
+  \end{itemize}
+  Como las observaciones fueron sobre las mismas unidades
+  experimentales, entonces se trata de observaciones pareadas,
+  por lo que se usar\'an las diferencias de los datos,
+  que muestra la tabla siguiente:
+  \begin{center}
+   \textbf{Kil\'ometros por litro} \\
+   \begin{tabular}{cccc}
+    \hline 
+    \textbf{Autom\'ovil} & \textbf{Llantas radiales} & \textbf{Llantas cinturadas} & \hspace{1cm} $d_i$ \hspace{1cm} \\
+    \hline
+    $1$  & $4.2$ & $4.1$ & $\phantom{-}0.1$ \\
+    $2$  & $4.7$ & $4.9$ & $-0.2$ \\
+    $3$  & $6.6$ & $6.2$ & $\phantom{-}0.4$ \\
+    $4$  & $7.0$ & $6.9$ & $\phantom{-}0.1$ \\
+    $5$  & $6.7$ & $6.8$ & $-0.1$ \\
+    $6$  & $4.5$ & $4.4$ & $\phantom{-}0.1$ \\
+    $7$  & $5.7$ & $5.7$ & $\phantom{-}0\phantom{.1}$ \\
+    $8$  & $6.0$ & $5.8$ & $\phantom{-}0.2$ \\
+    $9$  & $7.4$ & $6.9$ & $\phantom{-}0.5$ \\
+    $10$ & $4.9$ & $4.7$ & $\phantom{-}0.2$ \\
+    $11$ & $6.1$ & $6.0$ & $\phantom{-}0.1$ \\
+    $12$ & $5.2$ & $4.9$ & $\phantom{-}0.3$
+   \end{tabular}
+  \end{center}
+  Para obtener la media y desviaci\'on est\'andar
+  de las diferencias muestrales, se calcula lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^{12} d_i & = &
+   0.1 - 0.2 + 0.4 + 0.1 - 0.1 + 0.1 + 0 + 0.2 + 0.5 + 0.2 + 0.1 + 0.3
+   = 1.7 \\
+   \sum_{i=1}^{12} d_i^2 & = &
+   0.1^2 + (-0.2)^2 + 0.4^2 + 0.1^2 + (-0.1)^2 + 0.1^2 + 0^2 + 0.2^2
+   + 0.5^2 + 0.2^2 + 0.1^2 + 0.3^2 \\
+   & = & 0.67
+  \end{eqnarray*}
+  por lo que la media de las diferencias muestrales es:
+  \begin{equation*}
+   \bar{d} = \frac{1}{12} \sum_{i=1}^{12} d_i = \frac{1.7}{12}
+   = \frac{17}{120} = 0.141\overline{6}
+  \end{equation*}
+  y la varianza de las diferencias muestrales se calcula,
+  usando el teorema 8.1, como sigue:
+  \begin{eqnarray*}
+   s_D^2 & = &
+   \frac{1}{12(11)} \left[
+   12 \sum_{i=1}^{12} d_i^2 - \left( \sum_{i=1}^{12} d_i \right)^2
+   \right]
+   = \frac{12(0.67) - 1.7^2}{132} = \frac{8.04 - 2.89}{132} 
+   = \frac{5.15}{132} \\
+   & = & \frac{103}{2\,640} \approx 0.0390\overline{15}
+  \end{eqnarray*}
+  por lo que la desviaci\'on est\'andar de las diferencias
+  muestrales es:
+  \begin{equation*}
+   s_D = \sqrt{s_D^2} = \sqrt{\frac{103}{2\,640}}
+   = \frac{\sqrt{103}\sqrt{165}}{660}
+   = \frac{\sqrt{16\,995}}{660}
+   \approx 0.197522534
+  \end{equation*}
+  Por lo tanto, se resume el resto de los datos como sigue:
+  \begin{itemize}
+   \item $\bar{d} = \frac{17}{120} = 0.141\overline{6}$.
+   \item $s_D = \frac{\sqrt{16\,995}}{660} \approx 0.197522534$.
+  \end{itemize}
+  Adem\'as, por la suposici\'on de normalidad
+  en las distribuciones poblacionales,
+  se tiene que la distribuci\'on de las diferencias pareadas
+  es normal,
+  entonces el siguiente estad\'{\i}stico, que se va a requerir,
+  se aproxima a la distribuci\'on mostrada
+  con el respectivo par\'ametro que se indica:
+  \begin{itemize}
+   \item $T = \frac{\overline{D} - d_0}{S_D/\sqrt{n}} \sim t(v)$.
+   \item $v = n_1 - 1 = n_2 - 1 = 11$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_D = \mu_1 - \mu_2 & \leq & 0 \\
+   H_1: \mu_D = \mu_1 - \mu_2 &   >  & 0
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{eqnarray*}
+   t & = & \frac{\bar{d} - d_0}{s_D/\sqrt{n}} 
+   = \frac{\frac{17}{120} - 0}{\frac{\sqrt{16\,995}}{660}/\sqrt{12}}
+   = \frac{
+   17\cancelto{11}{(660)}\left( \cancel{2}\cancel{\sqrt{3}} \right)
+   }{
+   \cancel{120}\sqrt{\cancelto{5\,665}{16\,995}}
+   } \hspace{0.5cm}
+   = \frac{187\sqrt{5\,665}}{5\,665}
+   \approx 2.484515150684
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.4, se tiene que:
+  \begin{equation*}
+   P\left( T > t \right) \approx P(T > 2.484515150684)
+   \approx P(T > 2.491) \approx 0.015
+  \end{equation*}
+  N\'otese que la aproximaci\'on de $2.484515150684$ a $2.491$
+  es debido a que es, por mucho, el valor cr\'{\i}tico m\'as cercano,
+  ya que en la tabla el valor cr\'{\i}tico pr\'oximo despu\'es
+  de ese es $2.328$.
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es peque\~no,
+  se concluye que el consumo de gasolina promedio
+  de los autom\'oviles equipados con llantas radiales
+  es significativamente mayor que el consumo promedio
+  de aquellos equipados con llantas cinturadas
+  y, por lo tanto, una mejor econom\'{\i}a de combustible
+  est\'a en aquellos autom\'oviles que est\'an equipados
+  con llantas cinturadas.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P06\_Prueba\_de\_dos\_medias\_02.r},
+ que a su vez requiere los datos del archivo
+ \texttt{DB07\_Problema\_043.csv},
+ con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB07_Problema_043.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Distancia.kpl")
+> varSel<-c("Llantas")
+> mu<-0
+> desv.iguales<-NULL
+> alfa<-NULL
+> cola<-'S'
+> par<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+           Var1 Freq Poblaciones H0  n diferencia  desv.par  error.est grados
+1 Distancia.kpl   12    Pareadas  0 12  0.1416667 0.1975225 0.05701984     11
+  alpha     PValor Estadistico RegionRechazoSupT RegionRechazoSupX
+1  0.05 0.01516475    2.484515          1.795885         0.1024011
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

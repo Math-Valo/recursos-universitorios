@@ -1,0 +1,143 @@
+\begin{enunciado}
+ Un fabricante de planchas el\'ectricas produce estos art\'{\i}culos en dos plantas. Ambas plantas tienen al mismo proveedor de partes peque\~nas. Se puede tener un ahorro al comprar termostatos para la planta $B$ de un proveedor local. Se compra un solo lote del proveedor local y se desea probar si estos nuevos termostatos son tan precisos como los anteriores. Los termostatos se prueban en planchas a $550\,{}^{\circ}$F, y las temperaturas reales se redondean al siguiente $0.1\,{}^{\circ}$ con un termopar. Los datos son los siguientes:
+ \begin{center}
+  \begin{tabular}{cccccc}
+   \multicolumn{6}{c}{\textbf{Proveedor nuevo (${}^{\circ}$F)}} \\
+   \hline 
+   $530.3$ & $559.3$ & $549.4$ & $544.0$ & $551.7$ & $566.3$ \\
+   $549.9$ & $556.9$ & $536.7$ & $558.8$ & $538.8$ & $543.3$ \\
+   $559.1$ & $555.0$ & $538.6$ & $551.1$ & $565.4$ & $554.9$ \\
+   $550.0$ & $554.9$ & $554.7$ & $536.1$ & $569.1$ \\
+   \multicolumn{6}{c}{\textbf{Proveedor anterior (${}^{\circ}$F)}} \\
+   \hline 
+   $559.7$ & $534.7$ & $554.8$ & $545.0$ & $544.6$ & $538.0$ \\
+   $550.7$ & $563.1$ & $551.1$ & $553.8$ & $538.8$ & $564.6$ \\
+   $554.5$ & $553.0$ & $538.4$ & $548.3$ & $552.9$ & $535.1$ \\
+   $555.0$ & $544.8$ & $558.4$ & $548.7$ & $560.3$
+  \end{tabular}
+ \end{center}
+ Encuentre un intervalo de confianza de $95\%$ para $\sigma_1^2/\sigma_2^2$ y para $\sigma_1/\sigma_2$, donde $\sigma_1^2$ y $\sigma_2^2$ son las varianzas poblacionales de las lecturas de los termostatos del proveedor nuevo y del anterior, respectivamente.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de las temperaturas, medidas en grados Farenheit, registradas en los termostatos en planchas a $550\,{}^{\circ}$F del proveedor nuevo y del proveedor anterior, respectivamente, entonces, del enunciado, se tiene los siguientes datos:
+ \begin{itemize}
+  \item $\sigma_i$ desconocidas, para cada $i \in \{ 1, 2 \}$.
+  \item $n_1 = n_2 = 23$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Adem\'as de los 23 datos obtenidos en cada muestra, de donde se calcula las varianzas muestrales como se muestra a continuaci\'on. Para facilitar la notaci\'on y el orden, se procede a calcular primero la suma total y la suma de los cuadrados de los datos como se muestra a continuaci\'on. La suma de los datos se muestra primero.
+ \begin{eqnarray*}
+  \sum_{i=1}^{n} x_{1i} & = & 530.3 + 559.3 + 549.4 + 544 + 551.7 + 566.3 + 549.9 + 556.9 + 536.7 + 558.8 + \\
+  & &  + 543.3 + 559.1 + 555 + 538.6 + 551.1 + 565.4 + 554.9 + 550 + 554.9 + 554.7 + \\
+  & & + 536.1 + 569.1 = 12\,674.3
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \sum_{i=1}^{n} x_{2i} & = & 559.7 + 534.7 + 554.8 + 545 + 544.6 + 538 + 550.7 + 563.1 + 551.1 + 553.8 + \\
+  & & + 538.8 + 564.6 + 554.5 + 553 + 538.4 + 548.3 + 552.9 + 535.1 + 555 + 544.8 + \\
+  & & + 558.4 + 548.7+ 560.3 = 12\,648.3
+ \end{eqnarray*}
+ Luego, la suma de los cuadrados se calculan como sigue
+ \begin{eqnarray*}
+  \sum_{i=1}^{n} x_{1i}^2 & = & 530.3^2 + 559.3^2 + 549.4^2 + 544^2 + 551.7^2 + 566.3^2 + 549.9^2 + 556.9^2 + 536.7^2 + \\
+  & & + 558.8^2 + 538.8^2 + 543.3^2 + 559.1^2 + 555^2 + 538.6^2 + 551.1^2 + 565.4^2 + 554.9^2 + \\
+  & & + 550^2 + 554.9^2 + 554.7^2 + 536.1^2 + 569.1^2 \\
+  & = & 281\,218.09 + 312\,816.49 + 301\,840.36 + 295\,936 + 304\,372.89 + 320\,695.69 + \\
+  & & + 302\,390.01 + 310\,137.61 + 288\,046.89 + 312\,257.44 + 290\,305.44 + 295\,174.89 + \\
+  & & + 312\,592.81 + 308\,025 + 290\,089.96 + 303\,711.21 + 319\,677.16 + 307\,914.01 + \\
+  & & + 302\,500 + 307\,914.01 + 307\,692.09 + 287\,403.21 + 323\,874.81 \\
+  & = & 6\,986\,586.07
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \sum_{i=1}^{n} x_{2i}^2 & = & 559.7^2 + 534.7^2 + 554.8^2 + 545^2 + 544.6^2 + 538^2 + 550.7^2 + 563.1^2 + 551.1^2 + \\
+  & & 553.8^2 + 538.8^2 + 564.6^2 + 554.5^2 + 553^2 + 538.4^2 + 548.3^2 + 552.9^2 + 535.1^2 + \\
+  & & + 555^2 + 544.8^2 + 558.4^2 + 548.7^2 + 560.3^2 \\
+  & = & 313\,264.09 + 285\,904.09 + 307\,803.04 + 297\,025 + 296\,589.16 + 289\,444 + \\
+  & & + 303\,270.49 + 317\,081.61 + 303\,711.21 + 306\,694.44 + 290\,305.44 + 318\,773.16 + \\
+  & & + 307\,470.25 + 305\,809 + 289\,874.56 + 300\,632.89 + 305\,698.41 + 286\,332.01 + \\
+  & & + 308\,025 + 296\,807.04 + 311\,810.56 + 301\,071.69 + 313\,936.09 \\
+  & = & 6\,957\,333.23
+ \end{eqnarray*}
+ Por lo que las varianzas muestrales se obtienen, usando el Teorema 8.1, como sigue:
+ \begin{eqnarray*}
+  s_1^2 & = & \frac{1}{n_1(n_1-1)} \left[ n_1 \sum_{i=1}^{n_1} x_{1i}^2 - \left( \sum_{i=1}^{n_1} x_{1i} \right)^2 \right] = \frac{23(6\,986\,586.07) - (12\,674.3)^2}{23(22)} \\
+  & = & \frac{160\,691\,479.61 - 160\,637\,880.49}{506} = \frac{53\,599.12}{506} = \frac{5\,359\,912}{50\,600} \\
+  & = & \frac{669\,989}{6\,325} = 105.92\overline{7114624505928853754940}
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  s_2^2 & = & \frac{1}{n_2(n_2-1)} \left[ n_2 \sum_{i=1}^{n_2} x_{2i}^2 - \left( \sum_{i=1}^{n_2} x_{2i} \right)^2 \right] = \frac{23(6\,957\,333.23) - (12\,648.3)^2}{23(22)} \\
+  & = & \frac{160\,018\,664.29 - 159\,979\,492.89}{506} = \frac{39\,171.4}{506} = \frac{391\,714}{5\,060} \\
+  & = & \frac{195\,857}{2\,530} = 77.4\overline{1383399209486166007905}
+ \end{eqnarray*}
+ Antes de continuar, n\'otese que no se dio un dato escencial para el intervalo de confianza para proporciones de varianzas y desviaciones est\'andar poblacionales, que s la suposici\'on de que las poblaciones siguen una distribuci\'on normal. Lo cual, a partir de ahora, se va a suponer, de lo contrario, no se puede trabajar con los datos que se tienen.
+ \par
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral tanto para la proporci\'on de varianzas poblacionales como de desviaciones est\'andar poblacionales, de poblacionales independientes y normalmente distribuidas, entonces se requerir\'a de los valores $f_{\alpha/2}\left( n_1 - 1, n_2 - 1 \right) = f_{0.025}(22,22)$ y $f_{\alpha/2}\left( n_2 - 1, n_2 - 1 \right) = f_{0.025}(22)$, que en este caso coinciden. Como ocurre en el ejercicio 9.80, se requiere usar la tabla del libro \textit{Tratamientos de datos con R, STATISTICA y SPSS}, en donde, aunque no da el valor de $f_{0.025}(22,22)$, se tiene los valores $f_{0.025}(24,22) = 2.33$ y $f_{0.025}(20,22) = 2.39$, por lo que al interpolar, se considerar\'a entonces la aproximaci\'on $f_{0.025}(22,22) \approx 2.36$. Por otro lado, usando R, con los siguientes comandos, se obtiene mayor precisi\'on.
+ \begin{verbatim}
+> options(digits=22)
+> qf(0.025,22,22,lower.tail=F)
+[1] 2.357881249753641217382
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar con mayor precisi\'on que $f_{0.025}(22,22)=2.357881$.
+ \par 
+ Ya que se busca un intervalo de confianza bilateral para la proporci\'on de varianzas poblacionales normalmente distribuidas usando la proporci\'on de varianzas muestrales como estimador, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \frac{s_1^2}{s_2^2} \cdot \frac{1}{f_{\alpha/2}\left( n_1 - 1, n_2 - 1 \right)} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2}{s_2^2} \cdot f_{\alpha/2} \left( n_2 - 1, n_1 - 1 \right)
+ \end{equation*}
+ Para el intervalo de confianza bilateral para la proporci\'on de desviaciones est\'andar, \'unicamente se requerir\'a sacar la ra\'{\i}z cuadrada a los valores de los l\'{\i}mites del intervalo obtenido de la varianza, por lo que todo se reduce al intervalo de la proporci\'on de varianzas.
+ \par 
+ Por lo tanto, usando los datos obtenidos y considerando el valor $f_{0.025}(22,22)$ de la primera aproximaci\'on, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \frac{s_1^2}{s_2^2} \cdot \frac{1}{f_{\alpha/2}\left( n_1 - 1, n_2 - 1 \right)} & = & \frac{669\,989/6\,325}{195\,857/2\,530} \cdot \frac{1}{2.36} = \frac{669\,989\left(\cancelto{2}{2\,530}\right)}{195\,857 \left(\cancelto{1}{6\,325}\right)} \, \cdot \frac{\cancelto{5}{25}}{59} = \frac{669\,989(2)(5)}{195\,857(59)} \\
+  & = & \frac{6\,699\,890}{11\,555\,563} \approx 0.579797799553
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \frac{s_1^2}{s_2^2} \cdot f_{\alpha/2} \left( n_2 - 1, n_1 - 1 \right) & = & \frac{669\,989/6\,325}{195\,857/2\,530} \cdot 2.36 = \frac{669\,989 \left(\cancelto{2}{2\,530}\right)}{195\,857 \left(\cancelto{5}{6\,325}\right)} \, \cdot \frac{59}{25} = \frac{669\,989(2)(59)}{195\,857(5)(25)} \\
+  & = & \frac{79\,058\,702}{24\,482\,125} \approx 3.229241824392
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $95\%$ para la proporci\'on de las varianzas de las temperaturas, medidos en grados Farenheit, registradas en los termostatos en planchas a $550\,{}^{\circ}$F del proveedor nuevo entre las temperaturas de los termostatos del proveedor anterior es aproximadamente:
+ \begin{equation*}
+  0.579797799553 < \frac{\sigma_1^2}{\sigma_2^2} < 3.229241824392
+ \end{equation*}
+ mientras que las ra\'{\i}ces cuadradas de estos valores son, respectivamente:
+ \begin{equation*}
+  \frac{s_1}{s_2} \cdot \frac{1}{\sqrt{f_{\alpha/2}\left( n_1 - 1, n_2 - 1 \right)}} = \sqrt{\frac{6\,699\,890}{11\,555\,563}} \approx 0.76144454791753593
+ \end{equation*}
+ y
+ \begin{equation*}
+  \frac{s_1}{s_2} \cdot \sqrt{f_{\alpha/2} \left( n_2 - 1, n_1 - 1 \right)} = \sqrt{\frac{79\,058\,702}{24\,482\,125}} \approx 1.79700913308538479693
+ \end{equation*}
+ Por lo tanto, el intervalo de confianza de $95\%$ para la proporci\'on de las desviaciones est\'andar de las temperaturas, medidos en grados Farenheit, registradas en los termostatos en planchas a $550\,{}^{\circ}$F del proveedor nuevo entre las temperaturas de los termostatos del proveedor anterior es aproximadamente:
+ \begin{equation*}
+  0.76144454791753593 < \frac{\sigma_1}{\sigma_2} < 1.79700913308538479693
+ \end{equation*}
+ Por otro lado, en R se puede calcular los intervalos de confianza usando el script en el archivo anexo \texttt{P24\_Intervalo\_de\_confianza\_13.r}, el cual usa a su vez los datos almacenados en el fichero \texttt{DB15\_Problema\_95.csv}. Para el intervalo de confianza de la proporci\'on de las varianzas, se cambian las siguientes l\'{\i}neas del c\'odigo:
+ \begin{verbatim}
+> datos<-read.csv("DB15_Problema_95.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("LímiteDeFatiga.psi")
+> varSel<-c("Provedor")
+> alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+                Var1 Freq n1 n2 desv.Est1 desv.Est2    limInf    razon   limSup
+1 LímiteDeFatiga.psi   46 23 23  10.29209  8.798513 0.5803188 1.368323 3.226343
+  valorPVar         Resultado
+1 0.4680518 Var no diferentes
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por otro lado, el intervalo de confianza de la proporci\'on de las desviaciones est\'andar, dado que no es m\'as que la ra\'{\i}z cuadrada de los valores obtenidos, entonces se obtiene usando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> sqrt(rFin$limInf)
+[1] 0.7617866
+> sqrt(rFin$limSup)
+[1] 1.796202
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo tanto, al redondear al decimal en que coinciden los resultados anteriores, se tiene que los intervalos de $95\%$ de confianza son $0.58 < \frac{\sigma_1^2}{\sigma_2^2} < 3.23$ y $0.76 < \frac{\sigma_1}{\sigma_2} < 1.8$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,57 @@
+\begin{enunciado}
+ Una encuesta a $1\,000$ estudiantes concluye que $274$ eligen al equipo profesional de b\'eisbol \textit{A} como su equipo favorito. En 1991, se realiz\'o la misma encuesta con $760$ estudiantes. Concluy\'o que $240$ de ellos tambi\'en eligieron al equipo \textit{A} como su favorito. Calcule un intervalo de confianza de $95\%$ para la diferencia entre la proporci\'on de estudiantes que favorecen al equipo \textit{A} entre las dos encuestas. ¿Hay una diferencia significativa?
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de las cantidad de estudiantes que prefieren al equipo profesional de b\'eisbol \textit{A}, actualmente y en 1991, de entre un total de $n_1$ y $n_2$ estudiantes, respectivamente, entendiendo que ambos tama\~nos de muestra, $n_1$ y $n_2$, son lo suficientemente grandes, entonces $\widehat{P}_1 = X_1/n_1$ y $\widehat{P}_2 = X_2/n_2$ son estad\'{\i}sticos de proporci\'on, cada uno, de los experimentos binomiales que aproximan a los valores $p_1$, la proporci\'on de estudiantes que favorecen al equipo \textit{A} actualmente, y $p_2$, la proporci\'on de estudiantes que favorec\'{\i}an al equipo \textit{A} en 1991, respectivamente, entonces, del enunciado se tienen los siguientes datos obtenidos de muestras:
+ \begin{itemize}
+  \item $n_1 = 1\,000$ y $n_2 = 760$.
+  \item $x_1 = 274$ y $x_2 = 240$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ por lo que $\hat{p}_1$ y $\hat{p}_2$, las proporciones de \'exito en las muestras, y $\hat{q}_1 = 1 - \hat{p}_1$ y $\hat{q}_2 = 1 - \hat{p}_2$ valen:
+ \begin{itemize}
+  \item $\hat{p}_1 = \frac{274}{1\,000} = \frac{137}{500} = 0.274$ y $\hat{p}_2 = \frac{240}{760} = \frac{6}{19} = 0.\overline{315789473684210526}$; y,
+
+  \item $\hat{q}_1 = 1 - \hat{p}_1 = 1 - \frac{137}{500} = \frac{363}{500} = 0.726$ y $\hat{q}_2 = 1 - \hat{p}_2 = 1 - \frac{6}{19} = \frac{13}{19} = 0.\overline{684210526315789473}$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p_1 - p_2$, entonces se requiere del valor $z_{\alpha/2} = 0.025$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+ \par 
+ Ya que se busca un intervalo para la diferencia de proporciones de experimentos binomiales en donde el tama\~no de las muestras son grandes y se tiene que $n_1\hat{p}_1$, $n_1\hat{q}_1$, $n_2\hat{p}_2$ y $n_2\hat{q}_2$ son todos mayores a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \left( \hat{p}_1 - \hat{p}_2 \right) - z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} < p_1 - p_2 < \left( \hat{p}_1 - \hat{p}_2 \right) + z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \left( \hat{p}_1 - \hat{p}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} & = & \left( \frac{137}{500} - \frac{6}{19} \right) \pm 1.96\sqrt{\frac{(137/500)(363/500)}{1\,000} + \frac{(6/19)(13/19)}{760}} \\
+  & = & \left( \frac{2\,603 - 3\,000}{9\,500} \right) \pm 1.96\sqrt{\frac{49\,731}{500^2(1\,000)} + \frac{39}{19^2(380)}} \\
+  & = & - \frac{397}{9\,500} \pm 1.96\sqrt{\frac{341\,104\,929 + 487\,500\,000}{2^7\times 5^9 \times 19^3}} \\
+  & = & - \frac{397}{9\,500} \pm 1.96 \frac{\sqrt{828\,604\,929}\sqrt{190}}{18\,050\,000} \\
+  & = & - \frac{397}{9\,500} \pm \frac{49\sqrt{157\,434\,936\,510}}{451\,250\,000}  \\
+  & \approx & -0.04178947368421 \pm 0.0000001085872576\sqrt{157\,434\,936\,510} \\
+  & \approx & -0.04178947368421 \pm 0.0430853298151641
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $95\%$ para la diferencia de la proporci\'on de estudiantes que favorecen al equipo \textit{A} actualmente menos la proporci\'on de quienes lo favorec\'{\i}an en 1991 es aproximadamente
+ \begin{equation*}
+  -0.084874803 < p_1 - p_2 < -0.0012958561
+ \end{equation*}
+ Por otro lado, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P20\_Intervalo\_de\_confianza\_09.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-1000
+> n2<-760
+> x1<-274
+> x2<-240
+> p1<-NULL
+> p2<-NULL
+> alfa<-0.05
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+    n1  n2        p1        p2    LimInf  diferencia    LimSup
+1 1000 760 0.3157895 0.3157895 -0.084874 -0.04178947 0.0012951
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $-0.0849 < p_1 - p_2 < 0.0013$, por lo tanto, como $p_1 - p_2$ puede ser negativo o positivo seg\'un este intervalo, se concluye que no hay una diferencia significativa, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

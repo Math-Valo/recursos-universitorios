@@ -1,0 +1,33 @@
+\begin{enunciado}
+ ?`De qu\'e tama\~no se necesita una muestra en el ejercicio 9.5 si deseamos tener $95\%$ de confianza de que nuestra media muestral est\'e dentro de $0.0005$ pulgadas de la media real?
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.5, y a eso a\~nadiendo el error permitido en la que se debe encontrar la media muestral para estimar la media poblacional, se tiene lo siguiente:
+ \begin{itemize}
+  \item $X\sim\text{normal}(\mu,\sigma)$.
+  \item $\sigma_X = 0.0015$.
+  \item $\alpha=0.05$.
+  \item $z_{\alpha/2}=1.96$, seg\'un el libro, y $z_{\alpha/2}=1.95996398454$, con la aproximaci\'on realizada en R. 
+  \item $e=0.0005$ pulgadas.
+ \end{itemize}
+ Entonces, como la variable aleatoria sigue una distribuci\'on normal, se puede usar directamente el siguiente resultad:
+ \begin{equation*}
+  n = \left\lceil \left( \frac{z_{\alpha/2} \sigma}{e} \right)^2 \right\rceil
+ \end{equation*}
+ por lo tanto, el valor pedido se puede calcular, usando el valor $z_{\alpha/2}$ del libro, como
+ \begin{equation*}
+  n = \left\lceil \left( \frac{1.96\times 0.0015}{0.0005}\right)^2 \right\rceil = \left\lceil \left( 5.88 \right)^2 \right\rceil = \lceil 34.5744 \rceil
+ \end{equation*}
+ Por lo tanto, el tama\~no de la muestra buscado es de $n=35$.
+ \par 
+ N\'otese que usando el valor $z_{\alpha/2}$ de la aproximaci\'on hecha en R da el mismo valor, esto se puede verificar usando el programa anexo \texttt{P03\_Tamanyo\_de\_muestra\_1.r} y cambiando las siguientes l\'{\i}neas de c\'odigo.
+ \begin{verbatim}
+>error<-0.0005
+>desv.tipica<-0.0015
+>alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
+

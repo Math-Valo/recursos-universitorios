@@ -1,0 +1,101 @@
+\begin{enunciado}
+ Suponga que, en el pasado, $40\%$ de todos los adultos favorec\'{\i}an
+ la pena capital.
+ ¿Tenemos raz\'on para creer que la proporci\'on de adultos que actualmente favorecen
+ la pena capital ha aumentado
+ si, en una muestra aleatoria de $15$ adultos, $8$ est\'an a favor de la pena capital?
+ Utilice un nivel de significancia de $0.05$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n = 15$.
+   \item $x = 8$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p & = & 0.4 \\
+   H_1: p & > & 0.4
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$
+ \end{significancia}
+
+ \begin{estadistico}
+  Variable binomial $X$ con $p = 0.4$ y $n = 15$.
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.1, se tiene la siguiente aproximaci\'on:
+  \begin{equation*}
+   P\left( X \geq 8 | p = 0.4 \right) = 1 - P\left( X < 8 | p = 0.4 \right)
+   = 1 - \sum_{i=0}^{7} b\left( x; 15, 0.4 \right)
+   \approx 1 - 0.7869 = 0.2131 > 0.05
+  \end{equation*}
+  Mientras que el valor preciso se obtiene como sigue:
+  \begin{eqnarray*}
+   P\left( X \geq 8 | p = 0.4 \right)
+   & = & 1 - \sum_{i=0}^{7} b\left( x; 15, 0.4 \right) \\
+   & = & 1 - \frac{1}{10^{15}} \left( 6^{15} + 15\cdot 4\cdot 6^{14} +
+   105\cdot 4^2 \cdot 6^{13} + 455 \cdot 4^3 \cdot 6^{12} +
+   1\,365 \cdot 4^4 \cdot 6^{11} + \right. \\
+   & & \phantom{1 - \frac{1}{10^{15}}} \left.
+   3\,003 \cdot 4^5 \cdot 6^{10} +
+   5\,005 \cdot 4^6 \cdot 6^9 + 6\,435 \cdot 4^7 \cdot 6^8 \right) \\
+   & = & 1 - \frac{4\cdot 6^8}{10^{15}} \left( 9 \cdot 6^5 + 15\cdot 6^6 +
+   105\cdot 4 \cdot 6^5 + 455 \cdot 4^2 \cdot 6^4 +
+   1\,365 \cdot 4^3 \cdot 6^3 + \right. \\
+   & & \phantom{1 - \frac{6^8}{10^15}} \left. 
+   3\,003 \cdot 4^4 \cdot 6^2 +
+   5\,005 \cdot 4^5 \cdot 6 + 6\,435 \cdot 4^6 \right) \\
+   & = & 1 - \frac{6\,718\,464}{10^{15}}
+   (69\,984 + 699\,840 + 3\,265\,920 + 9\,434\,880 + \\
+   & & \phantom{1 - \frac{6\,718\,464}{10^{15}}(}
+   18\,869\,760 + 27\,675\,648 +
+   30\,750\,720 + 26\,357\,760) \\
+   & = & 1 - \frac{6\,718\,464 \cdot 117\,124\,512}{1\,000\,000\,000\,000\,000}
+   = 1 - \frac{786\,896\,817\,389\,568}{1\,000\,000\,000\,000\,000} \\
+   & = & \frac{213\,103\,182\,610\,432}{1\,000\,000\,000\,000\,000}
+   = 0.213103182610432
+  \end{eqnarray*}
+
+ \end{valorp}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  No hay raz\'on para creer que la proporci\'on de adultos que actualmente favorecen la pena
+  capital ha aumentado.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P08\_Prueba\_de\_una\_proporcion\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n<-15
+> x<-8
+> p0<-NULL
+> p<-0.4
+> alfa<-0.05
+> cola<-'S'
+> distr<-NULL
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+     distr   p  n x pMuestral media desv.est alpha
+1 Binomial 0.4 15 8 0.5333333     6 1.897367  0.05
+                          Estadistico    PValor RegionRechazoX        Resultado
+1 Var. binomial X con p= 0.4  y n= 15 0.2131032          >= 10 No se rechaza H0  
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

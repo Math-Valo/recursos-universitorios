@@ -1,0 +1,35 @@
+\begin{enunciado}
+ Si $X$ es una variable aleatoria binomial, demuestre que
+ \begin{enumerate}
+  \item $P = X/n$ es un estimador insesgado de $p$;
+  \item $P' = \frac{X + \sqrt{n}/2}{n + \sqrt{n}}$ es un estimador sesgado de $p$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Por resultado conocido, una variable aleatoria binomial con par\'ametros $n$ y $p$ tiene una esperanza $\mu = np$, entonces
+ \begin{enumerate}
+  \item Si $P=\frac{X}{n}$, se sigue que
+  \begin{equation*}
+   E(P) = E\left( \frac{X}{n} \right) = \frac{E(X)}{n} = \frac{np}{n} = p
+  \end{equation*}
+  Por lo que $P$ es un estimador insesgado de $p$.
+  
+  \item Si $P' = \frac{X + \sqrt{n}/2}{n + \sqrt{n}}$, entonces
+  \begin{equation*}
+   E(P') = E\left( \frac{X + \sqrt{n}/2}{n + \sqrt{n}} \right) = \frac{E(x) + \sqrt{n}/2}{n + \sqrt{n}} = \frac{np + \sqrt{n}/2}{n + \sqrt{n}}
+  \end{equation*}
+  Luego, $P'$ ser\'{\i}a un estimador insesgado si y s\'olo si
+  \begin{eqnarray*}
+   & & \frac{np + \sqrt{n}/2}{n + \sqrt{n}} = p \\
+   \Leftrightarrow & & \frac{2np+\sqrt{n}}{2\left(n+\sqrt{n}\right)} = p \\ 
+   \Leftrightarrow & & 2np + \sqrt{n} = 2p\left( n + \sqrt{n} \right) \\
+   \Leftrightarrow & & 2p\left( n + \sqrt{n} \right) - 2np = \sqrt{n} \\ 
+   \Leftrightarrow & & 2p\left( \cancel{n} + \sqrt{n} - \cancel{n} \right) = \sqrt{n} \\ 
+   \Leftrightarrow & & p = \frac{\sqrt{n}}{2\sqrt{n}} = \frac{1}{2}
+  \end{eqnarray*}
+  Luego entonces, $P'$ es un estimador sesgado de $p$ salvo que $p = 0.5$, lo cual s\'olo es un resultado te\'orico, ya que en realidad no se tiene certidumbre sobre el valor de $p$.
+  Por lo tanto, se considera $P'$ simplemente como un estimador sesgado de $p$, Q.E.D.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}
+

@@ -1,0 +1,220 @@
+\begin{enunciado}
+ Se sabe que el volumen de los envases de un lubricante espec\'{\i}fico
+ se distribuye normalmente con una varianza de $0.03$ litros.
+ Pruebe la hip\'otesis de que $\sigma^2 = 0.03$
+ contra la alternativa de que $\sigma^2 \neq 0.03$
+ para la muestra aleatoria de $10$ envases del ejercicio 10.25
+ de la p\'agina 357.
+ Use un valor $P$ en sus conclusiones.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumiendo, los datos obtenidos del ejercicio 10.25 para este ejercicio son:
+  \begin{itemize}
+   \item $X \sim n\left( \mu, \sigma \right)$.
+   \item $n = 10$.
+%    \item $\bar{x} = \frac{503}{10} = 10.06$.
+   \item $s = \frac{2\sqrt{85}}{75} \approx 0.245854518861$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \sigma^2 &  =   & 0.03 \\
+   H_1: \sigma^2 & \neq & 0.03
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   \chi^2 = \frac{(n-1)s^2}{\sigma_0^2}
+   = \frac{\displaystyle{ (10-1)\left( \frac{2\sqrt{85}}{75} \right)^2 }}{0.03}
+   = \frac{
+   \displaystyle{9\cdot \frac{4(\cancelto{17}{85})}{\cancelto{1\,125}{5\,625}}}
+   }{
+   \displaystyle{\frac{3}{100}}
+   }
+   = \frac{\cancel{9}(68)(100)}{\cancelto{125}{1\,125}(3)}
+   = \frac{68(4)}{3(5)} = \frac{272}{15} = 18.1\bar{3}
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.5 se interpola que:
+  \begin{equation*}
+   P\left( \left| X^2 \right| > \left| \chi^2 \right| \right)
+   = 2P\left( X^2 > \chi^2 \right)
+   = 2P( X^2 > 18.1\bar{3}) \approx 2(0.03) = 0.06
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  La probabilidad es suficientemente baja para sospechar que hay algo de evidencia
+  que respalde que la varianza en el contenido de los envases de lubricante difiere
+  de $0.03$ litros y ser\'{\i}a mejor que quede a la decisi\'on de un experto o
+  tomar una decisi\'on respecto al conflicto que podr\'{\i}a ocasionar equivocarse
+  con suponer como cierta la hip\'otesis nula.
+  En esta ocasi\'on, siendo yo la persona a decidir,
+  tomo como evidencia suficiente para rechazar la hip\'otesis nula
+  a favor de la alternativa;
+  es decir, la varianza en el contenido de los envases de lubricantes difiere
+  de $0.03$ litros.
+ \end{conclusion}
+
+ En el c\'odigo registrado en el archivo anexo
+ \texttt{P10\_Prueba\_de\_una\_varianza\_01.r}, en R,
+ se realiza este procedimiento.
+ El c\'odigo permite modificar los valores iniciales
+ que corresponden a:
+ \texttt{datos}, que guarda los datos de la lectura
+ de un archivo,
+ en este caso se lee el arhivo \texttt{DB01\_Problema\_025.csv},
+ y este \'ultimo nombre es el que se modifica 
+ para leer otros archivos;
+ \texttt{varInteres} para indicar el nombre de la columna
+ que corresponden a los datos en la base anterior;
+ \texttt{var} para el valor de la varianza poblacional supuesta
+ en la hip\'otesis nula;
+ \texttt{alfa} para el nivel de significancia;
+ \texttt{cola} para indicar si la prueba es de dos colas,
+ con \texttt{'D'}, de cola inferior, con \texttt{'I'},
+ o de cola superior, con \texttt{'S'}.
+ \par 
+ El programa espera al menos los datos correspondientes
+ a la base de datos, escrito en un archivo \texttt{.csv},
+ con una columna con todos los datos;
+ se indica tambi\'en el tipo de prueba (cola izquierda o derecha,
+ o dos colas);
+ y, finalmente, la varianza poblacional,
+ que corresponde a la hip\'otesis nula $H_0$.
+ Si no hay una instrucci\'on para asignar un valor a $\alpha$
+ entonces se le debe asignar el valor \texttt{NULL}.
+ \par 
+ La prueba de hip\'otesis siempre usar\'a un estad\'{\i}stico
+ con distribuci\'on $\chi^2$.
+ Para ello, se est\'a suponiendo de antemano la normalidad
+ de la poblaci\'on de las que viene la muestra.
+ \par 
+ Independientemente del tipo de prueba, el resultado muestra lo siguiente:
+ \texttt{var} para conocer lo que est\'a midiendo los datos,
+ incluyendo el tipo de unidad que se usa;
+ \texttt{n} indica el tama\~no de la muestra;
+ \texttt{H0} para indicar el valor propuesto en la hip\'otesis nula
+ de la varianza poblacional;
+ \texttt{var.muestral}, para indicar la varianza muestral de los datos;
+ \texttt{grados}, indica los grados de libertad de la distribuci\'on $\chi^2$
+ correspondiente al estadístico de la prueba;
+ \texttt{error.est}, para indicar el error est\'andar,
+ que corresponde a la estimaci\'on de la varianza poblacional
+ usando la varianza muestral;
+ \texttt{alfa}, para el nivel de significancia dado,
+ el cual muestra por defecto $0.05$
+ en caso de asignarle \texttt{NULL} a \texttt{alfa};
+ \texttt{PValor}, para el valor $P$, la probabilidad
+ de haber obtenido la varianza muestral
+ que se obtuvo suponiendo que la hip\'otesis nula sea cierta;
+ \texttt{Estadistico}, para el valor resultante
+ del estad\'{\i}stico de prueba;
+ \texttt{RegionRechazoJi} para la regi\'on de rechazo del estad\'{\i}stico
+ de prueba;
+ y, \texttt{RegionRechazoX} para la regi\'on de rechazo de la varianza muestral.
+ \par 
+ Adem\'as, seg\'un el tipo de prueba, pueden darse el valor
+ de \texttt{Resultado} para indicar si se rechaza o no
+ la hip\'otesis nula, que aparece al final de los resultados
+ cuando se asigna un valor a \texttt{alfa}.
+ \par 
+ El c\'odigo junto con el resultado se muestra a continuaci\'on:
+ \begin{verbatim}
+> datos<-read.csv("DB01_Problema_025.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Contenido.l")
+> var<-0.03
+> alfa<-NULL
+> cola<-'D'
+> valores<-unlist(datos[,varInteres])
+> variable<-factor(rep(varInteres,each=dim(datos)[1]))
+> TestVar<-function(x,varP,alfa=0.05,colas='D'){
++   x<-x[!is.na(x)]
++   n<-length(x)
++   r<-data.frame(n=n,
++                 H0=varP)
++   if(n<2){
++     r$var.muestral<-NA
++     r$grados<-n-1
++     r$error.est<-NA
++     r$alpha<-alfa
++     r$Pvalor<-NA
++     r$estadistico<-NA
++     r$RegionRechazoJi<-NA
++     r$RegionRechazoX<-NA
++   }else{
++     var<-var(x)
++     v<-n-1
++     error<-varP/v
++     estadistico<-var*v/varP
++     r$var.muestral<-round(var,7)
++     r$grados<-v
++     r$error.est<-round(error,7)
++     r$alpha<-alfa
++     if(colas=='I'){
++       criticojiL<-qchisq(alfa,v)
++       criticoXL<-criticojiL*error
++       r$PValor<-round(pchisq(estadistico,v),7)
++       r$Estadistico<-estadistico
++       r$RegionRechazoJi<-paste("<",round(criticojiL,7))
++       r$RegionRechazoX<-paste("<",round(criticoXL,7))
++     }else{
++       criticojiU<-qchisq(alfa,v,lower.tail=F)
++       criticoXU<-criticojiU*error
++       if (colas=='S') {
++         criticojiU<-qchisq(alfa,v,lower.tail=F)
++         criticoXU<-criticojiU*error
++         r$PValor<-round(pchisq(estadistico,v,lower.tail=F),7)
++         r$Estadistico<-estadistico
++         r$RegionRechazoJi<-paste(">",round(criticojiU,7))
++         r$RegionRechazoX<-paste(">",round(criticoXU,7))
++       }else{
++         criticojiU<-round(qchisq(alfa/2,v,lower.tail=F),7)
++         criticoXU<-round(criticojiU*error,7)
++         criticojiL<-round(qchisq(alfa/2,v),7)
++         criticoXL<-round(criticojiL*error,7)
++         pvalor<-round(pchisq(estadistico,v),7)
++         r$Pvalor<-ifelse(var<varP,2*pvalor,2*(1-pvalor))
++         r$Estadistico<-estadistico
++         r$RegionRechazoJi<-paste("<",criticojiL,7,"y >",criticojiU,7)
++         r$RegionRechazoX<-paste("<",criticoXL,7,"y >",criticoXU,7)
++       }
++     }
++     return(r)
++   }
++ }
+> if(is.null(alfa)){
++   Test<-TestVar(valores,var,colas=cola)
++ }else{
++   Test<-TestVar(valores,var,alfa=alfa,colas=cola)
++   resultado<-ifelse(Test[,"PValor"]>=alfa,
++                     "No se rechaza H0","Se rechaza H0")
++   Test$Resultado<-resultado
++   Test$Resultado[is.na(Test$Resultado)]<-"Pocos datos"
++ }
+> identif<-data.frame(varInteres)
+> names(identif)<-"var"
+> Test<-data.frame(identif,Test)
+> Test
+          var  n   H0 var.muestral grados error.est alpha    Pvalor Estadistico
+1 Contenido.l 10 0.03    0.0604444      9 0.0033333  0.05 0.0673156    18.13333
+             RegionRechazoJi            RegionRechazoX
+1 < 2.7003895 y > 19.0227678 < 0.0090013 y > 0.0634092
+ \end{verbatim}
+ El cual coincide con los c\'alculos obtenidos.
+ N\'otese que en el resultado del c\'odigo se indica que el estad\'{\i}stico
+ no est\'a en la regi\'on de rechazo de $\chi^2$,
+ o lo que es an\'alogo, la varianza muestral no est\'a en la regi\'on de rechazo
+ de $X$, y sin embargo se ha rechazado la hip\'otesis nula.
+ Esto se debe a que no se consider\'o en la prueba un valor estricto de $\alpha$,
+ mientras que en el c\'odigo, cuando no se da, asigna de forma predeterminada
+ el valor $\alpha=0.05$; sin embargo, se consider\'o el valor $P$ para la prueba,
+ el cual fue suficientemente bajo para el criterio de este autor.
+ Que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

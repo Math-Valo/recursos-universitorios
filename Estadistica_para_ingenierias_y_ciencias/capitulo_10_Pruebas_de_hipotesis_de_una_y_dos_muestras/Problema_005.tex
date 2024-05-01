@@ -1,0 +1,250 @@
+\begin{enunciado}
+ Repita el ejercicio 10.4 cuando se seleccionan $200$ adultos y la regi\'on de aceptaci\'on se define como $110 \leq x \leq 130$, donde $x$ es el n\'umero de graduados universitarios en nuestra muestra. Utilice la aproximaci\'on normal.
+\end{enunciado}
+
+\begin{solucion}
+ Usando los t\'erminos del ejercicio 10.4, se tiene ahora que:
+ \begin{itemize}
+  \item $X \sim b(n,p) \sim n\left(\mu = np, \sigma = \sqrt{npq}\right)$.
+  \item $n = 200$.
+  \item $x_{\text{inf}} = 110$ y $x_{\text{sup}} = 130$.
+ \end{itemize}
+ Para el primer supuesto, se tiene adem\'as que
+ \begin{itemize}
+  \item $p = 0.6$.
+  \item $\mu = np = (200)(0.6) = 120$.
+  \item $\sigma^2 = npq = 120(0.4) = 48$.
+ \end{itemize}
+ as\'{\i}, el error Tipo I se calcula como sigue:
+ \begin{eqnarray*}
+  \alpha & = & P(X < 110) + P(X > 130) = 1 + P(X < 110) - P(X \leq 130) \\
+  & \approx & 1 + P\left( Z < \frac{109.5-120}{\sqrt{48}} \right) - P\left(Z < \frac{130.5 - 120}{\sqrt{48}} \right) \\
+  & = & 1 + P\left(Z < -\frac{10.5\sqrt{3}}{12} \right) - P\left(Z < \frac{10.5\sqrt{3}}{12} \right) \\
+  & = & 1 + P\left(Z < -\frac{21\sqrt{3}}{24} \right) - \left[ 1 - P\left(Z < -\frac{21\sqrt{3}}{24} \right) \right] \\
+  & = & 2P\left( Z < -\frac{7\sqrt{3}}{8} \right) \approx 2P(Z < -1.52)
+ \end{eqnarray*}
+ Esto se puede aproximar usando la Tabla A.1, con lo que se obtiene lo siguiente:
+ \begin{equation*}
+  \alpha = 2P(Z < -1.52) = 2(0.0643) = 0.1286
+ \end{equation*}
+ Para el siguiente supuesto, se tiene que
+ \begin{itemize}
+  \item $p = 0.5$.
+  \item $\mu = np = (200)(0.5) = 100$.
+  \item $\sigma^2 = npq = 100(0.5) = 50$.
+ \end{itemize}
+ as\'{\i}, el error Tipo II se calcula como sigue:
+ \begin{eqnarray*}
+  \beta & = & P(110 \leq X \leq 130) = P(X \leq 130) - P(X < 110) \\
+  & \approx & P\left( Z < \frac{130.5-100}{\sqrt{50}} \right) - P\left( Z < \frac{109.5-100}{\sqrt{50}} \right) = P\left( Z < \frac{30.5\sqrt{2}}{10} \right) - P\left( Z < \frac{9.5\sqrt{2}}{10} \right) \\
+  & = & P\left(Z < 3.05\sqrt{2}\right) - P\left(Z < 0.95\sqrt{2}\right) \approx P(Z < 4.31) - P(Z < 1.34)
+ \end{eqnarray*}
+ Esto se puede aproximar usando la Tabla A.1, con lo que se obtiene lo siguiente:
+ \begin{equation*}
+  \beta \approx P(Z < 4.31) - P(Z < 1.34) \approx 1 - 0.9099 = 0.0901
+ \end{equation*}
+ y, para el \'ultimo supuesto, se tiene que
+ \begin{itemize}
+  \item $p = 0.7$.
+  \item $\mu = np = (200)(0.7) = 140$.
+  \item $\sigma^2 = npq = 140(0.3) = 42$.
+ \end{itemize}
+ as\'{\i}, el error Tipo II se calcula como sigue:
+ \begin{eqnarray*}
+  \beta & = & P(X \leq 130) - P(X < 100) \approx P\left( Z < \frac{130.5-140}{\sqrt{42}} \right) - P\left( Z < \frac{109.5-140}{\sqrt{42}} \right) \\
+  & = & P\left( Z < -\frac{30.5\sqrt{42}}{42} \right) - P\left( Z < -\frac{9.5\sqrt{42}}{42} \right) \approx P(Z < -1.47) - P(Z < -4.71)
+ \end{eqnarray*}
+ Esto se puede aproximar usando la Tabla A.1, con lo que se obtiene:
+ \begin{equation*}
+  \beta \approx P(Z < -1.47) - P(Z < -4.71) \approx 0.0708-0 = 0.0708
+ \end{equation*}
+ Usando R tambi\'en se puede calcular esta probabilidad usando el script que se encuentra en el archivo \texttt{P02\_Probabilidad\_de\_error\_normal\_1.r}, el cual permite calcular $\alpha$ o $\beta$, o ambos, suponiendo que viene de una distribuci\'on normal. Esto permite hacerse como la aproximaci\'on de pruebas binomiales o directamente de una poblaci\'on normal con desviaci\'on est\'andar conocida, por lo que tambi\'en se permite suponiendo una hipotesis nula o alternativa que precise una proporci\'on o directamente la media de la distribuci\'on.
+ \par 
+ Los valores modificables por el usuario son: el tama\~no de la muestra, \texttt{n}; el valor cr\'{\i}tico inferior, \texttt{CriticoInf}, o superior, \texttt{CriticoSup}, o ambos, tales que si la cantidad de casos favorables es una cantidad entre \'estas, inclusive, entonces se encuentra en la regi\'on aceptaci\'on; bajo el supuesto de que se d\'e directamente una distribuci\'on normal, se agrega la desviaci\'on est\'andar poblacionale, \texttt{desv}, la media real suponiendo la hip\'otesis nula, \texttt{media0}, o la media real suponiendo una hip\'otesis alternativa, \texttt{media1}, o ambas; o, bien, bajo el supuesto de que sea una aproximaci\'on a la normal de pruebas binomiales, la proporci\'on real suponiendo la hip\'otesis nula, \texttt{p0}, o la proporci\'on real suponiendo una hip\'otesis alternativa, \texttt{p1}, o ambas.
+ \par 
+ El c\'odigo completo se muestra a continuaci\'on.
+ \begin{verbatim}
+> n<-200
+> CriticoInf<-110
+> CriticoSup<-130
+> desv<-NULL
+> media0<-NULL
+> media1<-NULL
+> p0<-0.6
+> p1<-0.5
+> alpha1<-0
+> alpha2<-0
+> beta1<-0
+> beta2<-0
+> hipprop0<-FALSE
+> hipprop1<-FALSE
+> binf<-!is.null(CriticoInf)
+> bsup<-!is.null(CriticoSup)
+> if(is.null(desv)){
++     if(!is.null(p0)){
++         media0<-n*p0
++         desv0<-sqrt(n*p0*(1-p0))
++         hipprop0<-TRUE
++     }
++     if(!is.null(p1)){
++         media1<-n*p1
++         desv1<-sqrt(n*p1*(1-p1))
++         hipprop1<-TRUE
++     }
++     if(binf) CriticoInf<-CriticoInf-0.5
++     if(bsup) CriticoSup<-CriticoSup+0.5
++ } else{
++     desv0<-desv
++     desv1<-desv
++ }
+> balpha<-!is.null(media0)
+> bbeta<-!is.null(media1)
+> if(binf){
++     if(balpha) alpha1<-pnorm(CriticoInf,media0,desv0)
++     if(bbeta) beta1<-pnorm(CriticoInf,media1,desv1)
++ }
+> if(bsup){
++     if(balpha) alpha2<-1-pnorm(CriticoSup,media0,desv0)
++     if(bbeta) beta2<-1-pnorm(CriticoSup,media1,desv1)
++ }
+> alpha<-alpha1+alpha2
+> beta<-1-(beta1+beta2)
+> if(balpha){
++     if(binf&bsup){
++         Resultado1<-data.frame(HipotesisNula
++                                =ifelse(hipprop0,
++                                        paste("p = ",p0),
++                                        paste("mu = ",media0)),
++                                n=n,
++                                media=media0,
++                                desv=desv0,
++                                CríticoInf=CriticoInf,
++                                CriticoSup=CriticoSup,
++                                alpha=alpha)
++     } else{
++         if(binf){
++             Resultado1<-data.frame(HipotesisNula
++                                    =ifelse(hipprop0,
++                                            paste("p = ",p0),
++                                            paste("mu = ",media0)),
++                                    n=n,
++                                    media=media0,
++                                    desv=desv0,
++                                    CriticoInf=CriticoInf,
++                                    alpha=alpha)
++         }
++         else{
++             Resultado1<-data.frame(HipotesisNula
++                                    =ifelse(hipprop0,
++                                            paste("p = ",p0),
++                                            paste("mu = ",media0)),
++                                    n=n,
++                                    media=media0,
++                                    desv=desv0,
++                                    CriticoSup=CriticoSup,
++                                    alpha=alpha)
++         }
++     }
++ } else Resultado1<-NULL
+> if(bbeta){
++     if(binf&bsup){
++         Resultado2<-data.frame(HipotesisAlternativa
++                                =ifelse(hipprop1,
++                                        paste("p = ",p1),
++                                        paste("mu = ",media1)),
++                                n=n,
++                                media=media1,
++                                desv=desv1,
++                                CríticoInf=CriticoInf,
++                                CriticoSup=CriticoSup,
++                                beta=beta)
++     } else{
++         if(binf){
++             Resultado2<-data.frame(HipotesisAlternativa
++                                    =ifelse(hipprop1,
++                                            paste("p = ",p1),
++                                            paste("mu = ",media1)),
++                                    n=n,
++                                    media=media1,
++                                    desv=desv1,
++                                    CriticoInf=CriticoInf,
++                                    beta=beta)
++         }
++         else{
++             Resultado2<-data.frame(HipotesisAlternativa
++                                    =ifelse(hipprop1,
++                                            paste("p = ",p1),
++                                            paste("mu = ",media1)),
++                                    n=n,
++                                    media=media1,
++                                    desv=desv1,
++                                    CriticoSup=CriticoSup,
++                                    beta=beta)
++         }
++     }
++ } else Resultado2<-NULL
+> if(balpha&bbeta){
++     Resultado<-list(Resultado1,Resultado2)
++     names(Resultado)<-c("Probabilidad de error tipo I",
++                         "Probabilidad de error tipo II")
++ } else{
++     if(balpha){
++         Resultado<-list(Resultado1)
++         names(Resultado)<-c("Probabilidad de error tipo I")
++     } else{
++         Resultado<-list(Resultado2)
++         names(Resultado)<-c("Probabilidad de error tipo II")
++     }
++ }
+> Resultado
+$`Probabilidad de error tipo I`
+  HipotesisNula   n media     desv CríticoInf CriticoSup     alpha
+1      p =  0.6 200   120 6.928203      109.5      130.5 0.1296346
+
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa   n media     desv CríticoInf CriticoSup       beta
+1             p =  0.5 200   100 7.071068      109.5      130.5 0.08954656
+ \end{verbatim}
+ \vspace{-0.5cm}
+ En donde al final se muestral $\alpha$ para el supuesto de $p = 0.6$ y $\beta$ bajo el supuesto de $p = 0.5$, para obtener el valor de $\beta$ para el supuesto $p = 0.7$, se vuelve a ejecutar el script con el siguiente cambio:
+ \begin{verbatim}
+> n<-200
+> CriticoInf<-110
+> CriticoSup<-130
+> desv<-NULL
+> media0<-NULL
+> media1<-NULL
+> p0<-NULL
+> p1<-0.7
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa   n media     desv CríticoInf CriticoSup       beta
+1             p =  0.7 200   140 6.480741      109.5      130.5 0.07133898
+ \end{verbatim}
+ \vspace{-0.5cm}
+ En resumen, se tiene lo siguiente:
+ \begin{itemize}
+  \item Bajo el supuesto real $p = 0.6$:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas da $\alpha = 0.1286$.
+   \item La aproximaci\'on con R da $\alpha = 0.1296346$.
+  \end{itemize}
+
+  \item Bajo el supuesto $p = 0.5$:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas da $\beta = 0.0901$.
+   \item La aproximaci\'on en R da $\beta = 0.08954656$.
+  \end{itemize}
+
+  \item Y, bajo el supuesto $p = 0.7$:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas da $\beta = 0.0708$.
+   \item La aproximaci\'on en R da $\beta = 0.07133898$.
+  \end{itemize}
+ \end{itemize}
+ En conclusi\'on, este nuevo procedimiento a disminuido y las probabilidades de error tipo II, pero la regi\'on de aceptaci\'on hace que la probabilidad de cometer un error tipo I aumente, ya que \'este es considerablemente grande, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
+

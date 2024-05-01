@@ -1,0 +1,79 @@
+\begin{enunciado}
+ Los siguientes datos, registrados en d\'{\i}as, representan el tiempo de recuperaci\'on para pacientes que se tratan al azar con uno de dos medicamentos para curar infecciones de la vejiga:
+ \begin{center}
+  \begin{tabular}{ccc}
+   \textbf{Medicamento 1} & \hspace{1cm} & \textbf{Medicamento 2} \\
+   \hline 
+   $n_1 = 14$ & & $n_2 = 16$ \\
+   $\bar{x}_1 = 17$ & & $\bar{x}_2 = 19$ \\
+   $s_1^2 = 1.5$ & & $s_2^2 = 1.8$
+  \end{tabular}
+ \end{center}
+ Encuentre un intervalo de confianza de $99\%$ para la diferencia $\mu_2 - \mu_1$ en el tiempo medio de recuperaci\'on para los dos medicamentos. Suponga poblaciones normales con varianzas iguales.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias del tiempo de recuperaci\'on para pacientes que usan el medicamento 1 o 2 referenciado en el enunciado, respectivamente, para curar infecci\'on en la vejiga, medido en d\'{\i}as, y usando el resto de la notaci\'on cmo se usa en el enunciado, entonces se tiene lo siguiente:
+ \begin{itemize}
+  \item $X_i \sim n(\mu_i, \sigma_i)$, para cada $i \in \{ 1, 2 \}$.
+  \item $\mu_i$ y $\sigma_i$ desconocidas, para cada $i \in \{ 1, 2 \}$.
+  \item $\sigma_1 = \sigma_2$.
+  \item $n_1 = 14$ y $n_2 = 16$.
+  \item $\bar{x}_1 = 17$ y $\bar{x}_2 = 19$.
+  \item $s_1^2 = 1.5$ y $s_2^2 = 1.8$.
+  \item $\alpha = 0.01$.
+ \end{itemize}
+ Como se desea encontrar un intervalo de confianza bilateral para $\mu_2 - \mu_1$, usando como estimador $\bar{x}_2 - \bar{x}_1$, desconociendo las varianzas poblacionales aunque suponi\'endolas iguales, con muestras peque\~nas de poblaciones que se distribuyen aproximadamente normal, entonces se requerir\'a del valor de $t_{\alpha/2,n_1+n_2-2} = t_{0.005,28}$, lo cual ya se obtuvo en ejercicio 39. De la Tabla A.4, se tiene que $t_{0.005,28} = 2.763$, mientras que, usando R, se obtiene el aproximado $2.763262455461$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales usando como estimador la diferencia de las medias muestrales en muestras peque\~nas, en donde se desconoce las desviaciones est\'andar poblacionales pero suponiendo que son iguales y donde se suponen que las poblaciones se distribuyen aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2  \right) - t_{\alpha/2,n_1+n_2-2}s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2  \right) + t_{\alpha/2,n_1+n_2-2}s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+ \end{equation*}
+ en donde
+ \begin{equation*}
+  s_p = \sqrt{\frac{\left( n_1-1 \right)s_1^2 + \left( n_2 - 1 \right)s_2^2}{n_1 + n_2 - 2}}
+ \end{equation*}
+ El cual se modifica levemente para obtener el intervalo de confianza de $\mu_2 - \mu_1$, que es lo que se pide, usando un cambio de variables en donde $X_1$ es ahora $X_2$ y vice versa:
+ \begin{equation*}
+  \left( \bar{x}_2 - \bar{x}_1  \right) - t_{\alpha/2,n_1+n_2-2}s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} < \mu_2 - \mu_1 < \left( \bar{x}_2 - \bar{x}_1  \right) + t_{\alpha/2,n_1+n_2-2}s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n_1+n_2-2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  s_p & = & \sqrt{\frac{\left( n_1-1 \right)s_1^2 + \left( n_2 - 1 \right)s_2^2}{n_1 + n_2 - 2}} = \sqrt{\frac{(14-1)(1.5)+(16-1)(1.8)}{14+16-2}} = \sqrt{\frac{(13)(1.5)+(15)(1.8)}{28}} \\
+  & = & \sqrt{\frac{19.5 + 27}{28}} = \sqrt{\frac{46.5}{28}} = \sqrt{\frac{93}{56}} = \frac{\sqrt{1302}}{28}
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \left( \bar{x}_2 - \bar{x}_1  \right) \pm t_{\alpha/2,n_1+n_2-2}s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+  & = & (19-17) \pm (2.763) \left( \frac{\sqrt{1302}}{28} \right) \sqrt{\frac{1}{14} + \frac{1}{16}} \\
+  & = & 2 \pm 0.09867\overline{857142}\sqrt{1302}\sqrt{\frac{15}{112}} \\
+  & = & 2 \pm 0.09867\overline{857142} \frac{\sqrt{93}\sqrt{15}}{\sqrt{8}} \\
+  & = & 2 \pm 0.09867\overline{857142}\frac{\sqrt{1395}\sqrt{2}}{4} \\
+  & = & 2 \pm 0.0246696\overline{428571} \sqrt{2790}
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $99\%$ de confianza de la diferencia de la media del tiempo de curaci\'on de infecci\'on en la vejiga usando el medicamento 2 menos la media del tiempo de curaci\'on usando el medicamento 1, en d\'{\i}as, es de:
+ \begin{equation*}
+  0.6969383485152542 < \mu_1 - \mu_2 < 3.303061651484745775
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P14\_Intervalo\_de\_confianza\_05.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-16
+> n2<-14
+> m1<-19
+> m2<-17
+> desv.tipica1<-sqrt(1.8)
+> desv.tipica2<-sqrt(1.5)
+> alfa<-0.01
+> val<-FALSE
+> varia<-TRUE
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  n1 n2 media1 media2    LimInf diferencia   LimSup
+1 16 14     19     17 0.6968146          2 3.303185
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $99\%$ es $0.697 < \mu_1 - \mu < 3.303$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

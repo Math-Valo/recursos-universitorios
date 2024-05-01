@@ -1,0 +1,84 @@
+\begin{enunciado}
+ Con referencia al ejercicio 10.39 de la p\'agina 359, pruebe la hip\'otesis
+ de que $\sigma_1^2 = \sigma_2^2$ contra la alternativa
+ de que $\sigma_2^2 \neq \sigma_2^2$,
+ donde $\sigma_1^2$ y $\sigma_2^2$ son las varianzas para los tiempos
+ de duraci\'on de pel\'{\i}culas producidas
+ por la compa\~n\'{\i}a 1 y la compa\~n\'{\i}a 2, respectivamente.
+ Utilice un valor $P$.
+\end{enunciado}
+
+\begin{solucion}
+ Resumiendo los datos del ejercicio 10.39, se tiene lo siguiente:
+ \begin{itemize}
+  \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+  para cada $i \in \{ 1,2 \}$.
+  \item $n_1 = 5$ y $n_2 = 7$.
+  \item $s_1^2 = \frac{394}{5} = 78.8$
+  y $s_2^2 = \frac{2\,740}{3} = 913.\bar{3}$.
+ \end{itemize}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \sigma_1^2 &  =   & \sigma_2^2 \\
+   H_1: \sigma_1^2 & \neq & \sigma_2^2
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   f = \frac{s_1^2}{s_2^2}
+   = \frac{\displaystyle{\frac{394}{5}}}{\displaystyle{\frac{2\,740}{3}}}
+   = \frac{394(3)}{2\,740(5)} = \frac{197(3)}{1\,370(5)}
+   = \frac{591}{6\,850} \approx 0.08\overline{62773722}
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.6 se observa que el valor $f$
+  est\'a muy alejado de $f_{0.05,4,6}$;
+  sin embargo, como $f_{0.95,4,6} = \frac{1}{f_{0.05,6,4}}$,
+  se tiene que $\frac{1}{f} = \frac{6\,850}{591} \approx 11.59052$,
+  el cual se encuentra entre $f_{0.05,6,4}$ y $f_{0.01,6,4}$, por lo que
+  $P\left(F>\frac{1}{f}\right) \approx P(F > 11.59052)$ es un valor
+  entre $0.01$ y $0.05$ y se va a considerar el valor interpolado $0.016$,
+  entonces:
+  \begin{equation*}
+   2\times P\left( F_{v_1,v_2} < f\right)
+   \approx 2\times P\left( F_{v_2,v_1} > \frac{1}{f}  \right)
+   \approx 2\times P\left( F_{v_2,v_1} > 11.59052 \right)
+   \approx 2(0.016) = 0.032
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Ya que el valor $P$ es muy peque\~no,
+  entonces hay evidencia suficiente para rechazar la hip\'otesis nula,
+  y, por lo tanto, se afirma que la varianza en los tiempos
+  para ensamblar el producto no son significativamente diferentes
+  y se pueden considerar como iguales los tiempos de duraci\'on
+  de las pel\'{\i}culas producidas por la compa\~n\'{\i}a 1
+  y la de las compa\~n\'{\i}a 2.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P14\_Prueba\_de\_dos\_varianzas\_02.r}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB03_Problema_039.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Tiempo.min")
+> varSel<-c("Compañía")
+> alfa<-NULL
+> cola<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+    variable Freq n1 n2 media1 media2 varianza1 varianza2 v1 v2 alpha    PValor
+1 Tiempo.min   12  5  7   97.4    110      78.8  913.3333  4  6  0.05 0.0329772
+  Estadistico             RegionRechazo
+1   0.0862774 < 0.1087274 y > 6.2271612
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ adem\'as de ofrecer un valor m\'as preciso para el valor $P$,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

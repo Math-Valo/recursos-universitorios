@@ -1,0 +1,55 @@
+\begin{enunciado}
+ Se encuestan $10$ escuelas de ingenier\'{\i}a en Estados Unidos. La muestra contiene $250$ ingenieros el\'ectricos, donde $80$ son mujeres; y $175$ ingenieros qu\'{\i}micos, donde $40$ son mujeres. Calcule un intervalo de confianza de $90\%$ para la diferencia entre la proporci\'on de mujeres en estos dos campos de la ingenier\'{\i}a. ¿Hay una diferencia significativa entre las dos proporciones?
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de la cantidad de mujeres que se encuentran en el campo de la ingenier\'{\i}a el\'ectrica y en el campo de la ingenier\'{\i}a qu\'{\i}mica en Estados Unidos entre cada $n_1$ ingenieros el\'ectricos y $n_2$ ingenieros qu\'{\i}micos en el pa\'{\i}s, respectivamente, entendiendo que $n_1$ y $n_2$ son peque\~nas en comparaci\'on a $N_1$ y $N_2$, la poblaci\'on total de ingenieros el\'ectricos y qu\'{\i}micos, respectivamente, donde $n_1/N_1$ y $n_2/N_2$ son menores o iguales a $0.05$, y sean $k_1$ y $k_2$ la cantidad total de ingenieras el\'ectricas e ingenieras qu\'{\i}micas, respectivamente, entonces $\widehat{P}_1 = X_1/n_1$ y $\widehat{P}_2 = X_2/n_2$ son estad\'{\i}sticos de una proporci\'on, cada uno, de los experimentos binomiales que aproximan a los valores $p_1 = k_1/N_1$, la proporci\'on de entre las personas en el campo de la ingenier\'{\i}a el\'ectrica que son mujeres, y $p_2 = k_2/N_2$, la proporci\'on de entre las personas en el campo de la ingenier\'{\i}a el\'ectrica que son mujeres, respectivamente, entonces, del enunciado, se tienen los siguientes datos obtenidos de muestras:
+ \begin{itemize}
+  \item $n_1 = 250$ y $n_2 = 175$.
+  \item $x_1 = 80$ y $x_2 = 40$.
+  \item $\alpha = 0.1$.
+ \end{itemize}
+ por lo que $\hat{p}_1$ y $\hat{p}_2$, las proporciones de \'exito en estas muestras, y $\hat{q}_1 = 1 - \hat{p}_1$ y $\hat{q}_2 = 1 - \hat{p}_2$ valen:
+ \begin{itemize}
+  \item $\hat{p}_1 = \frac{80}{250} = \frac{8}{25} = 0.32$ y $\hat{p}_2 = \frac{40}{175} = \frac{8}{35} =   0.2\overline{285714}$; y,
+  \item $\hat{q}_1 = 1 - \frac{8}{25} = \frac{17}{25} = 0.68$ y $\hat{q}_2 = 1 - \frac{8}{35} = \frac{27}{35} = 0.7\overline{714285}$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p_1 - p_2$, entonces se requiere del valor $z_{\alpha/2} = z_{0.05}$, el cual se calcul\'o en el ejercicio 9.30 y su aproximaci\'on es de $1.645$, aunque, en R, se puede considerar con mayor precisi\'on $1.644853626951$.
+ \par 
+ Ya que se busca un intervalo para la diferencia de proporciones de experimentos binomiales en donde el tama\~no de la muestra es grande y se tiene que $n_1\hat{p}_1$, $n_1\hat{q}_1$, $n_2\hat{p}_2$ y $n_2\hat{q}_2$ son todos mayores a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \left( \hat{p}_1 - \hat{p}_2 \right) - z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} < p_1 - p_2 < \left( \hat{p}_1 - \hat{p}_2 \right) + z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \left( \hat{p}_1 - \hat{p}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} & = & \left( \frac{8}{25} - \frac{8}{35} \right) \pm 1.645 \sqrt{\frac{(8/25)(17/25)}{250} + \frac{(8/35)(27/35)}{175}} \\
+  & = & \frac{56 - 40}{175} \pm 1.645 \sqrt{\frac{136}{25^2(250)} + \frac{216}{35^2(175)}} \\
+  & = & \frac{16}{175} \pm 1.645\sqrt{\frac{46\,648 + 54\,000}{53\,593\,750}} \\
+  & = & \frac{16}{175} \pm 1.645\left( \frac{\sqrt{100\,648}\sqrt{70}}{61\,250} \right) = \frac{16}{175} \pm \frac{1.645(4)\sqrt{440\,335}}{61\,250}\\
+  & = & \frac{16}{175} \pm \frac{47\sqrt{440\,335}}{437\,500} = 0.09\overline{142857} \pm 0.000107\overline{428571}\sqrt{440\,335} \\
+  & \approx & 0.09\overline{142857} \pm 0.0712871748834
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $90\%$ de la diferencia entre la proporci\'on de mujeres en el campo de la ingenier\'{\i}a el\'ectrica menos la proporci\'on de mujeres en el campo de la ingenier\'{\i}a qu\'{\i}mica es aproximadamente
+ \begin{equation*}
+  0.020141396545 < p_1 - p_2 < 0.16271574631
+ \end{equation*}
+ Por otro lado, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P20\_Intervalo\_de\_confianza\_09.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-250
+> n2<-175
+> x1<-80
+> x2<-40
+> p1<-NULL
+> p2<-NULL
+> alfa<-0.1
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+   n1  n2        p1        p2    LimInf diferencia    LimSup
+1 250 175 0.2285714 0.2285714 0.0201477 0.09142857 0.1627094
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $90\%$ es $0.0201 < p_1-p_2 < 0.1627$. Por lo tanto, como todo valor dentro del intervalo de confianza de $p_1 - p_2$ es positivo, significa que, con un $90\%$ de confianza, $p_1$ es una proporci\'on significativamente mayor que la proporci\'on $p_2$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

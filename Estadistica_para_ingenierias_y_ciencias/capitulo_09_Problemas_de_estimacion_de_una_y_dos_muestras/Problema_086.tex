@@ -1,0 +1,53 @@
+\begin{enunciado}
+ Considere la observaci\'on $X$ de la distribuci\'on binomial negativa en la secci\'on 5.5. Encuentre el estimador de probabilidad m\'axima para $p$, con $k$ desconocida.
+\end{enunciado}
+
+\begin{solucion}
+ Recu\'erde que la funci\'on de masa de la distribuci\'on binomial negativa est\'a dada por
+ \begin{equation*}
+  b^{*}(x;k,p) = \binom{x-1}{k-1} p^kq^{x-k}
+ \end{equation*}
+ para $x = k, k +1, \ldots,$ y $k \in \mathbb{N}$.
+ Entonces, se tiene que la funci\'on de probabilidad es:
+ \begin{eqnarray*}
+  L\left( x_1, x_2, \ldots, x_n; k, p \right) & = & \prod_{i=1}^n L\left( x_i; k, p \right) \\
+  & = & \prod_{i=1}^n \binom{x_i-1}{k-1} p^kq^{x_i-k} \\
+  & = & \left[ \prod_{i=1}^n \binom{x_i - 1}{k - 1} \right] p^{nk} (1 - p)^{\sum_{i=1}^n x_i - nk}
+ \end{eqnarray*}
+ Por lo tanto, el logaritmo natural de esta funci\'on es
+ \begin{equation*}
+  \ln L \left( x_1, x_2, \ldots, x_n; k, p \right) = \sum_{i=1}^n \ln\left[ \binom{x_i-1}{k-1} \right] + nk\ln p + \left( \sum_{i=1}^n x_i - nk \right)\ln(1-p)
+ \end{equation*}
+ As\'{\i} que, su derivada con respecto a $p$ es:
+ \begin{eqnarray*}
+  \frac{\delta \ln L}{\delta p} \left( x_1, x_2, \ldots, x_n; k, p \right) & = & \frac{\delta}{\delta p} \left( \cancel{ \sum_{i=1}^n \ln\left[ \binom{x_i-1}{k-1} \right] } + nk\ln p + \left( \sum_{i=1}^n x_i - nk \right)\ln(1-p) \right) \\
+  & = & \frac{nk}{p} + \frac{nk - \sum_{i=1}^n x_i}{1-p}
+ \end{eqnarray*}
+ Mientras que su segunda derivada con respecto a $p$ es
+ \begin{eqnarray*}
+  \frac{\delta^2 \ln L}{\delta p^2} \left( x_1, x_2, \ldots, x_n; k, p \right) & = & \frac{\delta}{\delta p} \left( \frac{nk}{p} + \frac{nk - \sum_{i=1}^n x_i}{1-p} \right) \\
+  & = & - \frac{nk}{p^2} + \frac{nk - \sum_{i=1}^n x_i}{(1-p)^2}
+ \end{eqnarray*}
+ Entonces, suponiendo conocido el valor de $k$ y que $0< p < 1$ , se tiene que $\hat{p}$ es el estimador de m\'axima probabilidad de la funci\'on de probabilidad si y s\'olo si es estimador de m\'axima probabilidad de su logaritmo natural si y s\'olo si $\hat{p}$ evaluado en la primera derivada del logaritmo de la funci\'on de probabilidad da cero al mismo tiempo que en su segunda derivada da negativo. Luego entonces, se debe cumplir en la primera derivada que
+ \begin{eqnarray*}
+  \frac{nk}{\hat{p}} + \frac{nk - \sum_{i=1}^n x_i}{1-\hat{p}} = 0 & \Leftrightarrow & \frac{nk\left(1-\hat{p}\right) + \hat{p}\left( nk - \sum_{i=1}^n x_i \right)}{\hat{p}\left(1-\hat{p}\right)} = 0 \\
+  & \Leftrightarrow & nk\left(1-\hat{p}\right) + \hat{p}\left( nk - \sum_{i=1}^n x_i \right) = 0 \\
+  & \Leftrightarrow & nk - \cancel{ nk\hat{p}}  + \cancel{ nk\hat{p} } - \hat{p}\sum_{i=1}^{n} x_i = 0 \\
+  & \Leftrightarrow & \hat{p}\sum_{i=1}^{n} x_i = nk \\
+  & \Leftrightarrow & \hat{p} = \frac{nk}{\sum_{i=1}^n x_i} \\
+  & \Leftrightarrow & \hat{p} = \frac{k}{\bar{x}}
+ \end{eqnarray*}
+ Este valor, tiene sentido, ya que cada $x_i \geq k \geq 1$, luego entonces, $\sum_{i=1}^n x_i > 0$ y $\bar{x} > 0$.
+ \par 
+ Luego, como $n$, $k$, $p^2$ son todos mayores a cero, entonces $\frac{nk}{p^2} > 0$ y, por lo tanto, $-\frac{nk}{p^2} < 0$; por otro lado, $x_i \geq k$ para cada $i \in \mathbb{N}\cap[1,n]$, entonces $\sum_{i=1}^n x_i \geq nk$, por lo que $nk-\sum_{i=1}^n x_i < 0$ y, al agregar el hecho de que $(1-p)^2 > 0$, se obtiene que $\frac{nk - \sum_{i=1}^n x_i}{(1-p)^2} < 0$. Es decir, independientemente del valor del estimador $\hat{p}$, se tiene que la segunda derivada es negativa. Por lo tanto
+ \begin{equation*}
+  \hat{p} = \frac{k}{\bar{x}}
+ \end{equation*}
+ es el estimador de m\'axima probabilidad buscado. 
+ \par 
+ Finalmente, queda por la posibilidad de que $\hat{p}$ sea $0$ o $1$. Estos casos anulan la funci\'on de probabilidad siempre que los exponentes sean distintos de cero, y el \'unico caso en que esto no ocurre es cuando $x_i = k$ para cada $i \in \mathbb{N} \cap [1,n]$. Si esto ocurri\'ese, entonces la funci\'on de probabilidad valdr\'{\i}a $p^{nk}$, para $n$ y $k$ positivos. Por lo tanto, el estimador $\hat{p}$ que maximiza dicha funci\'on es el valor que maximiza $\hat{p}^{nk}$, que es $\hat{p} = 1$, lo cual coincide con igualdad del estimador antes dado. En conclusi\'on, para cualesquiera casos, se tiene que
+ \begin{equation*}
+  \hat{p} = \frac{k}{\bar{x}}
+ \end{equation*}
+ es el estimador de m\'axima probabilidad, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

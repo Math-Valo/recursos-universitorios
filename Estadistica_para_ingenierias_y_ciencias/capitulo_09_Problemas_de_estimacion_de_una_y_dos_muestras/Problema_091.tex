@@ -1,0 +1,94 @@
+\begin{enunciado}
+ Un gimnasio con spa afirma que un nuevo programa de ejercicios reducir\'a la talla de la cintura de una persona en $2$ cent\'{\i}metros, en promedio, durante un periodo de 5 d\'{\i}as. Las tallas de cintura de $6$ hombres que participaron en este programa de ejercicio se registraron, antes y despu\'es del periodo de 5 d\'{\i}as, en la siguiente tabla:
+ \begin{center}
+  \begin{tabular}{ccc}
+   & \textbf{Talla de} & \textbf{Talla de} \\
+   \textbf{Hombre} & \textbf{cintura antes} & \textbf{cintura despu\'es} \\
+   \hline 
+   $1$ & $\phantom{1}90.4$ & $\phantom{1}91.7$ \\
+   $2$ & $\phantom{1}95.5$ & $\phantom{1}93.9$ \\
+   $3$ & $\phantom{1}98.7$ & $\phantom{1}97.4$ \\
+   $4$ & $115.9$ & $112.8$ \\
+   $5$ & $104.0$ & $101.3$ \\
+   $6$ & $\phantom{1}85.6$ & $\phantom{1}84.0$
+  \end{tabular}
+ \end{center}
+ Mediante el c\'alculo de un intervalo de confianza de $95\%$ para la reducci\'on media de la talla de cintura, determine, si la afirmaci\'on del gimnasio con spa es v\'alida. Suponga que la distribuci\'on de las diferencias de tallas de cintura antes y despu\'es del programa es aproximadamente normal.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de las tallas de cintura de una persona, medidos en cent\'{\i}metros, antes y despu\'es del programa de ejercicios del gimnasio con spa en el periodo de 5 d\'{\i}as, respectivamente, entonces, del enunciado, se tiene el siguiente resumen de datos:
+ \begin{itemize}
+  \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1, 2 \}$.
+  \item $\mu_i$ y $\sigma_i$ desconocidos, para cada $i \in \{ 1,2 \}$.
+  \item $n_1 = n_2 = 6$.
+  \item $\alpha = 0.05$.
+ \end{itemize}
+ Adem\'as de los datos obtenidos en los 6 hombres que participaron en este programa de ejercicio, con registros antes y despu\'es de los 5 d\'{\i}as, y cuyas diferencias, en cent\'{\i}metros, $D_i = X_1 - X_2$, son:
+ \begin{center}
+  \begin{tabular}{cccc}
+   & \textbf{Talla de} & \textbf{Talla de} \\
+   \textbf{Hombre} & \textbf{cintura antes} & \textbf{cintura despu\'es} & $d_i$ \\
+   \hline 
+   $1$ & $\phantom{1}90.4$ & $\phantom{1}91.7$ & $-1.3$ \\
+   $2$ & $\phantom{1}95.5$ & $\phantom{1}93.9$ & $\phantom{-}1.6$ \\
+   $3$ & $\phantom{1}98.7$ & $\phantom{1}97.4$ & $\phantom{-}1.3$ \\
+   $4$ & $115.9$ & $112.8$ & $\phantom{-}3.1$ \\
+   $5$ & $104.0$ & $101.3$ & $\phantom{-}2.7$ \\
+   $6$ & $\phantom{1}85.6$ & $\phantom{1}84.0$ & $\phantom{-}1.6$
+  \end{tabular}
+ \end{center}
+ A partir de estos datos, se puede calcular la media y la desviaci\'on est\'andar de las observaciones pareadas, como se muestra a continuaci\'on. La media muestral se calcula como sigue:
+ \begin{equation*}
+  \bar{d} = \frac{-1.3 + 1.6 + 1.3 + 3.1 + 2.7 + 1.6}{6} = \frac{9}{6} = \frac{3}{2} = 1.5
+ \end{equation*}
+ por lo que la varianza muestral se obtiene, usando el Teorema 8.1, como sigue:
+ \begin{eqnarray*}
+  s_d^2 & = & \frac{1}{n(n-1)} \left[ n\sum_{i=1}^n d_i^2 - \left( \sum_{i=1}^n d_i \right)^2 \right] \\
+  & = & \frac{6\left[ (-1.3)^2 + 1.6^2 + 1.3^2 + 3.1^2 + 2.7^2 + 1.6^2 \right] - 9^2}{6(5)} \\
+  & = & \frac{6(25.4) - 81}{30} = \frac{152.4 - 81}{30} = \frac{71.4}{30} = \frac{714}{300} \\
+  & = & \frac{119}{50} = 2.38
+ \end{eqnarray*}
+ y, por lo tanto, la desviaci\'on est\'adar muestral es:
+ \begin{equation*}
+  s_d = \sqrt{s_d^2} = \sqrt{\frac{119}{50}} = \frac{\sqrt{119}\sqrt{2}}{10} = \frac{\sqrt{238}}{10} \approx 1.542724862
+ \end{equation*}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para $\mu_D = \mu_1 - \mu_2$, para observaciones pareadas, entonces se requerir\'a el valor $t_{\alpha/2,n-1} = t_{0.025,5}$. De la Tabla A.4, se tiene que $t_{0.025,5} = 2.571$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,5,lower.tail=F)
+[1] 2.570581835636315037874
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $2.5705818356363$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales pareadas usando como estimador la media muestral de las diferencias de los datos pareados en un muestra peque\~na, en donde se desconoce la desviaci\'on est\'andar poblacional pero suponiendo que la distribuci\'on de las diferencias es aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \bar{d} - t_{\alpha/2,n-1}\frac{s_d}{\sqrt{n}} < \mu_D < \bar{d} + t_{\alpha/2,n-1}\frac{s_d}{\sqrt{n}}
+ \end{equation*}
+ en donde $\mu_D = \mu_1 - \mu_2$. Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n-1}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  \bar{d} \pm t_{\alpha/2,n-1}\frac{s_d}{\sqrt{n}} & = & 1.5 \pm 2.571 \left( \frac{\sqrt{238}/10}{\sqrt{6}} \right) = 1.5 \pm 2.571 \left( \frac{\sqrt{119}\sqrt{3}}{30} \right) \\
+  & = & 1.5 \pm \frac{2\,571\sqrt{357}}{30\,000} = 1.5\pm \frac{857\sqrt{357}}{10\,000} \\
+  & = & 1.5 \pm 0.0857\sqrt{357} \approx 1.619253818893134
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $95\%$ de confianza de la reducci\'on media de la talla de cintura, en cent\'{\i}metros, de los hombres que toman el programa en el gimnasio con spa durante 5 d\'{\i}as es de:
+ \begin{equation*}
+  -0.119253818893 < \mu_D < 3.119253818893
+ \end{equation*}
+ Por otro lado, en R, se puede calcular el intervalo de confianza de las observaciones pareadas cambiando los siguientes comandos en el archivo anexo \texttt{P16\_Intervalo\_de\_confianza\_07.r}, y usando la base de datos \texttt{DB12\_Problema\_91.csv}.
+ \begin{verbatim}
+> datos<-read.csv("DB12_Problema_91.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Talla.cm")
+> varSel<-list("Registro")
+> alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  variable     LimInf Media   LimSup
+1 Talla.cm -0.1189905   1.5 3.118991
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de $95\%$ es $-0.119 < \mu_1 - \mu_2 < 3.119$, luego entonces, como el intervalo de confianza contiene el valor $2$, entonces la informaci\'on obtenida permite apoyar, con $95\%$ de confianza, la afirmaci\'on del gimnasio con spa de que el programa de ejercicios reducir\'a la talla de la cintura de una persona en $2\,$cm, en promedio, durante un periodo de 5 d\'{\i}as, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

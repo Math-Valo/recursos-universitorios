@@ -1,0 +1,304 @@
+\begin{enunciado}
+ Un experto en marketing de una compa\~n\'{\i}a fabricante de pasta
+ considera que $40\%$ de los amantes de la pasta prefieren la lasagna.
+ Si $9$ de $20$ amantes de la pasta eligen lasagna sobre otras pastas,
+ ¿qu\'e se puede concluir acerca de la afirmaci\'on del experto?
+ Utilice un nivel de significancia de $0.05$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $n = 20$.
+   \item $x = 9$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: p & = & 0.4 \\
+   H_1: p & > & 0.4
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$
+ \end{significancia}
+
+ \begin{estadistico}
+  Variable binomial $X$ con $p = 0.4$ y $n = 20$.
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.1, se tiene la siguiente aproximaci\'on:
+  \begin{equation*}
+   P\left( X \geq 9 | p = 0.4 \right) = 1 - P\left( X < 9 | p = 0.4 \right)
+   = 1 - \sum_{i=0}^{8} b\left( x; 20, 0.4 \right)
+   \approx 1 - 0.5956 = 0.4044 > 0.05
+  \end{equation*}
+  Mientras que el valor preciso se obtiene como sigue:
+  \begin{eqnarray*}
+   P\left( X \geq 9 | p = 0.4 \right) & = & 1 - \sum_{i=0}^{8} b\left( x; 20, 0.4 \right)
+   = 1 - \frac{1}{10^{20}} \sum_{i=0}^{8} \binom{20}{x} 4^x 6^{20-x} \\
+   & = & 1 - \frac{1}{10^{20}}\left( 6^{20} + 20\cdot 4\cdot 6^{19} + 
+   190 \cdot 4^{2}6^{18} + 1\,140 \cdot 4^{3}\cdot 6^{17} +
+   4\,845 \cdot 4^{4}\cdot 6^{16} + \right. \\
+   & & \phantom{1 - \frac{1}{10^{20}} (}
+   15\,504 \cdot 4^{5}\cdot 6^{15} +
+   38\,760 \cdot 4^{6} + \cdot 6^{14} + 
+   77\,520 \cdot 4^{7} \cdot 6^{13} + \\
+   & & \phantom{1 - \frac{1}{10^{20}}}
+   \left. 125\,970 \cdot 4^{8} \cdot 6^{12} \right) \\
+   & = & 1 - \frac{4\cdot 6^{12}}{10^{20}} \left(9\cdot 6^6 + 
+   20\cdot 6^7 + 190 \cdot 4\cdot 6^6 + 1\,140 \cdot 4^2\cdot 6^5 +
+   4\,845 \cdot 4^3\cdot 6^4 + \right. \\
+   & & \phantom{1 - \frac{4\cdot 6^{13}}{10^{20}}} \left.
+   15\,504 \cdot 4^4\cdot 6^3 +
+   38\,760 \cdot 4^5 + \cdot 6^2 + 
+   77\,520 \cdot 4^6 \cdot 6 + 125\,970 \cdot 4^7 \right) \\
+   & = & 1 - \frac{8\,707\,129\,344}{10^{20}} \left(
+   419\,904 + 5\,598\,720 + 35\,458\,560 + 141\,834\,240 + \right. \\
+   & & \phantom{1 - \frac{8\,707\,129\,344}{10^{20}} (}
+   401\,863\,680 + 857\,309\,184 + 1\,428\,848\,640 + \\
+   & & \phantom{1 - \frac{8\,707\,129\,344}{10^{20}}}
+   \left. 1\,905\,131\,520 +  2\,063\,892\,480 \right) \\ 
+   & = & 1 - 
+   \frac{8\,707\,129\,344 \cdot 6\,840\,356\,928}{100\,000\,000\,000\,000\,000\,000}
+   = 1-\frac{59\,559\,872\,531\,222\,495\,232}{100\,000\,000\,000\,000\,000\,000} \\
+   & = & \frac{40\,440\,127\,468\,777\,504\,768}{100\,000\,000\,000\,000\,000\,000}
+   = 0.40440127468777504768
+  \end{eqnarray*}
+ \end{valorp}
+
+ \begin{decision}
+  No se rechaza $H_0$.
+ \end{decision}
+
+ \begin{conclusion}
+  No hay pruebas suficientes para rechazar la afirmaci\'on del experto en marketing;
+  esto es, que se puede considerar como verdadero que, entre los amantes de la pasta,
+  el porcentaje de personas que prefieren la lasagna es aproximadamente del $40\%$.
+ \end{conclusion}
+
+ En el c\'odigo registrado en el archivo anexo 
+ \texttt{P08\_Prueba\_de\_una\_proporcion\_01.r}, en R, se realiza este procedimiento.
+ El c\'odigo permite modificar los valores iniciales que corresponden a:
+ \texttt{n} para el tama\~no de la muestra;
+ \texttt{x} para la cantidad de casos favorables
+ o, en su defecto, \texttt{p0} para la proporci\'on de \'exitos muestrales;
+ \texttt{p} para el valor de la proporci\'on poblacional
+ supuesta en la hip\'otesis nula;
+ \texttt{alfa} para el nivel de significancia;
+ \texttt{cola} para indicar si la prueba es de dos colas, con \texttt{'D'},
+ de cola inferior, con \texttt{'I'}, o de cola superior, con \texttt{'S'};
+ y, \texttt{distr}, un par\'ametro opcional para hacer comparaciones did\'acticas
+ forzando al programa a realizar los c\'alculos usando la distribuci\'on binomial,
+ con \texttt{'B'}, la aproximaci\'on por la distribuci\'on de Poisson,
+ con \texttt{'P'}, o la aproximaci\'on por la distribuci\'on normal, con \texttt{'N'}.
+ \par 
+ El programa espera al menos los datos correspondientes a la muestra:
+ el tama\~no de muestra; la cantidad de casos favorables en la muestra
+ o, en su defecto, la proporci\'on muestral; la hip\'otesis nula;
+ y, el tipo de prueba (cola izquierda o derecha, o dos colas).
+ Por lo tanto, el valor $P$ siempre se obtiene,
+ independientemente de si se desea una prueba de hip\'otesis
+ fijando la probabilidad del error tipo I o si se realiza una prueba de significancia
+ (aproximaci\'on al valor $P$).
+ Los valores no dados, ya sea por redundancia o por ser opcionales, se indican
+ con el valor \texttt{NULL}.
+ \par
+ Si no ha sido asignado un valor al par\'ametro para forzar un tipo de distribuci\'on
+ en los c\'alculos, el c\'odigo determinar\'a la distribuci\'on
+ seg\'un las siguientes reglas: si la muestra es peque\~na, esto es si $n\leq 20$,
+ se usar\'an los c\'alculos precisos por la distribuci\'on binomial
+ con par\'ametros $n$ igual al tama\~no de la muestra
+ y $p$ igual a la proporci\'on supuesta en la hip\'otesis nula;
+ si la muestra no es peque\~na pero el valor hipot\'etico, $p$, est\'a cerca
+ de $0$ o $1$, en menos de $0.05$ unidades, se usar\'a una aproximaci\'on
+ con la distribuci\'on de Poisson, con par\'ametro $\mu = np$;
+ y, en cualquier otra muestra no peque\~na, se usar\'a una aproximaci\'on
+ con la distribuci\'on normal con par\'ametros $\mu=np$ y $\sigma^2=np(1-p)$,
+ que a su vez usar\'a como estad\'{\i}stico la distribuci\'on normal est\'andar
+ a trav\'es del valor de la transformaci\'on $z = \frac{x-np}{\sqrt{np(1-p)}}$.
+ \par 
+ Independientemente del tipo de prueba, el resultado muestra lo siguiente:
+ \texttt{distr} para saber el tipo de distribuci\'on que se us\'o en los c\'alculos;
+ \texttt{p} para el valor propuesto en la hip\'otesis nula;
+ \texttt{n} para el tama\~no de la muestra;
+ \texttt{x} para la cantidad de casos favorables en la muestra;
+ \texttt{pMuestral} para la proporci\'on muestral;
+ \texttt{media} para la media poblacional, considerando el valor hipot\'etico $p$;
+ \texttt{desv.est} para la desviaci\'on est\'andar poblacional,
+ considerando el valor hipot\'etico $p$;
+ \texttt{alpha} para el nivel de significancia dado, el cual muestra por defecto $0.05$
+ en caso de asignar \texttt{NULL} a \texttt{alfa};
+ \texttt{Estadistico} para indicar la distribuci\'on binomial o de Poisson
+ con sus respectivos par\'ametros, seg\'un sea el caso,
+ o, si se us\'o una aproximaci\'on con la distribuci\'on normal, el valor resultante
+ del estad\'{\i}stico de prueba; \texttt{PValor} para el valor $P$,
+ la probabilidad de haber obtenido una muestra como se obtuvo,
+ suponiendo que la hip\'otesis nula sea cierta;
+ y, \texttt{RegionRechazoX} para indicar la regi\'on de n\'umeros enteros
+ para los que la cantidad de casos favorables llevar\'{\i}an al rechazo de la prueba
+ seg\'un el valor de $\alpha$ (posiblemente el dado por defecto).
+ \par 
+ Adem\'as, seg\'un el tipo de prueba, puede darse los siguientes valores:
+ \texttt{RegionRechazoZ} para indicar en d\'onde se encuentra la regi\'on de rechazo
+ para el valor obtenido por el estad\'{\i}sitco de prueba $z$
+ al realizar los c\'alculos por medio de la aproximaci\'on a la distribuci\'on normal,
+ seg\'un el valor de $\alpha$ (posiblemente el dado por defecto);
+ y, \texttt{Resultado} para indicar si se rechaza o no la hip\'otesis nula,
+ que aparece cuando se asigna un valor a \texttt{alfa},
+ y se encuentra siempre al final de los resultados.
+ \par
+ El c\'odigo junto con los resultados se muestra a continuaci\'on:
+ \begin{verbatim}
+> n<-20
+> x<-9
+> p0<-NULL
+> p<-0.4
+> alfa<-0.05
+> cola<-'S'
+> distr<-NULL
+> if(is.null(x)){
++   x<-round(p0*n)
++ }
+> TestProp<-function(n,x,p,alfa=0.05,colas='D',preferencia=NULL){
++   p0<-x/n
++   if(is.null(preferencia)){
++     if(n <= 20){
++       distr<-'B'
++     }else{
++       if(abs(0.5 - p) > 0.4){
++         distr<-'P'
++       }
++       else{
++         distr<-'N'
++       }
++     }
++   }else{
++     distr<-preferencia
++   }
++   if(distr=='B'){
++     r<-data.frame(distr="Binomial",
++                   p=p,
++                   n=n,
++                   x=x,
++                   pMuestral=p0,
++                   media=n*p,
++                   desv.est=sqrt(n*p*(1-p)),
++                   alpha=alfa,
++                   Estadistico=paste("Var. binomial X con p=",p," y n=",n)
++                   )
++     if(colas=='D'){
++       if(p0<p){
++         pvalor<-round(2*pbinom(x,n,p),7)
++       }else{
++         pvalor<-round(2*pbinom(x-1,n,p,lower.tail=F),7)
++       }
++       xInf<-qbinom(alfa/2,n,p)-1
++       xSup<-qbinom(alfa/2,n,p,lower.tail=F)+1
++       r$PValor<-pvalor
++       r$RegionRechazoX<-paste("<=",xInf," y >=",xSup)
++     }else{
++       if(colas=='I'){
++         r$PValor<-round(pbinom(x,n,p),7)
++         r$RegionRechazoX<-paste("<=",qbinom(alfa,n,p)-1)
++       }else{
++         r$PValor<-round(pbinom(x-1,n,p,lower.tail=F),7)
++         r$RegionRechazoX<-paste(">=",qbinom(alfa,n,p,lower.tail=F)+1)
++       }
++     }
++   }else{
++     if(distr=='N'){
++       r<-data.frame(distr="Normal",
++                     p=p,
++                     n=n,
++                     x=x,
++                     pMuestral=p0,
++                     media=n*p,
++                     desv.est=sqrt(n*p*(1-p)),
++                     alpha=alfa
++                     )
++       estadistico<-(p0-p)/sqrt(p*(1-p)/n)
++       if(colas=='D'){
++         pvalor<-round(2*pnorm(abs(estadistico),lower.tail=F),7)
++         criticoz<-round(qnorm(1-alfa/2),7)
++         criticoxInf<-floor(n*p-criticoz*sqrt(n*p*(1-p)))
++         criticoxSup<-ceiling(n*p+criticoz*sqrt(n*p*(1-p)))
++         r$PValor<-pvalor
++         r$Estadistico<-estadistico
++         r$RegionRechazoZ<-paste("<=",-criticoz," y >=",criticoz)
++         r$RegionRechazoX<-paste("<=",criticoxInf," y >=",criticoxSup)
++       }else{
++         criticoz<-round(qnorm(1-alfa),7)
++         if(colas=='I'){
++           pvalor<-round(pnorm(estadistico),7)
++           criticox<-floor(n*p-criticoz*sqrt(n*p*(1-p)))
++           r$PValor<-pvalor
++           r$Estadistico<-estadistico
++           r$RegionRechazoZ<-paste("<=",-criticoz)
++           r$RegionRechazoX<-paste("<=",criticox)
++         }else{
++           pvalor<-round(pnorm(estadistico,lower.tail=F),7)
++           criticox<-ceiling(n*p+criticoz*sqrt(n*p*(1-p)))
++           r$PValor<-pvalor
++           r$Estadistico<-estadistico
++           r$RegionRechazoZ<-paste(">=",criticoz)
++           r$RegionRechazoX<-paste(">=",criticox)
++         }
++       }
++     }else{
++       r<-data.frame(distr="Poisson",
++                     p=p,
++                     n=n,
++                     x=x,
++                     pMuestral=p0,
++                     media=n*p,
++                     desv.est=sqrt(n*p*(1-p)),
++                     alpha=alfa,
++                     Estadistico=paste("Var. Poisson X con mu=",n*p)
++                     )
++       if(colas=='D'){
++         if(p0<p){
++           pvalor<-round(2*ppois(x,n*p),7)
++         }else{
++           pvalor<-round(2*ppois(x-1,n*p,lower.tail=F),7)
++         }
++         xInf<-qpois(alfa/2,n*p)-1
++         xSup<-qpois(alfa/2,n*p,lower.tail=F)+1
++         r$PValor<-pvalor
++         r$RegionRechazoX<-paste("<=",xInf," y >=",xSup)
++       }else{
++         if(colas=='I'){
++           r$PValor<-round(ppois(x,n*p),7)
++           r$RegionRechazoX<-paste("<=",qpois(alfa,n*p)-1)
++         }else{
++           r$PValor<-round(ppois(x-1,n*p,lower.tail=F),7)
++           r$RegionRechazoX<-paste(">=",qpois(alfa,n*p,lower.tail=F)+1)
++         }
++       }
++     }
++   }
++   return(r)
++ }
+> if(is.null(alfa)){
++   Test<-TestProp(n,x,p,colas=cola,preferencia=distr)
++ }else{
++   Test<-TestProp(n,x,p,alfa,cola,distr)
++   resultado<-ifelse(Test[,"PValor"]>=alfa,"No se rechaza H0","Se rechaza H0")
++   Test$Resultado<-resultado
++ }
+> Test
+     distr   p  n x pMuestral media desv.est alpha
+1 Binomial 0.4 20 9      0.45     8  2.19089  0.05
+                          Estadistico    PValor RegionRechazoX        Resultado
+1 Var. binomial X con p= 0.4  y n= 20 0.4044013          >= 13 No se rechaza H0
+ \end{verbatim}
+ Lo cual coincide con los resultados obtenidos, adem\'as de dar m\'as informaci\'on
+ como: la media y la desviaci\'on est\'andar de la distribuci\'on binomial
+ y la cantidad de casos favorables a partir del cual se rechazar\'{\i}a la prueba,
+ que es a lo que se quer\'{\i}a llegar${}_{\blacksquare}$
+ 
+\end{solucion}

@@ -1,0 +1,139 @@
+\begin{enunciado}
+ En un estudio realizado en el Departamento de Zoolog\'{\i}a del Virginia Tech, se recolectaron $15$ ``muestras'' de agua de una determinada estaci\'on en el r\'{\i}o James, con la finalidad de conocer la cantidad de ortof\'osforo en el r\'{\i}o. La concentraci\'on del qu\'{\i}mico se mide en miligramos por litro. Supongamos que la media en la estaci\'on no es tan importante como los extremos superiores de la distribuci\'on del qu\'{\i}mico en la estaci\'on. El inter\'es se centra en saber si las concrentaciones en estos extremos son demasiado elevadas. Las lecturas de las $15$ muestras de agua dieron una media muestral de $3.84$ miligramos por litro y una desviaci\'on est\'andar de $3.07$ miligramos por litro. Suponga que las lecturas son una muestra aleatoria de una distribuci\'on normal. Calcule un intervalo de predicci\'on (l\'{\i}mite de predicci\'on superior de $95\%$) y un l\'{\i}mite de tolerancia (un l\'{\i}mite de tolerancia superior de $95\%$ que excede $95\%$ de la poblaci\'on de valor). Interprete ambos; estos es, diga qu\'e nos comunica acerca de los extremos superiores de la distribuci\'on de ortof\'osforo en la estaci\'on de muestreo.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de las concentraciones de ortof\'osforo del r\'{\i}o James, medido en miligramos por litro, entonces se tienen los siguientes datos, donde $\alpha$ indicar\'a, seg\'un como se haga referencia, el valor para el cual el intervalo de tolerancia abarca una proporci\'on $1-\alpha$ de la poblaci\'on, o bien, el valor para el cual hay $(1-\alpha)100\%$ de certidumbre en el intervalo de predicci\'on. Como ambos son de $95\%$, la lista siguiente lo nombrar\'a una \'unica vez como $0.05$.
+ \begin{itemize}
+  \item $X\sim n(\mu, \sigma)$.
+  \item $\mu$ y $\sigma$ desconocidos.
+  \item $n=15$.
+  \item $\bar{x} = 3.84$ miligramos por litro.
+  \item $s=3.07$ miligramos por litro.
+  \item $\alpha = 0.05$.
+  \item $\gamma = 0.05$.
+ \end{itemize}
+ Aunque los intervalos unilaterales de tolerancia y predicci\'on no se vieron en el libro, es natural la manera de proceder. As\'{\i}, pues, para el intervalo de predicci\'on superior, como se desconoce la desviaci\'on poblacional y la muestra no es lo suficientemente grande, pero las muestras provienen de una poblaci\'on que se distribuye de forma normal, entonces se usar\'a el valor $t_{\alpha, n-1} = t_{0.05,14}$. De la Tabla A.4, se tiene que $t_{0.05,14} = 1.761$, mientras que, usando el software estad\'{\i}stico R, se obtiene un valor m\'as preciso con las siguientes l\'{\i}neas de comando:
+ \begin{verbatim}
+>options(digits=22)
+>qt(0.05,14,lower.tail=F)
+[1] 1.76131013577489192734
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar con mayor precisi\'on como $1.76131$.
+ \par 
+ Por otro lado, para el l\'{\i}mite de tolerancia, se requiere del factor de tolerancia, $k$. De la tabla A.7, buscando entre los valores de los factores para intervalos unilaterales, con $\gamma = 0.05$, $1-\alpha=0.95$ y $n=15$, se tiene que $k = 2.566$, mientras que, usando el software estad\'{\i}stico R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+>library(tolerance)
+>options(digits=22)
+>K.table(15,alpha=0.05,P=0.95,side=1,method=("WBE"))
+$`15`
+                        0.95
+0.95 2.566000423493768334282
+ \end{verbatim}
+ \vspace{-0.5cm}
+ donde la precisi\'on es muy cercana a la del libro, por lo que se considerar\'a \'unicamente como $2.566$.
+ \par
+ Dado que se quiere calcular el l\'{\i}mite superior de tolerancia y de predicci\'on, de un poblaci\'on normal, con una muestra peque\~na, entonces se usar\'an las siguientes formulaciones:
+ \begin{center}
+  \begin{tabular}{lcc}
+   Para el l\'{\i}mite de predicci\'on: & \hspace{1cm} & $x_0 < \bar{x} + t_{\alpha,n-1}s\sqrt{1+1/n}$ \\
+   Para el l\'{\i}mite de tolerancia: & & $\bar{x} + ks$
+  \end{tabular}
+ \end{center}
+ Por lo tanto, usando los datos obtenidos y considerando los valores $t_{\alpha,n-1}$ y $k$ del libro, se obtienen los c\'alculos para los l\'{\i}mites como siguen:
+ \begin{eqnarray*}
+  \bar{x}+ t_{\alpha,n-1}s\sqrt{1+1/n} & = & 3.84 + (1.761)(3.07)\sqrt{1+\frac{1}{15}} = 3.84 + 5.40627\sqrt{\frac{16}{15}} \\
+  & = & 3.84 + 5.40627 \frac{4}{\sqrt{15}} = 3.84 + \frac{21.62508\sqrt{15}}{15} \\
+  & = & 3.84 + 1.441672\sqrt{15} \\
+  \bar{x} + ks & = & 3.84 + (2.566)(3.07) = 3.84 + 7.87762
+ \end{eqnarray*}
+ Por lo tanto, el l\'{\i}mite superior de predicci\'on es de $9.4235716466935391$ y el l\'{\i}mite superior de tolerancia es de $11.71762$. El c\'alculo de los l\'{\i}mites superiores usando R se pueden realizar con los siguientes comandos. Los c\'odigos escritos se encuentran registrados en un script en el archivo anexo \texttt{P10\_Intervalo\_de\_prediccion\_3.r}, el cual es capaz de determinar un intervalo, bilateral o unilateral, de predicci\'on cuando se conoce o no la desviaci\'on est\'andar poblacional, y en caso de que se desconozca pero la muestra sea mayor o igual a 30, se tomar\'a la desviaci\'on est\'andar muestral como un aproximado de la poblacional y se usar\'a el m\'etodo para cuando se conoce la desviaci\'on est\'adar poblacional. El resultado del c\'odigo muestra el l\'{\i}mite inferior, la media muestral y el l\'{\i}mite superior, en ese orden, y en caso de ser un intervalo unilateral, entonces se elimina uno de estos l\'{\i}mites seg\'un sea el caso.
+ \begin{verbatim}
+>n<-15
+>m<-3.84
+>desv<-3.07
+>alfa<-0.05
+>val<-FALSE
+>inter<-'S'
+>if (n >= 30)
++{
++    val<-TRUE
++}
+>IP<-function(tamanyo, media, desviacion, alpha=0.05, pob=FALSE, colas = 'D'){
++    if(colas == 'D'){
++        k<-ifelse(pob,round(qnorm(1-alfa/2),7),round(qt(1-alfa/2,n-1),7))
++        LL<-m-k*desv*sqrt(1+1/n)
++        LU<-m+k*desv*sqrt(1+1/n)
++        Resultado<-data.frame(LL,media,LU)
++        names(Resultado)[names(Resultado) == "LL"]<-"LimInf"
++        names(Resultado)[names(Resultado) == "media"]<-"Media"
++        names(Resultado)[names(Resultado) == "LU"]<-"LimSup"
++    }
++    else{
++        k<-ifelse(pob,round(qnorm(1-alfa),7),round(qt(1-alfa,n-1),7))
++        if (colas == 'I'){
++            LL<-m-k*desv*sqrt(1+1/n)
++            Resultado<-data.frame(LL,media)
++            names(Resultado)[names(Resultado) == "LL"]<-"LimInf"
++            names(Resultado)[names(Resultado) == "media"]<-"Media"
++        }
++        else{
++            LU<-m+k*desv*sqrt(1+1/n)
++            Resultado<-data.frame(media,LU)
++            names(Resultado)[names(Resultado) == "media"]<-"Media"
++            names(Resultado)[names(Resultado) == "LU"]<-"LimSup"
++        }
++    }
++    return(Resultado)
++}
+>IPs<-IP(n,m,desv,alfa,val,inter)
+>IPs
+  Media   LimSup
+1  3.84 9.424555
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Mientras que, para el l\'{\i}mite superior de tolerancia usando R, se puede calcular el l\'{\i}mite con los siguientes comandos. Los c\'odigos escritos se encuentran registrados en un script en el archivo anexo \texttt{P11\_Intervalo\_de\_tolerancia\_3.r}. Igual que antes, el resultado del c\'odigo muestra el l\'{\i}mite inferior, la media muestral y el l\'{\i}mite superior, en ese orden, y en caso de ser un intervalo unilateral, entonces se elimina uno de estos l\'{\i}mites seg\'un sea el caso.
+ \begin{verbatim}
+>library(tolerance)
+>n<-15
+>m<-3.84
+>desv<-3.07
+>gamma<-0.05
+>alfa<-0.05
+>inter<-'S'
+>IT<-function(tamanyo,media,desviacion,alpha=0.05,P=0.99,lados='D'){
++    if(lados=='D'){
++        k<-K.factor(tamanyo,alpha=alpha,P=P,side=2,method=c("WBE"))
++        LL<-media-k*desviacion
++        LU<-media+k*desviacion
++        Resultado<-data.frame(LL,media,LU)
++        names(Resultado)[names(Resultado) == "LL"]<-"LimInf"
++        names(Resultado)[names(Resultado) == "media"]<-"Media"
++        names(Resultado)[names(Resultado) == "LU"]<-"LimSup"
++    }
++    else{
++        k<-K.factor(tamanyo,alpha=alpha,P=P,side=1,method=c("WBE"))
++        if(lados=='I'){
++            LL<-media-k*desviacion
++            Resultado<-data.frame(LL,media)
++            names(Resultado)[names(Resultado) == "LL"]<-"LimInf"
++            names(Resultado)[names(Resultado) == "media"]<-"Media"
++        }
++        else{
++            LU<-media+k*desviacion
++            Resultado<-data.frame(LU,media)
++            names(Resultado)[names(Resultado) == "LL"]<-"LimInf"
++            names(Resultado)[names(Resultado) == "media"]<-"Media"
++        }
++    }
++    return(Resultado)
++}
+>ITs<-IT(n,m,desv,alpha=gamma,P=1-alfa,lados=inter)
+>ITs
+        LU Media
+1 11.71762  3.84
+ \end{verbatim}
+ \vspace{-0.5cm}
+ En resumen, y redondeando cifras para unificar las soluciones hechas con y sin R, se tiene que el l\'{\i}mite superior de predicci\'on de la concentraci\'on de ortof\'osforo para la siguiente observaci\'on de agua, con un nivel del $95\%$ de confianza, es de $9.42$ miligramos por litro, y el l\'{\i}mite superior de tolerancia de $95\%$ de confianza para el cual la concentraci\'on de ortof\'osforo exceda $95\%$ de todas las posibles observaciones en el r\'{\i}o James es de $11.72$ miligramos por litro. N\'otese que el l\'{\i}mite de tolerancia obtenido difiere un poco del resultado oficial del libro, eso es porque en el libro se busc\'o el factor $k$ de tolerancia con $n=14$ en vez de usar $n=15$, posiblemente al reducir $n$ en $1$ como se hizo para encontrar el valor cr\'{\i}tico $t_{\alpha,n-1}$, de la distribuci\'on $t$, por lo que se puede asegurar que el resultado aqu\'{\i} obtenido es el correcto. Lo anterior indica que se espera, con un $95\%$ de seguridad, que la pr\'oxima observaci\'on contenga una cantidad menor o igual de $9.42$ miligramos de ortof\'osforo por litro, mientras que el l\'{\i}mite de tolerancia indica, con $95\%$ de seguridad, que el $95\%$ de las observaciones contienen a lo m\'as $11.72$ miligramos de ortof\'osforo por litro, por lo que un experto podr\'{\i}a confirmar si estos l\'{\i}mites superiores son demasiado elevados o no, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

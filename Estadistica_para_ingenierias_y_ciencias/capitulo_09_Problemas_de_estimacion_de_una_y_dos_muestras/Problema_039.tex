@@ -1,0 +1,69 @@
+\begin{enunciado}
+ Los estudiantes pueden elegir entre un curso de f\'{\i}sica de tres semestres-hora sin laboratorio y un curso de cuatro semestres-hora con laboratorio. El examen final escrito es el mismo para cada secci\'on. Si $12$ estudiantes de la secci\'on con laboratorio tienen una calificaci\'on promedio en el examen de $84$ con una desviaci\'on est\'andar de $4$, y $18$ estudiantes de la secci\'on sin laboratorio tienen una calificaci\'on promedio de $77$ con una desviaci\'on est\'andar de $6$, encuentre un intervalo de confianza de $99\%$ para la diferencia entre las calificaciones promedio para ambos cursos. Suponga que las poblaciones se distribuyen de forma aproximadamente normal con varianzas iguales.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de las calificaciones en el examen final escrito en el curso de f\'{\i}sica de los estudiantes que eligieron el curso con laboratorio y de los estudiantes que eligieron el curso sin laboratorio, respectivamente, del enunciado se tienen los siguientes datos:
+ \begin{itemize}
+  \item $X_i \sim n(\mu_i, \sigma_i)$, para cada $i\in\{ 1, 2 \}$.
+  \item $\mu_i$ y $\sigma_i$ desconocidas, para cada $i \in \{ 1, 2 \}$.
+  \item $\sigma_1 = \sigma_2$.
+  \item $n_1 = 12$ estudiantes y $n_2 = 18$ estudiantes.
+  \item $\bar{x}_1 = 84$ y $\bar{x}_2 = 77$.
+  \item $s_1 = 4$ y $s_2 = 6$.
+  \item $\alpha = 0.01$.
+ \end{itemize}
+ Como se desea encontrar un intervalo de confianza bilateral para $\mu_1 - \mu_2$, usando como estimador $\bar{x}_1 - \bar{x}_2$, desconociendo las varianzas poblacionales aunque suponi\'endolas iguales, con muestras peque\~nas de poblaciones que se distribuyen aproximadamente normal, entonces se requerir\'a el valor de $t_{\alpha/2,n_1+n_2-2} = t_{0.005,28}$. De la Tabla A.4, se tiene que $t_{0.005,28} = 2.763$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.005, 28, lower.tail=F)
+[1] 2.763262455461444666582
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $2.763262455461$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales usando como estimador la diferencia de las medias muestrales en muestras peque\~nas, en donde se desconoce las desviaciones est\'andar poblacionales pero suponiendo que son iguales y donde se suponen que las poblaciones se distribuyen aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - t_{\alpha/2,n_1+n_2-2}s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2 \right) + t_{\alpha/2,n_1+n_2-2}s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+ \end{equation*}
+ en donde
+ \begin{equation*}
+  s_p = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n_1+n_2-2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  s_p & = & \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}} = \sqrt{\frac{(12-1)(4)^2 + (18-1)(6)^2}{12+18-2}} =\sqrt{\frac{(11)(16)+(17)(36)}{28}} \\
+  & = & \sqrt{\frac{176+612}{28}} = \sqrt{\frac{788}{28}} = \sqrt{\frac{197}{7}} = \frac{\sqrt{1378}}{7}
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) \pm t_{\alpha/2,n_1+n_2-2}s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}} & = & (84-77) \pm (2.763)\left( \frac{\sqrt{1378}}{7} \right) \sqrt{\frac{1}{12}+\frac{1}{18}} \\
+  & = & 7 \pm 0.394\overline{714285} \sqrt{1378}\sqrt{\frac{5}{36}} = 7 \pm 0.394\overline{714285} \frac{\sqrt{689}\sqrt{5}}{\sqrt{18}} \\ 
+  & = & 7 \pm 0.394\overline{714285}\frac{\sqrt{3445}\sqrt{2}}{(3)(2)} = 7 \pm 0.0657\overline{857142} \sqrt{6890}
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $99\%$ de confianza de la diferencia de la media de las calificaciones en el examen final escrito en el curso de f\'{\i}sica con laboratorio menos la media de las calificaciones en el mismo examen en el curso de f\'{\i}sica sin laboratorio, es de:
+ \begin{equation*}
+  1.5393894 < \mu_1 - \mu_2 < 12.46061
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P14\_Intervalo\_de\_confianza\_05.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-12
+> n2<-18
+> m1<-84
+> m2<-77
+> desv.tipica1<-4
+> desv.tipica2<-6
+> alfa<-0.01
+> val<-FALSE
+> varia<-TRUE
+> inter<-'D'  
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  n1 n2 media1 media2  LimInf diferencia   LimSup
+1 12 18     84     77 1.53689          7 12.46311
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $99\%$ es $1.54 < \mu_1 - \mu_2 < 12.46$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$ 
+\end{solucion}

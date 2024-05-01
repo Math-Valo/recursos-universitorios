@@ -1,0 +1,83 @@
+\begin{enunciado}
+ Se realiza un estudio para determinar si hay una diferencia
+ entre las proporciones de padres en los estados
+ de Maryland (MD), Virginia (VA), Georgia (GA) y Alabama (AL)
+ que est\'an a favor de colocar Biblias en las escuelas primarias.
+ En la siguiente tabla se registran las respuestas de $100$ padres
+ seleccionados al azar en cada uno de esos estados:
+ \begin{center}
+  \begin{tabular}{lcccc}
+   & \multicolumn{4}{c}{\textbf{Estado}} \\
+   \cline{2-5}
+   \textbf{Preferencia} & \textbf{MD} & \textbf{VA} & \textbf{GA} &
+   \textbf{AL} \\
+   \hline 
+   S\'{\i} & $65$ & $71$ & $78$ & $82$ \\
+   No & $35$ & $29$ & $22$ & $18$
+  \end{tabular}
+ \end{center}
+ ¿Podemos concluir que las proporciones de padres que est\'an a favor
+ de colocar Biblias en las escuelas son las mismas
+ para estos cuatro estados?
+ Utilice un nivel de significancia de $0.01$.
+\end{enunciado}
+
+\begin{solucion}
+ El problema corresponde a una prueba de varias proporciones,
+ el cual se resuelve usando una prueba $\chi^2$ como se hace con la prueba
+ de homogeneidad, con $(r-1)\times(c-1) = (2-1)\times (4-1) = 3$ grados
+ de libertad. As\'{\i} que, nombrando $p_1$, $p_2$, $p_3$ y $p_4$
+ a las proporciones de padres que est\'an a favor de colocar Biblias
+ en las escuelas primarias en los estados de Maryland, Virginia, Georgia
+ y Alabama, respectivamente, la prueba se escribe como sigue:
+ \begin{eqnarray*}
+  H_0: & & p_1 = p_2 = p_3 = p_4 \\
+  H_1: & & \text{no todos las proporciones } p_1, p_2, p_3 \text{ y } p_4
+  \text{ son iguales.}
+ \end{eqnarray*}
+ con un nivel de significancia $\alpha = 0.01$.
+ Esto genera la regi\'on de rechazo $\chi^2 > 11.345$, 
+ que corresponde al valor cr\'{\i}tico de la distribuci\'on $\chi^2$
+ con $3$ grados de libertad.
+ \par 
+ El proceso se puede realizar usando el programa de R escrito
+ en el archivo adjunto con el nombre
+ \texttt{P18\_Prueba\_de\_independencia\_y\_homogeneidad\_01.r},
+ que, a su vez, usa la base de datos en el archivo nombrado
+ \texttt{DB40\_Problema\_109.csv}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB40_Problema_109.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Preferencia","Estado")
+> varFrecuencia<-"Frecuencia"
+> pruebas<-c(1)
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+$tabla
+           Estado
+Preferencia AL GA MD VA
+         No 18 22 35 29
+         Sí 82 78 65 71
+
+$listaPruebas
+$listaPruebas[[1]]
+
+	Pearson's Chi-squared test
+
+data:  tbl1
+X-squared = 8.8358, df = 3, p-value = 0.03156
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Con lo que se obtiene un valor del estad\'{\i}stico $\chi^2 = 8.8358$,
+ lo cual lleva a decidir no rechazar $H_0$ y concluir,
+ con un nivel de significancia de $0.01$, 
+ que la proporci\'on de padres que est\'an a favor de colocar Biblias
+ en las escuelas no son significantivamente diferentes.
+ Sin embargo, n\'otese que el valor $P$ para el valor del estad\'{\i}stico
+ obtenido corresponde a una probabilidad de $0.03156$,
+ que es bastante bajo.
+ Esto indica que existe un riesgo que hay que asumir
+ ante la decisi\'on de no rechazar la hip\'otesis nula,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

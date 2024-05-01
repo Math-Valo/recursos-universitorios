@@ -1,0 +1,43 @@
+\begin{enunciado}
+ Una forma alternativa de estimaci\'on se lleva a cabo a trav\'es del m\'etodo de momentos. El m\'etodo implica igualar la media y la varianza poblacionales a las correspondientes media muestral $\bar{x}$ y varianza muestra $s^2$, y resolver para el par\'ametro; el resultado son los \textbf{estimadores del momento}. En el caso de un solo par\'ametro, \'unicamente se utilizan las medias. D\'e un argumento de que en el caso de la distribuci\'on de Poisson el estimador de probabilidad m\'axima y los estimadores del momento son iguales.
+\end{enunciado}
+
+\begin{solucion}
+ Antes de comenzar, hay que aclarar algo. La estimaci\'on puntual por momentos, se obtiene al \textbf{igualar los momentos}, es decir, al igualar el $k-$\'esimo momento poblacional con el el respectivo momento muestral, en donde el $k-$\'esimo momento poblacional se define como:
+ \begin{equation*}
+  E\left( X^k \right)
+ \end{equation*}
+ mientras que el $k-$\'esimo momento muestral, para una muestra de tama\~no $n$, se calcula como:
+ \begin{equation*}
+  \frac{1}{n} \sum_{i=1}^{n} X_i^k
+ \end{equation*}
+ N\'otese que el primer momento poblacional es $\mu$ y el primer momento muestral es $\bar{x}$, por lo que esto tiene sentido, por lo que se vale definir as\'{\i} para el primer momento; sin embargo, estos cambian para la segunda igualaci\'on, ya que, a partir del Teorema 8.1, se tiene que
+ \begin{eqnarray*}
+  s^2 & = & \frac{1}{n(n-1)}\left[ n\sum_{i=1}^n x_i^2 - \left( \sum_{i=1}^n x_i \right)^2 \right] = \frac{n}{n-1}\left[ \frac{1}{n} \sum_{i=1}^n x_i^2 - \frac{}{n^2}\left( \sum_{i=1}^n x_i \right)^2 \right] \\
+  & = & \frac{n}{n-1} \left( \frac{1}{n} \sum_{i=1}^n x_i^2 - \bar{x}^2  \right)
+ \end{eqnarray*}
+ Mientras que, por un resultado conocido, se tiene que 
+ \begin{equation*}
+  E\left( X^2 \right) = \sigma^2 + \mu^2 \quad \Rightarrow \quad \sigma^2 = E\left( X^2 \right) - \mu^2
+ \end{equation*}
+ Entonces, suponiendo que ambas definiciones fuese equivalentes, se tendr\'{\i}a, por la definici\'on del libro, que
+ \begin{equation*}
+  \sigma^2 = s^2 = \frac{n}{n-1}\left( \frac{1}{n}\sum_{i=1}^n x_i^2 - \bar{x}^2 \right)
+ \end{equation*}
+ Mientras que por la definici\'on formal, se cumplir\'{\i}a que
+ \begin{equation*}
+  \sigma^2 = E\left( X^2 \right) - \mu^2 = \frac{1}{n}\sum_{i=1}^n X_i^2 - \bar{x}^2
+ \end{equation*}
+ Luego entonces, no son iguales; sin embargo, si se cambia en la definici\'on del libro la varianza muestral $s^2$ por el estimador de la varianza $s'^2 = \frac{n-1}{n}s^2$, entonces estas dos definiciones s\'{\i} son equivalentes. Este \'ultimo resultado, se resume en lo siguiente:
+ \begin{lema}
+  Si se define la estimaci\'on por momentos \'unicamente para los primeros dos momentos, entonces, este ser\'a equivalente a definirlo como la igualaci\'on de la media poblacional con $\bar{x}$ y la igualaci\'on de la varianza poblacional con del estimador de la varianza $s'^2 = \frac{n-1}{n}s^2$, es decir, definir lo siguiente:
+  \begin{equation*}
+   E(X) = \frac{1}{n} \sum_{i=1}^n x_i \qquad \text{ y } \qquad E\left( X^2 \right) = \frac{1}{n} \sum_{i=1}^n x_i^2
+  \end{equation*}
+  es equivalente a definir que:
+  \begin{equation*}
+   \mu = \bar{x} \qquad \text{ y } \qquad \sigma^2 = s'^2 = \frac{n-1}{n} s^2
+  \end{equation*}
+ \end{lema}
+ Volviendo al problema original, se tiene que el estimador de m\'axima probabilidad de $\lambda$ es $\widehat{\lambda}_1 = \bar{x}$ por un ejemplo en el libro previamente presentado, y como la media poblacional de una distribuci\'on de Poisson es precisamente el par\'ametro $\lambda$, entonces para el estimador de momento del par\'ametro, $\widehat{\lambda}_2$, se tiene que $\lambda = \mu = \bar{x}$, por lo que $\widehat{\lambda}_2 = \bar{x}$. Por lo tanto, ambos estimadores son iguales, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

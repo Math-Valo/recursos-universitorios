@@ -1,0 +1,189 @@
+\begin{enunciado}
+ Se realiza un estudio para comparar la longitud de tiempo entre hombres
+ y mujeres para ensamblar cierto producto.
+ La experiencia indica que la distribuci\'on de tiempos tanto para hombres
+ como para mujeres es aproximadamente normal,
+ pero que la varianza de los tiempos para las mujeres es menor
+ que para los hombres.
+ Una muestra aleatoria de tiempos para $11$ hombres y $14$ mujeres da los siguientes datos:
+ \begin{center}
+  \begin{tabular}{cc}
+   \textbf{Hombres} & \textbf{Mujeres} \\
+   \hline 
+   $n_1 = 11$  & $n_2 = 14$ \\
+   $s_1 = 6.1$ & $s_2 = 5.3$
+  \end{tabular}
+ \end{center}
+ Pruebe la hip\'otesis de que $\sigma_1^2 = \sigma_2^2$ contra la alternativa
+ $\sigma_1^2 > \sigma_2^2$.
+ Utilice un valor $P$ en su conclusi\'on.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{1,2\}$.
+   \item $n_1 = 11$ y $n_2 = 14$.
+   \item $s_1 = 6.1$ y $s_2 = 5.3$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \sigma_1^2 & = & \sigma_2^2 \\
+   H_1: \sigma_1^2 & > & \sigma_2^2
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   f = \frac{s_1^2}{s_2^2}
+   = \frac{6.1^2}{5.3^2} = \frac{37.21}{28.09}
+   = \frac{3\,721}{2\,809} \approx 1.32467071
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.6 se interpola que:
+  \begin{equation*}
+   P(F_{v_1,v_2} > f) = P(F_{n_1-1,\,n_2-1} > 1.32467071)
+   = P(F_{10,13} > 1.325)) > P(F_{10,13} > 2.67) = 0.05
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  El valor $P$ sobrepasa el l\'{\i}mite de probabilidad de la tabla A.6, $0.05$,
+  por lo que la probabilidad de cometer un error tipo I,
+  es decir de errar al rechazar la hip\'otesis nula cuando es cierta,
+  es muy alta, por lo que no hay evidencia suficiente para rechazar
+  la hip\'otesis nula y, por lo tanto, se afirma que la varianza en los tiempos
+  para ensamblar el producto no son significativamente diferentes
+  y se pueden considerar como iguales.
+ \end{conclusion}
+ 
+ En el c\'odigo registrado en el archivo anexo
+ \texttt{P13\_Prueba\_de\_dos\_varianzas\_01.r}, en R,
+ se realiza este procedimiento.
+ El c\'odigo permite modificar los valores iniciales correspondientes a:
+ \texttt{n1} y \texttt{n2} para los tama\~nos de las muestras;
+ \texttt{s1} y \texttt{s2} para las varianzas muestrales;
+ \texttt{alfa} para el nivel de significancia;
+ \texttt{cola} para indicar si la prueba es de dos colas,
+ con \texttt{'D'}, de cola inferior, con \texttt{'I'},
+ o de cola superior, con \texttt{'S'}.
+ \par 
+ El programa espera todos los datos, excepto \texttt{alfa} que es opcional.
+ En caso de no fijar una probabilidad de cometer un error de tipo I
+ a esta variable, se le asigna el valor \texttt{NULL}.
+ \par 
+ La prueba de hip\'otesis siempre usar\'a un estad\'{\i}stico
+ con distribuci\'on $f$ de Fisher.
+ Para ello, se est\'a suponiendo de antemano la normalidad
+ de las poblaciones de donde provienen las muestras.
+ \par
+ Independientemente del tipo de prueba, el resultado muestra lo siguiente:
+ \texttt{n1} y \texttt{n2} que indican los tama\~nos de las muestras;
+ \texttt{s1} y \texttt{s2} para indicar las varianzas muestrales de los datos;
+ \texttt{v1} y \texttt{v2} que indican los grados de libertad
+ para la distribuci\'on $f$ correspondiente al estadístico de la prueba;
+ \texttt{alfa} que indica el nivel de significancia dado,
+ el cual muestra por defecto $0.05$
+ en caso de que se le asigne \texttt{NULL};
+ \texttt{PValor} que indica el valor $P$, la probabilidad
+ de haber obtenido la proporci\'on de varianzas muestrales que se obtuvo
+ suponiendo que la hip\'otesis nula sea cierta;
+ \texttt{Estadistico}, para el valor resultante
+ del estad\'{\i}stico de prueba; y,
+ \texttt{RegionRechazo} para la regi\'on de rechazo del estad\'{\i}stico
+ de prueba, el cual es precisamente la regi\'on de rechazo de la proporci\'on
+ de varianzas muestrales.
+ \par 
+ Adem\'as, seg\'un el tipo de prueba, pueden darse el valor
+ de \texttt{Resultado} para indicar si se rechaza o no
+ la hip\'otesis nula, que aparece al final de los resultados
+ cuando se asigna un valor a \texttt{alfa}.
+ \par 
+ El c\'odigo junto con el resultado se muestra a continuaci\'on:
+ \begin{verbatim}
+> n1<-11
+> n2<-14
+> s1<-6.1^2
+> s2<-5.3^2
+> alfa<-NULL
+> cola<-'S'
+> TestVarProp<-function(n1,n2,s1,s2,alfa=0.05,colas='D'){
++   estadistico<-round(s1/s2,7)
++   v1<-n1-1
++   v2<-n2-1
++   if(n1<2 | n2 < 2){
++     r<-data.frame(n1=n1,n2=n2,
++                   s1=s1,s2=s2,
++                   v1=v1, v2=v2,
++                   alpha=alfa,
++                   PValor=NA,
++                   Estadistico=estadistico,
++                   RegionRechazo=NA
++                   )
++   }else{
++     if(colas=='D'){
++       regionL<-round(qf(alfa/2,n1-1,n2-1),7)
++       regionU<-round(qf(alfa/2,n1-1,n2-1,lower.tail=F),7)
++       pvalor<-2*min(pf(estadistico,n1-1,n2-1,lower.tail=F),
++                     pf(estadistico,n1-1,n2-1))
++       r<-data.frame(n1=n1,n2=n2,
++                     s1=s1,s2=s2,
++                     v1=v1,v2=v2,
++                     alpha=alfa,
++                     PValor=round(pvalor,7),
++                     Estadistico=estadistico,
++                     RegionRechazo=paste("<",regionL,"y >",regionU)
++                     )
++     }else{
++       if(colas=='I'){
++         region<-round(qf(alfa,n1-1,n2-1),7)
++         pvalor<-round(pf(estadistico,n1-1,n2-1),7)
++         r<-data.frame(n1=n1,n2=n2,
++                       s1=s1,s2=s2,
++                       v1=v1,v2=v2,
++                       alpha=alfa,
++                       PValor=pvalor,
++                       Estadistico=estadistico,
++                       RegionRechazo=paste("<",region)
++                       )
++       }else{
++         region<-round(qf(alfa,n1-1,n2-1,lower.tail=F),7)
++         pvalor<-round(pf(estadistico,n1-1,n2-1,lower.tail=F),7)
++         r<-data.frame(n1=n1,n2=n2,
++                       s1=s1,s2=s2,
++                       v1=v1,v2=v2,
++                       alpha=alfa,
++                       PValor=pvalor,
++                       Estadistico=estadistico,
++                       RegionRechazo=paste(">",region))
++       }
++     }
++   }
++   return(r)
++ }
+> if(is.null(alfa)){
++   Test<-TestVarProp(n1,n2,s1,s2,colas=cola)
++ }else{
++   Test<-TestVarProp(n1,n2,s1,s2,alfa=alfa,colas=cola)
++   resultado<-ifelse(Test[,"PValor"]>=alfa,
++                     "No se rechaza H0","Se rechaza H0")
++   Test$Resultado<-resultado
++   Test$Resultado[is.na(Test$Resultado)]<-"Pocos datos"
++ }
+> Test
+  n1 n2    s1    s2 v1 v2 alpha    PValor Estadistico RegionRechazo
+1 11 14 37.21 28.09 10 13  0.05 0.3118285    1.324671   > 2.6710242
+ \end{verbatim}
+ \vspace{-0.7cm}
+ El cual coincide con los c\'alculos obtenidos,
+ adem\'as de ofrecer m\'as informaci\'on, como el valor $P$,
+ que en los c\'alculos por computadora es m\'as preciso
+ que decir que es mayor a $0.05$, como se hizo en conclusi\'on
+ de este ejercicio, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,99 @@
+\begin{enunciado}
+ Cierto proveedor fabrica un tipo de esfera de goma que vende a las compa\~n\'{\i}as automotrices. En la aplicaci\'on, las piezas del material deben tener ciertas caracter\'{\i}sticas de dureza. Ocasionalmente, se detectan las esferas defectuosas y se rechazan. El proveedor afirma que la proporci\'on de defectuosas es $0.05$. El desaf\'{\i}o lleg\'o de un cliente que compr\'o el producto. De manera que se realiz\'o un experimento donde se probaron $400$ esferas y se encontraron $17$ defectuosas.
+ \begin{enumerate}
+  \item Calcule un intervalo de confianza bilateral de $95\%$ en la proporci\'on de defectuosos.
+  
+  \item Calcule un intervalo de confianza unilateral de $95\%$ adecuado en la proporci\'on de defectuosos.
+  
+  \item Interprete los intervalos de ambos incisos y comente acerca de la afirmaci\'on hecha por el proveedor.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de la cantidad de esferas de goma que fabrica el proveedor del enunciado  que salen defectuosas de entre un total de $n$ pelotas fabricadas por este proveedor, entonces $\widehat{P} = X/n$ es un estad\'{\i}stico de proporci\'on del experimento binomial que estima al valor $p$, la proporci\'on real de pelotas de goma defectuosas entre las fabricadas por el proveedor, entonces, del enunciado, se tienen los siguientes datos obtenidos de una muestra:
+ \begin{itemize}
+  \item $n = 400$.
+  \item $x = 17$.
+ \end{itemize}
+ por lo que $\hat{p}$, la proporci\'on de \'exito en esta muestra, y $\hat{q} = 1 - \hat{p}$ valen:
+ \begin{itemize}
+  \item $\hat{p} = \frac{17}{400} = 0.0425$; y,
+  \item $\hat{q} = 1 - \frac{17}{400} = \frac{383}{400} = 0.9575$.
+ \end{itemize}
+ Con lo que los incisos se resuleven como sigue.
+ \begin{enumerate}
+  \item Sea $\alpha$ el nivel de confianza del intervalo de confianza bilateral para $p$, entonces
+  \begin{itemize}
+   \item $\alpha = 0.05$.
+  \end{itemize}
+  Adem\'as, como se buscar\'a un intervalo de confianza para estimar $p$, entonces se requiere del valor $z_{\alpha/2} = z_{0.025}$, el cual se calcul\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, aunque, en R, se puede considerar con mayor precisi\'on como $1.95996398454$.
+  \par 
+  Ya que se busca un intervalo bilateral para la proporci\'on $p$, en donde el tama\~no de las muestras es grande y se tiene que $n\hat{p}$ y $n\hat{q}$ son ambos mayores a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+  \begin{equation*}
+   \hat{p} - z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} < p < \hat{p} + z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha/2}$, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+  \begin{eqnarray*}
+   \hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} & = & \frac{17}{400} \pm 1.96\sqrt{\frac{(17/400)(383/400)}{400}} = \frac{17}{400} \pm \frac{49}{25} \sqrt{\frac{6\,511}{400^3}} = \frac{17}{400} \pm \frac{49\sqrt{6\,511}}{25(8\,000)} \\
+   & = & \frac{17}{400} \pm \frac{49\sqrt{6\,511}}{200\,000} = 0.0425 \pm 0.000245\sqrt{6\,511} \approx 0.0425 \pm 0.0197692
+  \end{eqnarray*}
+  Por lo tanto, el intervalo de confianza bilateral de $95\%$ de la proporci\'on de pelotas de goma defectuosas entre las fabricadas por el proveedor es aproximadamente:
+  \begin{equation*}
+   0.02273076 < p < 0.0622692
+  \end{equation*}
+  Por otro lado, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P17\_Intervalo\_de\_confianza\_08.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-400
+> x<-17
+> p<-NULL
+> alfa<-0.05
+> inter<-'D'
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+     LimInf Proporción    LimSup
+1 0.0227311     0.0425 0.0622689
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $0.02273 < p < 0.06227$.${}_{\square}$
+  
+  \item Sea ahora $\alpha$ el nivel de confianza del intervalo de confianza unilateral para $p$, entonces
+  \begin{itemize}
+   \item $\alpha = 0.05$.
+  \end{itemize}
+  Como se buscar\'a un intervalo de confianza unilateral para estimar $p$, entonces se requiere del valor $z_{\alpha} = z_{0.05}$, el cual se calcul\'o en el ejericio 9.30 y su aproximaci\'on es de $1.645$, aunque, en R, se puede considerar con mayor precisi\'on como $1.644853626951$.
+  \par Ya que se busca un intervalo unilateral superior para la proporci\'on $p$, en donde el tama\~no de las muestras es grande y se tiene que $n\hat{p}$ y $n\hat{q}$ son ambos mayores a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+  \begin{equation*}
+   p < \hat{p} + z_{\alpha}\sqrt{\frac{\hat{p}\hat{q}}{n}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha}$, se tiene los siguientes c\'alculos del intervalo de confianza unilateral superior como sigue:
+  \begin{eqnarray*}
+   \hat{p} + z_{\alpha}\sqrt{\frac{\hat{p}\hat{q}}{n}} & = & \frac{17}{400} + 1.645\sqrt{\frac{(17/400)(383/400)}{400}} = \frac{17}{400} + \frac{329\sqrt{6\,511}}{200(8\,000)} \\ 
+   & = & \frac{17}{400} + \frac{329\sqrt{6\,511}}{1\,600\,000} = 0.0425 + 0.000205625\sqrt{6\,511} \approx 0.0425 + 0.016592
+  \end{eqnarray*}
+  Por lo tanto, el intervalo unilateral superior de $95\%$ de la proporci\'on de pelotas de goma defectuosas entre las fabricadas por el proveedor es aproximadamente:
+  \begin{equation*}
+   p < 0.059092
+  \end{equation*}
+  Por otro lado, usando R, se puede calcular el intervalo de confianza unilateral superior usando el script en el archivo \texttt{P17\_Intervalo\_de\_confianza\_08.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-400
+> x<-17
+> p<-NULL
+> alfa<-0.05
+> inter<-'S'
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+     LimInf Proporción    LimSup
+1 0.0259094     0.0425 0.0590906
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza unilateral superior del $95\%$ es $ p < 0.05909$.${}_{\square}$
+  
+  \item Los resultados anteriores, sugieren que el proveedor est\'a dando un resultado cercano a la realidad, con la posibilidad de que se \'este el valor real, ya que la proporci\'on de pelotas defetuosas se encuentra, seg\'un los intervalos calculados, aproximadamente entre el $2\%$ y $6\%$ de las pelotas fabricadas, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+
+\end{solucion}

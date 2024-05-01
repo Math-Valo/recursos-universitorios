@@ -1,0 +1,48 @@
+\begin{enunciado}
+ En una muestra aleatoria de $1\,000$ viviendas en cierta ciudad, se encuentra que $228$ se calientan con petr\'oleo. Encuentre el intervalo de confianza de $99\%$ para la proporci\'on de viviendas en esta ciudad que se calientan con petr\'oleo.
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria de la cantidad de viviendas que se calientan con petr\'oleo en cada $n$ casas en la ciudad que hace referencia el enunciado, entendiendo que $n$ es peque\~na en comparaci\'on a $N$, la poblaci\'on total de casas en dicha ciudad, suponiendo que $n/N \leq 0.05$, y sea $k$ la cantidad total de casas que se calientan con petr\'oleo en aquella ciudad, entonces $\widehat{P} = X/n$ es un estad\'{\i}stico de una proporci\'on en un experimento binomial que aproxima el valor de $k/N$, la proporci\'on buscada, entonces, del enunciado, se tienen los siguientes datos obtenidos de una muestra:
+ \begin{itemize}
+  \item $n=1\,000$.
+  \item $x=228$.
+  \item $\alpha=0.01$.
+ \end{itemize}
+ por lo que $\hat{p}$, la proporci\'on de \'exitos en esta muestra, y $\hat{q} = 1-\hat{p}$ est\'an dados por:
+ \begin{itemize}
+  \item $\hat{p} = \frac{x}{n} = \frac{228}{1\,000} = \frac{57}{250} = 0.228$; y,
+  \item $\hat{q} = 1-\hat{p} = 1 - \frac{57}{250} = 0.772$.
+ \end{itemize}
+ Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p$, entonces se requiere del valor $z_{\alpha/2} = z_{0.005}$, cual se calcul\'o en el ejercicio 9.7 y su aproximaci\'on es de $2.575$, aunque, en R, se puede considerar con mayor precisi\'on como $2.5758293$.
+ \par 
+ Ya que se busca un intervalo de confianza para la proporci\'on de un experimento binomial en donde el tama\~no de muestra es grande y se tiene que tanto $n\hat{p}$ como $n\hat{q}$ es mayor que o igual a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \hat{p} - z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}} < p < \hat{p} + z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y con la primera aproximaci\'on de $z_{\alpha}/2$, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{eqnarray*}
+  \hat{p} \pm z_{\alpha/2} \sqrt{\frac{\hat{p}\hat{q}}{n}} & = & 0.228 \pm 2.575\sqrt{\frac{(0.228)(0.772)}{1\,000}} = 0.228 \pm 2.575\left( \frac{\sqrt{57(193)}\sqrt{10}}{100(250)} \right) \\
+  & = & 0.228 \pm \frac{103\sqrt{110\,010}}{1\,000\,000} = 0.228 \pm 0.000103\sqrt{110\,010} \approx 0.228 \pm 0.034162788
+ \end{eqnarray*}
+ Por lo tanto, el intervalo de confianza de $99\%$ de la proporci\'on de viviendas en esta ciudad que se calientan con petr\'oleo es aproximadamente:
+ \begin{equation*}
+  0.19383721 < p < 0.262162788
+ \end{equation*}
+ Finalmente, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P17\_Intervalo\_de\_confianza\_08.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n<-1000
+> x<-228
+> p<-NULL
+> alfa<-0.01
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+     LimInf Proporción    LimSup
+1 0.1938262      0.228 0.2621738
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $99\%$ es $0.1938 <p< 0.2622$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,37 @@
+\begin{enunciado}
+ ?`De qu\'e tama\~no se necesita una muestra en el ejercicio 9.4 si deseamos tener $96\%$ de confianza de que nuestra media muestral est\'e dentro de $10$ horas de la media real?
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.4, y a eso a\~nadiendo el error permitido en la que se debe encontrar la media muestral para estimar la media poblacional, se tiene lo siguiente:
+ \begin{itemize}
+  \item $X\sim\text{normal}(\mu,\sigma)$.
+  \item $\sigma_X = 40\,$h.
+  \item $\alpha=0.04$.
+  \item $z_{\alpha/2}=2.05$, seg\'un el libro, y $z_{\alpha/2}=2.05374891$, con la aproximaci\'on realizada en R. 
+  \item $e=10\,$h.
+ \end{itemize}
+ Entonces, como la variable aleatoria sigue una distribuci\'on normal, se puede usar directamente el siguiente resultad:
+ \begin{equation*}
+  n = \left\lceil \left( \frac{z_{\alpha/2} \sigma}{e} \right)^2 \right\rceil
+ \end{equation*}
+ por lo tanto, el valor pedido se puede calcular, usando el valor $z_{\alpha/2}$ del libro, como
+ \begin{equation*}
+  n = \left\lceil \left( \frac{2.05\times 40}{10}\right)^2 \right\rceil = \left\lceil \left( 8.2 \right)^2 \right\rceil = \lceil 67.24 \rceil
+ \end{equation*}
+ Por lo tanto, el tama\~no de la muestra buscado es de $n=68$.
+ \par 
+ N\'otese que usando el valor $z_{\alpha/2}$ de la aproximaci\'on hecha en R da el mismo valor, esto se puede verificar con las siguientes l\'{\i}neas de c\'odigo
+ \begin{verbatim}
+>error<-10
+>desv.tipica<-40
+>alfa<-0.04
+>zalfa<-qnorm(1-alfa/2)
+>n<-ceiling((zalfa*desv.tipica/error)^2)
+>n
+[1] 68
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el cual se encuentra registrado en el archivo anexo \texttt{P03\_Tamanyo\_de\_muestra\_1.r}, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
+

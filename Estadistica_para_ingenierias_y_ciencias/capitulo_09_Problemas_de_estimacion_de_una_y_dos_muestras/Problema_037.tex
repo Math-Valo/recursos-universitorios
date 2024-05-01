@@ -1,0 +1,58 @@
+\begin{enunciado}
+ Se realiza un estudio para determinar si cierto tratamiento met\'alico tiene alg\'un efecto sobre la cantidad de metal que se elimina en una operaci\'on de decapado. Una muestra aleatoria de $100$ piezas se sumerge en un baño por 24 horas sin el tratamiento, lo que da un promedio de $12.2$ mil\'{\i}metros de metal eliminados y una desviaci\'on est\'andar muestral de $1.1$ mil\'{\i}metros. Una segunda muestra de $200$ piezas se somete al tratamiento, seguida de 24 horas de inmersi\'on en el baño, lo que da como resultado una eliminaci\'on promedio de $9.1$ mil\'{\i}metros de metal, con una desviaci\'on est\'andar muestral de $0.9$ mil\'{\i}metros. Calcule una estimaci\'on del intervalo de confianza con $98\%$ para la diferencia entre las medias de las poblaciones. ¿El tratamiento parece reducir la cantidad media del metal eliminado?
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X_1$ y $X_2$ las variables aleatorias de la cantidad de metal eliminado en un baño de 24 horas, medido en mil\'{\i}metros, con y sin el tratamiento previo al baño, respectivamente, entonces, del enunciado, se tienen los siguientes datos:
+ \begin{itemize}
+  \item $\mu_1$, $\sigma_1$, $\mu_2$ y $\sigma_2$ desconocidos.
+  \item $n_1 = 100$ piezas y $n_2 = 200$ piezas.
+  \item $\bar{x}_1 = 12.2\,$ml y $\bar{x}_2 = 9.1\,$ml.
+  \item $s_1 = 1.1\,$ml y $s_2 = 0.9\,$ml.
+  \item $\alpha = 0.02$.
+ \end{itemize}
+ Como se desea encontrar un intervalo de confianza para $\mu_1-\mu_2$, usando $\bar{x}_1-\bar{x}_2$ y el tama\~no de las muestras son grandes, entonces se requerir\'a el valor cr\'{\i}tico $z_{\alpha/2} = z_{0.01}$. De la Tabla A.3, se tiene que este es un valor entre $2.32$ y $2.33$, con mayor aproximaci\'on a $2.33$, que es el valor que se considerar\'a; mientras que, usando R, se obtiene un valor m\'as preciso con los siguientes comandos.
+ \begin{verbatim}
+> options(digits=22)
+> qnorm(0.01, mean = 0, sd = 1, lower.tail = F)
+[1] 2.326347874040840757459
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar, con mayor precisi\'on, como $2.326347874$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de las medias poblacionales usando como estimador a la diferencia de medias muestrales en muestras grandes, entonces se usar\'a la formulaci\'on siguiente:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2 \right) + z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor de $z_{\alpha/2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} & = & (12.2 - 9.1) \pm 2.33\sqrt{\frac{1.1^2}{100} + \frac{0.9^2}{200}} = 3.1 \pm 2.33\sqrt{\frac{2(1.21)}{200} + \frac{0.81}{200}} \\
+  & = & 3.1 \pm 2.33\sqrt{\frac{2.42 + 0.81}{200}} = 3.1\pm 2.33\sqrt{\frac{3.23}{200}} \\
+  & = & 3.1 \pm 2.33\sqrt{\frac{323}{20000}} = 3.1 \pm (2.33)\left( \frac{\sqrt{323}}{100\sqrt{2}} \right) = 3.1 \pm \frac{0.0233\sqrt{646}}{2} \\
+  & = & 3.1 \pm 0.01165\sqrt{646}
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $98\%$ de confianza de la diferencia de las medias de la cantidad de metal eliminado, medido en mil\'{\i}metros, cuando no se somete al tratamiento menos al recibir el tratamiento, es de:
+ \begin{equation*}
+  2.8038974 < \mu_1 - \mu_2 < 3.3961
+ \end{equation*}
+ Finalmente, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P13\_Intervalo\_de\_confianza\_04.r} cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n1<-100
+> n2<-200
+> m1<-12.2
+> m2<-9.1
+> desv.tipica1<-1.1
+> desv.tipica2<-0.9
+> alfa<-0.02
+> val<-FALSE
+> inter<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+   n1  n2 media1 media2   LimInf diferencia   LimSup
+1 100 200   12.2    9.1 2.804362        3.1 3.395639
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $98\%$ es $2.804 < \mu_1 - \mu_2 < 3.396$, por lo que se concluye, al ser ambos valores del intervalo positivos, que $\mu_1$ debe ser mayor a $\mu_2$, con $98\%$ de confianza, es decir, en promedio s\'{\i} se reduce la cantidad media del metal eliminado con el tratamiento, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

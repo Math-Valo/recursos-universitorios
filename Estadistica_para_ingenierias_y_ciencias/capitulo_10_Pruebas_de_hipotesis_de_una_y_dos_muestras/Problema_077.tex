@@ -1,0 +1,125 @@
+\begin{enunciado}
+ Se lleva a cabo un experimento para comparar el contenido de alcohol
+ en una salsa de soya en dos l\'{\i}neas de producci\'on diferentes.
+ La producci\'on se supervisa ocho veces al d\'{\i}a.
+ Los datos son los que aqu\'{\i} se muestran.
+ \begin{verbatim}
+Línea de producción 1:
+    0.48 0.39 0.42 0.52 0.40 0.48 0.52 0.52
+Línea de producción 2:
+    0.38 0.37 0.39 0.41 0.38 0.39 0.40 0.39
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Suponga que ambas poblaciones son normales.
+ Se sospecha que la l\'{\i}nea de producci\'on 1 no produce
+ con la consistencia de la l\'{\i}nea 2 en t\'erminos de contenido de alcohol.
+ Pruebe la hip\'otesis de que $\sigma_1 = \sigma_2$ contra la alternativa
+ de que $\sigma_1 \neq \sigma_2$. Utilice un valor $P$.
+\end{enunciado}
+
+\begin{solucion}
+ \begin{datos}
+  Resumido se tiene que:
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{1,2\}$.
+   \item $n_1 = n_2 = 8$.
+  \end{itemize}
+  Para obtener las varianzas se calcula primero lo siguiente:
+  \begin{eqnarray*}
+   \sum_{i=1}^{8} x_{1,i} & = &
+   0.48 + 0.39 + 0.42 + 0.52 + 0.40 + 0.48 + 0.52 + 0.52 = 3.73 \\
+   \sum_{i=1}^{8} x_{1,i}^2 & = & 
+   0.48^2 + 0.39^2 + 0.42^2 + 0.52^2 + 0.40^2 + 0.48^2 + 0.52^2 + 0.52^2
+   = 1.7605 \\
+   \sum_{i=1}^{8} x_{2,i} & = &
+   0.38 + 0.37 + 0.39 + 0.41 + 0.38 + 0.39 + 0.40 + 0.39 = 3.11 \\
+   \sum_{i=1}^{8} x_{2,i}^2 & = &
+   0.38^2 + 0.37^2 + 0.39^2 + 0.41^2 + 0.38^2 + 0.39^2 + 0.40^2 + 0.39^2
+   = 1.2101
+  \end{eqnarray*}
+  por lo que las varianzas muestrales se calculan, usando el teorema 8.1,
+  como sigue:
+  \begin{eqnarray*}
+   s_1^2 & = &
+   \frac{1}{8(7)}
+   \left[ 8\sum_{i=1}^8 x_{1,i}^2 -
+   \left( \sum_{i=1}^8 x_{1,i} \right)^2 \right]
+   = \frac{8(1.7605) - 3.73^2}{56} \\
+   & = & \frac{14.084 - 13.9129}{56} = \frac{0.1711}{56}
+   = \frac{1\,711}{560\,000} = 0.0030553\overline{571428} \\
+   s_2^2 & = &
+   \frac{1}{8(7)}
+   \left[ 8\sum_{i=1}^8 x_{2,i}^2 -
+   \left( \sum_{i=1}^8 x_{2,i} \right)^2 \right]
+   = \frac{8(1.2101) - 3.11^2}{56} \\
+   & = & \frac{9.6808 - 9.6721}{56}
+   = \frac{0.0087}{56} = \frac{87}{560\,000} = 0.0001553\overline{571428}
+  \end{eqnarray*}
+  Por lo que el resto de los datos se resume como sigue:
+  \begin{itemize}
+   \item $s_1^2 = \frac{1\,711}{560\,000} = 0.0030553\overline{571428}$
+   y $s_2^2 = \frac{87}{560\,000} = 0.0001553\overline{571428}$.
+  \end{itemize}
+  Adem\'as, por la suposici\'on de normalidad en las distribuciones
+  poblacionales, se tiene la distribuci\'on siguiente:
+  \begin{itemize}
+   \item $\frac{s_1^2}{s_1^2} \sim f(v_1,v_2)$.
+   \item $v_1 = n_1 - 1 = 7$ y $v_2 = n_2 - 1 = 7$.
+  \end{itemize}
+ \end{datos}
+ 
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \sigma_1 &  =   & \sigma_2 \\
+   H_1: \sigma_1 & \neq & \sigma_2
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{estadistico}
+  \begin{equation*}
+   f = \frac{s_1^2}{s_2^2}
+   = \frac{\displaystyle{\frac{\cancelto{59}{1\,711}}{\cancel{560\,000}}}}
+   {\displaystyle{\frac{\cancelto{3}{87}}{\cancel{560\,000}}}}
+   = \frac{59}{3} = 19.\bar{6}
+  \end{equation*}
+ \end{estadistico}
+
+ \begin{valorp}
+  De la tabla A.6 se observa que el valor $f$
+  est\'a muy alejado a la derecha de $f_{0.01,7,7}$, 
+  por lo que se entiende que $P(F > f) < 0.01$.
+  Por lo tanto, se tiene que:
+  \begin{equation*}
+   2\times P\left( F_{v_1,v_2} > f \right) < 2\times(0.01) = 0.02
+  \end{equation*}
+ \end{valorp}
+
+ \begin{conclusion}
+  Por lo tanto, como el valor $P$ es muy peque\~no,
+  se concluye que hay evidencia suficiente para rechazar la hip\'otesis nula,
+  y, por lo tanto, se afirma que la varianza en el contenido de alcohol
+  de la l\'{\i}nea de producci\'on 1 es diferente
+  de la varianza de contenido de alcohol de la l\'{\i}nea de producci\'on 2.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo \texttt{P14\_Prueba\_de\_dos\_varianzas\_02.r}, con los siguientes cambios:
+ \begin{verbatim}
+> datos<-read.csv("DB13_Problema_077.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("alcohol.porc")
+> varSel<-c("Línea")
+> alfa<-NULL
+> cola<-'D'
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+      variable Freq n1 n2  media1  media2 varianza1 varianza2 v1 v2 alpha
+1 alcohol.porc   16  8  8 0.46625 0.38875 0.0030554 0.0001554  7  7  0.05
+     PValor Estadistico             RegionRechazo
+1 0.0008435    19.66667 < 0.2002038 y > 4.9949092
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los resultados obtenidos,
+ adem\'as de ofrecer un valor m\'as preciso para el valor $P$,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

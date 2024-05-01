@@ -1,0 +1,65 @@
+\begin{enunciado}
+ De acuerdo con \textit{USA Today} (17 de marzo de 1997), las mujeres constitu\'{\i}an $33.7\%$ del equipo de redacci\'on en las estaciones locales de televisi\'on en 1990, y $36.2\%$ en 1994. Suponga que se contrataron 20 nuevos empleados para el equipo de redacci\'on.
+ \begin{enumerate}
+  \item Estime el n\'umero que habr\'{\i}an sido mujeres en cada a\~no, respectivamente.
+  \item Calcule un intervalo de confianza de $95\%$, para saber si hay evidencia de que la proporci\'on de mujeres contratadas para el equipo de redacci\'on en 1994 fue mayor que la proporci\'on contratada en 1990.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Usando los estad\'{\i}sticos de proporci\'on, $\widehat{P}_1$ y $\widehat{P}_2$, para estimar los valores $p_1$, la proporci\'on de mujeres contratadas del equipo de redacci\'on en las estaciones locales de televisi\'on en 1990, y $p_2$, la proporci\'on de mujeres contratadas del equipo de redacci\'on en las estaciones locales de televisi\'on en 1994, con muestras de tama\~nos $n_1$ y $n_2$, respectivamente, y sean $X_1$ y $X_2$ las variables aleatorias dadas por $X_1 = n_1\widehat{P}_1$ y $X_2 = n_2\widehat{P}_2$, entonces del enunciado se tiene que:
+ \begin{itemize}
+  \item $\hat{p}_1 = 0.337$ y $\hat{p}_2 = 0.362$.
+  \item $\hat{q}_1 = 1 - \hat{p}_1 = 1 - 0.337 = 0.663$ y $\hat{q}_2 = 1 - \hat{p}_2 = 1 - 0.362 = 0.638$.
+ \end{itemize}
+ \begin{enumerate}
+  \item Entonces, suponiendo que los nuevos $20$ empleados fueron contratados cada año, se tiene que:
+  \begin{itemize}
+   \item $n_1 = n_2 = 20$.
+   \item $x_1 =  \left[ n_1p_1 \right] = \left[ 20\times 0.337 \right] = [6.74] = 7$ y $x_2 = \left[ n_2p_2 \right] = \left[ 20\times 0.362 \right] = [7.24] = 7$.
+  \end{itemize}
+  Es decir, habr\'{\i}an habido la misma cantidad, $7$ mujeres, en cada a\~no.${}_{\square}$
+  
+  \item Para este inciso, se seguir\'a tomando los valores $p_1$, $p_2$, $n_1$ y $n_2$ que se han estado enlistado a lo largo del ejercicio, y se agrega el siguiente dato:
+  \begin{itemize}
+   \item $\alpha = 0.05$.
+  \end{itemize}
+  Adem\'as, como se buscar\'a un intervalo de confianza bilateral para estimar $p_1 - p_2$, entonces se requiere del valor $z_{\alpha/2} = 0.025$, el cual se calcu\'o en el ejercicio 9.5 y su aproximaci\'on es de $1.96$, seg\'un el libro y $1.95996398454$, seg\'un R.
+  \par 
+  Ya que se busca un intervalo para la diferencia de proporciones de experimentos binomiales en donde el tama\~no de las muestras son grandes y se tiene que $n_1\hat{p}_1$, $n_1\hat{q}_1$, $n_2\hat{p}_2$ y $n_2\hat{q}_2$ son todos mayores a $5$, entonces se usar\'a la f\'ormula de intervalo siguiente:
+  \begin{equation*}
+   \left( \hat{p}_1 - \hat{p}_2 \right) - z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} < p_1 - p_2 < \left( \hat{p}_1 - \hat{p}_2 \right) + z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}}
+  \end{equation*}
+  Por lo tanto, usando los datos obtenidos y con la aproximaci\'on de $z_{\alpha/2}$ del libro, se tiene los siguientes c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+  \begin{eqnarray*}
+   \left( \hat{p}_1 - \hat{p}_2 \right) \pm z_{\alpha/2}\sqrt{\frac{\hat{p}_1\hat{q}_1}{n_1} + \frac{\hat{p}_2\hat{q}_2}{n_2}} & = & (0.337 - 0.362) \pm 1.96\sqrt{\frac{(0.337)(0.663)}{20} + \frac{(0.362)(0.638)}{20}} \\
+   & = & -0.025 \pm 1.96\sqrt{\frac{0.223431 + 0.230956}{20}} \\ 
+   & = & -0.025 \pm 1.96\sqrt{\frac{0.454387}{20}} = -0.025 \pm 1.96\sqrt{\frac{454\,387}{20\,000\,000}} \\
+   & = & -0.025 \pm \frac{49\sqrt{454\,387}\sqrt{5}}{10\,000(25)} = -0.025 \pm \frac{49\sqrt{2\,271\,935}}{250\,000} \\
+   & = & -0.025 \pm 0.000196\sqrt{2\,271\,935} \approx -0.025 \pm 0.29542961
+  \end{eqnarray*}
+  Por lo tanto, el intervalo de confianza de $95\%$ para la diferencia de la proporci\'on de mujeres contratadas para el equipo de redacci\'on en 1990 menos la proporci\'on de mujeres contratadas para el equipo de redacci\'on en 1994 es aproximadamente
+  \begin{equation*}
+   -0.32042961 < p_1 - p_2 < 0.27042961
+  \end{equation*}
+  Por otro lado, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P20\_Intervalo\_de\_confianza\_09.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n1<-20
+> n2<-20
+> x1<-NULL
+> x2<-NULL
+> p1<-0.337
+> p2<-0.362
+> alfa<-0.05
+> inter<-'D'
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+  n1 n2    p1    p2     LimInf diferencia    LimSup
+1 20 20 0.362 0.362 -0.3204242     -0.025 0.2704242
+  \end{verbatim}
+  \vspace{-0.5cm}
+  por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $-0.3204 < p_1 - p_2 < 0.2704$, por lo tanto, como $p_1 - p_2$ puede ser negativo o positivo de acuerdo a los valores en el intervalo, se concluye que no hay una diferencia significativa, es decir, no hay evidencia estad\'{\i}stica de que la proporci\'on de mujeres contratadas para el equipo de redacci\'on en 1994 fuese mayor que la proporci\'on contratada en 1990, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

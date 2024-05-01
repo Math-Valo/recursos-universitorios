@@ -1,0 +1,125 @@
+\begin{enunciado}
+ Se desarrolla una nueva cura para cierto tipo de cemento que tiene como resultado un coeficiente de compresi\'on de $5000$ kilogramos por cent\'{\i}metro cuadrado y una desviaci\'on est\'andar de $120$. Para probar la hip\'otesis de que $\mu = 5000$ contra la alternativa de que $\mu < 5000$, se prueba una muestra aleatoria de $50$ piezas de cemento. La regi\'on cr\'{\i}tica se define como $\bar{x} < 4970$.
+ \begin{enumerate}
+  \item Encuentre la probabilidad de cometer un error tipo I cuando $H_0$ es verdadera.
+  
+  \item Eval\'ue $\beta$ para las alternativas $\mu = 4970$ y $\mu = 4960$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ el coeficiente de compresi\'on, en kilogramos por cent\'{\i}metro cuadrado, del cemento y $\overline{X}$ la variable aleatoria del coeficiente de compresi\'on medio de la muestra, del enunciado se tiene lo siguiente, en donde $x_{\text{inf}}$ representa el valor cr\'{\i}tico inferior.
+ \begin{itemize}
+  \item $X \sim n(\mu, \sigma)$.
+  \item $\overline{X} \sim n\left( n, \sigma/\sqrt{n} \right)$.
+  \item $n = 50$.
+  \item $\sigma = 120$.
+  \item $\sigma_{\overline{X}} = 120/\sqrt{50} = \frac{120\sqrt{2}}{10} = 12\sqrt{2}$.
+  \item $x_{\text{inf}} = 4\,970$.
+ \end{itemize}
+ Con lo que sea realiza lo pedido en los incisos como sigue.
+ \begin{enumerate}
+  \item Se tiene lo siguiente bajo el supuesto dado.
+  \begin{itemize}
+   \item $\mu = 5\,000$.
+  \end{itemize}
+  el error tipo I se aproxima usando la tabla A.3 como sigue:
+  \begin{eqnarray*}
+   \alpha & = & P\left( \overline{X} < 4\,970 \right) P\left( Z < \frac{4\,970 - 5\,000}{12\sqrt{2}} \right) = P\left( Z < -\frac{30\sqrt{2}}{24} \right) = P\left( Z < -\frac{5\sqrt{2}}{4} \right) \\
+   & \approx & P(Z < -1.77) \approx 0.0384.
+  \end{eqnarray*}
+  Finalmente, en R se puede calcular esta probabilidad usando el script en el archivo anexo \texttt{P02\_Probabilidad\_de\_error\_normal\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-50
+> CriticoInf<-4970
+> CriticoSup<-NULL
+> desv<-12*sqrt(2)
+> media0<-5000
+> media1<-NULL
+> p0<-NULL
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene
+  \begin{verbatim}
+$`Probabilidad de error tipo I`
+  HipotesisNula  n media     desv CriticoInf      alpha
+1    mu =  5000 50  5000 16.97056       4970 0.03854994
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene lo siguiente:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas da $\alpha = 0.0384$.
+   \item La aproximaci\'on con R da $\alpha = 0.03854994$.
+  \end{itemize}
+
+  \item Suponiendo que
+  \begin{itemize}
+   \item $\mu = 4\,970$.
+  \end{itemize}
+  el error tipo II se calcula como sigue:
+  \begin{eqnarray*}
+   \beta & = & P\left( \overline{X} \geq 4\,970 \right) = P\left( Z \geq \frac{4\,970 - 4\,970}{12\sqrt{2}} \right) = P(Z \geq 0) = 0.5
+  \end{eqnarray*}
+  Y, suponiendo que
+  \begin{itemize}
+   \item $\mu = 4\,960$.
+  \end{itemize}
+  el error tipo II se aproxima usando la tabla A.3 como sigue:
+  \begin{eqnarray*}
+   \beta & = & P\left( \overline{X} \geq 4\,970 \right) = 1 - P\left( \overline{X} < 4\,970 \right) = 1 - P\left( Z < \frac{4\,970 - 4\,960}{12\sqrt{2}} \right) \\
+   & = & 1 - P\left( Z < \frac{10\sqrt{2}}{24} \right) = 1 - P\left( Z < \frac{5\sqrt{2}}{12} \right) \approx 1 - P(Z < 0.59) \approx 1 - 0.7224 = 0.2776
+  \end{eqnarray*}
+  Finalmente, en R se puede calcular estas probabilidades usando el script en el archivo anexo \texttt{P02\_Probabilidad\_de\_error\_normal\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo para el primer caso:
+  \begin{verbatim}
+> n<-50
+> CriticoInf<-4970
+> CriticoSup<-NULL
+> desv<-12*sqrt(2)
+> media0<-NULL
+> media1<-4970
+> p0<-NULL
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa  n media     desv CriticoInf beta
+1           mu =  4970 50  4970 16.97056       4970  0.5
+  \end{verbatim}
+  \vspace{-0.5cm}
+  mientras que para el segundo caso se cambian las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-50
+> CriticoInf<-4970
+> CriticoSup<-NULL
+> desv<-12*sqrt(2)
+> media0<-NULL
+> media1<-4960
+> p0<-NULL
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa  n media     desv CriticoInf      beta
+1           mu =  4960 50  4960 16.97056       4970 0.2778449
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene el siguiente resumen:
+  \begin{itemize}
+   \item Bajo el supuesto $\mu = 4\,970$:
+   \begin{itemize}
+    \item El valor exacto, ya sea con tablas o con R, da $\beta = 0.5$.
+   \end{itemize}
+   \item Bajo el supuesto $\mu = 4\,960$:
+   \begin{itemize}
+    \item La aproximaci\'on con las tablas da $\beta = 0.2776$.
+    \item La aproximaci\'on con R da $\beta = 0.2778449$.
+   \end{itemize}
+  \end{itemize}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

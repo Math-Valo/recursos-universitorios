@@ -1,0 +1,148 @@
+\begin{enunciado}
+ Un investigador de la \texttt{UCLA} afirma que la vida promedio de un rat\'on se puede prolongar hasta $8$ meses m\'as cuando las calor\'{\i}as en su dieta se reducen en aproximadamente $40\%$ desde el momento en que se destetan. Las dietas restringidas se enriquecen a niveles normales con vitaminas y prote\'{\i}na. Suponga que se alimenta a una muestra aleatoria de $10$ ratones con una dieta normal y tiene una vida promedio de $32.1$ meses con una desviaci\'on est\'andar de $3.2$ meses; mientras que una muestra aleatoria de $15$ ratones se alimenta con la dieta restringida y viven un promedio de $37.6$ meses con una desviaci\'on est\'andar de $2.8$ meses. Con un nivel de significancia de $0.05$ pruebe la hip\'otesis de que la vida promedio de los ratones con esta dieta restringida aumenta $8$ meses contra la alternativa de que el aumento es menor que $8$ meses. Suponga que las distribuciones de las vidas con las dietas regular y restringida son aproximadamente normales con varianzas iguales.
+\end{enunciado}
+
+\begin{solucion}
+ $\phantom{0}$
+ \begin{datos}
+  $\phantom{0}$
+  \begin{itemize}
+   \item $X_i \sim n\left( \mu_i, \sigma_i \right)$,
+   para cada $i \in \{ 1,2 \}$.
+   \item $n_1 = 10$ y $n_2 = 15$.
+   \item $\bar{x}_1 = 32.1$ y $\bar{x}_2 = 37.6$.
+   \item $s_1 = 3.2$ y $s_2 = 2.8$.
+   \item $\sigma_1^2 = \sigma_2^2$.
+  \end{itemize}
+ \end{datos}
+
+ \begin{hipotesis}
+  \begin{eqnarray*}
+   H_0: \mu_1 - \mu_2 & \leq & -8 \\
+   H_1: \mu_1 - \mu_2 &   >  & -8
+  \end{eqnarray*}
+ \end{hipotesis}
+
+ \begin{significancia}
+  $\alpha = 0.05$.
+ \end{significancia}
+
+ \begin{region}
+  De la tabla A.4, se tiene el valor cr\'{\i}tico
+  $t_{\alpha,n_1+n_2-2} = t_{0.05,23} \approx 1.714$,
+  por lo que la regi\'on de rechazo est\'a dado para $t > 1.714$,
+  donde $t = \frac{
+  \left( \bar{x}_1 - \bar{x}_2 \right) - d_0
+  }{
+  s_p\sqrt{1/n_1 + 1/n_2}
+  }$.
+ \end{region}
+
+ \begin{estadistico}
+  Dado que
+  \begin{eqnarray*}
+   s_p^2
+   & = &
+   \frac{s_1^2\left( n_1-1\right) +s_2^2\left( n_2-1\right)}{n_1+n_2-2}
+   = \frac{3.2^2(10-1) + 2.8^2(15-1)}{23}
+   = \frac{10.24(9)+7.84(14)}{23} \\
+   & = & \frac{201.92}{23}
+   = \frac{5\,048}{575}
+   \approx 8.77913043
+  \end{eqnarray*}
+  entonces
+  \begin{equation*}
+   s_p = \sqrt{s_p^2} = \sqrt{\frac{5\,048}{575}}
+   = \frac{2\sqrt{1\,262}\sqrt{23}}{5(23)}
+   = \frac{2\sqrt{29\,026}}{115}
+   \approx 2.962959742
+  \end{equation*}
+  y
+  \begin{eqnarray*}
+   t & = & \frac{
+  \left( \bar{x}_1 - \bar{x}_2 \right) - d_0
+  }{
+  s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+  }
+  =
+  \frac{
+  (32.1 - 37.6) - (-8)
+  }{
+  \frac{2\sqrt{29\,026}}{115}\sqrt{ \frac{1}{10} + \frac{1}{15} }
+  }
+  =
+  \frac{
+  (-5.5+8)\left(115\sqrt{29\,026}\right)
+  }{
+  2(29\,026)\sqrt{\frac{2+3}{30}}
+  }
+  =
+  \frac{
+  2.5\left( 115\sqrt{29\,026} \right)
+  }{
+  58\,052 \sqrt{\frac{1}{6}}
+  } \\
+  & = &
+  \frac{
+  5 \left( 115\sqrt{29\,026} \right) \left( \sqrt{6} \right)
+  }{
+  2(58\,052)
+  }
+  = \frac{
+  \left( 575\sqrt{43\,539} \right)(\cancel{2})
+  }{
+  \cancel{2}(58\,052)
+  }
+  = \frac{25\sqrt{43\,539}}{2\,524}
+  \approx 2.0667592
+  \end{eqnarray*}
+ \end{estadistico}
+
+ \begin{decision}
+  Se rechaza $H_0$ a favor de $H_1$.
+ \end{decision}
+
+ \begin{conclusion}
+  Se concluye que la vida promedio de los ratones que siguen una dieta
+  en la que se reducen las calor\'{\i}as en aproximadamente 40\%
+  desde el momento en que se destetan,
+  enriquecidas a niveles normales con vitaminas y prote\'{\i}na,
+  es menor en $8$ meses que la vida promedio de los ratones
+  que siguen una dieta normal
+  y, por lo tanto, el investigador est\'a equivocado.
+ \end{conclusion}
+
+ Finalmente, usando el archivo anexo
+ \texttt{P05\_Prueba\_de\_dos\_medias\_01.r},
+ con los siguientes cambios:
+ \begin{verbatim}
+> n1<-10
+> n2<-15
+> mu<--8
+> m1<-32.1
+> m2<-37.6
+> m<-NULL
+> sigma1<-NULL
+> sigma2<-NULL
+> s1<-3.2
+> s2<-2.8
+> sD<-NULL
+> desv.iguales<-TRUE
+> alfa<-0.05
+> cola<-'S'
+> par<-FALSE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ el programa de R lanza el siguiente resultado:
+ \begin{verbatim}
+  Prueba var.pobl H0 n1 n2 DifMedias desv.est1 desv.est2  est.sp error.est
+1      t  Iguales -8 10 15      -5.5       3.2       2.8 2.96296  1.209623
+  grados.libertad alpha    PValor Estadistico RegionRechazoT RegionRechazoX
+1              23  0.05 0.0250968    2.066759    > 1.7138715   > -5.9268612
+      Resultado
+1 Se rechaza H0
+ \end{verbatim}
+ \vspace{-0.5cm}
+ El cual coincide con los datos obtenidos,
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,112 @@
+\begin{enunciado}
+ Se afirma que la resistencia del alambre $A$ es mayor que la del alambre $B$. Un experimento sobre los alambres muestra los siguientes resultados (en ohms):
+ \begin{center}
+  \begin{tabular}{cc}
+   \textbf{Alambre} $\mathbf{\mathit{A}}$ & \textbf{Alambre} $\mathbf{\mathit{B}}$ \\
+   \hline 
+   $0.140$ & $0.135$ \\
+   $0.138$ & $0.140$ \\
+   $0.143$ & $0.136$ \\
+   $0.142$ & $0.142$ \\
+   $0.144$ & $0.138$ \\
+   $0.137$ & $0.140$
+  \end{tabular}
+ \end{center}
+ Suponiendo varianzas iguales, ¿qu\'e conclusiones extrae? Justifique su respuesta.
+\end{enunciado}
+
+\begin{solucion}
+ Sean $X_1$ y $X_2$ las variables aleatorias de la resistencia, en ohms, de los alambres $A$ y $B$, respectivamente, entonces, del enunciado, se tienen los siguientes datos:
+ \begin{itemize}
+  \item $\mu_i$ y $\sigma_i$ desconocidos, para cada $i \in \{ 1, 2 \}$.
+  \item $\sigma_1^2 = \sigma_2^2$
+  \item $n_1 = n_2 = 6$.
+ \end{itemize}
+ Adem\'as de los $6$ datos obtenidos en cada muestra.
+ \par 
+ A partir de estos datos, se puede calcular la media de ambas muestras, como se muestra a continuaci\'on.
+ \begin{equation*}
+  \bar{x}_1 = \frac{0.14 + 0.138 + 0.143 + 0.142 + 0.144 + 0.137}{6} = \frac{0.844}{6} = \frac{211}{1\,500} = 0.140\overline{6}
+ \end{equation*}
+ y
+ \begin{equation*}
+  \bar{x}_2 = \frac{0.135 + 0.14 + 0.136 + 0.142 + 0.138 + 0.14}{6} = \frac{0.831}{6} = \frac{831}{6\,000} = \frac{277}{2\,000} = 0.1385
+ \end{equation*}
+ por lo que la varianza muestral se obtiene, usando el Teorema 8.1, como sigue:
+ \begin{eqnarray*}
+  s_1^2 & = & \frac{1}{n_1(n_1-1)} \left[ n_1 \sum_{i=1}^{n_1} x_{1i}^2 - \left( \sum_{i=1}^{n_1} x_{1i} \right)^2 \right] \\
+  & = & \frac{6\left( 0.14^2 + 0.138^2 + 0.143^2 + 0.142^2 + 0.144^2 + 0.137^2 \right) - 0.844^2 }{6(5)} \\
+  & = & \frac{6( 0.0196 + 0.019044 + 0.020449 + 0.020164 + 0.020736 + 0.018769) - 0.712336}{30} \\
+  & = & \frac{6(0.118762) - 0.712336}{30} = \frac{0.712572 - 0.712336}{30} = \frac{0.000236}{30} \\
+  & = & \frac{59}{7\,500\,000} = 0.0000078\overline{6}
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  s_2^2 & = & \frac{1}{n_2(n_2-1)} \left[ n_2 \sum_{i=1}^{n_2} x_{2i}^2 - \left( \sum_{i=1}^{n_2} x_{2i} \right)^2 \right] \\
+  & = & \frac{6\left( 0.135^2 + 0.14^2 + 0.136^2 + 0.142^2 + 0.138^2 + 0.14^2 \right) - 0.831^2}{6(5)} \\
+  & = & \frac{6(0.018225 + 0.0196 + 0.018496 + 0.020164 + 0.019044 + 0.0196) - 0.690561}{30} \\
+  & = & \frac{6(0.115129) - 0.690561}{30} = \frac{0.690774 - 0.690561}{30} = \frac{0.000213}{30} = \frac{213}{30\,000\,000} \\
+  & = & \frac{71}{10\,000\,000} = 0.0000071
+ \end{eqnarray*}
+ Ya que se est\'a suponiendo que las varianzas son iguales, entonces se va revisar si las medias poblacionales pueden o no ser iguales.
+ \par 
+ Como la mejor herramienta hasta el momento para proceder en este tipo de problemas es calculando un intervalo de confianza de la diferencia de las medias, lo cual requiere de un nivel de significancia.
+ \par
+ N\'otese que no hay algo que indique lo que es peor entre equivocarse en un intervalo que contenga el cero, y por tanto indique que son iguales las medias, cuando en realidad son distintas las medias poblacionales, o equivarse en un intervalo que no contenga al cero, y por tanto indique que las medias son distintas, entonces se tomar\'a un valor de nivel de confianza est\'andar de $\alpha = 0.05$.
+ \par 
+ Entonces, como se buscar\'a un intervalo de confianza bilateral para $\mu_1 - \mu_2$, usando como estimador $\bar{x}_1 - \bar{x}_2$, con muestras peque\~nas, se requiere suponer, para los m\'etodos conocidos, que $X_1$ y $X_2$ se distribuyen de forma normal. Por lo tanto, se va a suponer en lo que sigue que $X_i \sim n\left( \mu_i, \sigma_i \right)$, para cada $i \in \{ 1, 2 \}$. Luego, aunque las varianzas poblacionales sean desconocidas, se est\'a suponiendo que \'estas son iguales, por lo que el m\'etodo que se usa requiere del valor $t_{\alpha/2,n_1+n_2-2} = t_{0.025,10}$. De la Tabla A.4, se tiene que $t_{0.025,10} = 2.228$, mientras que, usando R, se obtiene el valor con los siguientes comandos:
+ \begin{verbatim}
+> options(digits=22)
+> qt(0.025,10,lower.tail=F)
+[1] 2.228138851986274371342
+ \end{verbatim}
+ \vspace{-0.5cm}
+ por lo que tambi\'en se puede considerar como $2.228138851986274$.
+ \par 
+ Ya que se busca un intervalo de confianza para la diferencia de los promedios reales usando como estimador la diferencia de las medias muestrales en muestras peque\~nas, en donde se desconoce las desviaciones est\'andar poblacionales pero suponiendo que son iguales y donde se suponen que las poblaciones se distribuyen aproximadamente normal, entonces se usar\'a la siguiente formulaci\'on:
+ \begin{equation*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) - t_{\alpha/2,n_1 + n_2 - 2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} < \mu_1 - \mu_2 < \left( \bar{x}_1 - \bar{x}_2 \right) + t_{\alpha/2,n_1 + n_2 - 2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+ \end{equation*}
+ en donde
+ \begin{equation*}
+  s_p = \sqrt{\frac{\left( n_1 - 1 \right)s_1^2 + \left( n_2 - 1 \right)s_2^2}{n_1 + n_2 - 2}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos, considerando el valor $t_{\alpha/2,n_1+n_2-2}$ del libro, se tienen los c\'alculos de los l\'{\i}mites del intervalo de confianza como siguen:
+ \begin{eqnarray*}
+  s_p & = & \sqrt{\frac{\left( n_1 - 1 \right)s_1^2 + \left( n_2 - 1 \right)s_2^2}{n_1 + n_2 - 2}} = \sqrt{\frac{(6-1)(59/7\,500\,000) + (6-1)(71/10\,000\,000)}{6+6-2}} \\
+  & = & \sqrt{\frac{\frac{5}{100\,000}\left( \frac{59}{75} + \frac{71}{100} \right)}{10}} = \sqrt{ \frac{\frac{1}{20\,000}\left( \frac{449}{300} \right)}{10}} = \sqrt{\frac{449}{60\,000\,000}} = \frac{\sqrt{449}\sqrt{15}}{30\,000} \\
+  & = & \frac{\sqrt{6\,735}}{30\,000} \approx 0.002735568192
+ \end{eqnarray*}
+ y
+ \begin{eqnarray*}
+  \left( \bar{x}_1 - \bar{x}_2 \right) \pm t_{\alpha/2,n_1 + n_2 - 2} s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} & = & \left( \frac{211}{1\,500} - \frac{277}{2\,000} \right) \pm (2.228)\left( \frac{\sqrt{6\,735}}{30\,000} \right) \left( \sqrt{\frac{1}{6} + \frac{1}{6}} \right) \\
+  & = & \left( \frac{844 - 831}{6\,000} \right) \pm \left( \frac{557}{250} \right) \left( \frac{\sqrt{6\,735}}{30\,000} \right) \left( \sqrt{\frac{2}{6}} \right) \\
+  & = & \frac{13}{6\,000} \pm \frac{557\sqrt{6\,735}}{7\,500\,000}\sqrt{\frac{1}{3}} = \frac{13}{6\,000} \pm \frac{557\sqrt{6\,735}\sqrt{3}}{7\,500\,000(3)} \\
+  & = & \frac{13}{6\,000} \pm \frac{557(\cancel{3})\sqrt{2\,245}}{7\,500\,000(\cancel{3})} = \frac{13}{6\,000} \pm \frac{557\sqrt{2\,245}}{7\,500\,000} \\
+  & = & \frac{13}{6\,000} \pm 0.0000742\overline{6}\sqrt{2\,245} \approx 0.0021\overline{6} \pm 0.00351886
+ \end{eqnarray*}
+ Por lo tanto, el intervalo del $95\%$ de confianza de la diferencia entre la resistencia media de los alambres de la marca $A$ menos la resistencia media de los alambres de la marca $B$, medido en ohms, es aproximadamente:
+ \begin{equation*}
+  -0.0013521942 < \mu_1 - \mu_2 < 0.0056855276
+ \end{equation*}
+ Por otro lado, en R se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P15\_Intervalo\_de\_confianza\_06.r}, usando la base de datos \texttt{DB16\_Problema\_96.csv}.
+ \begin{verbatim}
+> datos<-read.csv("DB16_Problema_96.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Resistencia.ohm")
+> varAgrupacion<-NULL
+> varSel<-list("Alambre")
+> alfa<-0.05
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  Tipo.de.Grupo            Var1 Freq n1 n2    media1 media2       limInf
+1       Alambre Resistencia.ohm   12  6  6 0.1406667 0.1385 -0.001352414
+   diferencia      limSup valorPMedia valorPVar          varIgual
+1 0.002166667 0.005685747   0.2001019 0.9131519 Var no diferentes
+                Resultado
+1 No signif dif de medias
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de $95\%$, suponiendo la normalidad de las poblaciones, es $-0.001352 < \mu_1 - \mu_2 < 0.005686$. Por lo tanto, se puede concluir, con $95\%$ de seguridad, que la resistencia promedio de los alambres son iguales, lo cual se justifica debido a que el intervalo de confianza de la diferencia de las medias poblacionales contiene al cero, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

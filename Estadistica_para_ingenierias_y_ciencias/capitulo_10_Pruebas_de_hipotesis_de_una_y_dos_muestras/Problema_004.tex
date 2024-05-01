@@ -1,0 +1,213 @@
+\begin{enunciado}
+ Se estima que la proporci\'on de adultos que viven en una peque\~na ciudad que son graduados universitarios es $p = 0.6$. Para probar esta hip\'otesis, se selecciona una muestra aleatoria de $15$ adultos. Si el n\'umero de graduados en nuestra muestra es cualquier n\'umero de $6$ a $12$, aceptaremos la hip\'otesis nula de que $p = 0.6$; en caso contrario, concluiremos que $p \neq 0.6$.
+ \begin{enumerate}
+  \item Eval\'ue $\alpha$ con la suposici\'on de que $p = 0.6$. Utilice la distribuci\'on binomial.
+  
+  \item Eval\'ue $\beta$ para las alternativas $p = 0.5$ y $p = 0.7$.
+  
+  \item ¿Es \'este un buen procedimiento de prueba?
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del n\'umero de graduados universitarios en la muestra de los adultos, del enunciado se tiene lo siguiente, en donde $x_{\text{inf}}$ y $x_{\text{sup}}$ representan el valor cr\'{\i}tico inferior y superior.
+ \begin{itemize}
+  \item $X \sim b(n,p)$.
+  \item $n=15$.
+  \item $x_{\text{inf}} = 6$ y $x_{\text{sup}} = 12$.
+ \end{itemize}
+ Con lo que se realiza lo pedido en los incisos como sigue.
+ \begin{enumerate}
+  \item Suponiendo adem\'as que
+  \begin{itemize}
+   \item $p = 0.6$.
+  \end{itemize}
+  el error de Tipo I se calcula como sigue:
+  \begin{eqnarray*}
+   \alpha & = & P\left( \text{Error tipo I} \right) = P(X < 6) + P(X > 12) = P(X < 6) + \left[ 1 - P(X \leq 12) \right] \\
+   & = & 1 + \sum_{x=0}^{5} b(x;15,0.6) - \sum_{x=0}^{12} b(x;15,0.6)
+  \end{eqnarray*}
+  Esto se puede aproximar usando la Tabla A.1, con lo que se obtiene lo siguiente:
+  \begin{equation*}
+   \alpha = 1 + \sum_{x=0}^{5} b(x;15,0.6) - \sum_{x=0}^{12} b(x;15,0.6) = 1 + 0.0338 - 0.9729 = 0.0609
+  \end{equation*}
+  Aunque el valor preciso se obtiene con los siguientes c\'alculos:
+  \begin{eqnarray*}
+   \alpha & = & 1 + \sum_{x=0}^{5} b(x;15,0.6) - \sum_{x=0}^{12} b(x;15,0.6) = 1 - \sum_{x=6}^{12} b(x;15,0.6) \\
+   & = & 1 - \sum_{x = 6}^{12} \left[ \binom{15}{x} \left( \frac{6}{10} \right)^{x}\left( \frac{4}{10} \right)^{15-x} \right] = 1 - \frac{1}{10^{15}} \sum_{x=6}^{12} \binom{15}{x}6^x\cdot4^{15-x} \\
+   & = & 1 - \frac{6^6\cdot 4^3}{10^{15}} \left( 5\,005\cdot4^6 + 6\,435\cdot6\cdot4^5 + 6\,435\cdot6^2\cdot4^4 + 5\,005\cdot6^3\cdot4^3 + 3\,003\cdot6^4\cdot4^2 + \right. \\
+   & & \left. 1\,365\cdot6^5\cdot4 + 455\cdot6^6 \right) \\
+   & = & 1 - \frac{2\,985\,984}{10^{15}}(20\,500\,480 + 39\,536\,640 + 59\,304\,960 + 69\,189\,120 + 62\,270\,208 + \\
+   & & 42\,456\,960 + 21\,228\,480 ) \\
+   & = & \frac{10^{15}}{10^{15}} - \frac{2\,985\,984(314\,486\,848)}{10^{15}} = \frac{1\,000\,000\,000\,000\,000 - 939\,052\,696\,338\,432}{1\,000\,000\,000\,000\,000} \\
+   & = & \frac{60\,947\,303\,661\,568}{1\,000\,000\,000\,000\,000} = 0.060947303661568
+  \end{eqnarray*}
+  Finalmente, usando R, se puede calcular esta probabilidad usando el cript que se encuentra en el archivo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, el cual permite calcular $\alpha$ o $\beta$, o ambos, suponiendo una distribuci\'on binomial. Los valores modificables para el usuario son: el tama\~no de la muestra, $\texttt{n}$; el valor cr\'{\i}tico inferior, \texttt{CriticoInf}, o superior, \texttt{CriticoSup}, o ambos, tales que si la cantidad de casos favorables es una cantidad entre \'estas, inclusive, entonces se encuentra en la regi\'on de aceptaci\'on; y, la probabilidad real suponiendo la hip\'otesis nula, \texttt{p0}, o la probabilidad real suponiendo una hip\'otesis alternativa, \texttt{p1}, o ambas. El c\'odigo completo se muestra a continuaci\'on.
+  \begin{verbatim}
+> n<-15
+> CriticoInf<-6
+> CriticoSup<-12
+> p0<-0.6
+> p1<-NULL
+> alpha1<-0
+> alpha2<-0
+> beta1<-0
+> beta2<-0
+> binf<-!is.null(CriticoInf)
+> bsup<-!is.null(CriticoSup)
+> balpha<-!is.null(p0)
+> bbeta<-!is.null(p1)
+> if(binf){
++     if(balpha) alpha1<-pbinom(CriticoInf-1,n,p0)
++     if(bbeta) beta1<-pbinom(CriticoInf-1,n,p1)
++ }
+> if(bsup){
++     if(balpha) alpha2<-1-pbinom(CriticoSup,n,p0)
++     if(bbeta) beta2<-1-pbinom(CriticoSup,n,p1)
++ }
+> alpha<-alpha1+alpha2
+> beta<-1-(beta1+beta2)
+> if(balpha){
++     if(binf&bsup){
++         Resultado1<-data.frame(HipotesisNula=p0,
++                                n=n,
++                                CríticoInf=CriticoInf,
++                                CriticoSup=CriticoSup,
++                                alpha=alpha)
++     } else{
++         if(binf){
++             Resultado1<-data.frame(HipotesisNula=p0,
++                                    n=n,
++                                    CriticoInf=CriticoInf,
++                                    alpha=alpha)
++         }
++         else{
++             Resultado1<-data.frame(HipotesisNula=p0,
++                                    n=n,
++                                    CriticoSup=CriticoSup,
++                                    alpha=alpha)
++         }
++     }
++ } else Resultado1<-NULL
+> if(bbeta){
++     if(binf&bsup){
++         Resultado2<-data.frame(HipotesisAlternativa=p1,
++                                n=n,
++                                CríticoInf=CriticoInf,
++                                CriticoSup=CriticoSup,
++                                beta=beta)
++     } else{
++         if(binf){
++             Resultado2<-data.frame(HipotesisAlternativa=p1,
++                                    n=n,
++                                    CriticoInf=CriticoInf,
++                                    beta=beta)
++         }
++         else{
++             Resultado2<-data.frame(HipotesisAlternativa=p1,
++                                    n=n,
++                                    CriticoSup=CriticoSup,
++                                    beta=beta)
++         }
++     }
++ } else Resultado2<-NULL
+> if(balpha&bbeta){
++     Resultado<-list(Resultado1,Resultado2)
++     names(Resultado)<-c("Probabilidad de error tipo I",
++                         "Probabilidad de error tipo II")
++ } else{
++     if(balpha){
++         Resultado<-list(Resultado1)
++         names(Resultado)<-c("Probabilidad de error tipo I")
++     } else{
++         Resultado<-list(Resultado2)
++         names(Resultado)<-c("Probabilidad de error tipo II")
++     }
++ }
+> Resultado
+$`Probabilidad de error tipo I`
+  HipotesisNula  n CríticoInf CriticoSup     alpha
+1           0.6 15          6         12 0.0609473
+  \end{verbatim}
+  \vspace{-0.5cm}
+  En donde al final muestra el resultado correspondiente, $\alpha = 0.0609473$.${}_{\square}$
+  
+  \item Si se supone que
+  \begin{itemize}
+   \item $p = 0.5$.
+  \end{itemize}
+  el error Tipo II se calcula como sigue:
+  \begin{eqnarray*}
+   \beta & = & P(\text{Error Tipo II}) = P(6 \leq X \leq 12) = P(X\leq 12) - P(X<6) \\
+   & = & \sum_{x=0}^{12} b(x;15,0.5) - \sum_{x=0}^{5}b(x;15,0.5)
+  \end{eqnarray*}
+  Esto se puede aproximar usando la Tabla A.1, con lo que se obtiene lo siguiente:
+  \begin{equation*}
+   \beta = \sum_{x=0}^{12} b(x;15,0.5) - \sum_{x=0}^{5}b(x;15,0.5) = 0.9963 - 0.1509 = 0.8454
+  \end{equation*}
+  Aunque el valor preciso se obtiene con los siguientes c\'alculos:
+  \begin{eqnarray*}
+   \beta & = & \sum_{x=0}^{12} b(x;15,0.5) - \sum_{x=0}^{5}b(x;15,0.5) = \sum_{x=6}^{12} b(x;15,0.5) = \frac{1}{10^{15}} \sum_{x=6}^{12} \binom{15}{x}5^x\cdot 5^{15-x} \\
+   & = & \frac{5^{15}}{10^{15}} \sum_{x=6}^{12} \binom{15}{x} = \frac{5^{15}}{10^{15}} (5\,005 + 6\,435 + 6\,435 + 5\,005 + 3\,003 + 1\,365 + 455) \\
+   & = & \frac{30\,517\,578\,125 (27\,703)}{1\,000\,000\,000\,000\,000} = \frac{845\,428\,466\,796\,875}{1\,000\,000\,000\,000\,000} = 0.845428466796875
+  \end{eqnarray*}
+  Por otro lado, usando R, se puede calcular esta probabilidad usando el script que se encuentra en el archivo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-15
+> CriticoInf<-6
+> CriticoSup<-12
+> p0<-NULL
+> p1<-0.5
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa  n CríticoInf CriticoSup      beta
+1                  0.5 15          6         12 0.8454285
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Mientras que si se supone que
+  \begin{itemize}
+   \item $p = 0.7$
+  \end{itemize}
+  el error Tipo II se calcula como sigue:
+  \begin{equation*}
+   \beta = P(X \leq 12) - P(X< 6) = \sum_{x=0}^{12} b(x;15,0.7) - \sum_{x=0}^{5} b(x;15,0.7)
+  \end{equation*}
+  La aproximaci\'on usando la Tabla A.1 es la siguiente:
+  \begin{equation*}
+   \beta = \sum_{x=0}^{12} b(x;15,0.7) - \sum_{x=0}^{5} b(x;15,0.7) = 0.8732 - 0.0037 = 0.8695
+  \end{equation*}
+  Mientras que el valor preciso se obtiene como sigue:
+  \begin{eqnarray*}
+   \beta & = & \sum_{x=0}^{12} b(x;15,0.7) - \sum_{x=0}^{5} b(x;15,0.7) = \sum_{x=6}^{12} b(x;15,0.7) = \frac{1}{10^{15}} \sum_{x=6}^{12} \binom{15}{x} 7^{x}\cdot 3^{15-x} \\
+   & = & \frac{1}{10^{15}} \left( 5\,005\cdot 7^6\cdot3^9 + 6\,435\cdot 7^7 \cdot 3^8 + 6\,435\cdot 7^8 \cdot 3^7 + 5\,005\cdot 7^9\cdot 3^6  + 3\,003\cdot7^{10}\cdot 3^5 + \right. \\
+   & & \left. 1\,365\cdot 7^{11}\cdot 3^4 + 455\cdot 7^{12}\cdot 3^3 \right) \\
+   & = & \frac{7^6 \cdot 3^3}{10^{15}}\left( 5\,005\cdot 3^6 + 6\,435\cdot 7 \cdot 3^5 + 6\,435\cdot 7^2\cdot 3^4 + 5\,005\cdot 7^3\cdot 3^3  + 3\,003\cdot7^4 \cdot 3^2 + \right. \\
+   & & \left. 1\,365\cdot 7^5\cdot 3 + 455\cdot 7^6 \right) \\
+   & = & \frac{7^6\cdot 3^3}{10^{15}}(3\,648\,645 + 10\,945\,935 + 25\,540\,515 + 46\,351\,305 + 64\,891\,827 + 68\,824\,665 + \\
+   & & 53\,530\,295) \\
+   & = & \frac{3\,176\,523(273\,733\,187)}{1\,000\,000\,000\,000\,000} = \frac{869\,519\,764\,368\,801}{1\,000\,000\,000\,000\,000} = 0.869519764368801
+  \end{eqnarray*}
+  Finalmente, en R, al usar el script en \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-15
+> CriticoInf<-6
+> CriticoSup<-12
+> p0<-NULL
+> p1<-0.7
+  \end{verbatim}
+  \vspace{-0.5cm}
+  se obtiene el siguiente resultado:
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa  n CríticoInf CriticoSup      beta
+1                  0.7 15          6         12 0.8695198
+  \end{verbatim}
+  \vspace{-0.5cm}
+  En conclusi\'on, si en realidad $p=0.5$, la probabilidad de cometer un error tipo II es exactamente $0.845428466796875$, con las aproximaciones del libro y de R: $0.8454$ y $0.8454285$, respectivamente; mientras que si $p=0.7$, la probabilidad de cometer un error tipo II es exactamente $0.869519764368801$, con las aproximaciones del libro y de R: $0.8695$ y $0.8695198$, respectivamente.${}_{\square}$
+  
+  \item Concluyendo de los resultados anteriores. Aunque cometer el error de concluir que $p\neq 0.6$ cuando s\'{\i} es \'este su valor real tiene una probabilidad mayor a $0.05$ de ocurrir, la probabilidad que se suele tomar por costumbre como m\'aximo de cometer un error tipo I, se puede tomar como algo aceptable, ya que en este caso $\alpha \approx 0.06 \approx 0.05$; sin embargo, se tiene que el procedimiento no es bueno si no se desea concluir que $p=0.6$, cuando en realidad hay una diferencia real de aproximadamente $0.1$, ya que la probabilidad de eque esto pase es muy alta, aproximadamente de $0.85$, por lo que, si una diferencia de $0.1$ no es tolerable, se recomienda disminuir el rango de los valores cr\'{\i}ticos, pero como esto aumentar\'{\i}a la probabilidad de un error tipo I, entonces se concluye finalmente que el procedimiento de prueba no es bueno, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

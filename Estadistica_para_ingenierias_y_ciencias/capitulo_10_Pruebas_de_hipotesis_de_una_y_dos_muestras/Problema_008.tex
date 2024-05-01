@@ -1,0 +1,103 @@
+\begin{enunciado}
+ Una tintorer\'{\i}a afirma que un nuevo removedor de manchas quitar\'a m\'as de $70\%$ de las manchas en las que se aplique. Para verificar esta afirmaci\'on, el removedor de manchas se utilizar\'a sobre $12$ manchas que se eligieron al azar. Si menos de $11$ de las manchas se eliminan, no rechazaremos la hip\'otesis nula de que $p = 0.7$; en cualquier otro caso, concluiremos que $p > 0.7$.
+ \begin{enumerate}
+  \item Eval\'ue $\alpha$, suponiendo que $p = 0.7$.
+  
+  \item Eval\'ue $\beta$ para la alternativa $p = 0.9$.
+ \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+ Sea $X$ la variable aleatoria del n\'umero de manchas que quita el removedor en la muestra, del enunciado se tiene lo siguiente, en donde $x_{\text{sup}}$ representa el valor cr\'{\i}tico superior, en el que incluye la regi\'on de aceptaci\'on.
+ \begin{itemize}
+  \item $X \sim b(n,p)$.
+  \item $n = 12$.
+  \item $x_{\text{sup}} = 10$.
+ \end{itemize}
+ Con lo que se realiza lo pedido en los incisos como sigue.
+ \begin{enumerate}
+  \item Suponiendo adem\'as que
+  \begin{itemize}
+   \item $p = 0.7$.
+  \end{itemize}
+  el error tipo I se calcula como sigue:
+  \begin{equation*}
+   \alpha = P(X \geq 11) = 1 - P(X \leq 10) = 1 - \sum_{x=0}^{10} b(x;12,0.7)
+  \end{equation*}
+  Esto se puede aproximar usando la tabla A.1, con lo que se obtiene lo siguiente:
+  \begin{equation*}
+   \alpha = 1 - \sum_{x=0}^{10} b(x;12,0.7) = 1 - 0.915 = 0.085.
+  \end{equation*}
+  Aunque el valor preciso se obtiene con los siguientes c\'alculos:
+  \begin{eqnarray*}
+   \alpha & = & 1 - \sum_{x=0}^{10} b(x;12,0.7) = \sum_{x=11}^{12} b(x;12,0.7) = \sum_{x=11}^{12} \left[ \binom{12}{x} \left( \frac{7}{10} \right)^x \left( \frac{3}{10} \right)^{12-x} \right] \\
+   & = & \frac{1}{10^{12}}\left( 12\cdot 7^{11} \cdot 3 + 7^{12} \right) = \frac{7^{11}}{10^{12}}(12 \cdot 3 + 7) = \frac{1\,977\,326\,743(36+7)}{1\,000\,000\,000\,000} \\
+   & = & \frac{1\,977\,326\,743(43)}{1\,000\,000\,000\,000} = \frac{85\,025\,049\,949}{1\,000\,000\,000\,000} = 0.085025049949
+  \end{eqnarray*}
+  Finalmente, usando R, se puede calcular la probabilidad usando el script del archivo anexo \texttt{P01\_Probabilidad\_de\_error\_binomial\_1.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-12
+> CriticoInf<-NULL
+> CriticoSup<-10
+> p0<-0.7
+> p1<-NULL
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+$`Probabilidad de error tipo I`
+  HipotesisNula  n CriticoSup      alpha
+1           0.7 12         10 0.08502505
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene lo siguiente:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas: $\alpha = 0.085$.
+   \item El valor preciso: $\alpha = 0.085025049949$.
+   \item La aproximaci\'on con R: $\alpha = 0.08502505$.${}_{\square}$
+  \end{itemize}
+
+  \item Si se supone que
+  \begin{itemize}
+   \item $p = 0.9$.
+  \end{itemize}
+  el error tipo II se calcula como sigue:
+  \begin{equation*}
+   \beta = P(X < 11) = P(X \leq 10) = \sum_{x=0}^{10} b(x;12,0.9)
+  \end{equation*}
+  Usando la Tabla A.1, esto se aproxima a:
+  \begin{equation*}
+   \beta = \sum_{x=0}^{10} b(x;12,0.9) = 0.341
+  \end{equation*}
+  Aunque el valor preciso se obtiene con los siguientes c\'alculos:
+  \begin{eqnarray*}
+   \beta & = & \sum_{x=0}^{10} b(x;12,0.9) = 1 - \sum_{x=11}^{12} b(x;12,0.9) = 1 - \frac{1}{10^{12}} \sum_{x=11}^{12} \binom{12}{x} \cdot 9^x \cdot 1^{12-x} \\
+   & = & 1 - \frac{1}{10^{12}}\left( 12\cdot 9^{11} + 9^{12} \right) = 1 -\frac{9^{11}}{10^{12}}(12 +9) = 1 - \frac{31\,381\,059\,609(21)}{10^{12}} \\
+   & = & \frac{1\,000\,000\,000\,000 - 659\,002\,251\,789}{1\,000\,000\,000\,000} = \frac{340\,997\,748\,211}{1\,000\,000\,000\,000} \\
+   & = & 0.340997748211
+  \end{eqnarray*}
+  Finalmente, usando R, se puede calcular esta probabilidad usando el script del archivo anexo \texttt{P01\_Probabilidad\_de\_error} cambiando las siguientes l\'{\i}neas de c\'odigo:
+  \begin{verbatim}
+> n<-12
+> CriticoInf<-NULL
+> CriticoSup<-10
+> p0<-NULL
+> p1<-0.9
+  \end{verbatim}
+  \vspace{-0.5cm}
+  con lo que se obtiene el siguiente resultado:
+  \begin{verbatim}
+$`Probabilidad de error tipo II`
+  HipotesisAlternativa  n CriticoSup      beta
+1                  0.9 12         10 0.3409977
+  \end{verbatim}
+  \vspace{-0.5cm}
+  Por lo tanto, se tiene lo siguiente:
+  \begin{itemize}
+   \item La aproximaci\'on con las tablas: $\beta = 0.341$.
+   \item El valor preciso: $\beta = 0.340997748211$.
+   \item La aproximaci\'on con R: $\beta = 0.3409977$
+  \end{itemize}
+  que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+ \end{enumerate}
+\end{solucion}

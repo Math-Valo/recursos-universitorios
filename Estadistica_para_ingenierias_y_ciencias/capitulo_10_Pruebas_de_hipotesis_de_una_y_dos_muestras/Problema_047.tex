@@ -1,0 +1,51 @@
+\begin{enunciado}
+ ¿Qu\'e tan grande se requiere que sea la muestra del ejercicio 10.20, si la potencia de nuestra prueba debe ser $0.90$ cuando la media real es $5.20$? Suponga que $\sigma = 0.24$.
+\end{enunciado}
+
+\begin{solucion}
+ Usando los datos del ejercicio 10.20
+ y la informaci\'on del enunciado,
+ se tiene los siguientes datos y supuestos:
+ \begin{itemize}
+  \item $\alpha = 0.05$.
+  \item $1 - \beta = 0.90$, entonces $\beta = 0.1$.
+  \item $\mu = 5.5$, seg\'un la hip\'otesis nula.
+  \item $\mu + \delta = 5.20$,
+  seg\'un una alternativa espec\'{\i}fica,
+  entonces $\delta = -0.3$.
+  \item $\sigma = 0.24$.
+ \end{itemize}
+ Entonces, de la tabla A.3, se deduce adem\'as que:
+ \begin{itemize}
+  \item $z_{\alpha} \approx 1.645$.
+  \item $z_{\beta} \approx 1.28$.
+ \end{itemize}
+
+ Entonces se puede calcular el tama\~no de muestra requerido
+ para la calidad buscada en la prueba
+ con los siguientes c\'alculos:
+ \begin{equation*}
+  n =
+  \left\lceil
+  \frac{(z_{\alpha} + z_{\beta})^2 \sigma^2}{\delta^2}
+  \right\rceil
+  = \left\lceil
+  \frac{(1.645 + 1.28)^2 (0.24)^2}{(-0.3)^2}
+  \right\rceil
+  = \left\lceil \frac{2.925^2 \times 0.0576}{0.09} \right\rceil
+  = \lceil 5.4756 \rceil = 6
+ \end{equation*}
+ Por lo tanto, a partir de un tama\~no muestral de $n = 6$ se puede realizar una prueba de hip\'otesis
+ de que el peso promedio de las bolsas de palomitas de ma\'{\i}z con queso chedar no es menor a $5.5$ onzas,
+ esto es que $\mu \geq 5.5$, con un nivel de significancia de $0.05$
+ considerando una potencia de prueba de prueba de $0.9$ para la hip\'otesis alternativa de que $\mu = 5.2$.
+ \par
+ Hay que advertir en este resultado que es est\'a suponiendo impl\'{\i}citamente,
+ adem\'as de todo lo antes enlistado, que la media muestral tiene una distribuci\'on normal, esto es, que:
+ \begin{itemize}
+  \item $\overline{X} \sim n\left( \mu, \sigma/\sqrt{n} \right)$
+ \end{itemize}
+ lo cual se pudo suponer en el ejercicio 10.20 debido a que se cumpl\'{\i}a que $n \geq 30$,
+ pero para un tama\~no muestral tan peque\~no, no puede tener certeza a priori de ello
+ y, por lo tanto, esta suposici\'on es necesaria.${}_{\blacksquare}$
+\end{solucion}

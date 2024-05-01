@@ -1,0 +1,56 @@
+\begin{enunciado}
+ Construya un intervalo de confianza de $99\%$ para $\sigma^2$ en el ejercicio 9.13 de la p\'agina 286.
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.13, pero cambiando el significado de $\alpha$ al nivel de significancia del intervalo de confianza para $\sigma^2$, entonces se tiene los siguientes datos:
+ \begin{itemize}
+  \item $X \sim n(\mu, \sigma)$.
+  \item $\sigma$ desconocida.
+  \item $n = 9$ piezas.
+  \item $s^2 = \frac{217}{360\,000} = 0.000602\overline{7}\,$cm.
+  \item $\alpha = 0.01$
+ \end{itemize}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para la varianza de una poblaci\'on aproximadamente normal, entonces se requerir\'a de los valores $\chi^2_{\alpha/2,n-1} = \chi^2_{0.005,8}$ y $\chi^2_{1-\alpha/2,n-1} = \chi^2_{0.995,8}$. De la Tabla A.5, se tiene que estos valores son: $\chi^2_{0.005,8} = 21.955$ y $\chi^2_{0.995,8} = 1.344$. Por otro lado, usando R, con los siguientes comandos, se obtiene mayor precisi\'on.
+ \begin{verbatim}
+> options(digits=22)
+> qchisq(0.005,8,lower.tail=F)
+[1] 21.95495499065953737272
+> qchisq(0.995,8,lower.tail=F)
+[1] 1.344413087014810548325
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar con mayor precisi\'on que $\chi^2_{0.005,8} = 21.95495499$ y $\chi^2_{0.995,8} = 1.344413087$.
+ \par 
+ Ya que se busca un intervalo de confianza para la varianza de una poblaci\'on que se distribuye normalmente usando la desviaci\'on est\'andar muestral como estimador, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}} < \sigma^2 < \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando los valores $\chi^2_{\alpha/2,n-1}$ y $\chi^2_{1-\alpha/2,n-1}$ del libro, se tiene los c\'alculos de los l\'{\i}mites de intervalo de confianza como sigue:
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}} = \frac{(9-1)(217/360\,000)}{21.955} = \frac{217}{45(21\,955)} = \frac{217}{987\,975} \approx 0.000219641
+ \end{equation*}
+ y
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}} = \frac{(9-1)(217/360\,000)}{1.344} = \frac{217}{45(1\,344)} = \frac{31}{8\,640} \approx 0.00358796
+ \end{equation*}
+ Por lo tanto, el intervalo de confianza de $99\%$ para la varianza del tama\~no del di\'ametro de las piezas met\'alicas cil\'{\i}ndricas, medido en cent\'{\i}metros, es aproximadamente
+ \begin{equation*}
+  0.000219641 < \sigma^2 < 0.00358796
+ \end{equation*}
+ Finalmente, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P21\_Intervalo\_de\_confianza\_10.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> datos<-read.csv("DB01_Problema_13.csv",sep=";",encoding="UTF-8")
+> varInteres<-c("Diámetro.cm")
+> alfa<-0.01
+> tipoInterv<-"var"
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+     variable       LimInf     Varianza      LimSup
+1 Diámetro.cm 0.0002196416 0.0006027778 0.003586861
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $99\%$ es $0.00022 < \sigma^2 < 0.00359$, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

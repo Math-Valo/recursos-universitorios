@@ -1,0 +1,44 @@
+\begin{enunciado}
+ Suponga que hay $n$ pruebas $x_1, x_2, \ldots, x_n$ de un proceso de Bernolli con par\'ametro $p$, la probabilidad de \'exito. Es decir, la probabilidad de $r$ \'exitos est\'a dada por $\binom{n}{r}p^r(1-p)^{n-r}$, en donde $r = \sum_{i=1}^n x_i$. Determine el estimador de probabillidad m\'axima para el par\'ametro $p$.
+\end{enunciado}
+
+\begin{solucion}
+ Dado que cada muestra $x_i$, para cada $i \in \mathbb{N}\cap [1,n]$, cumple que vale $1$ o $0$, entonces la funci\'on de probabilidad para una muestra en la que hay exactamente $r$ casos de \'exito, en cualquier orden es:
+ \begin{equation*}
+  L\left( x_1, x_2, \ldots, x_n; p \right) = \binom{n}{r}p^r(1-p)^{n-r}
+ \end{equation*}
+ Por lo tanto, el logaritmo natural de esta funci\'on es
+ \begin{equation*}
+  \ln  L\left( x_1, x_2, \ldots, x_n; p \right) = \ln \left[ \binom{n}{r} \right] + r\ln p + (n-r)\ln (1-p)
+ \end{equation*}
+ Y como el logaritmo es una funci\'on inyectiva y creciente, cada valor de esta funci\'on corresponde a un valor de la funci\'on de probabilidad y, adem\'as, el m\'aximo en esta funci\'on es tambi\'en m\'aximo en la funci\'on de probabilidad. Por lo tanto, el estimador de probabilidad m\'axima cumple que hace nulo el valor de la primera derivada del logaritmo de la funci\'on de probabilidad, es decir, hace cero la siguiente expresi\'on
+ \begin{eqnarray*}
+  \frac{\delta \ln L}{\delta p } \left( x_1, x_2, \ldots, x_n; p \right) & = & \left( \cancel{\ln \left[ \binom{n}{r} \right]} + r\ln p + (n-r)\ln (1-p) \right)' \\
+  & = & \frac{r}{p} - \frac{n-r}{1-p}
+ \end{eqnarray*}
+ Entonces, si $\hat{p}$ es el estimador de probabilidad m\'axima, se cumple lo siguiente:
+ \begin{eqnarray*}
+  \frac{r}{\hat{p}} - \frac{n-r}{1-\hat{p}} = 0 & \Leftrightarrow & \frac{r}{\hat{p}} = \frac{n-r}{1-\hat{p}} \\
+  & \Leftrightarrow & r\left(1-\hat{p} \right) = (n-r)\left(\hat{p} \right) \\
+  & \Leftrightarrow & r - \cancel{\hat{p}r} = n\hat{p} - \cancel{\hat{p}r} \\
+  & \Leftrightarrow & n\hat{p} = r \\
+  & \Leftrightarrow & \hat{p} = \frac{r}{n}
+ \end{eqnarray*}
+ Adem\'as, la segunda derivada del logaritmo de la funci\'on de probabilidad es:
+ \begin{eqnarray*}
+  \frac{\delta^2 \ln L}{\delta p^2} \left( x_1, x_2, \ldots, x_n; p \right) & = & \left( \frac{r}{p} - \frac{n-r}{1-p} \right)' \\
+  & = & -\frac{r}{p^2} - \frac{n-r}{(1-p)^2}
+ \end{eqnarray*}
+ luego, como $0 \leq r \leq n$ y el cuadrado es siempre un valor no negativo, se tiene que
+ $\frac{r}{p^2} \geq 0$ y $\frac{n-r}{(1-p)^2} \geq 0$, sin ser ambas igual a cero simult\'aneamente. Por lo tanto
+ \begin{equation*}
+  \frac{\delta^2 \ln L}{\delta p^2} \left( x_1, x_2, \ldots, x_n; p \right) = -\frac{r}{p^2} - \frac{n-r}{(1-p)^2} < 0
+ \end{equation*}
+ es decir, la segunda derivada de $\ln L$ es siempre negativo, por lo que \'esta es c\'oncava y, por lo tanto, el punto en donde la primera derivada se hace cero es m\'aximo. Es decir, $\hat{p} = \frac{r}{n}$, o bien sustituyendo $r$, $\hat{p} = \frac{1}{n} \sum_{i=1}^n x_i$ es el estimador de probabilidad m\'axima.
+ \par 
+ Como comentario final, aqu\'{\i} se igual\'o a cero la derivada, lo cual se puede hacer suponiendo que $\hat{p}$ es distinto de cero o uno, por lo que por lo que habr\'{\i}a que revisar estos casos; sin embargo, si no todas las muestras son exitosas o todas son fracasos, entonces la funci\'on de probabilidad da $0$ y se descartan estos casos. Pero si todas las muestras dan \'exito o fracaso, entonces el estimador de m\'axima probabilidad debe de ser $1$ o $0$, respectivamente, lo cual se comprueba directamente de la funci\'on de probabilidad, pues \'esta dar\'{\i}a $p$ o $1-p$, respectivamente. N\'otese que en caso de que todos sean \'exitos o fracasos, entonces la expresi\'on antes dada para $\hat{p}$ coincide con lo ya mencionado. Por lo tanto, en resumen, se tiene que el estimador de m\'axima probabilidad es
+ \begin{equation*}
+  \hat{p} = \frac{1}{n} \sum_{i=1}^{n} x_i
+ \end{equation*}
+ que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}

@@ -1,0 +1,60 @@
+\begin{enunciado}
+ Construya un intervalo de confianza de $95\%$ para $\sigma^2$ en el ejercicio 9.12 de la p\'agina 286.
+\end{enunciado}
+
+\begin{solucion}
+ Usando la notaci\'on y datos como se explic\'o en la soluci\'on del ejercicio 9.12, pero cambiando el significa de $\alpha$ al nivel de significancia del intervalo de confianza para $\sigma^2$, entonces se tiene los siguientes datos:
+ \begin{itemize}
+  \item $X \sim n(\mu, \sigma)$.
+  \item $\sigma$ desconocida.
+  \item $n = 20$.
+  \item $11.3\,$g.
+  \item $s=2.45\,$g.
+  \item $\alpha = 0.05$
+ \end{itemize}
+ Por otro lado, como se desea encontrar el intervalo de confianza bilateral para la varianza de una poblaci\'on aproximadamente normal, entonces se requerir\'a de los valores $\chi^2_{\alpha/2,n-1} = \chi^2_{0.025,19}$ y $\chi^2_{1-\alpha/2,n-1} = \chi^2_{0.975,19}$. De la Tabla A.5, se tiene que estos valores son: $\chi^2_{0.025,19} = 32.852$ y $\chi^2_{0.975,19} = 8.907$. Por otro lado, usando R, con los siguientes comandos, se obtiene mayor precisi\'on.
+ \begin{verbatim}
+> options(digits=22)
+> qchisq(0.025,19,lower.tail=F)
+[1] 32.85232686172970062444
+> qchisq(0.975,19,lower.tail=F)
+[1] 8.906516481987974742651
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que tambi\'en se puede considerar con mayor precisi\'on que: $\chi^2_{0.025,19} = 32.8523268617297$ y $\chi^2_{0.975,19} = 8.90651648198797$.
+ \par
+ Ya que se busca un intervalo de confianza para la varianza de una poblaci\'on que se distribuye normalmente usando la desviaci\'on est\'andar muestral como estimador, entonces se usar\'a la f\'ormula de intervalo siguiente:
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}} < \sigma^2 < \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}
+ \end{equation*}
+ Por lo tanto, usando los datos obtenidos y considerando los valores $\chi^2_{\alpha/2,n-1}$ y $\chi^2_{1-\alpha/2,n-1}$ del libro, se tiene los c\'alculos de los l\'{\i}mites del intervalo de confianza como sigue:
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}} = \frac{(20-1)(2.45)^2}{32.852} = \frac{19(6.0025)(4\,000)}{131\,408} = \frac{456\,190}{131\,408} = \frac{228\,095}{65\,704} \approx 3.471554243
+ \end{equation*}
+ y
+ \begin{equation*}
+  \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}} = \frac{(20-1)(2.45^2)}{8.907} = \frac{19(6.0025)(4\,000)}{35\,628} = \frac{456\,190}{35\,628} = \frac{228\,095}{17\,814} \approx 12.80425508
+ \end{equation*}
+ Por lo tanto, el intervalo de confianza de $95\%$ para la varianza de az\'ucar en los cereales Alpha-Bits, medida en gramos, es aproximadamente
+ \begin{equation*}
+  3.471554243 < \sigma^2 < 12.80425508
+ \end{equation*}
+ Finalmente, usando R, se puede calcular el intervalo de confianza usando el script en el archivo anexo \texttt{P22\_Intervalo\_de\_confianza\_11.r}, cambiando las siguientes l\'{\i}neas de c\'odigo:
+ \begin{verbatim}
+> n<-20
+> var<-NULL
+> desv.est<-2.45
+> alfa<-0.05
+> tipoInterv<-"var"
+> inter<-'D'
+> val<-TRUE
+ \end{verbatim}
+ \vspace{-0.5cm}
+ con lo que se obtiene el siguiente resultado:
+ \begin{verbatim}
+  Estimando  n  LimInf estimador   LimSup
+1       var 20 3.47152    6.0025 12.80495
+ \end{verbatim}
+ \vspace{-0.5cm}
+ Por lo que, al redondear al decimal en que coinciden los resultados anteriores, se tiene que el intervalo de confianza del $95\%$ es $3.47 < \sigma^2 < 12.80$. N\'otese que esto implica que el intervalo de confianza del $95\%$ para $\sigma$ es aproximadamente $1.863 < \sigma < 3.578$, que es el valor indicado en la secci\'on de soluciones, que es a lo que se quer\'{\i}a llegar.${}_{\blacksquare}$
+\end{solucion}
