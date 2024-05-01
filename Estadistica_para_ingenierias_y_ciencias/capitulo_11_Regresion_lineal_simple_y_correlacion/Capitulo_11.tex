@@ -1,0 +1,95 @@
+\documentclass[a4paper,11pt]{article}
+%%\documentclass[a4paper,12pt]{amsart}
+\usepackage[utf8]{inputenc}
+% \usepackage[cp1251]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{cancel}
+\usepackage{enumerate}
+
+\setlength{\textheight}{24.5cm} \setlength{\evensidemargin}{0cm}
+\setlength{\oddsidemargin}{-0.8cm} \setlength{\topmargin}{-2.5cm}
+\setlength{\textwidth}{17.5cm} \setlength{\parskip}{0.25cm}
+
+\hyphenation{pro-ba-bi-li-dad}
+\spanishdecimal{.}
+
+\newtheoremstyle{teoremas}{\topsep}{\topsep}%
+     {}% Body font
+     {}% Indent amount (empty = no indent, \parindent = para indent)
+     {}% Thm head font
+     {}% Punctuation after thm head
+     {0.5em}% Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}.}\thmnote{ {\itshape#3}.}}% Thm head spec
+\theoremstyle{teoremas}
+
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{corolario}[teorema]{Corolario}
+
+
+\newtheoremstyle{ejemplos}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{ejemplos}
+
+\newtheoremstyle{definiciones}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{definiciones}
+
+\newtheoremstyle{lemas}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {}%         Thm head font
+     {.}%        Punctuation after thm head
+     {0.5em}%     Space after thm head (\newline = linebreak)
+     {\thmname{{\bfseries#1}}\thmnumber{ {\bfseries#2}}\thmnote{ {\itshape#3}}}%         Thm head spec
+\theoremstyle{lemas}
+
+
+\newtheorem*{enunciado}{Enunciado}
+\newtheorem*{solucion}{Soluci\'on}
+\newtheorem*{demostracion}{Demostraci\'on}
+\newtheorem*{lema}{Lema}
+\newtheorem*{datos}{Datos}
+\newtheorem*{significancia}{Nivel de significancia}
+\newtheorem*{hipotesis}{Hip\'otesis}
+\newtheorem*{estadistico}{Estad\'{\i}stico de Prueba}
+\newtheorem*{valorp}{Valor $P$}
+\newtheorem*{region}{Regi\'on de Rechazo}
+\newtheorem*{decision}{Decisi\'on}
+\newtheorem*{conclusion}{Conclusi\'on}
+\newtheorem*{hallar}{Por hallar}
+
+
+\title{Cap\'{\i}tulo 11:\\ Regresión lineal simple y correlación}
+\author{\'Alvaro J. Carde\~na Mej\'{\i}a}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción a la regresión lineal; El modelo de regresión lineal simple; Los mínimos cuadrados y el modelo ajustado}
+
+\begin{enumerate}
+ \item \input{Problema_01} % Si escribo \include{Problema_001}, se escribiría el contenido en una hoja a parte.
+ \item \input{Problema_02}
+\end{enumerate}
+
+\end{document}
